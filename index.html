@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECG1 2026-2027 — Maths appliquées + ESH | Site de révision</title>
+<meta name="description" content="Site pédagogique complet pour la première année de CPGE ECG (mathématiques appliquées + ESH) : cours, exercices corrigés, méthodologie, année 2026-2027.">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root="." data-page-id="accueil">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="maths/index.html">Maths appliquées</a>
+    <a href="esh/index.html">ESH</a>
+    <a href="culture-generale/index.html">Culture générale</a>
+    <a href="anglais/index.html">Anglais</a>
+    <a href="espagnol/index.html">Espagnol</a>
+    <a href="methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<main class="wide">
+  <h1>Réussir sa première année d'ECG<br><span class="muted" style="font-size:.75em">Mathématiques appliquées + ESH — année 2026/2027</span></h1>
+  <p class="lead">Cours complets, exercices corrigés de difficulté progressive et méthodologie pour toutes les matières de la filière, conformes au programme officiel des CPGE ECG (BO spécial n°1 du 11 février 2021, en vigueur à la rentrée 2026). Cochez les chapitres terminés et les exercices réussis : votre progression est enregistrée dans votre navigateur.</p>
+
+  <h2>Les matières</h2>
+  <div class="cards cards-3">
+    <a class="card" href="maths/index.html" style="--card-color:#2563eb" data-progress-matiere="maths">
+      <h3>Mathématiques appliquées &amp; informatique</h3>
+      <p>Analyse, algèbre linéaire, probabilités, statistiques et Python : 17 chapitres + 5 fiches d'informatique, chacun avec cours et exercices corrigés.</p>
+      <span class="hours">≈ 8 h / semaine</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label"></span>
+    </a>
+    <a class="card" href="esh/index.html" style="--card-color:#0f8a6d" data-progress-matiere="esh">
+      <h3>ESH — Économie, sociologie, histoire</h3>
+      <p>Les fondements de l'économie et de la sociologie (module 1), croissance et développement depuis le XIXe siècle (module 2) : 12 chapitres avec dissertations corrigées.</p>
+      <span class="hours">≈ 8 h / semaine</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label"></span>
+    </a>
+    <a class="card" href="culture-generale/index.html" style="--card-color:#7c3aed" data-progress-matiere="cg">
+      <h3>Culture générale</h3>
+      <p>13 notions fondamentales (nature, société, liberté, désir, art…), philosophes et œuvres littéraires, méthodologie de la dissertation et de la contraction.</p>
+      <span class="hours">6 h / semaine (3 h lettres + 3 h philo)</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label"></span>
+    </a>
+    <a class="card" href="anglais/index.html" style="--card-color:#c0264b" data-progress-matiere="anglais">
+      <h3>LVA — Anglais</h3>
+      <p>Civilisation US/UK, grammaire, vocabulaire de presse, méthodologie des épreuves écrites et orales, exercices corrigés.</p>
+      <span class="hours">3 h / semaine</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label"></span>
+    </a>
+    <a class="card" href="espagnol/index.html" style="--card-color:#d97706" data-progress-matiere="espagnol">
+      <h3>LVB — Espagnol</h3>
+      <p>Civilisation de l'Espagne et de l'Amérique latine, grammaire, vocabulaire, méthodologie et exercices corrigés. Architecture réutilisable pour une autre LVB.</p>
+      <span class="hours">3 h / semaine</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label"></span>
+    </a>
+    <a class="card" href="methodologie/index.html" style="--card-color:#475569" data-progress-matiere="methodo">
+      <h3>Méthodologie &amp; concours</h3>
+      <p>Organisation du travail, réussite des colles, présentation des concours BCE et Ecricome, coefficients et conseils pour la première année.</p>
+      <span class="hours">Transversal</span>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label"></span>
+    </a>
+  </div>
+
+  <h2>La filière ECG maths appliquées + ESH</h2>
+  <p>La classe préparatoire <strong>ECG (Économique et Commerciale, voie Générale)</strong> prépare en deux ans aux concours des grandes écoles de management (<a href="methodologie/concours.html">BCE et Ecricome</a>). Chaque étudiant choisit à l'inscription deux options : une option de mathématiques (approfondies ou <strong>appliquées</strong>) et une option de sciences humaines (<strong>ESH</strong> — Économie, Sociologie et Histoire du monde contemporain — ou HGG). Le parcours <strong>mathématiques appliquées + ESH</strong> est le plus choisi : il combine des mathématiques orientées vers les probabilités, les statistiques et l'informatique avec une solide culture économique, sociologique et historique.</p>
+
+  <h3>Emploi du temps hebdomadaire type</h3>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Matière</th><th>Volume hebdomadaire</th><th>Épreuves préparées</th></tr></thead>
+    <tbody>
+      <tr><td>Mathématiques appliquées &amp; informatique</td><td>≈ 8 h (cours + TD + TP Python)</td><td>Maths appliquées BCE (EDHEC, EM Lyon, ESSEC…), Ecricome</td></tr>
+      <tr><td>ESH</td><td>≈ 8 h</td><td>Dissertations ESH (ESSEC, ESCP, HEC/EM Lyon, Ecricome)</td></tr>
+      <tr><td>Culture générale</td><td>6 h (3 h lettres + 3 h philosophie)</td><td>Dissertation de culture générale, contraction/synthèse de texte</td></tr>
+      <tr><td>LVA (anglais)</td><td>3 h</td><td>Épreuves de langues ELVi / IENA / Ecricome, oraux</td></tr>
+      <tr><td>LVB (espagnol, allemand…)</td><td>3 h</td><td>Épreuves de langues ELVi / IENA / Ecricome, oraux</td></tr>
+      <tr><td>EPS + khôlles + devoirs surveillés</td><td>variable</td><td>Entraînement continu à l'écrit et à l'oral</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">À ce volume de cours s'ajoutent chaque semaine des khôlles (interrogations orales de 20 à 60 minutes en maths, ESH et langues, en alternance) et, la plupart des semaines, un devoir surveillé de 3 à 4 heures le samedi matin.</p>
+
+  <h3>Les concours visés</h3>
+  <p>À l'issue des deux années, les étudiants passent les concours d'entrée des écoles de management :</p>
+  <ul>
+    <li><strong>La BCE</strong> (Banque Commune d'Épreuves) regroupe une vingtaine d'écoles, dont HEC Paris, ESSEC, ESCP, EDHEC, EM Lyon, SKEMA, Audencia, NEOMA, GEM… Chaque école choisit ses épreuves et ses coefficients parmi une banque commune (maths appliquées, ESH, culture générale, langues, contraction/synthèse).</li>
+    <li><strong>Ecricome</strong> regroupe KEDGE, NEOMA, Rennes SB, Montpellier BS et EM Strasbourg, avec ses propres épreuves passées en avril, avant celles de la BCE.</li>
+  </ul>
+  <p>Le détail des épreuves et des coefficients est présenté dans la section <a href="methodologie/concours.html">Méthodologie &amp; concours</a>.</p>
+
+  <h2>Calendrier indicatif de l'année 2026/2027</h2>
+  <ul class="timeline">
+    <li><span class="date">Mardi 1er septembre 2026</span> Rentrée. Mise en route immédiate : les colles commencent dès la 2e ou 3e semaine.</li>
+    <li><span class="date">Septembre – octobre 2026</span> Premiers DS de maths et d'ESH ; premières khôlles de langues. Objectif : installer une méthode de travail régulière.</li>
+    <li><span class="date">Vacances de la Toussaint (fin octobre)</span> Première consolidation : reprendre les chapitres 1 à 4 de maths et le début du module 1 d'ESH.</li>
+    <li><span class="date">Décembre 2026</span> DS bilan du semestre 1 dans la plupart des lycées. Conseil de classe du 1er semestre.</li>
+    <li><span class="date">Janvier 2027</span> Début du semestre 2 : variables aléatoires en maths, module 2 (croissance) en ESH.</li>
+    <li><span class="date">Février – mars 2027</span> Rythme de croisière : DS réguliers, colles, premiers sujets type concours adaptés.</li>
+    <li><span class="date">Avril 2027</span> Dans beaucoup de lycées, <strong>concours blanc</strong> n°1 : une semaine d'épreuves dans les conditions réelles (les ECG2 passent Ecricome du 14 au 16 avril environ, puis la BCE fin avril–début mai).</li>
+    <li><span class="date">Mai – juin 2027</span> Fin du programme de première année ; révisions ; certains lycées organisent un second concours blanc ou des « khôlles de synthèse ».</li>
+    <li><span class="date">Juin 2027</span> Conseil de classe de passage en ECG2. Travail d'été conseillé : consolider les maths du semestre 2 et lire pour la culture générale (le thème d'ECG2 est publié au printemps).</li>
+  </ul>
+  <p class="small muted">Les dates précises varient selon les lycées ; ce calendrier donne les grandes échéances communes.</p>
+
+  <h2>Comment utiliser ce site</h2>
+  <ol>
+    <li><strong>Suivez le cours</strong> de chaque chapitre en parallèle de celui de votre professeur : les définitions (bleu), théorèmes (vert), méthodes (orange) et pièges (rouge) sont encadrés pour faciliter la mémorisation.</li>
+    <li><strong>Faites les exercices sans regarder le corrigé</strong> : chaque chapitre propose trois niveaux (application directe, entraînement, approfondissement type concours). Le corrigé détaillé s'affiche avec le bouton « Voir le corrigé ».</li>
+    <li><strong>Cochez votre progression</strong> : « chapitre terminé » et « exercice réussi » sont sauvegardés dans votre navigateur et alimentent les barres de progression ci-dessus.</li>
+    <li><strong>Utilisez la recherche</strong> (en haut de page) pour retrouver instantanément une notion, un théorème ou un auteur.</li>
+  </ol>
+</main>
+
+<footer class="site-footer">
+  <p>Site de révision ECG1 — mathématiques appliquées + ESH — année 2026/2027.<br>
+  Contenu conforme aux programmes officiels des CPGE ECG (BO spécial n°1 du 11 février 2021). Outil de travail complémentaire : il ne remplace pas les cours de vos professeurs.</p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
