@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 11 — Variables aléatoires finies et lois usuelles | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : variable aléatoire, loi, fonction de répartition, espérance, théorème de transfert, variance, lois uniforme, de Bernoulli et binomiale. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch11" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../espagnol/index.html">Espagnol</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 11</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 11.</span> Variables aléatoires finies et lois usuelles</h1>
+  <p class="lead">Une variable aléatoire traduit le résultat d'une expérience en nombre : gain d'un jeu, nombre de succès… Ce chapitre définit la loi, l'espérance et la variance, et présente les trois lois finies au programme : uniforme, Bernoulli, binomiale.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 2 · ≈ 2,5 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Variable aléatoire et loi</a></li>
+      <li><a href="#s2">Fonction de répartition</a></li>
+      <li><a href="#s3">Espérance et théorème de transfert</a></li>
+      <li><a href="#s4">Variance et écart-type</a></li>
+      <li><a href="#s5">Loi uniforme</a></li>
+      <li><a href="#s6">Loi de Bernoulli</a></li>
+      <li><a href="#s7">Loi binomiale</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Variable aléatoire et loi</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 11.1 — Variable aléatoire réelle finie</span>
+    <p>Une <strong>variable aléatoire</strong> (v.a.) sur un espace probabilisé fini \((\Omega, P)\) est une application \(X : \Omega \to \mathbb{R}\). Son <strong>support</strong> \(X(\Omega) = \{x_1, \dots, x_n\}\) est l'ensemble de ses valeurs. La <strong>loi de \(X\)</strong> est la donnée des probabilités :</p>
+    <p>\[ P(X = x_i) = P\big(\{\omega \in \Omega \mid X(\omega) = x_i\}\big), \qquad \text{avec} \quad \sum_{i=1}^{n} P(X = x_i) = 1. \]</p>
+    <p>On présente généralement la loi dans un tableau valeurs / probabilités.</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Déterminer une loi</span>
+    <ol>
+      <li>Déterminer le support \(X(\Omega)\) (toutes les valeurs possibles, sans oublier les extrêmes).</li>
+      <li>Pour chaque valeur \(x\), calculer \(P(X = x)\) par dénombrement, arbre ou conditionnement.</li>
+      <li><strong>Vérifier que la somme vaut 1</strong> — contrôle quasi obligatoire en copie.</li>
+    </ol>
+  </div>
+
+  <h2 id="s2">2. Fonction de répartition</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 11.2 — Fonction de répartition</span>
+    <p>La <strong>fonction de répartition</strong> de \(X\) est \(F_X : \mathbb{R} \to [0,1]\), \(F_X(t) = P(X \leqslant t)\). C'est une fonction en escalier, croissante, avec \(\lim_{t \to -\infty} F_X = 0\) et \(\lim_{t \to +\infty} F_X = 1\), qui « saute » de \(P(X = x_i)\) en chaque \(x_i\). Elle caractérise la loi : \(P(X = x_i) = F_X(x_i) - F_X(x_{i-1})\) (valeurs triées).</p>
+    <p>Formules utiles : \(P(a &lt; X \leqslant b) = F_X(b) - F_X(a)\) ; \(P(X &gt; t) = 1 - F_X(t)\).</p>
+  </div>
+
+  <h2 id="s3">3. Espérance et théorème de transfert</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 11.3 — Espérance</span>
+    <p>L'<strong>espérance</strong> de \(X\) est la moyenne de ses valeurs pondérées par leurs probabilités :</p>
+    <p>\[ E(X) = \sum_{i=1}^{n} x_i\, P(X = x_i). \]</p>
+    <p>\(X\) est dite <strong>centrée</strong> si \(E(X) = 0\). Interprétation : valeur moyenne de \(X\) sur un grand nombre de répétitions (loi des grands nombres, chapitre I4).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 11.4 — Linéarité et transfert</span>
+    <ul>
+      <li><strong>Linéarité :</strong> \(E(aX + b) = a\,E(X) + b\), et \(E(X + Y) = E(X) + E(Y)\) pour toutes v.a. \(X, Y\) (même non indépendantes).</li>
+      <li><strong>Théorème de transfert :</strong> pour toute fonction \(g\) :
+      \[ E\big(g(X)\big) = \sum_{i=1}^{n} g(x_i)\, P(X = x_i). \]
+      On calcule l'espérance de \(g(X)\) <em>sans déterminer la loi de \(g(X)\)</em>.</li>
+      <li><strong>Positivité :</strong> si \(X \geqslant 0\), alors \(E(X) \geqslant 0\) ; si \(X \leqslant Y\), alors \(E(X) \leqslant E(Y)\).</li>
+    </ul>
+  </div>
+
+  <h2 id="s4">4. Variance et écart-type</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 11.5 — Variance, écart-type</span>
+    <p>La <strong>variance</strong> mesure la dispersion de \(X\) autour de son espérance \(m = E(X)\) :</p>
+    <p>\[ V(X) = E\big[(X - m)^2\big] = \sum_{i=1}^{n} (x_i - m)^2\, P(X = x_i) \geqslant 0, \]</p>
+    <p>et l'<strong>écart-type</strong> est \(\sigma(X) = \sqrt{V(X)}\) (même unité que \(X\)).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 11.6 — Formule de Kœnig-Huygens (démonstration exigible)</span>
+    <p>\[ V(X) = E(X^2) - \big[E(X)\big]^2. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>En développant \((X - m)^2 = X^2 - 2mX + m^2\) et par linéarité de l'espérance :</p>
+      <p>\[ V(X) = E(X^2) - 2m\,E(X) + m^2 = E(X^2) - 2m^2 + m^2 = E(X^2) - m^2. \quad \blacksquare \]</p>
+    </div>
+    <p><strong>Transformation affine :</strong> \(V(aX + b) = a^2\,V(X)\) — la variance ignore les translations et est quadratique en \(a\).</p>
+  </div>
+
+  <h2 id="s5">5. Loi uniforme</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 11.7 — Loi uniforme \(\mathcal{U}(\llbracket 1, n \rrbracket)\)</span>
+    <p>\(X\) suit la loi uniforme sur \(\llbracket 1, n \rrbracket\) si \(P(X = k) = \frac1n\) pour tout \(k \in \llbracket 1, n \rrbracket\) (situation d'équiprobabilité : dé équilibré, tirage au hasard d'un numéro). Alors :</p>
+    <p>\[ E(X) = \frac{n+1}{2}, \qquad V(X) = \frac{n^2 - 1}{12}. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration (espérance).</span>
+      <p>\(E(X) = \sum_{k=1}^n k \cdot \frac1n = \frac1n \cdot \frac{n(n+1)}{2} = \frac{n+1}{2}\). Pour la variance : \(E(X^2) = \frac1n \sum k^2 = \frac{(n+1)(2n+1)}{6}\), puis Kœnig-Huygens donne \(V(X) = \frac{(n+1)(2n+1)}{6} - \frac{(n+1)^2}{4} = \frac{n+1}{12}\big[2(2n+1) - 3(n+1)\big] = \frac{(n+1)(n-1)}{12}\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <h2 id="s6">6. Loi de Bernoulli</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 11.8 — Loi de Bernoulli \(\mathscr{B}(p)\)</span>
+    <p>\(X\) suit la loi de Bernoulli de paramètre \(p \in [0,1]\) si \(X(\Omega) = \{0, 1\}\) avec \(P(X = 1) = p\) et \(P(X = 0) = 1 - p\) (une épreuve à deux issues : succès/échec). Alors :</p>
+    <p>\[ E(X) = p, \qquad V(X) = p(1 - p). \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>\(E(X) = 1 \cdot p + 0 \cdot (1-p) = p\) ; \(E(X^2) = 1^2 \cdot p = p\), donc \(V(X) = p - p^2 = p(1-p)\). <span class="qed">∎</span></p>
+    </div>
+    <p class="small">La v.a. <strong>indicatrice</strong> \(\mathbf{1}_A\) d'un événement \(A\) (qui vaut 1 si \(A\) est réalisé, 0 sinon) suit \(\mathscr{B}(P(A))\).</p>
+  </div>
+
+  <h2 id="s7">7. Loi binomiale</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 11.9 — Loi binomiale \(\mathscr{B}(n, p)\)</span>
+    <p>On répète \(n\) fois, <strong>de façon indépendante</strong>, une épreuve de Bernoulli de paramètre \(p\). Le nombre de succès \(X\) suit la loi binomiale \(\mathscr{B}(n, p)\) :</p>
+    <p>\[ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \qquad k \in \llbracket 0, n \rrbracket, \]</p>
+    <p>et :</p>
+    <p>\[ E(X) = np, \qquad V(X) = np(1-p). \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration (loi).</span>
+      <p>Un déroulement précis comportant \(k\) succès aux positions fixées a pour probabilité \(p^k(1-p)^{n-k}\) (indépendance). Il y a \(\binom nk\) choix des positions des succès, et ces événements sont incompatibles : on somme. La somme des probabilités vaut bien 1 par le binôme de Newton : \(\sum_k \binom nk p^k(1-p)^{n-k} = (p + 1 - p)^n = 1\). Pour l'espérance : \(X = X_1 + \dots + X_n\) où \(X_i \sim \mathscr{B}(p)\) est l'indicatrice du succès au \(i\)-ième essai ; par linéarité \(E(X) = np\). (La formule de la variance utilise l'indépendance des \(X_i\), voir chapitre 15.) <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Reconnaître une binomiale (rédaction type)</span>
+    <p>« L'expérience consiste en la répétition de \(n\) épreuves de Bernoulli <em>identiques et indépendantes</em>, le succès étant … , de probabilité \(p\). \(X\) compte le nombre de succès, donc \(X \hookrightarrow \mathscr{B}(n, p)\). » Les trois mots-clés attendus : <strong>répétition</strong>, <strong>indépendance</strong>, <strong>même probabilité</strong>. Attention : tirages <em>sans remise</em> ⟹ pas d'indépendance ⟹ pas binomiale.</p>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Loi, espérance, variance</h3><span class="level level-1">Application directe</span></div>
+    <p>On lance deux dés équilibrés et on note \(X\) le plus grand des deux résultats. Déterminer la loi de \(X\), puis calculer \(E(X)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(X(\Omega) = \llbracket 1, 6 \rrbracket\). Astuce : \(P(X \leqslant k) = \left(\frac k6\right)^2\) (les deux dés sont \(\leqslant k\), indépendance). Donc :</p>
+      <p>\[ P(X = k) = P(X \leqslant k) - P(X \leqslant k - 1) = \frac{k^2 - (k-1)^2}{36} = \frac{2k - 1}{36}. \]</p>
+      <p>Soit le tableau : \(\frac{1}{36}, \frac{3}{36}, \frac{5}{36}, \frac{7}{36}, \frac{9}{36}, \frac{11}{36}\) pour \(k = 1, \dots, 6\) — somme : \(\frac{36}{36} = 1\) ✓.</p>
+      <p>\[ E(X) = \sum_{k=1}^{6} k\,\frac{2k-1}{36} = \frac{1}{36}\left(2\sum_{k=1}^6 k^2 - \sum_{k=1}^6 k\right) = \frac{2 \times 91 - 21}{36} = \frac{161}{36} \approx 4{,}47. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Jeu et espérance de gain</h3><span class="level level-1">Application directe</span></div>
+    <p>Un jeu coûte 2 € : on tire une carte d'un jeu de 32 cartes ; un as rapporte 10 €, une figure (roi, dame, valet) rapporte 3 €, sinon rien. Soit \(G\) le gain algébrique (gain − mise). Donner la loi de \(G\), son espérance, et dire si le jeu est favorable.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>4 as, 12 figures, 16 autres cartes. Valeurs de \(G\) : \(10 - 2 = 8\) ; \(3 - 2 = 1\) ; \(-2\).</p>
+      <p>\[ P(G = 8) = \frac{4}{32} = \frac18, \qquad P(G = 1) = \frac{12}{32} = \frac38, \qquad P(G = -2) = \frac{16}{32} = \frac12. \]</p>
+      <p>Somme : \(\frac18 + \frac38 + \frac48 = 1\) ✓.</p>
+      <p>\[ E(G) = 8 \times \frac18 + 1 \times \frac38 - 2 \times \frac12 = 1 + 0{,}375 - 1 = 0{,}375 \text{ €}. \]</p>
+      <p>\(E(G) &gt; 0\) : le jeu est favorable au joueur (en moyenne +0,375 € par partie).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Binomiale : reconnaissance et calculs</h3><span class="level level-1">Application directe</span></div>
+    <p>Un QCM comporte 10 questions à 4 choix ; un étudiant répond entièrement au hasard. Soit \(X\) le nombre de bonnes réponses.</p>
+    <ol>
+      <li>Justifier la loi de \(X\) et donner \(E(X)\), \(V(X)\).</li>
+      <li>Calculer \(P(X = 0)\), \(P(X = 3)\) et \(P(X \geqslant 1)\) (valeurs exactes puis approchées).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> 10 épreuves de Bernoulli identiques et indépendantes (une par question), succès = bonne réponse, de probabilité \(\frac14\). Donc \(X \hookrightarrow \mathscr{B}(10, \frac14)\), \(E(X) = 10 \times \frac14 = 2{,}5\), \(V(X) = 10 \times \frac14 \times \frac34 = 1{,}875\).</p>
+      <p><strong>2.</strong> \(P(X = 0) = \left(\frac34\right)^{10} \approx 0{,}0563\) ;</p>
+      <p>\[ P(X = 3) = \binom{10}{3}\left(\frac14\right)^3\left(\frac34\right)^7 = 120 \times \frac{3^7}{4^{10}} = \frac{120 \times 2187}{1\,048\,576} \approx 0{,}250. \]</p>
+      <p>\(P(X \geqslant 1) = 1 - P(X = 0) \approx 0{,}944\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Fonction de répartition</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X\) de loi : \(P(X = -1) = 0{,}2\), \(P(X = 0) = 0{,}5\), \(P(X = 2) = 0{,}3\).</p>
+    <ol>
+      <li>Tracer (décrire) la fonction de répartition \(F_X\).</li>
+      <li>Calculer \(E(X)\), \(V(X)\) et \(\sigma(X)\).</li>
+      <li>Donner la loi de \(Y = 2X + 1\) ainsi que \(E(Y)\) et \(V(Y)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(F_X(t) = 0\) pour \(t &lt; -1\) ; \(0{,}2\) pour \(-1 \leqslant t &lt; 0\) ; \(0{,}7\) pour \(0 \leqslant t &lt; 2\) ; \(1\) pour \(t \geqslant 2\). Fonction en escalier, sauts de 0,2 ; 0,5 ; 0,3.</p>
+      <p><strong>2.</strong> \(E(X) = -0{,}2 + 0 + 0{,}6 = 0{,}4\). \(E(X^2) = 1 \times 0{,}2 + 0 + 4 \times 0{,}3 = 1{,}4\). Donc \(V(X) = 1{,}4 - 0{,}16 = 1{,}24\) et \(\sigma(X) = \sqrt{1{,}24} \approx 1{,}11\).</p>
+      <p><strong>3.</strong> \(Y(\Omega) = \{-1, 1, 5\}\) avec les mêmes probabilités \(0{,}2 ; 0{,}5 ; 0{,}3\). \(E(Y) = 2E(X) + 1 = 1{,}8\) ; \(V(Y) = 4V(X) = 4{,}96\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Théorème de transfert</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathcal{U}(\llbracket 1, 5 \rrbracket)\). Calculer \(E(X)\), \(E(X^2)\), \(E\left(\dfrac1X\right)\) et \(E\big(|X - 3|\big)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(E(X) = \frac{5+1}{2} = 3\).</p>
+      <p>\(E(X^2) = \frac15(1 + 4 + 9 + 16 + 25) = \frac{55}{5} = 11\).</p>
+      <p>Par transfert : \(E\left(\frac1X\right) = \frac15\left(1 + \frac12 + \frac13 + \frac14 + \frac15\right) = \frac15 \times \frac{137}{60} = \frac{137}{300}\).</p>
+      <p>\(E(|X - 3|) = \frac15(2 + 1 + 0 + 1 + 2) = \frac65\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Binomiale et seuil</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une compagnie aérienne sait que chaque passager se présente à l'embarquement avec probabilité 0,9, indépendamment des autres. Elle vend 100 billets. Soit \(X\) le nombre de passagers présents.</p>
+    <ol>
+      <li>Donner la loi de \(X\), \(E(X)\) et \(\sigma(X)\).</li>
+      <li>L'avion a 95 places. Exprimer (sans calculer numériquement) la probabilité de surréservation \(P(X &gt; 95)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> 100 épreuves de Bernoulli indépendantes de paramètre 0,9 : \(X \hookrightarrow \mathscr{B}(100 ;\ 0{,}9)\). \(E(X) = 90\), \(V(X) = 100 \times 0{,}9 \times 0{,}1 = 9\), \(\sigma(X) = 3\).</p>
+      <p><strong>2.</strong> \[ P(X &gt; 95) = \sum_{k=96}^{100} \binom{100}{k} (0{,}9)^k (0{,}1)^{100-k}. \]</p>
+      <p class="small muted">Numériquement \(P(X &gt; 95) \approx 0{,}024\) : la surréservation ne pose problème que dans 2,4 % des vols — c'est le calcul qui justifie l'overbooking. (Un calcul de ce type se fait en Python : voir la fiche <a href="info04-simulation.html">I4</a>.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Minimum de deux dés et transfert (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On lance deux dés équilibrés ; soit \(Y\) le <em>plus petit</em> des deux résultats.</p>
+    <ol>
+      <li>Montrer que \(P(Y \geqslant k) = \left(\dfrac{7-k}{6}\right)^2\) pour \(k \in \llbracket 1, 6\rrbracket\), et en déduire la loi de \(Y\).</li>
+      <li>Vérifier que \(E(Y) = \sum_{k=1}^{6} P(Y \geqslant k)\), et calculer \(E(Y)\) par cette formule.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(Y \geqslant k\) ⟺ les deux dés donnent au moins \(k\), soit \(7 - k\) valeurs chacun, indépendamment : \(P(Y \geqslant k) = \left(\frac{7-k}{6}\right)^2\). Puis :</p>
+      <p>\[ P(Y = k) = P(Y \geqslant k) - P(Y \geqslant k+1) = \frac{(7-k)^2 - (6-k)^2}{36} = \frac{13 - 2k}{36}, \]</p>
+      <p>soit \(\frac{11}{36}, \frac{9}{36}, \frac{7}{36}, \frac{5}{36}, \frac{3}{36}, \frac{1}{36}\) — somme 1 ✓.</p>
+      <p><strong>2.</strong> Formule générale (v.a. à valeurs dans \(\mathbb{N}\)) : \(\sum_{k \geqslant 1} P(Y \geqslant k) = \sum_{k\geqslant 1} \sum_{j \geqslant k} P(Y = j) = \sum_j j\,P(Y = j) = E(Y)\) (interversion des sommes : chaque \(P(Y = j)\) est compté \(j\) fois). Donc :</p>
+      <p>\[ E(Y) = \sum_{k=1}^{6} \left(\frac{7-k}{6}\right)^2 = \frac{36 + 25 + 16 + 9 + 4 + 1}{36} = \frac{91}{36} \approx 2{,}53. \]</p>
+      <p class="small muted">Contrôle : \(E(\min) + E(\max) = \frac{91}{36} + \frac{161}{36} = \frac{252}{36} = 7 = E(D_1 + D_2)\) ✓ (exercice 1).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Optimisation d'espérance (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un maraîcher achète chaque matin \(s\) cagettes de fraises à 2 € pièce et les revend 5 € pièce ; les invendues sont perdues. La demande \(D\) vérifie : \(P(D = 1) = 0{,}2\), \(P(D = 2) = 0{,}5\), \(P(D = 3) = 0{,}3\). Pour \(s \in \{1, 2, 3\}\), calculer l'espérance du bénéfice \(B_s = 5\min(D, s) - 2s\), et déterminer le stock optimal.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>\(s = 1\) :</strong> on vend toujours 1 cagette (la demande est au moins 1) : \(B_1 = 5 - 2 = 3\) € constant, \(E(B_1) = 3\).</p>
+      <p><strong>\(s = 2\) :</strong> \(\min(D, 2)\) vaut 1 (proba 0,2) ou 2 (proba 0,8). \(E[\min] = 0{,}2 + 1{,}6 = 1{,}8\), donc \(E(B_2) = 5 \times 1{,}8 - 4 = 5\) €.</p>
+      <p><strong>\(s = 3\) :</strong> \(\min(D,3) = D\), \(E(D) = 0{,}2 + 1 + 0{,}9 = 2{,}1\), donc \(E(B_3) = 5 \times 2{,}1 - 6 = 4{,}5\) €.</p>
+      <p><strong>Conclusion :</strong> le stock optimal est \(s = 2\) (5 € de bénéfice espéré) : acheter 3 cagettes surexpose au risque d'invendu, en acheter 1 fait manquer des ventes.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Somme de binomiales et formule du capitaine (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{B}(n, p)\).</p>
+    <ol>
+      <li>Retrouver \(E(X) = np\) par le calcul direct \(\sum_k k\binom nk p^k(1-p)^{n-k}\), à l'aide de la formule \(k\binom nk = n\binom{n-1}{k-1}\).</li>
+      <li>Calculer \(E\big[X(X-1)\big]\) de la même façon, et en déduire \(V(X) = np(1-p)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Le terme \(k = 0\) est nul :</p>
+      <p>\[ E(X) = \sum_{k=1}^{n} n\binom{n-1}{k-1} p^k (1-p)^{n-k} = np \sum_{j=0}^{n-1} \binom{n-1}{j} p^{j} (1-p)^{(n-1)-j} = np\,(p + 1 - p)^{n-1} = np, \]</p>
+      <p>avec \(j = k - 1\) et le binôme de Newton. <span class="qed">∎</span></p>
+      <p><strong>2.</strong> En appliquant deux fois la formule du capitaine : \(k(k-1)\binom nk = n(n-1)\binom{n-2}{k-2}\) pour \(k \geqslant 2\), donc :</p>
+      <p>\[ E[X(X-1)] = \sum_{k=2}^{n} n(n-1)\binom{n-2}{k-2}p^k(1-p)^{n-k} = n(n-1)p^2\,(p + 1-p)^{n-2} = n(n-1)p^2. \]</p>
+      <p>Alors \(E(X^2) = E[X(X-1)] + E(X) = n(n-1)p^2 + np\), et :</p>
+      <p>\[ V(X) = n(n-1)p^2 + np - n^2p^2 = np - np^2 = np(1-p). \quad \blacksquare \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch10-probabilites-finies.html"><span class="pn-label">Chapitre précédent</span>← Espaces probabilisés finis</a>
+    <a class="next" href="ch12-integration.html"><span class="pn-label">Chapitre suivant</span>Intégration sur un segment →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
