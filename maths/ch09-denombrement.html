@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 9 — Dénombrement | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : principes additif et multiplicatif, listes, arrangements, permutations, combinaisons, modèles d'urnes. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch09" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../espagnol/index.html">Espagnol</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 9</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 9.</span> Dénombrement</h1>
+  <p class="lead">Compter sans énumérer : c'est l'objet du dénombrement, préalable indispensable aux probabilités. La difficulté n'est pas dans les formules (peu nombreuses) mais dans le choix du bon modèle — avec ou sans ordre, avec ou sans répétition.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 1,5 semaine de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Cardinal, principes additif et multiplicatif</a></li>
+      <li><a href="#s2">Listes avec répétition (\(p\)-listes)</a></li>
+      <li><a href="#s3">Arrangements et permutations</a></li>
+      <li><a href="#s4">Combinaisons</a></li>
+      <li><a href="#s5">Choisir le bon modèle</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Cardinal, principes additif et multiplicatif</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 9.1 — Cardinal</span>
+    <p>Le <strong>cardinal</strong> d'un ensemble fini \(E\), noté \(\mathrm{Card}(E)\) ou \(|E|\), est son nombre d'éléments.</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 9.2 — Principes de base</span>
+    <ul>
+      <li><strong>Principe additif :</strong> si \(A\) et \(B\) sont <em>disjoints</em>, \(\mathrm{Card}(A \cup B) = \mathrm{Card}(A) + \mathrm{Card}(B)\). En général : \(\mathrm{Card}(A \cup B) = \mathrm{Card}(A) + \mathrm{Card}(B) - \mathrm{Card}(A \cap B)\) (formule du crible).</li>
+      <li><strong>Complémentaire :</strong> \(\mathrm{Card}(\overline A) = \mathrm{Card}(E) - \mathrm{Card}(A)\).</li>
+      <li><strong>Principe multiplicatif :</strong> si une situation se construit en \(k\) étapes successives offrant respectivement \(n_1, n_2, \dots, n_k\) choix (le nombre de choix de chaque étape ne dépendant pas des choix précédents), le nombre total de résultats est \(n_1 \times n_2 \times \dots \times n_k\).</li>
+      <li><strong>Produit cartésien :</strong> \(\mathrm{Card}(A \times B) = \mathrm{Card}(A) \times \mathrm{Card}(B)\).</li>
+    </ul>
+  </div>
+
+  <h2 id="s2">2. Listes avec répétition (\(p\)-listes)</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 9.3 — \(p\)-listes</span>
+    <p>Le nombre de <strong>\(p\)-listes</strong> (suites ordonnées de \(p\) éléments, répétitions autorisées) d'un ensemble à \(n\) éléments est \(n^p\).</p>
+    <p class="small">Exemples : nombre de codes PIN à 4 chiffres : \(10^4 = 10\,000\) ; nombre de mots binaires de longueur 8 : \(2^8 = 256\) ; nombre d'applications d'un ensemble à \(p\) éléments vers un ensemble à \(n\) éléments : \(n^p\). Nombre de parties d'un ensemble à \(n\) éléments : \(2^n\) (chaque élément est dedans ou dehors).</p>
+  </div>
+
+  <h2 id="s3">3. Arrangements et permutations</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 9.4 — Arrangements</span>
+    <p>Un <strong>arrangement</strong> de \(p\) éléments parmi \(n\) est une suite ordonnée de \(p\) éléments <em>distincts</em>. Leur nombre est :</p>
+    <p>\[ A_n^p = n(n-1)\cdots(n-p+1) = \frac{n!}{(n-p)!} \qquad (0 \leqslant p \leqslant n). \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Principe multiplicatif : \(n\) choix pour le premier élément, puis \(n-1\) pour le deuxième (distinct du premier), … , \(n - p + 1\) pour le \(p\)-ième. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 9.5 — Permutations</span>
+    <p>Une <strong>permutation</strong> d'un ensemble à \(n\) éléments est un arrangement des \(n\) éléments (un ordre total). Leur nombre est \(A_n^n = n!\).</p>
+    <p class="small">Exemple : \(5! = 120\) façons de ranger 5 livres sur une étagère.</p>
+  </div>
+
+  <h2 id="s4">4. Combinaisons</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 9.6 — Combinaisons</span>
+    <p>Une <strong>combinaison</strong> de \(p\) éléments parmi \(n\) est une <em>partie</em> (sous-ensemble, donc sans ordre) à \(p\) éléments d'un ensemble à \(n\) éléments. Leur nombre est :</p>
+    <p>\[ \binom{n}{p} = \frac{A_n^p}{p!} = \frac{n!}{p!\,(n-p)!}. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Chaque partie à \(p\) éléments peut être ordonnée de \(p!\) façons et produit ainsi \(p!\) arrangements distincts ; réciproquement tout arrangement provient d'une unique partie. Donc \(A_n^p = p! \binom np\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <p>On retrouve les propriétés du <a href="ch02-calculs-algebriques.html">chapitre 2</a>, désormais interprétables : la symétrie \(\binom np = \binom{n}{n-p}\) (choisir \(p\) éléments = choisir les \(n - p\) rejetés), la formule de Pascal (les parties contenant un élément fixé, et les autres), et \(\sum_p \binom np = 2^n\) (toutes les parties).</p>
+
+  <h2 id="s5">5. Choisir le bon modèle</h2>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Le tableau de décision</span>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th></th><th>Avec ordre</th><th>Sans ordre</th></tr></thead>
+      <tbody>
+        <tr><th>Répétitions autorisées</th><td>\(p\)-listes : \(n^p\)<br><span class="small muted">(tirages successifs <strong>avec remise</strong>)</span></td><td class="small muted">hors programme</td></tr>
+        <tr><th>Éléments distincts</th><td>Arrangements : \(A_n^p\)<br><span class="small muted">(tirages successifs <strong>sans remise</strong>)</span></td><td>Combinaisons : \(\binom np\)<br><span class="small muted">(tirages <strong>simultanés</strong>, poignée)</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Questions à se poser : l'ordre compte-t-il ? un élément peut-il apparaître deux fois ? En cas de doute, tester sur un petit exemple (\(n = 3\), \(p = 2\)) et énumérer.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges classiques</span>
+    <ul>
+      <li><strong>« Au moins un »</strong> : passer par le complémentaire (« aucun »). Compter directement conduit souvent à des doubles comptages.</li>
+      <li>Ne pas additionner des cas qui se recouvrent : vérifier que la disjonction de cas est bien une <em>partition</em>.</li>
+      <li>Comité avec contrainte « exactement \(k\) femmes » : produit de deux combinaisons \(\binom{f}{k}\binom{h}{p-k}\), pas une somme.</li>
+      <li>\(\binom np\) compte des <em>parties</em> : si l'énoncé distingue des rôles (président, trésorier…), l'ordre compte, utiliser des arrangements.</li>
+    </ul>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Reconnaître le modèle</h3><span class="level level-1">Application directe</span></div>
+    <p>Une classe compte 30 étudiants. Combien de façons de :</p>
+    <ol>
+      <li>désigner un délégué et un suppléant (distincts) ?</li>
+      <li>former un trinôme de colle (3 étudiants, sans rôle particulier) ?</li>
+      <li>attribuer à chacun des 30 étudiants une note de colle entre 0 et 20 ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>Ordre (les rôles diffèrent), sans répétition : \(A_{30}^2 = 30 \times 29 = 870\).</li>
+        <li>Sans ordre, sans répétition : \(\binom{30}{3} = \frac{30 \times 29 \times 28}{6} = 4060\).</li>
+        <li>Une note (21 valeurs possibles) par étudiant, répétitions autorisées : \(21^{30}\) (une 30-liste de \(\{0, \dots, 20\}\)).</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Anagrammes et rangements</h3><span class="level level-1">Application directe</span></div>
+    <p>1. Combien d'anagrammes (mots, ayant un sens ou non) du mot MATHS ? <br>
+    2. Combien de façons de ranger 4 romans et 3 essais sur une étagère, si les romans doivent rester groupés ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> 5 lettres toutes distinctes : \(5! = 120\) anagrammes.</p>
+      <p><strong>2.</strong> Considérons le bloc des 4 romans comme un seul objet : on range 4 objets (le bloc + 3 essais), soit \(4!\) façons ; à l'intérieur du bloc, \(4!\) ordres possibles. Total : \(4! \times 4! = 24 \times 24 = 576\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Tirages dans une urne</h3><span class="level level-1">Application directe</span></div>
+    <p>Une urne contient 5 boules rouges et 7 boules noires, toutes discernables. On tire 3 boules. Compter le nombre de tirages donnant exactement 2 rouges :</p>
+    <ol>
+      <li>si le tirage est simultané ;</li>
+      <li>si le tirage est successif sans remise ;</li>
+      <li>si le tirage est successif avec remise (compter les tirages avec exactement 2 rouges).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Choisir 2 rouges parmi 5 et 1 noire parmi 7 : \(\binom52 \binom71 = 10 \times 7 = 70\).</p>
+      <p><strong>2.</strong> Chaque tirage simultané correspond à \(3! = 6\) tirages ordonnés : \(70 \times 6 = 420\). (Directement : choisir les positions des 2 rouges parmi 3, soit \(\binom32 = 3\), puis \(5 \times 4\) choix ordonnés de rouges et \(7\) de noire : \(3 \times 20 \times 7 = 420\) ✓.)</p>
+      <p><strong>3.</strong> Choisir les 2 positions des rouges : \(\binom32 = 3\) ; chaque position rouge : 5 choix (remise), la position noire : 7 choix. Total : \(3 \times 5^2 \times 7 = 525\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — « Au moins un »</h3><span class="level level-2">Entraînement</span></div>
+    <p>On forme un comité de 4 personnes parmi 6 femmes et 5 hommes. Combien de comités : 1. en tout ? 2. avec exactement 2 femmes ? 3. avec au moins une femme ? 4. avec au moins une femme et au moins un homme ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\binom{11}{4} = 330\).</p>
+      <p><strong>2.</strong> \(\binom62\binom52 = 15 \times 10 = 150\).</p>
+      <p><strong>3.</strong> Complémentaire (aucune femme = 4 hommes) : \(\binom54 = 5\). Donc \(330 - 5 = 325\).</p>
+      <p><strong>4.</strong> On retire les comités unisexes : tout hommes (\(\binom54 = 5\)) et tout femmes (\(\binom64 = 15\)) : \(330 - 5 - 15 = 310\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Mains de cartes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Dans un jeu de 32 cartes (8 hauteurs, 4 couleurs), on distribue une main de 5 cartes. Combien de mains contiennent :</p>
+    <ol>
+      <li>exactement un as ?</li>
+      <li>au moins un as ?</li>
+      <li>exactement deux paires (deux cartes d'une hauteur, deux d'une autre, la cinquième d'une troisième hauteur) ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\binom41\binom{28}{4} = 4 \times 20475 = 81\,900\).</p>
+      <p><strong>2.</strong> Total moins « aucun as » : \(\binom{32}{5} - \binom{28}{5} = 201\,376 - 98\,280 = 103\,096\).</p>
+      <p><strong>3.</strong> Choisir les 2 hauteurs des paires : \(\binom82 = 28\) (sans ordre : les paires ne sont pas hiérarchisées) ; pour chaque paire, 2 couleurs parmi 4 : \(\binom42 = 6\) ; la 5e carte : une des 6 hauteurs restantes, 4 couleurs : \(24\). Total : \(28 \times 6 \times 6 \times 24 = 24\,192\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Chemins sur une grille</h3><span class="level level-2">Entraînement</span></div>
+    <p>On se déplace sur une grille du point \((0,0)\) au point \((5, 3)\) par pas unitaires vers la droite (D) ou vers le haut (H). Combien y a-t-il de chemins ? Combien passent par le point \((2, 2)\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Un chemin est un mot de 8 lettres contenant 5 D et 3 H : il est déterminé par le choix des positions des H, soit \(\binom83 = 56\) chemins.</p>
+      <p>Passant par \((2,2)\) : chemins de \((0,0)\) à \((2,2)\) — \(\binom42 = 6\) — multipliés par les chemins de \((2,2)\) à \((5,3)\) — 3 D et 1 H, \(\binom41 = 4\). Total : \(6 \times 4 = 24\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Preuve combinatoire (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Démontrer <em>par un argument de dénombrement</em> (sans calcul) :</p>
+    <ol>
+      <li>la formule de Pascal \(\dbinom{n}{p} + \dbinom{n}{p+1} = \dbinom{n+1}{p+1}\) ;</li>
+      <li>la formule \(\displaystyle\sum_{k=0}^{n} \binom nk = 2^n\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Comptons les parties à \(p+1\) éléments de \(E = \{1, \dots, n+1\}\) : il y en a \(\binom{n+1}{p+1}\). Classons-les selon qu'elles contiennent ou non l'élément \(n+1\) : celles qui le contiennent sont déterminées par le choix de \(p\) éléments parmi \(\{1, \dots, n\}\), soit \(\binom np\) ; celles qui ne le contiennent pas sont des parties à \(p+1\) éléments de \(\{1,\dots,n\}\), soit \(\binom{n}{p+1}\). Ces deux familles forment une partition, d'où l'égalité. <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Le membre de droite compte toutes les parties d'un ensemble à \(n\) éléments (chaque élément : dedans ou dehors, \(2^n\) choix). Le membre de gauche les compte en les classant par cardinal \(k\), de 0 à \(n\). Les deux comptages portent sur le même ensemble : ils sont égaux. <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Dénombrement d'applications (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \(E\) un ensemble à \(p\) éléments et \(F\) un ensemble à \(n\) éléments.</p>
+    <ol>
+      <li>Combien y a-t-il d'applications de \(E\) dans \(F\) ?</li>
+      <li>Combien d'applications <em>injectives</em> (on suppose \(p \leqslant n\)) ?</li>
+      <li>Combien de <em>bijections</em> si \(p = n\) ?</li>
+      <li>Application : de combien de façons peut-on répartir 4 étudiants dans 6 groupes de TD (a) sans contrainte ; (b) si deux étudiants ne peuvent pas être dans le même groupe ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Chaque élément de \(E\) a \(n\) images possibles, indépendamment : \(n^p\).</p>
+      <p><strong>2.</strong> Les images doivent être distinctes : \(n\) choix pour la première, \(n-1\) pour la deuxième… : \(A_n^p = \frac{n!}{(n-p)!}\).</p>
+      <p><strong>3.</strong> Une injection entre ensembles de même cardinal fini est une bijection : \(n!\).</p>
+      <p><strong>4.</strong> (a) Une application de l'ensemble des 4 étudiants vers les 6 groupes : \(6^4 = 1296\). (b) Application injective : \(A_6^4 = 6 \times 5 \times 4 \times 3 = 360\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Formule de Vandermonde par double comptage (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Une promotion contient \(m\) filles et \(n\) garçons. En comptant de deux façons les délégations de \(k\) personnes, démontrer :</p>
+    <p>\[ \binom{m+n}{k} = \sum_{j=0}^{k} \binom{m}{j}\binom{n}{k-j}. \]</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Premier comptage :</em> une délégation est une partie à \(k\) éléments des \(m + n\) étudiants : il y en a \(\binom{m+n}{k}\).</p>
+      <p><em>Second comptage :</em> classons les délégations selon leur nombre \(j\) de filles (\(0 \leqslant j \leqslant k\)). Pour \(j\) fixé : \(\binom mj\) choix des filles et \(\binom{n}{k-j}\) choix des garçons, soit \(\binom mj \binom{n}{k-j}\) délégations. Ces classes sont deux à deux disjointes et couvrent tous les cas, donc leur somme égale le total. <span class="qed">∎</span></p>
+      <p class="small muted">C'est la preuve combinatoire de l'identité de Vandermonde, démontrée par polynômes au chapitre 2 (exercice 9).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch08-derivation.html"><span class="pn-label">Chapitre précédent</span>← Dérivation et convexité</a>
+    <a class="next" href="ch10-probabilites-finies.html"><span class="pn-label">Chapitre suivant</span>Espaces probabilisés finis →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
