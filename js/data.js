@@ -12,7 +12,7 @@ const SITE_DATA = {
     esh:      { name: "ESH — Économie, sociologie, histoire",    color: "#0f8a6d", index: "esh/index.html" },
     cg:       { name: "Culture générale",                        color: "#7c3aed", index: "culture-generale/index.html" },
     anglais:  { name: "LVA Anglais",                             color: "#c0264b", index: "anglais/index.html" },
-    espagnol: { name: "LVB Espagnol",                            color: "#d97706", index: "espagnol/index.html" },
+    italien:  { name: "LVB Italien",                             color: "#d97706", index: "italien/index.html" },
     methodo:  { name: "Méthodologie & concours",                 color: "#475569", index: "methodologie/index.html" }
   },
 
@@ -139,17 +139,17 @@ const SITE_DATA = {
     { id: "anglais-exos", m: "anglais", n: "5", t: "Exercices corrigés d'anglais", u: "anglais/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Versions corrigées", "Sujets d'essai avec plans", "QCM de grammaire"] },
 
-    /* ---------- LVB Espagnol ---------- */
-    { id: "espagnol-civi", m: "espagnol", n: "1", t: "Civilisation : Espagne et Amérique latine", u: "espagnol/civilisation.html",
-      s: ["Institutions espagnoles", "Mémoire historique et franquisme", "Société espagnole", "Amérique latine : panorama", "Économie hispanophone", "Migrations"] },
-    { id: "espagnol-gram", m: "espagnol", n: "2", t: "Grammaire espagnole : les points essentiels", u: "espagnol/grammaire.html",
-      s: ["Ser et estar", "Les temps du passé", "Le subjonctif", "La concordance des temps", "Por et para", "L'obligation", "Exercices corrigés"] },
-    { id: "espagnol-vocab", m: "espagnol", n: "3", t: "Vocabulaire thématique espagnol", u: "espagnol/vocabulaire.html",
-      s: ["Économie et travail", "Politique et société", "Environnement", "Migrations", "Technologie", "Expressions de presse"] },
-    { id: "espagnol-methodo", m: "espagnol", n: "4", t: "Méthodologie des épreuves d'espagnol", u: "espagnol/methodologie.html",
+    /* ---------- LVB Italien ---------- */
+    { id: "italien-civi", m: "italien", n: "1", t: "Civilisation : l'Italie contemporaine", u: "italien/civilisation.html",
+      s: ["Institutions italiennes", "Histoire du XXe siècle", "Nord et Sud, la question méridionale", "Économie italienne", "Mafia et société", "Migrations", "Italie et Europe"] },
+    { id: "italien-gram", m: "italien", n: "2", t: "Grammaire italienne : les points essentiels", u: "italien/grammaire.html",
+      s: ["Essere et avere", "Passato prossimo et imperfetto", "Le subjonctif", "Futur et conditionnel", "Pronoms ci et ne", "L'hypothèse", "Exercices corrigés"] },
+    { id: "italien-vocab", m: "italien", n: "3", t: "Vocabulaire thématique italien", u: "italien/vocabulaire.html",
+      s: ["Économie et travail", "Politique et société", "Environnement", "Migrations", "Technologie", "Expressions de presse", "Faux amis"] },
+    { id: "italien-methodo", m: "italien", n: "4", t: "Méthodologie des épreuves d'italien", u: "italien/methodologie.html",
       s: ["La version", "Le thème", "L'essai", "Les khôlles orales"] },
-    { id: "espagnol-exos", m: "espagnol", n: "5", t: "Exercices corrigés d'espagnol", u: "espagnol/exercices.html",
-      s: ["Thèmes grammaticaux corrigés", "Versions corrigées", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "italien-exos", m: "italien", n: "5", t: "Exercices corrigés d'italien", u: "italien/exercices.html",
+      s: ["Thèmes grammaticaux corrigés", "Version corrigée", "Sujets d'essai avec plans", "QCM de grammaire"] },
 
     /* ---------- Méthodologie & concours ---------- */
     { id: "methodo-organisation", m: "methodo", n: "1", t: "Organisation du travail en prépa", u: "methodologie/organisation.html",

@@ -7,7 +7,7 @@ Site web pédagogique statique pour la première année de CPGE **ECG** (parcour
 - **Mathématiques appliquées & informatique** — 17 chapitres (2 semestres) + 5 fiches Python, avec cours complets et ≥ 8 exercices corrigés par chapitre (3 niveaux de difficulté).
 - **ESH** — 12 chapitres (modules 1 et 2) : cours, auteurs, données chiffrées, dissertations corrigées, QCM.
 - **Culture générale** — 13 notions + méthodologie de la dissertation et de la contraction.
-- **LVA Anglais** et **LVB Espagnol** — civilisation, grammaire, vocabulaire, méthodologie, exercices corrigés.
+- **LVA Anglais** et **LVB Italien** — civilisation, grammaire, vocabulaire, méthodologie, exercices corrigés.
 - **Méthodologie & concours** — organisation, colles, présentation BCE/Ecricome.
 
 ## Stack technique
@@ -28,7 +28,7 @@ maths/                  1 page par chapitre + index
 esh/                    idem
 culture-generale/       idem
 anglais/                idem
-espagnol/               idem
+italien/                idem
 methodologie/           idem
 ```
 

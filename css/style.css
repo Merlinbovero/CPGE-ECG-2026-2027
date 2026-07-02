@@ -22,7 +22,7 @@
   --c-esh: #0f8a6d;
   --c-cg: #7c3aed;
   --c-anglais: #c0264b;
-  --c-espagnol: #d97706;
+  --c-italien: #d97706;
   --c-methodo: #475569;
   --accent: var(--c-methodo);
 
@@ -56,7 +56,7 @@ body[data-matiere="maths"]    { --accent: var(--c-maths); }
 body[data-matiere="esh"]      { --accent: var(--c-esh); }
 body[data-matiere="cg"]       { --accent: var(--c-cg); }
 body[data-matiere="anglais"]  { --accent: var(--c-anglais); }
-body[data-matiere="espagnol"] { --accent: var(--c-espagnol); }
+body[data-matiere="italien"] { --accent: var(--c-italien); }
 body[data-matiere="methodo"]  { --accent: var(--c-methodo); }
 
 * { box-sizing: border-box; }
