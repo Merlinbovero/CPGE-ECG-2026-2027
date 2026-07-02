@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 1 — Raisonnement et vocabulaire ensembliste | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : logique, quantificateurs, raisonnement par récurrence, ensembles et applications. Exercices corrigés en trois niveaux.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch01" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 1</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 1.</span> Raisonnement et vocabulaire ensembliste</h1>
+  <p class="lead">Ce chapitre pose le socle de toute l'année : le langage de la logique (propositions, quantificateurs), les grands types de raisonnement (dont la récurrence, omniprésente aux concours), et le vocabulaire des ensembles et des applications.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Logique et propositions</a></li>
+      <li><a href="#s2">Quantificateurs</a></li>
+      <li><a href="#s3">Les grands types de raisonnement</a></li>
+      <li><a href="#s4">Le raisonnement par récurrence</a></li>
+      <li><a href="#s5">Ensembles</a></li>
+      <li><a href="#s6">Applications</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Logique et propositions</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.1 — Proposition</span>
+    <p>Une <strong>proposition</strong> (ou assertion) est un énoncé mathématique qui est soit vrai, soit faux. Exemples : « \(2+2=4\) » (vraie), « \(\pi\) est rationnel » (fausse). « \(x+1=3\) » n'est pas une proposition tant que \(x\) n'est pas fixé : c'est un <em>prédicat</em>, noté \(P(x)\).</p>
+  </div>
+
+  <p>À partir de propositions \(P\) et \(Q\), on construit de nouvelles propositions avec les <strong>connecteurs logiques</strong> :</p>
+  <ul>
+    <li><strong>Négation</strong> \(\text{non}(P)\), notée aussi \(\neg P\) : vraie exactement quand \(P\) est fausse.</li>
+    <li><strong>Conjonction</strong> \(P \text{ et } Q\) : vraie quand \(P\) et \(Q\) sont toutes deux vraies.</li>
+    <li><strong>Disjonction</strong> \(P \text{ ou } Q\) : vraie quand au moins l'une des deux est vraie (le « ou » mathématique est inclusif).</li>
+    <li><strong>Implication</strong> \(P \Rightarrow Q\) : fausse uniquement quand \(P\) est vraie et \(Q\) fausse. On lit « si \(P\) alors \(Q\) » ; \(P\) est une condition <em>suffisante</em> pour \(Q\), et \(Q\) une condition <em>nécessaire</em> pour \(P\).</li>
+    <li><strong>Équivalence</strong> \(P \Leftrightarrow Q\) : vraie quand \(P\) et \(Q\) ont la même valeur de vérité, c'est-à-dire quand \(P \Rightarrow Q\) et \(Q \Rightarrow P\).</li>
+  </ul>
+
+  <div class="table-scroll">
+  <table>
+    <caption class="small muted">Table de vérité des connecteurs (V = vrai, F = faux)</caption>
+    <thead><tr><th>\(P\)</th><th>\(Q\)</th><th>\(\neg P\)</th><th>\(P\) et \(Q\)</th><th>\(P\) ou \(Q\)</th><th>\(P \Rightarrow Q\)</th><th>\(P \Leftrightarrow Q\)</th></tr></thead>
+    <tbody>
+      <tr><td>V</td><td>V</td><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td></tr>
+      <tr><td>V</td><td>F</td><td>F</td><td>F</td><td>V</td><td>F</td><td>F</td></tr>
+      <tr><td>F</td><td>V</td><td>V</td><td>F</td><td>V</td><td>V</td><td>F</td></tr>
+      <tr><td>F</td><td>F</td><td>V</td><td>F</td><td>F</td><td>V</td><td>V</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 1.2 — Règles de négation</span>
+    <p>Pour toutes propositions \(P\) et \(Q\) :</p>
+    <p>\[ \neg(P \text{ et } Q) = (\neg P) \text{ ou } (\neg Q), \qquad \neg(P \text{ ou } Q) = (\neg P) \text{ et } (\neg Q) \quad \text{(lois de De Morgan)} \]</p>
+    <p>\[ \neg(P \Rightarrow Q) = P \text{ et } (\neg Q), \qquad \neg(\neg P) = P. \]</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 1.3 — Contraposée</span>
+    <p>L'implication \(P \Rightarrow Q\) est équivalente à sa <strong>contraposée</strong> \((\neg Q) \Rightarrow (\neg P)\).</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Par table de vérité : \(P \Rightarrow Q\) est fausse uniquement dans le cas (\(P\) vraie, \(Q\) fausse), c'est-à-dire uniquement dans le cas (\(\neg Q\) vraie, \(\neg P\) fausse), qui est exactement le seul cas où \((\neg Q) \Rightarrow (\neg P)\) est fausse. Les deux propositions ont donc la même table de vérité. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Piège — Implication et réciproque</span>
+    <p>Ne confondez pas la contraposée \((\neg Q) \Rightarrow (\neg P)\) (équivalente à \(P \Rightarrow Q\)) et la <strong>réciproque</strong> \(Q \Rightarrow P\) (qui ne lui est pas équivalente en général). Exemple : « \(x \geqslant 2 \Rightarrow x^2 \geqslant 4\) » est vraie, sa réciproque « \(x^2 \geqslant 4 \Rightarrow x \geqslant 2\) » est fausse (prendre \(x = -3\)).</p>
+  </div>
+
+  <h2 id="s2">2. Quantificateurs</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.4 — Quantificateurs</span>
+    <p>Soit \(P(x)\) un prédicat défini sur un ensemble \(E\).</p>
+    <ul>
+      <li>« \(\forall x \in E,\ P(x)\) » se lit « <strong>pour tout</strong> \(x\) de \(E\), \(P(x)\) » : la propriété est vraie pour chaque élément de \(E\).</li>
+      <li>« \(\exists x \in E,\ P(x)\) » se lit « <strong>il existe</strong> (au moins) un \(x\) de \(E\) tel que \(P(x)\) ».</li>
+      <li>« \(\exists! x \in E,\ P(x)\) » signifie qu'il existe un <em>unique</em> tel \(x\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 1.5 — Négation des quantificateurs</span>
+    <p>\[ \neg\big(\forall x \in E,\ P(x)\big) \;=\; \exists x \in E,\ \neg P(x) \qquad\text{et}\qquad \neg\big(\exists x \in E,\ P(x)\big) \;=\; \forall x \in E,\ \neg P(x). \]</p>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> La proposition « la suite \((u_n)\) est majorée » s'écrit \(\exists M \in \mathbb{R},\ \forall n \in \mathbb{N},\ u_n \leqslant M\). Sa négation, « \((u_n)\) n'est pas majorée », s'écrit donc : \(\forall M \in \mathbb{R},\ \exists n \in \mathbb{N},\ u_n &gt; M\) — pour tout candidat majorant \(M\), un terme de la suite le dépasse.</p>
+
+  <div class="box warn">
+    <span class="box-title">Piège — L'ordre des quantificateurs compte</span>
+    <p>\(\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ y &gt; x\) est vraie (prendre \(y = x+1\), qui dépend de \(x\)), mais \(\exists y \in \mathbb{R},\ \forall x \in \mathbb{R},\ y &gt; x\) est fausse (il n'existe pas de réel plus grand que tous les réels). On ne peut jamais échanger un \(\forall\) et un \(\exists\).</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Démontrer une proposition quantifiée</span>
+    <ul>
+      <li><strong>« \(\forall x \in E,\ P(x)\) »</strong> : on rédige « Soit \(x \in E\) » (\(x\) quelconque, on ne choisit pas sa valeur), puis on démontre \(P(x)\).</li>
+      <li><strong>« \(\exists x \in E,\ P(x)\) »</strong> : on <em>exhibe</em> un élément convenable (« Posons \(x = \dots\) ») et on vérifie qu'il convient.</li>
+      <li><strong>Unicité</strong> : on suppose que \(x\) et \(x'\) conviennent tous deux et on montre \(x = x'\).</li>
+      <li>Pour réfuter un « \(\forall\) », un seul <strong>contre-exemple</strong> suffit.</li>
+    </ul>
+  </div>
+
+  <h2 id="s3">3. Les grands types de raisonnement</h2>
+
+  <h3>3.1 Raisonnement direct</h3>
+  <p>Pour montrer \(P \Rightarrow Q\) : on suppose \(P\) vraie et on en déduit \(Q\) par une chaîne de déductions. C'est le raisonnement par défaut.</p>
+  <p><strong>Exemple.</strong> Montrons que si \(n\) est un entier pair, alors \(n^2\) est pair. Soit \(n\) pair : il existe \(k \in \mathbb{Z}\) tel que \(n = 2k\). Alors \(n^2 = 4k^2 = 2(2k^2)\), qui est pair. <span class="qed">∎</span></p>
+
+  <h3>3.2 Raisonnement par contraposée</h3>
+  <p>Pour montrer \(P \Rightarrow Q\), on peut montrer \((\neg Q) \Rightarrow (\neg P)\), souvent plus commode quand \(\neg Q\) est une hypothèse plus maniable que \(P\).</p>
+  <p><strong>Exemple.</strong> Montrons : si \(n^2\) est pair, alors \(n\) est pair. Par contraposée, supposons \(n\) impair : \(n = 2k+1\) avec \(k \in \mathbb{Z}\). Alors \(n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k)+1\) est impair. Donc si \(n^2\) est pair, \(n\) est pair. <span class="qed">∎</span></p>
+
+  <h3>3.3 Raisonnement par l'absurde</h3>
+  <p>Pour montrer qu'une proposition \(P\) est vraie, on suppose \(\neg P\) et on aboutit à une contradiction.</p>
+  <p><strong>Exemple classique.</strong> Montrons que \(\sqrt{2}\) est irrationnel. Supposons par l'absurde \(\sqrt{2} = \frac{p}{q}\) avec \(p, q\) entiers non nuls, la fraction étant irréductible. Alors \(p^2 = 2q^2\), donc \(p^2\) est pair, donc \(p\) est pair (§3.2) : \(p = 2p'\). Alors \(4p'^2 = 2q^2\), soit \(q^2 = 2p'^2\) : \(q\) est pair aussi. Contradiction avec l'irréductibilité de \(\frac{p}{q}\). <span class="qed">∎</span></p>
+
+  <h3>3.4 Disjonction de cas</h3>
+  <p>On découpe la situation en cas exhaustifs et on traite chacun. <strong>Exemple.</strong> Pour tout \(n \in \mathbb{N}\), \(\frac{n(n+1)}{2}\) est entier : si \(n\) est pair, \(n = 2k\) et \(\frac{n(n+1)}{2} = k(n+1) \in \mathbb{N}\) ; si \(n\) est impair, \(n+1 = 2k\) et \(\frac{n(n+1)}{2} = nk \in \mathbb{N}\). <span class="qed">∎</span></p>
+
+  <h3>3.5 Démontrer une équivalence, une égalité d'ensembles</h3>
+  <p>Pour \(P \Leftrightarrow Q\) : soit par une chaîne d'équivalences (en vérifiant chaque étape dans les deux sens !), soit en montrant séparément \(P \Rightarrow Q\) puis \(Q \Rightarrow P\) (<em>double implication</em>). Pour \(A = B\) (ensembles) : double inclusion \(A \subset B\) et \(B \subset A\).</p>
+
+  <h2 id="s4">4. Le raisonnement par récurrence</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 1.6 — Principe de récurrence</span>
+    <p>Soit \(P(n)\) un prédicat défini pour \(n \in \mathbb{N}\) et \(n_0 \in \mathbb{N}\). Si :</p>
+    <ol>
+      <li><strong>(initialisation)</strong> \(P(n_0)\) est vraie ;</li>
+      <li><strong>(hérédité)</strong> pour tout \(n \geqslant n_0\), \(P(n) \Rightarrow P(n+1)\) ;</li>
+    </ol>
+    <p>alors \(P(n)\) est vraie pour tout entier \(n \geqslant n_0\).</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Rédiger une récurrence (rédaction exigée aux concours)</span>
+    <ol>
+      <li>Énoncer clairement le prédicat : « Pour \(n \geqslant n_0\), notons \(P(n)\) la propriété : … ».</li>
+      <li><strong>Initialisation</strong> : vérifier \(P(n_0)\) par un calcul explicite.</li>
+      <li><strong>Hérédité</strong> : « Soit \(n \geqslant n_0\) tel que \(P(n)\) est vraie. Montrons \(P(n+1)\). » — et utiliser effectivement \(P(n)\) dans la preuve.</li>
+      <li><strong>Conclusion</strong> : « Par principe de récurrence, \(P(n)\) est vraie pour tout \(n \geqslant n_0\). »</li>
+    </ol>
+  </div>
+
+  <p><strong>Exemple entièrement rédigé.</strong> Montrons que pour tout \(n \in \mathbb{N}\), \(\displaystyle\sum_{k=0}^{n} k = \frac{n(n+1)}{2}\).</p>
+  <p>Pour \(n \in \mathbb{N}\), notons \(P(n)\) : « \(\sum_{k=0}^{n} k = \frac{n(n+1)}{2}\) ».</p>
+  <p><em>Initialisation.</em> Pour \(n = 0\) : \(\sum_{k=0}^{0} k = 0\) et \(\frac{0 \times 1}{2} = 0\). Donc \(P(0)\) est vraie.</p>
+  <p><em>Hérédité.</em> Soit \(n \in \mathbb{N}\) tel que \(P(n)\) est vraie. Alors :</p>
+  <p>\[ \sum_{k=0}^{n+1} k = \left(\sum_{k=0}^{n} k\right) + (n+1) \underset{P(n)}{=} \frac{n(n+1)}{2} + (n+1) = (n+1)\left(\frac{n}{2} + 1\right) = \frac{(n+1)(n+2)}{2}, \]</p>
+  <p>ce qui est exactement \(P(n+1)\).</p>
+  <p><em>Conclusion.</em> Par principe de récurrence, \(P(n)\) est vraie pour tout \(n \in \mathbb{N}\). <span class="qed">∎</span></p>
+
+  <h3>Variantes</h3>
+  <ul>
+    <li><strong>Récurrence double</strong> : on initialise \(P(n_0)\) et \(P(n_0+1)\), et l'hérédité s'écrit \(\big(P(n) \text{ et } P(n+1)\big) \Rightarrow P(n+2)\). Indispensable pour les suites du type \(u_{n+2} = a\,u_{n+1} + b\,u_n\).</li>
+    <li><strong>Récurrence forte</strong> : l'hérédité s'écrit \(\big(P(n_0) \text{ et } \dots \text{ et } P(n)\big) \Rightarrow P(n+1)\).</li>
+  </ul>
+
+  <div class="box warn">
+    <span class="box-title">Pièges classiques de la récurrence</span>
+    <ul>
+      <li>Oublier l'initialisation : « \(P(n)\) : \(10^n + 1\) est divisible par 9 » est héréditaire… mais fausse pour tout \(n\) !</li>
+      <li>Ne pas utiliser l'hypothèse de récurrence dans l'hérédité : c'est le signe qu'une preuve directe suffisait, ou que la preuve est fausse.</li>
+      <li>Pour une récurrence double, initialiser sur deux rangs consécutifs, pas un seul.</li>
+    </ul>
+  </div>
+
+  <h2 id="s5">5. Ensembles</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.7 — Vocabulaire de base</span>
+    <p>Un <strong>ensemble</strong> \(E\) est une collection d'objets, ses <strong>éléments</strong>. On note \(x \in E\) (« \(x\) appartient à \(E\) »). L'ensemble vide est noté \(\varnothing\). \(A\) est une <strong>partie</strong> (ou sous-ensemble) de \(E\), noté \(A \subset E\), si tout élément de \(A\) appartient à \(E\) : \(\forall x,\ (x \in A \Rightarrow x \in E)\). L'ensemble des parties de \(E\) est noté \(\mathscr{P}(E)\).</p>
+  </div>
+
+  <p>Ensembles de nombres usuels : \(\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\). On note \(\mathbb{N}^* = \mathbb{N} \setminus \{0\}\), \(\mathbb{R}_+ = [0, +\infty[\), \(\mathbb{R}^* = \mathbb{R} \setminus \{0\}\), et \(\llbracket a, b \rrbracket = \{a, a+1, \dots, b\}\) l'ensemble des entiers de \(a\) à \(b\).</p>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.8 — Opérations sur les ensembles</span>
+    <p>Soient \(A, B\) deux parties d'un ensemble \(E\).</p>
+    <ul>
+      <li><strong>Intersection</strong> : \(A \cap B = \{x \in E \mid x \in A \text{ et } x \in B\}\). Si \(A \cap B = \varnothing\), \(A\) et \(B\) sont <strong>disjoints</strong>.</li>
+      <li><strong>Réunion</strong> : \(A \cup B = \{x \in E \mid x \in A \text{ ou } x \in B\}\).</li>
+      <li><strong>Complémentaire</strong> : \(\overline{A} = \{x \in E \mid x \notin A\}\) (noté aussi \(\complement_E A\)).</li>
+      <li><strong>Différence</strong> : \(A \setminus B = A \cap \overline{B}\).</li>
+      <li><strong>Produit cartésien</strong> : \(A \times B = \{(a, b) \mid a \in A,\ b \in B\}\), ensemble des couples. On note \(A^2 = A \times A\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 1.9 — Règles de calcul</span>
+    <p>Pour toutes parties \(A, B, C\) de \(E\) :</p>
+    <ul>
+      <li>Distributivité : \(A \cap (B \cup C) = (A \cap B) \cup (A \cap C)\) et \(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\) ;</li>
+      <li>Lois de De Morgan : \(\overline{A \cup B} = \overline{A} \cap \overline{B}\) et \(\overline{A \cap B} = \overline{A} \cup \overline{B}\) ;</li>
+      <li>\(\overline{\overline{A}} = A\) ; et \(A \subset B \Leftrightarrow \overline{B} \subset \overline{A}\).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (première loi de De Morgan).</span>
+      <p>Soit \(x \in E\). Alors \(x \in \overline{A \cup B}\) ⟺ non\((x \in A \text{ ou } x \in B)\) ⟺ (\(x \notin A\)) et (\(x \notin B\)) (loi de De Morgan logique) ⟺ \(x \in \overline{A} \cap \overline{B}\). Les deux ensembles ont les mêmes éléments, ils sont égaux. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <h2 id="s6">6. Applications</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.10 — Application, image, antécédent</span>
+    <p>Une <strong>application</strong> \(f : E \to F\) associe à <em>chaque</em> élément \(x\) de \(E\) (ensemble de départ) un <em>unique</em> élément \(f(x)\) de \(F\) (ensemble d'arrivée), appelé <strong>image</strong> de \(x\). Si \(y = f(x)\), on dit que \(x\) est un <strong>antécédent</strong> de \(y\) par \(f\). Un élément de \(F\) peut avoir zéro, un ou plusieurs antécédents.</p>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.11 — Composition</span>
+    <p>Si \(f : E \to F\) et \(g : F \to G\), la <strong>composée</strong> \(g \circ f : E \to G\) est définie par \((g \circ f)(x) = g\big(f(x)\big)\). Attention à l'ordre : on applique d'abord \(f\), puis \(g\). En général \(g \circ f \neq f \circ g\).</p>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Définition 1.12 — Injection, surjection, bijection</span>
+    <p>Soit \(f : E \to F\).</p>
+    <ul>
+      <li>\(f\) est <strong>injective</strong> si tout élément de \(F\) a <em>au plus</em> un antécédent : \(\forall (x, x') \in E^2,\ f(x) = f(x') \Rightarrow x = x'\).</li>
+      <li>\(f\) est <strong>surjective</strong> si tout élément de \(F\) a <em>au moins</em> un antécédent : \(\forall y \in F,\ \exists x \in E,\ y = f(x)\).</li>
+      <li>\(f\) est <strong>bijective</strong> si elle est injective et surjective : tout \(y \in F\) a un <em>unique</em> antécédent. On définit alors l'application <strong>réciproque</strong> \(f^{-1} : F \to E\), qui vérifie \(f^{-1} \circ f = \mathrm{Id}_E\) et \(f \circ f^{-1} = \mathrm{Id}_F\).</li>
+    </ul>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Étudier l'injectivité / la surjectivité</span>
+    <ul>
+      <li><strong>Injectivité</strong> : partir de \(f(x) = f(x')\) et en déduire \(x = x'\) par le calcul. Pour la réfuter : exhiber \(x \neq x'\) avec \(f(x) = f(x')\).</li>
+      <li><strong>Surjectivité</strong> : pour \(y \in F\) quelconque, résoudre l'équation \(f(x) = y\) d'inconnue \(x \in E\) et vérifier qu'elle a au moins une solution.</li>
+      <li><strong>Bijectivité</strong> : résoudre \(f(x) = y\) et montrer qu'il y a une unique solution ; l'expression de cette solution donne \(f^{-1}(y)\). Pour les fonctions réelles, on pourra aussi utiliser (chapitre 7) le théorème de la bijection.</li>
+    </ul>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> Soit \(f : \mathbb{R} \setminus \{1\} \to \mathbb{R} \setminus \{2\}\) définie par \(f(x) = \dfrac{2x+1}{x-1}\). Montrons que \(f\) est bijective. Soit \(y \in \mathbb{R} \setminus \{2\}\). Pour \(x \neq 1\) :</p>
+  <p>\[ f(x) = y \iff 2x + 1 = y(x-1) \iff x(2 - y) = -y - 1 \iff x = \frac{y+1}{y-2} \quad (\text{car } y \neq 2). \]</p>
+  <p>Il reste à vérifier que cette solution est bien dans l'ensemble de départ : \(\frac{y+1}{y-2} = 1\) donnerait \(y + 1 = y - 2\), impossible. Donc tout \(y \in \mathbb{R}\setminus\{2\}\) admet un unique antécédent : \(f\) est bijective et \(f^{-1}(y) = \dfrac{y+1}{y-2}\). <span class="qed">∎</span></p>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 1 — Négations</h3><span class="level level-1">Application directe</span>
+    </div>
+    <p>Écrire la négation des propositions suivantes :</p>
+    <ol>
+      <li>\(\forall x \in \mathbb{R},\ x^2 \geqslant 0\)</li>
+      <li>\(\exists n \in \mathbb{N},\ n^2 = 17\)</li>
+      <li>\(\forall \varepsilon &gt; 0,\ \exists n_0 \in \mathbb{N},\ \forall n \geqslant n_0,\ |u_n - \ell| \leqslant \varepsilon\)</li>
+      <li>« Si \(f\) est dérivable, alors \(f\) est continue. »</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>\(\exists x \in \mathbb{R},\ x^2 &lt; 0\). (On inverse le quantificateur et on nie le prédicat ; la négation de \(\geqslant\) est \(&lt;\).)</li>
+        <li>\(\forall n \in \mathbb{N},\ n^2 \neq 17\).</li>
+        <li>On inverse chaque quantificateur en cascade : \(\exists \varepsilon &gt; 0,\ \forall n_0 \in \mathbb{N},\ \exists n \geqslant n_0,\ |u_n - \ell| &gt; \varepsilon\). (C'est la définition de « \((u_n)\) ne converge pas vers \(\ell\) ».)</li>
+        <li>La négation de \(P \Rightarrow Q\) est \(P\) et non \(Q\) : « \(f\) est dérivable <em>et</em> \(f\) n'est pas continue ». (Ce n'est <em>pas</em> « si \(f\) est dérivable alors \(f\) n'est pas continue ».)</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 2 — Vrai ou faux (quantificateurs)</h3><span class="level level-1">Application directe</span>
+    </div>
+    <p>Les propositions suivantes sont-elles vraies ou fausses ? Justifier.</p>
+    <ol>
+      <li>\(\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ x + y = 0\)</li>
+      <li>\(\exists y \in \mathbb{R},\ \forall x \in \mathbb{R},\ x + y = 0\)</li>
+      <li>\(\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ xy = 1\)</li>
+      <li>\(\forall n \in \mathbb{N},\ n^2 + n\) est pair.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li><strong>Vraie</strong> : pour \(x\) donné, \(y = -x\) convient.</li>
+        <li><strong>Fausse</strong> : un tel \(y\) devrait vérifier \(x = -y\) pour tout \(x\), impossible (deux valeurs distinctes de \(x\) donneraient une contradiction).</li>
+        <li><strong>Fausse</strong> : pour \(x = 0\), l'équation \(0 \times y = 1\) n'a pas de solution. (Elle serait vraie sur \(\mathbb{R}^*\).)</li>
+        <li><strong>Vraie</strong> : \(n^2 + n = n(n+1)\) est le produit de deux entiers consécutifs, dont l'un est pair.</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 3 — Récurrence simple</h3><span class="level level-1">Application directe</span>
+    </div>
+    <p>Montrer que pour tout \(n \in \mathbb{N}\), \(\displaystyle\sum_{k=0}^{n} 2^k = 2^{n+1} - 1\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \in \mathbb{N}\), notons \(P(n)\) : « \(\sum_{k=0}^{n} 2^k = 2^{n+1} - 1\) ».</p>
+      <p><em>Initialisation.</em> Pour \(n = 0\) : \(\sum_{k=0}^{0} 2^k = 2^0 = 1\) et \(2^1 - 1 = 1\). \(P(0)\) est vraie.</p>
+      <p><em>Hérédité.</em> Soit \(n \in \mathbb{N}\) tel que \(P(n)\) soit vraie. Alors :</p>
+      <p>\[ \sum_{k=0}^{n+1} 2^k = \sum_{k=0}^{n} 2^k + 2^{n+1} \underset{P(n)}{=} 2^{n+1} - 1 + 2^{n+1} = 2 \cdot 2^{n+1} - 1 = 2^{n+2} - 1. \]</p>
+      <p>Donc \(P(n+1)\) est vraie.</p>
+      <p><em>Conclusion.</em> Par récurrence, \(P(n)\) est vraie pour tout \(n \in \mathbb{N}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 4 — Récurrence et inégalité</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Montrer que pour tout entier \(n \geqslant 4\), \(2^n \geqslant n^2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \geqslant 4\), notons \(P(n)\) : « \(2^n \geqslant n^2\) ».</p>
+      <p><em>Initialisation.</em> Pour \(n = 4\) : \(2^4 = 16\) et \(4^2 = 16\), donc \(P(4)\) est vraie.</p>
+      <p><em>Hérédité.</em> Soit \(n \geqslant 4\) tel que \(2^n \geqslant n^2\). Alors \(2^{n+1} = 2 \cdot 2^n \geqslant 2n^2\). Il suffit donc de montrer que \(2n^2 \geqslant (n+1)^2\), c'est-à-dire \(n^2 - 2n - 1 \geqslant 0\). Or pour \(n \geqslant 4\) : \(n^2 - 2n - 1 = (n-1)^2 - 2 \geqslant 3^2 - 2 = 7 &gt; 0\). Donc \(2^{n+1} \geqslant (n+1)^2\) : \(P(n+1)\) est vraie.</p>
+      <p><em>Conclusion.</em> Par récurrence, \(2^n \geqslant n^2\) pour tout \(n \geqslant 4\). <span class="qed">∎</span></p>
+      <p class="small muted">Remarque : la propriété est fausse pour \(n = 3\) (\(8 &lt; 9\)) — d'où l'initialisation à \(n_0 = 4\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 5 — Récurrence double</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Soit \((u_n)\) définie par \(u_0 = 2\), \(u_1 = 5\) et pour tout \(n \in \mathbb{N}\), \(u_{n+2} = 5u_{n+1} - 6u_n\). Montrer que pour tout \(n \in \mathbb{N}\), \(u_n = 2^n + 3^n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \in \mathbb{N}\), notons \(P(n)\) : « \(u_n = 2^n + 3^n\) ». On raisonne par récurrence double.</p>
+      <p><em>Initialisation.</em> \(u_0 = 2 = 2^0 + 3^0\) ✓ et \(u_1 = 5 = 2^1 + 3^1\) ✓. Donc \(P(0)\) et \(P(1)\) sont vraies.</p>
+      <p><em>Hérédité.</em> Soit \(n \in \mathbb{N}\) tel que \(P(n)\) et \(P(n+1)\) soient vraies. Alors :</p>
+      <p>\[ u_{n+2} = 5u_{n+1} - 6u_n = 5(2^{n+1} + 3^{n+1}) - 6(2^n + 3^n) = 2^n(10 - 6) + 3^n(15 - 6) = 4 \cdot 2^n + 9 \cdot 3^n = 2^{n+2} + 3^{n+2}. \]</p>
+      <p>Donc \(P(n+2)\) est vraie.</p>
+      <p><em>Conclusion.</em> Par récurrence double, \(u_n = 2^n + 3^n\) pour tout \(n \in \mathbb{N}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 6 — Opérations ensemblistes</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Soient \(A, B, C\) trois parties d'un ensemble \(E\). Montrer que :</p>
+    <ol>
+      <li>\(A \setminus (B \cup C) = (A \setminus B) \cap (A \setminus C)\) ;</li>
+      <li>si \(A \cup B = A \cap B\), alors \(A = B\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> On utilise \(X \setminus Y = X \cap \overline{Y}\) et De Morgan :</p>
+      <p>\[ A \setminus (B \cup C) = A \cap \overline{B \cup C} = A \cap (\overline{B} \cap \overline{C}) = (A \cap \overline{B}) \cap (A \cap \overline{C}) = (A \setminus B) \cap (A \setminus C), \]</p>
+      <p>en utilisant l'associativité/commutativité de \(\cap\) et \(A \cap A = A\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Supposons \(A \cup B = A \cap B\) et montrons \(A \subset B\) (l'inclusion réciproque est symétrique). Soit \(x \in A\). Alors \(x \in A \cup B = A \cap B\), donc \(x \in B\). Ainsi \(A \subset B\), et de même \(B \subset A\) : \(A = B\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 7 — Injectivité, surjectivité</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Pour chacune des applications suivantes, dire si elle est injective, surjective, bijective :</p>
+    <ol>
+      <li>\(f : \mathbb{R} \to \mathbb{R},\ x \mapsto x^2\)</li>
+      <li>\(g : \mathbb{R}_+ \to \mathbb{R}_+,\ x \mapsto x^2\)</li>
+      <li>\(h : \mathbb{N} \to \mathbb{N},\ n \mapsto n + 1\)</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(f\) n'est pas injective : \(f(-1) = f(1) = 1\) avec \(-1 \neq 1\). Elle n'est pas surjective : \(-1\) n'a pas d'antécédent (un carré est positif). Donc non bijective.</p>
+      <p><strong>2.</strong> <em>Injectivité</em> : soient \(x, x' \geqslant 0\) avec \(x^2 = x'^2\). Alors \((x-x')(x+x') = 0\), donc \(x = x'\) ou \(x = -x'\) ; comme \(x, x' \geqslant 0\), le second cas donne \(x = x' = 0\). Dans tous les cas \(x = x'\) : \(g\) est injective. <em>Surjectivité</em> : pour \(y \geqslant 0\), \(x = \sqrt{y} \in \mathbb{R}_+\) vérifie \(g(x) = y\). Donc \(g\) est <strong>bijective</strong>, de réciproque \(y \mapsto \sqrt{y}\).</p>
+      <p><strong>3.</strong> <em>Injectivité</em> : \(n + 1 = m + 1 \Rightarrow n = m\) ✓. <em>Surjectivité</em> : \(0\) n'a pas d'antécédent dans \(\mathbb{N}\) (il faudrait \(n = -1\)). Donc \(h\) est injective mais pas surjective.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 8 — Raisonnement par l'absurde et contraposée</h3><span class="level level-3">Approfondissement</span>
+    </div>
+    <p>1. Montrer que pour tout \(n \in \mathbb{N}\), si \(n^2\) est divisible par 3, alors \(n\) est divisible par 3. <br>
+    2. En déduire que \(\sqrt{3}\) est irrationnel.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par contraposée : supposons \(n\) non divisible par 3. Alors \(n = 3k + 1\) ou \(n = 3k + 2\) avec \(k \in \mathbb{N}\) (disjonction de cas).</p>
+      <ul>
+        <li>Si \(n = 3k+1\) : \(n^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1\), non divisible par 3.</li>
+        <li>Si \(n = 3k+2\) : \(n^2 = 9k^2 + 12k + 4 = 3(3k^2 + 4k + 1) + 1\), non divisible par 3.</li>
+      </ul>
+      <p>Dans les deux cas \(n^2\) n'est pas divisible par 3. Par contraposée, si \(3 \mid n^2\) alors \(3 \mid n\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Par l'absurde, supposons \(\sqrt{3} = \frac{p}{q}\) avec \(p, q \in \mathbb{N}^*\) et la fraction irréductible. Alors \(p^2 = 3q^2\), donc \(3 \mid p^2\), donc \(3 \mid p\) d'après la question 1 : \(p = 3p'\). En reportant : \(9p'^2 = 3q^2\), soit \(q^2 = 3p'^2\), donc \(3 \mid q\). Ainsi 3 divise \(p\) et \(q\), ce qui contredit l'irréductibilité. Donc \(\sqrt{3} \notin \mathbb{Q}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 9 — Récurrence forte</h3><span class="level level-3">Approfondissement</span>
+    </div>
+    <p>Soit \((u_n)\) définie par \(u_1 = 1\) et pour tout \(n \geqslant 1\), \(u_{n+1} = u_1 + u_2 + \dots + u_n\). Montrer que pour tout \(n \geqslant 2\), \(u_n = 2^{n-2}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Calculons d'abord : \(u_2 = u_1 = 1 = 2^0\) ✓. Pour \(n \geqslant 2\), notons \(P(n)\) : « \(u_n = 2^{n-2}\) ». On raisonne par récurrence forte.</p>
+      <p><em>Initialisation.</em> \(P(2)\) est vraie (calcul ci-dessus).</p>
+      <p><em>Hérédité.</em> Soit \(n \geqslant 2\) tel que \(P(2), \dots, P(n)\) soient vraies. Alors :</p>
+      <p>\[ u_{n+1} = u_1 + \sum_{k=2}^{n} u_k = 1 + \sum_{k=2}^{n} 2^{k-2} = 1 + \sum_{j=0}^{n-2} 2^{j} = 1 + (2^{n-1} - 1) = 2^{n-1}, \]</p>
+      <p>où l'on a posé \(j = k - 2\) et utilisé la somme géométrique \(\sum_{j=0}^{m} 2^j = 2^{m+1} - 1\). Donc \(u_{n+1} = 2^{(n+1)-2}\) : \(P(n+1)\) est vraie.</p>
+      <p><em>Conclusion.</em> Par récurrence forte, \(u_n = 2^{n-2}\) pour tout \(n \geqslant 2\). <span class="qed">∎</span></p>
+      <p class="small muted">Remarque : la récurrence forte est indispensable ici car \(u_{n+1}\) dépend de <em>tous</em> les termes précédents, pas seulement de \(u_n\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 10 — Bijection et composée (type concours)</h3><span class="level level-3">Approfondissement</span>
+    </div>
+    <p>Soient \(f : E \to F\) et \(g : F \to G\) deux applications.</p>
+    <ol>
+      <li>Montrer que si \(g \circ f\) est injective, alors \(f\) est injective.</li>
+      <li>Montrer que si \(g \circ f\) est surjective, alors \(g\) est surjective.</li>
+      <li>Donner un exemple où \(g \circ f\) est bijective sans que \(f\) soit surjective ni \(g\) injective.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Supposons \(g \circ f\) injective. Soient \(x, x' \in E\) tels que \(f(x) = f(x')\). En appliquant \(g\) : \(g(f(x)) = g(f(x'))\), soit \((g \circ f)(x) = (g \circ f)(x')\). Par injectivité de \(g \circ f\), \(x = x'\). Donc \(f\) est injective. <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Supposons \(g \circ f\) surjective. Soit \(z \in G\). Il existe \(x \in E\) tel que \((g \circ f)(x) = z\), c'est-à-dire \(g\big(f(x)\big) = z\). Alors \(y = f(x) \in F\) est un antécédent de \(z\) par \(g\). Donc \(g\) est surjective. <span class="qed">∎</span></p>
+      <p><strong>3.</strong> Prenons \(E = G = \{0\}\), \(F = \{0, 1\}\), \(f(0) = 0\), et \(g(0) = g(1) = 0\). Alors \(g \circ f = \mathrm{Id}_{\{0\}}\) est bijective ; mais \(f\) n'est pas surjective (1 n'a pas d'antécédent) et \(g\) n'est pas injective (\(g(0) = g(1)\)).</p>
+      <p class="small muted">Moralité : la composée ne « transmet » l'injectivité qu'à la première application appliquée, et la surjectivité qu'à la dernière.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="index.html"><span class="pn-label">Sommaire</span>Maths appliquées</a>
+    <a class="next" href="ch02-calculs-algebriques.html"><span class="pn-label">Chapitre suivant</span>Calculs algébriques →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

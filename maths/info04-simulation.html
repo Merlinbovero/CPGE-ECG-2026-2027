@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informatique I4 — Simulation et méthode de Monte-Carlo | Maths ECG1</title>
+<meta name="description" content="Python pour l'ECG : simuler une expérience aléatoire, fréquences et loi des grands nombres, méthode de Monte-Carlo, simulation des lois usuelles. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-info04" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Informatique I4</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Informatique I4.</span> Simulation d'expériences aléatoires et méthode de Monte-Carlo</h1>
+  <p class="lead">Simuler, c'est faire répéter une expérience aléatoire des milliers de fois par la machine pour <em>estimer</em> une probabilité ou une espérance par des fréquences. C'est la partie de l'informatique la plus présente aux concours, en lien direct avec les chapitres de probabilités.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">TP au semestre 2 surtout</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Simuler une expérience élémentaire</a></li>
+      <li><a href="#s2">Estimer une probabilité par une fréquence</a></li>
+      <li><a href="#s3">Simuler les lois usuelles</a></li>
+      <li><a href="#s4">La méthode de Monte-Carlo</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Simuler une expérience élémentaire</h2>
+  <pre><code class="language-python">import random as rd
+
+de = rd.randint(1, 6)            # lancer de dé équilibré
+piece = rd.random() &lt; 0.5        # pile ou face (True = pile)
+bernoulli = rd.random() &lt; p      # succès avec probabilité p</code></pre>
+  <div class="box met">
+    <span class="box-title">Méthode — Le schéma universel de simulation</span>
+    <pre><code class="language-python">def frequence(N):
+    compteur = 0
+    for k in range(N):
+        # --- simuler UNE expérience ---
+        # --- si l'événement est réalisé : ---
+        #         compteur += 1
+    return compteur / N</code></pre>
+    <p>Trois ingrédients : la boucle des \(N\) répétitions, la simulation d'<em>une</em> expérience, le compteur. À \(N\) grand, la fréquence renvoyée approche la probabilité (loi des grands nombres).</p>
+  </div>
+
+  <h2 id="s2">2. Estimer une probabilité par une fréquence</h2>
+  <p><strong>Exemple complet</strong> — probabilité d'obtenir au moins un 6 en 4 lancers de dé (valeur exacte \(1 - (5/6)^4 \approx 0{,}518\)) :</p>
+  <pre><code class="language-python">import random as rd
+
+def freq_au_moins_un_six(N):
+    c = 0
+    for k in range(N):
+        succes = False
+        for lancer in range(4):
+            if rd.randint(1, 6) == 6:
+                succes = True
+        if succes:
+            c += 1
+    return c / N
+
+print(freq_au_moins_un_six(100000))   # affiche environ 0.5177 (varie à chaque exécution)</code></pre>
+  <p class="small muted">La sortie <em>fluctue</em> autour de la valeur théorique : c'est normal, et les sujets demandent souvent de commenter cet écart (il diminue en \(1/\sqrt N\)).</p>
+
+  <h2 id="s3">3. Simuler les lois usuelles</h2>
+  <pre><code class="language-python">import random as rd
+
+def simule_binomiale(n, p):
+    """Nombre de succès parmi n épreuves de Bernoulli(p)."""
+    X = 0
+    for k in range(n):
+        if rd.random() &lt; p:
+            X += 1
+    return X
+
+def simule_geometrique(p):
+    """Rang du premier succès (loi géométrique)."""
+    X = 1
+    while rd.random() &gt;= p:      # tant qu'échec
+        X += 1
+    return X
+
+def simule_uniforme(n):
+    return rd.randint(1, n)</code></pre>
+  <p>Pour valider : simuler 10 000 valeurs, comparer moyenne empirique et espérance théorique (\(np\), \(\frac1p\), \(\frac{n+1}{2}\)), tracer l'histogramme et le comparer au diagramme de la loi.</p>
+
+  <h2 id="s4">4. La méthode de Monte-Carlo</h2>
+
+  <div class="box def">
+    <span class="box-title">Principe</span>
+    <p>La <strong>méthode de Monte-Carlo</strong> estime une quantité déterministe (probabilité, espérance, intégrale, aire) par la moyenne d'un grand nombre de tirages aléatoires. Justification : la <strong>loi des grands nombres</strong> — la moyenne empirique de \(N\) répétitions indépendantes converge vers l'espérance.</p>
+  </div>
+
+  <p><strong>Exemple 1 — estimer une intégrale.</strong> Si \(U\) est uniforme sur \([0,1]\), alors \(E\big(f(U)\big) = \int_0^1 f(t)\,\mathrm{d}t\) :</p>
+  <pre><code class="language-python">import random as rd
+
+def monte_carlo_integrale(N):
+    S = 0
+    for k in range(N):
+        u = rd.random()
+        S += u**2            # ici f(t) = t²
+    return S / N
+
+print(monte_carlo_integrale(100000))   # environ 0.333  (valeur exacte : 1/3)</code></pre>
+
+  <p><strong>Exemple 2 — estimer \(\pi\) (aire du quart de disque).</strong> On tire des points uniformes dans le carré \([0,1]^2\) ; la proportion tombant dans le quart de disque \(x^2 + y^2 \leqslant 1\) approche son aire \(\frac\pi4\) :</p>
+  <pre><code class="language-python">def estime_pi(N):
+    c = 0
+    for k in range(N):
+        x, y = rd.random(), rd.random()
+        if x**2 + y**2 &lt;= 1:
+            c += 1
+    return 4 * c / N          # estime_pi(1000000) donne environ 3.1418</code></pre>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Lire une simulation</h3><span class="level level-1">Application directe</span></div>
+    <p>Que calcule la fonction suivante ? Vers quelle valeur théorique la sortie se stabilise-t-elle quand \(N\) grandit ?</p>
+    <pre><code class="language-python">import random as rd
+def f(N):
+    c = 0
+    for k in range(N):
+        if rd.randint(1, 6) + rd.randint(1, 6) == 7:
+            c += 1
+    return c / N</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Elle estime la probabilité d'obtenir une <strong>somme de 7 avec deux dés</strong>. Valeur théorique : \(\frac{6}{36} = \frac16 \approx 0{,}167\) (chapitre 10, exercice 1). La sortie se stabilise autour de 0,1667.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Écrire une simulation simple</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire une fonction qui estime la probabilité qu'une main de 2 cartes tirées (sans remise) d'un jeu de 32 contienne au moins un as. Donner la valeur exacte attendue.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+
+def freq_as(N):
+    jeu = list(range(32))     # 0, 1, 2, 3 codent les quatre as
+    c = 0
+    for k in range(N):
+        main = rd.sample(jeu, 2)      # 2 cartes distinctes
+        if main[0] &lt; 4 or main[1] &lt; 4:
+            c += 1
+    return c / N</code></pre>
+      <p>Valeur exacte : \(1 - \dfrac{\binom{28}{2}}{\binom{32}{2}} = 1 - \dfrac{378}{496} = \dfrac{118}{496} \approx 0{,}238\).</p>
+      <p class="small muted"><code>rd.sample(L, k)</code> tire \(k\) éléments <em>distincts</em> — l'outil naturel des tirages sans remise.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Valider la loi géométrique</h3><span class="level level-2">Entraînement</span></div>
+    <p>En utilisant <code>simule_geometrique(p)</code> du cours, écrire un programme qui estime \(E(X)\) pour \(p = 0{,}2\) à partir de 10 000 simulations. Quelle valeur attend-on ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+
+def simule_geometrique(p):
+    X = 1
+    while rd.random() &gt;= p:
+        X += 1
+    return X
+
+S = 0
+for k in range(10000):
+    S += simule_geometrique(0.2)
+print(S / 10000)</code></pre>
+      <p>L'espérance théorique est \(\frac1p = 5\) (chapitre 14) : la sortie fluctue autour de <code>5.0</code> (typiquement entre 4,9 et 5,1).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Surréservation (suite du chapitre 11)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire un programme qui estime la probabilité de surréservation \(P(X &gt; 95)\) pour \(X \hookrightarrow \mathscr{B}(100 ;\ 0{,}9)\) (chapitre 11, exercice 6).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+
+def simule_presents():
+    X = 0
+    for passager in range(100):
+        if rd.random() &lt; 0.9:
+            X += 1
+    return X
+
+N = 100000
+c = 0
+for k in range(N):
+    if simule_presents() &gt; 95:
+        c += 1
+print(c / N)      # affiche environ 0.024</code></pre>
+      <p>La simulation confirme la valeur théorique \(\approx 2{,}4\) % obtenue par la somme binomiale.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Monte-Carlo pour une intégrale (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Justifier que si \(U\) est uniforme sur \([0,1]\), alors \(E(\mathrm{e}^{-U^2})= \int_0^1 \mathrm{e}^{-t^2}\mathrm{d}t\), et écrire la fonction Monte-Carlo correspondante.<br>
+    2. L'intégrale vaut environ 0,7468. Donner un encadrement grossier <em>a priori</em> pour contrôler la sortie.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> C'est le théorème de transfert version continue (admis en ECG1 sous cette forme : la moyenne des \(f(u_k)\) pour des \(u_k\) uniformes approche \(\int_0^1 f\)).</p>
+      <pre><code class="language-python">import random as rd
+
+def mc(N):
+    S = 0
+    for k in range(N):
+        u = rd.random()
+        S += 2.718281828 ** (-u * u)    # ou : import math ; math.exp(-u*u)
+    return S / N</code></pre>
+      <p><strong>2.</strong> Sur \([0,1]\), \(t^2 \in [0,1]\) donc \(\mathrm{e}^{-1} \leqslant \mathrm{e}^{-t^2} \leqslant 1\) : l'intégrale est entre \(0{,}368\) et \(1\). Une sortie hors de cet intervalle signalerait un bug. (Avec \(N = 10^5\), la sortie est typiquement 0,745 – 0,749.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Le problème des anniversaires, version simulation (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire une fonction <code>freq_coincidence(n, N)</code> qui estime, sur \(N\) simulations, la probabilité qu'au moins deux personnes parmi \(n\) partagent leur anniversaire (365 jours équiprobables). Que doit-elle renvoyer pour \(n = 23\) (cf. chapitre 10, exercice 8) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+
+def freq_coincidence(n, N):
+    c = 0
+    for k in range(N):
+        jours = [rd.randint(1, 365) for i in range(n)]
+        # coïncidence ssi la liste contient un doublon :
+        if len(set(jours)) &lt; n:
+            c += 1
+    return c / N</code></pre>
+      <p>Pour \(n = 23\), la valeur théorique est \(1 - q_{23} \approx 0{,}507\) : la fonction renvoie environ <code>0.507</code>.</p>
+      <p class="small muted"><code>set(jours)</code> supprime les doublons : comparer sa taille à \(n\) détecte une coïncidence. Sans <code>set</code>, on peut trier la liste et comparer les éléments consécutifs.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="info03-numpy-matplotlib.html"><span class="pn-label">Fiche précédente</span>← numpy, matplotlib, random</a>
+    <a class="next" href="info05-algorithmes.html"><span class="pn-label">Fiche suivante</span>Suites, seuil, dichotomie →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

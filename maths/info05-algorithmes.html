@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informatique I5 — Suites, algorithmes de seuil et dichotomie | Maths ECG1</title>
+<meta name="description" content="Python pour l'ECG : calcul des termes d'une suite, algorithmes de seuil, méthode de dichotomie, bonnes pratiques. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-info05" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Informatique I5</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Informatique I5.</span> Suites, algorithmes de seuil et dichotomie</h1>
+  <p class="lead">Trois algorithmes emblématiques du programme, en lien direct avec l'analyse : calculer les termes d'une suite récurrente, déterminer un rang de seuil (boucle <code>while</code>), et localiser un zéro de fonction par dichotomie.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">TP tout au long de l'année</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Calculer les termes d'une suite</a></li>
+      <li><a href="#s2">Algorithmes de seuil</a></li>
+      <li><a href="#s3">La dichotomie</a></li>
+      <li><a href="#s4">Bonnes pratiques et complexité</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Calculer les termes d'une suite</h2>
+  <p><strong>Suite récurrente d'ordre 1</strong> \(u_{n+1} = f(u_n)\) : une variable suffit, mise à jour \(n\) fois.</p>
+  <pre><code class="language-python">def u(n):
+    x = 2                    # u_0
+    for k in range(n):
+        x = 0.5 * x + 3      # x reçoit u_{k+1}
+    return x</code></pre>
+  <p><strong>Suite d'ordre 2</strong> \(u_{n+2} = a u_{n+1} + b u_n\) : deux variables mises à jour <em>simultanément</em>.</p>
+  <pre><code class="language-python">def v(n):
+    x, y = 1, 8              # v_0, v_1
+    for k in range(n):
+        x, y = y, 4*y - 4*x  # (v_k, v_{k+1}) devient (v_{k+1}, v_{k+2})
+    return x                 # après n itérations, x contient v_n</code></pre>
+  <div class="box warn">
+    <span class="box-title">Piège</span>
+    <p>Écrire <code>x = y</code> puis <code>y = 4*y - 4*x</code> sur deux lignes est <strong>faux</strong> : la seconde ligne utiliserait le <em>nouveau</em> <code>x</code>. L'affectation simultanée <code>x, y = y, 4*y - 4*x</code> (ou une variable temporaire) est indispensable.</p>
+  </div>
+
+  <h2 id="s2">2. Algorithmes de seuil</h2>
+  <div class="box met">
+    <span class="box-title">Méthode — Rang de seuil</span>
+    <p>Question type : « la suite \((u_n)\) converge vers \(\ell\) ; écrire un programme donnant le plus petit \(n\) tel que \(|u_n - \ell| \leqslant \varepsilon\) » (ou : tel que \(u_n\) dépasse un seuil \(A\)). Structure invariable :</p>
+    <pre><code class="language-python">x = u0
+n = 0
+while abs(x - l) &gt; eps:      # ou : while x &lt;= A
+    x = f(x)                  # terme suivant
+    n = n + 1
+print(n)</code></pre>
+    <p>Points de vigilance : la condition du <code>while</code> est la <em>négation</em> de l'objectif ; <code>n</code> et <code>x</code> doivent rester synchronisés (après la boucle, <code>x</code> vaut \(u_n\)) ; la boucle doit terminer (la convergence de la suite le garantit).</p>
+  </div>
+
+  <h2 id="s3">3. La dichotomie</h2>
+  <p>Objectif : approcher la solution \(\alpha\) de \(f(x) = 0\) sur \([a, b]\), sachant \(f\) continue avec \(f(a)\) et \(f(b)\) de signes opposés (TVI, chapitre 7). Idée : couper l'intervalle en deux et garder la moitié où le signe change ; la longueur est divisée par 2 à chaque étape.</p>
+  <pre><code class="language-python">def dichotomie(f, a, b, eps):
+    """Renvoie une valeur approchée à eps près d'une solution de f(x) = 0,
+    en supposant f(a) et f(b) de signes opposés."""
+    while b - a &gt; eps:
+        m = (a + b) / 2
+        if f(a) * f(m) &lt;= 0:    # le zéro est dans [a, m]
+            b = m
+        else:                    # sinon il est dans [m, b]
+            a = m
+    return (a + b) / 2
+
+# Exemple : la solution de x**3 + x - 1 = 0 (chapitre 7, exercice 5)
+def g(x):
+    return x**3 + x - 1
+print(dichotomie(g, 0, 1, 1e-6))   # affiche : 0.6823277...</code></pre>
+  <div class="box thm">
+    <span class="box-title">Précision et nombre d'itérations</span>
+    <p>Après \(k\) itérations, l'intervalle a pour longueur \(\dfrac{b-a}{2^k}\). Pour une précision \(\varepsilon\), il faut \(k \geqslant \log_2\frac{b-a}{\varepsilon}\) itérations : par exemple 20 itérations suffisent pour \(\varepsilon = 10^{-6}\) sur \([0,1]\) — la dichotomie est très efficace.</p>
+  </div>
+
+  <h2 id="s4">4. Bonnes pratiques et complexité</h2>
+  <ul>
+    <li><strong>Tester sur des petits cas</strong> dont on connaît la réponse (\(n = 0\), \(n = 1\)).</li>
+    <li>Compter les opérations : une boucle de \(n\) itérations a un coût proportionnel à \(n\) (linéaire) ; deux boucles imbriquées : \(n^2\) (quadratique) ; la dichotomie : \(\log_2 n\) (logarithmique).</li>
+    <li>Pour une suite, ne stocker <em>tous</em> les termes (liste) que si on en a besoin (tracé, moyenne) ; sinon, une variable suffit.</li>
+    <li>Nommer clairement, commenter les initialisations, et vérifier les <em>invariants</em> (« après la boucle, x contient \(u_n\) »).</li>
+  </ul>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Termes d'une suite d'ordre 2</h3><span class="level level-1">Application directe</span></div>
+    <p>La suite du chapitre 6 vérifie \(u_0 = 3\), \(u_1 = 4\), \(u_{n+2} = \frac52 u_{n+1} - u_n\). Écrire <code>u(n)</code> et donner la valeur renvoyée par <code>u(2)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def u(n):
+    x, y = 3, 4
+    for k in range(n):
+        x, y = y, 2.5*y - x
+    return x</code></pre>
+      <p><code>u(2)</code> : après une itération, \((x, y) = (4, 7)\) ; après deux, \((7, 13{,}5)\) ; renvoie <code>7</code> — conforme à \(u_2 = \frac52 \times 4 - 3 = 7\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Seuil sur une suite géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire un programme donnant le plus petit \(n\) tel que \(0{,}8^n \leqslant 0{,}01\), puis retrouver ce résultat par le calcul.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">x = 1        # 0.8**0
+n = 0
+while x &gt; 0.01:
+    x = 0.8 * x
+    n += 1
+print(n)</code></pre>
+      <p>Calcul : \(0{,}8^n \leqslant 10^{-2} \iff n \ln 0{,}8 \leqslant -2\ln 10 \iff n \geqslant \frac{2\ln 10}{\ln(1/0{,}8)} = \frac{4{,}605}{0{,}223} \approx 20{,}6\). Le programme affiche <code>21</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Compléter une dichotomie (format concours)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Compléter le programme pour qu'il affiche une valeur approchée à \(10^{-4}\) près de la solution de \(\ln x + x = 0\) (chapitre 7, exercice 7), située dans \([\frac12, 1]\) :</p>
+    <pre><code class="language-python">import numpy as np
+a, b = 0.5, 1
+while ......:
+    m = (a + b) / 2
+    if (np.log(a) + a) * (np.log(m) + m) &lt;= 0:
+        ......
+    else:
+        ......
+print((a + b) / 2)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+a, b = 0.5, 1
+while b - a &gt; 1e-4:
+    m = (a + b) / 2
+    if (np.log(a) + a) * (np.log(m) + m) &lt;= 0:
+        b = m        # changement de signe sur [a, m] : on garde la gauche
+    else:
+        a = m
+print((a + b) / 2)   # affiche 0.5671... (la constante Oméga)</code></pre>
+      <p>Il faut \(\lceil\log_2 \frac{0{,}5}{10^{-4}}\rceil = 13\) itérations.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Seuil et série (type concours)</h3><span class="level level-2">Entraînement</span></div>
+    <p>On note \(S_N = \sum_{n=1}^{N} \frac{1}{n^2}\), qui converge vers \(\frac{\pi^2}{6} \approx 1{,}6449\). Écrire un programme qui affiche le plus petit \(N\) tel que \(\frac{\pi^2}{6} - S_N \leqslant 10^{-3}\), et prédire l'ordre de grandeur du résultat (chapitre 13, exercice 9).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+cible = np.pi**2 / 6
+S = 0
+N = 0
+while cible - S &gt; 1e-3:
+    N += 1
+    S += 1 / N**2
+print(N)</code></pre>
+      <p>D'après le chapitre 13 (exercice 9), le reste \(R_N\) est compris entre \(\frac{1}{N+1}\) et \(\frac1N\) : il faut donc \(N \approx 1000\). Le programme affiche <code>1000</code> (exactement : le premier \(N\) tel que \(R_N \leqslant 10^{-3}\), soit 1000, car \(R_{999} &gt; \frac{1}{1000} = 10^{-3} \geqslant R_{1000}\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Comparaison seuil / dichotomie (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On cherche \(\alpha\) tel que \(\mathrm{e}^{\alpha} = 3\) (soit \(\alpha = \ln 3 \approx 1{,}0986\)), à \(10^{-8}\) près, sur \([1, 2]\).</p>
+    <ol>
+      <li>Combien d'itérations de dichotomie faut-il ?</li>
+      <li>Écrire la fonction dichotomie correspondante.</li>
+      <li>Pourquoi un balayage pas à pas (tester \(1 ;\ 1 + 10^{-8} ;\ 1 + 2\times10^{-8}\dots\)) serait-il inutilisable ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Longueur initiale 1, précision \(10^{-8}\) : il faut \(k \geqslant \log_2(10^8) \approx 26{,}6\), soit <strong>27 itérations</strong>.</p>
+      <pre><code class="language-python">import numpy as np
+
+def f(x):
+    return np.exp(x) - 3
+
+a, b = 1, 2
+while b - a &gt; 1e-8:
+    m = (a + b) / 2
+    if f(a) * f(m) &lt;= 0:
+        b = m
+    else:
+        a = m
+print((a + b) / 2)     # 1.09861229...</code></pre>
+      <p><strong>3.</strong> Le balayage exigerait jusqu'à \(10^8\) évaluations de \(f\) (complexité linéaire en \(\frac1\varepsilon\)), contre 27 pour la dichotomie (logarithmique) : plusieurs secondes ou minutes contre un temps imperceptible. C'est l'illustration type de l'intérêt d'un bon algorithme.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Synthèse : suite implicite (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour \(n \geqslant 1\), on admet que l'équation \(x^n + x - 1 = 0\) possède une unique solution \(x_n\) dans \([0, 1]\). Écrire une fonction <code>x(n, eps)</code> qui approche \(x_n\) par dichotomie, puis un programme qui affiche \(x_1, x_2, \dots, x_{10}\). Que semble faire la suite \((x_n)\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def x(n, eps):
+    a, b = 0, 1
+    while b - a &gt; eps:
+        m = (a + b) / 2
+        if (a**n + a - 1) * (m**n + m - 1) &lt;= 0:
+            b = m
+        else:
+            a = m
+    return (a + b) / 2
+
+for n in range(1, 11):
+    print(n, x(n, 1e-6))</code></pre>
+      <p>Sorties : \(x_1 = 0{,}5\), \(x_2 \approx 0{,}618\), \(x_3 \approx 0{,}6823\), … , \(x_{10} \approx 0{,}869\) : la suite \((x_n)\) est <strong>croissante</strong> et semble tendre vers 1. (Preuve possible : \(f_n(x) = x^n + x - 1\) vérifie \(f_{n+1}(x_n) = x_n^{n+1} + x_n - 1 &lt; x_n^n + x_n - 1 = 0\), donc \(x_{n+1} &gt; x_n\) ; et \(x_n \to 1\) car pour tout \(c &lt; 1\), \(f_n(c) \to c - 1 &lt; 0\).)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="info04-simulation.html"><span class="pn-label">Fiche précédente</span>← Simulation et Monte-Carlo</a>
+    <a class="next" href="index.html"><span class="pn-label">Retour</span>Sommaire maths appliquées</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

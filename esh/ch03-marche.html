@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESH 1.3 — Le fonctionnement du marché | ECG1</title>
+<meta name="description" content="Cours d'ESH ECG1 : offre, demande, équilibre, élasticités, concurrence parfaite et imparfaite, défaillances du marché. Dissertations corrigées et QCM.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="esh-ch03" data-matiere="esh">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="../maths/index.html">Maths appliquées</a>
+    <a href="index.html" aria-current="true">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">ESH</a><span class="sep">›</span><span>Chapitre 1.3</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 1.3.</span> Le fonctionnement du marché</h1>
+  <p class="lead">Comment les prix se forment-ils ? Ce chapitre construit le modèle offre-demande, l'équilibre et les élasticités, puis confronte le modèle de concurrence parfaite aux marchés réels : concurrence imparfaite, et défaillances du marché (externalités, biens publics, asymétries d'information).</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Module 1 · semestre 1</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">I. Offre, demande, équilibre</a></li>
+      <li><a href="#s2">II. La concurrence parfaite et ses vertus</a></li>
+      <li><a href="#s3">III. Concurrence imparfaite et défaillances du marché</a></li>
+      <li><a href="#chiffres">Repères et exemples mobilisables</a></li>
+      <li><a href="#exos">Exercices</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">I. Offre, demande, équilibre</h2>
+
+  <h3>I.1. Le marché et les courbes</h3>
+  <div class="box def">
+    <span class="box-title">Définitions</span>
+    <p>Un <strong>marché</strong> est un lieu (réel ou abstrait) de rencontre entre offreurs et demandeurs d'un bien, où se forme un prix. La <strong>demande</strong> est décroissante avec le prix (effet substitution + effet revenu) ; l'<strong>offre</strong> est croissante (un prix plus élevé couvre des coûts marginaux croissants et attire de nouveaux producteurs). L'<strong>équilibre</strong> est le couple prix-quantité \((p^*, q^*)\) qui égalise offre et demande.</p>
+  </div>
+
+  <figure class="schema">
+    <svg viewBox="0 0 360 260" role="img" aria-label="Diagramme offre-demande">
+      <line x1="50" y1="220" x2="330" y2="220" stroke="var(--text)" stroke-width="2"/>
+      <line x1="50" y1="220" x2="50" y2="20" stroke="var(--text)" stroke-width="2"/>
+      <text x="330" y="240" font-size="12" fill="var(--text)" text-anchor="end">Quantité</text>
+      <text x="20" y="30" font-size="12" fill="var(--text)">Prix</text>
+      <line x1="70" y1="40" x2="300" y2="200" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="300" y="215" font-size="12" fill="#dc2626">D</text>
+      <line x1="70" y1="200" x2="300" y2="40" stroke="#15803d" stroke-width="2.5"/>
+      <text x="303" y="45" font-size="12" fill="#15803d">O</text>
+      <circle cx="185" cy="120" r="5" fill="var(--accent)"/>
+      <line x1="185" y1="120" x2="185" y2="220" stroke="var(--accent)" stroke-dasharray="4" stroke-width="1.5"/>
+      <line x1="50" y1="120" x2="185" y2="120" stroke="var(--accent)" stroke-dasharray="4" stroke-width="1.5"/>
+      <text x="190" y="235" font-size="12" fill="var(--accent)">q*</text>
+      <text x="28" y="124" font-size="12" fill="var(--accent)">p*</text>
+    </svg>
+    <figcaption>L'équilibre du marché : au-dessus de \(p^*\), excès d'offre (le prix baisse) ; en dessous, excès de demande (le prix monte) — le « tâtonnement » walrassien.</figcaption>
+  </figure>
+
+  <p><strong>Déplacements :</strong> distinguer un déplacement <em>le long</em> d'une courbe (variation du prix du bien) et un déplacement <em>de</em> la courbe (variation d'un autre déterminant : revenu, goûts, prix des substituts pour la demande ; coûts, technologie, nombre d'offreurs pour l'offre). Exemple : une mauvaise récolte déplace l'offre de blé vers la gauche → hausse de \(p^*\), baisse de \(q^*\).</p>
+
+  <h3>I.2. Les élasticités</h3>
+  <div class="box def">
+    <span class="box-title">Élasticité-prix de la demande</span>
+    <p>\[ e = \frac{\Delta q / q}{\Delta p / p} \quad (\text{en général } e \leqslant 0). \]</p>
+    <p>Demande <strong>élastique</strong> si \(|e| &gt; 1\) (biens à substituts nombreux, loisirs), <strong>inélastique</strong> si \(|e| &lt; 1\) (carburant à court terme ≈ −0,2 ; tabac ≈ −0,4 ; sel). Applications : recettes fiscales (taxer les biens inélastiques rapporte), politique agricole (demande alimentaire inélastique → une bonne récolte peut <em>réduire</em> le revenu des agriculteurs : « paradoxe de King »), pricing des entreprises. On définit de même l'élasticité-revenu (biens inférieurs/normaux/supérieurs) et les élasticités croisées (substituts/compléments).</p>
+  </div>
+
+  <h2 id="s2">II. La concurrence parfaite et ses vertus</h2>
+
+  <div class="box def">
+    <span class="box-title">Les 5 conditions de la concurrence pure et parfaite (Frank Knight, 1921)</span>
+    <ol>
+      <li><strong>Atomicité</strong> : offreurs et demandeurs nombreux et petits — aucun ne peut influencer le prix (tous « preneurs de prix »).</li>
+      <li><strong>Homogénéité</strong> du produit : biens identiques, seule variable : le prix.</li>
+      <li><strong>Libre entrée et sortie</strong> du marché.</li>
+      <li><strong>Transparence</strong> : information parfaite et gratuite.</li>
+      <li><strong>Mobilité parfaite</strong> des facteurs de production.</li>
+    </ol>
+  </div>
+
+  <p>Sous ces hypothèses, le producteur égalise prix et coût marginal ; à long terme, la libre entrée annule les surprofits. Résultat central (théorèmes du bien-être, Arrow-Debreu 1954) : l'équilibre concurrentiel est un <strong>optimum de Pareto</strong> — le marché maximise le surplus total (surplus du consommateur + surplus du producteur). D'où l'analyse des interventions : un prix plafond sous \(p^*\) (loyers) crée une pénurie ; un prix plancher au-dessus (salaire minimum, prix agricoles garantis) crée un excédent — avec dans les deux cas une perte sèche de surplus, <em>dans le cadre du modèle</em>.</p>
+
+  <div class="box warn">
+    <span class="box-title">Piège</span>
+    <p>La CPP est un <strong>idéaltype</strong> (au sens de Weber), pas une description : presque aucun marché réel ne la vérifie. Sa fonction est d'étalon — mesurer les écarts et leurs conséquences. Une bonne copie ne « croit » ni ne « rejette » le modèle : elle l'utilise et le discute.</p>
+  </div>
+
+  <h2 id="s3">III. Concurrence imparfaite et défaillances du marché</h2>
+
+  <h3>III.1. Concurrence imparfaite</h3>
+  <ul>
+    <li><strong>Monopole</strong> (un seul offreur) : il fixe un prix supérieur au coût marginal en réduisant les quantités → perte sèche. Origines : monopole naturel (rendements croissants : rail, réseau électrique), légal (brevets), d'innovation. Régulation : autorités de la concurrence, tarification, démantèlement (Standard Oil, 1911 ; procès Microsoft 1998 ; procédures contre Google — amendes de l'UE 2017-2019, ≈ 8 Md€).</li>
+    <li><strong>Oligopole</strong> (quelques offreurs) : interdépendance stratégique — analysée par la théorie des jeux (Cournot 1838, Nash 1950 ; dilemme du prisonnier appliqué aux cartels). Risque d'entente (cartel des lessives en France, amende 2011 ; OPEP).</li>
+    <li><strong>Concurrence monopolistique</strong> (Chamberlin, 1933) : produits différenciés — chaque marque a un petit pouvoir de marché (restaurants, applications).</li>
+    <li><strong>Marchés contestables</strong> (Baumol, 1982) : la simple <em>menace</em> d'entrée peut discipliner un monopole si l'entrée/sortie est sans coût.</li>
+  </ul>
+
+  <h3>III.2. Les défaillances du marché</h3>
+  <div class="box def">
+    <span class="box-title">Trois grandes défaillances (market failures)</span>
+    <ul>
+      <li><strong>Externalités</strong> : effets d'une activité sur des tiers sans compensation par le marché. Négatives (pollution) → surproduction ; positives (vaccination, R&amp;D, éducation) → sous-production. Solutions : taxe pigouvienne (Pigou, <em>The Economics of Welfare</em>, 1920 — taxe carbone), subventions, marchés de droits (quotas CO₂ européens, 2005 — prix passé d'environ 5 € la tonne en 2017 à plus de 80 € en 2022-2023), négociation privée si droits de propriété bien définis et coûts de transaction faibles (théorème de Coase, 1960).</li>
+      <li><strong>Biens publics</strong> (Samuelson, 1954) : <em>non-rivaux</em> et <em>non-excluables</em> (défense, phare, éclairage public, connaissance). Le passager clandestin (Olson, <em>Logique de l'action collective</em>, 1965) empêche le financement privé → production publique ou obligatoire. Le climat : bien public mondial (d'où la difficulté des accords — Kyoto 1997, Paris 2015).</li>
+      <li><strong>Asymétries d'information</strong> : <em>antisélection</em> (Akerlof, « The Market for Lemons », 1970 : sur le marché des voitures d'occasion, les mauvais produits chassent les bons, le marché peut disparaître) et <em>aléa moral</em> (l'assuré prend plus de risques). Solutions : signaux (Spence — le diplôme comme signal, 1973), garanties, réglementation, franchise d'assurance. Applications majeures : assurance santé, crédit (rationnement — Stiglitz-Weiss, 1981), finance (2008 : titrisation et aléa moral).</li>
+    </ul>
+  </div>
+
+  <h2 id="chiffres">Repères et exemples mobilisables</h2>
+  <ul>
+    <li><strong>1776</strong> Smith (main invisible) ; <strong>1874</strong> Walras (équilibre général) ; <strong>1890</strong> Marshall (offre/demande en équilibre partiel) ; <strong>1920</strong> Pigou ; <strong>1954</strong> Arrow-Debreu et Samuelson ; <strong>1960</strong> Coase ; <strong>1970</strong> Akerlof.</li>
+    <li>Exemples d'actualité : encadrement des loyers (Paris depuis 2019 — débat prix plafond) ; marché européen du carbone ; amendes anticartel de la Commission ; plateformes numériques et effets de réseau (« winner takes all »), règlements européens DMA/DSA (2022).</li>
+    <li>Ordres de grandeur d'élasticités : carburants ≈ −0,2 à court terme, −0,6 à long terme ; tabac ≈ −0,4 (d'où la hausse des taxes comme politique de santé publique).</li>
+  </ul>
+
+  <h2 id="exos">Exercices</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Dissertation 1 — Le marché est-il un mécanisme efficace d'allocation des ressources ?</h3><span class="level level-2">Dissertation</span></div>
+    <button class="btn-corrige" type="button">Voir le plan détaillé corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Problématique :</strong> sous quelles conditions la coordination par les prix alloue-t-elle efficacement les ressources, et que faire quand ces conditions manquent ?</p>
+      <p><strong>I. Le marché concurrentiel possède des propriétés d'efficacité remarquables</strong><br>
+      1. Le prix, signal et incitation : il transmet l'information dispersée (Hayek, 1945) et rationne sans file d'attente.<br>
+      2. Formalisation : équilibre concurrentiel = optimum de Pareto (théorèmes du bien-être) ; maximisation du surplus total.<br>
+      3. Preuve par contraste : pénuries chroniques des économies planifiées ; effets pervers des contrôles de prix (pénuries de logements sous plafonnement strict).</p>
+      <p><strong>II. Les conditions de l'efficacité sont rarement réunies</strong><br>
+      1. Pouvoir de marché : monopoles et oligopoles réduisent quantités et surplus (pertes sèches) ; économies numériques à effets de réseau.<br>
+      2. Défaillances : externalités (climat = « la plus grande défaillance de marché de l'histoire », rapport Stern 2006), biens publics, asymétries d'information (Akerlof 1970).<br>
+      3. Le marché peut être efficace et socialement aveugle : l'allocation optimale dépend de la répartition initiale (un optimum de Pareto peut être très inégalitaire).</p>
+      <p><strong>III. L'efficacité du marché se construit institutionnellement</strong><br>
+      1. Politiques de concurrence (autorités antitrust, régulation sectorielle) pour rapprocher les marchés de l'étalon concurrentiel.<br>
+      2. Internaliser les externalités : taxes pigouviennes, marchés de quotas (SEQE 2005) — créer des marchés pour corriger le marché.<br>
+      3. Compléter par la redistribution et la production publique là où le marché ne peut rien (biens publics purs) — arbitrages entre défaillances du marché et défaillances de l'État.</p>
+      <p><strong>Conclusion :</strong> le marché est le meilleur mécanisme connu d'allocation <em>quand ses conditions sont réunies ou reconstruites</em> ; l'efficacité n'est pas spontanée, elle s'institue.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Dissertation 2 — Faut-il réglementer les prix ?</h3><span class="level level-2">Dissertation</span></div>
+    <button class="btn-corrige" type="button">Voir le plan détaillé corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Accroche :</strong> boucliers tarifaires sur l'énergie (2021-2023), encadrement des loyers à Paris, SMIC : la fixation administrative des prix est partout — alors que la théorie standard la déconseille.</p>
+      <p><strong>I. La théorie standard : réglementer les prix détruit du surplus</strong><br>
+      1. Prix plafond → pénurie, files d'attente, marchés noirs, sous-investissement (logements locatifs) ; prix plancher → excédents (montagnes de beurre de la PAC avant 1992), chômage potentiel (débat SMIC).<br>
+      2. Le prix contraint cesse d'informer et d'inciter.<br>
+      3. Alternatives recommandées : transferts monétaires ciblés (chèque énergie) plutôt que prix faussés.</p>
+      <p><strong>II. Des justifications solides existent pourtant</strong><br>
+      1. Pouvoir de marché : réguler le prix d'un monopole naturel est efficace (tarifs de réseau) ; monopsone sur le marché du travail → un salaire minimum peut <em>augmenter</em> l'emploi (Card-Krueger, 1994).<br>
+      2. Urgences et équité : chocs (énergie 2022) où l'ajustement par les prix serait socialement destructeur ; biens essentiels (médicaments — prix administrés en France).<br>
+      3. Asymétries d'information et myopie : encadrer certains prix protège les consommateurs vulnérables (taux d'usure).</p>
+      <p><strong>III. Bien réglementer : ciblé, temporaire, accompagné</strong><br>
+      1. Choisir l'instrument selon la défaillance : taxer/subventionner plutôt que bloquer quand c'est possible.<br>
+      2. Limiter les effets pervers : encadrement des loyers couplé à la construction ; SMIC modéré + allègements ciblés + prime d'activité.<br>
+      3. Évaluer : les effets du SMIC et des encadrements sont des questions empiriques (littérature post-Card-Krueger : effets sur l'emploi faibles autour des niveaux observés) — non des dogmes.</p>
+      <p><strong>Conclusion :</strong> la question n'est pas « faut-il » mais « où, comment, combien de temps » : la réglementation des prix est un outil de second rang, précieux quand le premier rang (concurrence + transferts) est indisponible.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Dissertation 3 — Les asymétries d'information condamnent-elles le marché ?</h3><span class="level level-2">Dissertation</span></div>
+    <button class="btn-corrige" type="button">Voir le plan détaillé corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>I. L'information imparfaite mine les mécanismes marchands</strong><br>
+      1. Antisélection : Akerlof (1970) — l'incertitude sur la qualité fait fuir les bons vendeurs, le marché rétrécit ou disparaît (occasion, assurance santé individuelle, crédit).<br>
+      2. Aléa moral : comportements inobservables après contrat (assurance, finance — prise de risque des banques « too big to fail », 2008).<br>
+      3. Rationnement endogène : Stiglitz-Weiss (1981) — les banques rationnent le crédit plutôt que d'augmenter les taux (qui attireraient les mauvais risques).</p>
+      <p><strong>II. Marchés et acteurs inventent des remèdes</strong><br>
+      1. Signalisation (Spence 1973 : diplôme ; garanties, labels, marques) et filtrage (franchises, contrats-menus).<br>
+      2. Réputation et intermédiaires : notation, plateformes d'avis (mais manipulables), certification.<br>
+      3. Institutions publiques : obligation d'assurance (mutualisation contre l'antisélection — Sécurité sociale), réglementation prudentielle, information obligatoire (étiquetage).</p>
+      <p><strong>III. Une leçon théorique majeure</strong><br>
+      1. L'économie de l'information (Akerlof, Spence, Stiglitz — Nobel 2001) montre que l'équilibre concurrentiel parfait est un cas limite : les institutions ne sont pas des frictions mais des réponses.<br>
+      2. Applications contemporaines : plateformes (asymétries massives mais nouvelles technologies de confiance), santé, banque.<br>
+      3. Le marché survit en s'hybridant : contrats, règles, État — « l'économie de marché » est toujours une économie institutionnée.</p>
+      <p><strong>Conclusion :</strong> les asymétries d'information ne condamnent pas le marché ; elles condamnent la fiction du marché sans institutions.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Dissertation 4 — La concurrence est-elle toujours souhaitable ?</h3><span class="level level-2">Dissertation</span></div>
+    <button class="btn-corrige" type="button">Voir le plan détaillé corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>I. Les vertus de la concurrence</strong><br>
+      1. Prix bas et surplus du consommateur ; discipline des coûts (« la concurrence est un processus de découverte », Hayek).<br>
+      2. Incitation à innover pour échapper à la concurrence (différenciation).<br>
+      3. Preuves : libéralisations réussies (transport aérien européen : prix ÷ 2 en vingt ans), écarts de prix des monopoles protégés.</p>
+      <p><strong>II. Ses limites et ses coûts</strong><br>
+      1. Monopole naturel : la concurrence duplique inutilement les réseaux ; rendements croissants → concentration efficace.<br>
+      2. Innovation : le pouvoir de marché temporaire récompense l'innovateur (brevets ; Schumpeter — chapitre 2.2 : le monopole comme « prime » à l'innovation) ; une concurrence trop intense peut décourager la R&amp;D (relation en U inversé, Aghion et al., 2005).<br>
+      3. Coûts sociaux : pression sur les salaires et délocalisations, duplication publicitaire, course au moins-disant réglementaire.</p>
+      <p><strong>III. Une politique de la concurrence, pas un culte</strong><br>
+      1. Arbitrer efficacité statique/dynamique : tolérer des positions dominantes <em>contestables</em>, sanctionner les abus.<br>
+      2. Réguler les nouveaux monopoles numériques (effets de réseau, données) : DMA européen (2022), procès antitrust américains contre Google/Amazon (2020-2023).<br>
+      3. Concilier concurrence et autres objectifs : champions industriels, sécurité d'approvisionnement, transition écologique (subventions vertes — IRA américain 2022 vs droit des aides d'État).</p>
+      <p><strong>Conclusion :</strong> la concurrence est un moyen — efficace mais conditionnel — au service du bien-être ; la politique de concurrence consiste à savoir quand la protéger, quand l'organiser, quand y renoncer.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Questions de cours</h3><span class="level level-1">Réciter et vérifier</span></div>
+    <ol>
+      <li>Citer les 5 conditions de la concurrence pure et parfaite.</li>
+      <li>Définir l'élasticité-prix de la demande et donner deux applications.</li>
+      <li>Qu'est-ce qu'une externalité ? Deux solutions théoriques pour les corriger ?</li>
+      <li>Définir bien public et passager clandestin.</li>
+      <li>Expliquer le mécanisme du « market for lemons ».</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir les réponses</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>Atomicité, homogénéité, libre entrée/sortie, transparence, mobilité des facteurs.</li>
+        <li>\(e = \frac{\Delta q/q}{\Delta p/p}\) : sensibilité relative de la demande au prix. Applications : fiscalité (taxer les biens inélastiques : tabac, carburant), tarification des entreprises (yield management), politique agricole (paradoxe de King).</li>
+        <li>Effet d'une activité sur le bien-être d'un tiers non compensé par un prix. Corrections : taxe/subvention pigouvienne (1920) ; création de droits échangeables (quotas CO₂) ; négociation à la Coase (1960) si droits définis et coûts de transaction faibles.</li>
+        <li>Bien non-rival (la consommation de l'un ne réduit pas celle de l'autre) et non-excluable (impossible d'exclure les non-payeurs) — Samuelson 1954. Le passager clandestin en profite sans payer, d'où sous-production privée (Olson 1965).</li>
+        <li>Akerlof (1970) : l'acheteur ne distingue pas les bonnes voitures des mauvaises → il offre un prix moyen → les bons vendeurs se retirent → la qualité moyenne baisse → le prix baisse encore : l'antisélection peut détruire le marché.</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>QCM auto-corrigé</h3><span class="level level-1">Vérification rapide</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Une demande d'élasticité-prix égale à −0,2 est :</p>
+        <label><input type="radio" name="q1" data-correct> inélastique</label>
+        <label><input type="radio" name="q1"> élastique</label>
+        <label><input type="radio" name="q1"> parfaitement élastique</label>
+        <div class="qcm-explication">\(|e| = 0{,}2 &lt; 1\) : une hausse de prix de 10 % réduit la demande de 2 % seulement.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. Un prix plafond fixé sous le prix d'équilibre provoque :</p>
+        <label><input type="radio" name="q2"> un excédent d'offre</label>
+        <label><input type="radio" name="q2" data-correct> une pénurie</label>
+        <label><input type="radio" name="q2"> le retour à l'équilibre</label>
+        <div class="qcm-explication">La demande excède l'offre au prix contraint : rationnement, files, marché noir.</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. « The Market for Lemons » (1970) est un article de :</p>
+        <label><input type="radio" name="q3"> Joseph Stiglitz</label>
+        <label><input type="radio" name="q3" data-correct> George Akerlof</label>
+        <label><input type="radio" name="q3"> Michael Spence</label>
+        <div class="qcm-explication">Akerlof y modélise l'antisélection ; Nobel 2001 avec Spence et Stiglitz.</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Un bien public est :</p>
+        <label><input type="radio" name="q4"> produit par l'État, par définition</label>
+        <label><input type="radio" name="q4" data-correct> non-rival et non-excluable</label>
+        <label><input type="radio" name="q4"> gratuit et rival</label>
+        <div class="qcm-explication">La définition est technique (Samuelson 1954) — un bien public peut être produit par le privé, et l'État produit aussi des biens privés.</div>
+      </div>
+      <div class="qcm-q">
+        <p>5. La taxe pigouvienne vise à :</p>
+        <label><input type="radio" name="q5"> financer les biens publics</label>
+        <label><input type="radio" name="q5" data-correct> internaliser une externalité négative</label>
+        <label><input type="radio" name="q5"> réduire les inégalités</label>
+        <div class="qcm-explication">Elle aligne coût privé et coût social (Pigou, 1920) — modèle de la taxe carbone.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Analyse de document + micro-exercice chiffré</h3><span class="level level-2">Entraînement</span></div>
+    <p>Sur un marché, la demande est \(q_D = 100 - 2p\) et l'offre \(q_O = 3p - 25\) (quantités en milliers d'unités, prix en euros).</p>
+    <ol>
+      <li>Calculer le prix et la quantité d'équilibre.</li>
+      <li>Le gouvernement impose un prix plafond de 20 €. Calculer la pénurie.</li>
+      <li>Interpréter économiquement.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(100 - 2p = 3p - 25 \iff 5p = 125 \iff p^* = 25\) € et \(q^* = 100 - 50 = 50\) (milliers). <em>Vérification :</em> \(3 \times 25 - 25 = 50\) ✓.</p>
+      <p><strong>2.</strong> À \(p = 20\) : demande \(= 100 - 40 = 60\) ; offre \(= 60 - 25 = 35\). Pénurie \(= 60 - 35 = 25\) milliers d'unités.</p>
+      <p><strong>3.</strong> Le plafond, inférieur au prix d'équilibre, stimule la demande et décourage l'offre : 25 000 acheteurs prêts à payer ne trouvent pas le bien. Le rationnement se fera hors prix (files d'attente, tirage, marché noir où le prix implicite dépasse 25 €) ; à long terme, sous-investissement des offreurs. Une aide ciblée aux acheteurs modestes atteindrait l'objectif distributif sans créer la pénurie.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch02-sociologie.html"><span class="pn-label">Chapitre précédent</span>← Qu'est-ce que la sociologie ?</a>
+    <a class="next" href="ch04-monnaie-financement.html"><span class="pn-label">Chapitre suivant</span>Monnaie et financement →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — ESH. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 12 — Intégration sur un segment | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : primitives, primitives usuelles, intégrale et aire, propriétés de l'intégrale, intégration par parties, sommes de Riemann. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch12" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 12</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 12.</span> Intégration sur un segment</h1>
+  <p class="lead">L'intégrale mesure une aire algébrique et se calcule par les primitives. Au programme : primitives usuelles, propriétés de l'intégrale (linéarité, Chasles, positivité), intégration par parties, et le lien sommes-intégrales (sommes de Riemann), qui prépare les séries.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 2 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Primitives</a></li>
+      <li><a href="#s2">Primitives usuelles</a></li>
+      <li><a href="#s3">Intégrale sur un segment</a></li>
+      <li><a href="#s4">Propriétés de l'intégrale</a></li>
+      <li><a href="#s5">Intégration par parties</a></li>
+      <li><a href="#s6">Sommes de Riemann</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Primitives</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 12.1 — Primitive</span>
+    <p>\(F\) est une <strong>primitive</strong> de \(f\) sur l'intervalle \(I\) si \(F\) est dérivable sur \(I\) et \(F' = f\). Si \(F_0\) est une primitive de \(f\) sur \(I\), les primitives de \(f\) sur \(I\) sont exactement les \(F_0 + c\), \(c \in \mathbb{R}\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 12.2 — Existence</span>
+    <p>Toute fonction <strong>continue</strong> sur un intervalle \(I\) admet des primitives sur \(I\). Plus précisément, pour \(a \in I\), la fonction \(x \mapsto \displaystyle\int_a^x f(t)\,\mathrm{d}t\) est l'unique primitive de \(f\) s'annulant en \(a\).</p>
+  </div>
+
+  <h2 id="s2">2. Primitives usuelles</h2>
+
+  <div class="table-scroll">
+  <table>
+    <caption class="small muted">Primitives à connaître (constante additive omise)</caption>
+    <thead><tr><th>\(f(x)\)</th><th>Primitive \(F(x)\)</th><th>Intervalle</th></tr></thead>
+    <tbody>
+      <tr><td>\(x^n\ (n \in \mathbb{N})\)</td><td>\(\dfrac{x^{n+1}}{n+1}\)</td><td>\(\mathbb{R}\)</td></tr>
+      <tr><td>\(x^\alpha\ (\alpha \neq -1)\)</td><td>\(\dfrac{x^{\alpha+1}}{\alpha+1}\)</td><td>\(]0,+\infty[\)</td></tr>
+      <tr><td>\(\dfrac1x\)</td><td>\(\ln x\)</td><td>\(]0,+\infty[\)</td></tr>
+      <tr><td>\(\mathrm{e}^{ax}\ (a \neq 0)\)</td><td>\(\dfrac{\mathrm{e}^{ax}}{a}\)</td><td>\(\mathbb{R}\)</td></tr>
+      <tr><td>\(\ln x\)</td><td>\(x\ln x - x\)</td><td>\(]0,+\infty[\)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Formes composées (lecture inverse de la dérivation)</span>
+    <p>Pour \(u\) dérivable (aux bons domaines) :</p>
+    <p>\[ \int u'\,u^n = \frac{u^{n+1}}{n+1}, \qquad \int \frac{u'}{u} = \ln|u|, \qquad \int u'\,\mathrm{e}^u = \mathrm{e}^u, \qquad \int \frac{u'}{u^2} = -\frac1u, \qquad \int \frac{u'}{2\sqrt u} = \sqrt u. \]</p>
+    <p>Réflexe : devant une intégrale, chercher si le numérateur est (à une constante près) la dérivée d'une partie de l'expression.</p>
+  </div>
+
+  <h2 id="s3">3. Intégrale sur un segment</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 12.3 — Théorème fondamental</span>
+    <p>Si \(f\) est continue sur \([a, b]\) et \(F\) est une primitive quelconque de \(f\) :</p>
+    <p>\[ \int_a^b f(t)\,\mathrm{d}t = \big[F(t)\big]_a^b = F(b) - F(a). \]</p>
+    <p>Interprétation géométrique : pour \(f \geqslant 0\), c'est l'aire sous la courbe entre les abscisses \(a\) et \(b\) ; pour \(f\) de signe quelconque, une aire <em>algébrique</em> (comptée négativement sous l'axe).</p>
+  </div>
+
+  <h2 id="s4">4. Propriétés de l'intégrale</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 12.4 — Propriétés fondamentales (\(f, g\) continues, \(a \leqslant b\))</span>
+    <ul>
+      <li><strong>Linéarité :</strong> \(\displaystyle\int_a^b (\lambda f + g) = \lambda \int_a^b f + \int_a^b g\).</li>
+      <li><strong>Relation de Chasles :</strong> \(\displaystyle\int_a^b f = \int_a^c f + \int_c^b f\) ; et \(\displaystyle\int_b^a f = -\int_a^b f\), \(\displaystyle\int_a^a f = 0\).</li>
+      <li><strong>Positivité :</strong> si \(f \geqslant 0\) sur \([a,b]\), alors \(\displaystyle\int_a^b f \geqslant 0\). <strong>Croissance :</strong> \(f \leqslant g \Rightarrow \displaystyle\int_a^b f \leqslant \int_a^b g\).</li>
+      <li><strong>Inégalité triangulaire :</strong> \(\left|\displaystyle\int_a^b f\right| \leqslant \displaystyle\int_a^b |f|\).</li>
+      <li>Si \(f\) est continue, <strong>positive et non identiquement nulle</strong> sur \([a,b]\) (\(a &lt; b\)), alors \(\displaystyle\int_a^b f &gt; 0\).</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges</span>
+    <ul>
+      <li>La positivité exige \(a \leqslant b\) : penser à remettre les bornes dans le bon sens avant de comparer.</li>
+      <li>\(\displaystyle\int_a^b fg \neq \left(\int_a^b f\right)\left(\int_a^b g\right)\) : l'intégrale d'un produit n'est pas le produit des intégrales (d'où l'intégration par parties).</li>
+      <li>\(\ln|u|\) : ne pas oublier la valeur absolue quand \(u\) est négatif sur l'intervalle.</li>
+    </ul>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Encadrer une intégrale</span>
+    <p>Encadrer \(f(t)\) sur \([a, b]\) (par ses bornes, par une fonction plus simple), puis intégrer l'encadrement. Exemple : pour \(t \in [0, 1]\), \(1 \leqslant \mathrm{e}^{t^2} \leqslant \mathrm{e}^t\)… en fait \(t^2 \leqslant t\) sur \([0,1]\) donc \(\mathrm{e}^{t^2} \leqslant \mathrm{e}^t\), d'où \(1 \leqslant \int_0^1 \mathrm{e}^{t^2}\mathrm{d}t \leqslant \mathrm{e} - 1\).</p>
+  </div>
+
+  <h2 id="s5">5. Intégration par parties</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 12.5 — Intégration par parties (IPP, démonstration exigible)</span>
+    <p>Si \(u\) et \(v\) sont de classe \(\mathscr{C}^1\) sur \([a,b]\) (dérivables à dérivées continues) :</p>
+    <p>\[ \int_a^b u'(t)\,v(t)\,\mathrm{d}t = \big[u(t)\,v(t)\big]_a^b - \int_a^b u(t)\,v'(t)\,\mathrm{d}t. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>\((uv)' = u'v + uv'\) ; en intégrant de \(a\) à \(b\) (toutes les fonctions sont continues) : \(\big[uv\big]_a^b = \int_a^b u'v + \int_a^b uv'\), d'où le résultat. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Choisir \(u'\) et \(v\)</span>
+    <p>On dérive ce qui se simplifie, on intègre ce qu'on sait intégrer :</p>
+    <ul>
+      <li>\(\int t^k \mathrm{e}^{at}\,\mathrm{d}t\) : dériver le polynôme (\(v = t^k\)), intégrer l'exponentielle.</li>
+      <li>\(\int t^k \ln t\,\mathrm{d}t\) : dériver \(\ln\) (\(v = \ln t\)), intégrer la puissance.</li>
+      <li>Toujours annoncer : « les fonctions \(u : \dots\) et \(v : \dots\) sont de classe \(\mathscr{C}^1\) sur \([a,b]\) ».</li>
+    </ul>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> Calculons \(I = \displaystyle\int_1^{\mathrm{e}} t \ln t\,\mathrm{d}t\). Posons \(v(t) = \ln t\) et \(u'(t) = t\), soit \(u(t) = \frac{t^2}{2}\) : fonctions \(\mathscr{C}^1\) sur \([1, \mathrm{e}]\). Alors :</p>
+  <p>\[ I = \left[\frac{t^2}{2}\ln t\right]_1^{\mathrm{e}} - \int_1^{\mathrm{e}} \frac{t^2}{2} \cdot \frac1t\,\mathrm{d}t = \frac{\mathrm{e}^2}{2} - 0 - \frac12\int_1^{\mathrm{e}} t\,\mathrm{d}t = \frac{\mathrm{e}^2}{2} - \frac12\left[\frac{t^2}{2}\right]_1^{\mathrm{e}} = \frac{\mathrm{e}^2}{2} - \frac{\mathrm{e}^2 - 1}{4} = \frac{\mathrm{e}^2 + 1}{4}. \]</p>
+
+  <h2 id="s6">6. Sommes de Riemann</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 12.6 — Sommes de Riemann</span>
+    <p>Si \(f\) est continue sur \([0, 1]\) :</p>
+    <p>\[ \lim_{n \to +\infty} \frac1n \sum_{k=1}^{n} f\!\left(\frac kn\right) = \int_0^1 f(t)\,\mathrm{d}t. \]</p>
+    <p class="small">(Idem avec \(k\) de 0 à \(n-1\).) Interprétation : la moyenne des valeurs de \(f\) sur une subdivision régulière tend vers la valeur moyenne de \(f\). Version générale sur \([a, b]\) : \(\frac{b-a}{n}\sum_{k=1}^n f\big(a + k\frac{b-a}{n}\big) \to \int_a^b f\).</p>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Primitives</h3><span class="level level-1">Application directe</span></div>
+    <p>Donner une primitive de : 1. \(f(x) = 3x^2 - 4x + 5\) ; &nbsp; 2. \(g(x) = \mathrm{e}^{-2x}\) ; &nbsp; 3. \(h(x) = \dfrac{2x}{x^2 + 1}\) ; &nbsp; 4. \(k(x) = \dfrac{\ln x}{x}\) (sur \(]0,+\infty[\)).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>\(F(x) = x^3 - 2x^2 + 5x\).</li>
+        <li>\(G(x) = -\dfrac12\mathrm{e}^{-2x}\).</li>
+        <li>Forme \(\frac{u'}{u}\) avec \(u = x^2 + 1 &gt; 0\) : \(H(x) = \ln(x^2 + 1)\).</li>
+        <li>Forme \(u'u\) avec \(u = \ln x\) : \(K(x) = \dfrac{(\ln x)^2}{2}\).</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Calculs d'intégrales</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer : 1. \(\displaystyle\int_0^2 (x^2 + 1)\,\mathrm{d}x\) ; &nbsp; 2. \(\displaystyle\int_1^4 \frac{1}{\sqrt t}\,\mathrm{d}t\) ; &nbsp; 3. \(\displaystyle\int_0^1 \frac{\mathrm{e}^x}{\mathrm{e}^x + 1}\,\mathrm{d}x\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\left[\frac{x^3}{3} + x\right]_0^2 = \frac83 + 2 = \frac{14}{3}\).</p>
+      <p><strong>2.</strong> \(\int_1^4 t^{-1/2}\mathrm{d}t = \big[2\sqrt t\big]_1^4 = 4 - 2 = 2\).</p>
+      <p><strong>3.</strong> Forme \(\frac{u'}{u}\), \(u = \mathrm{e}^x + 1 &gt; 0\) : \(\big[\ln(\mathrm{e}^x + 1)\big]_0^1 = \ln(\mathrm{e} + 1) - \ln 2 = \ln\frac{\mathrm{e}+1}{2}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — IPP simples</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer par intégration par parties : 1. \(\displaystyle\int_0^1 t\,\mathrm{e}^{t}\,\mathrm{d}t\) ; &nbsp; 2. \(\displaystyle\int_1^{\mathrm{e}} \ln t\,\mathrm{d}t\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(v = t\), \(u' = \mathrm{e}^t\) (donc \(u = \mathrm{e}^t\)), fonctions \(\mathscr{C}^1\) sur \([0,1]\) :</p>
+      <p>\[ \int_0^1 t\,\mathrm{e}^t\,\mathrm{d}t = \big[t\,\mathrm{e}^t\big]_0^1 - \int_0^1 \mathrm{e}^t\,\mathrm{d}t = \mathrm{e} - (\mathrm{e} - 1) = 1. \]</p>
+      <p><strong>2.</strong> \(v = \ln t\), \(u' = 1\) (donc \(u = t\)), \(\mathscr{C}^1\) sur \([1, \mathrm{e}]\) :</p>
+      <p>\[ \int_1^{\mathrm{e}} \ln t\,\mathrm{d}t = \big[t\ln t\big]_1^{\mathrm{e}} - \int_1^{\mathrm{e}} 1\,\mathrm{d}t = \mathrm{e} - (\mathrm{e} - 1) = 1. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Aire entre deux courbes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer l'aire du domaine délimité par les courbes de \(f(x) = x^2\) et \(g(x) = x\) entre leurs points d'intersection.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Intersections : \(x^2 = x \iff x(x - 1) = 0\), donc \(x = 0\) et \(x = 1\). Sur \([0,1]\), \(x \geqslant x^2\) (car \(x(1-x) \geqslant 0\)) : la droite est au-dessus. L'aire vaut :</p>
+      <p>\[ \mathscr{A} = \int_0^1 (x - x^2)\,\mathrm{d}x = \left[\frac{x^2}{2} - \frac{x^3}{3}\right]_0^1 = \frac12 - \frac13 = \frac16 \ \text{(unité d'aire)}. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — IPP double</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer \(I = \displaystyle\int_0^1 t^2\,\mathrm{e}^{t}\,\mathrm{d}t\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Première IPP (\(v = t^2\), \(u' = \mathrm{e}^t\), fonctions \(\mathscr{C}^1\)) :</p>
+      <p>\[ I = \big[t^2\mathrm{e}^t\big]_0^1 - 2\int_0^1 t\,\mathrm{e}^t\,\mathrm{d}t = \mathrm{e} - 2\int_0^1 t\,\mathrm{e}^t\,\mathrm{d}t. \]</p>
+      <p>Or \(\int_0^1 t\,\mathrm{e}^t\,\mathrm{d}t = 1\) (exercice 3). Donc \(I = \mathrm{e} - 2\).</p>
+      <p class="small muted">Contrôle de cohérence : \(0 \leqslant t^2\mathrm{e}^t \leqslant \mathrm{e}\,t^2\) sur \([0,1]\) donne \(0 \leqslant I \leqslant \frac{\mathrm{e}}{3} \approx 0{,}91\), et \(\mathrm{e} - 2 \approx 0{,}72\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Encadrement d'intégrale</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(I = \displaystyle\int_0^1 \frac{\mathrm{d}t}{1 + t^3}\).</p>
+    <ol>
+      <li>Justifier que pour \(t \in [0,1]\) : \(\dfrac12 \leqslant \dfrac{1}{1+t^3} \leqslant 1\). En déduire un encadrement de \(I\).</li>
+      <li>Montrer plus finement que \(1 - \dfrac14 \leqslant I \leqslant 1\) à l'aide de \(\frac{1}{1+u} \geqslant 1 - u\) pour \(u \geqslant 0\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Pour \(t \in [0,1]\), \(0 \leqslant t^3 \leqslant 1\), donc \(1 \leqslant 1 + t^3 \leqslant 2\), et en passant à l'inverse (décroissant sur les positifs) : \(\frac12 \leqslant \frac{1}{1+t^3} \leqslant 1\). En intégrant sur \([0,1]\) (bornes croissantes) : \(\frac12 \leqslant I \leqslant 1\).</p>
+      <p><strong>2.</strong> Pour \(u \geqslant 0\) : \((1+u)(1-u) = 1 - u^2 \leqslant 1\), donc \(\frac{1}{1+u} \geqslant 1 - u\). Avec \(u = t^3\) :</p>
+      <p>\[ I \geqslant \int_0^1 (1 - t^3)\,\mathrm{d}t = 1 - \frac14 = \frac34. \]</p>
+      <p>Et \(I \leqslant 1\) (question 1). Donc \(\frac34 \leqslant I \leqslant 1\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Suite d'intégrales (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour \(n \in \mathbb{N}\), on pose \(I_n = \displaystyle\int_0^1 t^n \mathrm{e}^{-t}\,\mathrm{d}t\).</p>
+    <ol>
+      <li>Calculer \(I_0\).</li>
+      <li>Montrer que \(I_{n+1} = (n+1)I_n - \mathrm{e}^{-1}\) (IPP).</li>
+      <li>Montrer que \((I_n)\) est décroissante et que \(0 \leqslant I_n \leqslant \dfrac{1}{n+1}\). En déduire \(\lim I_n\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(I_0 = \int_0^1 \mathrm{e}^{-t}\mathrm{d}t = \big[-\mathrm{e}^{-t}\big]_0^1 = 1 - \mathrm{e}^{-1}\).</p>
+      <p><strong>2.</strong> IPP avec \(v = t^{n+1}\), \(u' = \mathrm{e}^{-t}\) (\(u = -\mathrm{e}^{-t}\)), fonctions \(\mathscr{C}^1\) sur \([0,1]\) :</p>
+      <p>\[ I_{n+1} = \big[-t^{n+1}\mathrm{e}^{-t}\big]_0^1 + (n+1)\int_0^1 t^{n}\mathrm{e}^{-t}\,\mathrm{d}t = -\mathrm{e}^{-1} + (n+1)I_n. \quad \checkmark \]</p>
+      <p><strong>3.</strong> <em>Décroissance :</em> \(I_{n+1} - I_n = \int_0^1 t^n(t - 1)\mathrm{e}^{-t}\,\mathrm{d}t \leqslant 0\) car l'intégrande est \(\leqslant 0\) sur \([0,1]\). <em>Encadrement :</em> \(0 \leqslant \mathrm{e}^{-t} \leqslant 1\) sur \([0,1]\), donc \(0 \leqslant I_n \leqslant \int_0^1 t^n\,\mathrm{d}t = \frac{1}{n+1}\). Par les gendarmes, \(I_n \to 0\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Somme de Riemann (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Déterminer \(\lim\limits_{n \to +\infty} u_n\) où \(u_n = \displaystyle\sum_{k=1}^{n} \frac{n}{n^2 + k^2}\), puis \(\lim\limits_{n\to+\infty} v_n\) où \(v_n = \displaystyle\sum_{k=1}^{n} \frac{1}{n + k}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Pour \(u_n\) :</strong> factorisons \(n^2\) au dénominateur :</p>
+      <p>\[ u_n = \sum_{k=1}^n \frac{n}{n^2\big(1 + (k/n)^2\big)} = \frac1n \sum_{k=1}^{n} \frac{1}{1 + (k/n)^2} = \frac1n\sum_{k=1}^n f\!\left(\frac kn\right) \quad \text{avec } f(t) = \frac{1}{1+t^2}, \]</p>
+      <p>continue sur \([0,1]\). C'est une somme de Riemann : \(u_n \to \int_0^1 \frac{\mathrm{d}t}{1+t^2}\). <span class="small muted">Cette intégrale vaut \(\frac{\pi}{4}\) (résultat admis en ECG : la primitive arctangente est hors programme, l'essentiel est la reconnaissance de la somme de Riemann et la convergence vers l'intégrale).</span></p>
+      <p><strong>Pour \(v_n\) :</strong> \(v_n = \frac1n\sum_{k=1}^{n} \frac{1}{1 + k/n}\) : somme de Riemann de \(g(t) = \frac{1}{1+t}\), continue sur \([0,1]\). Donc :</p>
+      <p>\[ v_n \to \int_0^1 \frac{\mathrm{d}t}{1+t} = \big[\ln(1+t)\big]_0^1 = \ln 2. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Comparaison série-intégrale (préparation au chapitre 13)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Montrer que pour \(k \geqslant 1\) : \(\dfrac{1}{k+1} \leqslant \displaystyle\int_k^{k+1} \frac{\mathrm{d}t}{t} \leqslant \dfrac1k\). <br>
+    2. En déduire l'encadrement \(\ln(n+1) \leqslant \displaystyle\sum_{k=1}^{n} \frac1k \leqslant 1 + \ln n\), puis \(\lim\limits_{n\to+\infty} \displaystyle\sum_{k=1}^n \frac1k\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Sur \([k, k+1]\), la fonction \(t \mapsto \frac1t\) est décroissante : \(\frac{1}{k+1} \leqslant \frac1t \leqslant \frac1k\). En intégrant sur un intervalle de longueur 1 : \(\frac{1}{k+1} \leqslant \int_k^{k+1}\frac{\mathrm{d}t}{t} \leqslant \frac1k\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> En sommant l'inégalité de droite pour \(k = 1, \dots, n\) : \(\int_1^{n+1} \frac{\mathrm{d}t}{t} \leqslant \sum_{k=1}^n \frac1k\), soit \(\ln(n+1) \leqslant \sum_{k=1}^n \frac1k\).</p>
+      <p>En sommant celle de gauche pour \(k = 1, \dots, n-1\) : \(\sum_{k=2}^{n} \frac1k \leqslant \int_1^n \frac{\mathrm{d}t}{t} = \ln n\), donc \(\sum_{k=1}^n \frac1k \leqslant 1 + \ln n\).</p>
+      <p>Comme \(\ln(n+1) \to +\infty\), par comparaison : \(\sum_{k=1}^{n} \frac1k \to +\infty\) — la <strong>série harmonique diverge</strong>, en croissant « comme \(\ln n\) ».</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch11-variables-aleatoires.html"><span class="pn-label">Chapitre précédent</span>← Variables aléatoires finies</a>
+    <a class="next" href="ch13-series.html"><span class="pn-label">Chapitre suivant</span>Séries numériques →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

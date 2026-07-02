@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 4 — Systèmes linéaires et pivot de Gauss | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : systèmes d'équations linéaires, opérations élémentaires, méthode du pivot de Gauss, systèmes avec paramètre. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch04" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 4</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 4.</span> Systèmes linéaires et méthode du pivot de Gauss</h1>
+  <p class="lead">La méthode du pivot de Gauss est l'algorithme central de l'algèbre linéaire : elle résout n'importe quel système linéaire et servira au chapitre suivant pour inverser des matrices. L'objectif : une exécution rapide, sûre et bien rédigée.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 1 semaine de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Vocabulaire des systèmes linéaires</a></li>
+      <li><a href="#s2">Opérations élémentaires</a></li>
+      <li><a href="#s3">La méthode du pivot de Gauss</a></li>
+      <li><a href="#s4">Les trois situations possibles</a></li>
+      <li><a href="#s5">Systèmes avec paramètre</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Vocabulaire des systèmes linéaires</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 4.1 — Système linéaire</span>
+    <p>Un <strong>système linéaire</strong> de \(n\) équations à \(p\) inconnues \(x_1, \dots, x_p\) est un système de la forme :</p>
+    <p>\[ (S) : \begin{cases} a_{11} x_1 + a_{12} x_2 + \dots + a_{1p} x_p = b_1 \\ \vdots \\ a_{n1} x_1 + a_{n2} x_2 + \dots + a_{np} x_p = b_n \end{cases} \]</p>
+    <p>où les \(a_{ij}\) (coefficients) et les \(b_i\) (second membre) sont des réels donnés. Une <strong>solution</strong> est un \(p\)-uplet \((x_1, \dots, x_p)\) vérifiant simultanément toutes les équations. Le système est <strong>homogène</strong> si \(b_1 = \dots = b_n = 0\) (il admet toujours au moins la solution nulle). Deux systèmes sont <strong>équivalents</strong> s'ils ont le même ensemble de solutions.</p>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Définition 4.2 — Système échelonné</span>
+    <p>Un système est <strong>échelonné</strong> si chaque équation commence par strictement plus d'inconnues « absentes » (coefficients nuls) que la précédente — visuellement, les équations forment un escalier. Le premier coefficient non nul de chaque ligne est appelé <strong>pivot</strong>. Un système échelonné se résout de bas en haut par <strong>remontée</strong> (substitutions successives).</p>
+  </div>
+
+  <h2 id="s2">2. Opérations élémentaires</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 4.3 — Opérations élémentaires</span>
+    <p>Les trois opérations suivantes transforment un système en un système <strong>équivalent</strong> :</p>
+    <ul>
+      <li>\(L_i \leftrightarrow L_j\) : échange de deux équations ;</li>
+      <li>\(L_i \leftarrow \lambda L_i\) avec \(\lambda \neq 0\) : multiplication d'une équation par un réel <strong>non nul</strong> ;</li>
+      <li>\(L_i \leftarrow L_i + \mu L_j\) (\(i \neq j\)) : ajout à une équation d'un multiple d'une autre.</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Idée de la démonstration.</span>
+      <p>Chaque opération est <em>réversible</em> (l'échange par lui-même, la multiplication par \(\frac1\lambda\), l'ajout de \(-\mu L_j\)) : toute solution du système initial est solution du système transformé et réciproquement. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges</span>
+    <ul>
+      <li>\(L_i \leftarrow 0 \times L_i\) est interdit (on perd une équation, donc de l'information).</li>
+      <li>Dans \(L_i \leftarrow L_i + \mu L_j\), la ligne <em>modifiée</em> doit apparaître avec le coefficient 1 : l'opération \(L_i \leftarrow 2L_j - 3L_i\) est licite (coefficient \(-3 \neq 0\) sur \(L_i\)) mais source d'erreurs — préférer la forme standard.</li>
+      <li>Ne faire qu'<strong>une opération par ligne et par étape</strong>, et toujours l'écrire en marge : c'est exigé par les correcteurs.</li>
+    </ul>
+  </div>
+
+  <h2 id="s3">3. La méthode du pivot de Gauss</h2>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Algorithme du pivot de Gauss</span>
+    <ol>
+      <li>Choisir un <strong>pivot</strong> non nul dans la première colonne (échanger des lignes si besoin ; préférer un pivot égal à 1).</li>
+      <li><strong>Éliminer</strong> la première inconnue de toutes les autres lignes par \(L_i \leftarrow L_i - \frac{a_{i1}}{a_{11}} L_1\).</li>
+      <li>Recommencer sur le sous-système formé des lignes 2 à \(n\), avec la deuxième inconnue, etc.</li>
+      <li>Le système obtenu est <strong>échelonné</strong> : le résoudre par remontée, de la dernière équation vers la première.</li>
+    </ol>
+  </div>
+
+  <p><strong>Exemple entièrement rédigé.</strong> Résolvons :</p>
+  <p>\[ (S) : \begin{cases} x + 2y - z = 3 \\ 2x - y + 3z = 1 \\ -x + y + 2z = 2 \end{cases} \]</p>
+  <p>Le pivot de la première colonne est le coefficient 1 de \(L_1\). Éliminons \(x\) dans \(L_2\) et \(L_3\) :</p>
+  <p>\[ \underset{\substack{L_2 \leftarrow L_2 - 2L_1 \\ L_3 \leftarrow L_3 + L_1}}{\Longleftrightarrow} \begin{cases} x + 2y - z = 3 \\ \phantom{x+{}} -5y + 5z = -5 \\ \phantom{x+{}} 3y + z = 5 \end{cases} \underset{L_2 \leftarrow -\frac15 L_2}{\Longleftrightarrow} \begin{cases} x + 2y - z = 3 \\ \phantom{x+{}} y - z = 1 \\ \phantom{x+{}} 3y + z = 5 \end{cases} \]</p>
+  <p>\[ \underset{L_3 \leftarrow L_3 - 3L_2}{\Longleftrightarrow} \begin{cases} x + 2y - z = 3 \\ \phantom{x+{}} y - z = 1 \\ \phantom{x+y+{}} 4z = 2 \end{cases} \]</p>
+  <p><em>Remontée :</em> \(L_3\) donne \(z = \frac12\) ; \(L_2\) donne \(y = 1 + z = \frac32\) ; \(L_1\) donne \(x = 3 - 2y + z = 3 - 3 + \frac12 = \frac12\).</p>
+  <p><em>Conclusion :</em> \(\mathscr{S} = \left\{\left(\frac12,\ \frac32,\ \frac12\right)\right\}\). <em>Vérification rapide dans \(L_2\) :</em> \(2 \cdot \frac12 - \frac32 + 3 \cdot \frac12 = 1 - \frac32 + \frac32 = 1\) ✓.</p>
+
+  <h2 id="s4">4. Les trois situations possibles</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 4.4 — Structure de l'ensemble des solutions</span>
+    <p>Après échelonnement, trois cas seulement peuvent se produire :</p>
+    <ul>
+      <li><strong>Solution unique</strong> : le système échelonné a autant de pivots que d'inconnues (système <em>de Cramer</em>).</li>
+      <li><strong>Aucune solution</strong> (système <em>incompatible</em>) : une ligne devient \(0 = c\) avec \(c \neq 0\).</li>
+      <li><strong>Infinité de solutions</strong> : moins de pivots que d'inconnues et pas de ligne incompatible. Les inconnues sans pivot deviennent des <strong>paramètres</strong> et les solutions s'expriment en fonction d'eux.</li>
+    </ul>
+    <p class="small">Un système linéaire a donc 0, 1 ou une infinité de solutions — jamais exactement 2.</p>
+  </div>
+
+  <p><strong>Exemple (infinité de solutions).</strong> \(\begin{cases} x + y - z = 1 \\ 2x - y + z = 0 \end{cases}\) : avec \(L_2 \leftarrow L_2 - 2L_1\), on obtient \(-3y + 3z = -2\), soit \(y = z + \frac23\). En reportant : \(x = 1 - y + z = \frac13\). L'ensemble des solutions est \(\mathscr{S} = \left\{\left(\frac13,\ t + \frac23,\ t\right) \mid t \in \mathbb{R}\right\}\) : une droite de solutions, paramétrée par \(t = z\).</p>
+
+  <h2 id="s5">5. Systèmes avec paramètre</h2>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Discuter selon un paramètre \(m\)</span>
+    <ol>
+      <li>Échelonner en évitant si possible de choisir un pivot qui dépend de \(m\) (échanger lignes ou colonnes d'inconnues pour prendre un pivot constant).</li>
+      <li>Quand un pivot potentiel vaut une expression en \(m\) : <strong>disjonction de cas</strong> — traiter à part les valeurs de \(m\) qui l'annulent.</li>
+      <li>Conclure cas par cas : solution unique / aucune / infinité, en donnant les solutions.</li>
+    </ol>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> Discutons selon \(m \in \mathbb{R}\) le système \(\begin{cases} x + y = 1 \\ x + m y = m \end{cases}\).</p>
+  <p>\(L_2 \leftarrow L_2 - L_1\) donne \((m - 1)y = m - 1\).</p>
+  <ul>
+    <li>Si \(m \neq 1\) : \(y = 1\) puis \(x = 0\). Solution unique \((0, 1)\).</li>
+    <li>Si \(m = 1\) : la seconde équation devient \(0 = 0\) ; il reste \(x + y = 1\) : infinité de solutions \(\{(1 - t,\ t) \mid t \in \mathbb{R}\}\).</li>
+  </ul>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Systèmes 2×2</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre : 1. \(\begin{cases} 2x + 3y = 7 \\ x - y = 1 \end{cases}\) &nbsp; 2. \(\begin{cases} x - 2y = 4 \\ -2x + 4y = -8 \end{cases}\) &nbsp; 3. \(\begin{cases} x + y = 2 \\ 2x + 2y = 5 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Échangeons pour avoir un pivot 1 : \(L_1 \leftrightarrow L_2\), puis \(L_2 \leftarrow L_2 - 2L_1\) : \(\begin{cases} x - y = 1 \\ 5y = 5 \end{cases}\), donc \(y = 1\), \(x = 2\). \(\mathscr{S} = \{(2, 1)\}\).</p>
+      <p><strong>2.</strong> \(L_2 \leftarrow L_2 + 2L_1\) donne \(0 = 0\) : les deux équations sont proportionnelles. Infinité de solutions : \(x = 4 + 2t\), \(y = t\) : \(\mathscr{S} = \{(4 + 2t,\ t) \mid t \in \mathbb{R}\}\).</p>
+      <p><strong>3.</strong> \(L_2 \leftarrow L_2 - 2L_1\) donne \(0 = 1\) : système incompatible, \(\mathscr{S} = \varnothing\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Système 3×3 à solution unique</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre \(\begin{cases} x + y + z = 6 \\ 2x - y + z = 3 \\ x + 2y - z = 2 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} x + y + z = 6 \\ -3y - z = -9 \\ y - 2z = -4 \end{cases} \]</p>
+      <p>\(L_2 \leftrightarrow L_3\) (pivot 1) puis \(L_3 \leftarrow L_3 + 3L_2\) :</p>
+      <p>\[ \begin{cases} x + y + z = 6 \\ y - 2z = -4 \\ -7z = -21 \end{cases} \]</p>
+      <p><em>Remontée :</em> \(z = 3\), \(y = -4 + 2 \times 3 = 2\), \(x = 6 - 2 - 3 = 1\). \(\mathscr{S} = \{(1, 2, 3)\}\). <em>Vérification dans \(L_2\) initiale :</em> \(2 - 2 + 3 = 3\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Système incompatible</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre \(\begin{cases} x - y + 2z = 1 \\ 2x + y - z = 3 \\ 3x \phantom{+ y} + z = 5 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - 3L_1\) :</p>
+      <p>\[ \begin{cases} x - y + 2z = 1 \\ 3y - 5z = 1 \\ 3y - 5z = 2 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 - L_2\) donne \(0 = 1\) : contradiction. \(\mathscr{S} = \varnothing\).</p>
+      <p class="small muted">Interprétation : la troisième équation « ressemble » à la somme des deux premières (\(L_1 + L_2\) donne \(3x + z = 4\)), mais avec un second membre différent (5 au lieu de 4) : les contraintes sont incompatibles.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Infinité de solutions</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre \(\begin{cases} x + 2y - z = 4 \\ 2x - y + 3z = 3 \\ 3x + y + 2z = 7 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - 3L_1\) :</p>
+      <p>\[ \begin{cases} x + 2y - z = 4 \\ -5y + 5z = -5 \\ -5y + 5z = -5 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 - L_2\) donne \(0 = 0\) : il reste 2 pivots pour 3 inconnues. \(L_2\) (divisée par \(-5\)) donne \(y = z + 1\). En reportant dans \(L_1\) : \(x = 4 - 2(z+1) + z = 2 - z\).</p>
+      <p>\(\mathscr{S} = \{(2 - t,\ 1 + t,\ t) \mid t \in \mathbb{R}\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Système 4 équations, 3 inconnues</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre \(\begin{cases} x + y + z = 3 \\ x - y + z = 1 \\ 2x + y - z = 2 \\ x + 2y + 2z = 5 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - L_1\), \(L_3 \leftarrow L_3 - 2L_1\), \(L_4 \leftarrow L_4 - L_1\) :</p>
+      <p>\[ \begin{cases} x + y + z = 3 \\ -2y = -2 \\ -y - 3z = -4 \\ y + z = 2 \end{cases} \]</p>
+      <p>\(L_2\) donne \(y = 1\). Alors \(L_3\) : \(-1 - 3z = -4\), soit \(z = 1\) ; et \(L_4\) : \(1 + 1 = 2\) ✓ (compatible). Enfin \(x = 3 - 1 - 1 = 1\).</p>
+      <p>\(\mathscr{S} = \{(1, 1, 1)\}\). <span class="small muted">Avec plus d'équations que d'inconnues, il faut vérifier que les équations « en trop » sont compatibles — ici oui.</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Problème concret</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une entreprise fabrique trois produits A, B, C. Produire une unité de A coûte 2 h de main-d'œuvre, 1 kg de matière et 3 kWh d'énergie ; une unité de B : 1 h, 2 kg, 1 kWh ; une unité de C : 3 h, 1 kg, 2 kWh. On dispose exactement de 16 h, 13 kg et 17 kWh. Combien d'unités de chaque produit fabriquer pour tout utiliser ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(a, b, c\) les quantités de A, B, C. Les contraintes (heures, matière, énergie) donnent :</p>
+      <p>\[ \begin{cases} 2a + b + 3c = 16 \\ a + 2b + c = 13 \\ 3a + b + 2c = 17 \end{cases} \]</p>
+      <p>Mettons \(L_2\) en tête (pivot 1) : \(L_1 \leftrightarrow L_2\), puis \(L_2 \leftarrow L_2 - 2L_1\) et \(L_3 \leftarrow L_3 - 3L_1\) :</p>
+      <p>\[ \begin{cases} a + 2b + c = 13 \\ -3b + c = -10 \\ -5b - c = -22 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 + L_2\) élimine \(c\) : \(-8b = -32\), donc \(b = 4\).</p>
+      <p><em>Remontée :</em> \(L_2\) donne \(c = -10 + 3b = 2\) ; \(L_1\) donne \(a = 13 - 2b - c = 13 - 8 - 2 = 3\).</p>
+      <p>\(\mathscr{S} = \{(3,\ 4,\ 2)\}\) : l'entreprise doit produire 3 unités de A, 4 de B et 2 de C. <em>Vérification (énergie) :</em> \(3 \times 3 + 1 \times 4 + 2 \times 2 = 17\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Système avec paramètre</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Discuter et résoudre selon \(m \in \mathbb{R}\) : \(\begin{cases} x + y + mz = 1 \\ x + my + z = 1 \\ mx + y + z = 1 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - L_1\), \(L_3 \leftarrow L_3 - mL_1\) :</p>
+      <p>\[ \begin{cases} x + y + mz = 1 \\ (m-1)y + (1-m)z = 0 \\ (1-m)y + (1-m^2)z = 1-m \end{cases} \]</p>
+      <p><strong>Cas \(m = 1\) :</strong> les lignes 2 et 3 deviennent \(0 = 0\) ; il reste \(x + y + z = 1\) : infinité de solutions \(\{(1 - s - t,\ s,\ t) \mid s, t \in \mathbb{R}\}\).</p>
+      <p><strong>Cas \(m \neq 1\) :</strong> divisons \(L_2\) par \(m - 1\) : \(y - z = 0\), soit \(y = z\). Divisons \(L_3\) par \(1 - m\) : \(y + (1+m)z = 1\). Avec \(y = z\) : \((2 + m)z = 1\).</p>
+      <ul>
+        <li>Si \(m = -2\) : \(0 = 1\), incompatible : \(\mathscr{S} = \varnothing\).</li>
+        <li>Si \(m \neq -2\) (et \(m \neq 1\)) : \(z = y = \dfrac{1}{m+2}\), puis \(x = 1 - y - mz = 1 - \dfrac{1+m}{m+2} = \dfrac{1}{m+2}\).</li>
+      </ul>
+      <p>Conclusion : solution unique \(\left(\frac{1}{m+2}, \frac{1}{m+2}, \frac{1}{m+2}\right)\) si \(m \notin \{1, -2\}\) ; infinité si \(m = 1\) ; aucune si \(m = -2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Ajustement polynomial (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Déterminer le polynôme \(P(x) = ax^2 + bx + c\) tel que \(P(1) = 2\), \(P(2) = 5\) et \(P(-1) = 2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Les trois conditions donnent le système :</p>
+      <p>\[ \begin{cases} a + b + c = 2 \\ 4a + 2b + c = 5 \\ a - b + c = 2 \end{cases} \]</p>
+      <p>\(L_2 \leftarrow L_2 - 4L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} a + b + c = 2 \\ -2b - 3c = -3 \\ -2b = 0 \end{cases} \]</p>
+      <p>\(L_3\) donne \(b = 0\) ; \(L_2\) donne \(c = 1\) ; \(L_1\) donne \(a = 1\).</p>
+      <p>Donc \(P(x) = x^2 + 1\). <em>Vérification :</em> \(P(1) = 2\) ✓, \(P(2) = 5\) ✓, \(P(-1) = 2\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Système homogène avec paramètre (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour quelles valeurs de \(m\) le système \(\begin{cases} x + 2y + z = 0 \\ 2x + y - z = 0 \\ x - y + mz = 0 \end{cases}\) admet-il des solutions non nulles ? Les déterminer.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Système homogène : \((0,0,0)\) est toujours solution ; il y a des solutions non nulles ssi le système échelonné a moins de 3 pivots.</p>
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} x + 2y + z = 0 \\ -3y - 3z = 0 \\ -3y + (m-1)z = 0 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 - L_2\) : \((m - 1 + 3)z = 0\), soit \((m+2)z = 0\).</p>
+      <ul>
+        <li>Si \(m \neq -2\) : \(z = 0\), puis \(y = 0\), puis \(x = 0\) : seule la solution nulle.</li>
+        <li>Si \(m = -2\) : \(z\) est libre ; \(y = -z\) (de \(L_2\)) et \(x = -2y - z = z\). Solutions : \(\mathscr{S} = \{(t,\ -t,\ t) \mid t \in \mathbb{R}\}\), non nulles pour \(t \neq 0\).</li>
+      </ul>
+      <p>Réponse : \(m = -2\), avec la droite de solutions \((t, -t, t)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch03-nombres-reels.html"><span class="pn-label">Chapitre précédent</span>← Nombres réels</a>
+    <a class="next" href="ch05-calcul-matriciel.html"><span class="pn-label">Chapitre suivant</span>Calcul matriciel →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

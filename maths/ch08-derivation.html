@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 8 — Dérivation, étude de fonctions et convexité | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : nombre dérivé, opérations sur les dérivées, variations, extremums, plan d'étude de fonction, convexité et inégalités de convexité. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch08" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 8</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 8.</span> Dérivation, étude de fonctions et convexité</h1>
+  <p class="lead">La dérivation est l'outil central pour étudier les variations d'une fonction, localiser ses extremums et démontrer des inégalités. La convexité, spécialité des concours ECG, fournit des inégalités puissantes et des interprétations économiques (rendements décroissants).</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 2,5 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Nombre dérivé et fonction dérivée</a></li>
+      <li><a href="#s2">Dérivées usuelles et opérations</a></li>
+      <li><a href="#s3">Dérivée et sens de variation</a></li>
+      <li><a href="#s4">Extremums</a></li>
+      <li><a href="#s5">Plan d'étude d'une fonction</a></li>
+      <li><a href="#s6">Convexité</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Nombre dérivé et fonction dérivée</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 8.1 — Dérivabilité</span>
+    <p>\(f\) est <strong>dérivable en \(a\)</strong> si le taux d'accroissement \(\dfrac{f(x) - f(a)}{x - a}\) admet une limite finie quand \(x \to a\). Cette limite est le <strong>nombre dérivé</strong> \(f'(a)\) : c'est la pente de la <strong>tangente</strong> à la courbe au point \((a, f(a))\), d'équation :</p>
+    <p>\[ y = f(a) + f'(a)(x - a). \]</p>
+    <p>\(f\) est dérivable sur \(I\) si elle l'est en tout point de \(I\) ; la fonction \(x \mapsto f'(x)\) est la <strong>dérivée</strong>. La dérivée seconde \(f''\) est la dérivée de \(f'\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 8.2 — Dérivable ⟹ continue</span>
+    <p>Si \(f\) est dérivable en \(a\), alors \(f\) est continue en \(a\). <strong>La réciproque est fausse</strong> : \(x \mapsto |x|\) est continue en 0 mais pas dérivable (taux d'accroissement \(-1\) à gauche, \(+1\) à droite).</p>
+  </div>
+
+  <h2 id="s2">2. Dérivées usuelles et opérations</h2>
+
+  <div class="table-scroll">
+  <table>
+    <caption class="small muted">Dérivées usuelles (à connaître parfaitement)</caption>
+    <thead><tr><th>\(f(x)\)</th><th>\(f'(x)\)</th><th>Validité</th></tr></thead>
+    <tbody>
+      <tr><td>\(c\) (constante)</td><td>\(0\)</td><td>\(\mathbb{R}\)</td></tr>
+      <tr><td>\(x^n\ (n \in \mathbb{Z})\)</td><td>\(n x^{n-1}\)</td><td>\(\mathbb{R}\) ou \(\mathbb{R}^*\)</td></tr>
+      <tr><td>\(x^\alpha\ (\alpha \in \mathbb{R})\)</td><td>\(\alpha x^{\alpha - 1}\)</td><td>\(]0, +\infty[\)</td></tr>
+      <tr><td>\(\sqrt x\)</td><td>\(\dfrac{1}{2\sqrt x}\)</td><td>\(]0, +\infty[\)</td></tr>
+      <tr><td>\(\dfrac1x\)</td><td>\(-\dfrac{1}{x^2}\)</td><td>\(\mathbb{R}^*\)</td></tr>
+      <tr><td>\(\ln x\)</td><td>\(\dfrac1x\)</td><td>\(]0, +\infty[\)</td></tr>
+      <tr><td>\(\mathrm{e}^x\)</td><td>\(\mathrm{e}^x\)</td><td>\(\mathbb{R}\)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 8.3 — Opérations</span>
+    <p>Si \(u\) et \(v\) sont dérivables sur \(I\) :</p>
+    <p>\[ (u + v)' = u' + v', \qquad (\lambda u)' = \lambda u', \qquad (uv)' = u'v + uv', \qquad \left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2} \ (v \neq 0). \]</p>
+    <p><strong>Composées usuelles</strong> (\(u\) dérivable, à valeurs dans le bon domaine) :</p>
+    <p>\[ (\mathrm{e}^u)' = u'\,\mathrm{e}^u, \qquad (\ln u)' = \frac{u'}{u}, \qquad (u^\alpha)' = \alpha u'\, u^{\alpha - 1}, \qquad (\sqrt u)' = \frac{u'}{2\sqrt u}, \]</p>
+    <p>et plus généralement \((g \circ u)' = u' \times (g' \circ u)\).</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges</span>
+    <ul>
+      <li>\((uv)' \neq u'v'\) — l'erreur la plus sanctionnée en copie.</li>
+      <li>Pour \(f(x) = x^x = \mathrm{e}^{x \ln x}\) : ni \(x \cdot x^{x-1}\), ni \(x^x \ln x\) seuls — dériver la forme exponentielle : \(f'(x) = (\ln x + 1)\,x^x\).</li>
+      <li>Avant de dériver, <em>justifier</em> la dérivabilité (« \(f\) est dérivable sur \(I\) comme quotient/composée de fonctions dérivables… »).</li>
+    </ul>
+  </div>
+
+  <h2 id="s3">3. Dérivée et sens de variation</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 8.4 — Variations (fondamental)</span>
+    <p>Soit \(f\) dérivable sur un <em>intervalle</em> \(I\).</p>
+    <ul>
+      <li>\(f' \geqslant 0\) sur \(I\) ⟺ \(f\) croissante sur \(I\) ; \(f' \leqslant 0\) ⟺ \(f\) décroissante ; \(f' = 0\) ⟺ \(f\) constante.</li>
+      <li>Si \(f' &gt; 0\) sur \(I\) <em>sauf éventuellement en un nombre fini de points où elle s'annule</em>, alors \(f\) est <strong>strictement</strong> croissante sur \(I\).</li>
+    </ul>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Démontrer une inégalité par étude de fonction</span>
+    <p>Pour montrer \(g(x) \geqslant h(x)\) sur \(I\) : poser \(\varphi = g - h\), étudier le signe de \(\varphi'\), dresser le tableau de variations de \(\varphi\) et vérifier que son minimum sur \(I\) est \(\geqslant 0\). Exemple type : \(\mathrm{e}^x \geqslant 1 + x\) sur \(\mathbb{R}\) — poser \(\varphi(x) = \mathrm{e}^x - 1 - x\), \(\varphi'(x) = \mathrm{e}^x - 1\), négative puis positive, minimum \(\varphi(0) = 0\). ✓</p>
+  </div>
+
+  <h2 id="s4">4. Extremums</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 8.5 — Condition nécessaire d'extremum local</span>
+    <p>Si \(f\), dérivable sur un intervalle <em>ouvert</em> \(I\), admet un extremum local en \(a \in I\), alors \(f'(a) = 0\) (point <strong>critique</strong>).</p>
+    <p><strong>Attention, condition non suffisante :</strong> \(f(x) = x^3\) vérifie \(f'(0) = 0\) sans extremum en 0. On confirme l'extremum par le <em>changement de signe</em> de \(f'\) (tableau de variations), ou par le signe de \(f''(a)\) : \(f''(a) &gt; 0\) donne un minimum local, \(f''(a) &lt; 0\) un maximum local.</p>
+  </div>
+
+  <h2 id="s5">5. Plan d'étude d'une fonction</h2>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Étude complète (plan à suivre systématiquement)</span>
+    <ol>
+      <li><strong>Domaine</strong> de définition ; parité éventuelle (réduit l'étude).</li>
+      <li><strong>Limites</strong> aux bornes du domaine ; asymptotes (horizontale : \(f \to \ell\) ; verticale : \(f \to \pm\infty\) en un point ; oblique : \(f(x) - (ax+b) \to 0\)).</li>
+      <li><strong>Dérivabilité et calcul de \(f'\)</strong> ; étude du signe de \(f'(x)\) (souvent : factoriser, ou étudier le numérateur).</li>
+      <li><strong>Tableau de variations</strong> complet, avec limites et valeurs des extremums.</li>
+      <li>Le cas échéant : tangentes particulières, convexité, tracé.</li>
+    </ol>
+  </div>
+
+  <p><strong>Exemple entièrement rédigé.</strong> Étudions \(f(x) = \dfrac{\ln x}{x}\) sur \(]0, +\infty[\).</p>
+  <ul>
+    <li><em>Limites :</em> en \(0^+\) : \(\ln x \to -\infty\) et \(\frac1x \to +\infty\), donc \(f(x) = \ln x \cdot \frac1x \to -\infty\) ; l'axe des ordonnées est asymptote verticale. En \(+\infty\) : croissances comparées, \(f(x) \to 0^+\) ; l'axe des abscisses est asymptote horizontale.</li>
+    <li><em>Dérivée :</em> \(f\) est dérivable sur \(]0, +\infty[\) comme quotient de fonctions dérivables (dénominateur non nul) et :
+    \[ f'(x) = \frac{\frac1x \cdot x - \ln x \cdot 1}{x^2} = \frac{1 - \ln x}{x^2}. \]</li>
+    <li><em>Signe :</em> \(x^2 &gt; 0\), donc \(f'(x)\) a le signe de \(1 - \ln x\) : positif si \(x &lt; \mathrm{e}\), négatif si \(x &gt; \mathrm{e}\).</li>
+    <li><em>Conclusion :</em> \(f\) croît sur \(]0, \mathrm{e}]\), décroît sur \([\mathrm{e}, +\infty[\), avec un maximum global \(f(\mathrm{e}) = \frac{1}{\mathrm{e}}\).</li>
+  </ul>
+  <p class="small muted">Conséquence célèbre : pour tout \(x &gt; 0\), \(\frac{\ln x}{x} \leqslant \frac1{\mathrm{e}}\), soit \(\mathrm{e}\ln x \leqslant x\), soit encore \(x^{\mathrm{e}} \leqslant \mathrm{e}^x\).</p>
+
+  <h2 id="s6">6. Convexité</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 8.6 — Fonction convexe, concave</span>
+    <p>\(f\) est <strong>convexe</strong> sur \(I\) si sa courbe est en dessous de ses cordes : pour tous \(x, y \in I\) et \(t \in [0,1]\),</p>
+    <p>\[ f\big(t x + (1-t) y\big) \leqslant t f(x) + (1-t) f(y). \]</p>
+    <p>\(f\) est <strong>concave</strong> si \(-f\) est convexe (courbe au-dessus des cordes). Un point où la convexité change est un <strong>point d'inflexion</strong>.</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 8.7 — Caractérisations (pour \(f\) deux fois dérivable sur \(I\))</span>
+    <ul>
+      <li>\(f\) convexe ⟺ \(f'\) croissante ⟺ \(f'' \geqslant 0\) sur \(I\).</li>
+      <li>\(f\) convexe ⟺ la courbe est <strong>au-dessus de toutes ses tangentes</strong> : \(\forall a, x \in I,\ f(x) \geqslant f(a) + f'(a)(x - a)\).</li>
+    </ul>
+  </div>
+
+  <p><strong>Fonctions de référence :</strong> \(\exp\) et \(x \mapsto x^2\) sont convexes sur \(\mathbb{R}\) ; \(\ln\) et \(\sqrt{\cdot}\) sont concaves sur \(]0,+\infty[\) ; \(x \mapsto x^\alpha\) est convexe sur \(]0,+\infty[\) si \(\alpha \geqslant 1\) ou \(\alpha \leqslant 0\), concave si \(0 \leqslant \alpha \leqslant 1\).</p>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Inégalités de convexité (grand classique des concours)</span>
+    <p>Placer la courbe par rapport à une <strong>tangente</strong> bien choisie. Exemples exigibles :</p>
+    <ul>
+      <li>\(\mathrm{e}^x \geqslant 1 + x\) pour tout \(x \in \mathbb{R}\) (tangente de \(\exp\) en 0, convexité) ;</li>
+      <li>\(\ln(1 + x) \leqslant x\) pour \(x &gt; -1\), et \(\ln x \leqslant x - 1\) pour \(x &gt; 0\) (tangente de \(\ln\) en 1, concavité).</li>
+    </ul>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Calculs de dérivées</h3><span class="level level-1">Application directe</span></div>
+    <p>Dériver (en précisant le domaine) : 1. \(f(x) = (3x^2 + 1)\mathrm{e}^{x}\) ; &nbsp; 2. \(g(x) = \dfrac{x + 1}{x^2 + 1}\) ; &nbsp; 3. \(h(x) = \ln(x^2 + x + 1)\) ; &nbsp; 4. \(k(x) = \sqrt{1 + \mathrm{e}^{2x}}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Produit, sur \(\mathbb{R}\) : \(f'(x) = 6x\,\mathrm{e}^x + (3x^2+1)\mathrm{e}^x = (3x^2 + 6x + 1)\,\mathrm{e}^x\).</p>
+      <p><strong>2.</strong> Quotient, sur \(\mathbb{R}\) (dénominateur \(&gt; 0\)) : \(g'(x) = \dfrac{(x^2+1) - (x+1)(2x)}{(x^2+1)^2} = \dfrac{-x^2 - 2x + 1}{(x^2+1)^2}\).</p>
+      <p><strong>3.</strong> \(x^2 + x + 1 &gt; 0\) sur \(\mathbb{R}\) (\(\Delta = -3 &lt; 0\)) : \(h'(x) = \dfrac{2x + 1}{x^2 + x + 1}\).</p>
+      <p><strong>4.</strong> Sur \(\mathbb{R}\) (l'expression sous la racine est \(&gt; 0\)) : \(k'(x) = \dfrac{2\mathrm{e}^{2x}}{2\sqrt{1 + \mathrm{e}^{2x}}} = \dfrac{\mathrm{e}^{2x}}{\sqrt{1 + \mathrm{e}^{2x}}}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Tangente</h3><span class="level level-1">Application directe</span></div>
+    <p>Donner l'équation de la tangente à la courbe de \(f(x) = x\,\mathrm{e}^{-x}\) au point d'abscisse 0, puis au point d'abscisse 1.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(f'(x) = \mathrm{e}^{-x} - x\mathrm{e}^{-x} = (1 - x)\mathrm{e}^{-x}\).</p>
+      <p>En 0 : \(f(0) = 0\), \(f'(0) = 1\) : tangente \(y = x\).</p>
+      <p>En 1 : \(f(1) = \mathrm{e}^{-1}\), \(f'(1) = 0\) : tangente <em>horizontale</em> \(y = \frac{1}{\mathrm{e}}\) (c'est le maximum de \(f\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Étude de fonction</h3><span class="level level-2">Entraînement</span></div>
+    <p>Étudier complètement \(f(x) = x^3 - 3x + 1\) (variations, extremums locaux, limites) et déterminer le nombre de solutions de \(f(x) = 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(f\) est polynomiale, définie et dérivable sur \(\mathbb{R}\). \(f'(x) = 3x^2 - 3 = 3(x-1)(x+1)\) : positive sur \(]-\infty,-1]\) et \([1,+\infty[\), négative sur \([-1,1]\).</p>
+      <p>Limites : \(-\infty\) en \(-\infty\), \(+\infty\) en \(+\infty\). Extremums locaux : maximum local \(f(-1) = -1 + 3 + 1 = 3\), minimum local \(f(1) = 1 - 3 + 1 = -1\).</p>
+      <p><em>Nombre de solutions :</em> sur \(]-\infty, -1]\), \(f\) est continue, strictement croissante, de \(-\infty\) à \(3\) : comme \(0 \in \;]-\infty, 3]\)… précisément \(0 &lt; 3\), le théorème de la bijection donne exactement une solution. Sur \([-1, 1]\), \(f\) décroît strictement de \(3\) à \(-1\) : \(0 \in [-1, 3]\), une solution. Sur \([1, +\infty[\), \(f\) croît strictement de \(-1\) à \(+\infty\) : une solution. Total : <strong>trois solutions réelles</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Inégalité par étude de fonction</h3><span class="level level-2">Entraînement</span></div>
+    <p>Montrer que pour tout \(x &gt; 0\) : \(\ln x \leqslant x - 1\), avec égalité seulement en \(x = 1\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Posons \(\varphi(x) = x - 1 - \ln x\) sur \(]0, +\infty[\), dérivable, avec :</p>
+      <p>\[ \varphi'(x) = 1 - \frac1x = \frac{x - 1}{x}. \]</p>
+      <p>\(\varphi' &lt; 0\) sur \(]0,1[\), \(\varphi' &gt; 0\) sur \(]1, +\infty[\) : \(\varphi\) décroît puis croît, avec un minimum global en 1 : \(\varphi(1) = 0\).</p>
+      <p>Donc \(\varphi(x) \geqslant 0\) pour tout \(x &gt; 0\), soit \(\ln x \leqslant x - 1\), l'égalité n'ayant lieu qu'au point de minimum \(x = 1\) (la monotonie stricte de part et d'autre exclut toute autre annulation). <span class="qed">∎</span></p>
+      <p class="small muted">Interprétation géométrique : la courbe de \(\ln\), concave, est sous sa tangente en 1, d'équation \(y = x - 1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Optimisation concrète</h3><span class="level level-2">Entraînement</span></div>
+    <p>Le coût total de production de \(q\) tonnes (\(q &gt; 0\)) est \(C(q) = q^2 + 16q + 64\) (en milliers d'euros). Le <em>coût moyen</em> est \(C_M(q) = \frac{C(q)}{q}\). Déterminer la quantité qui minimise le coût moyen, et la valeur de ce minimum.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(C_M(q) = q + 16 + \dfrac{64}{q}\), dérivable sur \(]0, +\infty[\), avec :</p>
+      <p>\[ C_M'(q) = 1 - \frac{64}{q^2} = \frac{q^2 - 64}{q^2} = \frac{(q-8)(q+8)}{q^2}. \]</p>
+      <p>Sur \(]0, +\infty[\), le signe est celui de \(q - 8\) : \(C_M\) décroît sur \(]0, 8]\) et croît sur \([8, +\infty[\). Minimum en \(q = 8\) tonnes, avec \(C_M(8) = 8 + 16 + 8 = 32\) (milliers d'euros par tonne).</p>
+      <p class="small muted">On vérifie la propriété microéconomique classique : au minimum du coût moyen, coût marginal = coût moyen (\(C'(8) = 16 + 16 = 32 = C_M(8)\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Convexité</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(f(x) = x\ln x\) sur \(]0, +\infty[\).</p>
+    <ol>
+      <li>Calculer \(f'\) et \(f''\) ; en déduire que \(f\) est convexe.</li>
+      <li>Dresser le tableau de variations de \(f\) (limite en \(0^+\) comprise).</li>
+      <li>Écrire l'inégalité « courbe au-dessus de la tangente » au point d'abscisse 1.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(f'(x) = \ln x + 1\) et \(f''(x) = \frac1x &gt; 0\) sur \(]0,+\infty[\) : \(f\) est convexe.</p>
+      <p><strong>2.</strong> \(f'(x) \geqslant 0 \iff \ln x \geqslant -1 \iff x \geqslant \mathrm{e}^{-1}\). Limite en \(0^+\) : \(x\ln x \to 0\) (limite usuelle) ; en \(+\infty\) : \(+\infty\). Donc \(f\) décroît de \(0\) à \(f(\mathrm{e}^{-1}) = -\mathrm{e}^{-1}\) sur \(]0, \mathrm{e}^{-1}]\), puis croît vers \(+\infty\) : minimum global \(-\frac{1}{\mathrm{e}}\) en \(x = \frac{1}{\mathrm{e}}\).</p>
+      <p><strong>3.</strong> \(f(1) = 0\), \(f'(1) = 1\) : la tangente en 1 est \(y = x - 1\), et la convexité donne :</p>
+      <p>\[ \forall x &gt; 0, \quad x \ln x \geqslant x - 1. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Étude complète type concours</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(f(x) = (x + 2)\,\mathrm{e}^{-x}\) définie sur \(\mathbb{R}\).</p>
+    <ol>
+      <li>Déterminer les limites de \(f\) en \(\pm\infty\).</li>
+      <li>Étudier les variations de \(f\) et dresser son tableau de variations.</li>
+      <li>Étudier la convexité de \(f\) et déterminer son point d'inflexion.</li>
+      <li>Déterminer, selon les valeurs du réel \(k\), le nombre de solutions de l'équation \(f(x) = k\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> En \(-\infty\) : \(x + 2 \to -\infty\) et \(\mathrm{e}^{-x} \to +\infty\), donc \(f \to -\infty\). En \(+\infty\) : \(f(x) = x\mathrm{e}^{-x} + 2\mathrm{e}^{-x} \to 0\) (croissances comparées) : asymptote \(y = 0\), courbe au-dessus pour \(x &gt; -2\).</p>
+      <p><strong>2.</strong> \(f'(x) = \mathrm{e}^{-x} - (x+2)\mathrm{e}^{-x} = -(x + 1)\,\mathrm{e}^{-x}\). Comme \(\mathrm{e}^{-x} &gt; 0\), \(f'\) est du signe de \(-(x+1)\) : \(f\) croît sur \(]-\infty, -1]\), décroît sur \([-1, +\infty[\). Maximum global : \(f(-1) = \mathrm{e}\).</p>
+      <p><strong>3.</strong> \(f''(x) = -\mathrm{e}^{-x} + (x+1)\mathrm{e}^{-x} = x\,\mathrm{e}^{-x}\) : négative sur \(\mathbb{R}_-\), positive sur \(\mathbb{R}_+\). \(f\) est concave sur \(]-\infty, 0]\), convexe sur \([0, +\infty[\) ; point d'inflexion en \((0, 2)\).</p>
+      <p><strong>4.</strong> Lecture du tableau : sur \(]-\infty, -1]\), \(f\) croît strictement (continue) de \(-\infty\) à \(\mathrm{e}\) ; sur \([-1, +\infty[\), elle décroît strictement de \(\mathrm{e}\) vers \(0\), en restant \(&gt; 0\).</p>
+      <ul>
+        <li>\(k &gt; \mathrm{e}\) : 0 solution ; \(k = \mathrm{e}\) : 1 solution (\(x = -1\)).</li>
+        <li>\(0 &lt; k &lt; \mathrm{e}\) : 2 solutions (une sur chaque branche).</li>
+        <li>\(k \leqslant 0\) : 1 solution (sur la branche croissante uniquement — la branche décroissante reste strictement positive).</li>
+      </ul>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Inégalité de convexité générale (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Justifier que \(\ln\) est concave sur \(]0, +\infty[\), et en déduire que pour tous \(a, b &gt; 0\) : \(\ln\!\left(\dfrac{a+b}{2}\right) \geqslant \dfrac{\ln a + \ln b}{2}\). <br>
+    2. Retrouver ainsi l'inégalité arithmético-géométrique \(\sqrt{ab} \leqslant \dfrac{a+b}{2}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\ln''(x) = -\frac{1}{x^2} &lt; 0\) : \(\ln\) est concave. La définition de la concavité avec \(t = \frac12\), \(x = a\), \(y = b\) donne :</p>
+      <p>\[ \ln\!\left(\frac{a + b}{2}\right) = \ln\!\left(\tfrac12 a + \tfrac12 b\right) \geqslant \tfrac12 \ln a + \tfrac12 \ln b. \]</p>
+      <p><strong>2.</strong> Le membre de droite vaut \(\frac12 \ln(ab) = \ln\sqrt{ab}\). Donc \(\ln\frac{a+b}{2} \geqslant \ln\sqrt{ab}\), et en composant par \(\exp\), strictement croissante : \(\frac{a+b}{2} \geqslant \sqrt{ab}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Suite définie par une fonction (synthèse chapitres 6-8)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(f(x) = \dfrac{x^2 + 2}{3}\) et la suite \(u_0 = 0\), \(u_{n+1} = f(u_n)\).</p>
+    <ol>
+      <li>Étudier les variations de \(f\) sur \([0, 1]\) et montrer que \([0,1]\) est stable par \(f\) (c'est-à-dire \(f([0,1]) \subset [0,1]\)).</li>
+      <li>Montrer que \((u_n)\) est croissante et majorée par 1.</li>
+      <li>Montrer que \((u_n)\) converge et déterminer sa limite.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(f'(x) = \frac{2x}{3} \geqslant 0\) sur \([0,1]\) : \(f\) y est croissante. Donc \(f([0,1]) = [f(0), f(1)] = \left[\frac23, 1\right] \subset [0,1]\). ✓</p>
+      <p><strong>2.</strong> <em>\(u_n \in [0,1]\) :</em> récurrence — \(u_0 = 0 \in [0,1]\), et si \(u_n \in [0,1]\) alors \(u_{n+1} = f(u_n) \in [0,1]\) par stabilité. <em>Croissance :</em> \(u_{n+1} - u_n = \frac{u_n^2 - 3u_n + 2}{3} = \frac{(u_n - 1)(u_n - 2)}{3}\). Sur \([0,1]\), \(u_n - 1 \leqslant 0\) et \(u_n - 2 &lt; 0\), donc le produit est \(\geqslant 0\) : \(u_{n+1} \geqslant u_n\). <span class="qed">∎</span></p>
+      <p><strong>3.</strong> Croissante et majorée par 1 : \((u_n)\) converge vers \(\ell \in [0,1]\). \(f\) est continue, donc \(\ell = f(\ell)\), soit \(\ell^2 - 3\ell + 2 = 0\) : \(\ell = 1\) ou \(\ell = 2\). Comme \(\ell \leqslant 1\) : \(\boxed{\ell = 1}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch07-fonctions.html"><span class="pn-label">Chapitre précédent</span>← Fonctions réelles</a>
+    <a class="next" href="ch09-denombrement.html"><span class="pn-label">Chapitre suivant</span>Dénombrement →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

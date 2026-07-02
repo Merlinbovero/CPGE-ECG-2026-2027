@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 6 — Suites réelles | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : suites arithmétiques, géométriques, arithmético-géométriques, récurrences linéaires d'ordre 2, limites, théorèmes de convergence, croissances comparées. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch06" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 6</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 6.</span> Suites réelles</h1>
+  <p class="lead">Les suites sont le cœur de l'analyse en ECG : suites usuelles à connaître parfaitement (arithmétiques, géométriques, arithmético-géométriques, récurrences linéaires d'ordre 2), puis étude de la convergence avec les grands théorèmes (limite monotone, gendarmes) et les croissances comparées.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 3 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Généralités : monotonie, bornes</a></li>
+      <li><a href="#s2">Suites arithmétiques et géométriques</a></li>
+      <li><a href="#s3">Suites arithmético-géométriques</a></li>
+      <li><a href="#s4">Récurrences linéaires d'ordre 2</a></li>
+      <li><a href="#s5">Limite d'une suite</a></li>
+      <li><a href="#s6">Théorèmes de convergence</a></li>
+      <li><a href="#s7">Croissances comparées et limites usuelles</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Généralités : monotonie, bornes</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 6.1 — Suite, monotonie, bornes</span>
+    <p>Une <strong>suite réelle</strong> est une application \(u : \mathbb{N} \to \mathbb{R}\), notée \((u_n)_{n \in \mathbb{N}}\). Elle est :</p>
+    <ul>
+      <li><strong>croissante</strong> si \(\forall n,\ u_{n+1} \geqslant u_n\) (strictement si inégalité stricte) ; <strong>décroissante</strong> si \(u_{n+1} \leqslant u_n\) ; <strong>monotone</strong> si l'un des deux ;</li>
+      <li><strong>majorée</strong> s'il existe \(M\) tel que \(\forall n,\ u_n \leqslant M\) ; <strong>minorée</strong> s'il existe \(m\) tel que \(\forall n,\ u_n \geqslant m\) ; <strong>bornée</strong> si les deux.</li>
+    </ul>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Étudier la monotonie</span>
+    <ul>
+      <li><strong>Signe de \(u_{n+1} - u_n\)</strong> : méthode universelle.</li>
+      <li><strong>Quotient \(\frac{u_{n+1}}{u_n}\) comparé à 1</strong> : seulement si tous les \(u_n\) sont <em>strictement positifs</em>.</li>
+      <li>Si \(u_n = f(n)\) avec \(f\) monotone sur \([0, +\infty[\) : la suite hérite de la monotonie de \(f\).</li>
+    </ul>
+  </div>
+
+  <h2 id="s2">2. Suites arithmétiques et géométriques</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.2 — Suites arithmétiques</span>
+    <p>\((u_n)\) est <strong>arithmétique de raison \(r\)</strong> si \(u_{n+1} = u_n + r\) pour tout \(n\). Alors :</p>
+    <p>\[ u_n = u_0 + nr = u_p + (n - p)r, \qquad \sum_{k=0}^{n} u_k = (n+1)\,\frac{u_0 + u_n}{2} \quad \text{(nombre de termes} \times \text{moyenne des extrêmes)}. \]</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.3 — Suites géométriques</span>
+    <p>\((u_n)\) est <strong>géométrique de raison \(q\)</strong> si \(u_{n+1} = q\,u_n\) pour tout \(n\). Alors \(u_n = u_0\, q^n\), et si \(q \neq 1\) :</p>
+    <p>\[ \sum_{k=0}^{n} u_k = u_0\, \frac{1 - q^{n+1}}{1 - q}. \]</p>
+    <p><strong>Comportement de \(q^n\) :</strong> si \(q &gt; 1\), \(q^n \to +\infty\) ; si \(q = 1\), \(q^n = 1\) ; si \(|q| &lt; 1\), \(q^n \to 0\) ; si \(q \leqslant -1\), \((q^n)\) diverge sans limite (oscillation).</p>
+  </div>
+
+  <h2 id="s3">3. Suites arithmético-géométriques</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.4 — Suites arithmético-géométriques (méthode exigible)</span>
+    <p>Soit \((u_n)\) telle que \(u_{n+1} = a\,u_n + b\) avec \(a \neq 1\). Le <strong>point fixe</strong> \(\ell = \dfrac{b}{1-a}\) vérifie \(\ell = a\ell + b\). Alors la suite \(v_n = u_n - \ell\) est <strong>géométrique de raison \(a\)</strong>, et :</p>
+    <p>\[ u_n = a^n(u_0 - \ell) + \ell. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>\(v_{n+1} = u_{n+1} - \ell = a u_n + b - (a\ell + b) = a(u_n - \ell) = a v_n\) : \((v_n)\) est géométrique de raison \(a\), donc \(v_n = a^n v_0\), d'où \(u_n = \ell + a^n(u_0 - \ell)\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> \(u_0 = 5\), \(u_{n+1} = \frac12 u_n + 3\). Point fixe : \(\ell = \frac{3}{1 - 1/2} = 6\). Alors \(u_n = 6 + \left(\frac12\right)^n(5 - 6) = 6 - \frac{1}{2^n}\). Comme \(\left|\frac12\right| &lt; 1\), \(u_n \to 6\).</p>
+
+  <h2 id="s4">4. Récurrences linéaires d'ordre 2</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.5 — Suites vérifiant \(u_{n+2} = a\,u_{n+1} + b\,u_n\)</span>
+    <p>On associe l'<strong>équation caractéristique</strong> \(x^2 = ax + b\), c'est-à-dire \(x^2 - ax - b = 0\), de discriminant \(\Delta\).</p>
+    <ul>
+      <li>Si \(\Delta &gt; 0\) (deux racines \(r_1 \neq r_2\)) : il existe \(\lambda, \mu \in \mathbb{R}\) tels que \(u_n = \lambda\, r_1^n + \mu\, r_2^n\) pour tout \(n\).</li>
+      <li>Si \(\Delta = 0\) (racine double \(r \neq 0\)) : il existe \(\lambda, \mu\) tels que \(u_n = (\lambda + \mu n)\, r^n\).</li>
+    </ul>
+    <p>Les constantes \(\lambda, \mu\) se déterminent avec les conditions initiales \(u_0\) et \(u_1\). (Le cas \(\Delta &lt; 0\) est hors programme en maths appliquées.)</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Résolution complète</span>
+    <ol>
+      <li>Écrire l'équation caractéristique et la résoudre.</li>
+      <li>Écrire la forme générale de \(u_n\) selon le cas.</li>
+      <li>Résoudre le système 2×2 donné par \(u_0\) et \(u_1\) pour trouver \(\lambda\) et \(\mu\).</li>
+      <li>Vérifier avec \(u_2\).</li>
+    </ol>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> \(u_0 = 1\), \(u_1 = 8\), \(u_{n+2} = 4u_{n+1} - 4u_n\). Équation caractéristique : \(x^2 - 4x + 4 = 0\), soit \((x-2)^2 = 0\) : racine double \(r = 2\). Donc \(u_n = (\lambda + \mu n)2^n\). Conditions initiales : \(u_0 = \lambda = 1\) ; \(u_1 = (\lambda + \mu) \cdot 2 = 8\), donc \(\mu = 3\). Ainsi \(u_n = (1 + 3n)\,2^n\). <em>Vérification :</em> \(u_2 = 4 \times 8 - 4 \times 1 = 28\) et \((1 + 6) \times 4 = 28\) ✓.</p>
+
+  <h2 id="s5">5. Limite d'une suite</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 6.6 — Convergence</span>
+    <p>\((u_n)\) <strong>converge vers</strong> \(\ell \in \mathbb{R}\) si : \(\forall \varepsilon &gt; 0,\ \exists n_0 \in \mathbb{N},\ \forall n \geqslant n_0,\ |u_n - \ell| \leqslant \varepsilon\). On note \(\lim\limits_{n \to +\infty} u_n = \ell\) ou \(u_n \to \ell\). La limite, si elle existe, est <strong>unique</strong>. Une suite qui ne converge pas <strong>diverge</strong> (vers \(\pm\infty\) ou sans limite).</p>
+    <p>\(u_n \to +\infty\) si : \(\forall A \in \mathbb{R},\ \exists n_0,\ \forall n \geqslant n_0,\ u_n \geqslant A\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.7 — Opérations sur les limites</span>
+    <p>Si \(u_n \to \ell\) et \(v_n \to \ell'\) (limites finies) : \(u_n + v_n \to \ell + \ell'\), \(u_n v_n \to \ell\ell'\), et \(\frac{u_n}{v_n} \to \frac{\ell}{\ell'}\) si \(\ell' \neq 0\). Toute suite convergente est bornée.</p>
+    <p><strong>Formes indéterminées</strong> à connaître : « \(+\infty - \infty\) », « \(0 \times \infty\) », « \(\frac{\infty}{\infty}\) », « \(\frac{0}{0}\) ». Elles exigent une transformation (factorisation du terme dominant, quantité conjuguée, croissances comparées…).</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Lever une indétermination \(\frac{\infty}{\infty}\)</span>
+    <p>Factoriser numérateur et dénominateur par leur terme dominant. Exemple :</p>
+    <p>\[ \frac{3n^2 - n + 1}{2n^2 + 5} = \frac{n^2\left(3 - \frac1n + \frac{1}{n^2}\right)}{n^2\left(2 + \frac{5}{n^2}\right)} \xrightarrow[n \to +\infty]{} \frac32. \]</p>
+  </div>
+
+  <h2 id="s6">6. Théorèmes de convergence</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.8 — Limite monotone (fondamental)</span>
+    <p>Toute suite <strong>croissante et majorée</strong> converge. Toute suite <strong>décroissante et minorée</strong> converge. Une suite croissante non majorée tend vers \(+\infty\).</p>
+    <p class="small muted">Attention : la limite d'une suite croissante majorée par \(M\) vérifie \(\ell \leqslant M\), mais n'est pas nécessairement \(M\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.9 — Encadrement (« gendarmes ») et comparaison</span>
+    <ul>
+      <li><strong>Gendarmes :</strong> si \(v_n \leqslant u_n \leqslant w_n\) à partir d'un certain rang et si \(v_n \to \ell\) et \(w_n \to \ell\), alors \(u_n \to \ell\).</li>
+      <li><strong>Comparaison :</strong> si \(u_n \geqslant v_n\) et \(v_n \to +\infty\), alors \(u_n \to +\infty\).</li>
+      <li><strong>Passage à la limite :</strong> si \(u_n \leqslant v_n\) pour tout \(n\), et si les deux suites convergent, alors \(\lim u_n \leqslant \lim v_n\) (les inégalités <em>strictes</em> deviennent <em>larges</em> à la limite).</li>
+    </ul>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Suites récurrentes \(u_{n+1} = f(u_n)\) : plan d'étude type</span>
+    <ol>
+      <li>Montrer (souvent par récurrence) que \((u_n)\) reste dans un intervalle stable \(I\).</li>
+      <li>Étudier la monotonie : signe de \(u_{n+1} - u_n = f(u_n) - u_n\), souvent via le signe de \(f(x) - x\) sur \(I\).</li>
+      <li>Conclure à la convergence par le théorème de la limite monotone.</li>
+      <li>Identifier la limite : si \(f\) est continue, \(\ell\) vérifie \(f(\ell) = \ell\) (équation aux points fixes).</li>
+    </ol>
+  </div>
+
+  <h2 id="s7">7. Croissances comparées et limites usuelles</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 6.10 — Croissances comparées (à connaître par cœur)</span>
+    <p>Pour \(\alpha &gt; 0\), \(\beta &gt; 0\) et \(q &gt; 1\) :</p>
+    <p>\[ \lim_{n \to +\infty} \frac{(\ln n)^\beta}{n^\alpha} = 0, \qquad \lim_{n \to +\infty} \frac{n^\alpha}{q^n} = 0, \qquad \lim_{n \to +\infty} \frac{q^n}{n!} = 0. \]</p>
+    <p>Hiérarchie : \(\ (\ln n)^\beta \ll n^\alpha \ll q^n \ll n!\) — « les logarithmes perdent contre les puissances, qui perdent contre les exponentielles, qui perdent contre la factorielle ».</p>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Suites usuelles</h3><span class="level level-1">Application directe</span></div>
+    <p>1. \((u_n)\) arithmétique avec \(u_3 = 11\) et \(u_7 = 23\). Donner \(r\), \(u_0\) et \(\sum_{k=0}^{20} u_k\).<br>
+    2. \((v_n)\) géométrique de raison positive avec \(v_2 = 12\) et \(v_4 = 48\). Donner \(q\), \(v_0\) et \(\lim v_n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(u_7 - u_3 = 4r = 12\), donc \(r = 3\) ; \(u_0 = u_3 - 3r = 2\). Alors \(u_{20} = 2 + 60 = 62\) et \(\sum_{k=0}^{20} u_k = 21 \times \frac{2 + 62}{2} = 21 \times 32 = 672\).</p>
+      <p><strong>2.</strong> \(\frac{v_4}{v_2} = q^2 = 4\), donc \(q = 2\) (raison positive). \(v_0 = \frac{v_2}{q^2} = 3\). Comme \(q = 2 &gt; 1\) et \(v_0 &gt; 0\) : \(v_n = 3 \cdot 2^n \to +\infty\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Limites par opérations</h3><span class="level level-1">Application directe</span></div>
+    <p>Déterminer les limites : 1. \(u_n = \dfrac{2n^3 - n}{n^3 + n^2 + 1}\) ; &nbsp; 2. \(v_n = \dfrac{n^2 + 1}{n + 3}\) ; &nbsp; 3. \(w_n = \sqrt{n+1} - \sqrt n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Factorisation par \(n^3\) : \(u_n = \frac{2 - 1/n^2}{1 + 1/n + 1/n^3} \to 2\).</p>
+      <p><strong>2.</strong> \(v_n = \frac{n^2(1 + 1/n^2)}{n(1 + 3/n)} = n \cdot \frac{1 + 1/n^2}{1 + 3/n} \to +\infty\).</p>
+      <p><strong>3.</strong> Forme \(\infty - \infty\) : quantité conjuguée. \(w_n = \frac{(n+1) - n}{\sqrt{n+1} + \sqrt n} = \frac{1}{\sqrt{n+1} + \sqrt n} \to 0\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Arithmético-géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(u_0 = 0\) et \(u_{n+1} = 3u_n + 4\). Exprimer \(u_n\) en fonction de \(n\) et donner sa limite.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Point fixe : \(\ell = 3\ell + 4\) donne \(\ell = -2\). Posons \(v_n = u_n + 2\) : \(v_{n+1} = u_{n+1} + 2 = 3u_n + 6 = 3v_n\) : géométrique de raison 3, \(v_0 = 2\).</p>
+      <p>Donc \(v_n = 2 \cdot 3^n\) et \(u_n = 2 \cdot 3^n - 2\). <em>Vérification :</em> \(u_1 = 4\) et \(2 \times 3 - 2 = 4\) ✓. Comme \(3 &gt; 1\) : \(u_n \to +\infty\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Récurrence linéaire d'ordre 2</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(u_0 = 3\), \(u_1 = 4\) et \(u_{n+2} = \dfrac{5u_{n+1} - 2u_n}{2}\) (soit \(u_{n+2} = \frac52 u_{n+1} - u_n\)). Exprimer \(u_n\) et déterminer \(\lim u_n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Équation caractéristique : \(x^2 - \frac52 x + 1 = 0\), soit \(2x^2 - 5x + 2 = 0\) : \(\Delta = 25 - 16 = 9\), racines \(x = \frac{5 \pm 3}{4}\), soit \(r_1 = 2\) et \(r_2 = \frac12\).</p>
+      <p>Donc \(u_n = \lambda\, 2^n + \mu \left(\frac12\right)^n\). Conditions initiales : \(\lambda + \mu = 3\) et \(2\lambda + \frac{\mu}{2} = 4\). De la première, \(\mu = 3 - \lambda\) ; en reportant : \(2\lambda + \frac{3 - \lambda}{2} = 4\), soit \(4\lambda + 3 - \lambda = 8\) : \(\lambda = \frac53\), \(\mu = \frac43\).</p>
+      <p>\[ u_n = \frac53\, 2^n + \frac43 \left(\frac12\right)^n. \]</p>
+      <p><em>Vérification :</em> \(u_2 = \frac52 \times 4 - 3 = 7\) et \(\frac53 \times 4 + \frac43 \times \frac14 = \frac{20}{3} + \frac13 = 7\) ✓. Comme \(2 &gt; 1\) et \(\lambda &gt; 0\) : \(u_n \to +\infty\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Gendarmes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Déterminer la limite de \(u_n = \dfrac{n + (-1)^n}{n + 2}\), puis celle de \(v_n = \dfrac{\cos n + 2n}{n}\) (on rappelle \(-1 \leqslant \cos n \leqslant 1\)).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Pour \((u_n)\) :</strong> \(-1 \leqslant (-1)^n \leqslant 1\) donne \(\frac{n-1}{n+2} \leqslant u_n \leqslant \frac{n+1}{n+2}\). Les deux bornes tendent vers 1 (factoriser par \(n\)), donc par le théorème des gendarmes, \(u_n \to 1\).</p>
+      <p><strong>Pour \((v_n)\) :</strong> \(v_n = \frac{\cos n}{n} + 2\). Or \(\left|\frac{\cos n}{n}\right| \leqslant \frac1n \to 0\), donc \(\frac{\cos n}{n} \to 0\) (gendarmes) et \(v_n \to 2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Croissances comparées</h3><span class="level level-2">Entraînement</span></div>
+    <p>Déterminer les limites : 1. \(\dfrac{n^{10}}{2^n}\) ; &nbsp; 2. \(\dfrac{3^n}{n!}\) ; &nbsp; 3. \(\dfrac{n^2 + 2^n}{3^n}\) ; &nbsp; 4. \(n^2 \left(\dfrac{1}{2}\right)^n - \dfrac{(\ln n)^3}{\sqrt n}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>\(\to 0\) : puissance contre géométrique de raison \(2 &gt; 1\).</li>
+        <li>\(\to 0\) : géométrique contre factorielle.</li>
+        <li>\(\frac{n^2 + 2^n}{3^n} = \frac{n^2}{3^n} + \left(\frac23\right)^n \to 0 + 0 = 0\).</li>
+        <li>\(n^2(\frac12)^n = \frac{n^2}{2^n} \to 0\) et \(\frac{(\ln n)^3}{\sqrt n} = \frac{(\ln n)^3}{n^{1/2}} \to 0\) (croissances comparées avec \(\alpha = \frac12\)). Donc la différence tend vers \(0\).</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Suite récurrente \(u_{n+1} = f(u_n)\)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(u_0 = 0\) et \(u_{n+1} = \sqrt{u_n + 2}\).</p>
+    <ol>
+      <li>Montrer que pour tout \(n\), \(0 \leqslant u_n \leqslant 2\).</li>
+      <li>Montrer que \((u_n)\) est croissante.</li>
+      <li>En déduire que \((u_n)\) converge et déterminer sa limite.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Récurrence. \(u_0 = 0 \in [0, 2]\) ✓. Si \(0 \leqslant u_n \leqslant 2\), alors \(2 \leqslant u_n + 2 \leqslant 4\), donc (croissance de la racine) \(\sqrt2 \leqslant u_{n+1} \leqslant 2\), et en particulier \(0 \leqslant u_{n+1} \leqslant 2\). ✓ <span class="qed">∎</span></p>
+      <p><strong>2.</strong> \(u_{n+1} - u_n = \sqrt{u_n + 2} - u_n\). Étudions \(g(x) = \sqrt{x+2} - x\) sur \([0,2]\) : \(g(x) \geqslant 0 \iff \sqrt{x+2} \geqslant x \iff x + 2 \geqslant x^2\) (les deux membres sont positifs sur \([0,2]\)) \(\iff x^2 - x - 2 \leqslant 0 \iff (x-2)(x+1) \leqslant 0\), vrai pour \(x \in [-1, 2]\), donc sur \([0,2]\). Ainsi \(u_{n+1} \geqslant u_n\) : \((u_n)\) est croissante. <span class="qed">∎</span></p>
+      <p><strong>3.</strong> Croissante et majorée par 2 : \((u_n)\) converge vers un réel \(\ell \in [0,2]\). La fonction \(x \mapsto \sqrt{x+2}\) étant continue, \(\ell\) vérifie \(\ell = \sqrt{\ell + 2}\), soit \(\ell^2 = \ell + 2\) avec \(\ell \geqslant 0\) : \(\ell^2 - \ell - 2 = (\ell - 2)(\ell + 1) = 0\), donc \(\ell = 2\) (la racine \(-1\) est exclue). Conclusion : \(u_n \to 2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Étude complète type concours</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un capital de 1 000 € est placé au taux mensuel de 1 %. Chaque fin de mois, après versement des intérêts, on retire 15 €. Notons \(C_n\) le capital après \(n\) mois : \(C_0 = 1000\) et \(C_{n+1} = 1{,}01\,C_n - 15\).</p>
+    <ol>
+      <li>Exprimer \(C_n\) en fonction de \(n\).</li>
+      <li>Le capital augmente-t-il ou diminue-t-il ? Quelle est sa limite ?</li>
+      <li>Même question si l'on retire 5 € par mois au lieu de 15 €.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Suite arithmético-géométrique, point fixe \(\ell = \frac{-15}{1 - 1{,}01} = \frac{-15}{-0{,}01} = 1500\). Donc :</p>
+      <p>\[ C_n = 1500 + (1000 - 1500)(1{,}01)^n = 1500 - 500 \times 1{,}01^n. \]</p>
+      <p><strong>2.</strong> \(1{,}01^n\) croît vers \(+\infty\), donc \(C_n\) <strong>décroît</strong> et \(C_n \to -\infty\) : le capital s'épuise (le retrait de 15 € dépasse les intérêts mensuels, au plus \(0{,}01 \times 1500 = 15\) € atteints seulement au point fixe). Le capital devient négatif quand \(1{,}01^n &gt; 3\), soit \(n &gt; \frac{\ln 3}{\ln 1{,}01} \approx 110{,}4\) : au bout de 111 mois (environ 9 ans et 3 mois).</p>
+      <p><strong>3.</strong> Point fixe : \(\ell = \frac{-5}{-0{,}01} = 500\), et \(C_n = 500 + 500 \times 1{,}01^n\) : le capital <strong>croît</strong> vers \(+\infty\) (le retrait de 5 € est inférieur aux intérêts, environ 10 € le premier mois).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Suites adjacentes de moyennes (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \(0 &lt; a &lt; b\). On définit \(u_0 = a\), \(v_0 = b\), puis \(u_{n+1} = \sqrt{u_n v_n}\) (moyenne géométrique) et \(v_{n+1} = \dfrac{u_n + v_n}{2}\) (moyenne arithmétique).</p>
+    <ol>
+      <li>Montrer que pour tout \(n\), \(0 &lt; u_n \leqslant v_n\).</li>
+      <li>Montrer que \((u_n)\) est croissante et \((v_n)\) décroissante.</li>
+      <li>Montrer que \(v_{n+1} - u_{n+1} \leqslant \frac12 (v_n - u_n)\), puis que les deux suites convergent vers la même limite.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Récurrence : vrai pour \(n = 0\). Si \(0 &lt; u_n \leqslant v_n\), alors \(u_{n+1} = \sqrt{u_n v_n} &gt; 0\), \(v_{n+1} &gt; 0\), et par l'inégalité arithmético-géométrique (chapitre 3, exercice 7) : \(\sqrt{u_n v_n} \leqslant \frac{u_n + v_n}{2}\), soit \(u_{n+1} \leqslant v_{n+1}\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> \(u_{n+1} = \sqrt{u_n v_n} \geqslant \sqrt{u_n \cdot u_n} = u_n\) (car \(v_n \geqslant u_n &gt; 0\)) : \((u_n)\) croît. \(v_{n+1} = \frac{u_n + v_n}{2} \leqslant \frac{v_n + v_n}{2} = v_n\) : \((v_n)\) décroît. <span class="qed">∎</span></p>
+      <p><strong>3.</strong> \(v_{n+1} - u_{n+1} \leqslant v_{n+1} - u_n \) ? Procédons directement :</p>
+      <p>\[ v_{n+1} - u_{n+1} = \frac{u_n + v_n}{2} - \sqrt{u_n v_n} = \frac{(\sqrt{v_n} - \sqrt{u_n})^2}{2} = \frac{(\sqrt{v_n} - \sqrt{u_n})(\sqrt{v_n} - \sqrt{u_n})}{2}. \]</p>
+      <p>Or \(\sqrt{v_n} - \sqrt{u_n} = \frac{v_n - u_n}{\sqrt{v_n} + \sqrt{u_n}} \leqslant \frac{v_n - u_n}{\sqrt{v_n}}\) et \(\sqrt{v_n} - \sqrt{u_n} \leqslant \sqrt{v_n}\), donc :</p>
+      <p>\[ v_{n+1} - u_{n+1} \leqslant \frac12 \cdot \sqrt{v_n} \cdot \frac{v_n - u_n}{\sqrt{v_n}} = \frac{v_n - u_n}{2}. \]</p>
+      <p>Par récurrence immédiate, \(0 \leqslant v_n - u_n \leqslant \frac{b - a}{2^n} \to 0\). \((u_n)\) est croissante et majorée par \(v_0 = b\) (car \(u_n \leqslant v_n \leqslant b\)) : elle converge vers \(\ell\). \((v_n)\) est décroissante minorée par \(a\) : elle converge vers \(\ell'\). Et \(v_n - u_n \to 0\) donne \(\ell' = \ell\) : les deux suites convergent vers la même limite (appelée <em>moyenne arithmético-géométrique</em> de \(a\) et \(b\)). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch05-calcul-matriciel.html"><span class="pn-label">Chapitre précédent</span>← Calcul matriciel</a>
+    <a class="next" href="ch07-fonctions.html"><span class="pn-label">Chapitre suivant</span>Fonctions réelles →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

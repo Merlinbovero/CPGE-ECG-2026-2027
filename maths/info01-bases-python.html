@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informatique I1 — Bases du langage Python | Maths ECG1</title>
+<meta name="description" content="Python pour l'ECG : variables, types, opérateurs, conditions, boucles for et while, fonctions, erreurs classiques. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-info01" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Informatique I1</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Informatique I1.</span> Bases du langage Python</h1>
+  <p class="lead">L'informatique fait partie intégrante de l'épreuve de maths appliquées : chaque sujet contient des questions Python (compléter un programme, prédire une sortie). Cette fiche couvre le socle : variables, types, conditions, boucles, fonctions.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">TP tout au long de l'année</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Variables et types</a></li>
+      <li><a href="#s2">Opérateurs</a></li>
+      <li><a href="#s3">Conditions : if / elif / else</a></li>
+      <li><a href="#s4">Boucles : for et while</a></li>
+      <li><a href="#s5">Fonctions</a></li>
+      <li><a href="#s6">Erreurs classiques</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Variables et types</h2>
+  <p>Une variable se crée par affectation avec <code>=</code> (à ne pas confondre avec le test d'égalité <code>==</code>). Les types de base :</p>
+  <pre><code class="language-python">n = 7           # int : entier
+x = 3.14        # float : flottant (nombre à virgule)
+s = "bonjour"   # str : chaîne de caractères
+b = True        # bool : booléen (True ou False)
+print(type(n))  # affiche : &lt;class 'int'&gt;</code></pre>
+  <p>Conversions : <code>int("5")</code> donne <code>5</code>, <code>float(3)</code> donne <code>3.0</code>, <code>str(12)</code> donne <code>"12"</code>.</p>
+
+  <h2 id="s2">2. Opérateurs</h2>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Opérateur</th><th>Signification</th><th>Exemple</th><th>Résultat</th></tr></thead>
+    <tbody>
+      <tr><td><code>+ - *</code></td><td>somme, différence, produit</td><td><code>2 * 3</code></td><td><code>6</code></td></tr>
+      <tr><td><code>/</code></td><td>division (donne toujours un float)</td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+      <tr><td><code>//</code></td><td>quotient entier</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+      <tr><td><code>%</code></td><td>reste (modulo)</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+      <tr><td><code>**</code></td><td>puissance</td><td><code>2 ** 10</code></td><td><code>1024</code></td></tr>
+      <tr><td><code>== != &lt; &lt;= &gt; &gt;=</code></td><td>comparaisons (renvoient un booléen)</td><td><code>3 &lt;= 2</code></td><td><code>False</code></td></tr>
+      <tr><td><code>and or not</code></td><td>connecteurs logiques</td><td><code>(2 &gt; 1) and (1 &gt; 3)</code></td><td><code>False</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted"><code>n % 2 == 0</code> teste la parité de <code>n</code> — réflexe à connaître. <code>x += 1</code> abrège <code>x = x + 1</code>.</p>
+
+  <h2 id="s3">3. Conditions : if / elif / else</h2>
+  <pre><code class="language-python">note = 13
+if note &gt;= 16:
+    mention = "très bien"
+elif note &gt;= 12:
+    mention = "assez bien"       # ce bloc est exécuté
+else:
+    mention = "sans mention"
+print(mention)                    # affiche : assez bien</code></pre>
+  <div class="box warn">
+    <span class="box-title">L'indentation est la syntaxe</span>
+    <p>En Python, les blocs sont délimités par l'<strong>indentation</strong> (4 espaces par convention) après le <code>:</code>. Une indentation incorrecte change le sens du programme ou provoque une erreur — c'est le point le plus vérifié dans les questions « compléter le code ».</p>
+  </div>
+
+  <h2 id="s4">4. Boucles : for et while</h2>
+  <p><strong>Boucle <code>for</code></strong> : nombre d'itérations connu. <code>range(n)</code> parcourt \(0, 1, \dots, n-1\) ; <code>range(a, b)</code> parcourt \(a, \dots, b-1\) (borne droite exclue !) ; <code>range(a, b, p)</code> avance de \(p\) en \(p\).</p>
+  <pre><code class="language-python">S = 0
+for k in range(1, 11):   # k = 1, 2, ..., 10
+    S = S + k
+print(S)                  # affiche : 55  (somme des 10 premiers entiers)</code></pre>
+  <p><strong>Boucle <code>while</code></strong> : on itère tant qu'une condition est vraie (nombre d'itérations inconnu a priori — algorithmes de seuil, voir fiche <a href="info05-algorithmes.html">I5</a>).</p>
+  <pre><code class="language-python">u = 1000
+n = 0
+while u &gt; 500:
+    u = u * 0.9
+    n = n + 1
+print(n)   # affiche : 7  (car 1000 * 0.9**7 = 478.3 &lt; 500 &lt; 1000 * 0.9**6 = 531.4)</code></pre>
+
+  <h2 id="s5">5. Fonctions</h2>
+  <pre><code class="language-python">def f(x):
+    return x**2 + 1
+
+def somme_carres(n):
+    """Renvoie 1² + 2² + ... + n²."""
+    S = 0
+    for k in range(1, n + 1):
+        S += k**2
+    return S
+
+print(f(3))              # affiche : 10
+print(somme_carres(4))   # affiche : 30</code></pre>
+  <div class="box met">
+    <span class="box-title">Méthode — <code>return</code> vs <code>print</code></span>
+    <p><code>return</code> <em>renvoie</em> une valeur utilisable dans la suite du programme (et interrompt la fonction) ; <code>print</code> se contente d'<em>afficher</em>. Aux concours, une fonction doit presque toujours <code>return</code> son résultat. Un <code>return</code> placé <em>dans</em> une boucle sort de la fonction dès la première itération — erreur classique.</p>
+  </div>
+
+  <h2 id="s6">6. Erreurs classiques</h2>
+  <ul>
+    <li><code>range(n)</code> s'arrête à \(n - 1\) : pour sommer jusqu'à \(n\), écrire <code>range(n + 1)</code> ou <code>range(1, n + 1)</code>.</li>
+    <li>Oublier d'initialiser l'accumulateur (<code>S = 0</code>, <code>produit = 1</code>) avant la boucle.</li>
+    <li>Confondre <code>=</code> (affectation) et <code>==</code> (comparaison).</li>
+    <li>Boucle <code>while</code> qui ne se termine pas (condition jamais fausse) : vérifier que la variable de contrôle évolue.</li>
+    <li>Division : <code>/</code> renvoie un float même entre entiers ; pour un indice, utiliser <code>//</code>.</li>
+  </ul>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Prédire la sortie</h3><span class="level level-1">Application directe</span></div>
+    <p>Que affichent les programmes suivants ?</p>
+    <pre><code class="language-python"># Programme A
+x = 5
+x = x + 2
+x = x * x
+print(x)
+
+# Programme B
+s = 0
+for k in range(4):
+    s = s + 2*k
+print(s)
+
+# Programme C
+a, b = 17, 5
+print(a // b, a % b)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>A :</strong> <code>x</code> vaut 5, puis 7, puis 49. Affiche <code>49</code>.</p>
+      <p><strong>B :</strong> \(k\) prend les valeurs 0, 1, 2, 3 ; \(s = 0 + 0 + 2 + 4 + 6 = 12\). Affiche <code>12</code>.</p>
+      <p><strong>C :</strong> \(17 = 3 \times 5 + 2\) : affiche <code>3 2</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Écrire une fonction simple</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire une fonction <code>factorielle(n)</code> qui renvoie \(n!\) (avec une boucle <code>for</code>), puis une fonction <code>est_pair(n)</code> qui renvoie <code>True</code> si \(n\) est pair.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def factorielle(n):
+    p = 1
+    for k in range(1, n + 1):
+        p = p * k
+    return p          # factorielle(5) renvoie 120 ; factorielle(0) renvoie 1
+
+def est_pair(n):
+    return n % 2 == 0    # le test renvoie déjà un booléen</code></pre>
+      <p class="small muted">Noter l'initialisation à 1 (produit vide) : <code>factorielle(0)</code> renvoie bien \(0! = 1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Boucle while</h3><span class="level level-2">Entraînement</span></div>
+    <p>Un capital de 2 000 € est placé à 3 % par an. Écrire un programme qui calcule au bout de combien d'années le capital dépasse 3 000 €, et donner la valeur affichée.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">C = 2000
+n = 0
+while C &lt;= 3000:
+    C = C * 1.03
+    n = n + 1
+print(n)</code></pre>
+      <p>Il faut \(1{,}03^n &gt; 1{,}5\), soit \(n &gt; \frac{\ln 1{,}5}{\ln 1{,}03} \approx 13{,}7\) : le programme affiche <code>14</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Compléter un programme (format concours)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Compléter les pointillés pour que <code>u(n)</code> renvoie le terme \(u_n\) de la suite définie par \(u_0 = 3\) et \(u_{k+1} = 2u_k - 1\) :</p>
+    <pre><code class="language-python">def u(n):
+    x = ......
+    for k in range(......):
+        x = ......
+    return x</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def u(n):
+    x = 3                    # u_0
+    for k in range(n):       # n itérations : de u_0 à u_n
+        x = 2*x - 1
+    return x</code></pre>
+      <p>Contrôle : <code>u(0)</code> renvoie 3 (aucune itération) ; <code>u(2)</code> renvoie \(2(2 \times 3 - 1) - 1 = 9\). (Au passage, \(u_n = 2^{n+1} + 1\) : voir chapitre 6.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Trace d'exécution (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>mystere(36, 24)</code> ? Que calcule cette fonction en général ?</p>
+    <pre><code class="language-python">def mystere(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Trace : \((a, b) = (36, 24) \to (24, 12) \to (12, 0)\) : la fonction renvoie <code>12</code>.</p>
+      <p>C'est l'<strong>algorithme d'Euclide</strong> : à chaque étape, on remplace \((a, b)\) par \((b, a \bmod b)\), ce qui conserve l'ensemble des diviseurs communs ; quand \(b = 0\), \(a\) est le <strong>PGCD</strong> des deux entiers de départ. \(\mathrm{pgcd}(36, 24) = 12\) ✓.</p>
+      <p class="small muted">La syntaxe <code>a, b = b, a % b</code> effectue les deux affectations <em>simultanément</em> (avec les anciennes valeurs) — sans variable temporaire.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Débogage (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Le programme suivant est censé calculer \(\sum_{k=1}^{n} \frac1k\), mais contient trois erreurs. Les trouver et les corriger.</p>
+    <pre><code class="language-python">def harmonique(n):
+    S = 1
+    for k in range(1, n):
+        S = S + 1/k
+        return S</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li><code>S = 1</code> : l'accumulateur doit démarrer à <strong>0</strong> (sinon le terme \(k=1\) est compté deux fois… en fait ici il fausse tout le calcul).</li>
+        <li><code>range(1, n)</code> s'arrête à \(n-1\) : il faut <code>range(1, n + 1)</code>.</li>
+        <li>Le <code>return</code> est <em>dans</em> la boucle : la fonction sort dès la première itération. Il faut le désindenter (aligné avec <code>for</code>).</li>
+      </ol>
+      <pre><code class="language-python">def harmonique(n):
+    S = 0
+    for k in range(1, n + 1):
+        S = S + 1/k
+    return S      # harmonique(3) renvoie 1 + 0.5 + 0.333... = 1.8333...</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch17-statistiques.html"><span class="pn-label">Chapitre précédent</span>← Statistiques descriptives</a>
+    <a class="next" href="info02-listes.html"><span class="pn-label">Fiche suivante</span>Listes et données →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

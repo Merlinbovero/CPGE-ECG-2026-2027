@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informatique I2 — Listes et manipulation de données | Maths ECG1</title>
+<meta name="description" content="Python pour l'ECG : créer et parcourir des listes, slicing, listes en compréhension, méthodes de listes, chaînes de caractères. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-info02" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Informatique I2</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Informatique I2.</span> Listes et manipulation de données</h1>
+  <p class="lead">La liste est la structure de données de base : stocker les termes d'une suite, les résultats d'une simulation, une série statistique. Indexation, slicing, méthodes et listes en compréhension.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">TP tout au long de l'année</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Créer et indexer une liste</a></li>
+      <li><a href="#s2">Parcourir une liste</a></li>
+      <li><a href="#s3">Slicing (tranches)</a></li>
+      <li><a href="#s4">Méthodes et fonctions utiles</a></li>
+      <li><a href="#s5">Listes en compréhension</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Créer et indexer une liste</h2>
+  <pre><code class="language-python">L = [4, 7, 1, 9]
+print(L[0])      # 4  (les indices commencent à 0 !)
+print(L[3])      # 9  (dernier élément, d'indice len(L) - 1)
+print(L[-1])     # 9  (indice négatif : on compte depuis la fin)
+print(len(L))    # 4  (longueur)
+L[1] = 5         # modification : L vaut [4, 5, 1, 9]
+M = [0] * 6      # [0, 0, 0, 0, 0, 0] : liste de six zéros
+N = list(range(5))   # [0, 1, 2, 3, 4]</code></pre>
+  <div class="box warn">
+    <span class="box-title">Piège n°1 du concours</span>
+    <p>Une liste de longueur \(n\) a ses indices de <strong>0 à \(n-1\)</strong>. <code>L[n]</code> provoque une erreur <code>IndexError</code>. Le \(k\)-ième terme d'une suite \(u_0, u_1, \dots\) stockée dans <code>L</code> est <code>L[k]</code> — mais si la suite commence à \(u_1\), il y a un décalage à gérer.</p>
+  </div>
+
+  <h2 id="s2">2. Parcourir une liste</h2>
+  <pre><code class="language-python">L = [12, 8, 15, 3]
+
+# Parcours par éléments
+S = 0
+for x in L:
+    S += x
+print(S)              # 38
+
+# Parcours par indices (utile pour comparer des positions)
+for i in range(len(L)):
+    print(i, L[i])
+
+# Construire en ajoutant au fur et à mesure
+carres = []
+for k in range(1, 6):
+    carres.append(k**2)
+print(carres)         # [1, 4, 9, 16, 25]</code></pre>
+
+  <h2 id="s3">3. Slicing (tranches)</h2>
+  <pre><code class="language-python">L = [10, 11, 12, 13, 14, 15]
+print(L[1:4])    # [11, 12, 13]  (borne droite exclue)
+print(L[:3])     # [10, 11, 12]  (depuis le début)
+print(L[3:])     # [13, 14, 15]  (jusqu'à la fin)
+print(L[::2])    # [10, 12, 14]  (un élément sur deux)
+print(L[::-1])   # [15, 14, 13, 12, 11, 10]  (liste renversée)</code></pre>
+
+  <h2 id="s4">4. Méthodes et fonctions utiles</h2>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Expression</th><th>Effet</th></tr></thead>
+    <tbody>
+      <tr><td><code>L.append(x)</code></td><td>ajoute <code>x</code> en fin de liste</td></tr>
+      <tr><td><code>sum(L)</code>, <code>max(L)</code>, <code>min(L)</code></td><td>somme, maximum, minimum</td></tr>
+      <tr><td><code>sorted(L)</code></td><td>renvoie une copie triée (croissante)</td></tr>
+      <tr><td><code>L.count(x)</code></td><td>nombre d'occurrences de <code>x</code></td></tr>
+      <tr><td><code>x in L</code></td><td>test d'appartenance (booléen)</td></tr>
+      <tr><td><code>L1 + L2</code></td><td>concaténation</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Moyenne d'une série : <code>sum(L) / len(L)</code>. Les chaînes de caractères se manipulent comme des listes (indexation, slicing, <code>len</code>), mais sont non modifiables.</p>
+
+  <h2 id="s5">5. Listes en compréhension</h2>
+  <pre><code class="language-python">carres = [k**2 for k in range(1, 6)]          # [1, 4, 9, 16, 25]
+pairs  = [x for x in range(20) if x % 2 == 0]  # [0, 2, 4, ..., 18]
+u = [3 * 0.5**n for n in range(4)]             # [3.0, 1.5, 0.75, 0.375]</code></pre>
+  <p class="small muted">Syntaxe compacte équivalente à une boucle <code>for</code> + <code>append</code> ; très fréquente dans les corrigés de concours.</p>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Prédire la sortie</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">L = [2, 5, 8, 11, 14]
+print(L[2], L[-2])
+print(L[1:3])
+print(len(L[1:]))
+M = [x % 3 for x in L]
+print(M)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>8 11</code> (indices 2 et −2) ; <code>[5, 8]</code> (indices 1 et 2) ; <code>4</code> (la tranche <code>L[1:]</code> a 4 éléments) ; <code>[2, 2, 2, 2, 2]</code> (tous les termes valent 2 modulo 3 : \(2, 5, 8, 11, 14 \equiv 2 \pmod 3\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Statistiques sur une liste</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire des fonctions <code>moyenne(L)</code> et <code>variance(L)</code> (formule \(s^2 = \frac1n\sum x_i^2 - \bar x^2\)), sans utiliser de bibliothèque.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def moyenne(L):
+    return sum(L) / len(L)
+
+def variance(L):
+    m = moyenne(L)
+    S2 = 0
+    for x in L:
+        S2 += x**2
+    return S2 / len(L) - m**2
+
+# variance([8, 12, 9, 15, 11, 12, 10, 12, 6, 15]) renvoie 7.4
+# (cf. chapitre 17, exercice 1)</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Stocker les termes d'une suite</h3><span class="level level-2">Entraînement</span></div>
+    <p>La suite \((u_n)\) vérifie \(u_0 = 2\) et \(u_{n+1} = \frac12 u_n + 3\). Écrire une fonction <code>termes(N)</code> qui renvoie la liste \([u_0, u_1, \dots, u_N]\). Que vaut <code>termes(3)</code> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def termes(N):
+    L = [2]                       # u_0
+    for k in range(N):
+        L.append(0.5 * L[-1] + 3) # u_{k+1} à partir du dernier terme
+    return L</code></pre>
+      <p><code>termes(3)</code> renvoie <code>[2, 4.0, 5.0, 5.5]</code> (en effet \(u_1 = 4\), \(u_2 = 5\), \(u_3 = 5{,}5\) ; la suite converge vers le point fixe 6, cf. chapitre 6).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Maximum « à la main »</h3><span class="level level-2">Entraînement</span></div>
+    <p>Sans utiliser <code>max</code>, écrire une fonction <code>maximum(L)</code> qui renvoie le plus grand élément d'une liste non vide, et une fonction <code>indice_max(L)</code> qui renvoie l'indice de la première occurrence du maximum.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def maximum(L):
+    m = L[0]
+    for x in L:
+        if x &gt; m:
+            m = x
+    return m
+
+def indice_max(L):
+    im = 0
+    for i in range(1, len(L)):
+        if L[i] &gt; L[im]:
+            im = i
+    return im
+# maximum([3, 9, 2, 9]) renvoie 9 ; indice_max([3, 9, 2, 9]) renvoie 1</code></pre>
+      <p class="small muted">Schéma « accumulateur initialisé au premier élément » : à connaître, il tombe régulièrement (recherche du max d'une simulation, du premier rang où une suite dépasse un seuil…).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Compter avec une condition (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On dispose d'une liste <code>notes</code> de \(n\) notes. Écrire un programme qui calcule la fréquence des notes supérieures ou égales à 10, puis une fonction <code>quartiles(L)</code> qui renvoie le couple \((Q_1, Q_3)\) défini par : \(Q_1\) = plus petite valeur telle qu'au moins 25 % des valeurs lui soient inférieures ou égales (position \(\lceil n/4 \rceil\) dans la liste triée), et \(Q_3\) analogue avec 75 %.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def freq_admis(notes):
+    c = 0
+    for x in notes:
+        if x &gt;= 10:
+            c += 1
+    return c / len(notes)
+
+def quartiles(L):
+    T = sorted(L)
+    n = len(T)
+    i1 = (n + 3) // 4        # équivaut à ceil(n/4) pour n entier
+    i3 = (3*n + 3) // 4      # équivaut à ceil(3n/4)
+    return T[i1 - 1], T[i3 - 1]   # -1 : passage rang -&gt; indice
+
+# quartiles([6, 8, 9, 10, 11, 12, 12, 12, 15, 15]) renvoie (9, 12) :
+# n = 10, rangs 3 et 8 de la liste triée.</code></pre>
+      <p class="small muted">Le point délicat est le passage du rang (1 à \(n\)) à l'indice Python (0 à \(n-1\)) : source classique d'erreurs d'« off by one ».</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Fibonacci et listes (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>La suite de Fibonacci vérifie \(F_0 = 0\), \(F_1 = 1\), \(F_{n+2} = F_{n+1} + F_n\).</p>
+    <ol>
+      <li>Écrire <code>fibo(n)</code> qui renvoie la liste \([F_0, \dots, F_n]\).</li>
+      <li>Écrire un programme qui affiche le plus petit \(n\) tel que \(F_n &gt; 10^6\), et prédire l'ordre de grandeur du résultat sachant \(F_n \approx \frac{\varphi^n}{\sqrt5}\) avec \(\varphi \approx 1{,}618\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def fibo(n):
+    L = [0, 1]
+    for k in range(n - 1):
+        L.append(L[-1] + L[-2])
+    return L                      # fibo(6) renvoie [0, 1, 1, 2, 3, 5, 8]
+
+a, b = 0, 1
+n = 1
+while b &lt;= 10**6:
+    a, b = b, a + b
+    n += 1
+print(n)</code></pre>
+      <p>Estimation : \(\frac{\varphi^n}{\sqrt5} &gt; 10^6\) ⟺ \(n &gt; \frac{\ln(10^6\sqrt5)}{\ln\varphi} \approx \frac{14{,}62}{0{,}481} \approx 30{,}4\). Le programme affiche <code>31</code> (\(F_{31} = 1\,346\,269 &gt; 10^6 &gt; F_{30} = 832\,040\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="info01-bases-python.html"><span class="pn-label">Fiche précédente</span>← Bases de Python</a>
+    <a class="next" href="info03-numpy-matplotlib.html"><span class="pn-label">Fiche suivante</span>numpy, matplotlib, random →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

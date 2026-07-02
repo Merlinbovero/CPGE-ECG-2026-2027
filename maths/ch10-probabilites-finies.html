@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 10 — Espaces probabilisés finis | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : événements, probabilité sur un univers fini, équiprobabilité, probabilités conditionnelles, formule des probabilités totales, formule de Bayes, indépendance. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch10" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 10</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 10.</span> Espaces probabilisés finis</h1>
+  <p class="lead">Les probabilités représentent près de la moitié des sujets de concours en maths appliquées. Ce premier chapitre installe le cadre : événements, probabilités, conditionnement, et les trois formules majeures — probabilités composées, probabilités totales, Bayes — plus l'indépendance.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Expérience aléatoire et événements</a></li>
+      <li><a href="#s2">Probabilité sur un univers fini</a></li>
+      <li><a href="#s3">Équiprobabilité</a></li>
+      <li><a href="#s4">Probabilités conditionnelles</a></li>
+      <li><a href="#s5">Probabilités composées et probabilités totales</a></li>
+      <li><a href="#s6">La formule de Bayes</a></li>
+      <li><a href="#s7">Indépendance</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Expérience aléatoire et événements</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 10.1 — Univers, événements</span>
+    <p>L'<strong>univers</strong> \(\Omega\) est l'ensemble des résultats possibles d'une expérience aléatoire (ici : \(\Omega\) fini). Un <strong>événement</strong> est une partie de \(\Omega\) ; un <strong>événement élémentaire</strong> est un singleton \(\{\omega\}\). \(\Omega\) est l'événement <em>certain</em>, \(\varnothing\) l'événement <em>impossible</em>.</p>
+    <p>Traduction du langage courant : « \(A\) ou \(B\) » = \(A \cup B\) ; « \(A\) et \(B\) » = \(A \cap B\) ; « non \(A\) » = \(\overline A\) ; « \(A\) et \(B\) incompatibles » = \(A \cap B = \varnothing\). Un <strong>système complet d'événements</strong> \((A_1, \dots, A_n)\) est une famille d'événements deux à deux incompatibles dont la réunion est \(\Omega\).</p>
+  </div>
+
+  <h2 id="s2">2. Probabilité sur un univers fini</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 10.2 — Probabilité</span>
+    <p>Une <strong>probabilité</strong> sur \(\Omega\) fini est une application \(P\) qui à chaque événement associe un réel de \([0,1]\), telle que \(P(\Omega) = 1\) et, pour \(A, B\) <em>incompatibles</em> : \(P(A \cup B) = P(A) + P(B)\) (additivité). Elle est déterminée par les probabilités \(p_\omega = P(\{\omega\})\) des événements élémentaires (positives, de somme 1) : \(P(A) = \sum_{\omega \in A} p_\omega\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 10.3 — Propriétés</span>
+    <ul>
+      <li>\(P(\varnothing) = 0\) ; \(P(\overline A) = 1 - P(A)\) ;</li>
+      <li>si \(A \subset B\), alors \(P(A) \leqslant P(B)\) (croissance) ;</li>
+      <li><strong>Formule du crible :</strong> \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\) ;</li>
+      <li>si \((A_1, \dots, A_n)\) sont deux à deux incompatibles : \(P\big(\bigcup_i A_i\big) = \sum_i P(A_i)\).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (crible).</span>
+      <p>\(A \cup B = A \cup (B \setminus A)\), union disjointe, donc \(P(A \cup B) = P(A) + P(B \setminus A)\). Et \(B = (A \cap B) \cup (B \setminus A)\), union disjointe : \(P(B \setminus A) = P(B) - P(A \cap B)\). D'où le résultat. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <h2 id="s3">3. Équiprobabilité</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 10.4 — Situation d'équiprobabilité</span>
+    <p>Si tous les événements élémentaires ont la même probabilité (« dé équilibré », « boules indiscernables au toucher », « tirage au hasard »), alors :</p>
+    <p>\[ P(A) = \frac{\mathrm{Card}(A)}{\mathrm{Card}(\Omega)} = \frac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}}. \]</p>
+    <p>Le calcul de probabilités se ramène alors à deux dénombrements (chapitre 9). <strong>Important :</strong> choisir un univers sur lequel l'équiprobabilité est vraie — souvent, ordonner les tirages même si l'énoncé ne le fait pas.</p>
+  </div>
+
+  <h2 id="s4">4. Probabilités conditionnelles</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 10.5 — Probabilité conditionnelle</span>
+    <p>Si \(P(B) &gt; 0\), la <strong>probabilité de \(A\) sachant \(B\)</strong> est :</p>
+    <p>\[ P_B(A) = P(A \mid B) = \frac{P(A \cap B)}{P(B)}. \]</p>
+    <p>\(P_B\) est une probabilité sur \(\Omega\) : toutes les propriétés de la section 2 s'appliquent (par exemple \(P_B(\overline A) = 1 - P_B(A)\)).</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Piège — Ne pas confondre \(P(A \mid B)\) et \(P(B \mid A)\)</span>
+    <p>La probabilité d'être malade sachant que le test est positif n'est pas la probabilité que le test soit positif sachant qu'on est malade ! Le passage de l'une à l'autre est précisément l'objet de la formule de Bayes (§6). Autre piège : \(P(A \cap B) = P(A)P(B)\) n'est vraie que sous <em>indépendance</em> (§7) ; en général \(P(A \cap B) = P(B)\,P(A \mid B)\).</p>
+  </div>
+
+  <h2 id="s5">5. Probabilités composées et probabilités totales</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 10.6 — Formule des probabilités composées</span>
+    <p>Si \(P(A_1 \cap \dots \cap A_{n-1}) &gt; 0\) :</p>
+    <p>\[ P(A_1 \cap A_2 \cap \dots \cap A_n) = P(A_1)\, P(A_2 \mid A_1)\, P(A_3 \mid A_1 \cap A_2) \cdots P(A_n \mid A_1 \cap \dots \cap A_{n-1}). \]</p>
+    <p class="small">C'est la formule des <strong>tirages successifs</strong> : on suit les branches d'un arbre en multipliant les probabilités.</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 10.7 — Formule des probabilités totales (démonstration exigible)</span>
+    <p>Si \((A_1, \dots, A_n)\) est un système complet d'événements avec \(P(A_i) &gt; 0\) pour tout \(i\), alors pour tout événement \(B\) :</p>
+    <p>\[ P(B) = \sum_{i=1}^{n} P(A_i)\, P(B \mid A_i). \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Les \(B \cap A_i\) sont deux à deux incompatibles (car les \(A_i\) le sont) et leur réunion vaut \(B \cap \Omega = B\). Par additivité puis définition du conditionnement :</p>
+      <p>\[ P(B) = \sum_{i=1}^n P(B \cap A_i) = \sum_{i=1}^n P(A_i)\,P(B \mid A_i). \quad \blacksquare \]</p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Modéliser avec un arbre ou un conditionnement</span>
+    <ol>
+      <li><strong>Nommer les événements</strong> avec des lettres explicites (\(M\) = « malade », \(T\) = « test positif »…) — jamais de calcul sans définition préalable.</li>
+      <li>Identifier le <strong>système complet</strong> naturel (les causes possibles, l'état à l'étape précédente…).</li>
+      <li>Écrire la formule des probabilités totales, ou dessiner l'arbre pondéré (chaque niveau = une étape, produit le long des branches, somme des branches favorables).</li>
+      <li>Pour les <strong>suites d'événements</strong> (expériences répétées dépendantes) : poser \(p_n = P(A_n)\), conditionner par l'étape \(n\) pour obtenir une relation de récurrence \(p_{n+1} = a p_n + b\), puis résoudre (chapitre 6).</li>
+    </ol>
+  </div>
+
+  <h2 id="s6">6. La formule de Bayes</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 10.8 — Formule de Bayes</span>
+    <p>Si \((A_1, \dots, A_n)\) est un système complet (probabilités non nulles) et \(P(B) &gt; 0\) :</p>
+    <p>\[ P(A_j \mid B) = \frac{P(A_j)\, P(B \mid A_j)}{\displaystyle\sum_{i=1}^{n} P(A_i)\, P(B \mid A_i)}. \]</p>
+    <p class="small">Elle « renverse » le conditionnement : connaissant les probabilités des <em>effets</em> sachant les <em>causes</em>, elle donne la probabilité des causes sachant l'effet observé. Cas particulier à deux événements : \(P(A \mid B) = \dfrac{P(A)P(B \mid A)}{P(A)P(B|A) + P(\overline A)P(B \mid \overline A)}\).</p>
+  </div>
+
+  <h2 id="s7">7. Indépendance</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 10.9 — Indépendance</span>
+    <p>Deux événements \(A\) et \(B\) sont <strong>indépendants</strong> si \(P(A \cap B) = P(A)\,P(B)\) — de façon équivalente (si \(P(B) &gt; 0\)) : \(P(A \mid B) = P(A)\) (savoir que \(B\) est réalisé ne change pas la probabilité de \(A\)).</p>
+    <p>Des événements \(A_1, \dots, A_n\) sont <strong>mutuellement indépendants</strong> si pour toute sous-famille, la probabilité de l'intersection est le produit des probabilités. L'indépendance mutuelle est <em>plus forte</em> que l'indépendance deux à deux.</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 10.10</span>
+    <p>Si \(A\) et \(B\) sont indépendants, alors \(A\) et \(\overline B\), \(\overline A\) et \(B\), \(\overline A\) et \(\overline B\) le sont aussi.</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration (pour \(A\) et \(\overline B\)).</span>
+      <p>\(P(A \cap \overline B) = P(A) - P(A \cap B) = P(A) - P(A)P(B) = P(A)\big(1 - P(B)\big) = P(A)P(\overline B)\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges</span>
+    <ul>
+      <li>Indépendant ≠ incompatible ! Deux événements incompatibles de probabilités non nulles ne sont <em>jamais</em> indépendants (\(P(A\cap B) = 0 \neq P(A)P(B)\)).</li>
+      <li>L'indépendance se <strong>démontre</strong> (par le calcul) ou se <strong>justifie par la modélisation</strong> (« les lancers sont indépendants ») — elle ne se devine pas.</li>
+    </ul>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Équiprobabilité</h3><span class="level level-1">Application directe</span></div>
+    <p>On lance deux dés équilibrés à 6 faces. Calculer la probabilité : 1. d'obtenir une somme égale à 7 ; 2. d'obtenir au moins un 6 ; 3. d'obtenir un double.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Univers : \(\Omega = \llbracket 1,6 \rrbracket^2\), \(\mathrm{Card}(\Omega) = 36\), équiprobable (dés équilibrés, distingués).</p>
+      <p><strong>1.</strong> Couples de somme 7 : \((1,6), (2,5), (3,4), (4,3), (5,2), (6,1)\), soit 6 cas : \(P = \frac{6}{36} = \frac16\).</p>
+      <p><strong>2.</strong> Complémentaire (« aucun 6 ») : \(5^2 = 25\) cas. \(P = 1 - \frac{25}{36} = \frac{11}{36}\).</p>
+      <p><strong>3.</strong> 6 doubles : \(P = \frac{6}{36} = \frac16\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Tirages et dénombrement</h3><span class="level level-1">Application directe</span></div>
+    <p>Une urne contient 4 boules blanches et 6 boules rouges. On tire simultanément 3 boules. Probabilité d'obtenir : 1. trois rouges ; 2. exactement une blanche ; 3. au moins une blanche.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\mathrm{Card}(\Omega) = \binom{10}{3} = 120\), tirages équiprobables.</p>
+      <p><strong>1.</strong> \(P = \dfrac{\binom63}{120} = \dfrac{20}{120} = \dfrac16\).</p>
+      <p><strong>2.</strong> \(P = \dfrac{\binom41\binom62}{120} = \dfrac{4 \times 15}{120} = \dfrac12\).</p>
+      <p><strong>3.</strong> \(P = 1 - P(\text{aucune blanche}) = 1 - \frac16 = \frac56\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Probabilités composées</h3><span class="level level-1">Application directe</span></div>
+    <p>Dans la même urne (4 blanches, 6 rouges), on tire successivement 3 boules <em>sans remise</em>. Calculer la probabilité de tirer trois boules rouges, puis celle de tirer blanche-rouge-blanche dans cet ordre.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(R_i\) : « la \(i\)-ième boule est rouge ». Par la formule des probabilités composées :</p>
+      <p>\[ P(R_1 \cap R_2 \cap R_3) = P(R_1)\,P(R_2 \mid R_1)\,P(R_3 \mid R_1 \cap R_2) = \frac{6}{10} \times \frac59 \times \frac48 = \frac{120}{720} = \frac16. \]</p>
+      <p>(Cohérent avec l'exercice 2 : le tirage simultané donne la même probabilité.)</p>
+      <p>Pour blanche-rouge-blanche : \(\frac{4}{10} \times \frac69 \times \frac38 = \frac{72}{720} = \frac{1}{10}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Probabilités totales</h3><span class="level level-2">Entraînement</span></div>
+    <p>Trois machines produisent respectivement 50 %, 30 % et 20 % de la production d'une usine, avec des taux de pièces défectueuses de 2 %, 3 % et 5 %. On prélève une pièce au hasard. Quelle est la probabilité qu'elle soit défectueuse ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(M_1, M_2, M_3\) : « la pièce vient de la machine \(i\) » (système complet) et \(D\) : « la pièce est défectueuse ». Par la formule des probabilités totales :</p>
+      <p>\[ P(D) = \sum_{i=1}^{3} P(M_i)P(D \mid M_i) = 0{,}5 \times 0{,}02 + 0{,}3 \times 0{,}03 + 0{,}2 \times 0{,}05 = 0{,}010 + 0{,}009 + 0{,}010 = 0{,}029. \]</p>
+      <p>Soit 2,9 %.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Formule de Bayes (test médical)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une maladie touche 1 % d'une population. Un test de dépistage est positif chez 95 % des malades (sensibilité) et chez 4 % des non-malades (faux positifs). Une personne est testée positive : quelle est la probabilité qu'elle soit réellement malade ? Commenter.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(M\) : « malade », \(T\) : « test positif ». Données : \(P(M) = 0{,}01\), \(P(T \mid M) = 0{,}95\), \(P(T \mid \overline M) = 0{,}04\). Par Bayes :</p>
+      <p>\[ P(M \mid T) = \frac{P(M)P(T \mid M)}{P(M)P(T \mid M) + P(\overline M)P(T \mid \overline M)} = \frac{0{,}01 \times 0{,}95}{0{,}01 \times 0{,}95 + 0{,}99 \times 0{,}04} = \frac{0{,}0095}{0{,}0095 + 0{,}0396} = \frac{0{,}0095}{0{,}0491} \approx 0{,}193. \]</p>
+      <p>Environ <strong>19 %</strong> seulement ! Malgré un test fiable, la maladie est si rare que la majorité des tests positifs sont des faux positifs (dans une population de 10 000 : ≈ 95 vrais positifs contre ≈ 396 faux positifs). C'est pourquoi on confirme par un second test.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Indépendance</h3><span class="level level-2">Entraînement</span></div>
+    <p>On lance deux fois un dé équilibré. Soient \(A\) : « le premier lancer donne un nombre pair », \(B\) : « le second lancer donne 6 », \(C\) : « la somme est paire ».</p>
+    <ol>
+      <li>Montrer que \(A\) et \(B\) sont indépendants.</li>
+      <li>\(A\) et \(C\) sont-ils indépendants ? \(B\) et \(C\) ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(P(A) = \frac12\), \(P(B) = \frac16\), et la somme est paire ssi les deux lancers ont même parité : \(P(C) = \frac{18}{36} = \frac12\).</p>
+      <p><strong>1.</strong> \(A \cap B\) = « premier pair et second = 6 » : \(3 \times 1 = 3\) cas sur 36, \(P(A \cap B) = \frac{1}{12} = \frac12 \times \frac16 = P(A)P(B)\) ✓ : indépendants.</p>
+      <p><strong>2.</strong> \(A \cap C\) = « premier pair et somme paire » = « les deux pairs » : \(9\) cas, \(P = \frac14 = \frac12 \times \frac12\) ✓ : indépendants. \(B \cap C\) = « second = 6 et somme paire » = « second = 6 et premier pair » : \(3\) cas, \(P = \frac{1}{12} = \frac16 \times \frac12\) ✓ : indépendants.</p>
+      <p class="small muted">Remarque : \(A\), \(B\), \(C\) sont ici indépendants deux à deux ; on peut vérifier que \(P(A \cap B \cap C) = \frac{1}{12} \neq P(A)P(B)P(C) = \frac{1}{24}\) : ils ne sont pas <em>mutuellement</em> indépendants.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Chaîne à deux états (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un serveur informatique est chaque jour en état de marche ou en panne. S'il marche un jour, il marche le lendemain avec probabilité 0,9 ; s'il est en panne, il est réparé pour le lendemain avec probabilité 0,6. Le jour 0, il marche. Notons \(p_n\) la probabilité qu'il marche le jour \(n\).</p>
+    <ol>
+      <li>Établir la relation \(p_{n+1} = 0{,}3\,p_n + 0{,}6\).</li>
+      <li>En déduire \(p_n\) en fonction de \(n\), puis \(\lim p_n\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Notons \(M_n\) : « le serveur marche le jour \(n\) ». \((M_n, \overline{M_n})\) est un système complet ; par la formule des probabilités totales :</p>
+      <p>\[ p_{n+1} = P(M_{n+1}) = P(M_n)P(M_{n+1} \mid M_n) + P(\overline{M_n})P(M_{n+1} \mid \overline{M_n}) = 0{,}9\,p_n + 0{,}6\,(1 - p_n) = 0{,}3\,p_n + 0{,}6. \]</p>
+      <p><strong>2.</strong> Suite arithmético-géométrique : point fixe \(\ell = \frac{0{,}6}{1 - 0{,}3} = \frac67\). Avec \(p_0 = 1\) :</p>
+      <p>\[ p_n = \frac67 + \left(1 - \frac67\right)(0{,}3)^n = \frac67 + \frac17\,(0{,}3)^n. \]</p>
+      <p>Comme \(|0{,}3| &lt; 1\) : \(p_n \to \frac67 \approx 0{,}857\). À long terme, le serveur fonctionne 6 jours sur 7, indépendamment de l'état initial.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Le problème des anniversaires (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Dans un groupe de \(n\) personnes (\(2 \leqslant n \leqslant 365\), années de 365 jours, dates équiprobables et indépendantes), soit \(q_n\) la probabilité que <em>toutes</em> les personnes aient des anniversaires différents.</p>
+    <ol>
+      <li>Exprimer \(q_n\).</li>
+      <li>Montrer que \(q_n \leqslant \exp\left(-\dfrac{n(n-1)}{730}\right)\) (utiliser \(\ln(1 - x) \leqslant -x\)).</li>
+      <li>En déduire une taille de groupe à partir de laquelle la probabilité d'une coïncidence dépasse \(\frac12\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Univers équiprobable : les \(365^n\) listes de dates. Cas favorables : les arrangements \(A_{365}^n\). Donc :</p>
+      <p>\[ q_n = \frac{A_{365}^n}{365^n} = \prod_{k=0}^{n-1} \frac{365 - k}{365} = \prod_{k=0}^{n-1}\left(1 - \frac{k}{365}\right). \]</p>
+      <p><strong>2.</strong> En passant au logarithme et avec \(\ln(1 - x) \leqslant -x\) (chapitre 8) :</p>
+      <p>\[ \ln q_n = \sum_{k=0}^{n-1} \ln\left(1 - \frac{k}{365}\right) \leqslant -\sum_{k=0}^{n-1} \frac{k}{365} = -\frac{n(n-1)}{730}. \]</p>
+      <p>En composant par \(\exp\) (croissante) : \(q_n \leqslant \mathrm{e}^{-n(n-1)/730}\). <span class="qed">∎</span></p>
+      <p><strong>3.</strong> Il suffit que \(\mathrm{e}^{-n(n-1)/730} \leqslant \frac12\), soit \(n(n-1) \geqslant 730\ln 2 \approx 506\). Or \(23 \times 22 = 506\) : dès \(n = 23\), \(q_n &lt; \frac12\), donc la probabilité qu'au moins deux personnes partagent leur anniversaire dépasse \(\frac12\). (Calcul exact : \(q_{23} \approx 0{,}493\).) Résultat célèbre et contre-intuitif : 23 personnes suffisent.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Urnes de Polya simplifiées (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Une urne contient 1 boule blanche et 1 boule noire. On tire une boule au hasard, on la remet et on ajoute une boule de la même couleur ; on répète l'opération. Notons \(B_i\) : « le \(i\)-ième tirage donne une blanche ».</p>
+    <ol>
+      <li>Calculer \(P(B_1)\), puis \(P(B_2)\) à l'aide des probabilités totales.</li>
+      <li>Calculer \(P(B_1 \mid B_2)\). Comparer à \(P(B_1)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(P(B_1) = \frac12\). Après le premier tirage, l'urne contient 3 boules. Par les probabilités totales avec le système \((B_1, \overline{B_1})\) :</p>
+      <p>\[ P(B_2) = P(B_1)P(B_2 \mid B_1) + P(\overline{B_1})P(B_2 \mid \overline{B_1}) = \frac12 \times \frac23 + \frac12 \times \frac13 = \frac12. \]</p>
+      <p><strong>2.</strong> \(P(B_1 \cap B_2) = P(B_1)P(B_2 \mid B_1) = \frac12 \times \frac23 = \frac13\), donc :</p>
+      <p>\[ P(B_1 \mid B_2) = \frac{P(B_1 \cap B_2)}{P(B_2)} = \frac{1/3}{1/2} = \frac23 &gt; \frac12 = P(B_1). \]</p>
+      <p>Savoir que le 2<sup>e</sup> tirage est blanc rend plus probable que le 1<sup>er</sup> l'ait été : le mécanisme de renforcement crée une dépendance positive entre tirages — les événements \(B_1\) et \(B_2\) ne sont pas indépendants.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch09-denombrement.html"><span class="pn-label">Chapitre précédent</span>← Dénombrement</a>
+    <a class="next" href="ch11-variables-aleatoires.html"><span class="pn-label">Chapitre suivant (S2)</span>Variables aléatoires finies →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

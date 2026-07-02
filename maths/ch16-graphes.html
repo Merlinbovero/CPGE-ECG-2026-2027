@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 16 — Introduction aux graphes | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : vocabulaire des graphes, degrés, matrice d'adjacence, chemins, connexité, nombre de chemins de longueur donnée. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch16" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 16</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 16.</span> Introduction aux graphes</h1>
+  <p class="lead">Réseaux sociaux, réseaux de transport, liens entre pages web : les graphes modélisent les relations entre objets. Ce chapitre installe le vocabulaire, la matrice d'adjacence, et le théorème central : les puissances de la matrice comptent les chemins.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 2 · ≈ 1 semaine de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Vocabulaire des graphes</a></li>
+      <li><a href="#s2">Degrés et lemme des poignées de main</a></li>
+      <li><a href="#s3">Matrice d'adjacence</a></li>
+      <li><a href="#s4">Chemins et connexité</a></li>
+      <li><a href="#s5">Compter les chemins avec les puissances de matrices</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Vocabulaire des graphes</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 16.1 — Graphe</span>
+    <p>Un <strong>graphe non orienté</strong> est la donnée d'un ensemble fini de <strong>sommets</strong> \(S = \{s_1, \dots, s_n\}\) et d'un ensemble d'<strong>arêtes</strong>, chaque arête reliant deux sommets (dits <em>adjacents</em> ou <em>voisins</em>). Dans un <strong>graphe orienté</strong>, les liaisons sont des <strong>arcs</strong> ayant un sens (de \(s_i\) vers \(s_j\)). Une <strong>boucle</strong> relie un sommet à lui-même. Un graphe est <strong>simple</strong> s'il est sans boucle et sans arête multiple.</p>
+  </div>
+
+  <figure class="schema">
+    <svg viewBox="0 0 380 180" width="380" height="180" role="img" aria-label="Exemple de graphe non orienté à 4 sommets">
+      <line x1="70" y1="40" x2="200" y2="40" stroke="var(--accent)" stroke-width="2"/>
+      <line x1="70" y1="40" x2="70" y2="140" stroke="var(--accent)" stroke-width="2"/>
+      <line x1="200" y1="40" x2="70" y2="140" stroke="var(--accent)" stroke-width="2"/>
+      <line x1="200" y1="40" x2="310" y2="140" stroke="var(--accent)" stroke-width="2"/>
+      <circle cx="70" cy="40" r="16" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="2"/>
+      <circle cx="200" cy="40" r="16" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="2"/>
+      <circle cx="70" cy="140" r="16" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="2"/>
+      <circle cx="310" cy="140" r="16" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="70" y="45" text-anchor="middle" fill="var(--text)" font-size="14" font-weight="bold">1</text>
+      <text x="200" y="45" text-anchor="middle" fill="var(--text)" font-size="14" font-weight="bold">2</text>
+      <text x="70" y="145" text-anchor="middle" fill="var(--text)" font-size="14" font-weight="bold">3</text>
+      <text x="310" y="145" text-anchor="middle" fill="var(--text)" font-size="14" font-weight="bold">4</text>
+    </svg>
+    <figcaption>Le graphe \(G\) : 4 sommets, 4 arêtes {1-2, 1-3, 2-3, 2-4}. Il servira d'exemple dans tout le chapitre.</figcaption>
+  </figure>
+
+  <h2 id="s2">2. Degrés et lemme des poignées de main</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 16.2 — Degré</span>
+    <p>Le <strong>degré</strong> \(d(s)\) d'un sommet \(s\) est le nombre d'arêtes qui lui sont incidentes (une boucle compte double). Dans l'exemple : \(d(1) = 2\), \(d(2) = 3\), \(d(3) = 2\), \(d(4) = 1\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 16.3 — Lemme des poignées de main (démonstration exigible)</span>
+    <p>Dans tout graphe non orienté, la somme des degrés vaut deux fois le nombre d'arêtes :</p>
+    <p>\[ \sum_{s \in S} d(s) = 2\,\big|\text{arêtes}\big|. \]</p>
+    <p>En particulier, le nombre de sommets de degré impair est <strong>pair</strong>.</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Chaque arête possède deux extrémités : elle contribue pour exactement 2 à la somme des degrés (1 à chacun de ses deux sommets, ou 2 au même sommet pour une boucle). D'où l'égalité. La somme étant paire, la somme des degrés impairs est paire, ce qui exige un nombre pair de sommets de degré impair. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <h2 id="s3">3. Matrice d'adjacence</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 16.4 — Matrice d'adjacence</span>
+    <p>La <strong>matrice d'adjacence</strong> d'un graphe à \(n\) sommets est \(A = (a_{ij}) \in \mathcal{M}_n(\mathbb{R})\), où \(a_{ij}\) est le nombre d'arêtes (ou d'arcs) de \(s_i\) vers \(s_j\). Pour un graphe simple non orienté : \(a_{ij} \in \{0, 1\}\), \(A\) est <strong>symétrique</strong> et de diagonale nulle ; la somme de la ligne \(i\) vaut \(d(s_i)\).</p>
+    <p>Pour l'exemple : \(A = \begin{pmatrix} 0 &amp; 1 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{pmatrix}\).</p>
+  </div>
+
+  <h2 id="s4">4. Chemins et connexité</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 16.5 — Chemin, cycle, connexité</span>
+    <p>Un <strong>chemin</strong> (ou une chaîne) de longueur \(k\) est une suite de \(k\) arêtes consécutives \(s_{i_0} - s_{i_1} - \dots - s_{i_k}\). Un <strong>cycle</strong> est un chemin fermé (\(s_{i_k} = s_{i_0}\)) de longueur non nulle. Un graphe non orienté est <strong>connexe</strong> si tout couple de sommets est relié par au moins un chemin. La <strong>distance</strong> entre deux sommets est la longueur du plus court chemin les reliant.</p>
+  </div>
+
+  <h2 id="s5">5. Compter les chemins avec les puissances de matrices</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 16.6 — Puissances de la matrice d'adjacence</span>
+    <p>Soit \(A\) la matrice d'adjacence d'un graphe. Pour tout \(k \geqslant 1\), le coefficient \((i, j)\) de \(A^k\) est le <strong>nombre de chemins de longueur exactement \(k\)</strong> allant de \(s_i\) à \(s_j\).</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration (par récurrence sur \(k\)).</span>
+      <p><em>Initialisation :</em> \(A^1 = A\) donne bien le nombre de chemins de longueur 1 (les arêtes). <em>Hérédité :</em> supposons la propriété pour \(A^k\). Un chemin de longueur \(k+1\) de \(s_i\) à \(s_j\) se décompose de manière unique en un chemin de longueur \(k\) de \(s_i\) vers un sommet intermédiaire \(s_\ell\), suivi d'une arête de \(s_\ell\) à \(s_j\). En sommant sur \(\ell\) :</p>
+      <p>\[ \text{nb chemins}_{k+1}(i, j) = \sum_{\ell=1}^{n} \text{nb chemins}_k(i, \ell) \cdot a_{\ell j} = \sum_{\ell} (A^k)_{i\ell}\,a_{\ell j} = (A^{k+1})_{ij}. \quad \blacksquare \]</p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Questions types au concours</span>
+    <ul>
+      <li>« Nombre de chemins de longueur 3 de \(s_1\) à \(s_4\) » : calculer \(A^3\) (ou seulement le coefficient utile, en calculant \(A^2\) puis la ligne/colonne adéquate).</li>
+      <li>« Existe-t-il un chemin de \(s_i\) à \(s_j\) ? » : regarder si un coefficient \((i,j)\) de \(A + A^2 + \dots + A^{n-1}\) est non nul.</li>
+      <li>Coefficient diagonal de \(A^2\) : \((A^2)_{ii} = \sum_\ell a_{i\ell}a_{\ell i} = d(s_i)\) pour un graphe simple non orienté — chaque voisin donne un aller-retour.</li>
+    </ul>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Vocabulaire et degrés</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit le graphe \(G\) du cours (arêtes 1-2, 1-3, 2-3, 2-4).</p>
+    <ol>
+      <li>Vérifier le lemme des poignées de main.</li>
+      <li>\(G\) est-il connexe ? Donner la distance de 3 à 4.</li>
+      <li>Citer un cycle de \(G\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\sum d(s) = 2 + 3 + 2 + 1 = 8 = 2 \times 4\) arêtes ✓ (et deux sommets de degré impair : 2 et 4 — nombre pair ✓).</p>
+      <p><strong>2.</strong> Oui : 1, 2, 3 sont reliés entre eux et 4 est relié à 2. Distance de 3 à 4 : le chemin 3-2-4 a longueur 2, et il n'y a pas d'arête 3-4 : distance 2.</p>
+      <p><strong>3.</strong> 1-2-3-1 est un cycle de longueur 3.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Construire une matrice d'adjacence</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire la matrice d'adjacence du graphe <em>orienté</em> \(H\) : arcs \(1 \to 2\), \(2 \to 3\), \(3 \to 1\), \(1 \to 3\), \(3 \to 3\) (boucle). Donner le nombre d'arcs sortants de chaque sommet.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\[ B = \begin{pmatrix} 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 \end{pmatrix} \]</p>
+      <p>(ligne \(i\) = arcs partant de \(i\) ; la boucle en 3 donne \(b_{33} = 1\) ; la matrice n'est pas symétrique). Degrés sortants (sommes des lignes) : \(d^+(1) = 2\), \(d^+(2) = 1\), \(d^+(3) = 2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Chemins de longueur 2</h3><span class="level level-2">Entraînement</span></div>
+    <p>Avec la matrice \(A\) du graphe \(G\) du cours, calculer \(A^2\) et interpréter : le coefficient \((1,4)\), le coefficient \((1,1)\), le coefficient \((3,4)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\[ A^2 = \begin{pmatrix} 0&amp;1&amp;1&amp;0 \\ 1&amp;0&amp;1&amp;1 \\ 1&amp;1&amp;0&amp;0 \\ 0&amp;1&amp;0&amp;0 \end{pmatrix}^2 = \begin{pmatrix} 2 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 3 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 2 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 1 \end{pmatrix}. \]</p>
+      <p>\((A^2)_{14} = 1\) : un seul chemin de longueur 2 de 1 à 4, à savoir 1-2-4. \((A^2)_{11} = 2 = d(1)\) : les allers-retours 1-2-1 et 1-3-1. \((A^2)_{34} = 1\) : le chemin 3-2-4.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Graphe complet</h3><span class="level level-2">Entraînement</span></div>
+    <p>Le graphe complet \(K_n\) relie chaque paire de sommets distincts par une arête.</p>
+    <ol>
+      <li>Combien \(K_n\) a-t-il d'arêtes ? Quel est le degré de chaque sommet ?</li>
+      <li>Écrire la matrice d'adjacence de \(K_n\) sous la forme \(J_n - I_n\), où \(J_n\) est la matrice remplie de 1. Combien y a-t-il de chemins de longueur 2 entre deux sommets distincts ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Une arête par paire de sommets : \(\binom n2 = \frac{n(n-1)}{2}\) arêtes ; chaque sommet est relié aux \(n-1\) autres : degré \(n - 1\). (Vérification poignées de main : \(n(n-1) = 2\binom n2\) ✓.)</p>
+      <p><strong>2.</strong> \(A = J_n - I_n\) (des 1 partout sauf sur la diagonale). Comme \(J_n^2 = nJ_n\) :</p>
+      <p>\[ A^2 = J_n^2 - 2J_n + I_n = (n-2)J_n + I_n. \]</p>
+      <p>Pour \(i \neq j\) : \((A^2)_{ij} = n - 2\) chemins de longueur 2 (un par sommet intermédiaire autre que \(i\) et \(j\), ce qui est cohérent).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Modélisation (réseau de transport)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Quatre villes A, B, C, D sont reliées par des lignes aériennes <em>orientées</em> : A→B, B→C, C→D, D→A, A→C. Combien d'itinéraires de longueur exactement 3 permettent d'aller de A à D ? Les lister.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Matrice (ordre A, B, C, D) : \(M = \begin{pmatrix} 0&amp;1&amp;1&amp;0 \\ 0&amp;0&amp;1&amp;0 \\ 0&amp;0&amp;0&amp;1 \\ 1&amp;0&amp;0&amp;0 \end{pmatrix}\).</p>
+      <p>\(M^2 = \begin{pmatrix} 0&amp;0&amp;1&amp;1 \\ 0&amp;0&amp;0&amp;1 \\ 1&amp;0&amp;0&amp;0 \\ 0&amp;1&amp;1&amp;0 \end{pmatrix}\), puis la première ligne de \(M^3 = M^2 M\) : \((M^3)_{A\cdot} = (0,0,1,1)\cdot M\)… calculons : \((M^3)_{AD} = \sum_\ell (M^2)_{A\ell} M_{\ell D} = 1 \cdot M_{CD} + 1 \cdot M_{DD} = 1 + 0 = 1\).</p>
+      <p>Un seul itinéraire de longueur 3 de A à D : <strong>A→B→C→D</strong>. (A→C→D n'a que 2 étapes ; A→C→D→A→… dépasse.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Nombre d'arêtes et degrés</h3><span class="level level-2">Entraînement</span></div>
+    <p>1. Un graphe simple non orienté a 9 sommets, tous de degré 5. Est-ce possible ? <br>
+    2. Même question avec 10 sommets de degré 5 ; donner alors le nombre d'arêtes.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> La somme des degrés vaudrait \(9 \times 5 = 45\), impaire — impossible (elle doit valoir \(2 \times\) nb d'arêtes). Autre lecture : 9 sommets de degré impair, nombre impair, contradiction avec le lemme.</p>
+      <p><strong>2.</strong> \(10 \times 5 = 50 = 2m\) : possible <em>a priori</em>, avec \(m = 25\) arêtes. (Un tel graphe existe bien, par exemple le graphe de Petersen.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Graphe biparti et cycles (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un graphe est <em>biparti</em> si ses sommets se partagent en deux groupes \(U\) et \(V\) tels que toute arête relie un sommet de \(U\) à un sommet de \(V\). Montrer qu'un graphe biparti ne contient aucun cycle de longueur impaire.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Soit un cycle \(s_0 - s_1 - \dots - s_k = s_0\). Chaque arête fait changer de groupe : si \(s_0 \in U\), alors \(s_1 \in V\), \(s_2 \in U\)… par récurrence immédiate, \(s_i \in U\) si \(i\) est pair, \(s_i \in V\) si \(i\) est impair.</p>
+      <p>Or \(s_k = s_0 \in U\) : il faut donc que \(k\) soit pair. Tout cycle a une longueur paire. <span class="qed">∎</span></p>
+      <p class="small muted">(La réciproque est vraie : un graphe sans cycle impair est biparti — résultat de König, hors programme.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Étude complète type concours</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit le graphe orienté à 3 sommets de matrice \(M = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 1 &amp; 1 &amp; 0 \end{pmatrix}\).</p>
+    <ol>
+      <li>Dessiner (décrire) le graphe. Est-il possible d'aller de tout sommet à tout autre ?</li>
+      <li>Calculer \(M^2\) et \(M^3\). Combien de chemins de longueur 3 de 1 à 1 ?</li>
+      <li>Vérifier que \(M^3 = M + I_3\), et en déduire que pour tout \(k \geqslant 1\), le nombre de chemins de longueur \(k + 3\) entre deux sommets est la somme du nombre de chemins de longueur \(k+1\) et du nombre de chemins de longueur \(k\) entre ces mêmes sommets.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Arcs : 1→2, 2→3, 3→1, 3→2. On vérifie : 1→2→3→1 est un circuit passant par tous les sommets, donc tout sommet est accessible depuis tout autre (graphe fortement connexe).</p>
+      <p><strong>2.</strong> \(M^2 = \begin{pmatrix} 0&amp;0&amp;1 \\ 1&amp;1&amp;0 \\ 0&amp;1&amp;1 \end{pmatrix}\), \(M^3 = M^2 M = \begin{pmatrix} 1&amp;1&amp;0 \\ 0&amp;1&amp;1 \\ 1&amp;1&amp;1 \end{pmatrix}\).</p>
+      <p>\((M^3)_{11} = 1\) : un chemin de longueur 3 de 1 à 1, le circuit 1→2→3→1.</p>
+      <p><strong>3.</strong> \(M + I_3 = \begin{pmatrix} 1&amp;1&amp;0 \\ 0&amp;1&amp;1 \\ 1&amp;1&amp;1 \end{pmatrix} = M^3\) ✓. En multipliant par \(M^k\) (les puissances d'une même matrice commutent) :</p>
+      <p>\[ M^{k+3} = M^{k+1} + M^{k}. \]</p>
+      <p>En lisant le coefficient \((i, j)\) et en appliquant le théorème 16.6 : le nombre de chemins de longueur \(k+3\) de \(s_i\) à \(s_j\) vaut le nombre de chemins de longueur \(k+1\) plus le nombre de chemins de longueur \(k\). <span class="qed">∎</span></p>
+      <p class="small muted">Cette récurrence permet de calculer de proche en proche les nombres de chemins de toute longueur sans jamais calculer de grande puissance de \(M\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch15-couples-va.html"><span class="pn-label">Chapitre précédent</span>← Couples de variables aléatoires</a>
+    <a class="next" href="ch17-statistiques.html"><span class="pn-label">Chapitre suivant</span>Statistiques descriptives →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

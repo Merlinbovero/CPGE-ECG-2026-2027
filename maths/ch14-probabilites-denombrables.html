@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 14 — Probabilités sur un univers dénombrable | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : espaces probabilisés dénombrables, continuité monotone, variables aléatoires discrètes, loi géométrique, loi de Poisson, approximation binomiale-Poisson. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch14" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 14</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 14.</span> Probabilités sur un univers dénombrable — lois géométrique et de Poisson</h1>
+  <p class="lead">« Lancer une pièce jusqu'au premier pile » : le nombre de lancers n'est pas borné, l'univers devient infini dénombrable. Grâce aux séries (chapitre 13), on étend le cadre probabiliste, et l'on étudie les deux lois discrètes infinies du programme : géométrique et Poisson.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 2 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Espaces probabilisés généraux</a></li>
+      <li><a href="#s2">Continuité monotone</a></li>
+      <li><a href="#s3">Variables aléatoires discrètes : espérance, variance</a></li>
+      <li><a href="#s4">La loi géométrique</a></li>
+      <li><a href="#s5">La loi de Poisson</a></li>
+      <li><a href="#s6">Approximation de la binomiale par Poisson</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Espaces probabilisés généraux</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 14.1 — Tribu, probabilité (cadre général)</span>
+    <p>Sur un univers \(\Omega\) quelconque, une <strong>tribu</strong> \(\mathscr{A}\) est un ensemble de parties de \(\Omega\) (les <em>événements</em>) contenant \(\Omega\), stable par complémentaire et par réunion <em>dénombrable</em>. Une <strong>probabilité</strong> \(P\) sur \((\Omega, \mathscr{A})\) vérifie \(P(\Omega) = 1\) et la <strong>σ-additivité</strong> : pour toute suite \((A_n)\) d'événements deux à deux incompatibles,</p>
+    <p>\[ P\left(\bigcup_{n=0}^{+\infty} A_n\right) = \sum_{n=0}^{+\infty} P(A_n) \quad \text{(série convergente)}. \]</p>
+    <p>Toutes les propriétés du chapitre 10 (complémentaire, crible, croissance, conditionnement, Bayes, indépendance) restent valables ; la formule des probabilités totales s'étend aux systèmes complets <em>dénombrables</em>.</p>
+  </div>
+
+  <h2 id="s2">2. Continuité monotone</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 14.2 — Continuité monotone</span>
+    <p>Si \((A_n)\) est une suite <strong>croissante</strong> d'événements (\(A_n \subset A_{n+1}\)) :</p>
+    <p>\[ P\left(\bigcup_{n} A_n\right) = \lim_{n \to +\infty} P(A_n). \]</p>
+    <p>Si \((A_n)\) est <strong>décroissante</strong> (\(A_{n+1} \subset A_n\)) : \(P\left(\bigcap_n A_n\right) = \lim\limits_{n} P(A_n)\).</p>
+    <p class="small">Usage type : « obtenir au moins un pile en une infinité de lancers » — avec \(A_n\) = « au moins un pile dans les \(n\) premiers lancers », \(P(A_n) = 1 - (1-p)^n \to 1\) : l'événement limite est presque sûr.</p>
+  </div>
+
+  <h2 id="s3">3. Variables aléatoires discrètes : espérance, variance</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 14.3 — V.a. discrète, espérance</span>
+    <p>Une v.a. <strong>discrète</strong> \(X\) prend ses valeurs dans un ensemble fini ou dénombrable \(\{x_n,\ n \in \mathbb{N}\}\). Sa loi est la donnée des \(P(X = x_n)\), de somme 1 (série convergente). \(X\) <strong>admet une espérance</strong> si la série \(\sum x_n P(X = x_n)\) converge absolument, et alors :</p>
+    <p>\[ E(X) = \sum_{n=0}^{+\infty} x_n\, P(X = x_n). \]</p>
+    <p>Contrairement au cas fini, <strong>l'existence n'est pas automatique</strong> : elle doit être justifiée (convergence de la série). Le théorème de transfert, la linéarité, Kœnig-Huygens et \(V(aX+b) = a^2V(X)\) s'étendent, sous réserve d'existence.</p>
+  </div>
+
+  <h2 id="s4">4. La loi géométrique</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 14.4 — Loi géométrique \(\mathscr{G}(p)\) (démonstrations exigibles)</span>
+    <p>On répète des épreuves de Bernoulli indépendantes de paramètre \(p \in \;]0,1[\) ; soit \(X\) le <strong>rang du premier succès</strong>. Alors \(X(\Omega) = \mathbb{N}^*\) et :</p>
+    <p>\[ P(X = k) = (1-p)^{k-1}\,p, \qquad E(X) = \frac1p, \qquad V(X) = \frac{1-p}{p^2}. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p><em>Loi :</em> \(\{X = k\}\) = « \(k-1\) échecs puis un succès », de probabilité \((1-p)^{k-1}p\) par indépendance. Somme : \(p\sum_{k \geqslant 1}(1-p)^{k-1} = \frac{p}{1 - (1-p)} = 1\) ✓ (série géométrique, \(|1 - p| &lt; 1\)).</p>
+      <p><em>Espérance :</em> la série \(\sum k(1-p)^{k-1}p\) converge (série géométrique dérivée, \(|1-p| &lt; 1\)) et :</p>
+      <p>\[ E(X) = p\sum_{k=1}^{+\infty} k\,(1-p)^{k-1} = p \cdot \frac{1}{(1 - (1-p))^2} = \frac{p}{p^2} = \frac1p. \]</p>
+      <p><em>Variance :</em> \(E[X(X-1)] = p(1-p)\sum_{k \geqslant 2} k(k-1)(1-p)^{k-2} = p(1-p)\cdot\frac{2}{p^3} = \frac{2(1-p)}{p^2}\), donc \(E(X^2) = \frac{2(1-p)}{p^2} + \frac1p\) et \(V(X) = \frac{2(1-p)}{p^2} + \frac1p - \frac{1}{p^2} = \frac{2 - 2p + p - 1}{p^2} = \frac{1-p}{p^2}\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 14.5 — Propriété d'absence de mémoire</span>
+    <p>Pour \(X \hookrightarrow \mathscr{G}(p)\) : \(P(X &gt; n) = (1-p)^n\), et pour tous \(m, n \in \mathbb{N}\) :</p>
+    <p>\[ P(X &gt; n + m \mid X &gt; n) = P(X &gt; m). \]</p>
+    <p class="small">« Avoir déjà attendu \(n\) épreuves sans succès ne change rien à l'attente restante » — la loi géométrique est la seule loi discrète sans mémoire.</p>
+  </div>
+
+  <h2 id="s5">5. La loi de Poisson</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 14.6 — Loi de Poisson \(\mathscr{P}(\lambda)\) (démonstrations exigibles)</span>
+    <p>\(X\) suit la loi de Poisson de paramètre \(\lambda &gt; 0\) si \(X(\Omega) = \mathbb{N}\) et :</p>
+    <p>\[ P(X = k) = \mathrm{e}^{-\lambda}\,\frac{\lambda^k}{k!}, \qquad E(X) = \lambda, \qquad V(X) = \lambda. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p><em>C'est bien une loi :</em> \(\sum_{k \geqslant 0} \mathrm{e}^{-\lambda}\frac{\lambda^k}{k!} = \mathrm{e}^{-\lambda}\,\mathrm{e}^{\lambda} = 1\) (série exponentielle).</p>
+      <p><em>Espérance :</em> \(E(X) = \sum_{k \geqslant 1} k\,\mathrm{e}^{-\lambda}\frac{\lambda^k}{k!} = \lambda\,\mathrm{e}^{-\lambda}\sum_{k\geqslant1} \frac{\lambda^{k-1}}{(k-1)!} = \lambda\,\mathrm{e}^{-\lambda}\mathrm{e}^{\lambda} = \lambda\) (convergence assurée par la série exponentielle).</p>
+      <p><em>Variance :</em> \(E[X(X-1)] = \sum_{k \geqslant 2} k(k-1)\mathrm{e}^{-\lambda}\frac{\lambda^k}{k!} = \lambda^2 \mathrm{e}^{-\lambda}\sum_{k \geqslant 2}\frac{\lambda^{k-2}}{(k-2)!} = \lambda^2\). D'où \(E(X^2) = \lambda^2 + \lambda\) et \(V(X) = \lambda^2 + \lambda - \lambda^2 = \lambda\). <span class="qed">∎</span></p>
+    </div>
+    <p class="small">La loi de Poisson modélise les <strong>événements rares</strong> : nombre d'appels reçus en une heure, de pannes par mois, de clients à un guichet… \(\lambda\) est le nombre moyen d'occurrences.</p>
+  </div>
+
+  <h2 id="s6">6. Approximation de la binomiale par Poisson</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 14.7 — Convergence binomiale → Poisson</span>
+    <p>Si \(X_n \hookrightarrow \mathscr{B}(n, p_n)\) avec \(n\,p_n \to \lambda &gt; 0\) (typiquement \(p_n = \frac\lambda n\)), alors pour tout \(k \in \mathbb{N}\) :</p>
+    <p>\[ P(X_n = k) \xrightarrow[n \to +\infty]{} \mathrm{e}^{-\lambda}\,\frac{\lambda^k}{k!}. \]</p>
+    <p class="small">Règle pratique : pour \(n \geqslant 30\), \(p \leqslant 0{,}1\) et \(np \leqslant 15\), on approche \(\mathscr{B}(n,p)\) par \(\mathscr{P}(np)\) — « loi des événements rares ».</p>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Loi géométrique : calculs directs</h3><span class="level level-1">Application directe</span></div>
+    <p>On lance un dé équilibré jusqu'à obtenir un 6 ; soit \(X\) le nombre de lancers nécessaires.</p>
+    <ol>
+      <li>Donner la loi de \(X\), \(E(X)\) et \(V(X)\).</li>
+      <li>Calculer \(P(X = 3)\) et \(P(X &gt; 4)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Répétition d'épreuves de Bernoulli indépendantes (succès « obtenir 6 », \(p = \frac16\)) ; \(X\) est le rang du premier succès : \(X \hookrightarrow \mathscr{G}\left(\frac16\right)\). \(E(X) = 6\) (en moyenne 6 lancers), \(V(X) = \frac{5/6}{1/36} = 30\).</p>
+      <p><strong>2.</strong> \(P(X = 3) = \left(\frac56\right)^2 \times \frac16 = \frac{25}{216} \approx 0{,}116\) ; \(P(X &gt; 4) = \left(\frac56\right)^4 = \frac{625}{1296} \approx 0{,}482\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Loi de Poisson : calculs directs</h3><span class="level level-1">Application directe</span></div>
+    <p>Le nombre \(X\) d'appels reçus par un standard en une minute suit \(\mathscr{P}(3)\).</p>
+    <ol>
+      <li>Calculer \(P(X = 0)\), \(P(X = 2)\), \(P(X \geqslant 2)\).</li>
+      <li>Quelle est la probabilité de recevoir exactement 2 appels sachant qu'on en reçoit au moins 1 ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(P(X = 0) = \mathrm{e}^{-3} \approx 0{,}050\) ; \(P(X = 2) = \mathrm{e}^{-3}\frac{9}{2} \approx 0{,}224\) ;</p>
+      <p>\(P(X \geqslant 2) = 1 - P(X = 0) - P(X = 1) = 1 - \mathrm{e}^{-3}(1 + 3) = 1 - 4\mathrm{e}^{-3} \approx 0{,}801\).</p>
+      <p><strong>2.</strong> \(P(X = 2 \mid X \geqslant 1) = \dfrac{P(X = 2)}{P(X \geqslant 1)} = \dfrac{4{,}5\,\mathrm{e}^{-3}}{1 - \mathrm{e}^{-3}} \approx \dfrac{0{,}224}{0{,}950} \approx 0{,}236\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Vérifier une loi</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(X\) à valeurs dans \(\mathbb{N}^*\) avec \(P(X = k) = \dfrac{c}{2^k}\). Déterminer \(c\) pour que ce soit une loi de probabilité, puis calculer \(P(X \text{ pair})\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Il faut \(\sum_{k \geqslant 1} \frac{c}{2^k} = c \cdot \frac{1/2}{1 - 1/2} = c = 1\). Donc \(c = 1\) (et les probabilités sont bien positives).</p>
+      <p>\[ P(X \text{ pair}) = \sum_{j=1}^{+\infty} P(X = 2j) = \sum_{j=1}^{+\infty} \frac{1}{4^j} = \frac{1/4}{1 - 1/4} = \frac13. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Absence de mémoire</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{G}(p)\). Démontrer que pour tous \(m, n \in \mathbb{N}\) : \(P(X &gt; n+m \mid X &gt; n) = P(X &gt; m)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>D'abord \(P(X &gt; n) = \sum_{k=n+1}^{+\infty}(1-p)^{k-1}p = p\,\frac{(1-p)^n}{1-(1-p)} = (1-p)^n\) (série géométrique de premier terme \((1-p)^n p\)). (Ou directement : « \(X &gt; n\) » = « les \(n\) premières épreuves échouent ».)</p>
+      <p>Comme \(\{X &gt; n+m\} \subset \{X &gt; n\}\) :</p>
+      <p>\[ P(X &gt; n+m \mid X &gt; n) = \frac{P(X &gt; n + m)}{P(X &gt; n)} = \frac{(1-p)^{n+m}}{(1-p)^n} = (1-p)^m = P(X &gt; m). \quad \blacksquare \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Approximation par Poisson</h3><span class="level level-2">Entraînement</span></div>
+    <p>Un livre de 500 pages contient en moyenne 0,2 coquille par page ; on suppose que le nombre de coquilles d'une page suit une loi de Poisson, indépendamment des autres pages. Sur une page donnée, calculer la probabilité d'avoir : aucune coquille ; au moins 2 coquilles. Puis : parmi 500 pages, en supposant l'indépendance, quel est le nombre moyen de pages sans coquille ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Soit \(X \hookrightarrow \mathscr{P}(0{,}2)\) le nombre de coquilles d'une page.</p>
+      <p>\(P(X = 0) = \mathrm{e}^{-0{,}2} \approx 0{,}819\).</p>
+      <p>\(P(X \geqslant 2) = 1 - \mathrm{e}^{-0{,}2}(1 + 0{,}2) = 1 - 1{,}2\,\mathrm{e}^{-0{,}2} \approx 0{,}0175\).</p>
+      <p>Le nombre \(N\) de pages sans coquille suit \(\mathscr{B}(500,\ \mathrm{e}^{-0{,}2})\) : en moyenne \(E(N) = 500\,\mathrm{e}^{-0{,}2} \approx 409\) pages.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Transfert et espérances</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{P}(\lambda)\). Montrer que \(E\left(\dfrac{1}{X+1}\right) = \dfrac{1 - \mathrm{e}^{-\lambda}}{\lambda}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par le théorème de transfert (la série converge : termes positifs majorés par \(P(X = k)\)) :</p>
+      <p>\[ E\left(\frac{1}{X+1}\right) = \sum_{k=0}^{+\infty} \frac{1}{k+1}\,\mathrm{e}^{-\lambda}\frac{\lambda^k}{k!} = \frac{\mathrm{e}^{-\lambda}}{\lambda}\sum_{k=0}^{+\infty} \frac{\lambda^{k+1}}{(k+1)!} = \frac{\mathrm{e}^{-\lambda}}{\lambda}\sum_{j=1}^{+\infty} \frac{\lambda^{j}}{j!} = \frac{\mathrm{e}^{-\lambda}}{\lambda}\big(\mathrm{e}^{\lambda} - 1\big) = \frac{1 - \mathrm{e}^{-\lambda}}{\lambda}, \]</p>
+      <p>avec \(j = k + 1\) et la série exponentielle privée de son terme \(j = 0\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Premier succès et parité (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Deux joueurs A et B lancent à tour de rôle une pièce donnant pile avec probabilité \(p \in \;]0,1[\) ; A commence, et le premier qui obtient pile gagne. Soit \(X \hookrightarrow \mathscr{G}(p)\) le rang du premier pile.</p>
+    <ol>
+      <li>Exprimer la probabilité \(a\) que A gagne comme la somme d'une série, puis la calculer.</li>
+      <li>Pour quelle valeur de \(p\) le jeu est-il le moins déséquilibré ? Que se passe-t-il quand \(p \to 0\) et quand \(p \to 1\) ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> A gagne si le premier pile survient à un rang impair. Avec \(q = 1 - p\) :</p>
+      <p>\[ a = P(X \text{ impair}) = \sum_{j=0}^{+\infty} P(X = 2j+1) = \sum_{j=0}^{+\infty} q^{2j}\,p = \frac{p}{1 - q^2} = \frac{p}{(1-q)(1+q)} = \frac{1}{1 + q} = \frac{1}{2 - p}. \]</p>
+      <p><strong>2.</strong> \(a = \frac{1}{2-p}\) est strictement croissante en \(p\), toujours \(&gt; \frac12\) : l'avantage au premier joueur est structurel. Quand \(p \to 0\), \(a \to \frac12\) (jeu presque équilibré : la pièce donne rarement pile, l'avantage du premier tour s'estompe). Quand \(p \to 1\), \(a \to 1\) (A gagne presque sûrement au premier lancer). Le jeu est le moins déséquilibré à la limite \(p \to 0\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Somme aléatoire et conditionnement (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Le nombre \(N\) de clients entrant dans une boutique en une heure suit \(\mathscr{P}(\lambda)\). Chaque client achète, indépendamment des autres et de \(N\), avec probabilité \(p\). Soit \(X\) le nombre d'acheteurs.</p>
+    <ol>
+      <li>Justifier que pour \(n \geqslant k\) : \(P(X = k \mid N = n) = \dbinom{n}{k}p^k(1-p)^{n-k}\).</li>
+      <li>Montrer que \(X \hookrightarrow \mathscr{P}(\lambda p)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Sachant \(N = n\), \(X\) compte les succès de \(n\) épreuves de Bernoulli indépendantes de paramètre \(p\) : loi binomiale conditionnelle \(\mathscr{B}(n, p)\).</p>
+      <p><strong>2.</strong> Par la formule des probabilités totales avec le système complet \((\{N = n\})_{n \geqslant 0}\) :</p>
+      <p>\[ P(X = k) = \sum_{n=k}^{+\infty} P(N = n)\,P(X = k \mid N = n) = \sum_{n=k}^{+\infty} \mathrm{e}^{-\lambda}\frac{\lambda^n}{n!}\binom nk p^k (1-p)^{n-k}. \]</p>
+      <p>Or \(\frac{1}{n!}\binom nk = \frac{1}{k!\,(n-k)!}\). En posant \(m = n - k\) :</p>
+      <p>\[ P(X = k) = \mathrm{e}^{-\lambda}\,\frac{(\lambda p)^k}{k!} \sum_{m=0}^{+\infty} \frac{\big(\lambda(1-p)\big)^m}{m!} = \mathrm{e}^{-\lambda}\,\frac{(\lambda p)^k}{k!}\,\mathrm{e}^{\lambda(1-p)} = \mathrm{e}^{-\lambda p}\,\frac{(\lambda p)^k}{k!}. \]</p>
+      <p>C'est la loi \(\mathscr{P}(\lambda p)\). <span class="qed">∎</span> <span class="small muted">Résultat dit d'« amincissement » d'un processus de Poisson : filtrer au hasard une loi de Poisson redonne une loi de Poisson.</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Existence d'espérance (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(X\) à valeurs dans \(\mathbb{N}^*\) de loi \(P(X = k) = \dfrac{6}{\pi^2 k^2}\) (on admet \(\sum_{k \geqslant 1} \frac{1}{k^2} = \frac{\pi^2}{6}\)).</p>
+    <ol>
+      <li>Vérifier que c'est bien une loi de probabilité.</li>
+      <li>\(X\) admet-elle une espérance ?</li>
+      <li>La variable \(Y = \dfrac1X\) admet-elle une espérance ? La calculer le cas échéant en fonction de \(S_3 = \sum_{k\geqslant1} \frac{1}{k^3}\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Termes positifs et \(\sum_{k\geqslant1} \frac{6}{\pi^2 k^2} = \frac{6}{\pi^2} \times \frac{\pi^2}{6} = 1\) ✓.</p>
+      <p><strong>2.</strong> \(E(X)\) existerait si \(\sum k \cdot \frac{6}{\pi^2 k^2} = \frac{6}{\pi^2}\sum \frac1k\) convergeait — or c'est la série harmonique, divergente. <strong>\(X\) n'admet pas d'espérance.</strong> (Exemple important : une loi peut exister sans espérance.)</p>
+      <p><strong>3.</strong> Par transfert : \(\sum_k \frac1k \cdot \frac{6}{\pi^2k^2} = \frac{6}{\pi^2}\sum_k \frac{1}{k^3}\), série de Riemann \(\alpha = 3 &gt; 1\), convergente (et à termes positifs, donc absolument convergente) : \(Y\) admet une espérance, \(E(Y) = \frac{6\,S_3}{\pi^2}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch13-series.html"><span class="pn-label">Chapitre précédent</span>← Séries numériques</a>
+    <a class="next" href="ch15-couples-va.html"><span class="pn-label">Chapitre suivant</span>Couples de variables aléatoires →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

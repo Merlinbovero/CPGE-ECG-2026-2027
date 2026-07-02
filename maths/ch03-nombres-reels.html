@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 3 — Nombres réels, équations et inéquations | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : ensemble des réels, intervalles, valeur absolue, puissances et racines, trinôme du second degré, inéquations et tableaux de signes. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch03" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 3</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 3.</span> Nombres réels, équations et inéquations</h1>
+  <p class="lead">Manipuler les inégalités sans erreur, maîtriser la valeur absolue et le trinôme du second degré : ces techniques de base conditionnent tout le programme d'analyse. Ce chapitre est un chapitre d'outils — chaque méthode doit devenir un réflexe.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 1,5 semaine de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">L'ensemble des nombres réels</a></li>
+      <li><a href="#s2">Inégalités : règles de manipulation</a></li>
+      <li><a href="#s3">Valeur absolue</a></li>
+      <li><a href="#s4">Puissances et racines</a></li>
+      <li><a href="#s5">Le trinôme du second degré</a></li>
+      <li><a href="#s6">Équations, inéquations, tableaux de signes</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. L'ensemble des nombres réels</h2>
+  <p>\(\mathbb{R}\) est l'ensemble des nombres réels, muni de l'addition, de la multiplication et de la relation d'ordre \(\leqslant\). Il contient les rationnels \(\mathbb{Q}\) (quotients d'entiers) et des irrationnels comme \(\sqrt2\), \(\pi\), \(\mathrm{e}\).</p>
+
+  <div class="box def">
+    <span class="box-title">Définition 3.1 — Intervalles</span>
+    <p>Pour \(a \leqslant b\), on note \([a,b] = \{x \in \mathbb{R} \mid a \leqslant x \leqslant b\}\) (segment), \(]a,b[ = \{x \mid a &lt; x &lt; b\}\) (intervalle ouvert), et de même \([a,b[\), \(]a,b]\), \([a,+\infty[\), \(]-\infty,b]\)… Un intervalle est un ensemble « sans trou » : si \(x, y\) lui appartiennent, tout réel entre \(x\) et \(y\) aussi.</p>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Définition 3.2 — Majorant, minorant, maximum, minimum</span>
+    <p>Soit \(A \subset \mathbb{R}\) non vide. Un réel \(M\) est un <strong>majorant</strong> de \(A\) si \(\forall x \in A,\ x \leqslant M\). Si de plus \(M \in A\), c'est le <strong>maximum</strong> de \(A\), noté \(\max A\). Définitions analogues pour minorant et minimum. \(A\) est <strong>bornée</strong> si elle est majorée et minorée.</p>
+    <p class="small muted">Exemple : \(]0,1]\) admet 1 pour maximum, est minoré par 0 mais n'a pas de minimum (0 n'appartient pas à l'ensemble).</p>
+  </div>
+
+  <h2 id="s2">2. Inégalités : règles de manipulation</h2>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 3.3 — Règles fondamentales</span>
+    <p>Pour tous réels \(a, b, c, d\) :</p>
+    <ul>
+      <li>Si \(a \leqslant b\), alors \(a + c \leqslant b + c\) (on peut toujours ajouter un réel).</li>
+      <li>Si \(a \leqslant b\) et \(c \geqslant 0\), alors \(ac \leqslant bc\) ; si \(c \leqslant 0\), alors \(ac \geqslant bc\) (<strong>le sens change</strong>).</li>
+      <li>Si \(a \leqslant b\) et \(c \leqslant d\), alors \(a + c \leqslant b + d\) (on peut additionner des inégalités de même sens).</li>
+      <li>Si \(0 \leqslant a \leqslant b\) et \(0 \leqslant c \leqslant d\), alors \(ac \leqslant bd\) (multiplication : uniquement pour des nombres <strong>positifs</strong>).</li>
+      <li>Si \(0 &lt; a \leqslant b\), alors \(\dfrac1b \leqslant \dfrac1a\) (l'inverse renverse l'ordre sur les positifs).</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges</span>
+    <ul>
+      <li>On ne <strong>soustrait</strong> pas et on ne <strong>divise</strong> pas des inégalités membre à membre.</li>
+      <li>\(x \mapsto x^2\) ne conserve l'ordre que sur \(\mathbb{R}_+\) : \(-3 \leqslant 2\) mais \(9 &gt; 4\).</li>
+      <li>Ne jamais multiplier une inéquation par une expression dont on ne connaît pas le signe (par exemple \(x - 1\)) : faire une disjonction de cas ou tout passer du même côté et étudier le signe.</li>
+    </ul>
+  </div>
+
+  <h2 id="s3">3. Valeur absolue</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 3.4 — Valeur absolue</span>
+    <p>Pour \(x \in \mathbb{R}\) : \(|x| = x\) si \(x \geqslant 0\), et \(|x| = -x\) si \(x &lt; 0\). Géométriquement, \(|x - a|\) est la <strong>distance</strong> entre \(x\) et \(a\) sur la droite réelle.</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 3.5 — Propriétés</span>
+    <p>Pour tous \(x, y \in \mathbb{R}\) et \(r \geqslant 0\) :</p>
+    <ul>
+      <li>\(|x| \geqslant 0\) ; \(|x| = 0 \iff x = 0\) ; \(|xy| = |x|\,|y|\) ; \(\sqrt{x^2} = |x|\) ;</li>
+      <li>\(|x| \leqslant r \iff -r \leqslant x \leqslant r\) ; et \(|x - a| \leqslant r \iff x \in [a - r,\, a + r]\) ;</li>
+      <li><strong>Inégalité triangulaire :</strong> \(|x + y| \leqslant |x| + |y|\), avec égalité si et seulement si \(x\) et \(y\) sont de même signe ;</li>
+      <li>Seconde inégalité triangulaire : \(\big| |x| - |y| \big| \leqslant |x - y|\).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (inégalité triangulaire).</span>
+      <p>Pour tout réel \(t\), \(-|t| \leqslant t \leqslant |t|\). En additionnant les encadrements de \(x\) et \(y\) : \(-(|x| + |y|) \leqslant x + y \leqslant |x| + |y|\), ce qui équivaut à \(|x+y| \leqslant |x| + |y|\) d'après le deuxième point. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Résoudre avec des valeurs absolues</span>
+    <ul>
+      <li>\(|f(x)| = a\) (avec \(a \geqslant 0\)) ⟺ \(f(x) = a\) ou \(f(x) = -a\).</li>
+      <li>\(|f(x)| \leqslant a\) ⟺ \(-a \leqslant f(x) \leqslant a\) ; \(|f(x)| \geqslant a\) ⟺ \(f(x) \geqslant a\) ou \(f(x) \leqslant -a\).</li>
+      <li>\(|A| = |B|\) ⟺ \(A = B\) ou \(A = -B\).</li>
+      <li>En dernier recours : disjonction de cas selon le signe des expressions à l'intérieur des valeurs absolues.</li>
+    </ul>
+  </div>
+
+  <h2 id="s4">4. Puissances et racines</h2>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 3.6 — Règles sur les puissances</span>
+    <p>Pour \(a, b &gt; 0\) et \(m, n \in \mathbb{Z}\) (puis \(m, n\) réels, chapitre 7) :</p>
+    <p>\[ a^m a^n = a^{m+n}, \quad \frac{a^m}{a^n} = a^{m-n}, \quad (a^m)^n = a^{mn}, \quad (ab)^n = a^n b^n, \quad a^{-n} = \frac{1}{a^n}, \quad a^0 = 1. \]</p>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Définition 3.7 — Racine carrée</span>
+    <p>Pour \(x \geqslant 0\), \(\sqrt{x}\) est l'unique réel <strong>positif</strong> dont le carré vaut \(x\). Propriétés (pour \(a, b \geqslant 0\)) : \(\sqrt{ab} = \sqrt a \sqrt b\), \(\sqrt{\frac ab} = \frac{\sqrt a}{\sqrt b}\) (\(b &gt; 0\)). Attention : \(\sqrt{a + b} \neq \sqrt a + \sqrt b\) en général.</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Équations avec racines : attention aux équivalences</span>
+    <p>\(\sqrt{f(x)} = g(x)\) ⟺ \(f(x) = g(x)^2\) <strong>et</strong> \(g(x) \geqslant 0\). Élever au carré sans vérifier le signe introduit des solutions parasites. Exemple : \(\sqrt{x+3} = x + 1\) donne \(x + 3 = x^2 + 2x + 1\), soit \(x^2 + x - 2 = 0\), racines \(1\) et \(-2\) ; seule \(x = 1\) vérifie \(x + 1 \geqslant 0\) <em>et</em> l'équation initiale (\(-2\) donnerait \(\sqrt1 = -1\), faux).</p>
+  </div>
+
+  <h2 id="s5">5. Le trinôme du second degré</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 3.8 — Racines du trinôme (démonstration exigible)</span>
+    <p>Soit \(f(x) = ax^2 + bx + c\) avec \(a \neq 0\), et \(\Delta = b^2 - 4ac\) le <strong>discriminant</strong>.</p>
+    <ul>
+      <li>Si \(\Delta &gt; 0\) : deux racines réelles distinctes \(x_{1,2} = \dfrac{-b \pm \sqrt\Delta}{2a}\), et \(f(x) = a(x - x_1)(x - x_2)\).</li>
+      <li>Si \(\Delta = 0\) : une racine double \(x_0 = -\dfrac{b}{2a}\), et \(f(x) = a(x - x_0)^2\).</li>
+      <li>Si \(\Delta &lt; 0\) : aucune racine réelle ; \(f(x)\) garde un signe constant, celui de \(a\).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (forme canonique).</span>
+      <p>\[ ax^2 + bx + c = a\left(x^2 + \frac ba x\right) + c = a\left(x + \frac{b}{2a}\right)^{\!2} - \frac{b^2}{4a} + c = a\left(x + \frac{b}{2a}\right)^{\!2} - \frac{\Delta}{4a}. \]</p>
+      <p>Ainsi \(f(x) = 0 \iff \left(x + \frac{b}{2a}\right)^2 = \frac{\Delta}{4a^2}\). Si \(\Delta &lt; 0\), pas de solution (un carré est positif) et \(f(x) = a\big[(x + \frac{b}{2a})^2 - \frac{\Delta}{4a^2}\big]\) avec le crochet strictement positif : \(f\) a le signe de \(a\). Si \(\Delta \geqslant 0\) : \(x + \frac{b}{2a} = \pm\frac{\sqrt\Delta}{2a}\), d'où les racines, et la factorisation s'obtient en développant. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 3.9 — Signe du trinôme et relations coefficients-racines</span>
+    <p><strong>Signe :</strong> le trinôme est du signe de \(a\) à l'extérieur des racines, du signe de \(-a\) entre les racines (et du signe de \(a\) partout si \(\Delta \leqslant 0\), en s'annulant éventuellement en \(x_0\)).</p>
+    <p><strong>Somme et produit :</strong> si \(\Delta \geqslant 0\), alors \(x_1 + x_2 = -\dfrac ba\) et \(x_1 x_2 = \dfrac ca\). Réciproquement, deux réels de somme \(S\) et de produit \(P\) sont les racines de \(x^2 - Sx + P = 0\).</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Racine évidente</span>
+    <p>Avant de calculer \(\Delta\), tester \(x = 1\) (racine ssi \(a + b + c = 0\)) et \(x = -1\) (racine ssi \(a - b + c = 0\)). L'autre racine s'obtient alors par le produit : \(x_2 = \frac{c}{a\,x_1}\). Exemple : \(3x^2 - 7x + 4\) : \(3 - 7 + 4 = 0\) donc \(x_1 = 1\), et \(x_2 = \frac{4}{3}\).</p>
+  </div>
+
+  <h2 id="s6">6. Équations, inéquations, tableaux de signes</h2>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Inéquation : la démarche systématique</span>
+    <ol>
+      <li>Déterminer le <strong>domaine de validité</strong> (dénominateurs non nuls, racines définies…).</li>
+      <li><strong>Tout passer du même côté</strong> : se ramener à \(g(x) \geqslant 0\) (ne jamais « multiplier en croix » sans connaître les signes).</li>
+      <li><strong>Factoriser</strong> ou réduire au même dénominateur.</li>
+      <li>Faire un <strong>tableau de signes</strong> facteur par facteur.</li>
+      <li>Conclure en donnant l'ensemble des solutions sous forme d'intervalle(s), en vérifiant les bornes (ouvertes/fermées, valeurs interdites exclues).</li>
+    </ol>
+  </div>
+
+  <p><strong>Exemple entièrement rédigé.</strong> Résolvons \(\dfrac{x+2}{x-1} \leqslant 2\) sur \(\mathbb{R}\).</p>
+  <p><em>Domaine :</em> \(x \neq 1\). On passe tout à gauche :</p>
+  <p>\[ \frac{x+2}{x-1} - 2 = \frac{x + 2 - 2(x-1)}{x-1} = \frac{4 - x}{x - 1} \leqslant 0. \]</p>
+  <p><em>Tableau de signes</em> : \(4 - x\) s'annule en 4 (positif avant, négatif après) ; \(x - 1\) s'annule en 1 (négatif avant, positif après). Le quotient est donc négatif ou nul sur \(]-\infty, 1[\) (positif/négatif : non — vérifions : pour \(x = 0\) : \(\frac{4}{-1} = -4 \leqslant 0\) ✓) et sur \([4, +\infty[\) (pour \(x = 5\) : \(\frac{-1}{4} \leqslant 0\) ✓), positif sur \(]1, 4[\) (pour \(x = 2\) : \(\frac{2}{1} = 2 &gt; 0\)). <em>Conclusion :</em> \(\mathscr{S} = \;]-\infty, 1[\; \cup\; [4, +\infty[\) — borne 1 exclue (valeur interdite), borne 4 incluse (inégalité large).</p>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Trinômes</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : 1. \(2x^2 - 5x + 3 = 0\) ; &nbsp; 2. \(x^2 + x + 1 = 0\) ; &nbsp; 3. \(-x^2 + 4x - 4 = 0\) ; &nbsp; 4. \(x^2 - 3x - 10 \leqslant 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(2 - 5 + 3 = 0\) : racine évidente \(x_1 = 1\) ; produit des racines \(= \frac32\), donc \(x_2 = \frac32\). \(\mathscr{S} = \{1, \frac32\}\).</p>
+      <p><strong>2.</strong> \(\Delta = 1 - 4 = -3 &lt; 0\) : \(\mathscr{S} = \varnothing\).</p>
+      <p><strong>3.</strong> \(\Delta = 16 - 16 = 0\) : racine double \(x_0 = \frac{-4}{-2} = 2\). \(\mathscr{S} = \{2\}\). (Ou directement : \(-(x-2)^2 = 0\).)</p>
+      <p><strong>4.</strong> \(\Delta = 9 + 40 = 49\), racines \(\frac{3 \pm 7}{2}\), soit \(-2\) et \(5\). Le trinôme (coefficient dominant \(1 &gt; 0\)) est négatif <em>entre</em> les racines : \(\mathscr{S} = [-2, 5]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Valeurs absolues</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre : 1. \(|2x - 3| = 5\) ; &nbsp; 2. \(|x + 1| \leqslant 4\) ; &nbsp; 3. \(|3 - x| &gt; 2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(2x - 3 = 5\) ou \(2x - 3 = -5\), soit \(x = 4\) ou \(x = -1\). \(\mathscr{S} = \{-1, 4\}\).</p>
+      <p><strong>2.</strong> \(-4 \leqslant x + 1 \leqslant 4\), soit \(\mathscr{S} = [-5, 3]\).</p>
+      <p><strong>3.</strong> \(3 - x &gt; 2\) ou \(3 - x &lt; -2\), soit \(x &lt; 1\) ou \(x &gt; 5\) : \(\mathscr{S} = \;]-\infty, 1[\; \cup\; ]5, +\infty[\). (Interprétation : distance de \(x\) à 3 strictement supérieure à 2.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Inéquation rationnelle</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(\dfrac{2x - 1}{x + 2} \geqslant 3\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Domaine :</em> \(x \neq -2\). On passe tout à gauche :</p>
+      <p>\[ \frac{2x-1}{x+2} - 3 = \frac{2x - 1 - 3(x+2)}{x+2} = \frac{-x - 7}{x + 2} \geqslant 0. \]</p>
+      <p><em>Tableau :</em> \(-x - 7\) s'annule en \(-7\) (positif avant, négatif après) ; \(x + 2\) s'annule en \(-2\). Le quotient est positif quand les deux facteurs ont le même signe : pour \(x &lt; -7\), \((+)/(-)\) : négatif ; pour \(-7 &lt; x &lt; -2\), \((-)/(-)\)… vérifions avec \(x = -5\) : \(\frac{-(-5)-7}{-5+2} = \frac{-2}{-3} = \frac23 \geqslant 0\) ✓. Pour \(x &gt; -2\), avec \(x = 0\) : \(\frac{-7}{2} &lt; 0\).</p>
+      <p><em>Conclusion :</em> \(\mathscr{S} = [-7, -2[\) — \(-7\) inclus (annule le numérateur, inégalité large), \(-2\) exclu (valeur interdite).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Équation avec racine carrée</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(\sqrt{2x + 5} = x + 1\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Conditions :</em> \(2x + 5 \geqslant 0\) (soit \(x \geqslant -\frac52\)) et \(x + 1 \geqslant 0\) (le membre de droite doit être positif, car une racine carrée est positive), soit \(x \geqslant -1\).</p>
+      <p>Sous ces conditions, l'équation équivaut à \(2x + 5 = (x+1)^2 = x^2 + 2x + 1\), soit \(x^2 = 4\), donc \(x = 2\) ou \(x = -2\).</p>
+      <p>Seul \(x = 2\) vérifie \(x \geqslant -1\). <em>Vérification :</em> \(\sqrt{9} = 3 = 2 + 1\) ✓. \(\mathscr{S} = \{2\}\).</p>
+      <p class="small muted">Sans la condition de signe, on aurait retenu à tort \(x = -2\) : or \(\sqrt{1} = 1 \neq -1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Somme et produit de racines</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit l'équation \(x^2 - 6x + 4 = 0\), de racines \(x_1\) et \(x_2\).</p>
+    <ol>
+      <li>Sans calculer \(x_1\) et \(x_2\), donner \(x_1 + x_2\) et \(x_1 x_2\).</li>
+      <li>Calculer \(x_1^2 + x_2^2\) et \(\dfrac{1}{x_1} + \dfrac{1}{x_2}\).</li>
+      <li>Trouver deux réels dont la somme vaut 7 et le produit 10.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> D'abord \(\Delta = 36 - 16 = 20 &gt; 0\) : les racines existent. \(x_1 + x_2 = 6\) et \(x_1 x_2 = 4\).</p>
+      <p><strong>2.</strong> \(x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2 = 36 - 8 = 28\) ; \(\frac{1}{x_1} + \frac{1}{x_2} = \frac{x_1 + x_2}{x_1 x_2} = \frac64 = \frac32\).</p>
+      <p><strong>3.</strong> Ce sont les racines de \(x^2 - 7x + 10 = 0\) : \(\Delta = 49 - 40 = 9\), racines \(\frac{7 \pm 3}{2}\), soit \(2\) et \(5\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Trinôme avec paramètre</h3><span class="level level-2">Entraînement</span></div>
+    <p>Pour quelles valeurs du réel \(m\) l'équation \(x^2 + mx + m + 3 = 0\) admet-elle : 1. deux racines distinctes ? 2. une racine double ? 3. aucune racine réelle ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\Delta = m^2 - 4(m + 3) = m^2 - 4m - 12\). C'est un trinôme en \(m\) : discriminant \(16 + 48 = 64\), racines \(\frac{4 \pm 8}{2}\), soit \(-2\) et \(6\). Donc \(\Delta = (m+2)(m-6)\), positif à l'extérieur des racines.</p>
+      <ol>
+        <li>Deux racines distinctes ⟺ \(\Delta &gt; 0\) ⟺ \(m \in \;]-\infty, -2[\; \cup\; ]6, +\infty[\).</li>
+        <li>Racine double ⟺ \(\Delta = 0\) ⟺ \(m = -2\) ou \(m = 6\).</li>
+        <li>Aucune racine ⟺ \(\Delta &lt; 0\) ⟺ \(m \in \;]-2, 6[\).</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Inégalités et encadrements</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Montrer que pour tous réels \(a, b\) : \(ab \leqslant \dfrac{a^2 + b^2}{2}\). <br>
+    2. En déduire que pour \(a, b \geqslant 0\) : \(\sqrt{ab} \leqslant \dfrac{a + b}{2}\) (inégalité arithmético-géométrique). Quand a-t-on égalité ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\frac{a^2 + b^2}{2} - ab = \frac{a^2 - 2ab + b^2}{2} = \frac{(a-b)^2}{2} \geqslant 0\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Appliquons le 1. à \(a' = \sqrt a\) et \(b' = \sqrt b\) (licite car \(a, b \geqslant 0\)) :</p>
+      <p>\[ \sqrt{ab} = \sqrt a \cdot \sqrt b \leqslant \frac{(\sqrt a)^2 + (\sqrt b)^2}{2} = \frac{a+b}{2}. \]</p>
+      <p>Il y a égalité ssi \((\sqrt a - \sqrt b)^2 = 0\), c'est-à-dire ssi \(a = b\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Inéquation avec valeur absolue et trinôme (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(|x^2 - 4x| \leqslant 3x\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Une valeur absolue est positive : il faut \(3x \geqslant 0\), donc \(x \geqslant 0\). Pour \(x \geqslant 0\), l'inéquation équivaut à :</p>
+      <p>\[ -3x \leqslant x^2 - 4x \leqslant 3x \iff \begin{cases} x^2 - 4x + 3x \geqslant 0 \\ x^2 - 4x - 3x \leqslant 0 \end{cases} \iff \begin{cases} x^2 - x \geqslant 0 \\ x^2 - 7x \leqslant 0 \end{cases} \iff \begin{cases} x(x - 1) \geqslant 0 \\ x(x - 7) \leqslant 0. \end{cases} \]</p>
+      <p>Sur \(\mathbb{R}_+\) : \(x(x-1) \geqslant 0 \iff x = 0\) ou \(x \geqslant 1\) ; et \(x(x-7) \leqslant 0 \iff 0 \leqslant x \leqslant 7\).</p>
+      <p>Intersection : \(\mathscr{S} = \{0\} \cup [1, 7]\). <em>Vérifications :</em> \(x=0\) : \(0 \leqslant 0\) ✓ ; \(x = 1\) : \(|{-3}| = 3 \leqslant 3\) ✓ ; \(x = 7\) : \(|21| = 21 \leqslant 21\) ✓ ; \(x = \frac12\) : \(|{-\frac74}| = \frac74 &gt; \frac32\) : bien exclu ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Position de racines par rapport à un réel (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(m \in \mathbb{R}\) et \(f(x) = x^2 - 2mx + m^2 - 1\).</p>
+    <ol>
+      <li>Montrer que \(f\) admet toujours deux racines distinctes, et les exprimer en fonction de \(m\).</li>
+      <li>Pour quelles valeurs de \(m\) les deux racines sont-elles strictement positives ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\Delta = 4m^2 - 4(m^2 - 1) = 4 &gt; 0\) pour tout \(m\) : deux racines distinctes \(x_{1,2} = \frac{2m \pm 2}{2} = m \pm 1\). (On pouvait aussi remarquer \(f(x) = (x - m)^2 - 1\).)</p>
+      <p><strong>2.</strong> Les racines sont \(m - 1\) et \(m + 1\). Toutes deux strictement positives ⟺ la plus petite l'est : \(m - 1 &gt; 0\), soit \(m &gt; 1\).</p>
+      <p class="small muted">Méthode générale (quand les racines ne sont pas explicites) : deux racines \(&gt; 0\) ⟺ \(\Delta \geqslant 0\), somme \(= -\frac ba &gt; 0\) et produit \(= \frac ca &gt; 0\). Ici : somme \(2m &gt; 0\) et produit \(m^2 - 1 &gt; 0\) donnent bien \(m &gt; 1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch02-calculs-algebriques.html"><span class="pn-label">Chapitre précédent</span>← Calculs algébriques</a>
+    <a class="next" href="ch04-systemes-lineaires.html"><span class="pn-label">Chapitre suivant</span>Systèmes linéaires →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

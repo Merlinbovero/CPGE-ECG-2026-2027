@@ -1,0 +1,170 @@
+/* ============================================================
+   ECG1 2026-2027 — Script commun
+   Thème clair/sombre, rendu KaTeX, corrigés dépliables,
+   suivi de progression (localStorage), recherche globale, QCM.
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  var body = document.body;
+  var ROOT = body.getAttribute("data-root") || ".";
+  var PAGE_ID = body.getAttribute("data-page-id") || "";
+
+  /* ---------- Stockage ---------- */
+  function loadStore(key) {
+    try { return JSON.parse(localStorage.getItem(key)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveStore(key, obj) {
+    try { localStorage.setItem(key, JSON.stringify(obj)); } catch (e) {}
+  }
+  var KEY_CH = "ecg-chapitres";   // { pageId: true }
+  var KEY_EX = "ecg-exercices";   // { "pageId:exId": true }
+
+  /* ---------- Thème ---------- */
+  var toggle = document.getElementById("theme-toggle");
+  function applyTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    if (toggle) toggle.textContent = t === "dark" ? "☀️" : "🌙";
+  }
+  applyTheme(localStorage.getItem("ecg-theme") ||
+    (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      var t = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      localStorage.setItem("ecg-theme", t);
+      applyTheme(t);
+    });
+  }
+
+  /* ---------- Rendu KaTeX ---------- */
+  function renderMath() {
+    if (typeof renderMathInElement === "function") {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  }
+  if (document.readyState === "complete") { renderMath(); }
+  else { window.addEventListener("load", renderMath); }
+
+  /* ---------- Boutons « Voir le corrigé » ---------- */
+  document.querySelectorAll(".btn-corrige").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = btn.parentElement.querySelector(".corrige");
+      if (!target) return;
+      var hidden = target.classList.toggle("hidden");
+      btn.textContent = hidden ? "Voir le corrigé" : "Masquer le corrigé";
+    });
+  });
+
+  /* ---------- Progression : chapitre terminé ---------- */
+  var chStore = loadStore(KEY_CH);
+  var chBox = document.querySelector('input[data-progress="chapter"]');
+  if (chBox && PAGE_ID) {
+    chBox.checked = !!chStore[PAGE_ID];
+    chBox.addEventListener("change", function () {
+      chStore = loadStore(KEY_CH);
+      if (chBox.checked) chStore[PAGE_ID] = true; else delete chStore[PAGE_ID];
+      saveStore(KEY_CH, chStore);
+    });
+  }
+
+  /* ---------- Progression : exercices réussis ---------- */
+  var exStore = loadStore(KEY_EX);
+  document.querySelectorAll('input[data-progress="exercise"]').forEach(function (box) {
+    var exId = PAGE_ID + ":" + (box.getAttribute("data-ex") || "");
+    box.checked = !!exStore[exId];
+    box.addEventListener("change", function () {
+      exStore = loadStore(KEY_EX);
+      if (box.checked) exStore[exId] = true; else delete exStore[exId];
+      saveStore(KEY_EX, exStore);
+    });
+  });
+
+  /* ---------- Barres de progression (accueil) ---------- */
+  if (typeof SITE_DATA !== "undefined") {
+    document.querySelectorAll("[data-progress-matiere]").forEach(function (el) {
+      var m = el.getAttribute("data-progress-matiere");
+      var pages = SITE_DATA.pages.filter(function (p) { return p.m === m; });
+      var done = pages.filter(function (p) { return chStore[p.id]; }).length;
+      var pct = pages.length ? Math.round(100 * done / pages.length) : 0;
+      var fill = el.querySelector(".progress-fill");
+      if (fill) fill.style.width = pct + "%";
+      var label = el.querySelector(".progress-label");
+      if (label) label.textContent = done + " / " + pages.length + " chapitres terminés (" + pct + " %)";
+    });
+
+    /* Coche ✓ dans les sommaires de matière */
+    document.querySelectorAll(".chapter-list li[data-page]").forEach(function (li) {
+      if (chStore[li.getAttribute("data-page")]) li.classList.add("is-done");
+    });
+  }
+
+  /* ---------- Recherche globale ---------- */
+  var input = document.getElementById("search");
+  var results = document.getElementById("search-results");
+  if (input && results && typeof SITE_DATA !== "undefined") {
+    function normalize(s) {
+      return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    }
+    function doSearch() {
+      var q = normalize(input.value.trim());
+      if (q.length < 2) { results.hidden = true; results.innerHTML = ""; return; }
+      var out = [];
+      SITE_DATA.pages.forEach(function (p) {
+        var matSec = null;
+        var inTitle = normalize(p.t).indexOf(q) !== -1;
+        if (!inTitle) {
+          for (var i = 0; i < p.s.length; i++) {
+            if (normalize(p.s[i]).indexOf(q) !== -1) { matSec = p.s[i]; break; }
+          }
+        }
+        if (inTitle || matSec) out.push({ p: p, sec: matSec });
+      });
+      if (!out.length) {
+        results.innerHTML = '<div class="sr-empty">Aucun résultat.</div>';
+        results.hidden = false;
+        return;
+      }
+      results.innerHTML = out.slice(0, 12).map(function (r) {
+        var mat = SITE_DATA.matieres[r.p.m];
+        return '<a href="' + ROOT + "/" + r.p.u + '">' +
+          '<span class="sr-matiere" style="color:' + mat.color + '">' + mat.name + "</span><br>" +
+          r.p.t +
+          (r.sec ? '<span class="sr-section">→ ' + r.sec + "</span>" : "") +
+          "</a>";
+      }).join("");
+      results.hidden = false;
+    }
+    input.addEventListener("input", doSearch);
+    input.addEventListener("focus", doSearch);
+    document.addEventListener("click", function (e) {
+      if (!input.contains(e.target) && !results.contains(e.target)) results.hidden = true;
+    });
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { results.hidden = true; input.blur(); }
+    });
+  }
+
+  /* ---------- QCM auto-corrigés ---------- */
+  document.querySelectorAll(".qcm-q").forEach(function (q) {
+    q.querySelectorAll("input[type=radio]").forEach(function (radio) {
+      radio.addEventListener("change", function () {
+        q.classList.add("answered");
+        q.querySelectorAll("label").forEach(function (lab) {
+          lab.classList.remove("correct", "incorrect");
+          var inp = lab.querySelector("input");
+          if (!inp) return;
+          if (inp.hasAttribute("data-correct")) lab.classList.add("correct");
+          else if (inp.checked) lab.classList.add("incorrect");
+        });
+      });
+    });
+  });
+})();

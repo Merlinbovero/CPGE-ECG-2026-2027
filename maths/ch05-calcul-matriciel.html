@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 5 — Calcul matriciel | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : matrices, opérations, produit matriciel, matrices inversibles, puissances de matrices, binôme matriciel. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch05" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 5</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 5.</span> Calcul matriciel</h1>
+  <p class="lead">Les matrices interviennent partout en ECG : systèmes linéaires, suites récurrentes croisées, graphes, probabilités. Ce chapitre installe les règles du calcul matriciel — dont le produit, non commutatif — et deux savoir-faire majeurs : inverser une matrice et calculer ses puissances.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Définitions et matrices particulières</a></li>
+      <li><a href="#s2">Opérations : somme, produit par un scalaire, transposée</a></li>
+      <li><a href="#s3">Le produit matriciel</a></li>
+      <li><a href="#s4">Matrices inversibles</a></li>
+      <li><a href="#s5">Puissances de matrices</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Définitions et matrices particulières</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 5.1 — Matrice</span>
+    <p>Une <strong>matrice</strong> de taille \(n \times p\) est un tableau de réels à \(n\) lignes et \(p\) colonnes. On note \(A = (a_{ij})\) où \(a_{ij}\) est le coefficient situé ligne \(i\), colonne \(j\), et \(\mathcal{M}_{n,p}(\mathbb{R})\) l'ensemble de ces matrices. Si \(n = p\), la matrice est <strong>carrée</strong> d'ordre \(n\) et on note \(\mathcal{M}_n(\mathbb{R})\).</p>
+  </div>
+
+  <p>Matrices particulières (carrées d'ordre \(n\)) :</p>
+  <ul>
+    <li><strong>Matrice nulle</strong> \(0_n\) : tous les coefficients nuls.</li>
+    <li><strong>Matrice identité</strong> \(I_n\) : des 1 sur la diagonale, des 0 ailleurs. Elle vérifie \(AI_n = I_nA = A\).</li>
+    <li><strong>Matrice diagonale</strong> : \(a_{ij} = 0\) dès que \(i \neq j\).</li>
+    <li><strong>Matrice triangulaire supérieure</strong> (resp. inférieure) : \(a_{ij} = 0\) si \(i &gt; j\) (resp. \(i &lt; j\)).</li>
+    <li><strong>Matrice colonne</strong> (\(p = 1\)) et <strong>matrice ligne</strong> (\(n = 1\)).</li>
+  </ul>
+
+  <h2 id="s2">2. Opérations : somme, produit par un scalaire, transposée</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 5.2 — Somme, multiplication par un réel, transposée</span>
+    <p>Pour \(A = (a_{ij})\) et \(B = (b_{ij})\) de <em>même taille</em> et \(\lambda \in \mathbb{R}\) :</p>
+    <ul>
+      <li>\(A + B = (a_{ij} + b_{ij})\) : somme coefficient par coefficient ;</li>
+      <li>\(\lambda A = (\lambda a_{ij})\) ;</li>
+      <li>la <strong>transposée</strong> \(A^{\mathsf{T}}\) (ou \({}^t\!A\)) de \(A \in \mathcal{M}_{n,p}\) est la matrice de \(\mathcal{M}_{p,n}\) obtenue en échangeant lignes et colonnes : \((A^{\mathsf{T}})_{ij} = a_{ji}\). Une matrice carrée égale à sa transposée est dite <strong>symétrique</strong>.</li>
+    </ul>
+  </div>
+
+  <p>Ces opérations ont les propriétés attendues : commutativité et associativité de \(+\), distributivités, \((A + B)^{\mathsf{T}} = A^{\mathsf{T}} + B^{\mathsf{T}}\), \((\lambda A)^{\mathsf{T}} = \lambda A^{\mathsf{T}}\).</p>
+
+  <h2 id="s3">3. Le produit matriciel</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 5.3 — Produit matriciel</span>
+    <p>Si \(A \in \mathcal{M}_{n,p}(\mathbb{R})\) et \(B \in \mathcal{M}_{p,q}(\mathbb{R})\) (le nombre de <em>colonnes</em> de \(A\) doit égaler le nombre de <em>lignes</em> de \(B\)), le produit \(AB \in \mathcal{M}_{n,q}(\mathbb{R})\) est défini par :</p>
+    <p>\[ (AB)_{ij} = \sum_{k=1}^{p} a_{ik}\, b_{kj} \]</p>
+    <p>— le coefficient \((i,j)\) s'obtient en « multipliant » la ligne \(i\) de \(A\) par la colonne \(j\) de \(B\).</p>
+  </div>
+
+  <p><strong>Exemple.</strong> \(\begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix} \begin{pmatrix} 5 &amp; 6 \\ 7 &amp; 8 \end{pmatrix} = \begin{pmatrix} 1\cdot5 + 2\cdot7 &amp; 1\cdot6 + 2\cdot8 \\ 3\cdot5 + 4\cdot7 &amp; 3\cdot6 + 4\cdot8 \end{pmatrix} = \begin{pmatrix} 19 &amp; 22 \\ 43 &amp; 50 \end{pmatrix}\).</p>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 5.4 — Propriétés du produit</span>
+    <p>Sous réserve de compatibilité des tailles :</p>
+    <ul>
+      <li>Associativité : \((AB)C = A(BC)\) ;</li>
+      <li>Distributivité : \(A(B + C) = AB + AC\) et \((A+B)C = AC + BC\) ;</li>
+      <li>\(\lambda(AB) = (\lambda A)B = A(\lambda B)\) ; \(\ (AB)^{\mathsf{T}} = B^{\mathsf{T}} A^{\mathsf{T}}\) (attention à l'ordre) ;</li>
+      <li>\(A I_p = A\) et \(I_n A = A\) pour \(A \in \mathcal{M}_{n,p}(\mathbb{R})\).</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges fondamentaux du produit matriciel</span>
+    <ul>
+      <li><strong>Non-commutativité :</strong> en général \(AB \neq BA\). Exemple : \(A = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\), \(B = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}\) : \(AB = 0_2\) mais \(BA = A \neq 0_2\).</li>
+      <li><strong>Pas de simplification :</strong> \(AB = 0\) n'implique pas \(A = 0\) ou \(B = 0\) (exemple ci-dessus) ; \(AB = AC\) n'implique pas \(B = C\), sauf si \(A\) est inversible.</li>
+      <li>Les identités remarquables demandent la commutation : \((A+B)^2 = A^2 + AB + BA + B^2\), qui ne vaut \(A^2 + 2AB + B^2\) que si \(AB = BA\).</li>
+    </ul>
+  </div>
+
+  <p><strong>Écriture matricielle d'un système.</strong> Le système linéaire du chapitre 4 s'écrit \(AX = B\) avec \(A\) la matrice des coefficients, \(X\) la colonne des inconnues et \(B\) la colonne du second membre. Résoudre le système, c'est trouver toutes les colonnes \(X\) telles que \(AX = B\).</p>
+
+  <h2 id="s4">4. Matrices inversibles</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 5.5 — Matrice inversible</span>
+    <p>Une matrice carrée \(A \in \mathcal{M}_n(\mathbb{R})\) est <strong>inversible</strong> s'il existe \(B \in \mathcal{M}_n(\mathbb{R})\) telle que \(AB = BA = I_n\). Cette matrice \(B\), <em>unique</em>, est appelée <strong>inverse</strong> de \(A\) et notée \(A^{-1}\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 5.6 — Propriétés de l'inverse</span>
+    <ul>
+      <li>Si \(A\) est inversible, le système \(AX = B\) a l'unique solution \(X = A^{-1}B\).</li>
+      <li>Si \(A\) et \(B\) sont inversibles, \(AB\) l'est aussi et \((AB)^{-1} = B^{-1}A^{-1}\) (ordre inversé).</li>
+      <li>\((A^{-1})^{-1} = A\) ; \((A^{\mathsf{T}})^{-1} = (A^{-1})^{\mathsf{T}}\).</li>
+      <li><em>En dimension finie, un inverse d'un seul côté suffit :</em> si \(AB = I_n\), alors \(BA = I_n\) et \(B = A^{-1}\) (résultat admis).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (unicité et inverse d'un produit).</span>
+      <p><em>Unicité :</em> si \(AB = BA = I_n\) et \(AC = CA = I_n\), alors \(B = B I_n = B(AC) = (BA)C = I_n C = C\).</p>
+      <p><em>Produit :</em> \((AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AA^{-1} = I_n\), et de même dans l'autre sens. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 5.7 — Cas des matrices 2×2</span>
+    <p>\(A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\) est inversible si et seulement si \(ad - bc \neq 0\), et alors :</p>
+    <p>\[ A^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix}. \]</p>
+    <p class="small muted">Vérification directe : le produit des deux matrices donne \((ad-bc)I_2\).</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Inverser une matrice</span>
+    <ul>
+      <li><strong>Par le pivot de Gauss :</strong> résoudre \(AX = Y\) pour un second membre générique \(Y\) ; si l'on obtient \(X = BY\) pour une matrice \(B\), alors \(A^{-1} = B\). (Variante équivalente : appliquer les opérations élémentaires simultanément à \(A\) et à \(I_n\) jusqu'à transformer \(A\) en \(I_n\).)</li>
+      <li><strong>Par polynôme annulateur :</strong> si l'on connaît une relation comme \(A^2 - 5A + 6I = 0\), l'isoler : \(A \cdot \frac{5I - A}{6} = I\), donc \(A^{-1} = \frac16(5I - A)\).</li>
+      <li>Une matrice <strong>triangulaire</strong> est inversible si et seulement si tous ses coefficients diagonaux sont non nuls.</li>
+    </ul>
+  </div>
+
+  <h2 id="s5">5. Puissances de matrices</h2>
+  <p>Pour \(A\) carrée, on pose \(A^0 = I_n\) et \(A^{k+1} = A^k A\). Trois techniques dominent les sujets de concours :</p>
+
+  <h3>5.1 Matrices diagonales</h3>
+  <p>Si \(D = \mathrm{diag}(d_1, \dots, d_n)\) est diagonale, alors \(D^k = \mathrm{diag}(d_1^k, \dots, d_n^k)\) pour tout \(k \in \mathbb{N}\) (récurrence immédiate).</p>
+
+  <h3>5.2 Conjecture et récurrence</h3>
+  <div class="box met">
+    <span class="box-title">Méthode</span>
+    <p>Calculer \(A^2\), \(A^3\), conjecturer la forme générale de \(A^k\), puis la démontrer par récurrence. Rédaction type : « Montrons par récurrence que pour tout \(k \geqslant 1\), \(A^k = \dots\) ».</p>
+  </div>
+
+  <h3>5.3 Binôme matriciel</h3>
+  <div class="box thm">
+    <span class="box-title">Théorème 5.8 — Binôme de Newton matriciel</span>
+    <p>Si \(A\) et \(B\) <strong>commutent</strong> (\(AB = BA\)), alors pour tout \(m \in \mathbb{N}\) :</p>
+    <p>\[ (A + B)^m = \sum_{k=0}^{m} \binom{m}{k} A^k B^{m-k}. \]</p>
+    <p>Cas d'usage typique : \(A = \lambda I + N\) avec \(N\) <strong>nilpotente</strong> (\(N^r = 0\) pour un certain \(r\)) — la somme ne comporte alors que les termes \(k &lt; r\)… et \(\lambda I\) commute avec tout.</p>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> Soit \(A = \begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{pmatrix} = 2I_2 + N\) avec \(N = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\). On a \(N^2 = 0\), et \(2I_2\) commute avec \(N\). Donc pour \(m \geqslant 1\) :</p>
+  <p>\[ A^m = (2I + N)^m = \sum_{k=0}^{m} \binom{m}{k} N^k (2I)^{m-k} = 2^m I + m\,2^{m-1} N = \begin{pmatrix} 2^m &amp; m\,2^{m-1} \\ 0 &amp; 2^m \end{pmatrix}, \]</p>
+  <p>car tous les termes avec \(k \geqslant 2\) sont nuls.</p>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Produits</h3><span class="level level-1">Application directe</span></div>
+    <p>Soient \(A = \begin{pmatrix} 1 &amp; -1 \\ 2 &amp; 0 \end{pmatrix}\), \(B = \begin{pmatrix} 3 &amp; 1 \\ -1 &amp; 2 \end{pmatrix}\). Calculer \(AB\), \(BA\), \(A^2\) et \(A^{\mathsf{T}}B\). Que constate-t-on pour \(AB\) et \(BA\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\[ AB = \begin{pmatrix} 1\cdot3 + (-1)(-1) &amp; 1\cdot1 + (-1)\cdot2 \\ 2\cdot3 + 0 &amp; 2\cdot1 + 0 \end{pmatrix} = \begin{pmatrix} 4 &amp; -1 \\ 6 &amp; 2 \end{pmatrix}, \qquad BA = \begin{pmatrix} 3 + 2 &amp; -3 \\ -1 + 4 &amp; 1 \end{pmatrix} = \begin{pmatrix} 5 &amp; -3 \\ 3 &amp; 1 \end{pmatrix}. \]</p>
+      <p>\[ A^2 = \begin{pmatrix} 1 - 2 &amp; -1 \\ 2 &amp; -2 \end{pmatrix} = \begin{pmatrix} -1 &amp; -1 \\ 2 &amp; -2 \end{pmatrix}, \qquad A^{\mathsf{T}}B = \begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 0 \end{pmatrix}\begin{pmatrix} 3 &amp; 1 \\ -1 &amp; 2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 5 \\ -3 &amp; -1 \end{pmatrix}. \]</p>
+      <p>On constate \(AB \neq BA\) : le produit matriciel n'est pas commutatif.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Inverse d'une matrice 2×2</h3><span class="level level-1">Application directe</span></div>
+    <p>Les matrices suivantes sont-elles inversibles ? Si oui, donner l'inverse. \(A = \begin{pmatrix} 2 &amp; 5 \\ 1 &amp; 3 \end{pmatrix}\), \(B = \begin{pmatrix} 3 &amp; 6 \\ 2 &amp; 4 \end{pmatrix}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(A\) : \(ad - bc = 6 - 5 = 1 \neq 0\), donc \(A\) est inversible et \(A^{-1} = \begin{pmatrix} 3 &amp; -5 \\ -1 &amp; 2 \end{pmatrix}\).</p>
+      <p><em>Vérification :</em> \(AA^{-1} = \begin{pmatrix} 6-5 &amp; -10+10 \\ 3-3 &amp; -5+6 \end{pmatrix} = I_2\) ✓.</p>
+      <p>Pour \(B\) : \(ad - bc = 12 - 12 = 0\) : \(B\) n'est pas inversible.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Puissances d'une matrice diagonale + nilpotente</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(D = \begin{pmatrix} 3 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\). Donner \(D^k\) pour \(k \in \mathbb{N}\), puis calculer \(D^4\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(D\) est diagonale : \(D^k = \begin{pmatrix} 3^k &amp; 0 \\ 0 &amp; (-1)^k \end{pmatrix}\) (récurrence immédiate : \(D^{k+1} = D^k D\) multiplie chaque coefficient diagonal). En particulier \(D^4 = \begin{pmatrix} 81 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Inversion par le pivot</h3><span class="level level-2">Entraînement</span></div>
+    <p>Montrer que \(A = \begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 1 \\ 1 &amp; 1 &amp; 2 \end{pmatrix}\) est inversible et calculer \(A^{-1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Résolvons \(AX = Y\), c'est-à-dire \(\begin{cases} x + y + z = y_1 \\ x + 2y + z = y_2 \\ x + y + 2z = y_3 \end{cases}\)</p>
+      <p>\(L_2 \leftarrow L_2 - L_1\) : \(y = y_2 - y_1\). \(L_3 \leftarrow L_3 - L_1\) : \(z = y_3 - y_1\). Puis \(L_1\) : \(x = y_1 - y - z = y_1 - (y_2 - y_1) - (y_3 - y_1) = 3y_1 - y_2 - y_3\).</p>
+      <p>Le système a une unique solution pour tout \(Y\) : \(A\) est inversible, et en lisant les coefficients :</p>
+      <p>\[ A^{-1} = \begin{pmatrix} 3 &amp; -1 &amp; -1 \\ -1 &amp; 1 &amp; 0 \\ -1 &amp; 0 &amp; 1 \end{pmatrix}. \]</p>
+      <p><em>Vérification (1re ligne de \(AA^{-1}\)) :</em> \((3 - 1 - 1,\ -1 + 1 + 0,\ -1 + 0 + 1) = (1, 0, 0)\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Polynôme annulateur</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}\).</p>
+    <ol>
+      <li>Vérifier que \(A^2 = 2A + 3I_2\).</li>
+      <li>En déduire que \(A\) est inversible et exprimer \(A^{-1}\) en fonction de \(A\) et \(I_2\).</li>
+      <li>Montrer par récurrence qu'il existe des suites \((a_k)\), \((b_k)\) telles que \(A^k = a_k A + b_k I_2\), avec \(a_{k+1} = 2a_k + b_k\) et \(b_{k+1} = 3a_k\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(A^2 = \begin{pmatrix} 1+4 &amp; 2+2 \\ 2+2 &amp; 4+1 \end{pmatrix} = \begin{pmatrix} 5 &amp; 4 \\ 4 &amp; 5 \end{pmatrix}\) et \(2A + 3I_2 = \begin{pmatrix} 2+3 &amp; 4 \\ 4 &amp; 2+3 \end{pmatrix} = \begin{pmatrix} 5 &amp; 4 \\ 4 &amp; 5 \end{pmatrix}\) ✓.</p>
+      <p><strong>2.</strong> De \(A^2 - 2A = 3I_2\) : \(A\left(\frac{A - 2I_2}{3}\right) = I_2\). Donc \(A\) est inversible et \(A^{-1} = \frac13(A - 2I_2) = \frac13\begin{pmatrix} -1 &amp; 2 \\ 2 &amp; -1 \end{pmatrix}\).</p>
+      <p><strong>3.</strong> <em>Initialisation :</em> \(A^1 = 1 \cdot A + 0 \cdot I_2\) : \(a_1 = 1, b_1 = 0\). <em>Hérédité :</em> si \(A^k = a_k A + b_k I_2\), alors :</p>
+      <p>\[ A^{k+1} = A^k A = a_k A^2 + b_k A = a_k(2A + 3I_2) + b_k A = (2a_k + b_k)A + 3a_k I_2, \]</p>
+      <p>d'où \(a_{k+1} = 2a_k + b_k\) et \(b_{k+1} = 3a_k\). Par récurrence, la propriété vaut pour tout \(k \geqslant 1\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Conjecture et récurrence</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}\). Calculer \(A^2\), \(A^3\), conjecturer \(A^k\) et démontrer la conjecture.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(A^2 = \begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix}\), \(A^3 = A^2 A = \begin{pmatrix} 1 &amp; 3 \\ 0 &amp; 1 \end{pmatrix}\). <em>Conjecture :</em> \(A^k = \begin{pmatrix} 1 &amp; k \\ 0 &amp; 1 \end{pmatrix}\) pour tout \(k \in \mathbb{N}\).</p>
+      <p><em>Preuve par récurrence.</em> Initialisation : \(A^0 = I_2\), qui correspond à \(k = 0\) ✓. Hérédité : si \(A^k = \begin{pmatrix} 1 &amp; k \\ 0 &amp; 1 \end{pmatrix}\), alors :</p>
+      <p>\[ A^{k+1} = A^k A = \begin{pmatrix} 1 &amp; k \\ 0 &amp; 1 \end{pmatrix}\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 + k \\ 0 &amp; 1 \end{pmatrix}. \quad \checkmark \]</p>
+      <p>Par récurrence, la formule vaut pour tout \(k \in \mathbb{N}\). <span class="qed">∎</span> <span class="small muted">(On retrouve le résultat du binôme matriciel avec \(N = A - I_2\), \(N^2 = 0\).)</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Binôme matriciel</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 3 &amp; 1 &amp; 0 \\ 0 &amp; 3 &amp; 1 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}\). Écrire \(A = 3I_3 + N\), calculer \(N^2\) et \(N^3\), puis donner \(A^m\) pour tout \(m \geqslant 2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(N = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}\), \(N^2 = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}\), \(N^3 = 0_3\) : \(N\) est nilpotente d'ordre 3.</p>
+      <p>\(3I_3\) commute avec \(N\), donc par le binôme matriciel, pour \(m \geqslant 2\) :</p>
+      <p>\[ A^m = \sum_{k=0}^{m} \binom{m}{k} N^k (3I)^{m-k} = 3^m I_3 + m\,3^{m-1} N + \binom{m}{2} 3^{m-2} N^2, \]</p>
+      <p>les termes \(k \geqslant 3\) étant nuls. Soit :</p>
+      <p>\[ A^m = \begin{pmatrix} 3^m &amp; m\,3^{m-1} &amp; \frac{m(m-1)}{2}\,3^{m-2} \\ 0 &amp; 3^m &amp; m\,3^{m-1} \\ 0 &amp; 0 &amp; 3^m \end{pmatrix}. \]</p>
+      <p class="small muted">Contrôle avec \(m = 2\) : \(A^2 = \begin{pmatrix} 9 &amp; 6 &amp; 1 \\ 0 &amp; 9 &amp; 6 \\ 0 &amp; 0 &amp; 9 \end{pmatrix}\), conforme au calcul direct.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Suites croisées et matrices (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Deux populations vérifient \(\begin{cases} u_{n+1} = 3u_n + v_n \\ v_{n+1} = 3v_n \end{cases}\) avec \(u_0 = 1\), \(v_0 = 2\).</p>
+    <ol>
+      <li>Écrire la relation sous la forme \(X_{n+1} = A X_n\) où \(X_n = \begin{pmatrix} u_n \\ v_n \end{pmatrix}\), et justifier \(X_n = A^n X_0\).</li>
+      <li>Calculer \(A^n\) (utiliser le binôme matriciel), puis en déduire \(u_n\) et \(v_n\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(A = \begin{pmatrix} 3 &amp; 1 \\ 0 &amp; 3 \end{pmatrix}\). Par récurrence immédiate : \(X_1 = AX_0\), et si \(X_n = A^nX_0\) alors \(X_{n+1} = AX_n = A^{n+1}X_0\). ✓</p>
+      <p><strong>2.</strong> \(A = 3I_2 + N\) avec \(N = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\), \(N^2 = 0\). Le binôme donne \(A^n = 3^n I_2 + n\,3^{n-1}N = \begin{pmatrix} 3^n &amp; n\,3^{n-1} \\ 0 &amp; 3^n \end{pmatrix}\) pour \(n \geqslant 1\) (et \(A^0 = I_2\)).</p>
+      <p>Donc \(X_n = A^n \begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 3^n + 2n\,3^{n-1} \\ 2 \cdot 3^n \end{pmatrix}\), soit :</p>
+      <p>\[ u_n = 3^{n-1}(3 + 2n) \quad (n \geqslant 1), \qquad v_n = 2 \cdot 3^n, \]</p>
+      <p>formules que l'on vérifie en \(n = 0\) (\(u_0 = 1\) avec la convention \(3^{-1}(3) = 1\) ✓, \(v_0 = 2\) ✓) et \(n = 1\) (\(u_1 = 3 + 2 = 5 = 3u_0 + v_0\) ✓).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Vrai/faux de synthèse (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour \(A, B \in \mathcal{M}_n(\mathbb{R})\), dire si chaque affirmation est vraie ou fausse (preuve ou contre-exemple) :</p>
+    <ol>
+      <li>Si \(A^2 = 0\), alors \(A = 0\).</li>
+      <li>Si \(A\) est inversible et \(AB = 0\), alors \(B = 0\).</li>
+      <li>Si \(A^2 = I_n\), alors \(A\) est inversible.</li>
+      <li>\((A + I_n)^2 = A^2 + 2A + I_n\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li><strong>Faux.</strong> \(A = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \neq 0\) vérifie \(A^2 = 0\).</li>
+        <li><strong>Vrai.</strong> En multipliant à gauche par \(A^{-1}\) : \(B = A^{-1}(AB) = A^{-1} \cdot 0 = 0\).</li>
+        <li><strong>Vrai.</strong> \(A \cdot A = I_n\) : par définition, \(A\) est inversible et \(A^{-1} = A\).</li>
+        <li><strong>Vrai.</strong> \(I_n\) commute avec toute matrice, donc l'identité remarquable s'applique : \((A + I_n)^2 = A^2 + A I_n + I_n A + I_n^2 = A^2 + 2A + I_n\). (Elle serait fausse avec deux matrices quelconques à la place de \(A\) et \(I_n\).)</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch04-systemes-lineaires.html"><span class="pn-label">Chapitre précédent</span>← Systèmes linéaires</a>
+    <a class="next" href="ch06-suites.html"><span class="pn-label">Chapitre suivant</span>Suites réelles →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

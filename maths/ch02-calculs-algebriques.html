@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 2 — Calculs algébriques : sommes, produits, binôme | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : symboles somme et produit, sommes usuelles et télescopiques, factorielles, coefficients binomiaux, binôme de Newton. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch02" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 2</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 2.</span> Calculs algébriques : sommes, produits, binôme</h1>
+  <p class="lead">La maîtrise du symbole \(\sum\) est l'une des compétences les plus rentables de toute la prépa : elle intervient dans les suites, les séries, les probabilités et les statistiques. Ce chapitre couvre les sommes et produits, les sommes usuelles, les factorielles, les coefficients binomiaux et la formule du binôme de Newton.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Le symbole somme \(\sum\)</a></li>
+      <li><a href="#s2">Sommes usuelles</a></li>
+      <li><a href="#s3">Sommes télescopiques et changements d'indice</a></li>
+      <li><a href="#s4">Le symbole produit \(\prod\) et la factorielle</a></li>
+      <li><a href="#s5">Coefficients binomiaux</a></li>
+      <li><a href="#s6">La formule du binôme de Newton</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Le symbole somme \(\sum\)</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 2.1 — Symbole \(\sum\)</span>
+    <p>Soient \(m \leqslant n\) deux entiers et \(a_m, a_{m+1}, \dots, a_n\) des réels. On note :</p>
+    <p>\[ \sum_{k=m}^{n} a_k = a_m + a_{m+1} + \dots + a_n. \]</p>
+    <p>L'indice \(k\) est <strong>muet</strong> : \(\sum_{k=m}^n a_k = \sum_{i=m}^n a_i\). Le nombre de termes est \(n - m + 1\). Par convention, une somme vide (\(m &gt; n\)) vaut \(0\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 2.2 — Règles de calcul</span>
+    <p>Pour tous réels \(\lambda\), \((a_k)\), \((b_k)\) et tous entiers \(m \leqslant p &lt; n\) :</p>
+    <ul>
+      <li><strong>Linéarité :</strong> \(\displaystyle\sum_{k=m}^{n} (\lambda a_k + b_k) = \lambda \sum_{k=m}^{n} a_k + \sum_{k=m}^{n} b_k\) ;</li>
+      <li><strong>Relation de Chasles :</strong> \(\displaystyle\sum_{k=m}^{n} a_k = \sum_{k=m}^{p} a_k + \sum_{k=p+1}^{n} a_k\) ;</li>
+      <li><strong>Somme constante :</strong> \(\displaystyle\sum_{k=m}^{n} c = (n - m + 1)\,c\).</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Pièges classiques</span>
+    <ul>
+      <li>\(\displaystyle\sum_{k=1}^{n} a_k b_k \neq \left(\sum_{k=1}^{n} a_k\right)\left(\sum_{k=1}^{n} b_k\right)\) : la somme d'un produit n'est pas le produit des sommes !</li>
+      <li>Ce qui ne dépend pas de l'indice sort de la somme : \(\sum_{k=1}^{n} n = n \times n = n^2\) (le terme \(n\) est constant vis-à-vis de \(k\)).</li>
+      <li>Compter les termes : \(\sum_{k=3}^{10}\) contient \(10 - 3 + 1 = 8\) termes, pas 7.</li>
+    </ul>
+  </div>
+
+  <h2 id="s2">2. Sommes usuelles</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 2.3 — Sommes de référence (à connaître par cœur)</span>
+    <p>Pour tout \(n \in \mathbb{N}^*\) :</p>
+    <p>\[ \sum_{k=1}^{n} k = \frac{n(n+1)}{2}, \qquad \sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}, \qquad \sum_{k=1}^{n} k^3 = \left(\frac{n(n+1)}{2}\right)^{\!2}. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration (première formule, méthode de Gauss).</span>
+      <p>Notons \(S = \sum_{k=1}^n k\). En écrivant la somme dans les deux sens et en ajoutant terme à terme :</p>
+      <p>\[ \begin{array}{ccccccccc} S &amp;=&amp; 1 &amp;+&amp; 2 &amp;+&amp; \cdots &amp;+&amp; n \\ S &amp;=&amp; n &amp;+&amp; (n-1) &amp;+&amp; \cdots &amp;+&amp; 1 \end{array} \]</p>
+      <p>chaque colonne somme à \(n+1\), et il y a \(n\) colonnes : \(2S = n(n+1)\), d'où le résultat. Les deux autres formules se démontrent par récurrence (exercice 3). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 2.4 — Somme géométrique (fondamental)</span>
+    <p>Pour tout réel \(q \neq 1\) et tout \(n \in \mathbb{N}\) :</p>
+    <p>\[ \sum_{k=0}^{n} q^k = \frac{1 - q^{n+1}}{1 - q} \qquad \text{(et } \sum_{k=0}^{n} 1^k = n+1 \text{ si } q = 1\text{)}. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Notons \(S = \sum_{k=0}^{n} q^k\). Alors \(qS = \sum_{k=0}^{n} q^{k+1} = \sum_{j=1}^{n+1} q^j\) (changement d'indice \(j = k+1\)). Donc \(S - qS = q^0 - q^{n+1} = 1 - q^{n+1}\) (les termes d'indices 1 à \(n\) se compensent). Comme \(q \neq 1\), on divise par \(1 - q\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Reconnaître une somme géométrique</span>
+    <p>Toute somme de la forme \(\sum_{k=m}^{n} q^k\) se ramène à la formule en factorisant par le premier terme :</p>
+    <p>\[ \sum_{k=m}^{n} q^k = q^m \sum_{j=0}^{n-m} q^j = q^m \cdot \frac{1 - q^{n-m+1}}{1-q} = \frac{q^m - q^{n+1}}{1-q}. \]</p>
+    <p>Retenir : <em>« premier terme moins terme suivant le dernier, sur \(1 - q\) »</em>. Vérifier systématiquement que \(q \neq 1\), et traiter le cas \(q = 1\) à part si \(q\) dépend d'un paramètre.</p>
+  </div>
+
+  <h2 id="s3">3. Sommes télescopiques et changements d'indice</h2>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 2.5 — Somme télescopique</span>
+    <p>Pour toute suite \((a_k)\) et tous entiers \(m \leqslant n\) :</p>
+    <p>\[ \sum_{k=m}^{n} (a_{k+1} - a_k) = a_{n+1} - a_m. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>\(\sum_{k=m}^{n} (a_{k+1} - a_k) = \sum_{k=m}^{n} a_{k+1} - \sum_{k=m}^{n} a_k = \sum_{j=m+1}^{n+1} a_j - \sum_{k=m}^{n} a_k\). Les termes d'indices \(m+1\) à \(n\) apparaissent dans les deux sommes et se compensent ; il reste \(a_{n+1} - a_m\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <p><strong>Exemple rédigé.</strong> Calculons \(S_n = \displaystyle\sum_{k=1}^{n} \frac{1}{k(k+1)}\). On décompose : \(\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}\) (vérification immédiate en réduisant au même dénominateur). Donc :</p>
+  <p>\[ S_n = \sum_{k=1}^{n} \left(\frac{1}{k} - \frac{1}{k+1}\right) = \frac{1}{1} - \frac{1}{n+1} = \frac{n}{n+1}, \]</p>
+  <p>par télescopage (avec \(a_k = -\frac 1k\), ou en écrivant les premiers et derniers termes).</p>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Changement d'indice</span>
+    <p>Pour poser \(j = k + p\) (translation) dans \(\sum_{k=m}^{n} a_{k+p}\) : les bornes deviennent \(j = m+p\) et \(j = n+p\), et \(a_{k+p}\) devient \(a_j\) :</p>
+    <p>\[ \sum_{k=m}^{n} a_{k+p} = \sum_{j=m+p}^{n+p} a_j. \]</p>
+    <p>Pour un retournement \(j = n - k\) : quand \(k\) va de \(0\) à \(n\), \(j\) va de \(n\) à \(0\), donc \(\sum_{k=0}^{n} a_{n-k} = \sum_{j=0}^{n} a_j\). Toujours vérifier le nouveau domaine de l'indice en testant les bornes.</p>
+  </div>
+
+  <h2 id="s4">4. Le symbole produit \(\prod\) et la factorielle</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 2.6 — Symbole \(\prod\), factorielle</span>
+    <p>On note \(\displaystyle\prod_{k=m}^{n} a_k = a_m \times a_{m+1} \times \dots \times a_n\) (produit vide = 1 par convention). La <strong>factorielle</strong> de \(n \in \mathbb{N}\) est :</p>
+    <p>\[ n! = \prod_{k=1}^{n} k = 1 \times 2 \times \dots \times n, \qquad \text{avec } 0! = 1. \]</p>
+  </div>
+
+  <p>Valeurs à connaître : \(0! = 1\), \(1! = 1\), \(2! = 2\), \(3! = 6\), \(4! = 24\), \(5! = 120\), \(6! = 720\). Relation fondamentale : \((n+1)! = (n+1) \times n!\), très utilisée pour simplifier les quotients : par exemple \(\dfrac{(n+2)!}{n!} = (n+2)(n+1)\).</p>
+
+  <div class="box warn">
+    <span class="box-title">Piège</span>
+    <p>\((2n)! \neq 2 \times n!\) et \((n!)^2 \neq (n^2)!\). Écrire les produits en extension en cas de doute. De même \(\ln(n!)\) ne se simplifie pas, mais \(\ln(n!) = \sum_{k=1}^n \ln k\).</p>
+  </div>
+
+  <h2 id="s5">5. Coefficients binomiaux</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 2.7 — Coefficient binomial</span>
+    <p>Pour \(n \in \mathbb{N}\) et \(k \in \llbracket 0, n \rrbracket\), on pose :</p>
+    <p>\[ \binom{n}{k} = \frac{n!}{k!\,(n-k)!}. \]</p>
+    <p>\(\binom{n}{k}\) (lire « \(k\) parmi \(n\) ») est le nombre de parties à \(k\) éléments d'un ensemble à \(n\) éléments (voir chapitre 9). On convient \(\binom{n}{k} = 0\) si \(k &lt; 0\) ou \(k &gt; n\).</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Proposition 2.8 — Propriétés fondamentales</span>
+    <p>Pour \(0 \leqslant k \leqslant n\) :</p>
+    <ul>
+      <li>\(\displaystyle\binom{n}{0} = \binom{n}{n} = 1\), \(\displaystyle\binom{n}{1} = n\), \(\displaystyle\binom{n}{2} = \frac{n(n-1)}{2}\) ;</li>
+      <li><strong>Symétrie :</strong> \(\displaystyle\binom{n}{k} = \binom{n}{n-k}\) ;</li>
+      <li><strong>Formule de Pascal :</strong> \(\displaystyle\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}\) ;</li>
+      <li><strong>Formule du capitaine :</strong> \(\displaystyle k\binom{n}{k} = n\binom{n-1}{k-1}\) pour \(k \geqslant 1\).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (formule de Pascal, par le calcul).</span>
+      <p>\[ \binom{n}{k} + \binom{n}{k+1} = \frac{n!}{k!(n-k)!} + \frac{n!}{(k+1)!(n-k-1)!} = \frac{n!\,(k+1) + n!\,(n-k)}{(k+1)!\,(n-k)!} = \frac{n!\,(n+1)}{(k+1)!\,(n-k)!} = \binom{n+1}{k+1}, \]</p>
+      <p>en réduisant au dénominateur commun \((k+1)!(n-k)!\) : le premier quotient a été multiplié par \(\frac{k+1}{k+1}\), le second par \(\frac{n-k}{n-k}\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <p>La formule de Pascal permet de construire le <strong>triangle de Pascal</strong> : chaque coefficient est la somme des deux situés au-dessus.</p>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>\(n \backslash k\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+    <tbody>
+      <tr><th>0</th><td>1</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><th>1</th><td>1</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+      <tr><th>2</th><td>1</td><td>2</td><td>1</td><td></td><td></td><td></td></tr>
+      <tr><th>3</th><td>1</td><td>3</td><td>3</td><td>1</td><td></td><td></td></tr>
+      <tr><th>4</th><td>1</td><td>4</td><td>6</td><td>4</td><td>1</td><td></td></tr>
+      <tr><th>5</th><td>1</td><td>5</td><td>10</td><td>10</td><td>5</td><td>1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="s6">6. La formule du binôme de Newton</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 2.9 — Binôme de Newton (démonstration exigible)</span>
+    <p>Pour tous réels \(a, b\) et tout \(n \in \mathbb{N}\) :</p>
+    <p>\[ (a+b)^n = \sum_{k=0}^{n} \binom{n}{k} a^k\, b^{\,n-k}. \]</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration (par récurrence sur \(n\)).</span>
+      <p><em>Initialisation.</em> Pour \(n = 0\) : \((a+b)^0 = 1\) et \(\sum_{k=0}^{0} \binom{0}{0} a^0 b^0 = 1\). ✓</p>
+      <p><em>Hérédité.</em> Supposons la formule vraie au rang \(n\). Alors :</p>
+      <p>\[ (a+b)^{n+1} = (a+b)(a+b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{k+1} b^{n-k} + \sum_{k=0}^{n} \binom{n}{k} a^{k} b^{n-k+1}. \]</p>
+      <p>Dans la première somme, on pose \(j = k+1\) : elle devient \(\sum_{j=1}^{n+1} \binom{n}{j-1} a^{j} b^{n+1-j}\). En regroupant avec la seconde (indice renommé \(j\)) :</p>
+      <p>\[ (a+b)^{n+1} = a^{n+1} + \sum_{j=1}^{n} \left[\binom{n}{j-1} + \binom{n}{j}\right] a^j b^{n+1-j} + b^{n+1} = \sum_{j=0}^{n+1} \binom{n+1}{j} a^j b^{n+1-j}, \]</p>
+      <p>grâce à la formule de Pascal \(\binom{n}{j-1} + \binom{n}{j} = \binom{n+1}{j}\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <p><strong>Cas particuliers à connaître.</strong> En prenant \(a = b = 1\) puis \(a = -1, b = 1\) :</p>
+  <p>\[ \sum_{k=0}^{n} \binom{n}{k} = 2^n, \qquad \sum_{k=0}^{n} (-1)^k \binom{n}{k} = 0 \ \ (n \geqslant 1). \]</p>
+  <p>Et les identités remarquables généralisées : \((a+b)^2 = a^2 + 2ab + b^2\), \((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\), ainsi que \(a^n - b^n = (a-b)\sum_{k=0}^{n-1} a^k b^{n-1-k}\).</p>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Calculs de sommes simples</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer : 1. \(\displaystyle\sum_{k=1}^{20} (2k+3)\) ; &nbsp; 2. \(\displaystyle\sum_{k=5}^{15} k\) ; &nbsp; 3. \(\displaystyle\sum_{k=0}^{n} (3k^2 - k + 1)\) en fonction de \(n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par linéarité : \(\sum_{k=1}^{20}(2k+3) = 2\sum_{k=1}^{20}k + \sum_{k=1}^{20}3 = 2 \cdot \frac{20 \times 21}{2} + 20 \times 3 = 420 + 60 = 480\).</p>
+      <p><strong>2.</strong> Par Chasles : \(\sum_{k=5}^{15}k = \sum_{k=1}^{15}k - \sum_{k=1}^{4}k = \frac{15 \times 16}{2} - \frac{4 \times 5}{2} = 120 - 10 = 110\).</p>
+      <p><strong>3.</strong> Par linéarité (les sommes commencent à \(k=0\) mais les termes \(k\) et \(k^2\) sont nuls en 0) :</p>
+      <p>\[ \sum_{k=0}^{n}(3k^2 - k + 1) = 3 \cdot \frac{n(n+1)(2n+1)}{6} - \frac{n(n+1)}{2} + (n+1) = \frac{n(n+1)(2n+1)}{2} - \frac{n(n+1)}{2} + (n+1). \]</p>
+      <p>En factorisant par \(\frac{n+1}{2}\) : \(\frac{n+1}{2}\big[n(2n+1) - n + 2\big] = \frac{(n+1)(2n^2 + 2)}{2} = (n+1)(n^2+1)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Sommes géométriques</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer : 1. \(\displaystyle\sum_{k=0}^{10} 3^k\) ; &nbsp; 2. \(\displaystyle\sum_{k=2}^{n} \frac{1}{2^k}\) ; &nbsp; 3. \(\displaystyle\sum_{k=0}^{n} \frac{2^k}{3^{k+1}}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\sum_{k=0}^{10} 3^k = \frac{1 - 3^{11}}{1 - 3} = \frac{3^{11} - 1}{2} = \frac{177147 - 1}{2} = 88573\).</p>
+      <p><strong>2.</strong> Raison \(q = \frac12 \neq 1\), premier terme \(\frac{1}{4}\) : \(\displaystyle\sum_{k=2}^{n} \left(\frac12\right)^k = \frac{(1/2)^2 - (1/2)^{n+1}}{1 - 1/2} = \frac12 - \frac{1}{2^n}\).</p>
+      <p><strong>3.</strong> \(\displaystyle\sum_{k=0}^{n} \frac{2^k}{3^{k+1}} = \frac13 \sum_{k=0}^{n} \left(\frac23\right)^k = \frac13 \cdot \frac{1 - (2/3)^{n+1}}{1 - 2/3} = 1 - \left(\frac23\right)^{n+1}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Somme des carrés par récurrence</h3><span class="level level-1">Application directe</span></div>
+    <p>Démontrer par récurrence que pour tout \(n \geqslant 1\) : \(\displaystyle\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(P(n)\) la propriété. <em>Initialisation :</em> pour \(n=1\), \(\sum_{k=1}^1 k^2 = 1\) et \(\frac{1 \times 2 \times 3}{6} = 1\). ✓</p>
+      <p><em>Hérédité :</em> soit \(n \geqslant 1\) tel que \(P(n)\) soit vraie. Alors :</p>
+      <p>\[ \sum_{k=1}^{n+1} k^2 = \frac{n(n+1)(2n+1)}{6} + (n+1)^2 = \frac{n+1}{6}\big[n(2n+1) + 6(n+1)\big] = \frac{(n+1)(2n^2 + 7n + 6)}{6}. \]</p>
+      <p>Or \(2n^2 + 7n + 6 = (n+2)(2n+3)\) (racines \(-2\) et \(-\frac32\)), donc \(\sum_{k=1}^{n+1} k^2 = \frac{(n+1)(n+2)(2n+3)}{6}\), qui est bien la formule au rang \(n+1\) (remplacer \(n\) par \(n+1\)).</p>
+      <p><em>Conclusion :</em> par récurrence, la formule vaut pour tout \(n \geqslant 1\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Télescopage</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) :</p>
+    <ol>
+      <li>\(\displaystyle S_n = \sum_{k=1}^{n} \frac{1}{k(k+2)}\) (indication : décomposer \(\frac{1}{k(k+2)} = \frac{a}{k} + \frac{b}{k+2}\)) ;</li>
+      <li>\(\displaystyle T_n = \sum_{k=1}^{n} \ln\!\left(1 + \frac1k\right)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> On cherche \(a, b\) tels que \(\frac{1}{k(k+2)} = \frac{a}{k} + \frac{b}{k+2}\), soit \(1 = a(k+2) + bk\) pour tout \(k\) : en \(k=0\), \(a = \frac12\) ; en \(k = -2\), \(b = -\frac12\). Donc :</p>
+      <p>\[ S_n = \frac12 \sum_{k=1}^{n} \left(\frac1k - \frac{1}{k+2}\right) = \frac12\left(\sum_{k=1}^{n} \frac1k - \sum_{k=3}^{n+2} \frac1k\right) = \frac12\left(1 + \frac12 - \frac{1}{n+1} - \frac{1}{n+2}\right), \]</p>
+      <p>car seuls les termes \(k=1,2\) de la première somme et \(k = n+1, n+2\) de la seconde ne se compensent pas. Donc \(S_n = \frac34 - \frac{1}{2(n+1)} - \frac{1}{2(n+2)}\).</p>
+      <p><strong>2.</strong> \(\ln(1 + \frac1k) = \ln\frac{k+1}{k} = \ln(k+1) - \ln k\) : somme télescopique. Donc \(T_n = \ln(n+1) - \ln 1 = \ln(n+1)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Factorielles et simplifications</h3><span class="level level-2">Entraînement</span></div>
+    <p>1. Simplifier \(\dfrac{(n+1)!}{(n-1)!}\) et \(\dfrac{(2n)!}{(2n-2)!}\). <br>
+    2. Montrer que pour \(k \geqslant 1\) : \(k \cdot k! = (k+1)! - k!\). En déduire \(\displaystyle\sum_{k=1}^{n} k \cdot k!\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\frac{(n+1)!}{(n-1)!} = (n+1) \times n = n(n+1)\) ; \(\frac{(2n)!}{(2n-2)!} = 2n(2n-1)\).</p>
+      <p><strong>2.</strong> \((k+1)! - k! = k!\,\big[(k+1) - 1\big] = k \cdot k!\). ✓ Donc par télescopage :</p>
+      <p>\[ \sum_{k=1}^{n} k \cdot k! = \sum_{k=1}^{n} \big[(k+1)! - k!\big] = (n+1)! - 1! = (n+1)! - 1. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Binôme de Newton</h3><span class="level level-2">Entraînement</span></div>
+    <p>1. Développer \((2x - 1)^4\). <br>
+    2. Calculer \(\displaystyle\sum_{k=0}^{n} \binom{n}{k} 2^k\) et \(\displaystyle\sum_{k=0}^{n} \binom{n}{k} \frac{1}{3^k}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Avec \(a = 2x\), \(b = -1\) : coefficients \(1, 4, 6, 4, 1\) :</p>
+      <p>\[ (2x-1)^4 = (2x)^4 - 4(2x)^3 + 6(2x)^2 - 4(2x) + 1 = 16x^4 - 32x^3 + 24x^2 - 8x + 1. \]</p>
+      <p><strong>2.</strong> On reconnaît le binôme avec \(a = 2, b = 1\) : \(\sum_{k=0}^n \binom{n}{k} 2^k = \sum_{k=0}^n \binom{n}{k} 2^k 1^{n-k} = (2+1)^n = 3^n\).</p>
+      <p>De même avec \(a = \frac13, b = 1\) : \(\sum_{k=0}^n \binom{n}{k} 3^{-k} = \left(1 + \frac13\right)^n = \left(\frac43\right)^n = \frac{4^n}{3^n}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Formule du capitaine</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Démontrer que pour \(1 \leqslant k \leqslant n\) : \(k\dbinom{n}{k} = n\dbinom{n-1}{k-1}\). <br>
+    2. En déduire la valeur de \(\displaystyle\sum_{k=0}^{n} k\binom{n}{k}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par le calcul :</p>
+      <p>\[ k\binom{n}{k} = k \cdot \frac{n!}{k!(n-k)!} = \frac{n!}{(k-1)!\,(n-k)!} = n \cdot \frac{(n-1)!}{(k-1)!\,\big[(n-1)-(k-1)\big]!} = n\binom{n-1}{k-1}. \quad \blacksquare \]</p>
+      <p><strong>2.</strong> Le terme \(k = 0\) est nul, donc :</p>
+      <p>\[ \sum_{k=0}^{n} k\binom{n}{k} = \sum_{k=1}^{n} n\binom{n-1}{k-1} = n \sum_{j=0}^{n-1} \binom{n-1}{j} = n\,2^{n-1}, \]</p>
+      <p>avec le changement d'indice \(j = k-1\) puis la formule \(\sum_j \binom{n-1}{j} = 2^{n-1}\).</p>
+      <p class="small muted">Cette somme est l'espérance d'une loi binomiale \(\mathscr{B}(n, \frac12)\) multipliée par \(2^n\) — on la retrouvera au chapitre 11.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Somme double (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) : \(\displaystyle S = \sum_{1 \leqslant i \leqslant j \leqslant n} 1\) (nombre de couples \((i,j)\) avec \(1 \leqslant i \leqslant j \leqslant n\)), puis \(\displaystyle T = \sum_{j=1}^{n} \sum_{i=1}^{j} i\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Pour \(S\)</strong> : à \(j\) fixé, \(i\) prend les valeurs \(1, \dots, j\), soit \(j\) valeurs. Donc :</p>
+      <p>\[ S = \sum_{j=1}^{n} j = \frac{n(n+1)}{2}. \]</p>
+      <p><strong>Pour \(T\)</strong> : la somme intérieure vaut \(\sum_{i=1}^{j} i = \frac{j(j+1)}{2}\), donc :</p>
+      <p>\[ T = \sum_{j=1}^{n} \frac{j(j+1)}{2} = \frac12\left(\sum_{j=1}^{n} j^2 + \sum_{j=1}^{n} j\right) = \frac12\left(\frac{n(n+1)(2n+1)}{6} + \frac{n(n+1)}{2}\right) = \frac{n(n+1)}{12}\big[(2n+1) + 3\big] = \frac{n(n+1)(n+2)}{6}. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Identité de Vandermonde (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. En développant \((1+x)^{m+n} = (1+x)^m (1+x)^n\) et en identifiant le coefficient de \(x^k\), montrer que :</p>
+    <p>\[ \binom{m+n}{k} = \sum_{j=0}^{k} \binom{m}{j}\binom{n}{k-j}. \]</p>
+    <p>2. En déduire \(\displaystyle\sum_{j=0}^{n} \binom{n}{j}^2 = \binom{2n}{n}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par le binôme, le coefficient de \(x^k\) dans \((1+x)^{m+n}\) est \(\binom{m+n}{k}\). D'autre part, \((1+x)^m (1+x)^n = \left(\sum_{j} \binom{m}{j} x^j\right)\left(\sum_{i} \binom{n}{i} x^i\right)\) : le coefficient de \(x^k\) dans ce produit s'obtient en sommant tous les produits \(\binom{m}{j}\binom{n}{i}\) avec \(j + i = k\), soit \(\sum_{j=0}^{k} \binom{m}{j}\binom{n}{k-j}\). Deux polynômes égaux ont les mêmes coefficients, d'où l'identité. <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Prenons \(m = n\) et \(k = n\) : \(\binom{2n}{n} = \sum_{j=0}^{n} \binom{n}{j}\binom{n}{n-j}\). Par symétrie \(\binom{n}{n-j} = \binom{n}{j}\), donc \(\binom{2n}{n} = \sum_{j=0}^{n} \binom{n}{j}^2\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch01-logique-ensembles.html"><span class="pn-label">Chapitre précédent</span>← Raisonnement et ensembles</a>
+    <a class="next" href="ch03-nombres-reels.html"><span class="pn-label">Chapitre suivant</span>Nombres réels →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

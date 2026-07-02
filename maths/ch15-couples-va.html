@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 15 — Couples de variables aléatoires finies | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : loi conjointe, lois marginales, lois conditionnelles, indépendance de variables aléatoires, covariance, espérance et variance d'une somme. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch15" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 15</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 15.</span> Couples de variables aléatoires finies</h1>
+  <p class="lead">Étudier deux variables aléatoires simultanément : loi conjointe, lois marginales et conditionnelles, indépendance, covariance. Point d'orgue : la variance d'une somme, et pourquoi la diversification réduit le risque.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 2 · ≈ 2 semaines de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Loi conjointe et lois marginales</a></li>
+      <li><a href="#s2">Lois conditionnelles</a></li>
+      <li><a href="#s3">Indépendance de deux variables aléatoires</a></li>
+      <li><a href="#s4">Espérance d'une somme, d'un produit</a></li>
+      <li><a href="#s5">Covariance et variance d'une somme</a></li>
+      <li><a href="#s6">Somme de variables indépendantes usuelles</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Loi conjointe et lois marginales</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 15.1 — Loi conjointe, lois marginales</span>
+    <p>Soient \(X\) et \(Y\) deux v.a. finies sur le même espace, avec \(X(\Omega) = \{x_1, \dots, x_n\}\) et \(Y(\Omega) = \{y_1, \dots, y_m\}\). La <strong>loi conjointe</strong> du couple \((X, Y)\) est la donnée des :</p>
+    <p>\[ p_{ij} = P\big((X = x_i) \cap (Y = y_j)\big), \qquad \sum_{i,j} p_{ij} = 1. \]</p>
+    <p>Les <strong>lois marginales</strong> s'obtiennent en sommant les lignes / colonnes du tableau à double entrée :</p>
+    <p>\[ P(X = x_i) = \sum_{j=1}^{m} p_{ij}, \qquad P(Y = y_j) = \sum_{i=1}^{n} p_{ij}. \]</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Piège</span>
+    <p>La loi conjointe détermine les marginales, mais <strong>les marginales ne déterminent pas la conjointe</strong> : deux couples différents peuvent avoir les mêmes lois marginales (voir exercice 4).</p>
+  </div>
+
+  <h2 id="s2">2. Lois conditionnelles</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 15.2 — Loi conditionnelle</span>
+    <p>Si \(P(Y = y_j) &gt; 0\), la <strong>loi conditionnelle de \(X\) sachant \(\{Y = y_j\}\)</strong> est donnée par :</p>
+    <p>\[ P(X = x_i \mid Y = y_j) = \frac{p_{ij}}{P(Y = y_j)}. \]</p>
+    <p>Réciproquement, la conjointe se reconstruit par \(p_{ij} = P(Y = y_j)\,P(X = x_i \mid Y = y_j)\) — c'est souvent ainsi que l'énoncé la fournit.</p>
+  </div>
+
+  <h2 id="s3">3. Indépendance de deux variables aléatoires</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 15.3 — Indépendance</span>
+    <p>\(X\) et \(Y\) sont <strong>indépendantes</strong> si pour tous \(i, j\) :</p>
+    <p>\[ P\big((X = x_i) \cap (Y = y_j)\big) = P(X = x_i)\,P(Y = y_j) \]</p>
+    <p>— la conjointe est le produit des marginales, <em>pour toutes les cases du tableau</em>. Une seule case en défaut suffit à briser l'indépendance. Si \(X\) et \(Y\) sont indépendantes, \(f(X)\) et \(g(Y)\) le sont aussi pour toutes fonctions \(f, g\).</p>
+  </div>
+
+  <h2 id="s4">4. Espérance d'une somme, d'un produit</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 15.4 — Espérances</span>
+    <ul>
+      <li><strong>Linéarité (toujours vraie) :</strong> \(E(X + Y) = E(X) + E(Y)\), et \(E\left(\sum_i X_i\right) = \sum_i E(X_i)\).</li>
+      <li><strong>Produit (sous indépendance) :</strong> si \(X\) et \(Y\) sont indépendantes, \(E(XY) = E(X)\,E(Y)\). <em>Réciproque fausse</em> (exercice 5).</li>
+      <li><strong>Transfert :</strong> \(E\big(g(X,Y)\big) = \sum_{i,j} g(x_i, y_j)\,p_{ij}\).</li>
+    </ul>
+  </div>
+
+  <h2 id="s5">5. Covariance et variance d'une somme</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 15.5 — Covariance</span>
+    <p>\[ \mathrm{Cov}(X, Y) = E\big[(X - E(X))(Y - E(Y))\big] = E(XY) - E(X)E(Y) \quad \text{(formule de Kœnig-Huygens)}. \]</p>
+    <p>\(\mathrm{Cov}(X, X) = V(X)\) ; la covariance est symétrique et bilinéaire. Si \(\mathrm{Cov}(X,Y) = 0\), les variables sont dites <strong>non corrélées</strong>.</p>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 15.6 — Variance d'une somme (démonstration exigible)</span>
+    <p>\[ V(X + Y) = V(X) + V(Y) + 2\,\mathrm{Cov}(X, Y). \]</p>
+    <p>Si \(X\) et \(Y\) sont <strong>indépendantes</strong> : \(\mathrm{Cov}(X, Y) = 0\), donc \(V(X + Y) = V(X) + V(Y)\), et plus généralement pour \(X_1, \dots, X_n\) mutuellement indépendantes : \(V\left(\sum X_i\right) = \sum V(X_i)\).</p>
+    <div class="demo">
+      <span class="demo-title">Démonstration.</span>
+      <p>Posons \(\tilde X = X - E(X)\), \(\tilde Y = Y - E(Y)\) (variables centrées). Alors \(V(X+Y) = E\big[(\tilde X + \tilde Y)^2\big] = E(\tilde X^2) + 2E(\tilde X \tilde Y) + E(\tilde Y^2) = V(X) + 2\mathrm{Cov}(X,Y) + V(Y)\), par linéarité. Sous indépendance, \(E(\tilde X\tilde Y) = E(\tilde X)E(\tilde Y) = 0\). <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Interprétation — Diversification du risque</span>
+    <p>Covariance positive : les variables varient « dans le même sens » ; négative : en sens contraires. Pour un portefeuille \(Z = \frac{X + Y}{2}\) de deux actifs de même variance \(\sigma^2\) : \(V(Z) = \frac{\sigma^2}{2}(1 + \rho)\) où \(\rho\) est la corrélation — le risque diminue d'autant plus que les actifs sont peu ou négativement corrélés. C'est le fondement mathématique de la diversification.</p>
+  </div>
+
+  <h2 id="s6">6. Somme de variables indépendantes usuelles</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 15.7 — Stabilité des lois usuelles</span>
+    <ul>
+      <li>Si \(X_1, \dots, X_n\) sont indépendantes de loi \(\mathscr{B}(p)\), alors \(X_1 + \dots + X_n \hookrightarrow \mathscr{B}(n, p)\) — c'est la construction même de la binomiale, qui redonne immédiatement \(E = np\) et \(V = np(1-p)\).</li>
+      <li>Si \(X \hookrightarrow \mathscr{B}(n, p)\) et \(Y \hookrightarrow \mathscr{B}(m, p)\) indépendantes, alors \(X + Y \hookrightarrow \mathscr{B}(n + m, p)\).</li>
+      <li>Si \(X \hookrightarrow \mathscr{P}(\lambda)\) et \(Y \hookrightarrow \mathscr{P}(\mu)\) indépendantes, alors \(X + Y \hookrightarrow \mathscr{P}(\lambda + \mu)\).</li>
+    </ul>
+    <div class="demo">
+      <span class="demo-title">Démonstration (cas Poisson).</span>
+      <p>Pour \(k \in \mathbb{N}\), \(\{X + Y = k\} = \bigcup_{i=0}^{k} \{X = i\} \cap \{Y = k - i\}\) (union disjointe) ; par indépendance :</p>
+      <p>\[ P(X + Y = k) = \sum_{i=0}^{k} \mathrm{e}^{-\lambda}\frac{\lambda^i}{i!}\,\mathrm{e}^{-\mu}\frac{\mu^{k-i}}{(k-i)!} = \frac{\mathrm{e}^{-(\lambda+\mu)}}{k!}\sum_{i=0}^{k}\binom ki \lambda^i \mu^{k-i} = \mathrm{e}^{-(\lambda+\mu)}\frac{(\lambda + \mu)^k}{k!}, \]</p>
+      <p>par le binôme de Newton. <span class="qed">∎</span></p>
+    </div>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Tableau de loi conjointe</h3><span class="level level-1">Application directe</span></div>
+    <p>La loi conjointe de \((X, Y)\) est donnée par le tableau (\(X\) en ligne, \(Y\) en colonne) :</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>\(X \backslash Y\)</th><th>0</th><th>1</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td>0,1</td><td>0,3</td></tr>
+        <tr><th>2</th><td>0,2</td><td>0,4</td></tr>
+      </tbody>
+    </table></div>
+    <p>Déterminer les lois marginales, \(E(X)\), \(E(Y)\), et dire si \(X\) et \(Y\) sont indépendantes.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Marginales :</em> \(P(X = 1) = 0{,}4\), \(P(X = 2) = 0{,}6\) ; \(P(Y = 0) = 0{,}3\), \(P(Y = 1) = 0{,}7\). (Total 1 ✓.)</p>
+      <p>\(E(X) = 1 \times 0{,}4 + 2 \times 0{,}6 = 1{,}6\) ; \(E(Y) = 0{,}7\).</p>
+      <p><em>Indépendance :</em> testons chaque case : \(P(X=1)P(Y=0) = 0{,}4 \times 0{,}3 = 0{,}12 \neq 0{,}1 = p_{10}\). <strong>Non indépendantes.</strong></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Construction d'une conjointe</h3><span class="level level-1">Application directe</span></div>
+    <p>On tire successivement sans remise 2 boules d'une urne contenant 2 blanches et 3 noires. Soit \(X_i = 1\) si la \(i\)-ième boule est blanche, 0 sinon. Donner la loi conjointe de \((X_1, X_2)\), les marginales, et vérifier si \(X_1\) et \(X_2\) sont indépendantes.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par probabilités composées :</p>
+      <p>\(P(X_1{=}1, X_2{=}1) = \frac25 \times \frac14 = \frac{1}{10}\) ; \(P(X_1{=}1, X_2{=}0) = \frac25 \times \frac34 = \frac{3}{10}\) ; \(P(X_1{=}0, X_2{=}1) = \frac35 \times \frac24 = \frac{3}{10}\) ; \(P(X_1{=}0, X_2{=}0) = \frac35 \times \frac24 = \frac{3}{10}\). (Somme 1 ✓.)</p>
+      <p><em>Marginales :</em> \(P(X_1 = 1) = \frac25\) ; \(P(X_2 = 1) = \frac1{10} + \frac3{10} = \frac25\) — remarquable : même loi que \(X_1\) (symétrie des tirages sans remise).</p>
+      <p><em>Indépendance :</em> \(P(X_1{=}1)P(X_2{=}1) = \frac4{25} \neq \frac1{10}\) : <strong>non indépendantes</strong> (logique : sans remise, le premier tirage influence le second).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Covariance</h3><span class="level level-1">Application directe</span></div>
+    <p>Avec le couple de l'exercice 1, calculer \(E(XY)\), \(\mathrm{Cov}(X, Y)\), puis \(V(X + Y)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(E(XY) = \sum_{i,j} x_i y_j p_{ij} = 1 \cdot 1 \cdot 0{,}3 + 2 \cdot 1 \cdot 0{,}4 = 1{,}1\) (les cases \(y = 0\) ne contribuent pas).</p>
+      <p>\(\mathrm{Cov}(X,Y) = E(XY) - E(X)E(Y) = 1{,}1 - 1{,}6 \times 0{,}7 = 1{,}1 - 1{,}12 = -0{,}02\).</p>
+      <p>\(V(X) = E(X^2) - E(X)^2 = (0{,}4 + 4 \times 0{,}6) - 2{,}56 = 2{,}8 - 2{,}56 = 0{,}24\) ; \(V(Y) = 0{,}7 - 0{,}49 = 0{,}21\).</p>
+      <p>\(V(X + Y) = 0{,}24 + 0{,}21 + 2(-0{,}02) = 0{,}41\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Les marginales ne suffisent pas</h3><span class="level level-2">Entraînement</span></div>
+    <p>Construire deux lois conjointes différentes sur \(\{0,1\} \times \{0,1\}\) ayant les mêmes marginales : \(P(X = 1) = P(Y = 1) = \frac12\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Cas indépendant :</em> toutes les cases valent \(\frac14\).</p>
+      <p><em>Cas parfaitement corrélé :</em> \(P(X{=}0,Y{=}0) = P(X{=}1,Y{=}1) = \frac12\), les deux autres cases nulles (on a alors \(Y = X\)).</p>
+      <p>Dans les deux cas, les marginales valent \(\frac12\) sur chaque valeur, mais les conjointes diffèrent — et les covariances aussi : 0 dans le premier cas, \(\mathrm{Cov} = E(XY) - \frac14 = \frac12 - \frac14 = \frac14\) dans le second.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Non corrélées mais dépendantes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X\) de loi uniforme sur \(\{-1, 0, 1\}\) et \(Y = X^2\).</p>
+    <ol>
+      <li>Donner la loi conjointe de \((X, Y)\) et montrer que \(\mathrm{Cov}(X, Y) = 0\).</li>
+      <li>\(X\) et \(Y\) sont-elles indépendantes ? Conclure.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(P(X{=}{-1}, Y{=}1) = P(X{=}1, Y{=}1) = P(X{=}0, Y{=}0) = \frac13\), autres cases nulles. \(E(X) = 0\) ; \(E(XY) = E(X^3) = E(X) = 0\) (car \(X^3 = X\) sur \(\{-1,0,1\}\)). Donc \(\mathrm{Cov}(X,Y) = 0 - 0 = 0\).</p>
+      <p><strong>2.</strong> \(P(X{=}1, Y{=}0) = 0\) mais \(P(X{=}1)P(Y{=}0) = \frac13 \times \frac13 = \frac19 \neq 0\) : <strong>dépendantes</strong> (évidemment : \(Y\) est une fonction de \(X\)).</p>
+      <p><em>Conclusion :</em> covariance nulle n'implique pas indépendance — l'implication n'est vraie que dans l'autre sens.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Somme de Poisson indépendantes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Deux guichets reçoivent respectivement \(X \hookrightarrow \mathscr{P}(2)\) et \(Y \hookrightarrow \mathscr{P}(3)\) clients par heure, indépendamment. Soit \(S = X + Y\).</p>
+    <ol>
+      <li>Donner la loi de \(S\), \(E(S)\) et \(V(S)\).</li>
+      <li>Calculer \(P(S = 4)\), puis \(P(X = 2 \mid S = 4)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par stabilité (théorème 15.7) : \(S \hookrightarrow \mathscr{P}(5)\), \(E(S) = V(S) = 5\).</p>
+      <p><strong>2.</strong> \(P(S = 4) = \mathrm{e}^{-5}\frac{5^4}{4!} = \frac{625}{24}\mathrm{e}^{-5} \approx 0{,}175\).</p>
+      <p>\[ P(X = 2 \mid S = 4) = \frac{P(X=2)P(Y=2)}{P(S=4)} = \frac{\mathrm{e}^{-2}\frac{4}{2} \cdot \mathrm{e}^{-3}\frac{9}{2}}{\mathrm{e}^{-5}\frac{625}{24}} = \frac{9 \times 24}{625} = \binom42\left(\frac25\right)^2\left(\frac35\right)^2 = \frac{216}{625} \approx 0{,}346. \]</p>
+      <p class="small muted">On reconnaît une loi binomiale \(\mathscr{B}\big(4, \frac{2}{5}\big)\) : sachant \(S = n\), \(X\) suit \(\mathscr{B}\big(n, \frac{\lambda}{\lambda+\mu}\big)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Min et max de deux dés (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On lance deux dés équilibrés indépendants ; soit \(U = \min\), \(V = \max\).</p>
+    <ol>
+      <li>Déterminer la loi conjointe de \((U, V)\).</li>
+      <li>\(U\) et \(V\) sont-elles indépendantes ?</li>
+      <li>Calculer \(\mathrm{Cov}(U, V)\) sachant que \(E(U) = \frac{91}{36}\), \(E(V) = \frac{161}{36}\) (chapitre 11) et \(E(UV) = \frac{49}{4}\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Pour \(u &lt; v\) : \(\{U = u, V = v\}\) correspond aux couples \((u, v)\) et \((v, u)\) : probabilité \(\frac{2}{36}\). Pour \(u = v\) : le seul couple \((u,u)\) : \(\frac1{36}\). (Et 0 si \(u &gt; v\).)</p>
+      <p><strong>2.</strong> \(P(U{=}6, V{=}1) = 0\) mais \(P(U{=}6) = \frac1{36} \neq 0\) et \(P(V{=}1) = \frac1{36} \neq 0\) : <strong>non indépendantes</strong>.</p>
+      <p><strong>3.</strong> Remarquons que \(UV = D_1 D_2\) (min × max = produit des deux dés), et par indépendance des dés \(E(UV) = E(D_1)E(D_2) = \frac72 \times \frac72 = \frac{49}{4}\) ✓ (donnée retrouvée). Donc :</p>
+      <p>\[ \mathrm{Cov}(U, V) = \frac{49}{4} - \frac{91}{36} \times \frac{161}{36} = \frac{49 \times 324 - 91 \times 161}{1296} = \frac{15876 - 14651}{1296} = \frac{1225}{1296} \approx 0{,}945. \]</p>
+      <p>Covariance positive : un grand max va de pair avec un grand min.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Portefeuille et diversification (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Deux actifs ont des rendements \(X\) et \(Y\) avec \(E(X) = E(Y) = 5\) (en %), \(V(X) = V(Y) = 16\) et \(\mathrm{Cov}(X, Y) = c\). On investit à parts égales : \(Z = \frac{X+Y}{2}\).</p>
+    <ol>
+      <li>Calculer \(E(Z)\) et exprimer \(V(Z)\) en fonction de \(c\).</li>
+      <li>Comparer \(V(Z)\) et \(V(X)\) lorsque \(c = 16\) (corrélation parfaite), \(c = 0\), \(c = -16\). Commenter.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(E(Z) = \frac{E(X) + E(Y)}{2} = 5\) : même rendement espéré. Et :</p>
+      <p>\[ V(Z) = \frac14 V(X + Y) = \frac14\big[V(X) + V(Y) + 2c\big] = \frac{32 + 2c}{4} = 8 + \frac c2. \]</p>
+      <p><strong>2.</strong> \(c = 16\) : \(V(Z) = 16 = V(X)\) — aucun gain, les actifs évoluent identiquement. \(c = 0\) : \(V(Z) = 8\), le risque (variance) est divisé par 2 sans perte de rendement. \(c = -16\) : \(V(Z) = 0\) — risque totalement éliminé (les fluctuations se compensent exactement).</p>
+      <p><em>Commentaire :</em> à rendement espéré constant, la diversification réduit d'autant plus le risque que les actifs sont décorrélés, et idéalement anticorrélés — résultat fondateur de la théorie du portefeuille (Markowitz, 1952).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Espérance d'une binomiale par indicatrices (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Une urne contient \(n\) boules numérotées de 1 à \(n\). On les tire une à une sans remise ; il y a « rencontre » au rang \(i\) si la boule numéro \(i\) sort au \(i\)-ième tirage. Soit \(R\) le nombre de rencontres.</p>
+    <ol>
+      <li>Écrire \(R\) comme somme d'indicatrices et calculer \(E(R)\).</li>
+      <li>Calculer \(P(R_i = 1, R_j = 1)\) pour \(i \neq j\), puis \(V(R)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(R = \sum_{i=1}^{n} R_i\) où \(R_i\) est l'indicatrice d'une rencontre au rang \(i\). Par symétrie, la boule \(i\) a autant de chances de sortir à chaque rang : \(P(R_i = 1) = \frac1n\). Par linéarité (pas besoin d'indépendance !) :</p>
+      <p>\[ E(R) = \sum_{i=1}^n \frac1n = 1 : \text{en moyenne, une rencontre — quel que soit } n. \]</p>
+      <p><strong>2.</strong> \(P(R_i = 1, R_j = 1) = \frac{(n-2)!}{n!} = \frac{1}{n(n-1)}\) (les permutations fixant \(i\) et \(j\)). Donc \(\mathrm{Cov}(R_i, R_j) = \frac{1}{n(n-1)} - \frac{1}{n^2} = \frac{1}{n^2(n-1)}\), et :</p>
+      <p>\[ V(R) = \sum_i V(R_i) + 2\!\!\sum_{i &lt; j}\!\mathrm{Cov}(R_i, R_j) = n \cdot \frac1n\left(1 - \frac1n\right) + 2\binom n2 \frac{1}{n^2(n-1)} = \left(1 - \frac1n\right) + \frac1n = 1. \]</p>
+      <p>\(E(R) = V(R) = 1\) : le nombre de rencontres se comporte comme une loi de Poisson \(\mathscr{P}(1)\) quand \(n\) grandit — c'est le célèbre problème des chapeaux de Montmort.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch14-probabilites-denombrables.html"><span class="pn-label">Chapitre précédent</span>← Probabilités dénombrables</a>
+    <a class="next" href="ch16-graphes.html"><span class="pn-label">Chapitre suivant</span>Introduction aux graphes →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
