@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informatique I3 — numpy, matplotlib et random | Maths ECG1</title>
+<meta name="description" content="Python pour l'ECG : tableaux numpy, opérations vectorisées, matrices, graphiques matplotlib, module random. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-info03" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../espagnol/index.html">Espagnol</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Informatique I3</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Informatique I3.</span> Les bibliothèques numpy, matplotlib et random</h1>
+  <p class="lead">Trois bibliothèques au programme : <code>numpy</code> pour le calcul numérique et matriciel, <code>matplotlib.pyplot</code> pour les graphiques, <code>random</code> pour l'aléatoire (développé en fiche I4). Les imports standards à connaître par cœur : <code>import numpy as np</code>, <code>import matplotlib.pyplot as plt</code>, <code>import random as rd</code>.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">TP tout au long de l'année</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Tableaux numpy</a></li>
+      <li><a href="#s2">Opérations vectorisées</a></li>
+      <li><a href="#s3">Matrices avec numpy</a></li>
+      <li><a href="#s4">Graphiques avec matplotlib</a></li>
+      <li><a href="#s5">Le module random</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Tableaux numpy</h2>
+  <pre><code class="language-python">import numpy as np
+
+A = np.array([1, 2, 3, 4])        # tableau 1D à partir d'une liste
+Z = np.zeros(5)                   # [0. 0. 0. 0. 0.]
+U = np.ones(3)                    # [1. 1. 1.]
+E = np.arange(0, 10, 2)           # [0 2 4 6 8]  (comme range)
+X = np.linspace(0, 1, 5)          # [0.   0.25 0.5  0.75 1.  ]  (5 points régulièrement espacés)</code></pre>
+  <p><code>np.linspace(a, b, n)</code> donne \(n\) points de \(a\) à \(b\) <em>inclus</em> — c'est l'outil standard pour tracer une fonction.</p>
+
+  <h2 id="s2">2. Opérations vectorisées</h2>
+  <p>Les opérations s'appliquent <strong>terme à terme</strong>, sans boucle :</p>
+  <pre><code class="language-python">A = np.array([1, 2, 3, 4])
+print(A + 1)        # [2 3 4 5]
+print(2 * A)        # [2 4 6 8]
+print(A ** 2)       # [ 1  4  9 16]
+print(np.sqrt(A))   # [1.    1.414 1.732 2.   ]
+print(np.exp(A), np.log(A))   # exponentielle et ln, terme à terme
+print(A.sum(), A.mean(), A.max())   # 10  2.5  4
+print(A[A &gt; 2])     # [3 4]  (sélection par condition)
+print((A % 2 == 0).sum())     # 2  (nombre de termes pairs)</code></pre>
+  <div class="box warn">
+    <span class="box-title">Piège</span>
+    <p>Avec des <em>listes</em> Python, <code>2 * [1, 2]</code> donne <code>[1, 2, 1, 2]</code> (répétition) et <code>[1, 2] + [3]</code> donne <code>[1, 2, 3]</code> (concaténation). Les mêmes opérateurs sur des <em>tableaux numpy</em> font du calcul terme à terme. Identifier le type avant de prédire la sortie !</p>
+  </div>
+
+  <h2 id="s3">3. Matrices avec numpy</h2>
+  <pre><code class="language-python">M = np.array([[1, 2], [3, 4]])    # matrice 2x2
+I = np.eye(2)                      # matrice identité
+print(M.shape)                     # (2, 2)
+print(M[0, 1])                     # 2   (ligne 0, colonne 1)
+print(M + M)                       # somme terme à terme
+print(M * M)                       # ATTENTION : produit terme à terme !
+print(np.dot(M, M))                # produit MATRICIEL : [[ 7 10] [15 22]]
+print(M @ M)                       # idem, notation moderne
+P = np.linalg.matrix_power(M, 3)   # M au cube (produit matriciel)
+X = np.linalg.solve(M, np.array([1, 2]))   # résout MX = B</code></pre>
+  <div class="box warn">
+    <span class="box-title">Le piège matriciel du concours</span>
+    <p><code>M * N</code> est le produit <strong>terme à terme</strong> ; le produit matriciel est <code>np.dot(M, N)</code> ou <code>M @ N</code>. De même <code>M ** 2</code> élève chaque coefficient au carré — pour \(M^2\) au sens matriciel, utiliser <code>np.linalg.matrix_power(M, 2)</code> ou <code>M @ M</code>.</p>
+  </div>
+
+  <h2 id="s4">4. Graphiques avec matplotlib</h2>
+  <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Courbe d'une fonction
+x = np.linspace(-2, 2, 200)
+plt.plot(x, np.exp(x), label="exp")
+plt.plot(x, 1 + x, "--", label="tangente en 0")
+plt.legend()
+plt.xlabel("x")
+plt.title("exp est au-dessus de sa tangente (convexité)")
+plt.show()
+
+# Termes d'une suite (points isolés)
+n = np.arange(20)
+plt.plot(n, 3 * 0.8**n, "o")      # "o" : marqueurs ronds
+plt.show()
+
+# Diagramme en bâtons d'une loi binomiale, histogramme de données
+plt.bar(valeurs, probas)
+plt.hist(donnees, bins=20)</code></pre>
+  <p class="small muted">À l'écrit, on demande surtout d'<em>interpréter</em> un graphique produit par un code donné, ou de compléter l'appel <code>plt.plot</code>.</p>
+
+  <h2 id="s5">5. Le module random</h2>
+  <pre><code class="language-python">import random as rd
+
+rd.random()          # un float uniforme dans [0, 1[
+rd.randint(1, 6)     # un entier uniforme entre 1 et 6 INCLUS (lancer de dé)
+rd.choice([2, 3, 5]) # un élément au hasard dans la liste</code></pre>
+  <p>Simuler une épreuve de Bernoulli de paramètre \(p\) : <code>rd.random() &lt; p</code> renvoie <code>True</code> avec probabilité \(p\). La fiche <a href="info04-simulation.html">I4</a> développe les simulations complètes.</p>
+  <p class="small muted">Remarque : <code>np.random.rand(n)</code> (numpy) produit directement un tableau de \(n\) uniformes — utile pour vectoriser les simulations.</p>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Prédire la sortie (numpy)</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">import numpy as np
+A = np.arange(1, 6)
+print(A)
+print(A * A)
+print(A.sum())
+print((A ** 2).sum())
+L = [1, 2, 3]
+print(2 * L)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>[1 2 3 4 5]</code> ; <code>[ 1  4  9 16 25]</code> (produit terme à terme) ; <code>15</code> ; <code>55</code> (somme des carrés) ; <code>[1, 2, 3, 1, 2, 3]</code> — car <code>L</code> est une <em>liste</em>, pas un tableau : répétition.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Puissances de matrices</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire un programme numpy qui calcule \(A^{10}\) pour \(A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}\), et prédire le résultat (cf. chapitre 5, exercice 6).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+A = np.array([[1, 1], [0, 1]])
+P = np.linalg.matrix_power(A, 10)
+print(P)</code></pre>
+      <p>D'après la formule \(A^k = \begin{pmatrix} 1 &amp; k \\ 0 &amp; 1 \end{pmatrix}\), le programme affiche <code>[[ 1 10] [ 0  1]]</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Tracer une étude de fonction</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire le code qui trace \(f(x) = \frac{\ln x}{x}\) sur \([0{,}1 ; 8]\) ainsi que la droite horizontale \(y = 1/\mathrm{e}\), pour illustrer le maximum obtenu au chapitre 8.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0.1, 8, 300)
+plt.plot(x, np.log(x) / x, label="f(x) = ln(x)/x")
+plt.axhline(1/np.e, linestyle="--", color="gray", label="y = 1/e")
+plt.axvline(np.e, linestyle=":", color="gray")
+plt.legend()
+plt.show()</code></pre>
+      <p>La courbe monte jusqu'à \(x = \mathrm{e} \approx 2{,}72\) où elle touche la droite \(y = 1/\mathrm{e} \approx 0{,}368\), puis redescend vers 0 : c'est le tableau de variations du chapitre 8 en image.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Suite récurrente et graphique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire un programme qui calcule les 30 premiers termes de la suite \(u_0 = 0\), \(u_{n+1} = \sqrt{u_n + 2}\) (chapitre 6, exercice 7) et les représente. Quelle allure attend-on ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+u = [0]
+for n in range(29):
+    u.append(np.sqrt(u[-1] + 2))
+
+plt.plot(range(30), u, "o-")
+plt.axhline(2, linestyle="--", color="gray")
+plt.xlabel("n"); plt.ylabel("u_n")
+plt.show()</code></pre>
+      <p>Allure attendue : une suite <strong>croissante</strong> qui converge très vite vers la droite \(y = 2\) (limite démontrée au chapitre 6) — dès \(n \approx 5\), les points sont visuellement confondus avec 2.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Marche vers l'équilibre (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On reprend le serveur du chapitre 10 (exercice 7) : \(p_{n+1} = 0{,}3p_n + 0{,}6\), \(p_0 = 1\). Compléter le programme pour qu'il affiche le plus petit \(n\) tel que \(|p_n - \frac67| \leqslant 10^{-6}\), et estimer ce \(n\) par le calcul.</p>
+    <pre><code class="language-python">p = 1
+n = 0
+while ......:
+    p = ......
+    n = ......
+print(n)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">p = 1
+n = 0
+while abs(p - 6/7) &gt; 1e-6:
+    p = 0.3 * p + 0.6
+    n = n + 1
+print(n)</code></pre>
+      <p><em>Estimation :</em> d'après le chapitre 10, \(p_n - \frac67 = \frac17(0{,}3)^n\). On veut \(\frac17 (0{,}3)^n \leqslant 10^{-6}\), soit \(n \geqslant \frac{\ln(7 \times 10^{-6})}{\ln 0{,}3} = \frac{-11{,}87}{-1{,}204} \approx 9{,}86\) : le programme affiche <code>10</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Chemins dans un graphe avec numpy (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire un programme qui, pour le graphe du chapitre 16 (matrice \(A\) donnée ci-dessous), calcule le nombre de chemins de longueur 4 entre les sommets 1 et 4, et vérifier le résultat à la main à partir de \(A^2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+A = np.array([[0,1,1,0],
+              [1,0,1,1],
+              [1,1,0,0],
+              [0,1,0,0]])
+P4 = np.linalg.matrix_power(A, 4)
+print(P4[0, 3])    # sommets 1 et 4 : indices 0 et 3 !</code></pre>
+      <p><em>Vérification :</em> \(A^4 = (A^2)^2\), avec \(A^2\) calculée au chapitre 16 (exercice 3). Le coefficient \((1,4)\) de \(A^4\) est le produit scalaire de la ligne 1 de \(A^2\), \((2, 1, 1, 1)\), par la colonne 4 de \(A^2\), \((1, 0, 1, 1)\) : \(2 \times 1 + 1 \times 0 + 1 \times 1 + 1 \times 1 = 4\). Le programme affiche <code>4</code>.</p>
+      <p class="small muted">Noter le décalage sommets/indices : le sommet 1 est l'indice 0 — piège récurrent.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="info02-listes.html"><span class="pn-label">Fiche précédente</span>← Listes et données</a>
+    <a class="next" href="info04-simulation.html"><span class="pn-label">Fiche suivante</span>Simulation et Monte-Carlo →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

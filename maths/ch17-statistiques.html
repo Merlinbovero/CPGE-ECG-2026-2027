@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 17 — Statistiques descriptives | Maths ECG1</title>
+<meta name="description" content="Cours complet ECG1 : séries statistiques, moyenne, médiane, quartiles, variance et écart-type, statistiques bivariées, covariance, corrélation, droite des moindres carrés. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-ch17" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../espagnol/index.html">Espagnol</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Chapitre 17</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Chapitre 17.</span> Statistiques descriptives univariées et bivariées</h1>
+  <p class="lead">Résumer des données : indicateurs de position (moyenne, médiane, quartiles) et de dispersion (variance, écart-type) pour une variable ; covariance, corrélation et droite des moindres carrés pour deux variables. Des outils directement utiles en ESH pour lire des documents statistiques.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">Semestre 2 · ≈ 1,5 semaine de cours</span>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Vocabulaire statistique</a></li>
+      <li><a href="#s2">Indicateurs de position</a></li>
+      <li><a href="#s3">Indicateurs de dispersion</a></li>
+      <li><a href="#s4">Statistiques bivariées : covariance et corrélation</a></li>
+      <li><a href="#s5">Ajustement affine : la droite des moindres carrés</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Vocabulaire statistique</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 17.1 — Série statistique</span>
+    <p>Une <strong>série statistique</strong> est une suite d'observations \(x_1, \dots, x_n\) d'une variable (ou <em>caractère</em>) sur une <em>population</em> de taille \(n\). La variable peut être <strong>qualitative</strong> (catégories) ou <strong>quantitative</strong> (numérique), discrète ou continue (regroupée en classes). L'<strong>effectif</strong> \(n_i\) d'une valeur est son nombre d'occurrences, sa <strong>fréquence</strong> est \(f_i = \frac{n_i}{n}\).</p>
+  </div>
+
+  <h2 id="s2">2. Indicateurs de position</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 17.2 — Moyenne, médiane, quartiles, mode</span>
+    <ul>
+      <li><strong>Moyenne :</strong> \(\bar x = \dfrac1n \displaystyle\sum_{i=1}^{n} x_i = \sum_i f_i\,x_i\) (avec les fréquences).</li>
+      <li><strong>Médiane</strong> \(m\) : valeur qui partage la série ordonnée en deux moitiés — au moins 50 % des valeurs \(\leqslant m\) et au moins 50 % \(\geqslant m\). Pour \(n\) impair : la valeur centrale ; pour \(n\) pair : conventionnellement la demi-somme des deux valeurs centrales.</li>
+      <li><strong>Quartiles :</strong> \(Q_1\) (au moins 25 % des valeurs \(\leqslant Q_1\)) et \(Q_3\) (au moins 75 %) ; l'<strong>écart interquartile</strong> est \(Q_3 - Q_1\).</li>
+      <li><strong>Mode :</strong> valeur (ou classe) de plus grand effectif.</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Moyenne ou médiane ?</span>
+    <p>La moyenne est <em>sensible aux valeurs extrêmes</em>, pas la médiane. Exemple type (à réutiliser en ESH) : dans une entreprise de 10 salariés dont 9 gagnent 2 000 € et le dirigeant 22 000 €, la moyenne vaut 4 000 € mais la médiane 2 000 € — c'est pourquoi l'INSEE communique le <em>salaire médian</em>. Une distribution de revenus étalée vers le haut a une moyenne supérieure à sa médiane.</p>
+  </div>
+
+  <h2 id="s3">3. Indicateurs de dispersion</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 17.3 — Variance et écart-type empiriques</span>
+    <p>\[ s^2 = \frac1n\sum_{i=1}^{n} (x_i - \bar x)^2 = \underbrace{\frac1n\sum_{i=1}^{n} x_i^2 - \bar x^2}_{\text{formule de Kœnig-Huygens}}, \qquad s = \sqrt{s^2}. \]</p>
+    <p>L'écart-type mesure la dispersion autour de la moyenne, dans l'unité des données. <strong>Transformation affine :</strong> si \(y_i = a x_i + b\), alors \(\bar y = a\bar x + b\) et \(s_y = |a|\,s_x\).</p>
+  </div>
+
+  <h2 id="s4">4. Statistiques bivariées : covariance et corrélation</h2>
+
+  <div class="box def">
+    <span class="box-title">Définition 17.4 — Covariance et coefficient de corrélation</span>
+    <p>Pour une série double \((x_1, y_1), \dots, (x_n, y_n)\) :</p>
+    <p>\[ s_{xy} = \frac1n\sum_{i=1}^{n}(x_i - \bar x)(y_i - \bar y) = \frac1n\sum_{i=1}^{n} x_i y_i - \bar x\,\bar y, \qquad r = \frac{s_{xy}}{s_x\,s_y} \quad (s_x, s_y \neq 0). \]</p>
+    <p>Le <strong>coefficient de corrélation linéaire</strong> \(r\) vérifie \(-1 \leqslant r \leqslant 1\) ; \(|r| = 1\) si et seulement si les points sont exactement alignés. Plus \(|r|\) est proche de 1, plus le nuage de points est proche d'une droite (croissante si \(r &gt; 0\), décroissante si \(r &lt; 0\)).</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">Piège — Corrélation n'est pas causalité</span>
+    <p>Un \(r\) élevé ne prouve aucun lien de cause à effet : ventes de glaces et noyades sont corrélées (variable cachée : la température). En ESH comme en maths, toujours distinguer corrélation statistique et mécanisme causal.</p>
+  </div>
+
+  <h2 id="s5">5. Ajustement affine : la droite des moindres carrés</h2>
+
+  <div class="box thm">
+    <span class="box-title">Théorème 17.5 — Droite de régression de \(y\) en \(x\)</span>
+    <p>La droite \(y = ax + b\) qui minimise la somme des carrés des écarts verticaux \(\sum_i (y_i - a x_i - b)^2\) est donnée par :</p>
+    <p>\[ a = \frac{s_{xy}}{s_x^2}, \qquad b = \bar y - a\,\bar x. \]</p>
+    <p>Elle passe par le <strong>point moyen</strong> \((\bar x, \bar y)\). La qualité de l'ajustement se juge avec \(r\) (ou \(r^2\), part de la variance de \(y\) « expliquée » par \(x\)).</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Méthode — Mener un ajustement affine</span>
+    <ol>
+      <li>Calculer \(\bar x\), \(\bar y\), \(s_x^2\), \(s_{xy}\) (tableaux de calcul : \(\sum x_i\), \(\sum y_i\), \(\sum x_i^2\), \(\sum x_iy_i\)).</li>
+      <li>En déduire \(a = \frac{s_{xy}}{s_x^2}\) puis \(b = \bar y - a\bar x\).</li>
+      <li>Interpréter \(a\) (variation moyenne de \(y\) quand \(x\) augmente d'une unité) et utiliser la droite pour <em>interpoler</em> ou <em>extrapoler</em> — avec prudence hors de la plage observée.</li>
+    </ol>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Indicateurs univariés</h3><span class="level level-1">Application directe</span></div>
+    <p>Notes d'un étudiant en colles de maths : 8, 12, 9, 15, 11, 12, 10, 12, 6, 15.</p>
+    <ol>
+      <li>Calculer la moyenne, la médiane et le mode.</li>
+      <li>Calculer la variance et l'écart-type.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\bar x = \frac{8+12+9+15+11+12+10+12+6+15}{10} = \frac{110}{10} = 11\).</p>
+      <p>Série ordonnée : 6, 8, 9, 10, 11, 12, 12, 12, 15, 15 (\(n = 10\) pair) : médiane \(= \frac{11 + 12}{2} = 11{,}5\). Mode : 12 (trois occurrences).</p>
+      <p><strong>2.</strong> \(\sum x_i^2 = 36+64+81+100+121+144+144+144+225+225 = 1284\). Donc \(s^2 = \frac{1284}{10} - 11^2 = 128{,}4 - 121 = 7{,}4\) et \(s = \sqrt{7{,}4} \approx 2{,}72\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Données groupées</h3><span class="level level-1">Application directe</span></div>
+    <p>Répartition des salaires mensuels (en k€) dans une PME : [1,5 ; 2[ : 12 salariés ; [2 ; 2,5[ : 18 ; [2,5 ; 3,5[ : 6 ; [3,5 ; 6[ : 4. En prenant les centres de classes, estimer la moyenne et dire dans quelle classe se trouve la médiane.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Centres : 1,75 ; 2,25 ; 3 ; 4,75. Effectif total : 40.</p>
+      <p>\[ \bar x \approx \frac{12 \times 1{,}75 + 18 \times 2{,}25 + 6 \times 3 + 4 \times 4{,}75}{40} = \frac{21 + 40{,}5 + 18 + 19}{40} = \frac{98{,}5}{40} \approx 2{,}46 \text{ k€}. \]</p>
+      <p>Effectifs cumulés : 12 ; 30 ; 36 ; 40. La 20<sup>e</sup> et la 21<sup>e</sup> valeur (positions médianes) tombent dans la classe <strong>[2 ; 2,5[</strong> : la médiane y est, inférieure à la moyenne — distribution étalée vers les hauts salaires.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Effet d'une transformation affine</h3><span class="level level-1">Application directe</span></div>
+    <p>Des températures ont pour moyenne 15 °C et écart-type 4 °C. On les convertit en Fahrenheit : \(F = 1{,}8\,C + 32\). Donner la moyenne et l'écart-type en °F.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\bar F = 1{,}8 \times 15 + 32 = 59\) °F ; \(s_F = |1{,}8| \times 4 = 7{,}2\) °F (la constante 32 ne joue pas sur la dispersion).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Moyenne pondérée et paradoxe</h3><span class="level level-2">Entraînement</span></div>
+    <p>Dans un lycée, la moyenne au concours blanc est de 10,2 en ECG1-A (30 étudiants) et de 11,8 en ECG1-B (20 étudiants). Quelle est la moyenne globale ? Est-elle égale à la moyenne des moyennes ? Expliquer.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Moyenne globale = moyenne <em>pondérée par les effectifs</em> :</p>
+      <p>\[ \bar x = \frac{30 \times 10{,}2 + 20 \times 11{,}8}{50} = \frac{306 + 236}{50} = \frac{542}{50} = 10{,}84. \]</p>
+      <p>La moyenne des moyennes \(\frac{10{,}2 + 11{,}8}{2} = 11\) est différente : elle ignorerait les effectifs. Les deux ne coïncident que si les groupes ont le même effectif.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Ajustement affine complet</h3><span class="level level-2">Entraînement</span></div>
+    <p>Dépenses publicitaires \(x\) (k€) et ventes \(y\) (k€) sur 5 mois :</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>\(x_i\)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr></thead>
+      <tbody><tr><th>\(y_i\)</th><td>10</td><td>14</td><td>15</td><td>19</td><td>22</td></tr></tbody>
+    </table></div>
+    <ol>
+      <li>Calculer \(\bar x\), \(\bar y\), \(s_x^2\), \(s_{xy}\).</li>
+      <li>Déterminer la droite des moindres carrés et interpréter la pente.</li>
+      <li>Prédire les ventes pour \(x = 6\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\bar x = 3\), \(\bar y = \frac{10+14+15+19+22}{5} = 16\).</p>
+      <p>\(s_x^2 = \frac{1+4+9+16+25}{5} - 9 = 11 - 9 = 2\).</p>
+      <p>\(\sum x_iy_i = 10 + 28 + 45 + 76 + 110 = 269\), donc \(s_{xy} = \frac{269}{5} - 3 \times 16 = 53{,}8 - 48 = 5{,}8\).</p>
+      <p><strong>2.</strong> \(a = \frac{5{,}8}{2} = 2{,}9\) et \(b = 16 - 2{,}9 \times 3 = 7{,}3\) : droite \(y = 2{,}9\,x + 7{,}3\). Interprétation : chaque millier d'euros de publicité supplémentaire est associé, en moyenne, à 2 900 € de ventes en plus.</p>
+      <p><strong>3.</strong> \(y(6) = 2{,}9 \times 6 + 7{,}3 = 24{,}7\) k€ — extrapolation à manier avec prudence (hors de la plage observée).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Corrélation</h3><span class="level level-2">Entraînement</span></div>
+    <p>Avec les données de l'exercice 5, calculer \(s_y^2\) puis le coefficient de corrélation \(r\). Commenter la qualité de l'ajustement.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\sum y_i^2 = 100 + 196 + 225 + 361 + 484 = 1366\), donc \(s_y^2 = \frac{1366}{5} - 256 = 273{,}2 - 256 = 17{,}2\).</p>
+      <p>\[ r = \frac{s_{xy}}{s_x s_y} = \frac{5{,}8}{\sqrt{2}\times\sqrt{17{,}2}} = \frac{5{,}8}{\sqrt{34{,}4}} \approx \frac{5{,}8}{5{,}87} \approx 0{,}989. \]</p>
+      <p>\(r\) très proche de 1 : liaison linéaire croissante quasi parfaite, l'ajustement affine est excellent (\(r^2 \approx 0{,}98\) : 98 % de la variance des ventes « expliquée » par la publicité — ce qui ne démontre pas, à soi seul, la causalité).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Variance nulle et points alignés (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Montrer que \(s^2 = 0\) si et seulement si toutes les valeurs \(x_i\) sont égales. <br>
+    2. On admet l'inégalité de Cauchy-Schwarz : \(|s_{xy}| \leqslant s_x s_y\). En déduire \(-1 \leqslant r \leqslant 1\). Que signifie \(r = 1\) géométriquement ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(s^2 = \frac1n\sum(x_i - \bar x)^2\) est une somme de termes positifs : elle est nulle ssi chaque terme est nul, c'est-à-dire ssi \(x_i = \bar x\) pour tout \(i\) — toutes les valeurs égales (à leur moyenne). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> En divisant \(|s_{xy}| \leqslant s_x s_y\) par \(s_x s_y &gt; 0\) : \(|r| \leqslant 1\). Le cas d'égalité de Cauchy-Schwarz correspond à la proportionnalité des vecteurs centrés \((x_i - \bar x)\) et \((y_i - \bar y)\) : il existe \(a\) tel que \(y_i - \bar y = a(x_i - \bar x)\) pour tout \(i\), c'est-à-dire que <strong>tous les points sont sur une même droite</strong>, croissante si \(r = 1\) (\(a &gt; 0\)), décroissante si \(r = -1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Changement de variable pour linéariser (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Le PIB d'un pays (en milliards) est mesuré tous les 10 ans : \(t = 0, 10, 20, 30\) ; \(y = 100, 148, 221, 331\). On suspecte une croissance exponentielle \(y = C\,\mathrm{e}^{\alpha t}\). On pose \(z = \ln y\), soit \(z \approx 4{,}605 ;\ 4{,}997 ;\ 5{,}398 ;\ 5{,}802\).</p>
+    <ol>
+      <li>Pourquoi ce changement de variable rend-il le modèle affine ?</li>
+      <li>Déterminer la droite des moindres carrés de \(z\) en \(t\), puis les valeurs de \(C\) et \(\alpha\). Quel est le taux de croissance annuel ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Si \(y = C\mathrm{e}^{\alpha t}\), alors \(z = \ln y = \ln C + \alpha t\) : \(z\) est une fonction <em>affine</em> de \(t\), de pente \(\alpha\) et d'ordonnée à l'origine \(\ln C\).</p>
+      <p><strong>2.</strong> \(\bar t = 15\), \(\bar z = \frac{4{,}605 + 4{,}997 + 5{,}398 + 5{,}802}{4} = \frac{20{,}802}{4} = 5{,}2005\).</p>
+      <p>\(s_t^2 = \frac{0 + 100 + 400 + 900}{4} - 225 = 350 - 225 = 125\).</p>
+      <p>\(\sum t_iz_i = 0 + 49{,}97 + 107{,}96 + 174{,}06 = 331{,}99\), donc \(s_{tz} = \frac{331{,}99}{4} - 15 \times 5{,}2005 = 82{,}9975 - 78{,}0075 = 4{,}99\).</p>
+      <p>\(\alpha = a = \frac{4{,}99}{125} \approx 0{,}0399\) et \(\ln C = b = 5{,}2005 - 0{,}0399 \times 15 \approx 4{,}602\), soit \(C \approx \mathrm{e}^{4{,}602} \approx 99{,}7\).</p>
+      <p>Modèle : \(y \approx 99{,}7\,\mathrm{e}^{0{,}04\,t}\). Taux annuel : \(\mathrm{e}^{0{,}04} - 1 \approx 4{,}1\) % par an (le PIB double environ tous les \(\frac{\ln 2}{0{,}04} \approx 17\) ans).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="ch16-graphes.html"><span class="pn-label">Chapitre précédent</span>← Introduction aux graphes</a>
+    <a class="next" href="info01-bases-python.html"><span class="pn-label">Suite</span>Informatique : bases de Python →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
