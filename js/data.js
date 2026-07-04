@@ -193,6 +193,8 @@ const SITE_DATA = {
     { id: "methodo-concours", m: "methodo", n: "3", t: "Les concours BCE et Ecricome", u: "methodologie/concours.html",
       s: ["Présentation de la BCE", "Présentation d'Ecricome", "Les épreuves en maths appliquées", "Coefficients par école", "Les oraux"] },
     { id: "methodo-conseils", m: "methodo", n: "4", t: "Conseils pour réussir sa première année", u: "methodologie/conseils.html",
-      s: ["Les erreurs classiques", "Travailler régulièrement", "Matière par matière", "Rebondir après un échec"] }
+      s: ["Les erreurs classiques", "Travailler régulièrement", "Matière par matière", "Rebondir après un échec"] },
+    { id: "methodo-oraux", m: "methodo", n: "5", t: "Méthodologie des oraux d'admission", u: "methodologie/oraux.html",
+      s: ["Entretien de personnalité", "Oraux de langues", "Khôlle et oral de maths", "Posture et gestion du stress", "Règle STAR"] }
   ]
 };
