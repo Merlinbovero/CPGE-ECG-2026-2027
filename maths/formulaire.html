@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulaire / Mémo — Maths appliquées — ECG1</title>
+<meta name="description" content="Formulaire condensé de mathématiques appliquées ECG1 : toutes les formules clés du programme (algèbre, matrices, suites, analyse, probabilités, séries, statistiques) et un mémo Python, sur une seule page imprimable.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-formulaire" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Formulaire / Mémo</span>
+</nav>
+
+<main>
+  <h1>Formulaire / Mémo — toutes les formules du programme</h1>
+  <p class="lead">Les formules et résultats indispensables des 17 chapitres, regroupés sur une page pour une relecture rapide avant une colle ou un DS. Chaque bloc renvoie au chapitre correspondant pour la démonstration et les exercices.</p>
+
+  <div class="chapter-meta">
+    <span class="muted small">Relecture express · révisions de dernière minute</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <h2>Algèbre et calcul (ch. 1 à 5)</h2>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch02-calculs-algebriques.html">Ch. 2 — Sommes, produits, binôme</a></span>
+    <ul>
+      <li>\(\displaystyle\sum_{k=1}^n k = \frac{n(n+1)}{2}\), \(\displaystyle\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}\), \(\displaystyle\sum_{k=1}^n k^3 = \left(\frac{n(n+1)}{2}\right)^2\).</li>
+      <li>Somme géométrique : \(\displaystyle\sum_{k=0}^n q^k = \frac{1 - q^{n+1}}{1 - q}\) (\(q \neq 1\)).</li>
+      <li>Binôme de Newton : \((a+b)^n = \displaystyle\sum_{k=0}^n \binom nk a^k b^{n-k}\) ; \(\binom nk = \frac{n!}{k!(n-k)!}\).</li>
+      <li>Somme des impairs : \(\displaystyle\sum_{k=1}^n (2k-1) = n^2\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch05-calcul-matriciel.html">Ch. 4-5 — Systèmes et matrices</a></span>
+    <ul>
+      <li>Produit : \((AB)_{ij} = \displaystyle\sum_k a_{ik}b_{kj}\) ; en général \(AB \neq BA\).</li>
+      <li>\(2\times2\) : \(\begin{pmatrix} a &amp; b \\ c &amp; d\end{pmatrix}^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d &amp; -b \\ -c &amp; a\end{pmatrix}\) si \(ad - bc \neq 0\).</li>
+      <li>\((AB)^{-1} = B^{-1}A^{-1}\), \((A^{\top})^{\top} = A\), \((AB)^{\top} = B^{\top}A^{\top}\).</li>
+      <li>Système : pivot de Gauss ; solution unique ⟺ matrice inversible ⟺ déterminant non nul.</li>
+    </ul>
+  </div>
+
+  <h2>Analyse (ch. 6 à 8, 12)</h2>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch06-suites.html">Ch. 6 — Suites</a></span>
+    <ul>
+      <li>Arithmétique : \(u_n = u_0 + nr\). Géométrique : \(u_n = u_0\,q^n\).</li>
+      <li>Arithmético-géométrique \(u_{n+1} = au_n + b\) (\(a\neq1\)) : point fixe \(\ell = \frac{b}{1-a}\), \(u_n - \ell = a^n(u_0 - \ell)\).</li>
+      <li>\(q^n \to 0\) si \(|q| &lt; 1\) ; \(\to +\infty\) si \(q &gt; 1\).</li>
+      <li>Convergence : monotone + bornée ; théorème des gendarmes ; si \(u_{n+1} = f(u_n)\) et \(u_n \to \ell\) avec \(f\) continue, alors \(f(\ell) = \ell\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch07-fonctions.html">Ch. 7 — Limites, continuité</a></span>
+    <ul>
+      <li>Croissances comparées : \(\frac{(\ln x)^\alpha}{x^\beta} \to 0\), \(\frac{x^\beta}{\mathrm{e}^{\gamma x}} \to 0\) (\(x \to +\infty\)).</li>
+      <li>\(\ln(ab) = \ln a + \ln b\), \(\mathrm{e}^{a+b} = \mathrm{e}^a\mathrm{e}^b\), \(\ln'(x) = \frac1x\), \((\mathrm{e}^x)' = \mathrm{e}^x\).</li>
+      <li>TVI : \(f\) continue sur \([a,b]\), \(f(a)f(b) &lt; 0\) ⟹ un zéro dans \(]a,b[\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch08-derivation.html">Ch. 8 — Dérivation, convexité</a></span>
+    <ul>
+      <li>\((uv)' = u'v + uv'\), \(\left(\frac uv\right)' = \frac{u'v - uv'}{v^2}\), \((f\circ g)' = g'\times(f'\circ g)\).</li>
+      <li>\(f' &gt; 0\) ⟹ \(f\) croissante ; extremum en \(x_0\) intérieur ⟹ \(f'(x_0) = 0\).</li>
+      <li>\(f\) convexe ⟺ \(f'' \geqslant 0\) ⟺ courbe au-dessus de ses tangentes ; point d'inflexion : \(f''\) change de signe.</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch12-integration.html">Ch. 12 — Intégration</a></span>
+    <ul>
+      <li>\(\int_a^b f = [F]_a^b = F(b) - F(a)\) ; \(\int u'u^n = \frac{u^{n+1}}{n+1}\), \(\int\frac{u'}{u} = \ln|u|\), \(\int u'\mathrm{e}^u = \mathrm{e}^u\).</li>
+      <li>IPP : \(\int_a^b u'v = [uv]_a^b - \int_a^b uv'\) (\(u,v\) de classe \(\mathscr{C}^1\)).</li>
+      <li>Somme de Riemann : \(\frac1n\sum_{k=1}^n f(\frac kn) \to \int_0^1 f\).</li>
+    </ul>
+  </div>
+
+  <h2>Probabilités (ch. 10, 11, 14, 15)</h2>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch10-probabilites-finies.html">Ch. 10 — Probabilités finies</a></span>
+    <ul>
+      <li>\(P(A\cup B) = P(A) + P(B) - P(A\cap B)\) ; \(P(\bar A) = 1 - P(A)\).</li>
+      <li>Conditionnelle : \(P_B(A) = \frac{P(A\cap B)}{P(B)}\) ; composées : \(P(A\cap B) = P(A)P_A(B)\).</li>
+      <li>Probabilités totales : \(P(A) = \sum_i P(B_i)P_{B_i}(A)\) ; Bayes : \(P_A(B_i) = \frac{P(B_i)P_{B_i}(A)}{P(A)}\).</li>
+      <li>Indépendants : \(P(A\cap B) = P(A)P(B)\) (≠ incompatibles).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch11-variables-aleatoires.html">Ch. 11 — Variables aléatoires, lois finies</a></span>
+    <ul>
+      <li>\(E(X) = \sum x_i P(X=x_i)\), \(E(aX+b) = aE(X)+b\), transfert \(E(g(X)) = \sum g(x_i)P(X=x_i)\).</li>
+      <li>\(V(X) = E(X^2) - E(X)^2\), \(V(aX+b) = a^2V(X)\), \(\sigma = \sqrt V\).</li>
+      <li>Uniforme \(\mathcal U(\llbracket1,n\rrbracket)\) : \(E = \frac{n+1}2\), \(V = \frac{n^2-1}{12}\).</li>
+      <li>Bernoulli \(\mathscr B(p)\) : \(E = p\), \(V = p(1-p)\). Binomiale \(\mathscr B(n,p)\) : \(P(X=k) = \binom nk p^k(1-p)^{n-k}\), \(E = np\), \(V = np(1-p)\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch14-probabilites-denombrables.html">Ch. 14 — Lois géométrique et de Poisson</a></span>
+    <ul>
+      <li>Géométrique \(\mathscr G(p)\) : \(P(X=k) = (1-p)^{k-1}p\) (\(k\geqslant1\)), \(E = \frac1p\), \(V = \frac{1-p}{p^2}\), \(P(X&gt;n) = (1-p)^n\), sans mémoire.</li>
+      <li>Poisson \(\mathscr P(\lambda)\) : \(P(X=k) = \mathrm{e}^{-\lambda}\frac{\lambda^k}{k!}\), \(E = V = \lambda\).</li>
+      <li>Approximation : \(\mathscr B(n,p) \approx \mathscr P(np)\) (\(n\) grand, \(p\) petit).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch15-couples-va.html">Ch. 15 — Couples de v.a.</a></span>
+    <ul>
+      <li>\(E(X+Y) = E(X) + E(Y)\) (toujours) ; \(E(XY) = E(X)E(Y)\) si indépendance.</li>
+      <li>\(\mathrm{Cov}(X,Y) = E(XY) - E(X)E(Y)\) ; \(V(X+Y) = V(X) + V(Y) + 2\mathrm{Cov}(X,Y)\).</li>
+      <li>Indépendance ⟹ \(\mathrm{Cov} = 0\) (réciproque fausse). Stabilité : \(\mathscr B(n,p)+\mathscr B(m,p)=\mathscr B(n+m,p)\), \(\mathscr P(\lambda)+\mathscr P(\mu)=\mathscr P(\lambda+\mu)\).</li>
+    </ul>
+  </div>
+
+  <h2>Séries, graphes, statistiques (ch. 13, 16, 17)</h2>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch13-series.html">Ch. 13 — Séries</a></span>
+    <ul>
+      <li>Nécessaire : \(u_n \to 0\) (non suffisant). Géométrique : \(\sum_{n\geqslant0} q^n = \frac1{1-q}\) si \(|q|&lt;1\).</li>
+      <li>Dérivées : \(\sum n q^{n-1} = \frac1{(1-q)^2}\), \(\sum n q^n = \frac{q}{(1-q)^2}\).</li>
+      <li>Riemann : \(\sum\frac1{n^\alpha}\) converge ⟺ \(\alpha &gt; 1\). Exponentielle : \(\sum\frac{x^n}{n!} = \mathrm{e}^x\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch16-graphes.html">Ch. 16 — Graphes</a></span>
+    <ul>
+      <li>Poignées de main : \(\sum_s d(s) = 2\,|\text{arêtes}|\).</li>
+      <li>\((A^k)_{ij}\) = nombre de chemins de longueur \(k\) de \(s_i\) à \(s_j\) ; \((A^2)_{ii} = d(s_i)\).</li>
+    </ul>
+  </div>
+
+  <div class="box thm">
+    <span class="box-title"><a href="ch17-statistiques.html">Ch. 17 — Statistiques</a></span>
+    <ul>
+      <li>\(s^2 = \frac1n\sum x_i^2 - \bar x^2\) ; \(s_{xy} = \frac1n\sum x_iy_i - \bar x\,\bar y\) ; \(r = \frac{s_{xy}}{s_x s_y} \in [-1,1]\).</li>
+      <li>Moindres carrés (\(y\) en \(x\)) : \(a = \frac{s_{xy}}{s_x^2}\), \(b = \bar y - a\bar x\) ; passe par \((\bar x, \bar y)\).</li>
+    </ul>
+  </div>
+
+  <h2>Informatique — Python (I1 à I5)</h2>
+
+  <div class="box thm">
+    <span class="box-title"><a href="info01-bases-python.html">Mémo Python</a></span>
+    <ul>
+      <li><code>//</code> quotient, <code>%</code> reste, <code>**</code> puissance ; <code>n % 2 == 0</code> parité.</li>
+      <li>Boucle : <code>for k in range(a, b, p)</code> (b exclu) ; accumulateur initialisé avant, <code>return</code> après.</li>
+      <li>Suite ordre 2 : <code>x, y = y, a*y + b*x</code> (affectation simultanée).</li>
+      <li>Seuil : <code>while (négation de l'objectif): x = f(x); n += 1</code>.</li>
+      <li>Dichotomie : tant que <code>b - a &gt; eps</code>, milieu \(m\), garder la moitié où \(f\) change de signe ; \(\log_2\frac{b-a}\varepsilon\) itérations.</li>
+      <li>numpy : <code>M @ N</code> (matriciel) ≠ <code>M * N</code> (terme à terme) ; <code>np.linalg.matrix_power</code>, <code>np.linalg.solve</code>.</li>
+      <li>Simulation : <code>rd.random() &lt; p</code> (Bernoulli) ; fréquence \(\to\) probabilité (loi des grands nombres).</li>
+    </ul>
+  </div>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="index.html"><span class="pn-label">Retour</span>← Sommaire maths</a>
+    <a class="next" href="flashcards.html"><span class="pn-label">Réviser autrement</span>Flashcards →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

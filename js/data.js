@@ -66,6 +66,12 @@ const SITE_DATA = {
       s: ["Simuler une expérience aléatoire", "Fréquences et loi des grands nombres", "Méthode de Monte-Carlo", "Simulation de lois usuelles"] },
     { id: "maths-info05", m: "maths", n: "I5", t: "Python : suites, seuil et dichotomie", u: "maths/info05-algorithmes.html",
       s: ["Calcul des termes d'une suite", "Algorithmes de seuil", "Dichotomie", "Complexité et bonnes pratiques"] },
+    { id: "maths-formulaire", m: "maths", r: true, n: "", t: "Formulaire / Mémo — toutes les formules de maths", u: "maths/formulaire.html",
+      s: ["Formules d'algèbre et de calcul", "Analyse et intégration", "Probabilités et lois usuelles", "Séries, graphes, statistiques", "Mémo Python"] },
+    { id: "maths-flashcards", m: "maths", r: true, n: "", t: "Flashcards Maths", u: "maths/flashcards.html",
+      s: ["Répétition espacée", "Formules et théorèmes", "Méthodes types", "Lois de probabilité"] },
+    { id: "maths-annales", m: "maths", r: true, n: "", t: "Annales BCE / Ecricome — maths appliquées", u: "maths/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- ESH — Module 1 ---------- */
     { id: "esh-ch01", m: "esh", n: "1.1", t: "Qu'est-ce que l'économie ? Objets, méthodes et grands courants", u: "esh/ch01-science-economique.html",
