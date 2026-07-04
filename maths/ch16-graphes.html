@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 2 · ≈ 1 semaine de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Maîtriser le <strong>vocabulaire</strong> des graphes (orienté/non orienté, sommets, arêtes/arcs, degré, chemin, cycle, connexité).</li>
+      <li>Connaître le <strong>lemme des poignées de main</strong> \(\sum_s d(s) = 2\,|\text{arêtes}|\) (démonstration exigible) et ses conséquences de parité.</li>
+      <li>Construire une <strong>matrice d'adjacence</strong> et lire dessus degrés, symétrie, boucles.</li>
+      <li>Utiliser le théorème central : le coefficient \((i,j)\) de \(A^k\) donne le <strong>nombre de chemins de longueur \(k\)</strong> de \(s_i\) à \(s_j\).</li>
+      <li>Répondre aux questions de <strong>connexité</strong> et d'accessibilité via les puissances de \(A\).</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +62,7 @@
       <li><a href="#s3">Matrice d'adjacence</a></li>
       <li><a href="#s4">Chemins et connexité</a></li>
       <li><a href="#s5">Compter les chemins avec les puissances de matrices</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -130,6 +143,31 @@
       <li>« Nombre de chemins de longueur 3 de \(s_1\) à \(s_4\) » : calculer \(A^3\) (ou seulement le coefficient utile, en calculant \(A^2\) puis la ligne/colonne adéquate).</li>
       <li>« Existe-t-il un chemin de \(s_i\) à \(s_j\) ? » : regarder si un coefficient \((i,j)\) de \(A + A^2 + \dots + A^{n-1}\) est non nul.</li>
       <li>Coefficient diagonal de \(A^2\) : \((A^2)_{ii} = \sum_\ell a_{i\ell}a_{\ell i} = d(s_i)\) pour un graphe simple non orienté — chaque voisin donne un aller-retour.</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">⚠️ Pièges classiques</span>
+    <ul>
+      <li><strong>Longueur = nombre d'arêtes, pas de sommets :</strong> un chemin \(s_0 - s_1 - s_2\) est de longueur 2 (2 arêtes, 3 sommets).</li>
+      <li><strong>\(A^k\) compte les chemins de longueur <em>exactement</em> \(k\)</strong> (pas « au plus \(k\) »). Pour l'existence d'un chemin, sommer \(A + A^2 + \dots + A^{n-1}\).</li>
+      <li><strong>Ligne = départ, colonne = arrivée</strong> pour un graphe orienté : \(a_{ij}\) est le nombre d'arcs de \(s_i\) <em>vers</em> \(s_j\) ; la matrice n'est pas symétrique en général.</li>
+      <li><strong>Boucle :</strong> compte double dans le degré (non orienté) et donne \(a_{ii} = 1\).</li>
+      <li><strong>Somme des degrés impaire = impossible</strong> : le lemme des poignées de main l'interdit. Toujours vérifier la parité.</li>
+      <li><strong>Ordre des sommets :</strong> fixer une numérotation avant d'écrire \(A\), et la conserver pour tous les produits matriciels.</li>
+    </ul>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Degré :</strong> \(d(s)\) = nb d'arêtes incidentes (boucle ×2) ; <strong>poignées de main :</strong> \(\sum_s d(s) = 2\,|\text{arêtes}|\), donc nb de sommets de degré impair est pair.</li>
+      <li><strong>Matrice d'adjacence \(A\) :</strong> \(a_{ij}\) = nb d'arêtes/arcs de \(s_i\) à \(s_j\) ; non orienté ⟹ \(A\) symétrique, diagonale nulle (graphe simple), somme de la ligne \(i\) = \(d(s_i)\).</li>
+      <li><strong>Chemins :</strong> \((A^k)_{ij}\) = nb de chemins de longueur exactement \(k\) de \(s_i\) à \(s_j\).</li>
+      <li><strong>\((A^2)_{ii} = d(s_i)\)</strong> pour un graphe simple non orienté.</li>
+      <li><strong>Connexité :</strong> tout couple relié par un chemin ; tester via \(A + A^2 + \dots + A^{n-1}\).</li>
+      <li><strong>\(K_n\) :</strong> \(\binom n2\) arêtes, chaque degré \(n-1\), \(A = J_n - I_n\).</li>
+      <li><strong>Biparti :</strong> aucun cycle de longueur impaire.</li>
     </ul>
   </div>
 
@@ -246,6 +284,154 @@
       <p class="small muted">Cette récurrence permet de calculer de proche en proche les nombres de chemins de toute longueur sans jamais calculer de grande puissance de \(M\).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Degrés et parité</h3><span class="level level-1">Application directe</span></div>
+    <p>Un graphe simple non orienté a six sommets de degrés respectifs \(1, 1, 2, 2, 3, 3\). Combien a-t-il d'arêtes ? Cette configuration est-elle possible ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Somme des degrés : \(1+1+2+2+3+3 = 12 = 2\times|\text{arêtes}|\), donc \(6\) arêtes. Le nombre de sommets de degré impair est \(4\) (les deux « 1 » et les deux « 3 ») : c'est pair, donc le lemme des poignées de main est respecté. La configuration est <strong>possible</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Matrice d'un cycle \(C_4\)</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit le graphe non orienté à 4 sommets d'arêtes \(1\text{-}2\), \(2\text{-}3\), \(3\text{-}4\), \(4\text{-}1\). Écrire sa matrice d'adjacence \(A\) et donner le degré de chaque sommet.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\[ A = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}. \]</p>
+      <p>Symétrique, diagonale nulle ; chaque ligne a deux 1, donc tous les sommets sont de degré 2 (le cycle \(C_4\) est 2-régulier).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Chemins de longueur 2 dans \(C_4\)</h3><span class="level level-1">Application directe</span></div>
+    <p>Avec la matrice \(A\) de l'exercice 10, calculer \(A^2\) et interpréter les coefficients \((1,1)\) et \((1,3)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\[ A^2 = \begin{pmatrix} 2 &amp; 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 0 &amp; 2 \\ 2 &amp; 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 0 &amp; 2 \end{pmatrix}. \]</p>
+      <p>\((A^2)_{11} = 2 = d(1)\) : les allers-retours \(1\text{-}2\text{-}1\) et \(1\text{-}4\text{-}1\). \((A^2)_{13} = 2\) : les deux chemins de longueur 2 de 1 à 3, \(1\text{-}2\text{-}3\) et \(1\text{-}4\text{-}3\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Connexité</h3><span class="level level-1">Application directe</span></div>
+    <p>Un graphe non orienté a pour seules arêtes \(1\text{-}2\) et \(3\text{-}4\). Est-il connexe ? Combien a-t-il de composantes connexes ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Il n'existe aucun chemin reliant 1 à 3 (ni à 4) : le graphe n'est <strong>pas connexe</strong>. Il possède <strong>deux composantes connexes</strong> : \(\{1, 2\}\) et \(\{3, 4\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Chemin dans un graphe linéaire</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit le graphe \(P_4\) : \(1\text{-}2\text{-}3\text{-}4\) (chemin simple). Écrire \(A\), puis déterminer le nombre de chemins de longueur 3 de 1 à 4 (par le calcul et par énumération).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(A = \begin{pmatrix} 0&amp;1&amp;0&amp;0 \\ 1&amp;0&amp;1&amp;0 \\ 0&amp;1&amp;0&amp;1 \\ 0&amp;0&amp;1&amp;0 \end{pmatrix}\). Un chemin de longueur 3 de 1 à 4 s'écrit \(1\text{-}a\text{-}b\text{-}4\) ; le seul voisin de 1 est 2, celui de 4 est 3, donc \(a = 2\), \(b = 3\) : l'unique chemin est \(1\text{-}2\text{-}3\text{-}4\).</p>
+      <p>Le calcul confirme \((A^3)_{14} = 1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Trace et somme des degrés</h3><span class="level level-2">Entraînement</span></div>
+    <p>Montrer que pour tout graphe simple non orienté de matrice d'adjacence \(A\), \(\mathrm{tr}(A^2) = \displaystyle\sum_{s} d(s) = 2\,|\text{arêtes}|\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Le coefficient diagonal \((A^2)_{ii} = \sum_{\ell=1}^n a_{i\ell}a_{\ell i} = \sum_\ell a_{i\ell}^2\) (car \(A\) symétrique). Comme \(a_{i\ell} \in \{0,1\}\), \(a_{i\ell}^2 = a_{i\ell}\), donc \((A^2)_{ii} = \sum_\ell a_{i\ell} = d(s_i)\).</p>
+      <p>En sommant sur \(i\) : \(\mathrm{tr}(A^2) = \sum_i d(s_i) = 2\,|\text{arêtes}|\) par le lemme des poignées de main. <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Compter les triangles</h3><span class="level level-2">Entraînement</span></div>
+    <p>Pour un graphe simple non orienté, montrer que le nombre de triangles vaut \(\dfrac{\mathrm{tr}(A^3)}{6}\). Application au graphe complet \(K_4\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\((A^3)_{ii}\) compte les chemins fermés de longueur 3 partant de \(s_i\) : chacun est un triangle \(i\text{-}j\text{-}k\text{-}i\). Pour un triangle donné contenant \(i\), il y a 2 parcours (les deux sens), donc \((A^3)_{ii} = 2\times(\text{nb triangles contenant } i)\).</p>
+      <p>En sommant, \(\mathrm{tr}(A^3)\) compte chaque triangle une fois par sommet (3) et par sens (2), soit 6 fois : nb triangles \(= \frac{\mathrm{tr}(A^3)}{6}\).</p>
+      <p><em>Application \(K_4\)</em> (\(A = J_4 - I_4\)) : \(A^2 = 2J_4 + I_4\), \(A^3 = (2J_4 + I_4)(J_4 - I_4) = 7J_4 - I_4\), donc \(\mathrm{tr}(A^3) = 7\times4 - 4 = 24\) et le nombre de triangles est \(\frac{24}{6} = 4 = \binom43\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Circuit orienté</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit le graphe orienté \(1\to2\to3\to4\to1\) (circuit). Écrire \(M\), puis déterminer le nombre de chemins de longueur 4 de 1 à 1, et de longueur 2 de 1 à 3.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(M = \begin{pmatrix} 0&amp;1&amp;0&amp;0 \\ 0&amp;0&amp;1&amp;0 \\ 0&amp;0&amp;0&amp;1 \\ 1&amp;0&amp;0&amp;0 \end{pmatrix}\). Ce circuit « décale » les sommets : depuis 1, on ne peut suivre qu'un chemin par longueur.</p>
+      <p>Longueur 2 de 1 à 3 : \(1\to2\to3\), soit \((M^2)_{13} = 1\). Longueur 4 de 1 à 1 : le tour complet \(1\to2\to3\to4\to1\), soit \((M^4)_{11} = 1\) (on a d'ailleurs \(M^4 = I_4\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Graphe régulier (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un graphe est <em>\(r\)-régulier</em> si tous ses sommets ont le même degré \(r\). Soit \(u = (1, 1, \dots, 1)^{\top}\).</p>
+    <ol>
+      <li>Montrer que \(Au = r\,u\) : \(r\) est valeur propre de \(A\), de vecteur propre \(u\).</li>
+      <li>En déduire que le nombre de chemins de longueur \(k\) issus d'un sommet fixé (vers un sommet quelconque) vaut \(r^k\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> La \(i\)-ième coordonnée de \(Au\) est \(\sum_{\ell} a_{i\ell}\times 1 = d(s_i) = r\). Donc \(Au = r\,u\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Le nombre total de chemins de longueur \(k\) partant de \(s_i\) est \(\sum_j (A^k)_{ij}\), c'est-à-dire la \(i\)-ième coordonnée de \(A^k u\). Or \(A^k u = r^k u\) (par récurrence : \(A^{k}u = A^{k-1}(Au) = r\,A^{k-1}u\)), dont chaque coordonnée vaut \(r^k\). Il y a donc \(r^k\) chemins de longueur \(k\) issus de tout sommet.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Graphe complémentaire (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Le <em>complémentaire</em> \(\bar G\) d'un graphe simple \(G\) à \(n\) sommets a pour arêtes exactement les paires non reliées dans \(G\) : \(\bar A = J_n - I_n - A\).</p>
+    <ol>
+      <li>Exprimer \(d_{\bar G}(s)\) en fonction de \(d_G(s)\) et \(n\).</li>
+      <li>Montrer que \(|\text{arêtes}(G)| + |\text{arêtes}(\bar G)| = \binom n2\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> La ligne \(i\) de \(\bar A = J_n - I_n - A\) a pour somme \(n - 1 - d_G(s_i)\) (la ligne de \(J_n\) somme à \(n\), on retire le 1 diagonal et les arêtes de \(G\)). Donc \(d_{\bar G}(s) = n - 1 - d_G(s)\).</p>
+      <p><strong>2.</strong> En sommant sur les sommets et en divisant par 2 (poignées de main) : \(|\text{arêtes}(\bar G)| = \frac12\sum_s(n-1-d_G(s)) = \frac{n(n-1)}{2} - |\text{arêtes}(G)|\), soit \(|\text{arêtes}(G)| + |\text{arêtes}(\bar G)| = \binom n2\). C'est logique : chaque paire de sommets est une arête soit de \(G\), soit de \(\bar G\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Relation matricielle et récurrence (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(K_3\) le triangle (3 sommets tous reliés), de matrice \(A = J_3 - I_3\). On note \(a_k = (A^k)_{11}\) le nombre de chemins fermés de longueur \(k\) en \(s_1\).</p>
+    <ol>
+      <li>Montrer que \(A^2 = A + 2I_3\).</li>
+      <li>En déduire \(a_{k+2} = a_{k+1} + 2a_k\), puis calculer \(a_2\), \(a_3\), \(a_4\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(A = J_3 - I_3\) et \(J_3^2 = 3J_3\), donc \(A^2 = J_3^2 - 2J_3 + I_3 = 3J_3 - 2J_3 + I_3 = J_3 + I_3\). Or \(J_3 = A + I_3\), d'où \(A^2 = (A + I_3) + I_3 = A + 2I_3\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> En multipliant \(A^2 = A + 2I_3\) par \(A^k\) : \(A^{k+2} = A^{k+1} + 2A^k\) ; en lisant le coefficient \((1,1)\) : \(a_{k+2} = a_{k+1} + 2a_k\).</p>
+      <p>\(a_1 = 0\) (pas de boucle), \(a_2 = (A^2)_{11} = (J_3 + I_3)_{11} = 1 + 1 = 2\). Puis \(a_3 = a_2 + 2a_1 = 2\) (le seul triangle, dans ses 2 sens) et \(a_4 = a_3 + 2a_2 = 2 + 4 = 6\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Accessibilité et forte connexité (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit le graphe orienté à 4 sommets d'arcs \(1\to2\), \(2\to3\), \(3\to1\), \(3\to4\).</p>
+    <ol>
+      <li>Écrire \(M\). Quels sommets sont accessibles depuis 1 ?</li>
+      <li>Le graphe est-il fortement connexe (tout sommet accessible depuis tout autre) ? Justifier.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(M = \begin{pmatrix} 0&amp;1&amp;0&amp;0 \\ 0&amp;0&amp;1&amp;0 \\ 1&amp;0&amp;0&amp;1 \\ 0&amp;0&amp;0&amp;0 \end{pmatrix}\). Depuis 1 : \(1\to2\to3\), puis \(3\to1\) (retour) et \(3\to4\). Tous les sommets \(\{1,2,3,4\}\) sont donc accessibles depuis 1.</p>
+      <p><strong>2.</strong> Le sommet 4 n'a <em>aucun arc sortant</em> (ligne 4 nulle) : on ne peut quitter 4, donc aucun autre sommet n'est accessible depuis 4. Le graphe n'est <strong>pas fortement connexe</strong> (4 est un « puits »). Les sommets \(\{1, 2, 3\}\) forment en revanche une composante fortement connexe (circuit \(1\to2\to3\to1\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
