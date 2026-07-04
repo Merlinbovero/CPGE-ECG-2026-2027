@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">TP tout au long de l'année</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche (programme officiel)</span>
+    <ul>
+      <li>Calculer les termes d'une <strong>suite récurrente</strong> d'ordre 1 (une variable) ou 2 (deux variables, affectation simultanée).</li>
+      <li>Écrire un <strong>algorithme de seuil</strong> (boucle <code>while</code>) donnant le premier rang vérifiant une condition, et en déduire un résultat par le calcul.</li>
+      <li>Mettre en œuvre la <strong>dichotomie</strong> pour approcher un zéro de fonction (hypothèses du TVI) et connaître le nombre d'itérations \(\log_2\frac{b-a}{\varepsilon}\).</li>
+      <li>Estimer la <strong>complexité</strong> d'un algorithme (linéaire, quadratique, logarithmique) et adopter de bonnes pratiques (tests, invariants).</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">Algorithmes de seuil</a></li>
       <li><a href="#s3">La dichotomie</a></li>
       <li><a href="#s4">Bonnes pratiques et complexité</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -113,6 +125,19 @@ print(dichotomie(g, 0, 1, 1e-6))   # affiche : 0.6823277...</code></pre>
     <li>Pour une suite, ne stocker <em>tous</em> les termes (liste) que si on en a besoin (tracé, moyenne) ; sinon, une variable suffit.</li>
     <li>Nommer clairement, commenter les initialisations, et vérifier les <em>invariants</em> (« après la boucle, x contient \(u_n\) »).</li>
   </ul>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Suite ordre 1 :</strong> <code>x = u0 ; for k in range(n): x = f(x) ; return x</code>.</li>
+      <li><strong>Suite ordre 2 :</strong> <code>x, y = u0, u1 ; for k in range(n): x, y = y, a*y + b*x ; return x</code> (affectation simultanée).</li>
+      <li><strong>Seuil :</strong> <code>n = 0 ; while (négation de l'objectif): x = f(x) ; n += 1 ; print(n)</code>.</li>
+      <li><strong>Dichotomie :</strong> tant que <code>b - a &gt; eps</code>, \(m = \frac{a+b}2\) ; si <code>f(a)*f(m) &lt;= 0</code> alors <code>b = m</code> sinon <code>a = m</code>.</li>
+      <li><strong>Itérations dichotomie :</strong> \(k \geqslant \log_2\frac{b-a}{\varepsilon}\) (précision divisée par 2 à chaque tour).</li>
+      <li><strong>Complexité :</strong> une boucle → linéaire \(\mathcal O(n)\) ; deux imbriquées → \(\mathcal O(n^2)\) ; dichotomie → \(\mathcal O(\log n)\).</li>
+      <li><strong>Invariant :</strong> après la boucle, la variable contient bien le terme voulu — à vérifier sur \(n = 0, 1\).</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -242,6 +267,227 @@ for n in range(1, 11):
       <p>Sorties : \(x_1 = 0{,}5\), \(x_2 \approx 0{,}618\), \(x_3 \approx 0{,}6823\), … , \(x_{10} \approx 0{,}869\) : la suite \((x_n)\) est <strong>croissante</strong> et semble tendre vers 1. (Preuve possible : \(f_n(x) = x^n + x - 1\) vérifie \(f_{n+1}(x_n) = x_n^{n+1} + x_n - 1 &lt; x_n^n + x_n - 1 = 0\), donc \(x_{n+1} &gt; x_n\) ; et \(x_n \to 1\) car pour tout \(c &lt; 1\), \(f_n(c) \to c - 1 &lt; 0\).)</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Suite d'ordre 1</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>u(n)</code> pour \(u_0 = 5\), \(u_{n+1} = 2u_n - 3\). Que vaut <code>u(3)</code> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def u(n):
+    x = 5
+    for k in range(n):
+        x = 2*x - 3
+    return x</code></pre>
+      <p>\(u_0 = 5, u_1 = 7, u_2 = 11, u_3 = 19\) : <code>u(3)</code> renvoie <code>19</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Seuil géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire un programme donnant le plus petit \(n\) tel que \(2^n \geqslant 1000\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">x = 1        # 2**0
+n = 0
+while x &lt; 1000:
+    x = 2*x
+    n = n + 1
+print(n)</code></pre>
+      <p>\(2^9 = 512 &lt; 1000 \leqslant 1024 = 2^{10}\) : le programme affiche <code>10</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Suite d'ordre 2</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>v(n)</code> pour \(v_0 = 1\), \(v_1 = 1\), \(v_{n+2} = v_{n+1} + v_n\) (Fibonacci). Que vaut <code>v(5)</code> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def v(n):
+    x, y = 1, 1
+    for k in range(n):
+        x, y = y, x + y
+    return x</code></pre>
+      <p>\(v_0, \dots, v_5 = 1, 1, 2, 3, 5, 8\) : <code>v(5)</code> renvoie <code>8</code>. L'affectation simultanée est indispensable.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Prédire une accumulation</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">x = 1
+for k in range(4):
+    x = x + 2*k
+print(x)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(k = 0 : x = 1\) ; \(k=1 : x = 3\) ; \(k=2 : x = 7\) ; \(k=3 : x = 13\). Affiche <code>13</code> (\(= 1 + 2(0+1+2+3)\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Seuil et suite arithmético-géométrique</h3><span class="level level-2">Entraînement</span></div>
+    <p>La suite \(u_0 = 10\), \(u_{n+1} = \frac12 u_n + 1\) converge vers 2. Écrire un programme donnant le plus petit \(n\) tel que \(|u_n - 2| \leqslant 0{,}01\), et retrouver ce \(n\) par le calcul (\(u_n - 2 = 8\times(0{,}5)^n\)).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">x = 10
+n = 0
+while abs(x - 2) &gt; 0.01:
+    x = 0.5*x + 1
+    n = n + 1
+print(n)</code></pre>
+      <p>\(8\times(0{,}5)^n \leqslant 0{,}01 \iff (0{,}5)^n \leqslant 0{,}00125 \iff n \geqslant \frac{\ln 800}{\ln 2} \approx 9{,}64\) : le programme affiche <code>10</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Dichotomie pour \(\sqrt 2\)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>racine2(eps)</code> qui approche \(\sqrt2\) (solution de \(x^2 - 2 = 0\) sur \([1, 2]\)) par dichotomie.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def racine2(eps):
+    a, b = 1, 2
+    while b - a &gt; eps:
+        m = (a + b) / 2
+        if m**2 &lt;= 2:      # m est en dessous de racine(2)
+            a = m
+        else:
+            b = m
+    return (a + b) / 2      # racine2(1e-6) donne 1.41421...</code></pre>
+      <p>Comme \(x \mapsto x^2\) est croissante, <code>m**2 &lt;= 2</code> signifie \(m \leqslant \sqrt2\) : on remonte la borne gauche.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Seuil sur la série harmonique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire un programme donnant le plus petit \(N\) tel que \(H_N = \sum_{n=1}^{N}\frac1n \geqslant 5\). Quel ordre de grandeur attend-on ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">S = 0
+N = 0
+while S &lt; 5:
+    N = N + 1
+    S = S + 1 / N
+print(N)</code></pre>
+      <p>Comme \(H_N \approx \ln N + \gamma\) (\(\gamma \approx 0{,}577\)), \(H_N \geqslant 5\) donne \(\ln N \gtrsim 4{,}42\), soit \(N\) de l'ordre de <strong>83</strong> : la croissance logarithmique rend ce seuil élevé.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Nombre d'itérations d'une dichotomie</h3><span class="level level-2">Entraînement</span></div>
+    <p>Combien d'itérations de dichotomie faut-il pour atteindre une précision \(\varepsilon = 10^{-6}\) sur l'intervalle \([2, 5]\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Après \(k\) itérations, la longueur de l'intervalle est \(\frac{5 - 2}{2^k} = \frac{3}{2^k}\). On veut \(\frac{3}{2^k} \leqslant 10^{-6}\), soit \(2^k \geqslant 3\times10^6\), \(k \geqslant \log_2(3\times10^6) \approx 21{,}5\) : il faut <strong>22 itérations</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Stocker les termes d'une suite</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>termes(N)</code> renvoyant la liste \([u_0, \dots, u_N]\) pour \(u_0 = 1\), \(u_{n+1} = 2u_n + 1\). Que vaut <code>termes(3)</code> ? Quelle formule close reconnaît-on ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def termes(N):
+    L = [1]
+    for k in range(N):
+        L.append(2*L[-1] + 1)
+    return L</code></pre>
+      <p><code>termes(3)</code> renvoie <code>[1, 3, 7, 15]</code>, soit \(u_n = 2^{n+1} - 1\) (chapitre 6).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Complexité quadratique (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>compte(n)</code> ? Quelle est sa complexité en fonction de \(n\) ?</p>
+    <pre><code class="language-python">def compte(n):
+    c = 0
+    for i in range(n):
+        for j in range(n):
+            c = c + 1
+    return c</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>La boucle interne fait \(n\) incréments, exécutée \(n\) fois : <code>compte(n)</code> renvoie \(n^2\). Le nombre d'opérations est proportionnel à \(n^2\) : complexité <strong>quadratique</strong> \(\mathcal O(n^2)\) (doubler \(n\) quadruple le temps).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Racine cubique par dichotomie (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>racine_cubique(A, eps)</code> approchant \(\sqrt[3]{A}\) pour \(A \in [1, 8]\), par dichotomie sur \([1, 2]\) quand \(A = 7\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def racine_cubique(A, eps):
+    a, b = 1, 2
+    while b - a &gt; eps:
+        m = (a + b) / 2
+        if m**3 &lt;= A:
+            a = m
+        else:
+            b = m
+    return (a + b) / 2
+
+# racine_cubique(7, 1e-6) donne 1.91293...</code></pre>
+      <p>La fonction \(x \mapsto x^3\) est croissante : <code>m**3 &lt;= A</code> équivaut à \(m \leqslant \sqrt[3]{A}\), on remonte la borne gauche. Pour \(A = 7\), on trouve \(\sqrt[3]{7} \approx 1{,}913\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Méthode de Héron (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>La suite \(x_0 = 2\), \(x_{n+1} = \frac12\left(x_n + \frac2{x_n}\right)\) converge vers \(\sqrt2\). Écrire <code>heron(n)</code> et détailler \(x_1, x_2, x_3\). Comparer la vitesse à la dichotomie.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def heron(n):
+    x = 2.0
+    for k in range(n):
+        x = 0.5 * (x + 2/x)
+    return x</code></pre>
+      <p>\(x_1 = \frac12(2 + 1) = 1{,}5\) ; \(x_2 = \frac12(1{,}5 + 1{,}333\ldots) \approx 1{,}41667\) ; \(x_3 \approx 1{,}414216\). Le nombre de décimales exactes <strong>double</strong> à chaque étape (convergence quadratique) : 3 itérations donnent déjà \(\sqrt2\) à \(10^{-6}\) près, bien plus vite que la dichotomie (qui gagne 1 bit par tour).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Convergence du rapport de Fibonacci (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire un programme donnant le plus petit \(n\) tel que \(\left|\frac{F_{n+1}}{F_n} - \varphi\right| \leqslant 10^{-4}\), où \(\varphi = \frac{1 + \sqrt5}{2}\). Vers quoi tend ce rapport ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">phi = (1 + 5**0.5) / 2
+a, b = 1, 1        # F_1, F_2
+n = 1
+while abs(b/a - phi) &gt; 1e-4:
+    a, b = b, a + b
+    n = n + 1
+print(n)</code></pre>
+      <p>Le rapport \(\frac{F_{n+1}}{F_n}\) tend vers le <strong>nombre d'or</strong> \(\varphi \approx 1{,}618\). La convergence étant géométrique, le seuil est atteint pour un petit \(n\) (de l'ordre de 10).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Fonction mystère (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>mystere(20)</code> ? Que calcule cette fonction, et quelle est sa complexité ?</p>
+    <pre><code class="language-python">def mystere(n):
+    c = 0
+    while n &gt; 1:
+        n = n // 2
+        c = c + 1
+    return c</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Trace pour \(n = 20\) : \(20 \to 10 \to 5 \to 2 \to 1\), soit 4 divisions : renvoie <code>4</code>.</p>
+      <p>La fonction compte combien de fois on peut diviser \(n\) par 2 avant d'atteindre 1 : elle calcule \(\lfloor \log_2 n \rfloor\) (ici \(2^4 = 16 \leqslant 20 &lt; 32\)). Complexité <strong>logarithmique</strong> \(\mathcal O(\log n)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

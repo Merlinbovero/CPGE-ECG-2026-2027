@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 3 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Étudier la monotonie et le caractère borné d'une suite ; maîtriser suites arithmétiques et géométriques.</li>
+      <li>Résoudre les suites arithmético-géométriques et les récurrences linéaires d'ordre 2.</li>
+      <li>Calculer des limites (opérations, formes indéterminées, croissances comparées, encadrement, limite monotone).</li>
+      <li>Étudier une suite récurrente \(u_{n+1} = f(u_n)\) : bornes, monotonie, convergence vers un point fixe.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -52,6 +63,7 @@
       <li><a href="#s5">Limite d'une suite</a></li>
       <li><a href="#s6">Théorèmes de convergence</a></li>
       <li><a href="#s7">Croissances comparées et limites usuelles</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -185,6 +197,29 @@
     <p>Hiérarchie : \(\ (\ln n)^\beta \ll n^\alpha \ll q^n \ll n!\) — « les logarithmes perdent contre les puissances, qui perdent contre les exponentielles, qui perdent contre la factorielle ».</p>
   </div>
 
+  <div class="box warn">
+    <span class="box-title">Pièges classiques</span>
+    <ul>
+      <li>Une suite <strong>bornée</strong> n'est pas forcément convergente : \(u_n = (-1)^n\) est bornée mais diverge.</li>
+      <li>Pour \(u_{n+1} = f(u_n)\), la limite éventuelle \(\ell\) vérifie \(f(\ell) = \ell\) — mais il faut <strong>d'abord prouver la convergence</strong> (bornes + monotonie) avant de « passer à la limite ».</li>
+      <li>Le quotient \(\frac{u_{n+1}}{u_n}\) ne s'utilise pour la monotonie que si les termes sont <strong>strictement positifs</strong>.</li>
+      <li>La limite d'une suite croissante majorée par \(M\) vérifie \(\ell \leqslant M\), sans être nécessairement égale à \(M\).</li>
+    </ul>
+  </div>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Arithmétique</strong> : \(u_n = u_0 + nr\), \(\sum = (\text{nb termes})\times\frac{\text{1er}+\text{dernier}}{2}\). <strong>Géométrique</strong> : \(u_n = u_0 q^n\), \(\sum = u_0\frac{1-q^{n+1}}{1-q}\).</li>
+      <li><strong>Arithmético-géométrique</strong> \(u_{n+1}=au_n+b\) : point fixe \(\ell=\frac{b}{1-a}\), \(v_n=u_n-\ell\) géométrique, \(u_n=\ell+a^n(u_0-\ell)\).</li>
+      <li><strong>Ordre 2</strong> \(u_{n+2}=au_{n+1}+bu_n\) : équation \(x^2=ax+b\) ; \(u_n=\lambda r_1^n+\mu r_2^n\) (ou \((\lambda+\mu n)r^n\) si racine double).</li>
+      <li><strong>Croissances comparées</strong> : \(\frac{(\ln n)^\alpha}{n^\beta}\to 0\), \(\frac{n^\beta}{a^n}\to 0\) (\(a&gt;1\)), \(\frac{a^n}{n!}\to 0\) : l'exponentielle bat la puissance, qui bat le logarithme, et la factorielle bat l'exponentielle.</li>
+      <li><strong>Théorèmes</strong> : limite monotone (croissante majorée → converge), gendarmes, comparaison.</li>
+      <li><strong>Comportement de \(q^n\)</strong> : \(\to 0\) si \(|q|&lt;1\), \(\to +\infty\) si \(q&gt;1\), diverge si \(q\leqslant -1\).</li>
+    </ul>
+  </div>
+
   <h2 id="exos">Exercices corrigés</h2>
 
   <article class="exercise">
@@ -315,6 +350,138 @@
       <p>Par récurrence immédiate, \(0 \leqslant v_n - u_n \leqslant \frac{b - a}{2^n} \to 0\). \((u_n)\) est croissante et majorée par \(v_0 = b\) (car \(u_n \leqslant v_n \leqslant b\)) : elle converge vers \(\ell\). \((v_n)\) est décroissante minorée par \(a\) : elle converge vers \(\ell'\). Et \(v_n - u_n \to 0\) donne \(\ell' = \ell\) : les deux suites convergent vers la même limite (appelée <em>moyenne arithmético-géométrique</em> de \(a\) et \(b\)). <span class="qed">∎</span></p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Limites de suites géométriques</h3><span class="level level-1">Application directe</span></div>
+    <p>Déterminer la limite (ou la nature) de : 1. \(u_n = \left(\dfrac23\right)^n\) ; &nbsp; 2. \(v_n = \left(-\dfrac12\right)^n\) ; &nbsp; 3. \(w_n = \dfrac{3^n}{2^n}\) ; &nbsp; 4. \(t_n = (-2)^n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(|q| = \frac23 &lt; 1\) : \(u_n \to 0\). &nbsp; <strong>2.</strong> \(|q| = \frac12 &lt; 1\) : \(v_n \to 0\). &nbsp; <strong>3.</strong> \(w_n = \left(\frac32\right)^n\) avec \(q = \frac32 &gt; 1\) : \(w_n \to +\infty\). &nbsp; <strong>4.</strong> \(q = -2 \leqslant -1\) : \((t_n)\) diverge sans limite (oscille en changeant de signe, \(|t_n| \to +\infty\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Sommes de suites usuelles</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer, pour \(n \in \mathbb{N}\) : 1. \(S = \displaystyle\sum_{k=0}^{n} (3 + 2k)\) ; &nbsp; 2. \(T = \displaystyle\sum_{k=0}^{n} 5 \left(\dfrac12\right)^k\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Suite arithmétique (raison 2), \(n+1\) termes, de premier terme 3 et dernier \(3 + 2n\) : \(S = (n+1)\dfrac{3 + (3+2n)}{2} = (n+1)(n+3)\).</p>
+      <p><strong>2.</strong> Suite géométrique de raison \(\frac12\) : \(T = 5 \cdot \dfrac{1 - (1/2)^{n+1}}{1 - 1/2} = 10\left(1 - \dfrac{1}{2^{n+1}}\right) = 10 - \dfrac{5}{2^n}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Arithmético-géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(u_0 = 1\) et \(u_{n+1} = \dfrac12 u_n + 3\). Exprimer \(u_n\) et déterminer sa limite.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Point fixe : \(\ell = \dfrac{3}{1 - 1/2} = 6\). La suite \(v_n = u_n - 6\) est géométrique de raison \(\frac12\) : \(v_n = (u_0 - 6)\left(\frac12\right)^n = -5 \left(\frac12\right)^n\). Donc \(u_n = 6 - \dfrac{5}{2^n}\). Comme \(\frac12 &lt; 1\), \(u_n \to 6\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Récurrence linéaire d'ordre 2</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(u_0 = 0\), \(u_1 = 1\) et \(u_{n+2} = 5u_{n+1} - 6u_n\). Exprimer \(u_n\) en fonction de \(n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Équation caractéristique : \(x^2 - 5x + 6 = 0\), racines \(r_1 = 2\), \(r_2 = 3\). Donc \(u_n = \lambda\, 2^n + \mu\, 3^n\). Conditions initiales : \(u_0 = \lambda + \mu = 0\) et \(u_1 = 2\lambda + 3\mu = 1\). De la première \(\lambda = -\mu\), d'où \(-2\mu + 3\mu = \mu = 1\), donc \(\mu = 1\), \(\lambda = -1\).</p>
+      <p>\(u_n = 3^n - 2^n\). <em>Vérification :</em> \(u_2 = 9 - 4 = 5 = 5 \times 1 - 6 \times 0\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Encadrement (gendarmes)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Déterminer la limite de \(u_n = \dfrac{3n + (-1)^n}{n + 2}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Comme \(-1 \leqslant (-1)^n \leqslant 1\), on encadre (le dénominateur \(n + 2 &gt; 0\)) :</p>
+      <p>\[ \frac{3n - 1}{n + 2} \leqslant u_n \leqslant \frac{3n + 1}{n + 2}. \]</p>
+      <p>Les deux bornes tendent vers 3 (quotient de polynômes de même degré, rapport des coefficients dominants). Par le théorème des gendarmes, \(u_n \to 3\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Croissances comparées</h3><span class="level level-2">Entraînement</span></div>
+    <p>Déterminer la limite de : 1. \(\dfrac{n^2}{2^n}\) ; &nbsp; 2. \(\dfrac{\ln n}{\sqrt n}\) ; &nbsp; 3. \(\dfrac{n \cdot 3^n}{4^n}\) ; &nbsp; 4. \(\dfrac{\mathrm{e}^n}{n^{10}}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> L'exponentielle \(2^n\) l'emporte sur la puissance \(n^2\) : \(\dfrac{n^2}{2^n} \to 0\).</p>
+      <p><strong>2.</strong> \(\sqrt n = n^{1/2}\) l'emporte sur \(\ln n\) : \(\dfrac{\ln n}{\sqrt n} \to 0\).</p>
+      <p><strong>3.</strong> \(\dfrac{n \cdot 3^n}{4^n} = n \left(\dfrac34\right)^n \to 0\) (l'exponentielle \((3/4)^n \to 0\) l'emporte sur \(n\)).</p>
+      <p><strong>4.</strong> \(\mathrm{e}^n\) (exponentielle de base \(\mathrm{e} &gt; 1\)) l'emporte sur \(n^{10}\) : \(\dfrac{\mathrm{e}^n}{n^{10}} \to +\infty\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Somme et limite monotone</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(u_n = \displaystyle\sum_{k=1}^{n} \dfrac{1}{k^2}\). Montrer que \((u_n)\) est croissante et majorée par 2, et conclure quant à sa convergence.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Croissance :</strong> \(u_{n+1} - u_n = \dfrac{1}{(n+1)^2} &gt; 0\).</p>
+      <p><strong>Majoration :</strong> pour \(k \geqslant 2\), \(\dfrac{1}{k^2} \leqslant \dfrac{1}{k(k-1)} = \dfrac{1}{k-1} - \dfrac1k\). Donc :</p>
+      <p>\[ u_n = 1 + \sum_{k=2}^{n} \frac{1}{k^2} \leqslant 1 + \sum_{k=2}^{n}\left(\frac{1}{k-1} - \frac1k\right) = 1 + \left(1 - \frac1n\right) = 2 - \frac1n &lt; 2. \]</p>
+      <p>\((u_n)\) est croissante et majorée par 2 : d'après le théorème de la limite monotone, elle <strong>converge</strong> (vers une limite \(\leqslant 2\) ; on sait par ailleurs qu'elle vaut \(\frac{\pi^2}{6} \approx 1{,}64\)). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Suite récurrente \(u_{n+1} = \sqrt{2u_n}\)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(u_0 = 1\) et \(u_{n+1} = \sqrt{2u_n}\). 1. Montrer que \(0 &lt; u_n \leqslant 2\) pour tout \(n\). 2. Montrer que \((u_n)\) est croissante. 3. En déduire qu'elle converge et déterminer sa limite.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par récurrence : \(u_0 = 1 \in \,]0, 2]\). Si \(0 &lt; u_n \leqslant 2\), alors \(0 &lt; 2u_n \leqslant 4\), donc \(0 &lt; u_{n+1} = \sqrt{2u_n} \leqslant \sqrt4 = 2\).</p>
+      <p><strong>2.</strong> Les termes étant positifs, comparons les carrés : \(u_{n+1}^2 - u_n^2 = 2u_n - u_n^2 = u_n(2 - u_n) \geqslant 0\) (car \(0 &lt; u_n \leqslant 2\)). Donc \(u_{n+1} \geqslant u_n\) : la suite est croissante.</p>
+      <p><strong>3.</strong> Croissante et majorée par 2, elle converge vers une limite \(\ell \in \,]0, 2]\). En passant à la limite dans \(u_{n+1} = \sqrt{2u_n}\) (fonction \(x \mapsto \sqrt{2x}\) continue) : \(\ell = \sqrt{2\ell}\), soit \(\ell^2 = 2\ell\), donc \(\ell = 2\) (car \(\ell &gt; 0\)). Ainsi \(u_n \to 2\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — La suite des \(\sum 1/k!\)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(u_n = \displaystyle\sum_{k=0}^{n} \dfrac{1}{k!}\). 1. Montrer que \(k! \geqslant 2^{k-1}\) pour \(k \geqslant 1\). 2. En déduire que \((u_n)\) est croissante et majorée par 3, donc convergente.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par récurrence : \(1! = 1 = 2^0\). Si \(k! \geqslant 2^{k-1}\), alors \((k+1)! = (k+1)\,k! \geqslant 2 \cdot 2^{k-1} = 2^k\) (car \(k + 1 \geqslant 2\)). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> \(u_{n+1} - u_n = \frac{1}{(n+1)!} &gt; 0\) : croissante. Majoration :</p>
+      <p>\[ u_n = 1 + \sum_{k=1}^{n} \frac{1}{k!} \leqslant 1 + \sum_{k=1}^{n} \frac{1}{2^{k-1}} = 1 + \frac{1 - (1/2)^n}{1 - 1/2} = 1 + 2\left(1 - \frac{1}{2^n}\right) &lt; 3. \]</p>
+      <p>Croissante et majorée par 3, \((u_n)\) converge (sa limite est le nombre \(\mathrm{e} \approx 2{,}718\)). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Suites adjacentes (série alternée, type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(a_n = \displaystyle\sum_{k=1}^{n} \dfrac{(-1)^{k+1}}{k}\) (sommes partielles de la série harmonique alternée). Montrer que \((a_{2n})\) et \((a_{2n+1})\) sont adjacentes, et en déduire que \((a_n)\) converge.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>\((a_{2n})\) croissante :</strong> \(a_{2n+2} - a_{2n} = \dfrac{1}{2n+1} - \dfrac{1}{2n+2} &gt; 0\).</p>
+      <p><strong>\((a_{2n+1})\) décroissante :</strong> \(a_{2n+3} - a_{2n+1} = -\dfrac{1}{2n+2} + \dfrac{1}{2n+3} &lt; 0\).</p>
+      <p><strong>Différence \(\to 0\) :</strong> \(a_{2n+1} - a_{2n} = \dfrac{1}{2n+1} \xrightarrow[n \to +\infty]{} 0\).</p>
+      <p>Les deux suites sont donc adjacentes : elles convergent vers une même limite \(\ell\). Comme les termes d'indices pairs et impairs de \((a_n)\) convergent tous deux vers \(\ell\), la suite \((a_n)\) converge vers \(\ell\) (sa valeur est \(\ln 2\)). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Limite de \(n!/n^n\) (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Montrer que \(\displaystyle\frac{n!}{n^n} \xrightarrow[n \to +\infty]{} 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On écrit le quotient comme un produit de facteurs :</p>
+      <p>\[ \frac{n!}{n^n} = \frac{1 \times 2 \times \cdots \times n}{n \times n \times \cdots \times n} = \frac1n \times \frac2n \times \cdots \times \frac nn. \]</p>
+      <p>Chaque facteur \(\frac kn\) (pour \(1 \leqslant k \leqslant n\)) est compris entre 0 et 1, donc le produit des facteurs d'indices \(k \geqslant 2\) est \(\leqslant 1\). En ne gardant que le premier facteur :</p>
+      <p>\[ 0 &lt; \frac{n!}{n^n} = \frac1n \times \underbrace{\frac2n \times \cdots \times \frac nn}_{\leqslant\, 1} \leqslant \frac1n. \]</p>
+      <p>Comme \(\frac1n \to 0\), le théorème des gendarmes donne \(\dfrac{n!}{n^n} \to 0\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

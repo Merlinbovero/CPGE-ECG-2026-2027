@@ -91,7 +91,7 @@
   if (typeof SITE_DATA !== "undefined") {
     document.querySelectorAll("[data-progress-matiere]").forEach(function (el) {
       var m = el.getAttribute("data-progress-matiere");
-      var pages = SITE_DATA.pages.filter(function (p) { return p.m === m; });
+      var pages = SITE_DATA.pages.filter(function (p) { return p.m === m && !p.r; });
       var done = pages.filter(function (p) { return chStore[p.id]; }).length;
       var pct = pages.length ? Math.round(100 * done / pages.length) : 0;
       var fill = el.querySelector(".progress-fill");
@@ -149,6 +149,54 @@
     });
     input.addEventListener("keydown", function (e) {
       if (e.key === "Escape") { results.hidden = true; input.blur(); }
+    });
+  }
+
+  /* ---------- Export / import de la progression ---------- */
+  var exportBtn = document.getElementById("progress-export");
+  var importBtn = document.getElementById("progress-import-btn");
+  var importFile = document.getElementById("progress-import-file");
+  var ioMsg = document.getElementById("progress-io-msg");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", function () {
+      var data = {
+        type: "ecg-progression",
+        exportedAt: new Date().toISOString(),
+        chapitres: loadStore(KEY_CH),
+        exercices: loadStore(KEY_EX)
+      };
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "ecg-progression-" + new Date().toISOString().slice(0, 10) + ".json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      if (ioMsg) ioMsg.textContent = "Progression exportée.";
+    });
+  }
+  if (importBtn && importFile) {
+    importBtn.addEventListener("click", function () { importFile.click(); });
+    importFile.addEventListener("change", function () {
+      var file = importFile.files && importFile.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          var data = JSON.parse(reader.result);
+          if (!data || data.type !== "ecg-progression") throw new Error("format");
+          saveStore(KEY_CH, data.chapitres || {});
+          saveStore(KEY_EX, data.exercices || {});
+          if (ioMsg) ioMsg.textContent = "Progression importée — rechargement…";
+          setTimeout(function () { location.reload(); }, 600);
+        } catch (e) {
+          if (ioMsg) ioMsg.textContent = "Fichier invalide : ce n'est pas un export de progression ECG1.";
+        }
+      };
+      reader.readAsText(file);
+      importFile.value = "";
     });
   }
 

@@ -39,6 +39,16 @@
 
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Fiche travaillée</label>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche</span>
+    <ul>
+      <li>Connaître les institutions américaines et britanniques avec assez de précision pour un essai ou une khôlle (dates, chiffres, noms).</li>
+      <li>Maîtriser les grands débats de société des deux pays (race, armes, inégalités, immigration, classe).</li>
+      <li>Disposer d'exemples datés et chiffrés mobilisables aussi bien en anglais qu'en ESH ou culture générale.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire">
@@ -49,6 +59,7 @@
       <li><a href="#s3">Société : les grands débats</a></li>
       <li><a href="#s4">Économie</a></li>
       <li><a href="#s5">Environnement, technologie, médias</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices</a></li>
     </ol>
   </nav>
@@ -77,6 +88,15 @@
     </ul>
   </div>
 
+  <div class="box warn">
+    <span class="box-title">Pièges classiques</span>
+    <ul>
+      <li>Ne pas confondre <strong>Congress</strong> (le pouvoir législatif américain, avec House + Senate) et <strong>Parliament</strong> (le terme britannique) — chaque système a son vocabulaire propre, ne pas les intervertir en essai.</li>
+      <li>Article zéro devant les institutions employées dans leur fonction : <em>Ø Congress passed the bill</em> (pas <em>the Congress</em>), <em>go to Ø Parliament</em>.</li>
+      <li>Le Royaume-Uni n'a <strong>pas de constitution écrite unique</strong> — ne jamais écrire « the British Constitution » comme un document ; il s'agit de conventions, de <em>statutes</em> et de <em>common law</em>.</li>
+    </ul>
+  </div>
+
   <h2 id="s3">3. Société : les grands débats</h2>
   <ul>
     <li><strong>Race in America</strong> : de l'esclavage (aboli 1865, 13th Amendment) à la ségrégation (Jim Crow ; <em>Brown v. Board</em> 1954 ; Civil Rights Act 1964 — Martin Luther King, « I Have a Dream », 1963) ; <strong>Black Lives Matter</strong> (2013 ; George Floyd, 2020) ; débats sur l'affirmative action (interdite par la Cour suprême, 2023).</li>
@@ -99,6 +119,18 @@
     <li><strong>Big Tech</strong> : GAFAM, procès antitrust (Google 2023-24), section 230 et modération, IA (AI Act européen vs approche laissez-faire ; Bletchley Summit 2023 au UK) ; TikTok et la sécurité nationale.</li>
     <li><strong>Médias</strong> : polarisation (Fox News vs MSNBC), déclin de la presse locale, <em>fake news</em> ; la BBC, modèle de service public sous pression (licence fee).</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un essai ou une khôlle</span>
+    <ul>
+      <li><strong>US</strong> : Constitution (1787), <em>checks and balances</em>, President (4 ans, 2 max), Congress (House 435 + Senate 100), Supreme Court (9 justices à vie), Electoral College (538/270).</li>
+      <li><strong>UK</strong> : monarchie parlementaire sans constitution écrite ; Commons (650 MPs, <em>first-past-the-post</em>) + Lords ; devolution (Écosse, pays de Galles, Irlande du Nord) ; Brexit (référendum 2016, sortie 2020).</li>
+      <li><strong>Débats US</strong> : race (Civil Rights Act 1964, BLM), armes (2nd Amendment, ≈ 40 000 morts/an), inégalités (top 1 % ≈ 20 % des revenus), immigration (Dreamers, the Wall).</li>
+      <li><strong>Débats UK</strong> : classe (public schools, Oxbridge), NHS (1948), North/South divide, Brexit et ses coûts (≈ 4 % de PIB, OBR).</li>
+      <li><strong>Piège à éviter</strong> : Congress ≠ Parliament ; pas d'article devant les institutions dans leur fonction (Ø Congress, Ø Parliament).</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -167,6 +199,37 @@
       <p><strong>3.</strong> Difficile : nominations ouvertement partisanes (blocage Garland 2016, nominations Trump), renversement de <em>Roe</em> perçu comme politique, confiance publique au plus bas (≈ 40 %) ; mais la Cour rend aussi des décisions contre-intuitives et reste l'arbitre accepté — le débat porte désormais sur les réformes (term limits, code éthique).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. The United Kingdom has a single written constitutional document.</p>
+        <label><input type="radio" name="vf1"> True</label>
+        <label><input type="radio" name="vf1" data-correct> False</label>
+        <div class="qcm-explication">The UK constitution is unwritten in the sense of not being codified in one document — it rests on conventions, statutes and common law.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. The Scottish independence referendum of 2014 resulted in a majority for independence.</p>
+        <label><input type="radio" name="vf2"> True</label>
+        <label><input type="radio" name="vf2" data-correct> False</label>
+        <div class="qcm-explication">55% voted No — but the debate was reignited by Brexit.</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. The US federal minimum wage has not changed since 2009.</p>
+        <label><input type="radio" name="vf3" data-correct> True</label>
+        <label><input type="radio" name="vf3"> False</label>
+        <div class="qcm-explication">Stuck at $7.25 an hour — a recurring point in debates on inequality.</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Affirmative action in university admissions was struck down by the US Supreme Court in 2023.</p>
+        <label><input type="radio" name="vf4" data-correct> True</label>
+        <label><input type="radio" name="vf4"> False</label>
+        <div class="qcm-explication">A landmark ruling ending race-conscious admissions policies.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation">

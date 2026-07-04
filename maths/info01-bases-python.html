@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">TP tout au long de l'année</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche (programme officiel)</span>
+    <ul>
+      <li>Connaître les <strong>types de base</strong> (int, float, str, bool) et les <strong>opérateurs</strong> (dont <code>//</code>, <code>%</code>, <code>**</code>).</li>
+      <li>Écrire des <strong>conditions</strong> (<code>if/elif/else</code>) et respecter l'<strong>indentation</strong> comme syntaxe.</li>
+      <li>Maîtriser les boucles <strong><code>for</code></strong> (avec <code>range</code>) et <strong><code>while</code></strong> (algorithmes de seuil).</li>
+      <li>Définir des <strong>fonctions</strong> et distinguer <code>return</code> de <code>print</code>.</li>
+      <li>Savoir <strong>prédire une sortie</strong>, <strong>compléter</strong> et <strong>déboguer</strong> un programme — les trois formats de questions au concours.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -51,6 +63,7 @@
       <li><a href="#s4">Boucles : for et while</a></li>
       <li><a href="#s5">Fonctions</a></li>
       <li><a href="#s6">Erreurs classiques</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -135,6 +148,20 @@ print(somme_carres(4))   # affiche : 30</code></pre>
     <li>Boucle <code>while</code> qui ne se termine pas (condition jamais fausse) : vérifier que la variable de contrôle évolue.</li>
     <li>Division : <code>/</code> renvoie un float même entre entiers ; pour un indice, utiliser <code>//</code>.</li>
   </ul>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Types :</strong> <code>int</code>, <code>float</code> (<code>/</code> donne un float), <code>str</code>, <code>bool</code>.</li>
+      <li><strong>Opérateurs :</strong> <code>//</code> quotient, <code>%</code> reste, <code>**</code> puissance ; <code>n % 2 == 0</code> teste la parité.</li>
+      <li><strong>Condition :</strong> <code>if … : / elif … : / else :</code>, blocs délimités par l'indentation.</li>
+      <li><strong><code>for</code> :</strong> <code>range(a, b, p)</code> parcourt \(a, a+p, \dots\) sans atteindre \(b\) (borne exclue).</li>
+      <li><strong><code>while</code> :</strong> itère tant que la condition est vraie ; s'assurer que la variable de contrôle évolue.</li>
+      <li><strong>Fonction :</strong> <code>def f(x): … return …</code> ; <code>return</code> renvoie et sort, <code>print</code> affiche.</li>
+      <li><strong>Accumulateur :</strong> initialiser (<code>S = 0</code>, <code>p = 1</code>) <em>avant</em> la boucle ; <code>return</code> <em>après</em> la boucle.</li>
+      <li><strong>Échange :</strong> <code>a, b = b, a</code> (affectation simultanée).</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -257,6 +284,249 @@ print(n)</code></pre>
     return S      # harmonique(3) renvoie 1 + 0.5 + 0.333... = 1.8333...</code></pre>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Conditions et modulo</h3><span class="level level-1">Application directe</span></div>
+    <p>Que affichent ces programmes ?</p>
+    <pre><code class="language-python"># Programme A
+x = 10
+if x % 3 == 0:
+    print("A")
+elif x % 2 == 0:
+    print("B")
+else:
+    print("C")
+
+# Programme B
+for i in range(2, 9, 2):
+    print(i)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>A :</strong> \(10 \bmod 3 = 1 \neq 0\), puis \(10 \bmod 2 = 0\) : le bloc <code>elif</code> s'exécute, affiche <code>B</code>.</p>
+      <p><strong>B :</strong> <code>range(2, 9, 2)</code> parcourt \(2, 4, 6, 8\) (9 exclu) : affiche <code>2</code>, <code>4</code>, <code>6</code>, <code>8</code> (une par ligne).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Maximum de deux nombres</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire une fonction <code>maximum(a, b)</code> qui renvoie le plus grand des deux nombres (sans utiliser <code>max</code>).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def maximum(a, b):
+    if a &gt;= b:
+        return a
+    else:
+        return b        # maximum(3, 7) renvoie 7</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Test de multiple</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire une fonction <code>est_multiple(n, d)</code> qui renvoie <code>True</code> si \(n\) est un multiple de \(d\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def est_multiple(n, d):
+    return n % d == 0    # est_multiple(15, 5) renvoie True ; est_multiple(15, 4) renvoie False</code></pre>
+      <p class="small muted">Le test <code>n % d == 0</code> renvoie déjà un booléen : pas besoin de <code>if</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Produit dans une boucle</h3><span class="level level-1">Application directe</span></div>
+    <p>Que affiche ce programme ?</p>
+    <pre><code class="language-python">s = 1
+for k in range(1, 5):
+    s = s * k
+print(s)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(k\) prend les valeurs \(1, 2, 3, 4\), et \(s = 1\times1\times2\times3\times4 = 24\) : affiche <code>24</code> (c'est \(4!\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Somme des impairs</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire une fonction <code>somme_impairs(n)</code> qui renvoie \(1 + 3 + 5 + \dots + (2n-1)\). Que vaut <code>somme_impairs(4)</code> ? Quelle formule reconnaît-on ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def somme_impairs(n):
+    S = 0
+    for k in range(1, n + 1):
+        S = S + (2*k - 1)
+    return S</code></pre>
+      <p><code>somme_impairs(4)</code> \(= 1 + 3 + 5 + 7 = 16 = 4^2\). En effet la somme des \(n\) premiers impairs vaut \(n^2\) (chapitre 2).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Seuil avec while</h3><span class="level level-2">Entraînement</span></div>
+    <p>Que affiche ce programme, et que calcule-t-il ?</p>
+    <pre><code class="language-python">n = 0
+p = 1
+while p &lt;= 1000:
+    p = p * 2
+    n = n + 1
+print(n)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>À chaque tour, \(p\) double : après \(n\) tours, \(p = 2^n\). La boucle s'arrête dès que \(p &gt; 1000\), c'est-à-dire \(2^n &gt; 1000\). Comme \(2^9 = 512 \leqslant 1000 &lt; 1024 = 2^{10}\), on sort avec \(n = 10\) : affiche <code>10</code> (le plus petit \(n\) tel que \(2^n &gt; 1000\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Compléter une suite récurrente</h3><span class="level level-2">Entraînement</span></div>
+    <p>Compléter <code>u(n)</code> pour la suite \(u_0 = 2\), \(u_{k+1} = 3u_k + 1\) :</p>
+    <pre><code class="language-python">def u(n):
+    x = ......
+    for k in range(......):
+        x = ......
+    return x</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def u(n):
+    x = 2                # u_0
+    for k in range(n):   # n itérations
+        x = 3*x + 1
+    return x</code></pre>
+      <p>Contrôle : <code>u(0)</code> renvoie 2 ; <code>u(1)</code> renvoie 7 ; <code>u(2)</code> renvoie 22.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Compter les diviseurs</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire une fonction <code>nb_diviseurs(n)</code> qui renvoie le nombre de diviseurs positifs de \(n\). Que vaut <code>nb_diviseurs(12)</code> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def nb_diviseurs(n):
+    c = 0
+    for d in range(1, n + 1):
+        if n % d == 0:
+            c = c + 1
+    return c</code></pre>
+      <p><code>nb_diviseurs(12)</code> compte \(1, 2, 3, 4, 6, 12\) : renvoie <code>6</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Suite de Collatz (type concours)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Que calcule ce programme ? Donner la valeur affichée pour \(n = 100\).</p>
+    <pre><code class="language-python">n = 100
+c = 0
+while n &gt; 1:
+    if n % 2 == 0:
+        n = n // 2
+    else:
+        n = 3*n + 1
+    c = c + 1
+print(c)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Le programme applique la règle de <strong>Syracuse (Collatz)</strong> : tant que \(n &gt; 1\), on divise par 2 si pair, sinon on fait \(3n+1\) ; <code>c</code> compte les étapes jusqu'à atteindre 1.</p>
+      <p>Pour \(n = 100\) : \(100 \to 50 \to 25 \to 76 \to 38 \to 19 \to 58 \to 29 \to 88 \to 44 \to 22 \to 11 \to 34 \to 17 \to 52 \to 26 \to 13 \to 40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1\), soit <strong>25 étapes</strong> : affiche <code>25</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Trace d'une suite de Fibonacci (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>fib(6)</code> ? Détailler l'évolution du couple <code>(a, b)</code>.</p>
+    <pre><code class="language-python">def fib(n):
+    a, b = 0, 1
+    for k in range(n):
+        a, b = b, a + b
+    return a</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Le couple <code>(a, b)</code> évolue (affectation simultanée) : \((0,1) \to (1,1) \to (1,2) \to (2,3) \to (3,5) \to (5,8) \to (8,13)\) après 6 tours.</p>
+      <p>La fonction renvoie \(a = 8\), le 6<sup>e</sup> terme de la suite de Fibonacci \(0, 1, 1, 2, 3, 5, 8, \dots\)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Débogage d'un produit (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Cette fonction devrait renvoyer \(n! = 1\times2\times\dots\times n\), mais contient <strong>deux erreurs</strong>. Les corriger.</p>
+    <pre><code class="language-python">def produit(n):
+    p = 0
+    for k in range(1, n):
+        p = p * k
+    return p</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li><code>p = 0</code> : un produit doit s'initialiser à <strong>1</strong> (sinon tout reste nul).</li>
+        <li><code>range(1, n)</code> s'arrête à \(n-1\) : il faut <code>range(1, n + 1)</code> pour inclure \(n\).</li>
+      </ol>
+      <pre><code class="language-python">def produit(n):
+    p = 1
+    for k in range(1, n + 1):
+        p = p * k
+    return p          # produit(5) renvoie 120</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Test de primalité (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire une fonction <code>est_premier(n)</code> qui renvoie <code>True</code> si \(n\) est premier. Expliquer pourquoi le <code>return False</code> peut se placer dans la boucle.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def est_premier(n):
+    if n &lt; 2:
+        return False
+    for d in range(2, n):
+        if n % d == 0:
+            return False    # un diviseur trouvé : inutile de continuer
+    return True             # aucun diviseur : n est premier</code></pre>
+      <p>Dès qu'un diviseur \(d\) est trouvé, \(n\) n'est pas premier : le <code>return False</code> <em>dans</em> la boucle interrompt aussitôt la fonction (c'est ici un avantage). Le <code>return True</code> final n'est atteint que si la boucle s'est terminée sans diviseur.</p>
+      <p class="small muted">Optimisation classique : s'arrêter à \(\sqrt n\) avec <code>range(2, int(n**0.5) + 1)</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Somme des chiffres (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>somme_chiffres(2024)</code> ? Expliquer le rôle de <code>% 10</code> et <code>// 10</code>.</p>
+    <pre><code class="language-python">def somme_chiffres(n):
+    s = 0
+    while n &gt; 0:
+        s = s + n % 10
+        n = n // 10
+    return s</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>n % 10</code> extrait le <strong>chiffre des unités</strong> ; <code>n // 10</code> <strong>supprime ce chiffre</strong>. On additionne donc les chiffres un à un.</p>
+      <p>Trace pour \(2024\) : \(s = 4\) (\(n=202\)), puis \(6\) (\(n=20\)), puis \(6\) (\(n=2\)), puis \(8\) (\(n=0\), fin). Renvoie <code>8</code> (soit \(2+0+2+4\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Fonction mystère (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>mystere(2, 5)</code> ? Que calcule cette fonction en général ?</p>
+    <pre><code class="language-python">def mystere(x, n):
+    r = 1
+    while n &gt; 0:
+        if n % 2 == 1:
+            r = r * x
+        x = x * x
+        n = n // 2
+    return r</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Trace pour \((x, n) = (2, 5)\) : \(r=1, x=2, n=5\) (impair) \(\to r=2, x=4, n=2\) ; \(n=2\) (pair) \(\to x=16, n=1\) ; \(n=1\) (impair) \(\to r=32, x=256, n=0\). Renvoie <code>32</code>.</p>
+      <p>C'est l'<strong>exponentiation rapide</strong> : la fonction calcule \(x^n\) (ici \(2^5 = 32\)) en \(\mathcal{O}(\log n)\) multiplications, en exploitant l'écriture binaire de \(n\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

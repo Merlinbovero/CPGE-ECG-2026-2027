@@ -66,6 +66,12 @@ const SITE_DATA = {
       s: ["Simuler une expérience aléatoire", "Fréquences et loi des grands nombres", "Méthode de Monte-Carlo", "Simulation de lois usuelles"] },
     { id: "maths-info05", m: "maths", n: "I5", t: "Python : suites, seuil et dichotomie", u: "maths/info05-algorithmes.html",
       s: ["Calcul des termes d'une suite", "Algorithmes de seuil", "Dichotomie", "Complexité et bonnes pratiques"] },
+    { id: "maths-formulaire", m: "maths", r: true, n: "", t: "Formulaire / Mémo — toutes les formules de maths", u: "maths/formulaire.html",
+      s: ["Formules d'algèbre et de calcul", "Analyse et intégration", "Probabilités et lois usuelles", "Séries, graphes, statistiques", "Mémo Python"] },
+    { id: "maths-flashcards", m: "maths", r: true, n: "", t: "Flashcards Maths", u: "maths/flashcards.html",
+      s: ["Répétition espacée", "Formules et théorèmes", "Méthodes types", "Lois de probabilité"] },
+    { id: "maths-annales", m: "maths", r: true, n: "", t: "Annales BCE / Ecricome — maths appliquées", u: "maths/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- ESH — Module 1 ---------- */
     { id: "esh-ch01", m: "esh", n: "1.1", t: "Qu'est-ce que l'économie ? Objets, méthodes et grands courants", u: "esh/ch01-science-economique.html",
@@ -94,6 +100,12 @@ const SITE_DATA = {
       s: ["Histoire de l'entreprise", "Théories de la firme", "Coase et Williamson", "Relation d'agence", "Gouvernance d'entreprise", "Formes d'organisation du travail"] },
     { id: "esh-ch12", m: "esh", n: "2.6", t: "Fluctuations et crises depuis le XIXe siècle", u: "esh/ch12-fluctuations-crises.html",
       s: ["Cycles économiques", "La crise de 1873", "La crise de 1929", "Le choc de 1973", "La crise de 2008", "Théories des crises", "Politiques de sortie de crise"] },
+    { id: "esh-formulaire", m: "esh", r: true, n: "", t: "Formulaire / Mémo — tout le programme d'ESH", u: "esh/formulaire.html",
+      s: ["Fiches de révision condensées", "Auteurs et dates clés", "Chiffres clés", "Mécanismes clés"] },
+    { id: "esh-flashcards", m: "esh", r: true, n: "", t: "Flashcards ESH", u: "esh/flashcards.html",
+      s: ["Répétition espacée", "Auteurs et dates", "Chiffres clés", "Définitions"] },
+    { id: "esh-annales", m: "esh", r: true, n: "", t: "Annales BCE / Ecricome — ESH", u: "esh/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- Culture générale ---------- */
     { id: "cg-methodo-dissert", m: "cg", n: "M1", t: "Méthodologie de la dissertation de culture générale", u: "culture-generale/methodologie-dissertation.html",
@@ -138,6 +150,14 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "La synthèse", "Les khôlles orales"] },
     { id: "anglais-exos", m: "anglais", n: "5", t: "Exercices corrigés d'anglais", u: "anglais/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Versions corrigées", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "anglais-verbes", m: "anglais", n: "6", t: "Les verbes irréguliers anglais", u: "anglais/verbes-irreguliers.html",
+      s: ["Verbes à une forme", "Verbes à deux formes", "Verbes à trois formes", "Lie/lay/lain", "Quiz des verbes irréguliers"] },
+    { id: "anglais-formulaire", m: "anglais", r: true, n: "", t: "Formulaire / Mémo — anglais", u: "anglais/formulaire.html",
+      s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
+    { id: "anglais-flashcards", m: "anglais", r: true, n: "", t: "Flashcards anglais", u: "anglais/flashcards.html",
+      s: ["Répétition espacée", "Grammaire", "Vocabulaire", "Civilisation"] },
+    { id: "anglais-annales", m: "anglais", r: true, n: "", t: "Annales BCE / Ecricome — anglais", u: "anglais/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- LVB Italien ---------- */
     { id: "italien-civi", m: "italien", n: "1", t: "Civilisation : l'Italie contemporaine", u: "italien/civilisation.html",
@@ -150,6 +170,12 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "Les khôlles orales"] },
     { id: "italien-exos", m: "italien", n: "5", t: "Exercices corrigés d'italien", u: "italien/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Version corrigée", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "italien-formulaire", m: "italien", r: true, n: "", t: "Formulaire / Mémo — italien", u: "italien/formulaire.html",
+      s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
+    { id: "italien-flashcards", m: "italien", r: true, n: "", t: "Flashcards italien", u: "italien/flashcards.html",
+      s: ["Répétition espacée", "Grammaire", "Vocabulaire", "Civilisation"] },
+    { id: "italien-annales", m: "italien", r: true, n: "", t: "Annales BCE / Ecricome — italien", u: "italien/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- Méthodologie & concours ---------- */
     { id: "methodo-organisation", m: "methodo", n: "1", t: "Organisation du travail en prépa", u: "methodologie/organisation.html",

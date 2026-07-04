@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Manipuler les symboles \(\sum\) et \(\prod\) : linéarité, Chasles, changements d'indice.</li>
+      <li>Connaître par cœur les sommes usuelles (\(\sum k\), \(\sum k^2\), \(\sum k^3\), somme géométrique).</li>
+      <li>Maîtriser le télescopage et la décomposition en éléments simples pour calculer des sommes.</li>
+      <li>Utiliser les coefficients binomiaux (Pascal, symétrie, capitaine) et la formule du binôme de Newton.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -51,6 +62,7 @@
       <li><a href="#s4">Le symbole produit \(\prod\) et la factorielle</a></li>
       <li><a href="#s5">Coefficients binomiaux</a></li>
       <li><a href="#s6">La formule du binôme de Newton</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -213,6 +225,20 @@
   <p>\[ \sum_{k=0}^{n} \binom{n}{k} = 2^n, \qquad \sum_{k=0}^{n} (-1)^k \binom{n}{k} = 0 \ \ (n \geqslant 1). \]</p>
   <p>Et les identités remarquables généralisées : \((a+b)^2 = a^2 + 2ab + b^2\), \((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\), ainsi que \(a^n - b^n = (a-b)\sum_{k=0}^{n-1} a^k b^{n-1-k}\).</p>
 
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Sommes usuelles</strong> : \(\sum_{k=1}^n k = \frac{n(n+1)}{2}\) ; \(\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}\) ; \(\sum_{k=1}^n k^3 = \left(\frac{n(n+1)}{2}\right)^2\).</li>
+      <li><strong>Géométrique</strong> : \(\sum_{k=0}^n q^k = \frac{1-q^{n+1}}{1-q}\) si \(q \neq 1\) (« premier − suivant du dernier, sur \(1-q\) »).</li>
+      <li><strong>Télescopage</strong> : \(\sum_{k=m}^n (a_{k+1}-a_k) = a_{n+1}-a_m\).</li>
+      <li><strong>Factorielle</strong> : \((n+1)! = (n+1)\,n!\), \(0!=1\).</li>
+      <li><strong>Binomiaux</strong> : \(\binom{n}{k}=\frac{n!}{k!(n-k)!}\) ; symétrie \(\binom{n}{k}=\binom{n}{n-k}\) ; Pascal \(\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}\) ; capitaine \(k\binom{n}{k}=n\binom{n-1}{k-1}\).</li>
+      <li><strong>Binôme</strong> : \((a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}\) ; \(\sum_k \binom{n}{k} = 2^n\) ; \(\sum_k (-1)^k\binom{n}{k}=0\).</li>
+      <li><strong>Pièges</strong> : \(\sum a_k b_k \neq (\sum a_k)(\sum b_k)\) ; compter \(n-m+1\) termes ; \((2n)! \neq 2\cdot n!\).</li>
+    </ul>
+  </div>
+
   <h2 id="exos">Exercices corrigés</h2>
 
   <article class="exercise">
@@ -339,6 +365,147 @@
       <p><strong>2.</strong> Prenons \(m = n\) et \(k = n\) : \(\binom{2n}{n} = \sum_{j=0}^{n} \binom{n}{j}\binom{n}{n-j}\). Par symétrie \(\binom{n}{n-j} = \binom{n}{j}\), donc \(\binom{2n}{n} = \sum_{j=0}^{n} \binom{n}{j}^2\). <span class="qed">∎</span></p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Constantes et comptage de termes</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) : 1. \(\displaystyle\sum_{k=1}^{n} 5\) ; &nbsp; 2. \(\displaystyle\sum_{k=1}^{n} (2n - k)\) ; &nbsp; 3. \(\displaystyle\sum_{i=1}^{n} \sum_{j=1}^{n} 1\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\sum_{k=1}^n 5 = 5n\) (constante répétée \(n\) fois).</p>
+      <p><strong>2.</strong> \(2n\) est constant vis-à-vis de \(k\) : \(\sum_{k=1}^n (2n - k) = 2n \cdot n - \frac{n(n+1)}{2} = \frac{4n^2 - n^2 - n}{2} = \frac{n(3n-1)}{2}\).</p>
+      <p><strong>3.</strong> \(\sum_{i=1}^n \big(\sum_{j=1}^n 1\big) = \sum_{i=1}^n n = n^2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Sommes géométriques (suite)</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) : 1. \(\displaystyle\sum_{k=0}^{n} (-1)^k\) ; &nbsp; 2. \(\displaystyle\sum_{k=1}^{n} 5 \cdot 2^{k-1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Raison \(q = -1\) : \(\sum_{k=0}^n (-1)^k = \frac{1 - (-1)^{n+1}}{1 - (-1)} = \frac{1 - (-1)^{n+1}}{2}\), c'est-à-dire \(1\) si \(n\) est pair, \(0\) si \(n\) est impair.</p>
+      <p><strong>2.</strong> \(\sum_{k=1}^n 5 \cdot 2^{k-1} = 5 \sum_{j=0}^{n-1} 2^j = 5(2^n - 1)\) (changement d'indice \(j = k-1\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Coefficients binomiaux numériques</h3><span class="level level-1">Application directe</span></div>
+    <p>1. Calculer \(\dbinom{7}{2}\), \(\dbinom{7}{5}\) et \(\dbinom{8}{3}\). <br>
+    2. Vérifier la formule de Pascal sur \(\dbinom{6}{2} + \dbinom{6}{3}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\binom{7}{2} = \frac{7 \times 6}{2} = 21\) ; \(\binom{7}{5} = \binom{7}{2} = 21\) (symétrie) ; \(\binom{8}{3} = \frac{8 \times 7 \times 6}{6} = 56\).</p>
+      <p><strong>2.</strong> \(\binom{6}{2} = 15\), \(\binom{6}{3} = 20\), somme \(= 35\). Et \(\binom{7}{3} = \frac{7 \times 6 \times 5}{6} = 35\). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Télescopage avec racines</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) : \(\displaystyle S_n = \sum_{k=1}^{n} \frac{1}{\sqrt{k} + \sqrt{k+1}}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On multiplie par la quantité conjuguée :</p>
+      <p>\[ \frac{1}{\sqrt{k} + \sqrt{k+1}} = \frac{\sqrt{k+1} - \sqrt{k}}{(\sqrt{k+1} + \sqrt{k})(\sqrt{k+1} - \sqrt{k})} = \frac{\sqrt{k+1} - \sqrt{k}}{(k+1) - k} = \sqrt{k+1} - \sqrt{k}. \]</p>
+      <p>La somme est donc télescopique : \(S_n = \sum_{k=1}^n (\sqrt{k+1} - \sqrt{k}) = \sqrt{n+1} - \sqrt{1} = \sqrt{n+1} - 1\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Somme arithmético-géométrique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) : \(\displaystyle S_n = \sum_{k=1}^{n} k \cdot 2^k\). <span class="small muted">(Indication : comparer \(S_n\) et \(2 S_n\).)</span></p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On calcule \(2 S_n = \sum_{k=1}^n k \cdot 2^{k+1} = \sum_{j=2}^{n+1} (j-1) 2^j\) (changement d'indice \(j = k+1\)). Alors :</p>
+      <p>\[ S_n - 2S_n = \sum_{k=1}^{n} k 2^k - \sum_{j=2}^{n+1} (j-1) 2^j. \]</p>
+      <p>Isolons le terme \(k=1\) de la première somme et le terme \(j = n+1\) de la seconde, et regroupons les indices communs \(2 \leqslant k \leqslant n\) :</p>
+      <p>\[ -S_n = 1 \cdot 2 + \sum_{k=2}^{n} \big[k - (k-1)\big] 2^k - n \cdot 2^{n+1} = 2 + \sum_{k=2}^{n} 2^k - n 2^{n+1}. \]</p>
+      <p>Or \(\sum_{k=2}^{n} 2^k = (2^{n+1} - 1) - 2^0 - 2^1 = 2^{n+1} - 4\). Donc \(-S_n = 2 + 2^{n+1} - 4 - n 2^{n+1} = -2 + (1 - n) 2^{n+1}\), d'où :</p>
+      <p>\[ S_n = 2 + (n-1) 2^{n+1}. \]</p>
+      <p class="small muted">Vérification : \(n=1\) donne \(2\) (et \(1 \cdot 2 = 2\)) ; \(n=2\) donne \(2 + 8 = 10\) (et \(2 + 8 = 10\)). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Coefficient d'un développement</h3><span class="level level-2">Entraînement</span></div>
+    <p>Déterminer : 1. le coefficient de \(x^5\) dans \((2 + x)^8\) ; &nbsp; 2. le coefficient de \(x^3\) dans \((1 - 2x)^6\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \((2+x)^8 = \sum_{k=0}^{8} \binom{8}{k} x^k 2^{8-k}\). Le coefficient de \(x^5\) est \(\binom{8}{5} 2^{3} = 56 \times 8 = 448\).</p>
+      <p><strong>2.</strong> \((1 - 2x)^6 = \sum_{k=0}^{6} \binom{6}{k} (-2x)^k = \sum_{k=0}^{6} \binom{6}{k} (-2)^k x^k\). Le coefficient de \(x^3\) est \(\binom{6}{3} (-2)^3 = 20 \times (-8) = -160\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Produit télescopique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer, pour \(n \geqslant 2\) : \(\displaystyle P_n = \prod_{k=2}^{n} \left(1 - \frac{1}{k^2}\right)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On factorise : \(1 - \frac{1}{k^2} = \frac{k^2 - 1}{k^2} = \frac{(k-1)(k+1)}{k^2} = \frac{k-1}{k} \cdot \frac{k+1}{k}\). Donc :</p>
+      <p>\[ P_n = \left(\prod_{k=2}^{n} \frac{k-1}{k}\right)\left(\prod_{k=2}^{n} \frac{k+1}{k}\right) = \underbrace{\frac{1}{2} \cdot \frac{2}{3} \cdots \frac{n-1}{n}}_{= \,1/n} \times \underbrace{\frac{3}{2} \cdot \frac{4}{3} \cdots \frac{n+1}{n}}_{= \,(n+1)/2} = \frac{1}{n} \cdot \frac{n+1}{2} = \frac{n+1}{2n}. \]</p>
+      <p>(Chaque produit est télescopique.) <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Une somme avec \(k^2\)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>À l'aide de la formule du capitaine (exercice 7), calculer \(\displaystyle\sum_{k=0}^{n} k^2 \binom{n}{k}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On écrit \(k^2 \binom{n}{k} = k \cdot \big(k\binom{n}{k}\big) = k \cdot n\binom{n-1}{k-1}\) (formule du capitaine). Donc, le terme \(k=0\) étant nul :</p>
+      <p>\[ \sum_{k=0}^{n} k^2 \binom{n}{k} = n \sum_{k=1}^{n} k \binom{n-1}{k-1} = n \sum_{j=0}^{n-1} (j+1) \binom{n-1}{j} \quad (j = k-1). \]</p>
+      <p>On sépare : \(\sum_{j=0}^{n-1} (j+1)\binom{n-1}{j} = \sum_{j=0}^{n-1} j\binom{n-1}{j} + \sum_{j=0}^{n-1}\binom{n-1}{j} = (n-1)2^{n-2} + 2^{n-1}\) (exercice 7 et binôme). D'où :</p>
+      <p>\[ \sum_{k=0}^{n} k^2 \binom{n}{k} = n\big[(n-1)2^{n-2} + 2^{n-1}\big] = n\,2^{n-2}\big[(n-1) + 2\big] = n(n+1)\,2^{n-2}. \]</p>
+      <p class="small muted">Vérification : \(n = 2\) donne \(0 + 1\cdot 2 + 4 \cdot 1 = 6\), et \(2 \cdot 3 \cdot 2^0 = 6\). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Double somme avec valeur absolue</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Calculer, pour \(n \geqslant 1\) : \(\displaystyle D_n = \sum_{i=1}^{n} \sum_{j=1}^{n} |i - j|\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par symétrie des rôles de \(i\) et \(j\) (et les termes \(i = j\) étant nuls) : \(D_n = 2 \sum_{1 \leqslant i &lt; j \leqslant n} (j - i)\). On regroupe selon la valeur \(d = j - i \in \{1, \dots, n-1\}\) : pour chaque \(d\), le nombre de couples \((i, j)\) avec \(j - i = d\) est \(n - d\). Donc :</p>
+      <p>\[ \sum_{1 \leqslant i &lt; j \leqslant n} (j-i) = \sum_{d=1}^{n-1} d\,(n-d) = n\sum_{d=1}^{n-1} d - \sum_{d=1}^{n-1} d^2 = n\frac{(n-1)n}{2} - \frac{(n-1)n(2n-1)}{6}. \]</p>
+      <p>En factorisant par \(\frac{(n-1)n}{6}\) : \(\frac{(n-1)n}{6}\big[3n - (2n-1)\big] = \frac{(n-1)n(n+1)}{6}\). Donc :</p>
+      <p>\[ D_n = 2 \cdot \frac{(n-1)n(n+1)}{6} = \frac{n(n^2 - 1)}{3}. \]</p>
+      <p class="small muted">Vérification : \(n = 2\) donne \(|1-1| + |1-2| + |2-1| + |2-2| = 2\), et \(\frac{2 \cdot 3}{3} = 2\). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Une somme de binomiaux divisés</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Montrer que \(\displaystyle\sum_{k=0}^{n} \frac{1}{k+1}\binom{n}{k} = \frac{2^{n+1} - 1}{n+1}\). <span class="small muted">(Indication : relier \(\frac{1}{k+1}\binom{n}{k}\) à \(\binom{n+1}{k+1}\).)</span></p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(0 \leqslant k \leqslant n\) :</p>
+      <p>\[ \frac{1}{k+1}\binom{n}{k} = \frac{n!}{(k+1)\,k!\,(n-k)!} = \frac{n!}{(k+1)!\,(n-k)!} = \frac{1}{n+1}\cdot\frac{(n+1)!}{(k+1)!\,(n-k)!} = \frac{1}{n+1}\binom{n+1}{k+1}. \]</p>
+      <p>Donc, avec le changement d'indice \(j = k+1\) :</p>
+      <p>\[ \sum_{k=0}^{n} \frac{1}{k+1}\binom{n}{k} = \frac{1}{n+1}\sum_{k=0}^{n} \binom{n+1}{k+1} = \frac{1}{n+1}\sum_{j=1}^{n+1} \binom{n+1}{j} = \frac{1}{n+1}\big(2^{n+1} - 1\big), \]</p>
+      <p>puisque \(\sum_{j=0}^{n+1}\binom{n+1}{j} = 2^{n+1}\) et que l'on retire le terme \(j = 0\) qui vaut \(1\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Identité de la « crosse de hockey » (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(k \in \mathbb{N}\). Montrer que pour tout \(n \geqslant k\) : \(\displaystyle\sum_{j=k}^{n} \binom{j}{k} = \binom{n+1}{k+1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>La formule de Pascal \(\binom{j+1}{k+1} = \binom{j}{k} + \binom{j}{k+1}\) donne \(\binom{j}{k} = \binom{j+1}{k+1} - \binom{j}{k+1}\). La somme est alors télescopique :</p>
+      <p>\[ \sum_{j=k}^{n} \binom{j}{k} = \sum_{j=k}^{n} \left[\binom{j+1}{k+1} - \binom{j}{k+1}\right] = \binom{n+1}{k+1} - \binom{k}{k+1}. \]</p>
+      <p>Or \(\binom{k}{k+1} = 0\) (on ne peut choisir \(k+1\) éléments parmi \(k\)). Donc \(\sum_{j=k}^{n} \binom{j}{k} = \binom{n+1}{k+1}\). <span class="qed">∎</span></p>
+      <p class="small muted">Vérification (\(k=1\), \(n=3\)) : \(\binom{1}{1} + \binom{2}{1} + \binom{3}{1} = 1 + 2 + 3 = 6 = \binom{4}{2}\). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

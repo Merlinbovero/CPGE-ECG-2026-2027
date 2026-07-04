@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 2 · ≈ 2 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Définir la <strong>convergence</strong> d'une série via ses sommes partielles ; connaître la <strong>condition nécessaire</strong> \(u_n \to 0\) et la divergence grossière.</li>
+      <li>Connaître par cœur les <strong>séries de référence</strong> : géométrique et ses dérivées, Riemann (\(\sum \frac1{n^\alpha}\) converge ⟺ \(\alpha &gt; 1\)), exponentielle \(\sum \frac{x^n}{n!} = \mathrm{e}^x\).</li>
+      <li>Étudier une <strong>série à termes positifs</strong> par comparaison (majoration, négligeabilité) à une série de référence.</li>
+      <li>Manier la <strong>convergence absolue</strong> et calculer des sommes (télescopage, décomposition, séries dérivées) — outil clé pour les probabilités dénombrables du chapitre 14.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -51,6 +62,7 @@
       <li><a href="#s4">Séries à termes positifs : comparaison</a></li>
       <li><a href="#s5">Série exponentielle</a></li>
       <li><a href="#s6">Convergence absolue</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -156,6 +168,32 @@
   <div class="box thm">
     <span class="box-title">Théorème 13.10</span>
     <p>Toute série absolument convergente est convergente, et \(\left|\sum_{n}^{+\infty} u_n\right| \leqslant \sum_n^{+\infty} |u_n|\). C'est l'outil pour traiter les séries à termes de signe variable : on étudie \(\sum|u_n|\) avec les critères des séries à termes positifs.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">⚠️ Pièges classiques</span>
+    <ul>
+      <li><strong>\(u_n \to 0\) n'entraîne PAS la convergence</strong> : la série harmonique \(\sum\frac1n\) diverge alors que \(\frac1n \to 0\). La réciproque de la condition nécessaire est fausse.</li>
+      <li><strong>Ne pas confondre suite et série :</strong> \((u_n)\) peut converger (vers \(\ell\)) sans que \(\sum u_n\) converge. Et \(\sum u_n\) converge ⟹ \(u_n \to 0\) (pas vers \(\ell \neq 0\)).</li>
+      <li><strong>Riemann :</strong> \(\sum\frac1{n^\alpha}\) converge ⟺ \(\alpha &gt; 1\) (strict). \(\alpha = 1\) diverge.</li>
+      <li><strong>Comparaison réservée aux termes positifs :</strong> pour un signe variable, passer par la convergence absolue \(\sum|u_n|\).</li>
+      <li><strong>Indices des séries dérivées :</strong> \(\sum_{n\geqslant 1} nq^{n-1} = \frac1{(1-q)^2}\) commence à \(n=1\) ; attention au décalage quand on veut \(\sum nq^n = \frac{q}{(1-q)^2}\).</li>
+      <li><strong>Décomposition en éléments simples :</strong> toujours vérifier en réduisant au même dénominateur avant de télescoper.</li>
+    </ul>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Convergence :</strong> \(\sum u_n\) converge ⟺ \((S_N = \sum_{n\leqslant N} u_n)\) converge. Nécessaire : \(u_n \to 0\).</li>
+      <li><strong>Géométrique :</strong> \(\sum_{n\geqslant 0} q^n = \frac{1}{1-q}\) si \(|q|&lt;1\).</li>
+      <li><strong>Dérivées :</strong> \(\sum_{n\geqslant 1} nq^{n-1} = \frac1{(1-q)^2}\), \(\sum_{n\geqslant 2} n(n-1)q^{n-2} = \frac2{(1-q)^3}\) ; d'où \(\sum nq^n = \frac{q}{(1-q)^2}\).</li>
+      <li><strong>Riemann :</strong> \(\sum \frac1{n^\alpha}\) converge ⟺ \(\alpha &gt; 1\).</li>
+      <li><strong>Exponentielle :</strong> \(\sum_{n\geqslant 0}\frac{x^n}{n!} = \mathrm{e}^x\) (tout \(x\)).</li>
+      <li><strong>Comparaison (termes \(\geqslant 0\)) :</strong> \(0 \leqslant u_n \leqslant v_n\) et \(\sum v_n\) converge ⟹ \(\sum u_n\) converge ; \(n^2 u_n \to 0\) ⟹ \(\sum u_n\) converge.</li>
+      <li><strong>Convergence absolue :</strong> \(\sum|u_n|\) converge ⟹ \(\sum u_n\) converge.</li>
+      <li><strong>Télescopage :</strong> \(\sum(a_n - a_{n+1}) = a_{n_0} - \lim a_n\).</li>
+    </ul>
   </div>
 
   <h2 id="exos">Exercices corrigés</h2>
@@ -280,6 +318,150 @@
       <p>D'où \(\frac{1}{N+1} \leqslant R_N \leqslant \frac1N\). Alors \(\frac{N}{N+1} \leqslant N R_N \leqslant 1\), et par les gendarmes : \(N R_N \to 1\) — le reste se comporte comme \(\frac1N\) : pour approcher la somme à \(10^{-3}\) près, il faut environ 1000 termes.</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Nature de séries</h3><span class="level level-1">Application directe</span></div>
+    <p>Déterminer la nature de : 1. \(\sum \dfrac{n}{2n+1}\) ; &nbsp; 2. \(\sum \dfrac{1}{n^{3/2}}\) ; &nbsp; 3. \(\sum \left(\dfrac34\right)^{\!n}\) ; &nbsp; 4. \(\sum \dfrac{1}{2n+1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>\(\frac{n}{2n+1} \to \frac12 \neq 0\) : <strong>divergence grossière</strong>.</li>
+        <li>Riemann \(\alpha = \frac32 &gt; 1\) : <strong>converge</strong>.</li>
+        <li>Géométrique de raison \(\frac34 \in \,]-1,1[\) : <strong>converge</strong>.</li>
+        <li>Pour \(n \geqslant 1\), \(2n + 1 \leqslant 3n\), donc \(\frac{1}{2n+1} \geqslant \frac{1}{3n} \geqslant 0\), et \(\sum\frac1n\) diverge : <strong>diverge</strong> par minoration.</li>
+      </ol>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Sommes géométriques</h3><span class="level level-1">Application directe</span></div>
+    <p>Justifier la convergence et calculer : 1. \(\displaystyle\sum_{n=0}^{+\infty} \left(\frac23\right)^{\!n}\) ; &nbsp; 2. \(\displaystyle\sum_{n=3}^{+\infty} \frac{1}{2^n}\) ; &nbsp; 3. \(\displaystyle\sum_{n=0}^{+\infty} \frac{3^n + (-2)^n}{6^n}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Raison \(\frac23\) : \(\frac{1}{1 - 2/3} = 3\).</p>
+      <p><strong>2.</strong> \(\sum_{n=3}^{+\infty}q^n = \frac{q^3}{1-q}\) avec \(q = \frac12\) : \(\frac{1/8}{1/2} = \frac14\).</p>
+      <p><strong>3.</strong> \(\frac{3^n + (-2)^n}{6^n} = \left(\frac12\right)^n + \left(-\frac13\right)^n\) : deux géométriques convergentes (\(|q| &lt; 1\)), somme \(\frac{1}{1 - 1/2} + \frac{1}{1 + 1/3} = 2 + \frac34 = \frac{11}{4}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Séries exponentielles</h3><span class="level level-1">Application directe</span></div>
+    <p>Calculer : 1. \(\displaystyle\sum_{n=0}^{+\infty} \frac{3^n}{n!}\) ; &nbsp; 2. \(\displaystyle\sum_{n=0}^{+\infty} \frac{(-1)^n}{2^n\,n!}\) ; &nbsp; 3. \(\displaystyle\sum_{n=2}^{+\infty} \frac{1}{n!}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Série exponentielle en \(x = 3\) : \(\mathrm{e}^3\).</p>
+      <p><strong>2.</strong> \(\sum_{n=0}^{+\infty}\frac{(-1/2)^n}{n!} = \mathrm{e}^{-1/2}\).</p>
+      <p><strong>3.</strong> \(\sum_{n=0}^{+\infty}\frac1{n!} - \frac1{0!} - \frac1{1!} = \mathrm{e} - 1 - 1 = \mathrm{e} - 2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Télescopage à pas 2</h3><span class="level level-2">Entraînement</span></div>
+    <p>Montrer que \(\displaystyle\sum_{n\geqslant 1} \frac{1}{n(n+2)}\) converge et calculer sa somme.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\frac{1}{n(n+2)} = \frac12\left(\frac1n - \frac1{n+2}\right)\). Somme partielle :</p>
+      <p>\[ S_N = \frac12\sum_{n=1}^{N}\left(\frac1n - \frac1{n+2}\right) = \frac12\left(1 + \frac12 - \frac1{N+1} - \frac1{N+2}\right) \xrightarrow[N\to+\infty]{} \frac12 \times \frac32 = \frac34. \]</p>
+      <p>La série converge et vaut \(\frac34\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Somme avec \(n^2\)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Justifier la convergence et calculer \(\displaystyle\sum_{n=1}^{+\infty} \frac{n^2}{2^n}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Convergence : \(n^2 \cdot \frac{n^2}{2^n} = \frac{n^4}{2^n} \to 0\), donc négligeable devant \(\frac1{n^2}\) : converge. On écrit \(n^2 = n(n-1) + n\), avec \(q = \frac12\) :</p>
+      <p>\[ \sum_{n=1}^{+\infty} n(n-1)q^n = q^2\sum_{n=2}^{+\infty} n(n-1)q^{n-2} = q^2\cdot\frac{2}{(1-q)^3} = \frac14 \cdot \frac{2}{1/8} = 4, \]</p>
+      <p>\[ \sum_{n=1}^{+\infty} n\,q^n = \frac{q}{(1-q)^2} = \frac{1/2}{1/4} = 2, \quad\text{d'où}\quad \sum_{n=1}^{+\infty} \frac{n^2}{2^n} = 4 + 2 = 6. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Comparaisons</h3><span class="level level-2">Entraînement</span></div>
+    <p>Étudier la nature de : 1. \(\sum \dfrac{1}{n^2 + \sqrt n}\) ; &nbsp; 2. \(\sum \dfrac{2n+1}{n^3 + 1}\) ; &nbsp; 3. \(\sum \dfrac{1}{\ln(n+1)}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(0 \leqslant \frac{1}{n^2 + \sqrt n} \leqslant \frac1{n^2}\) : <strong>converge</strong> par majoration (Riemann \(\alpha = 2\)).</p>
+      <p><strong>2.</strong> Pour \(n \geqslant 1\), \(2n + 1 \leqslant 3n\) et \(n^3 + 1 \geqslant n^3\), donc \(0 \leqslant \frac{2n+1}{n^3+1} \leqslant \frac{3n}{n^3} = \frac{3}{n^2}\) : <strong>converge</strong>.</p>
+      <p><strong>3.</strong> Pour \(n \geqslant 1\), \(\ln(n+1) \leqslant n\), donc \(\frac{1}{\ln(n+1)} \geqslant \frac1n \geqslant 0\), et \(\sum\frac1n\) diverge : <strong>diverge</strong> par minoration.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Exponentielle décalée</h3><span class="level level-2">Entraînement</span></div>
+    <p>Calculer \(\displaystyle\sum_{n=0}^{+\infty} \frac{n+1}{n!}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par linéarité (les deux séries convergent) : \(\sum_{n=0}^{+\infty}\frac{n+1}{n!} = \sum_{n=0}^{+\infty}\frac{n}{n!} + \sum_{n=0}^{+\infty}\frac1{n!}\).</p>
+      <p>Le premier terme (\(n = 0\) nul) : \(\sum_{n=1}^{+\infty}\frac{n}{n!} = \sum_{n=1}^{+\infty}\frac{1}{(n-1)!} = \mathrm{e}\). Le second vaut \(\mathrm{e}\). Total : \(\boxed{2\mathrm{e}}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Télescopage d'un produit triple (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(u_n = \dfrac{1}{n(n+1)(n+2)}\) pour \(n \geqslant 1\).</p>
+    <ol>
+      <li>Vérifier que \(u_n = \dfrac12\left(\dfrac{1}{n(n+1)} - \dfrac{1}{(n+1)(n+2)}\right)\).</li>
+      <li>En déduire la convergence et la somme de \(\sum u_n\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\frac{1}{n(n+1)} - \frac{1}{(n+1)(n+2)} = \frac{(n+2) - n}{n(n+1)(n+2)} = \frac{2}{n(n+1)(n+2)}\), d'où le facteur \(\frac12\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> Posons \(a_n = \frac{1}{n(n+1)}\) ; alors \(u_n = \frac12(a_n - a_{n+1})\), somme télescopique :</p>
+      <p>\[ S_N = \frac12(a_1 - a_{N+1}) = \frac12\left(\frac12 - \frac{1}{(N+1)(N+2)}\right) \xrightarrow[N\to+\infty]{} \frac12 \times \frac12 = \frac14. \]</p>
+      <p>La série converge et \(\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n(n+1)(n+2)} = \frac14\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Somme fonction d'un paramètre (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour \(|x| &lt; 1\), on admet \(\displaystyle\sum_{n=0}^{+\infty} n^2 x^n = \frac{x(1+x)}{(1-x)^3}\). Calculer \(T(x) = \displaystyle\sum_{n=0}^{+\infty} (n^2 + 1)x^n\) sous forme d'une fraction, puis \(T\!\left(\frac12\right)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par linéarité : \(T(x) = \frac{x(1+x)}{(1-x)^3} + \frac{1}{1-x}\). Réduction au dénominateur commun \((1-x)^3\) :</p>
+      <p>\[ T(x) = \frac{x(1+x) + (1-x)^2}{(1-x)^3} = \frac{x + x^2 + 1 - 2x + x^2}{(1-x)^3} = \frac{2x^2 - x + 1}{(1-x)^3}. \]</p>
+      <p>En \(x = \frac12\) : numérateur \(= 2\cdot\frac14 - \frac12 + 1 = 1\), dénominateur \(= \left(\frac12\right)^3 = \frac18\), donc \(T\!\left(\frac12\right) = 8\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Reste d'une série géométrique (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(R_N = \displaystyle\sum_{n=N+1}^{+\infty} \frac1{2^n}\).</p>
+    <ol>
+      <li>Calculer \(R_N\) explicitement.</li>
+      <li>Combien de termes faut-il sommer (\(N\)) pour approcher \(\sum_{n\geqslant 0}\frac1{2^n} = 2\) à \(10^{-6}\) près ? Comparer à la série de Riemann \(\alpha = 2\), dont le reste est \(\sim \frac1N\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Géométrique de raison \(\frac12\) : \(R_N = \frac{(1/2)^{N+1}}{1 - 1/2} = \left(\frac12\right)^{N} = 2^{-N}\).</p>
+      <p><strong>2.</strong> \(2^{-N} \leqslant 10^{-6} \iff N \geqslant \frac{6\ln 10}{\ln 2} \approx 19{,}9\), donc \(N = 20\) suffit. Pour Riemann, il faudrait \(\frac1N \leqslant 10^{-6}\), soit \(N \approx 10^6\) termes : la convergence géométrique est <strong>exponentiellement plus rapide</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Séries dérivées et moments (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(q \in \,]0, 1[\). Montrer que \(\displaystyle\sum_{n=1}^{+\infty} n^2\,q^{n-1} = \frac{1+q}{(1-q)^3}\), puis en déduire \(\displaystyle\sum_{n=1}^{+\infty} n^2\,q^{n}\). Application \(q = \frac13\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On écrit \(n^2 = n(n-1) + n\). Avec les séries dérivées (convergentes car \(|q| &lt; 1\)) :</p>
+      <p>\[ \sum_{n=1}^{+\infty} n(n-1)q^{n-1} = q\sum_{n=2}^{+\infty} n(n-1)q^{n-2} = \frac{2q}{(1-q)^3}, \qquad \sum_{n=1}^{+\infty} n\,q^{n-1} = \frac{1}{(1-q)^2}. \]</p>
+      <p>Donc \(\displaystyle\sum_{n=1}^{+\infty} n^2 q^{n-1} = \frac{2q}{(1-q)^3} + \frac{1}{(1-q)^2} = \frac{2q + (1-q)}{(1-q)^3} = \frac{1+q}{(1-q)^3}\).</p>
+      <p>En multipliant par \(q\) : \(\displaystyle\sum_{n=1}^{+\infty} n^2 q^n = \frac{q(1+q)}{(1-q)^3}\) (cohérent avec la formule admise à l'exercice 18).</p>
+      <p><strong>Application \(q = \frac13\) :</strong> \(\sum n^2 q^{n-1} = \frac{4/3}{(2/3)^3} = \frac{4/3}{8/27} = \frac92\), et \(\sum n^2 q^n = \frac13 \times \frac92 = \frac32\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Maîtriser les opérations matricielles, dont le produit (non commutatif) et la transposée.</li>
+      <li>Reconnaître et inverser une matrice (formule 2×2, pivot de Gauss, polynôme annulateur).</li>
+      <li>Calculer les puissances d'une matrice (diagonale, conjecture-récurrence, binôme matriciel).</li>
+      <li>Traduire un système ou des suites récurrentes croisées sous forme matricielle.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +61,7 @@
       <li><a href="#s3">Le produit matriciel</a></li>
       <li><a href="#s4">Matrices inversibles</a></li>
       <li><a href="#s5">Puissances de matrices</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -178,6 +190,19 @@
   <p><strong>Exemple rédigé.</strong> Soit \(A = \begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{pmatrix} = 2I_2 + N\) avec \(N = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\). On a \(N^2 = 0\), et \(2I_2\) commute avec \(N\). Donc pour \(m \geqslant 1\) :</p>
   <p>\[ A^m = (2I + N)^m = \sum_{k=0}^{m} \binom{m}{k} N^k (2I)^{m-k} = 2^m I + m\,2^{m-1} N = \begin{pmatrix} 2^m &amp; m\,2^{m-1} \\ 0 &amp; 2^m \end{pmatrix}, \]</p>
   <p>car tous les termes avec \(k \geqslant 2\) sont nuls.</p>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Produit</strong> : \((AB)_{ij} = \sum_k a_{ik}b_{kj}\) ; tailles compatibles ; <strong>non commutatif</strong> ; \((AB)^{\mathsf T} = B^{\mathsf T}A^{\mathsf T}\).</li>
+      <li><strong>Pièges</strong> : \(AB = 0 \not\Rightarrow A = 0\) ou \(B = 0\) ; \((A+B)^2 = A^2 + AB + BA + B^2\).</li>
+      <li><strong>Inverse 2×2</strong> : \(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix}\) si \(ad - bc \neq 0\).</li>
+      <li><strong>Inversion</strong> : pivot de Gauss sur \(AX = Y\), ou polynôme annulateur (\(A^2 = 5A - 6I \Rightarrow A^{-1} = \frac16(5I - A)\)).</li>
+      <li><strong>Propriétés</strong> : \((AB)^{-1} = B^{-1}A^{-1}\) ; \(AX = B \Rightarrow X = A^{-1}B\) si \(A\) inversible.</li>
+      <li><strong>Puissances</strong> : diagonale \(D^k = \mathrm{diag}(d_i^k)\) ; conjecture + récurrence ; binôme si \(AB = BA\) (avec \(N\) nilpotente : \(A = \lambda I + N\)).</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -313,6 +338,145 @@
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Produits de tailles différentes</h3><span class="level level-1">Application directe</span></div>
+    <p>Soient \(A = \begin{pmatrix} 1 &amp; 2 &amp; -1 \\ 0 &amp; 3 &amp; 1 \end{pmatrix}\) et \(B = \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 1 \\ -1 &amp; 2 \end{pmatrix}\). Calculer \(AB\) et \(BA\). Quelles sont leurs tailles ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(A\) est \(2 \times 3\), \(B\) est \(3 \times 2\), donc \(AB\) est \(2 \times 2\) et \(BA\) est \(3 \times 3\).</p>
+      <p>\[ AB = \begin{pmatrix} 2 + 2 + 1 &amp; 0 + 2 - 2 \\ 0 + 3 - 1 &amp; 0 + 3 + 2 \end{pmatrix} = \begin{pmatrix} 5 &amp; 0 \\ 2 &amp; 5 \end{pmatrix}, \qquad BA = \begin{pmatrix} 2 &amp; 4 &amp; -2 \\ 1 &amp; 5 &amp; 0 \\ -1 &amp; 4 &amp; 3 \end{pmatrix}. \]</p>
+      <p>\(AB\) et \(BA\) n'ont même pas la même taille : ils ne peuvent être égaux.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Transposée et symétrie</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(A = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 0 &amp; 1 &amp; 4 \\ -1 &amp; 0 &amp; 2 \end{pmatrix}\). 1. Donner \(A^{\mathsf T}\). 2. Montrer que \(A + A^{\mathsf T}\) est symétrique.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(A^{\mathsf T} = \begin{pmatrix} 1 &amp; 0 &amp; -1 \\ 2 &amp; 1 &amp; 0 \\ 3 &amp; 4 &amp; 2 \end{pmatrix}\), d'où \(A + A^{\mathsf T} = \begin{pmatrix} 2 &amp; 2 &amp; 2 \\ 2 &amp; 2 &amp; 4 \\ 2 &amp; 4 &amp; 4 \end{pmatrix}\).</p>
+      <p><strong>2.</strong> \((A + A^{\mathsf T})^{\mathsf T} = A^{\mathsf T} + (A^{\mathsf T})^{\mathsf T} = A^{\mathsf T} + A = A + A^{\mathsf T}\) : la matrice est égale à sa transposée, donc symétrique (on le vérifie aussi sur les coefficients). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Inverse 2×2 et système</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(A = \begin{pmatrix} 4 &amp; 3 \\ 5 &amp; 4 \end{pmatrix}\). 1. \(A\) est-elle inversible ? Donner \(A^{-1}\). 2. Résoudre \(AX = \begin{pmatrix} 1 \\ 2 \end{pmatrix}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(ad - bc = 16 - 15 = 1 \neq 0\), donc \(A\) est inversible et \(A^{-1} = \begin{pmatrix} 4 &amp; -3 \\ -5 &amp; 4 \end{pmatrix}\).</p>
+      <p><strong>2.</strong> \(X = A^{-1}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 4 - 6 \\ -5 + 8 \end{pmatrix} = \begin{pmatrix} -2 \\ 3 \end{pmatrix}\). <em>Vérification :</em> \(4(-2) + 3(3) = 1\) et \(5(-2) + 4(3) = 2\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Matrice diagonale</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(D = \begin{pmatrix} 2 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}\). 1. Donner \(D^k\). 2. Calculer \(D^2 - D\). 3. \(D\) est-elle inversible ? Donner \(D^{-1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(D^k = \mathrm{diag}(2^k,\ (-1)^k,\ 3^k)\).</p>
+      <p><strong>2.</strong> \(D^2 - D = \mathrm{diag}(4-2,\ 1-(-1),\ 9-3) = \mathrm{diag}(2, 2, 6)\).</p>
+      <p><strong>3.</strong> Tous les coefficients diagonaux sont non nuls, donc \(D\) est inversible : \(D^{-1} = \mathrm{diag}\!\left(\tfrac12,\ -1,\ \tfrac13\right)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Inversion 3×3 et résolution</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 2 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix}\). 1. Montrer que \(A\) est inversible et calculer \(A^{-1}\). 2. Résoudre \(AX = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> On résout \(AX = Y\), soit \(\begin{cases} x + z = y_1 \\ 2x + y = y_2 \\ y + z = y_3 \end{cases}\). De la 1re : \(x = y_1 - z\). De la 2e : \(y = y_2 - 2x = y_2 - 2y_1 + 2z\). En reportant dans la 3e : \((y_2 - 2y_1 + 2z) + z = y_3\), soit \(3z = 2y_1 - y_2 + y_3\), donc \(z = \frac{2y_1 - y_2 + y_3}{3}\). On en déduit \(x = \frac{y_1 + y_2 - y_3}{3}\) et \(y = \frac{-2y_1 + y_2 + 2y_3}{3}\). Le système a une unique solution pour tout \(Y\), donc \(A\) est inversible :</p>
+      <p>\[ A^{-1} = \frac13\begin{pmatrix} 1 &amp; 1 &amp; -1 \\ -2 &amp; 1 &amp; 2 \\ 2 &amp; -1 &amp; 1 \end{pmatrix}. \]</p>
+      <p><strong>2.</strong> \(X = A^{-1}\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} = \frac13\begin{pmatrix} 1 + 2 - 3 \\ -2 + 2 + 6 \\ 2 - 2 + 3 \end{pmatrix} = \begin{pmatrix} 0 \\ 2 \\ 1 \end{pmatrix}\). <em>Vérification :</em> \(x + z = 1\), \(2x + y = 2\), \(y + z = 3\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Polynôme annulateur et cube</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix}\). 1. Vérifier que \(A^2 = 3A - 2I_2\). 2. En déduire \(A^{-1}\). 3. Calculer \(A^3\) sans faire de produit de matrices « à la main ».</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(A^2 = \begin{pmatrix} -2 &amp; 3 \\ -6 &amp; 7 \end{pmatrix}\) et \(3A - 2I_2 = \begin{pmatrix} -2 &amp; 3 \\ -6 &amp; 9 - 2 \end{pmatrix} = \begin{pmatrix} -2 &amp; 3 \\ -6 &amp; 7 \end{pmatrix}\) ✓.</p>
+      <p><strong>2.</strong> De \(A^2 - 3A + 2I = 0\), on tire \(A(3I - A) = 2I\), donc \(A^{-1} = \frac12(3I - A) = \frac12\begin{pmatrix} 3 &amp; -1 \\ 2 &amp; 0 \end{pmatrix}\).</p>
+      <p><strong>3.</strong> \(A^3 = A \cdot A^2 = A(3A - 2I) = 3A^2 - 2A = 3(3A - 2I) - 2A = 7A - 6I = \begin{pmatrix} -6 &amp; 7 \\ -14 &amp; 15 \end{pmatrix}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Conjecture d'une puissance</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}\). Calculer \(A^2\), \(A^3\), conjecturer \(A^k\) et démontrer la conjecture.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(A^2 = \begin{pmatrix} 1 &amp; 3 \\ 0 &amp; 4 \end{pmatrix}\), \(A^3 = \begin{pmatrix} 1 &amp; 7 \\ 0 &amp; 8 \end{pmatrix}\). On conjecture \(A^k = \begin{pmatrix} 1 &amp; 2^k - 1 \\ 0 &amp; 2^k \end{pmatrix}\).</p>
+      <p><em>Récurrence.</em> Vrai pour \(k = 1\). Si \(A^k = \begin{pmatrix} 1 &amp; 2^k - 1 \\ 0 &amp; 2^k \end{pmatrix}\), alors :</p>
+      <p>\[ A^{k+1} = A^k A = \begin{pmatrix} 1 &amp; 2^k - 1 \\ 0 &amp; 2^k \end{pmatrix}\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 2 \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 + 2(2^k - 1) \\ 0 &amp; 2^{k+1} \end{pmatrix} = \begin{pmatrix} 1 &amp; 2^{k+1} - 1 \\ 0 &amp; 2^{k+1} \end{pmatrix}. \]</p>
+      <p>La formule vaut donc pour tout \(k \geqslant 1\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Binôme matriciel 3×3</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(A = \begin{pmatrix} 1 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\). En écrivant \(A = I_3 + 2M\) avec \(M\) nilpotente, déterminer \(A^m\) pour \(m \geqslant 2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On pose \(M = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}\), d'où \(A = I_3 + 2M\). On calcule \(M^2 = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}\) et \(M^3 = 0\). Comme \(I_3\) commute avec \(2M\), le binôme matriciel donne, pour \(m \geqslant 2\) :</p>
+      <p>\[ A^m = (I_3 + 2M)^m = I_3 + m(2M) + \binom{m}{2}(2M)^2 = I_3 + 2m\,M + 4\binom{m}{2}M^2 = I_3 + 2m\,M + 2m(m-1)M^2, \]</p>
+      <p>les termes suivants étant nuls (\(M^3 = 0\)). Soit :</p>
+      <p>\[ A^m = \begin{pmatrix} 1 &amp; 2m &amp; 2m(m-1) \\ 0 &amp; 1 &amp; 2m \\ 0 &amp; 0 &amp; 1 \end{pmatrix}. \]</p>
+      <p class="small muted">Contrôle (\(m = 2\)) : \(A^2 = \begin{pmatrix} 1 &amp; 4 &amp; 4 \\ 0 &amp; 1 &amp; 4 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\), conforme au produit direct.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Suites croisées symétriques (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \((u_n)\), \((v_n)\) définies par \(u_0 = 1\), \(v_0 = 0\) et \(\begin{cases} u_{n+1} = 2u_n + v_n \\ v_{n+1} = u_n + 2v_n. \end{cases}\) En introduisant \(s_n = u_n + v_n\) et \(d_n = u_n - v_n\), déterminer \(u_n\) et \(v_n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On additionne et on soustrait les deux relations :</p>
+      <p>\[ s_{n+1} = u_{n+1} + v_{n+1} = 3(u_n + v_n) = 3s_n, \qquad d_{n+1} = u_{n+1} - v_{n+1} = u_n - v_n = d_n. \]</p>
+      <p>Donc \((s_n)\) est géométrique de raison 3 et \((d_n)\) est constante : \(s_n = 3^n s_0 = 3^n\) et \(d_n = d_0 = 1\). Par somme et différence :</p>
+      <p>\[ u_n = \frac{s_n + d_n}{2} = \frac{3^n + 1}{2}, \qquad v_n = \frac{s_n - d_n}{2} = \frac{3^n - 1}{2}. \]</p>
+      <p><em>Vérification :</em> \(u_0 = 1\), \(v_0 = 0\), et \(u_1 = 2 = 2u_0 + v_0\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Matrice de projection</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(P = \begin{pmatrix} 2 &amp; -2 \\ 1 &amp; -1 \end{pmatrix}\). 1. Vérifier que \(P^2 = P\). 2. En déduire \(P^n\) pour \(n \geqslant 1\). 3. \(P\) est-elle inversible ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(P^2 = \begin{pmatrix} 4 - 2 &amp; -4 + 2 \\ 2 - 1 &amp; -2 + 1 \end{pmatrix} = \begin{pmatrix} 2 &amp; -2 \\ 1 &amp; -1 \end{pmatrix} = P\) : \(P\) est un <strong>projecteur</strong>.</p>
+      <p><strong>2.</strong> Par récurrence, \(P^n = P\) pour tout \(n \geqslant 1\) : si \(P^n = P\), alors \(P^{n+1} = P^n P = P \cdot P = P^2 = P\).</p>
+      <p><strong>3.</strong> \(\det P = 2 \times (-1) - (-2) \times 1 = -2 + 2 = 0\) : \(P\) n'est <strong>pas</strong> inversible. (On pouvait aussi remarquer : si \(P\) était inversible, \(P^2 = P\) donnerait \(P = I_2\) en multipliant par \(P^{-1}\), ce qui est faux.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Puissance \(n\)-ième via polynôme annulateur (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On reprend \(A = \begin{pmatrix} 0 &amp; 1 \\ -2 &amp; 3 \end{pmatrix}\), qui vérifie \(A^2 = 3A - 2I\) (exercice 15). Montrer que pour tout \(n \geqslant 1\), \(A^n = (2^n - 1)A + (2 - 2^n)I\), puis expliciter \(A^n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On cherche \(A^n\) sous la forme \(a_n A + b_n I\). En multipliant par \(A\) et en utilisant \(A^2 = 3A - 2I\) :</p>
+      <p>\[ A^{n+1} = a_n A^2 + b_n A = a_n(3A - 2I) + b_n A = (3a_n + b_n)A - 2a_n I, \]</p>
+      <p>soit \(a_{n+1} = 3a_n + b_n\) et \(b_{n+1} = -2a_n\), avec \(a_1 = 1\), \(b_1 = 0\). Montrons par récurrence que \(a_n = 2^n - 1\) et \(b_n = 2 - 2^n\) (formes suggérées par les valeurs propres 1 et 2 de \(A\)). C'est vrai au rang 1. Si c'est vrai au rang \(n\) :</p>
+      <p>\[ a_{n+1} = 3(2^n - 1) + (2 - 2^n) = 2^{n+1} - 1, \qquad b_{n+1} = -2(2^n - 1) = 2 - 2^{n+1}, \]</p>
+      <p>ce qui est la forme voulue au rang \(n+1\). Donc \(A^n = (2^n - 1)A + (2 - 2^n)I\), c'est-à-dire :</p>
+      <p>\[ A^n = \begin{pmatrix} 2 - 2^n &amp; 2^n - 1 \\ 2 - 2^{n+1} &amp; 2^{n+1} - 1 \end{pmatrix}. \]</p>
+      <p class="small muted">Contrôle : \(n = 1\) redonne \(A\), et \(n = 2\) redonne \(A^2 = \begin{pmatrix} -2 &amp; 3 \\ -6 &amp; 7 \end{pmatrix}\). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

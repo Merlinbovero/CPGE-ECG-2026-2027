@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 2,5 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Déterminer un domaine de définition et calculer des limites (formes indéterminées, croissances comparées).</li>
+      <li>Utiliser la continuité, le théorème des valeurs intermédiaires et le théorème de la bijection.</li>
+      <li>Maîtriser logarithme, exponentielle et fonctions puissances, et résoudre équations/inéquations associées.</li>
+      <li>Manipuler valeur absolue et partie entière.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -52,6 +63,7 @@
       <li><a href="#s5">Logarithme népérien et exponentielle</a></li>
       <li><a href="#s6">Fonctions puissances et croissances comparées</a></li>
       <li><a href="#s7">Valeur absolue et partie entière</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -171,6 +183,29 @@
   </div>
 
   <p>La fonction <strong>valeur absolue</strong> \(x \mapsto |x|\) est continue sur \(\mathbb{R}\), paire, affine par morceaux : elle vaut \(-x\) sur \(\mathbb{R}_-\) et \(x\) sur \(\mathbb{R}_+\), avec un « pic » en 0 où elle n'est pas dérivable.</p>
+
+  <div class="box warn">
+    <span class="box-title">Pièges classiques</span>
+    <ul>
+      <li>\(\ln\) n'est défini que sur \(]0, +\infty[\), \(\sqrt{\ }\) sur \([0, +\infty[\) : <strong>toujours vérifier le domaine</strong> avant de résoudre une équation ou une inéquation.</li>
+      <li>\(\ln(a + b) \neq \ln a + \ln b\) ; \(\mathrm{e}^{a+b} = \mathrm{e}^a \mathrm{e}^b\) mais \(\mathrm{e}^{ab} \neq \mathrm{e}^a \mathrm{e}^b\).</li>
+      <li>Le TVI donne l'<strong>existence</strong> d'une solution, pas l'unicité : pour l'unicité, invoquer la stricte monotonie (théorème de la bijection).</li>
+      <li>Après avoir résolu par équivalences, ne garder que les solutions dans le domaine (élimination des solutions parasites).</li>
+    </ul>
+  </div>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Logarithme</strong> : \(\ln(ab) = \ln a + \ln b\), \(\ln(a^n) = n\ln a\), \(\ln x = y \iff x = \mathrm{e}^y\) (\(x &gt; 0\)).</li>
+      <li><strong>Limites usuelles</strong> : \(\frac{\ln x}{x} \to 0\) et \(x\ln x \to 0\) (\(x \to 0^+\)) ; \(\frac{\mathrm{e}^x}{x^n} \to +\infty\) ; \(\frac{\mathrm{e}^x - 1}{x} \to 1\) et \(\frac{\ln(1+x)}{x} \to 1\) (\(x \to 0\)).</li>
+      <li><strong>Croissances comparées</strong> : l'exponentielle bat toute puissance, qui bat le logarithme.</li>
+      <li><strong>TVI</strong> : \(f\) continue sur \([a,b]\), \(y\) entre \(f(a)\) et \(f(b)\) \(\Rightarrow \exists c \in [a,b],\ f(c) = y\).</li>
+      <li><strong>Théorème de la bijection</strong> : \(f\) continue <em>strictement monotone</em> sur \(I\) réalise une bijection de \(I\) sur \(f(I)\).</li>
+      <li><strong>Lever une F.I.</strong> \(\frac{\infty}{\infty}\) : factoriser le terme dominant ; \(\infty - \infty\) avec racines : quantité conjuguée.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -297,6 +332,129 @@
       <p>\[ \left(1 + \frac1n\right)^{n} = \mathrm{e}^{\,n\ln(1 + 1/n)} \xrightarrow[n \to +\infty]{} \mathrm{e}^1 = \mathrm{e}. \]</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Domaines de définition (suite)</h3><span class="level level-1">Application directe</span></div>
+    <p>Déterminer le domaine de : 1. \(f(x) = \ln(x^2 - 4)\) ; &nbsp; 2. \(g(x) = \dfrac{\sqrt{3 - x}}{x - 1}\) ; &nbsp; 3. \(h(x) = \dfrac{\ln x}{x - 2}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(x^2 - 4 &gt; 0 \iff x &lt; -2\) ou \(x &gt; 2\) : \(D_f = \;]-\infty, -2[\, \cup\, ]2, +\infty[\).</p>
+      <p><strong>2.</strong> \(3 - x \geqslant 0\) (\(x \leqslant 3\)) et \(x - 1 \neq 0\) : \(D_g = \;]-\infty, 1[\, \cup\, ]1, 3]\).</p>
+      <p><strong>3.</strong> \(x &gt; 0\) et \(x \neq 2\) : \(D_h = \;]0, 2[\, \cup\, ]2, +\infty[\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Limites usuelles</h3><span class="level level-1">Application directe</span></div>
+    <p>Déterminer : 1. \(\displaystyle\lim_{x \to +\infty} \dfrac{\ln x}{x}\) ; &nbsp; 2. \(\displaystyle\lim_{x \to 0^+} x\ln x\) ; &nbsp; 3. \(\displaystyle\lim_{x \to +\infty} \dfrac{\mathrm{e}^x}{x^2}\) ; &nbsp; 4. \(\displaystyle\lim_{x \to 0} \dfrac{\mathrm{e}^x - 1}{x}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(0\) (croissance comparée : \(x\) l'emporte sur \(\ln x\)). &nbsp; <strong>2.</strong> \(0\) (limite usuelle en \(0^+\)). &nbsp; <strong>3.</strong> \(+\infty\) (l'exponentielle bat la puissance). &nbsp; <strong>4.</strong> \(1\) (taux d'accroissement de \(\exp\) en 0).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Équations avec exp et ln</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre : 1. \(\mathrm{e}^{2x} - 3\mathrm{e}^x + 2 = 0\) ; &nbsp; 2. \(\ln x + \ln(x - 1) = \ln 6\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> On pose \(X = \mathrm{e}^x &gt; 0\) : \(X^2 - 3X + 2 = 0\), racines \(X = 1\) et \(X = 2\). Donc \(\mathrm{e}^x = 1\) (\(x = 0\)) ou \(\mathrm{e}^x = 2\) (\(x = \ln 2\)). \(\mathscr{S} = \{0,\ \ln 2\}\).</p>
+      <p><strong>2.</strong> <em>Domaine :</em> \(x &gt; 1\). L'équation devient \(\ln\big(x(x-1)\big) = \ln 6\), soit \(x^2 - x - 6 = 0\), racines \(3\) et \(-2\). Seul \(x = 3\) est \(&gt; 1\). \(\mathscr{S} = \{3\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Parité d'une fonction logarithmique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(f(x) = \ln\!\left(\dfrac{1 + x}{1 - x}\right)\) définie sur \(]-1, 1[\). 1. Montrer que \(f\) est impaire. 2. Résoudre \(f(x) = \ln 3\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(]-1,1[\) est symétrique par rapport à 0, et \(f(-x) = \ln\!\left(\dfrac{1 - x}{1 + x}\right) = \ln\!\left(\dfrac{1+x}{1-x}\right)^{-1} = -\ln\!\left(\dfrac{1+x}{1-x}\right) = -f(x)\). Donc \(f\) est impaire.</p>
+      <p><strong>2.</strong> \(f(x) = \ln 3 \iff \dfrac{1+x}{1-x} = 3 \iff 1 + x = 3 - 3x \iff x = \dfrac12\), qui appartient à \(]-1, 1[\). \(\mathscr{S} = \left\{\frac12\right\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Limite par quantité conjuguée</h3><span class="level level-2">Entraînement</span></div>
+    <p>Déterminer \(\displaystyle\lim_{x \to +\infty} \left(\sqrt{x^2 + x} - x\right)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Forme indéterminée « \(\infty - \infty\) ». On multiplie par la quantité conjuguée :</p>
+      <p>\[ \sqrt{x^2 + x} - x = \frac{(x^2 + x) - x^2}{\sqrt{x^2 + x} + x} = \frac{x}{\sqrt{x^2 + x} + x} = \frac{1}{\sqrt{1 + \frac1x} + 1} \xrightarrow[x \to +\infty]{} \frac{1}{1 + 1} = \frac12, \]</p>
+      <p>après division du numérateur et du dénominateur par \(x &gt; 0\) (avec \(\sqrt{x^2 + x} = x\sqrt{1 + \frac1x}\)). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Inéquation logarithmique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(\ln(2x - 1) \leqslant \ln(x + 3)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Domaine :</em> \(2x - 1 &gt; 0\) et \(x + 3 &gt; 0\), soit \(x &gt; \frac12\). Sur ce domaine, \(\ln\) étant strictement croissante, l'inéquation équivaut à \(2x - 1 \leqslant x + 3\), soit \(x \leqslant 4\). \(\mathscr{S} = \left]\frac12,\ 4\right]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Prolongement par continuité</h3><span class="level level-2">Entraînement</span></div>
+    <p>Les fonctions suivantes admettent-elles un prolongement continu au point indiqué ? 1. \(f(x) = \dfrac{x^2 - 1}{x - 1}\) en \(x = 1\). &nbsp; 2. \(g(x) = x\ln x\) en \(x = 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Pour \(x \neq 1\), \(f(x) = \dfrac{(x-1)(x+1)}{x-1} = x + 1\), donc \(\lim_{x \to 1} f(x) = 2\). En posant \(f(1) = 2\), \(f\) se prolonge en une fonction continue.</p>
+      <p><strong>2.</strong> \(\lim_{x \to 0^+} x\ln x = 0\) (croissance comparée). En posant \(g(0) = 0\), \(g\) se prolonge par continuité sur \([0, +\infty[\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Existence et unicité d'une solution</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Montrer que l'équation \(\mathrm{e}^x = 2 - x\) admet une unique solution réelle, et la localiser dans \(]0, 1[\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Posons \(\varphi(x) = \mathrm{e}^x + x - 2\) : l'équation équivaut à \(\varphi(x) = 0\). La fonction \(\varphi\) est continue sur \(\mathbb{R}\), et somme de \(\mathrm{e}^x\) (strictement croissante) et de \(x - 2\) (strictement croissante), donc <strong>strictement croissante</strong> : elle réalise une bijection de \(\mathbb{R}\) sur son image, et l'équation \(\varphi(x) = 0\) a <em>au plus</em> une solution.</p>
+      <p>Or \(\varphi(0) = 1 + 0 - 2 = -1 &lt; 0\) et \(\varphi(1) = \mathrm{e} - 1 \approx 1{,}72 &gt; 0\). Par le théorème des valeurs intermédiaires (appliqué à \(\varphi\) continue sur \([0,1]\)), il existe \(c \in \,]0, 1[\) tel que \(\varphi(c) = 0\). La stricte monotonie assure l'unicité. <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Fonction logistique et réciproque</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(f(x) = \dfrac{\mathrm{e}^x}{\mathrm{e}^x + 1}\). 1. Déterminer \(\lim_{-\infty} f\) et \(\lim_{+\infty} f\). 2. Admettant que \(f\) est strictement croissante et continue, justifier que \(f\) réalise une bijection de \(\mathbb{R}\) sur \(]0, 1[\). 3. Déterminer \(f^{-1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> En \(-\infty\) : \(\mathrm{e}^x \to 0\), donc \(f(x) \to \dfrac{0}{0 + 1} = 0\). En \(+\infty\) : \(f(x) = \dfrac{1}{1 + \mathrm{e}^{-x}} \to \dfrac{1}{1 + 0} = 1\).</p>
+      <p><strong>2.</strong> \(f\) est continue et strictement croissante sur \(\mathbb{R}\), avec \(\lim_{-\infty} f = 0\) et \(\lim_{+\infty} f = 1\). Par le théorème de la bijection, \(f\) réalise une bijection de \(\mathbb{R}\) sur l'intervalle image \(]0, 1[\).</p>
+      <p><strong>3.</strong> Pour \(y \in \,]0, 1[\), on résout \(y = \dfrac{\mathrm{e}^x}{\mathrm{e}^x + 1}\) : \(y(\mathrm{e}^x + 1) = \mathrm{e}^x\), soit \(\mathrm{e}^x(1 - y) = y\), donc \(\mathrm{e}^x = \dfrac{y}{1 - y}\) (positif car \(0 &lt; y &lt; 1\)). Ainsi \(f^{-1}(y) = \ln\!\left(\dfrac{y}{1 - y}\right)\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Formes indéterminées</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Déterminer : 1. \(\displaystyle\lim_{x \to +\infty} (x - \ln x)\) ; &nbsp; 2. \(\displaystyle\lim_{x \to +\infty} x^{1/x}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Forme « \(\infty - \infty\) ». On factorise par \(x\) : \(x - \ln x = x\left(1 - \dfrac{\ln x}{x}\right)\). Comme \(\dfrac{\ln x}{x} \to 0\), la parenthèse tend vers 1, et \(x \to +\infty\), donc \(x - \ln x \to +\infty\).</p>
+      <p><strong>2.</strong> Forme « \(\infty^0\) ». On passe par l'exponentielle : \(x^{1/x} = \mathrm{e}^{\frac{\ln x}{x}}\). Comme \(\dfrac{\ln x}{x} \to 0\), on obtient \(x^{1/x} \to \mathrm{e}^0 = 1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Un grand classique du TVI (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(f : [0, 1] \to \mathbb{R}\) continue telle que \(f(0) = f(1)\). Montrer qu'il existe \(c \in \left[0, \frac12\right]\) tel que \(f(c) = f\!\left(c + \frac12\right)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Posons \(g(x) = f\!\left(x + \dfrac12\right) - f(x)\) pour \(x \in \left[0, \dfrac12\right]\). La fonction \(g\) est continue (différence de composées de fonctions continues). On calcule :</p>
+      <p>\[ g(0) = f\!\left(\tfrac12\right) - f(0), \qquad g\!\left(\tfrac12\right) = f(1) - f\!\left(\tfrac12\right) = f(0) - f\!\left(\tfrac12\right) = -\,g(0), \]</p>
+      <p>en utilisant \(f(1) = f(0)\). Ainsi \(g(0)\) et \(g\!\left(\frac12\right)\) sont opposés : soit ils sont tous deux nuls (et alors \(c = 0\) convient), soit ils sont de signes contraires, et le théorème des valeurs intermédiaires fournit \(c \in \left]0, \frac12\right[\) tel que \(g(c) = 0\), c'est-à-dire \(f(c) = f\!\left(c + \frac12\right)\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

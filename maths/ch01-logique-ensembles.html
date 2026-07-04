@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Manier le langage de la logique : connecteurs, quantificateurs, négation d'une proposition quantifiée.</li>
+      <li>Maîtriser les grands types de raisonnement (direct, contraposée, absurde, disjonction de cas, double implication).</li>
+      <li>Rédiger rigoureusement une récurrence (simple, double, forte) — compétence exigée toute l'année.</li>
+      <li>Utiliser le vocabulaire des ensembles et des applications (injection, surjection, bijection, composition).</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -51,6 +62,7 @@
       <li><a href="#s4">Le raisonnement par récurrence</a></li>
       <li><a href="#s5">Ensembles</a></li>
       <li><a href="#s6">Applications</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -274,6 +286,20 @@
   <p>\[ f(x) = y \iff 2x + 1 = y(x-1) \iff x(2 - y) = -y - 1 \iff x = \frac{y+1}{y-2} \quad (\text{car } y \neq 2). \]</p>
   <p>Il reste à vérifier que cette solution est bien dans l'ensemble de départ : \(\frac{y+1}{y-2} = 1\) donnerait \(y + 1 = y - 2\), impossible. Donc tout \(y \in \mathbb{R}\setminus\{2\}\) admet un unique antécédent : \(f\) est bijective et \(f^{-1}(y) = \dfrac{y+1}{y-2}\). <span class="qed">∎</span></p>
 
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Négations</strong> : \(\neg(P \text{ et } Q) = \neg P \text{ ou } \neg Q\) ; \(\neg(P \Rightarrow Q) = P \text{ et } \neg Q\) ; \(\neg(\forall x, P) = \exists x, \neg P\).</li>
+      <li><strong>Contraposée</strong> de \(P \Rightarrow Q\) : \(\neg Q \Rightarrow \neg P\) (équivalente) — à ne pas confondre avec la réciproque \(Q \Rightarrow P\).</li>
+      <li><strong>Types de preuve</strong> : direct, contraposée, absurde, disjonction de cas, double implication / double inclusion.</li>
+      <li><strong>Récurrence</strong> : initialisation + hérédité + conclusion. Double (2 rangs initiaux) pour \(u_{n+2}=au_{n+1}+bu_n\) ; forte quand \(u_{n+1}\) dépend de tous les précédents.</li>
+      <li><strong>Ensembles</strong> : De Morgan \(\overline{A \cup B} = \overline{A} \cap \overline{B}\) ; \(A \setminus B = A \cap \overline{B}\) ; égalité par double inclusion.</li>
+      <li><strong>Applications</strong> : injective (\(f(x)=f(x') \Rightarrow x=x'\)) ; surjective (tout \(y\) a un antécédent) ; bijective (unique antécédent).</li>
+      <li><strong>Piège</strong> : ne jamais échanger \(\forall\) et \(\exists\) ; toujours vérifier l'initialisation d'une récurrence.</li>
+    </ul>
+  </div>
+
   <h2 id="exos">Exercices corrigés</h2>
 
   <article class="exercise">
@@ -465,6 +491,187 @@
       <p class="small muted">Moralité : la composée ne « transmet » l'injectivité qu'à la première application appliquée, et la surjectivité qu'à la dernière.</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 11 — Une équivalence logique fondamentale</h3><span class="level level-1">Application directe</span>
+    </div>
+    <p>Montrer, à l'aide d'une table de vérité, que \(P \Rightarrow Q\) est équivalente à \((\neg P) \text{ ou } Q\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <div class="table-scroll"><table>
+        <thead><tr><th>\(P\)</th><th>\(Q\)</th><th>\(P \Rightarrow Q\)</th><th>\(\neg P\)</th><th>\((\neg P)\) ou \(Q\)</th></tr></thead>
+        <tbody>
+          <tr><td>V</td><td>V</td><td>V</td><td>F</td><td>V</td></tr>
+          <tr><td>V</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+          <tr><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td></tr>
+          <tr><td>F</td><td>F</td><td>V</td><td>V</td><td>V</td></tr>
+        </tbody>
+      </table></div>
+      <p>Les colonnes de \(P \Rightarrow Q\) et de \((\neg P)\) ou \(Q\) sont identiques : les deux propositions sont équivalentes. <span class="qed">∎</span></p>
+      <p class="small muted">Conséquence utile : \(\neg(P \Rightarrow Q) = \neg(\neg P \text{ ou } Q) = P \text{ et } \neg Q\), ce qui redonne la règle de négation de l'implication.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 12 — Formaliser avec des quantificateurs</h3><span class="level level-1">Application directe</span>
+    </div>
+    <p>Traduire en langage formalisé (quantificateurs) les énoncés suivants, où \(f : \mathbb{R} \to \mathbb{R}\) et \((u_n)\) est une suite réelle :</p>
+    <ol>
+      <li>\(f\) est croissante sur \(\mathbb{R}\) ;</li>
+      <li>la suite \((u_n)\) converge vers \(\ell\) ;</li>
+      <li>l'équation \(f(x) = 0\) admet une unique solution dans \([a, b]\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <ol>
+        <li>\(\forall (x, y) \in \mathbb{R}^2,\ \big(x \leqslant y \Rightarrow f(x) \leqslant f(y)\big)\).</li>
+        <li>\(\forall \varepsilon &gt; 0,\ \exists n_0 \in \mathbb{N},\ \forall n \geqslant n_0,\ |u_n - \ell| \leqslant \varepsilon\).</li>
+        <li>\(\exists! x \in [a, b],\ f(x) = 0\).</li>
+      </ol>
+      <p class="small muted">Attention à l'ordre des quantificateurs en 2 : \(n_0\) dépend de \(\varepsilon\), donc \(\exists n_0\) doit venir <em>après</em> \(\forall \varepsilon\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 13 — Somme des carrés</h3><span class="level level-1">Application directe</span>
+    </div>
+    <p>Montrer que pour tout \(n \in \mathbb{N}\), \(\displaystyle\sum_{k=0}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \in \mathbb{N}\), notons \(P(n)\) : « \(\sum_{k=0}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}\) ».</p>
+      <p><em>Initialisation.</em> Pour \(n = 0\) : \(\sum_{k=0}^{0} k^2 = 0\) et \(\frac{0 \cdot 1 \cdot 1}{6} = 0\). \(P(0)\) est vraie.</p>
+      <p><em>Hérédité.</em> Soit \(n \in \mathbb{N}\) tel que \(P(n)\) soit vraie. Alors :</p>
+      <p>\[ \sum_{k=0}^{n+1} k^2 = \frac{n(n+1)(2n+1)}{6} + (n+1)^2 = \frac{(n+1)\big[n(2n+1) + 6(n+1)\big]}{6} = \frac{(n+1)(2n^2 + 7n + 6)}{6}. \]</p>
+      <p>Or \(2n^2 + 7n + 6 = (n+2)(2n+3)\), d'où \(\sum_{k=0}^{n+1} k^2 = \frac{(n+1)(n+2)(2n+3)}{6}\), qui est bien \(P(n+1)\) (remplacer \(n\) par \(n+1\) dans la formule).</p>
+      <p><em>Conclusion.</em> Par récurrence, \(P(n)\) est vraie pour tout \(n \in \mathbb{N}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 14 — Récurrence et divisibilité</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Montrer que pour tout \(n \in \mathbb{N}\), \(9^n - 1\) est divisible par 8.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \in \mathbb{N}\), notons \(P(n)\) : « \(8 \mid 9^n - 1\) », c'est-à-dire il existe \(a_n \in \mathbb{Z}\) tel que \(9^n - 1 = 8a_n\).</p>
+      <p><em>Initialisation.</em> Pour \(n = 0\) : \(9^0 - 1 = 0 = 8 \times 0\). \(P(0)\) est vraie.</p>
+      <p><em>Hérédité.</em> Soit \(n \in \mathbb{N}\) tel que \(9^n - 1 = 8a_n\) avec \(a_n \in \mathbb{Z}\). Alors :</p>
+      <p>\[ 9^{n+1} - 1 = 9 \cdot 9^n - 1 = 9(9^n - 1) + 9 - 1 = 9 \cdot 8a_n + 8 = 8(9a_n + 1). \]</p>
+      <p>Comme \(9a_n + 1 \in \mathbb{Z}\), \(8 \mid 9^{n+1} - 1\) : \(P(n+1)\) est vraie.</p>
+      <p><em>Conclusion.</em> Par récurrence, \(8 \mid 9^n - 1\) pour tout \(n \in \mathbb{N}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 15 — Trois caractérisations de l'inclusion</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Soient \(A, B\) deux parties d'un ensemble \(E\). Montrer que les trois propositions suivantes sont équivalentes : (i) \(A \subset B\) ; (ii) \(A \cap B = A\) ; (iii) \(A \cup B = B\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On démontre le cycle d'implications (i) \(\Rightarrow\) (ii) \(\Rightarrow\) (iii) \(\Rightarrow\) (i).</p>
+      <p><strong>(i) \(\Rightarrow\) (ii).</strong> Supposons \(A \subset B\). L'inclusion \(A \cap B \subset A\) est toujours vraie. Réciproquement, soit \(x \in A\) : comme \(A \subset B\), \(x \in B\), donc \(x \in A \cap B\). Ainsi \(A \subset A \cap B\), d'où \(A \cap B = A\).</p>
+      <p><strong>(ii) \(\Rightarrow\) (iii).</strong> Supposons \(A \cap B = A\). Alors \(A \cup B = (A \cap B) \cup B = B\), car \(A \cap B \subset B\) (absorption : \(X \cup B = B\) dès que \(X \subset B\)).</p>
+      <p><strong>(iii) \(\Rightarrow\) (i).</strong> Supposons \(A \cup B = B\). Soit \(x \in A\) : alors \(x \in A \cup B = B\), donc \(x \in B\). Ainsi \(A \subset B\).</p>
+      <p>Les trois propositions sont équivalentes. <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 16 — Bijection homographique</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Soit \(f : \mathbb{R} \setminus \{-1\} \to \mathbb{R} \setminus \{1\}\) définie par \(f(x) = \dfrac{x-1}{x+1}\). Montrer que \(f\) est bijective et déterminer \(f^{-1}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Soit \(y \in \mathbb{R} \setminus \{1\}\). Cherchons les \(x \neq -1\) tels que \(f(x) = y\) :</p>
+      <p>\[ \frac{x-1}{x+1} = y \iff x - 1 = y(x+1) \iff x(1 - y) = y + 1 \iff x = \frac{y+1}{1-y} \quad (\text{car } y \neq 1). \]</p>
+      <p>Vérifions que cette valeur est dans l'ensemble de départ : \(\frac{y+1}{1-y} = -1\) donnerait \(y + 1 = -(1 - y) = y - 1\), soit \(1 = -1\), impossible. Donc pour tout \(y \in \mathbb{R} \setminus \{1\}\), l'équation \(f(x) = y\) a une <em>unique</em> solution \(x \in \mathbb{R} \setminus \{-1\}\).</p>
+      <p>Ainsi \(f\) est bijective, de réciproque \(f^{-1}(y) = \dfrac{y+1}{1-y}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 17 — Un classique du raisonnement par l'absurde</h3><span class="level level-2">Entraînement</span>
+    </div>
+    <p>Soit \(x \in \mathbb{R}\). Montrer que si \(|x| \leqslant \varepsilon\) pour tout réel \(\varepsilon &gt; 0\), alors \(x = 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Raisonnons par l'absurde : supposons que \(|x| \leqslant \varepsilon\) pour tout \(\varepsilon &gt; 0\) et que \(x \neq 0\). Alors \(|x| &gt; 0\). Posons \(\varepsilon = \dfrac{|x|}{2}\), qui est bien un réel strictement positif. L'hypothèse appliquée à ce \(\varepsilon\) donne \(|x| \leqslant \dfrac{|x|}{2}\), soit \(\dfrac{|x|}{2} \leqslant 0\), donc \(|x| \leqslant 0\) : contradiction avec \(|x| &gt; 0\).</p>
+      <p>Donc \(x = 0\). <span class="qed">∎</span></p>
+      <p class="small muted">Ce résultat, très utilisé en analyse, se retient ainsi : « un réel plus petit que tout \(\varepsilon &gt; 0\) en valeur absolue est nul ».</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 18 — Tout entier ≥ 2 a un diviseur premier</h3><span class="level level-3">Approfondissement</span>
+    </div>
+    <p>Montrer, par récurrence forte, que tout entier \(n \geqslant 2\) admet au moins un diviseur premier.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \geqslant 2\), notons \(P(n)\) : « \(n\) admet au moins un diviseur premier ». On raisonne par récurrence forte à partir de \(n_0 = 2\).</p>
+      <p><em>Initialisation.</em> \(2\) est premier et se divise lui-même : \(P(2)\) est vraie.</p>
+      <p><em>Hérédité.</em> Soit \(n \geqslant 2\) tel que \(P(2), \dots, P(n)\) soient vraies. Montrons \(P(n+1)\). Deux cas :</p>
+      <ul>
+        <li>si \(n+1\) est premier, il est son propre diviseur premier ;</li>
+        <li>sinon, \(n+1\) admet un diviseur \(a\) avec \(2 \leqslant a \leqslant n\) (un diviseur autre que 1 et \(n+1\)). Par hypothèse de récurrence forte, \(P(a)\) est vraie : \(a\) admet un diviseur premier \(p\). Comme \(p \mid a\) et \(a \mid n+1\), on a \(p \mid n+1\), et \(p\) est premier.</li>
+      </ul>
+      <p>Dans les deux cas \(n+1\) admet un diviseur premier : \(P(n+1)\) est vraie.</p>
+      <p><em>Conclusion.</em> Par récurrence forte, tout entier \(n \geqslant 2\) admet un diviseur premier. <span class="qed">∎</span></p>
+      <p class="small muted">La récurrence forte est ici essentielle : le diviseur \(a\) peut être n'importe quel entier entre 2 et \(n\), pas seulement \(n\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 19 — Différence symétrique</h3><span class="level level-3">Approfondissement</span>
+    </div>
+    <p>Pour \(A, B\) parties de \(E\), on pose \(A \,\triangle\, B = (A \setminus B) \cup (B \setminus A)\).</p>
+    <ol>
+      <li>Montrer que \(A \,\triangle\, B = (A \cup B) \setminus (A \cap B)\).</li>
+      <li>Montrer que \(A \,\triangle\, B = \varnothing\) si et seulement si \(A = B\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> On écrit tout avec \(\cap, \cup\) et complémentaires. D'une part \(A \,\triangle\, B = (A \cap \overline{B}) \cup (B \cap \overline{A})\). D'autre part :</p>
+      <p>\[ (A \cup B) \setminus (A \cap B) = (A \cup B) \cap \overline{A \cap B} = (A \cup B) \cap (\overline{A} \cup \overline{B}). \]</p>
+      <p>En développant par distributivité :</p>
+      <p>\[ (A \cup B) \cap (\overline{A} \cup \overline{B}) = \underbrace{(A \cap \overline{A})}_{\varnothing} \cup (A \cap \overline{B}) \cup (B \cap \overline{A}) \cup \underbrace{(B \cap \overline{B})}_{\varnothing} = (A \cap \overline{B}) \cup (B \cap \overline{A}). \]</p>
+      <p>Les deux expressions coïncident : \(A \,\triangle\, B = (A \cup B) \setminus (A \cap B)\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> \(A \,\triangle\, B = \varnothing\) ⟺ \(A \setminus B = \varnothing\) et \(B \setminus A = \varnothing\) (une réunion est vide ssi les deux ensembles le sont) ⟺ \(A \subset B\) et \(B \subset A\) ⟺ \(A = B\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head">
+      <h3>Exercice 20 — Irrationalité de \(\log_2 3\) (type concours)</h3><span class="level level-3">Approfondissement</span>
+    </div>
+    <p>Montrer que \(\log_2 3\) (l'unique réel \(x\) tel que \(2^x = 3\)) est irrationnel.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Raisonnons par l'absurde : supposons \(\log_2 3 = \dfrac{p}{q}\) avec \(p, q \in \mathbb{N}^*\). Par définition, \(2^{p/q} = 3\), donc en élevant à la puissance \(q\) :</p>
+      <p>\[ 2^{p} = 3^{q}. \]</p>
+      <p>Comme \(p \geqslant 1\), le membre de gauche \(2^p\) est <strong>pair</strong>. Comme \(q \geqslant 1\), le membre de droite \(3^q\) est un produit de facteurs impairs, donc <strong>impair</strong>. Un entier ne peut être à la fois pair et impair : contradiction.</p>
+      <p>Donc \(\log_2 3 \notin \mathbb{Q}\). <span class="qed">∎</span></p>
+      <p class="small muted">Remarque : \(\log_2 3 &gt; 0\) car \(3 &gt; 1\), donc on peut bien supposer \(p, q \in \mathbb{N}^*\) (numérateur et dénominateur strictement positifs).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

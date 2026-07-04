@@ -79,6 +79,17 @@
     </a>
   </div>
 
+  <div class="box met progress-io">
+    <span class="box-title">Sauvegarder / transférer votre progression</span>
+    <p>La progression (chapitres et exercices cochés) est stockée uniquement dans ce navigateur. Exportez-la régulièrement dans un fichier pour ne pas la perdre (vidage du cache, changement d'ordinateur) et pour la retrouver sur un autre appareil.</p>
+    <p>
+      <button id="progress-export" type="button" class="btn">⬇️ Exporter ma progression (JSON)</button>
+      <button id="progress-import-btn" type="button" class="btn">⬆️ Importer une progression</button>
+      <input id="progress-import-file" type="file" accept="application/json" hidden>
+    </p>
+    <p id="progress-io-msg" class="small muted" role="status"></p>
+  </div>
+
   <h2>La filière ECG maths appliquées + ESH</h2>
   <p>La classe préparatoire <strong>ECG (Économique et Commerciale, voie Générale)</strong> prépare en deux ans aux concours des grandes écoles de management (<a href="methodologie/concours.html">BCE et Ecricome</a>). Chaque étudiant choisit à l'inscription deux options : une option de mathématiques (approfondies ou <strong>appliquées</strong>) et une option de sciences humaines (<strong>ESH</strong> — Économie, Sociologie et Histoire du monde contemporain — ou HGG). Le parcours <strong>mathématiques appliquées + ESH</strong> est le plus choisi : il combine des mathématiques orientées vers les probabilités, les statistiques et l'informatique avec une solide culture économique, sociologique et historique.</p>
 

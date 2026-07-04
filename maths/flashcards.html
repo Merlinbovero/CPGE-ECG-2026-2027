@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards Maths — ECG1</title>
+<meta name="description" content="Flashcards à répétition espacée pour mémoriser les formules, théorèmes et méthodes clés de mathématiques appliquées ECG1. Formules rendues avec KaTeX, progression sauvegardée dans le navigateur.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-flashcards" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Flashcards</span>
+</nav>
+
+<main>
+  <h1>Flashcards Maths — formules, théorèmes, méthodes</h1>
+  <p class="lead">49 cartes couvrant les 17 chapitres et l'informatique. Le système retient ce que vous savez déjà (répétition espacée façon Leitner) : une carte sue s'éloigne, une carte ratée revient tout de suite. Les formules s'affichent en LaTeX. La progression est sauvegardée dans ce navigateur.</p>
+  <p id="flashcards-counter" class="small muted"></p>
+
+  <div id="flashcards-app"></div>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="formulaire.html"><span class="pn-label">Réviser le cours</span>← Formulaire / Mémo</a>
+    <a class="next" href="annales.html"><span class="pn-label">S'entraîner</span>Annales →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<script>
+var FLASHCARDS = [
+  { q: "Somme des \\(n\\) premiers entiers ?", a: "\\(\\displaystyle\\sum_{k=1}^n k = \\frac{n(n+1)}{2}\\)." },
+  { q: "Somme des \\(n\\) premiers carrés ?", a: "\\(\\displaystyle\\sum_{k=1}^n k^2 = \\frac{n(n+1)(2n+1)}{6}\\)." },
+  { q: "Somme géométrique \\(\\sum_{k=0}^n q^k\\) (\\(q\\neq1\\)) ?", a: "\\(\\dfrac{1 - q^{n+1}}{1 - q}\\)." },
+  { q: "Formule du binôme de Newton ?", a: "\\((a+b)^n = \\displaystyle\\sum_{k=0}^n \\binom nk a^k b^{n-k}\\)." },
+  { q: "Valeur de \\(\\binom nk\\) ?", a: "\\(\\dfrac{n!}{k!\\,(n-k)!}\\) — nombre de parties à \\(k\\) éléments d'un ensemble à \\(n\\)." },
+  { q: "Inverse d'une matrice \\(2\\times2\\) \\(\\begin{pmatrix} a &amp; b \\\\ c &amp; d\\end{pmatrix}\\) ?", a: "\\(\\dfrac{1}{ad-bc}\\begin{pmatrix} d &amp; -b \\\\ -c &amp; a\\end{pmatrix}\\) si \\(ad - bc \\neq 0\\)." },
+  { q: "\\((AB)^{-1} = \\ ?\\)", a: "\\(B^{-1}A^{-1}\\) (l'ordre s'inverse)." },
+  { q: "Terme général d'une suite géométrique de raison \\(q\\) ?", a: "\\(u_n = u_0\\,q^n\\) ; converge ssi \\(|q| &lt; 1\\) (vers 0) ou \\(q = 1\\)." },
+  { q: "Suite arithmético-géométrique \\(u_{n+1} = au_n + b\\) (\\(a\\neq1\\)) : méthode ?", a: "Point fixe \\(\\ell = \\frac{b}{1-a}\\), puis \\(u_n - \\ell = a^n(u_0 - \\ell)\\)." },
+  { q: "Condition de convergence d'une suite monotone ?", a: "Croissante majorée (ou décroissante minorée) ⟹ convergente (limite monotone)." },
+  { q: "Croissances comparées en \\(+\\infty\\) ?", a: "\\(\\ln x \\ll x^\\beta \\ll \\mathrm{e}^{\\gamma x}\\) : \\(\\frac{(\\ln x)^\\alpha}{x^\\beta}\\to0\\) et \\(\\frac{x^\\beta}{\\mathrm{e}^{\\gamma x}}\\to0\\)." },
+  { q: "Énoncé du théorème des valeurs intermédiaires ?", a: "\\(f\\) continue sur \\([a,b]\\) avec \\(f(a)f(b) &lt; 0\\) ⟹ \\(f\\) s'annule dans \\(]a,b[\\)." },
+  { q: "Dérivée d'un produit et d'un quotient ?", a: "\\((uv)' = u'v + uv'\\) ; \\(\\left(\\frac uv\\right)' = \\frac{u'v - uv'}{v^2}\\)." },
+  { q: "Dérivée d'une composée \\((f\\circ g)'\\) ?", a: "\\(g' \\times (f'\\circ g)\\)." },
+  { q: "Caractérisation de la convexité (fonction \\(\\mathscr C^2\\)) ?", a: "\\(f\\) convexe ⟺ \\(f'' \\geqslant 0\\) ⟺ courbe au-dessus de ses tangentes." },
+  { q: "Primitive de \\(\\frac{u'}{u}\\) ?", a: "\\(\\ln|u|\\). De même \\(\\int u'u^n = \\frac{u^{n+1}}{n+1}\\) et \\(\\int u'\\mathrm{e}^u = \\mathrm{e}^u\\)." },
+  { q: "Formule d'intégration par parties ?", a: "\\(\\int_a^b u'v = [uv]_a^b - \\int_a^b uv'\\) (\\(u, v\\) de classe \\(\\mathscr C^1\\))." },
+  { q: "Limite d'une somme de Riemann \\(\\frac1n\\sum_{k=1}^n f(\\frac kn)\\) ?", a: "\\(\\displaystyle\\int_0^1 f(t)\\,\\mathrm{d}t\\) (\\(f\\) continue)." },
+  { q: "Formule du crible : \\(P(A\\cup B) = \\ ?\\)", a: "\\(P(A) + P(B) - P(A\\cap B)\\)." },
+  { q: "Probabilité conditionnelle \\(P_B(A)\\) ?", a: "\\(\\dfrac{P(A\\cap B)}{P(B)}\\) (si \\(P(B) &gt; 0\\))." },
+  { q: "Formule des probabilités totales ?", a: "\\(P(A) = \\sum_i P(B_i)\\,P_{B_i}(A)\\) pour un système complet \\((B_i)\\)." },
+  { q: "Formule de Bayes ?", a: "\\(P_A(B_i) = \\dfrac{P(B_i)P_{B_i}(A)}{\\sum_j P(B_j)P_{B_j}(A)}\\)." },
+  { q: "Définition de l'indépendance de deux événements ?", a: "\\(P(A\\cap B) = P(A)P(B)\\) (à ne pas confondre avec incompatibles)." },
+  { q: "Espérance et linéarité ?", a: "\\(E(X) = \\sum x_i P(X=x_i)\\) ; \\(E(aX+b) = aE(X)+b\\) ; \\(E(X+Y) = E(X)+E(Y)\\)." },
+  { q: "Théorème de transfert ?", a: "\\(E(g(X)) = \\sum_i g(x_i)P(X=x_i)\\)." },
+  { q: "Formule de Kœnig-Huygens pour la variance ?", a: "\\(V(X) = E(X^2) - E(X)^2\\) ; \\(V(aX+b) = a^2V(X)\\)." },
+  { q: "Loi binomiale \\(\\mathscr B(n,p)\\) : loi, espérance, variance ?", a: "\\(P(X=k) = \\binom nk p^k(1-p)^{n-k}\\), \\(E = np\\), \\(V = np(1-p)\\)." },
+  { q: "Loi uniforme \\(\\mathcal U(\\llbracket1,n\\rrbracket)\\) : \\(E\\) et \\(V\\) ?", a: "\\(E = \\frac{n+1}2\\), \\(V = \\frac{n^2-1}{12}\\)." },
+  { q: "Loi géométrique \\(\\mathscr G(p)\\) : loi, \\(E\\), \\(V\\) ?", a: "\\(P(X=k) = (1-p)^{k-1}p\\) (\\(k\\geqslant1\\)), \\(E = \\frac1p\\), \\(V = \\frac{1-p}{p^2}\\)." },
+  { q: "Propriété d'absence de mémoire (géométrique) ?", a: "\\(P(X &gt; n+m \\mid X &gt; n) = P(X &gt; m)\\), avec \\(P(X&gt;n) = (1-p)^n\\)." },
+  { q: "Loi de Poisson \\(\\mathscr P(\\lambda)\\) : loi, \\(E\\), \\(V\\) ?", a: "\\(P(X=k) = \\mathrm{e}^{-\\lambda}\\frac{\\lambda^k}{k!}\\), \\(E = V = \\lambda\\)." },
+  { q: "Approximation de la binomiale par Poisson ?", a: "\\(\\mathscr B(n,p) \\approx \\mathscr P(np)\\) pour \\(n\\) grand et \\(p\\) petit." },
+  { q: "Variance d'une somme \\(V(X+Y)\\) ?", a: "\\(V(X) + V(Y) + 2\\,\\mathrm{Cov}(X,Y)\\) ; \\(= V(X)+V(Y)\\) si indépendance." },
+  { q: "Formule de la covariance ?", a: "\\(\\mathrm{Cov}(X,Y) = E(XY) - E(X)E(Y)\\), avec \\(E(XY)=E(X)E(Y)\\) si indépendance." },
+  { q: "Non-corrélation implique-t-elle l'indépendance ?", a: "Non. Indépendance ⟹ \\(\\mathrm{Cov} = 0\\), mais la réciproque est fausse." },
+  { q: "Stabilité additive des lois de Poisson ?", a: "\\(\\mathscr P(\\lambda) + \\mathscr P(\\mu) = \\mathscr P(\\lambda+\\mu)\\) (indépendantes)." },
+  { q: "Condition nécessaire de convergence d'une série ?", a: "\\(u_n \\to 0\\) (non suffisant : \\(\\sum\\frac1n\\) diverge)." },
+  { q: "Somme d'une série géométrique \\(\\sum_{n\\geqslant0} q^n\\) ?", a: "\\(\\frac1{1-q}\\) si \\(|q| &lt; 1\\)." },
+  { q: "Nature de la série de Riemann \\(\\sum\\frac1{n^\\alpha}\\) ?", a: "Converge ⟺ \\(\\alpha &gt; 1\\)." },
+  { q: "Somme de la série exponentielle \\(\\sum\\frac{x^n}{n!}\\) ?", a: "\\(\\mathrm{e}^x\\), pour tout \\(x\\)." },
+  { q: "Série géométrique dérivée \\(\\sum_{n\\geqslant1} nq^{n-1}\\) ?", a: "\\(\\frac1{(1-q)^2}\\) (\\(|q|&lt;1\\)) ; d'où \\(\\sum nq^n = \\frac{q}{(1-q)^2}\\)." },
+  { q: "Lemme des poignées de main (graphes) ?", a: "\\(\\sum_s d(s) = 2\\,|\\text{arêtes}|\\) ; nombre de sommets de degré impair pair." },
+  { q: "Que compte \\((A^k)_{ij}\\) pour une matrice d'adjacence ?", a: "Le nombre de chemins de longueur \\(k\\) de \\(s_i\\) à \\(s_j\\)." },
+  { q: "Variance empirique (statistiques) ?", a: "\\(s^2 = \\frac1n\\sum x_i^2 - \\bar x^2\\) ; écart-type \\(s = \\sqrt{s^2}\\)." },
+  { q: "Coefficient de corrélation \\(r\\) ?", a: "\\(r = \\frac{s_{xy}}{s_x s_y} \\in [-1,1]\\) ; \\(|r| = 1\\) ⟺ points alignés." },
+  { q: "Pente de la droite des moindres carrés (\\(y\\) en \\(x\\)) ?", a: "\\(a = \\frac{s_{xy}}{s_x^2}\\), \\(b = \\bar y - a\\bar x\\) ; passe par \\((\\bar x, \\bar y)\\)." },
+  { q: "Python : produit matriciel vs terme à terme (numpy) ?", a: "<code>M @ N</code> (ou <code>np.dot</code>) est matriciel ; <code>M * N</code> est terme à terme." },
+  { q: "Python : nombre d'itérations d'une dichotomie pour \\(\\varepsilon\\) ?", a: "\\(k \\geqslant \\log_2\\frac{b-a}{\\varepsilon}\\) (la longueur est divisée par 2 à chaque tour)." },
+  { q: "Python : simuler une épreuve de Bernoulli de paramètre \\(p\\) ?", a: "<code>rd.random() &lt; p</code> renvoie <code>True</code> avec probabilité \\(p\\)." }
+];
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/flashcards.js"></script>
+</body>
+</html>

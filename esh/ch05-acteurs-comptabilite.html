@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 1 · semestre 1</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Connaître les secteurs institutionnels et le circuit économique.</li>
+      <li>Maîtriser la mesure du PIB (trois approches) et ses limites comme indicateur de richesse.</li>
+      <li>Connaître les théories de la consommation, de l'épargne et de l'investissement et leurs auteurs.</li>
+      <li>Savoir manier l'équilibre emplois-ressources et le multiplicateur dans un exercice chiffré.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. La mesure : PIB et comptabilité nationale</a></li>
       <li><a href="#s3">III. Consommation, épargne, investissement</a></li>
       <li><a href="#chiffres">Chiffres clés à connaître</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices</a></li>
     </ol>
   </nav>
@@ -119,6 +131,20 @@
     <li>Structure de la consommation : logement ≈ 27 %, alimentation ≈ 17 %, transport ≈ 14 %.</li>
     <li>Comptabilité nationale : née de la crise de 1929 et de la guerre (Kuznets aux États-Unis dans les années 1930, Richard Stone — Nobel 1984 ; en France, l'INSEE créé en 1946).</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>Équilibre emplois-ressources</strong> : \(PIB + M = C + I + G + X\).</li>
+      <li><strong>PIB</strong> : 3 approches (production Σ VA, demande \(C+I+G+X-M\), revenus) ; limites (Stiglitz-Sen-Fitoussi, 2009 ; Kennedy, 1968).</li>
+      <li><strong>Consommation</strong> : Keynes (revenu courant), Friedman (revenu permanent, 1957), Modigliani (cycle de vie, 1954), Veblen (ostentatoire, 1899), Bourdieu (distinction).</li>
+      <li><strong>Épargne</strong> : motifs keynésiens (précaution, cycle de vie, transmission, spéculation) ; paradoxe de l'épargne.</li>
+      <li><strong>Investissement (FBCF)</strong> : accélérateur (Aftalion-Clark, 1913-17), efficacité marginale du capital (Keynes), théorème de Schmidt (1974).</li>
+      <li><strong>Multiplicateur</strong> \(k=\frac{1}{1-c}\) en économie fermée sans État ; plus faible en économie ouverte (fuites : impôts, importations).</li>
+      <li><strong>Piège à éviter</strong> : le PIB n'est pas un indicateur de bien-être — c'est une mesure de production marchande et monétarisée.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -215,6 +241,9 @@
       <li>Énoncer la « loi psychologique fondamentale » de Keynes et son rôle dans le multiplicateur.</li>
       <li>Comparer revenu permanent (Friedman) et cycle de vie (Modigliani).</li>
       <li>Qu'est-ce que la FBCF ? Citer trois déterminants de l'investissement.</li>
+      <li>Qu'est-ce que le « paradoxe de l'épargne » ?</li>
+      <li>Citer trois limites du PIB comme indicateur de bien-être.</li>
+      <li>Expliquer la loi d'Engel et donner un ordre de grandeur pour la France.</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -224,6 +253,9 @@
         <li>Quand le revenu augmente, la consommation augmente mais moins que proportionnellement (\(0 &lt; c &lt; 1\)). C'est ce \(c\) qui donne le multiplicateur \(\frac{1}{1-c}\) : chaque euro dépensé engendre une cascade de consommations.</li>
         <li>Modigliani : lissage sur la vie entière (emprunt, épargne, désépargne) — focalisé sur l'âge. Friedman : consommation fonction du revenu <em>permanent</em> anticipé — les variations transitoires sont épargnées, d'où l'inefficacité (relative) des relances temporaires.</li>
         <li>Formation brute de capital fixe : acquisitions d'actifs fixes durables (machines, bâtiments, logiciels, R&amp;D). Déterminants : demande anticipée (accélérateur), taux d'intérêt/coût du capital, profits (autofinancement), confiance/incertitude.</li>
+        <li>Si tous les agents cherchent à épargner davantage simultanément, la demande globale baisse, donc le revenu baisse, et l'épargne totale réalisée peut finalement ne pas augmenter, voire diminuer — un comportement individuellement rationnel devient collectivement contre-productif (Keynes).</li>
+        <li>Il ignore le travail domestique/bénévole et l'économie informelle ; il compte positivement les dépenses défensives (réparation de « maux ») ; il ne dit rien de la répartition des richesses ni de l'épuisement du capital naturel.</li>
+        <li>La part du budget consacrée à l'alimentation diminue quand le revenu augmente (Engel, 1857). En France, elle est passée d'environ 35 % du budget des ménages en 1960 à environ 17 % aujourd'hui, au profit notamment du logement (≈ 27 %).</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -272,6 +304,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Le PIB inclut la valeur de la production non marchande des administrations publiques.</p>
+        <label><input type="radio" name="vf1" data-correct> Vrai</label>
+        <label><input type="radio" name="vf1"> Faux</label>
+        <div class="qcm-explication">Valorisée à son coût de production, faute de prix de marché.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. Selon Modigliani, la consommation dépend uniquement du revenu courant.</p>
+        <label><input type="radio" name="vf2"> Vrai</label>
+        <label><input type="radio" name="vf2" data-correct> Faux</label>
+        <div class="qcm-explication">C'est la thèse keynésienne simple ; Modigliani lisse la consommation sur tout le cycle de vie.</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. Le principe d'accélérateur prévoit que l'investissement varie moins que proportionnellement à la demande.</p>
+        <label><input type="radio" name="vf3"> Vrai</label>
+        <label><input type="radio" name="vf3" data-correct> Faux</label>
+        <div class="qcm-explication">Au contraire : il varie plus que proportionnellement (Aftalion, Clark).</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Le multiplicateur keynésien est d'autant plus fort que la propension à consommer est élevée.</p>
+        <label><input type="radio" name="vf4" data-correct> Vrai</label>
+        <label><input type="radio" name="vf4"> Faux</label>
+        <div class="qcm-explication">\(k=\frac{1}{1-c}\) croît avec \(c\).</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document + exercice chiffré</h3><span class="level level-2">Entraînement</span></div>
     <p>Dans une économie fermée sans État, la consommation est \(C = 0{,}8\,Y + 200\) et l'investissement \(I = 300\) (milliards).</p>
     <ol>
@@ -285,7 +348,7 @@
       <p><strong>2.</strong> \(0{,}2Y = 550 \iff Y^* = 2750\) : une hausse de 50 de l'investissement accroît le revenu de 250. Multiplicateur \(= \frac{1}{1 - 0{,}8} = 5\) ✓.</p>
       <p><strong>3.</strong> Chaque euro de revenu supplémentaire « fuit » partiellement hors du circuit de la consommation intérieure : épargne, mais aussi <strong>impôts</strong> et surtout <strong>importations</strong>. Le multiplicateur devient \(\frac{1}{1 - c(1-t) + m}\), nettement plus petit (≈ 1 à 1,5 empiriquement en France). Illustration : la relance française de 1981 a creusé le déficit extérieur — la demande a fui vers les importations (« relance dans un seul pays »).</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

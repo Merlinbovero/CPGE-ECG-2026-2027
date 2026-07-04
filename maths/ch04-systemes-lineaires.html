@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 1 semaine de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Connaître le vocabulaire des systèmes linéaires (homogène, échelonné, pivot, équivalence).</li>
+      <li>Exécuter la méthode du pivot de Gauss proprement, en notant chaque opération élémentaire.</li>
+      <li>Reconnaître les trois situations : solution unique, aucune solution, infinité (paramétrer).</li>
+      <li>Discuter un système dépendant d'un paramètre par disjonction de cas.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +61,7 @@
       <li><a href="#s3">La méthode du pivot de Gauss</a></li>
       <li><a href="#s4">Les trois situations possibles</a></li>
       <li><a href="#s5">Systèmes avec paramètre</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -145,6 +157,19 @@
     <li>Si \(m \neq 1\) : \(y = 1\) puis \(x = 0\). Solution unique \((0, 1)\).</li>
     <li>Si \(m = 1\) : la seconde équation devient \(0 = 0\) ; il reste \(x + y = 1\) : infinité de solutions \(\{(1 - t,\ t) \mid t \in \mathbb{R}\}\).</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Opérations élémentaires</strong> (conservent l'ensemble des solutions) : \(L_i \leftrightarrow L_j\) ; \(L_i \leftarrow \lambda L_i\) (\(\lambda \neq 0\)) ; \(L_i \leftarrow L_i + \mu L_j\).</li>
+      <li><strong>Gauss</strong> : choisir un pivot \(\neq 0\) → éliminer l'inconnue dans les autres lignes → échelonner → remonter.</li>
+      <li><strong>3 cas</strong> : autant de pivots que d'inconnues → solution unique ; ligne \(0 = c\) (\(c \neq 0\)) → aucune ; moins de pivots, pas d'incompatibilité → infinité (inconnues libres = paramètres).</li>
+      <li>Un système linéaire a <strong>0, 1 ou une infinité</strong> de solutions, jamais exactement 2.</li>
+      <li><strong>Homogène</strong> : \((0,\dots,0)\) toujours solution ; solutions non nulles ssi moins de pivots que d'inconnues.</li>
+      <li><strong>Paramètre</strong> : disjonction de cas sur les valeurs annulant un pivot ; toujours noter les opérations en marge.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -278,6 +303,147 @@
       <p>Réponse : \(m = -2\), avec la droite de solutions \((t, -t, t)\).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Système 2×2 par substitution</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre \(\begin{cases} 3x + 2y = 8 \\ x - y = 1 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2\) donne \(x = y + 1\). En reportant dans \(L_1\) : \(3(y+1) + 2y = 8 \iff 5y = 5 \iff y = 1\), d'où \(x = 2\). \(\mathscr{S} = \{(2, 1)\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Système 3×3 à solution unique</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre \(\begin{cases} x + y + z = 6 \\ x - y + 2z = 5 \\ 2x + y - z = 1 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - L_1\), \(L_3 \leftarrow L_3 - 2L_1\) :</p>
+      <p>\[ \begin{cases} x + y + z = 6 \\ -2y + z = -1 \\ -y - 3z = -11 \end{cases} \]</p>
+      <p>De \(L_2\) : \(z = 2y - 1\). En reportant dans \(L_3\) : \(-y - 3(2y-1) = -11 \iff -7y = -14 \iff y = 2\), d'où \(z = 3\) et \(x = 6 - 2 - 3 = 1\). \(\mathscr{S} = \{(1, 2, 3)\}\). <em>Vérification (\(L_2\)) :</em> \(1 - 2 + 6 = 5\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Remontée d'un système échelonné</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre par remontée \(\begin{cases} x + 2y - z = 3 \\ y + 2z = 5 \\ 3z = 6 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_3\) donne \(z = 2\) ; \(L_2\) donne \(y = 5 - 2 \times 2 = 1\) ; \(L_1\) donne \(x = 3 - 2 \times 1 + 2 = 3\). \(\mathscr{S} = \{(3, 1, 2)\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Infinité de solutions (3×3)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre \(\begin{cases} x + y + z = 2 \\ 2x + 3y + z = 3 \\ x + 2y \phantom{{}+ z} = 1 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} x + y + z = 2 \\ y - z = -1 \\ y - z = -1 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 - L_2\) donne \(0 = 0\) : deux pivots pour trois inconnues. De \(L_2\) : \(y = z - 1\) ; de \(L_1\) : \(x = 2 - y - z = 2 - (z-1) - z = 3 - 2z\).</p>
+      <p>\(\mathscr{S} = \{(3 - 2t,\ t - 1,\ t) \mid t \in \mathbb{R}\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Système homogène</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre \(\begin{cases} x + y - z = 0 \\ 2x - y + z = 0 \\ x - 2y + 2z = 0 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} x + y - z = 0 \\ -3y + 3z = 0 \\ -3y + 3z = 0 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 - L_2\) donne \(0 = 0\) : \(L_2\) fournit \(y = z\), et \(L_1\) donne \(x = z - y = 0\). \(\mathscr{S} = \{(0,\ t,\ t) \mid t \in \mathbb{R}\}\) : le système admet des solutions non nulles.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Problème de prix</h3><span class="level level-2">Entraînement</span></div>
+    <p>Sur un marché, trois paniers de fruits sont vendus : 2 kg de pommes + 1 kg de poires + 1 kg de cerises coûtent 11 € ; 1 + 2 + 1 coûtent 12 € ; 1 + 1 + 2 coûtent 13 €. Déterminer le prix au kilo de chaque fruit.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(p, q, r\) les prix au kilo (pommes, poires, cerises) :</p>
+      <p>\[ \begin{cases} 2p + q + r = 11 \\ p + 2q + r = 12 \\ p + q + 2r = 13 \end{cases} \]</p>
+      <p>En additionnant les trois équations : \(4(p + q + r) = 36\), donc \(p + q + r = 9\). En retranchant cette relation de chaque équation : \(p = 11 - 9 = 2\), \(q = 12 - 9 = 3\), \(r = 13 - 9 = 4\).</p>
+      <p>Les pommes coûtent 2 €/kg, les poires 3 €/kg, les cerises 4 €/kg. <em>Vérification :</em> \(2 \times 2 + 3 + 4 = 11\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Trois nombres</h3><span class="level level-2">Entraînement</span></div>
+    <p>La somme de trois nombres vaut 12. Le premier plus le double du deuxième vaut 11. Le troisième dépasse le premier de 2. Déterminer ces trois nombres.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\begin{cases} x + y + z = 12 \\ x + 2y = 11 \\ z - x = 2 \end{cases}\) De \(L_3\) : \(z = x + 2\). En reportant dans \(L_1\) : \(2x + y = 10\). Avec \(L_2\) (\(x + 2y = 11\)) : \(y = 10 - 2x\), puis \(x + 2(10 - 2x) = 11 \iff -3x = -9 \iff x = 3\), d'où \(y = 4\), \(z = 5\).</p>
+      <p>Les nombres sont \(3, 4, 5\). <em>Vérification :</em> \(3 + 4 + 5 = 12\) ✓, \(3 + 8 = 11\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Système avec paramètre</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Discuter et résoudre selon \(m \in \mathbb{R}\) : \(\begin{cases} x + y + z = 1 \\ 2x + y + 3z = 3 \\ x - y + mz = 0 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - 2L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} x + y + z = 1 \\ -y + z = 1 \\ -2y + (m-1)z = -1 \end{cases} \]</p>
+      <p>De \(L_2\) : \(y = z - 1\). En reportant dans \(L_3\) : \(-2(z-1) + (m-1)z = -1\), soit \((m - 3)z = -3\).</p>
+      <ul>
+        <li>Si \(m \neq 3\) : \(z = \dfrac{3}{3 - m}\), puis \(y = z - 1\) et \(x = 1 - y - z = 2 - 2z\) : solution unique.</li>
+        <li>Si \(m = 3\) : la ligne devient \(0 = -3\), impossible : \(\mathscr{S} = \varnothing\).</li>
+      </ul>
+      <p class="small muted">Vérification pour \(m = 0\) : \(z = 1\), \(y = 0\), \(x = 0\) ; on a bien \(0 + 0 + 1 = 1\), \(0 + 0 + 3 = 3\), \(0 - 0 + 0 = 0\). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Interpolation polynomiale</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Déterminer le polynôme \(P(x) = ax^3 + bx^2 + cx + d\) de degré au plus 3 tel que \(P(0) = 1\), \(P(1) = 0\), \(P(-1) = 6\) et \(P(2) = 3\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Les conditions donnent : \(d = 1\) (par \(P(0)\)), puis :</p>
+      <p>\[ \begin{cases} a + b + c = -1 \\ -a + b - c = 5 \\ 4a + 2b + c = 1 \end{cases} \]</p>
+      <p>La somme des deux premières donne \(2b = 4\), soit \(b = 2\), d'où \(a + c = -3\). La troisième devient \(4a + c = -3\). En soustrayant : \(3a = 0\), donc \(a = 0\) et \(c = -3\).</p>
+      <p>Ainsi \(P(x) = 2x^2 - 3x + 1\) (le coefficient de \(x^3\) est nul : le polynôme cherché est en fait de degré 2). <em>Vérification :</em> \(P(2) = 8 - 6 + 1 = 3\) ✓, \(P(-1) = 2 + 3 + 1 = 6\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Système homogène symétrique (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour quelles valeurs de \(a \in \mathbb{R}\) le système \(\begin{cases} x + ay + z = 0 \\ ax + y + z = 0 \\ x + y + az = 0 \end{cases}\) admet-il des solutions non nulles ? Les décrire.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par différences : \(L_1 - L_2 = (1 - a)(x - y) = 0\) et \(L_1 - L_3 = (a - 1)(y - z) = 0\).</p>
+      <p><strong>Cas \(a = 1\) :</strong> les trois équations se réduisent à \(x + y + z = 0\) : une infinité de solutions (un plan), \(\mathscr{S} = \{(x, y, z) \mid x + y + z = 0\}\).</p>
+      <p><strong>Cas \(a \neq 1\) :</strong> les différences imposent \(x = y = z\). En reportant dans \(L_1\) : \((2 + a)x = 0\).</p>
+      <ul>
+        <li>si \(a \neq -2\) : \(x = 0\), donc seule la solution nulle ;</li>
+        <li>si \(a = -2\) : \(x = y = z\) libre, \(\mathscr{S} = \{(t, t, t) \mid t \in \mathbb{R}\}\).</li>
+      </ul>
+      <p>Réponse : solutions non nulles si et seulement si \(a = 1\) ou \(a = -2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Système 3 équations, 4 inconnues (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Résoudre dans \(\mathbb{R}^4\) : \(\begin{cases} x + y + z + t = 0 \\ x + 2y + 3z + 4t = 0 \\ x + 3y + 6z + 10t = 0 \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(L_2 \leftarrow L_2 - L_1\), \(L_3 \leftarrow L_3 - L_1\) :</p>
+      <p>\[ \begin{cases} x + y + z + t = 0 \\ y + 2z + 3t = 0 \\ 2y + 5z + 9t = 0 \end{cases} \]</p>
+      <p>\(L_3 \leftarrow L_3 - 2L_2\) : \(z + 3t = 0\), soit \(z = -3t\). Puis \(L_2\) : \(y = -2z - 3t = 6t - 3t = 3t\) ; et \(L_1\) : \(x = -y - z - t = -3t + 3t - t = -t\).</p>
+      <p>\(\mathscr{S} = \{(-t,\ 3t,\ -3t,\ t) \mid t \in \mathbb{R}\}\) : une droite de solutions (3 pivots, 4 inconnues, donc 1 paramètre). <em>Vérification (\(L_3\)) :</em> \(-t + 9t - 18t + 10t = 0\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

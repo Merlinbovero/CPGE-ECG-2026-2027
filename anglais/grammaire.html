@@ -39,6 +39,16 @@
 
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Fiche travaillée</label>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche</span>
+    <ul>
+      <li>Maîtriser les points de grammaire les plus testés en thème et en essai : temps/aspects, modaux, passif, causatives, articles, relatives.</li>
+      <li>Identifier les pièges classiques d'un francophone (calques, indénombrables, faux amis grammaticaux).</li>
+      <li>Être capable de repérer, dans une phrase de thème, quel point de grammaire est visé par le concepteur du sujet.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire">
@@ -49,6 +59,7 @@
       <li><a href="#s3">Le passif</a></li>
       <li><a href="#s4">Structures causatives et verbes à double construction</a></li>
       <li><a href="#s5">Articles, dénombrables, relatives</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -60,7 +71,7 @@
       <li><strong>Present simple</strong> : vérités générales, habitudes (<em>The Fed sets interest rates</em>). <strong>Present BE+ING</strong> : action en cours, commentaire (<em>Inflation is falling</em>) — jamais avec les verbes d'état (know, believe, own…).</li>
       <li><strong>Past simple</strong> : événement daté, coupé du présent — obligatoire avec une date (<em>The crisis broke out in 2008</em>). <strong>Present perfect</strong> : bilan présent d'un événement passé, jamais de date précise (<em>Unemployment has fallen since 2020 / over the past decade</em>). <span class="muted">Piège n°1 des copies : *<em>has fallen in 2020</em> est faux.</span></li>
       <li><strong>Present perfect + for/since</strong> : action qui dure encore — <em>She has been working here for ten years</em> (français : « depuis » + présent !).</li>
-      <li><strong>Past perfect</strong> : antériorité dans le passé (<em>The bank had lent too much before it collapsed</em>).</li>
+      <li><strong>Past perfect</strong> : antériorité dans le passé (<em>The bank had lent too much before it collapsed</em>). <span class="muted">Prétérit et participe passé supposent de connaître les verbes irréguliers — voir la fiche <a href="verbes-irreguliers.html">verbes irréguliers</a>.</span></li>
       <li><strong>Futur</strong> : will (prédiction, décision) ; be going to (intention, indices présents) ; présent en subordonnée de temps — <em>when the economy <strong>recovers</strong></em> (jamais *will recover après when/as soon as/until).</li>
     </ul>
   </div>
@@ -105,6 +116,15 @@
     <li><strong>Génitif</strong> : 's pour les possesseurs humains/temps (<em>the government's policy, last year's growth</em>) ; of pour les choses.</li>
     <li><strong>Adjectifs invariables</strong> et ordre (opinion-taille-âge-couleur-origine : <em>a promising young French economist</em>) ; nombres composés : <em>a five-year plan</em> (pas de pluriel à year).</li>
   </ul>
+
+  <div class="box warn">
+    <span class="box-title">Pièges classiques d'un francophone</span>
+    <ul>
+      <li><em>Depuis</em> + présent en français → <strong>present perfect</strong> en anglais, jamais présent simple : « she works here since 2019 » est faux, il faut <em>she has been working here since 2019</em>.</li>
+      <li>Ne pas confondre <strong>don't have to</strong> (absence d'obligation) et <strong>mustn't</strong> (interdiction) : deux traductions opposées de « ne pas devoir ».</li>
+      <li>Les indénombrables (information, advice, news, evidence, research, furniture) prennent un verbe au <strong>singulier</strong> et jamais de <em>a/an</em> — piège n°1 des copies francophones.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -165,6 +185,50 @@
       <p class="small muted">Fautes : information indénombrable (+ verbe sing.) ; article devant unemployment ; have→has ; less→fewer (dénombrable) ; want + to ; must + base verbale ; pas de will après if ; touch→affect(s) (calque) ; worst→worse (comparatif).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un thème ou une khôlle</span>
+    <ul>
+      <li><strong>Depuis + présent</strong> → present perfect (+ for/since). <strong>Date précise</strong> → past simple.</li>
+      <li><strong>Modal + have + V-en</strong> = regard sur le passé (should have, must have, can't have).</li>
+      <li><strong>Passif personnel</strong> : <em>is said to</em>, <em>was made to</em>, <em>was given</em>.</li>
+      <li><strong>Causatif</strong> : have/get + COD + V-en (faire faire) ; have/make + COD + base verbale (faire faire par contrainte).</li>
+      <li><strong>Ø article</strong> devant généralités et institutions dans leur fonction ; <strong>indénombrables</strong> = singulier, jamais de a/an.</li>
+      <li><strong>Piège à éviter</strong> : don't have to (pas obligé) ≠ mustn't (interdit) ; fewer (dénombrable) ≠ less (indénombrable).</li>
+    </ul>
+  </div>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. « She has been working here since 2019 » is correct English.</p>
+        <label><input type="radio" name="vf1" data-correct> True</label>
+        <label><input type="radio" name="vf1"> False</label>
+        <div class="qcm-explication">Present perfect + since for an action that started in the past and continues.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. « You mustn't answer » means the same as « You don't have to answer ».</p>
+        <label><input type="radio" name="vf2"> True</label>
+        <label><input type="radio" name="vf2" data-correct> False</label>
+        <div class="qcm-explication">Mustn't = forbidden; don't have to = no obligation. Opposite meanings.</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. « Two informations » is correct English.</p>
+        <label><input type="radio" name="vf3"> True</label>
+        <label><input type="radio" name="vf3" data-correct> False</label>
+        <div class="qcm-explication">Information is uncountable — « two pieces of information ».</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. After « when » or « as soon as » referring to the future, English uses the present, not « will ».</p>
+        <label><input type="radio" name="vf4" data-correct> True</label>
+        <label><input type="radio" name="vf4"> False</label>
+        <div class="qcm-explication">« When the economy recovers… » — never « will recover » in the time clause.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation">

@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 1 · semestre 1</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Construire et lire le modèle offre-demande, calculer un équilibre et des élasticités.</li>
+      <li>Connaître les conditions de la concurrence pure et parfaite et leur portée (idéaltype, pas description).</li>
+      <li>Distinguer les structures de marché (monopole, oligopole, concurrence monopolistique) et leurs effets.</li>
+      <li>Identifier les trois grandes défaillances de marché et les instruments de correction.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. La concurrence parfaite et ses vertus</a></li>
       <li><a href="#s3">III. Concurrence imparfaite et défaillances du marché</a></li>
       <li><a href="#chiffres">Repères et exemples mobilisables</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices</a></li>
     </ol>
   </nav>
@@ -135,6 +147,19 @@
     <li>Exemples d'actualité : encadrement des loyers (Paris depuis 2019 — débat prix plafond) ; marché européen du carbone ; amendes anticartel de la Commission ; plateformes numériques et effets de réseau (« winner takes all »), règlements européens DMA/DSA (2022).</li>
     <li>Ordres de grandeur d'élasticités : carburants ≈ −0,2 à court terme, −0,6 à long terme ; tabac ≈ −0,4 (d'où la hausse des taxes comme politique de santé publique).</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>Équilibre</strong> : \(q_D(p^*) = q_O(p^*)\) ; au-dessus de \(p^*\) excès d'offre, en dessous excès de demande.</li>
+      <li><strong>Élasticité-prix</strong> \(e = \frac{\Delta q/q}{\Delta p/p}\) : élastique si \(|e|>1\), inélastique si \(|e|<1\).</li>
+      <li><strong>CPP (Knight, 1921)</strong> : atomicité, homogénéité, libre entrée/sortie, transparence, mobilité des facteurs → optimum de Pareto (Arrow-Debreu, 1954).</li>
+      <li><strong>Structures imparfaites</strong> : monopole (naturel/légal/innovation), oligopole (Cournot 1838, Nash 1950), concurrence monopolistique (Chamberlin 1933), marchés contestables (Baumol 1982).</li>
+      <li><strong>3 défaillances</strong> : externalités (Pigou 1920, Coase 1960) ; biens publics (Samuelson 1954, passager clandestin — Olson 1965) ; asymétries d'information (Akerlof 1970, Spence 1973, Stiglitz-Weiss 1981).</li>
+      <li><strong>Piège à éviter</strong> : la CPP est un idéaltype, pas un fait — ne jamais écrire qu'un marché réel « est » en concurrence parfaite.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -232,6 +257,9 @@
       <li>Qu'est-ce qu'une externalité ? Deux solutions théoriques pour les corriger ?</li>
       <li>Définir bien public et passager clandestin.</li>
       <li>Expliquer le mécanisme du « market for lemons ».</li>
+      <li>Citer trois structures de marché imparfait et un auteur associé à chacune.</li>
+      <li>Qu'est-ce que le théorème de Coase et sous quelles conditions s'applique-t-il ?</li>
+      <li>Distinguer effet substitution et effet revenu dans la pente de la demande.</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -241,6 +269,9 @@
         <li>Effet d'une activité sur le bien-être d'un tiers non compensé par un prix. Corrections : taxe/subvention pigouvienne (1920) ; création de droits échangeables (quotas CO₂) ; négociation à la Coase (1960) si droits définis et coûts de transaction faibles.</li>
         <li>Bien non-rival (la consommation de l'un ne réduit pas celle de l'autre) et non-excluable (impossible d'exclure les non-payeurs) — Samuelson 1954. Le passager clandestin en profite sans payer, d'où sous-production privée (Olson 1965).</li>
         <li>Akerlof (1970) : l'acheteur ne distingue pas les bonnes voitures des mauvaises → il offre un prix moyen → les bons vendeurs se retirent → la qualité moyenne baisse → le prix baisse encore : l'antisélection peut détruire le marché.</li>
+        <li>Monopole (Standard Oil, procès 1911), oligopole (Cournot, 1838 — duopole ; Nash, 1950 — équilibre non coopératif), concurrence monopolistique (Chamberlin, 1933 — produits différenciés).</li>
+        <li>Coase (1960) : si les droits de propriété sont clairement définis et les coûts de transaction faibles, les parties négocient elles-mêmes une solution efficace à une externalité, sans intervention de l'État — quelle que soit l'attribution initiale du droit.</li>
+        <li>Effet substitution : quand un bien devient relativement plus cher, le consommateur le remplace par des substituts. Effet revenu : la hausse de prix réduit le pouvoir d'achat réel, donc la quantité demandée. Les deux effets jouent en général dans le même sens pour un bien normal, d'où la pente négative de la demande.</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -289,6 +320,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Sur un marché en concurrence pure et parfaite, chaque offreur peut influencer le prix.</p>
+        <label><input type="radio" name="vf1"> Vrai</label>
+        <label><input type="radio" name="vf1" data-correct> Faux</label>
+        <div class="qcm-explication">L'atomicité impose au contraire que chacun soit « preneur de prix ».</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. Une externalité positive conduit, sans correction, à une sous-production du bien.</p>
+        <label><input type="radio" name="vf2" data-correct> Vrai</label>
+        <label><input type="radio" name="vf2"> Faux</label>
+        <div class="qcm-explication">Le producteur ne captant pas tout le bénéfice social, il produit moins que l'optimum (ex. R&amp;D, vaccination).</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. Le théorème de Coase (1960) recommande systématiquement l'intervention de l'État pour corriger les externalités.</p>
+        <label><input type="radio" name="vf3"> Vrai</label>
+        <label><input type="radio" name="vf3" data-correct> Faux</label>
+        <div class="qcm-explication">Il montre au contraire que la négociation privée peut suffire si les droits de propriété sont clairs et les coûts de transaction faibles.</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Un monopole naturel se caractérise par des rendements d'échelle croissants.</p>
+        <label><input type="radio" name="vf4" data-correct> Vrai</label>
+        <label><input type="radio" name="vf4"> Faux</label>
+        <div class="qcm-explication">D'où l'intérêt qu'un seul opérateur couvre le marché (réseaux électriques, ferroviaires).</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document + micro-exercice chiffré</h3><span class="level level-2">Entraînement</span></div>
     <p>Sur un marché, la demande est \(q_D = 100 - 2p\) et l'offre \(q_O = 3p - 25\) (quantités en milliers d'unités, prix en euros).</p>
     <ol>
@@ -302,7 +364,7 @@
       <p><strong>2.</strong> À \(p = 20\) : demande \(= 100 - 40 = 60\) ; offre \(= 60 - 25 = 35\). Pénurie \(= 60 - 35 = 25\) milliers d'unités.</p>
       <p><strong>3.</strong> Le plafond, inférieur au prix d'équilibre, stimule la demande et décourage l'offre : 25 000 acheteurs prêts à payer ne trouvent pas le bien. Le rationnement se fera hors prix (files d'attente, tirage, marché noir où le prix implicite dépasse 25 €) ; à long terme, sous-investissement des offreurs. Une aide ciblée aux acheteurs modestes atteindrait l'objectif distributif sans créer la pénurie.</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

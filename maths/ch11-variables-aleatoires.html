@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 2 · ≈ 2,5 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Définir une variable aléatoire finie, son support et sa <strong>loi</strong> ; construire un tableau de loi et vérifier que la somme des probabilités vaut 1.</li>
+      <li>Manier la <strong>fonction de répartition</strong> \(F_X(t) = P(X \leqslant t)\) et en déduire les probabilités d'intervalles.</li>
+      <li>Calculer <strong>espérance</strong> et <strong>variance</strong>, utiliser la <strong>linéarité</strong>, le <strong>théorème de transfert</strong> et la formule de <strong>Kœnig-Huygens</strong> \(V(X) = E(X^2) - E(X)^2\).</li>
+      <li>Connaître les trois lois finies au programme — <strong>uniforme</strong>, <strong>Bernoulli</strong>, <strong>binomiale</strong> — leur espérance, leur variance, et savoir <strong>reconnaître</strong> une situation binomiale (répétition, indépendance, même probabilité).</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -52,6 +63,7 @@
       <li><a href="#s5">Loi uniforme</a></li>
       <li><a href="#s6">Loi de Bernoulli</a></li>
       <li><a href="#s7">Loi binomiale</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -164,6 +176,32 @@
   <div class="box met">
     <span class="box-title">Méthode — Reconnaître une binomiale (rédaction type)</span>
     <p>« L'expérience consiste en la répétition de \(n\) épreuves de Bernoulli <em>identiques et indépendantes</em>, le succès étant … , de probabilité \(p\). \(X\) compte le nombre de succès, donc \(X \hookrightarrow \mathscr{B}(n, p)\). » Les trois mots-clés attendus : <strong>répétition</strong>, <strong>indépendance</strong>, <strong>même probabilité</strong>. Attention : tirages <em>sans remise</em> ⟹ pas d'indépendance ⟹ pas binomiale.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">⚠️ Pièges classiques</span>
+    <ul>
+      <li><strong>Tirage sans remise ≠ binomiale.</strong> La binomiale exige l'<em>indépendance</em> des épreuves et une <em>probabilité de succès constante</em> : un tirage sans remise viole les deux (loi hypergéométrique, hors programme direct).</li>
+      <li><strong>Ne pas oublier de vérifier \(\sum P(X = x_i) = 1\)</strong> après avoir écrit une loi : c'est le contrôle le plus rentable en copie.</li>
+      <li><strong>Variance affine :</strong> \(V(aX + b) = a^2 V(X)\), pas \(a\,V(X)\), et le \(+b\) disparaît (la translation ne change pas la dispersion).</li>
+      <li><strong>Kœnig-Huygens :</strong> \(V(X) = E(X^2) - E(X)^2\), surtout pas \(E(X)^2 - E(X^2)\) (qui serait \(\leqslant 0\)). Une variance calculée négative signale une erreur.</li>
+      <li><strong>Transfert :</strong> \(E(g(X)) = \sum g(x_i)P(X = x_i)\) — en général \(E(g(X)) \neq g(E(X))\) (ex. \(E(X^2) \neq E(X)^2\)).</li>
+      <li><strong>Support :</strong> ne pas oublier les valeurs extrêmes (un \(\min\) ou un \(\max\) de deux dés varie bien de 1 à 6).</li>
+    </ul>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Loi :</strong> \(X(\Omega) = \{x_1,\dots,x_n\}\), \(\sum_i P(X = x_i) = 1\).</li>
+      <li><strong>Répartition :</strong> \(F_X(t) = P(X \leqslant t)\), croissante en escalier ; \(P(a &lt; X \leqslant b) = F_X(b) - F_X(a)\).</li>
+      <li><strong>Espérance :</strong> \(E(X) = \sum_i x_i P(X = x_i)\) ; linéaire : \(E(aX + b) = aE(X) + b\), \(E(X+Y) = E(X)+E(Y)\).</li>
+      <li><strong>Transfert :</strong> \(E(g(X)) = \sum_i g(x_i)P(X = x_i)\).</li>
+      <li><strong>Variance :</strong> \(V(X) = E(X^2) - E(X)^2 \geqslant 0\), \(\sigma(X) = \sqrt{V(X)}\), \(V(aX+b) = a^2 V(X)\).</li>
+      <li><strong>Uniforme</strong> \(\mathcal{U}(\llbracket 1,n\rrbracket)\) : \(P = \frac1n\), \(E = \frac{n+1}{2}\), \(V = \frac{n^2-1}{12}\).</li>
+      <li><strong>Bernoulli</strong> \(\mathscr{B}(p)\) : \(E = p\), \(V = p(1-p)\).</li>
+      <li><strong>Binomiale</strong> \(\mathscr{B}(n,p)\) : \(P(X=k) = \binom nk p^k(1-p)^{n-k}\), \(E = np\), \(V = np(1-p)\).</li>
+    </ul>
   </div>
 
   <h2 id="exos">Exercices corrigés</h2>
@@ -308,6 +346,150 @@
       <p>\[ V(X) = n(n-1)p^2 + np - n^2p^2 = np - np^2 = np(1-p). \quad \blacksquare \]</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Tirage simultané</h3><span class="level level-1">Application directe</span></div>
+    <p>Un sac contient 3 boules rouges et 2 boules vertes. On tire <em>simultanément</em> 2 boules ; \(X\) est le nombre de rouges obtenues. Déterminer la loi de \(X\), \(E(X)\) et \(V(X)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Il y a \(\binom52 = 10\) tirages équiprobables. \(X(\Omega) = \{0, 1, 2\}\) :</p>
+      <p>\[ P(X = 0) = \frac{\binom22}{10} = \frac1{10}, \quad P(X = 1) = \frac{\binom31\binom21}{10} = \frac6{10}, \quad P(X = 2) = \frac{\binom32}{10} = \frac3{10}. \]</p>
+      <p>Somme \(= \frac{1 + 6 + 3}{10} = 1\) ✓. \(E(X) = 0 + \frac6{10} + \frac6{10} = \frac{12}{10} = 1{,}2\).</p>
+      <p>\(E(X^2) = 0 + \frac6{10} + 4\times\frac3{10} = \frac{18}{10} = 1{,}8\), donc \(V(X) = 1{,}8 - 1{,}2^2 = 1{,}8 - 1{,}44 = 0{,}36\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Indicatrice d'un événement</h3><span class="level level-1">Application directe</span></div>
+    <p>On lance un dé équilibré ; soit \(A\) l'événement « obtenir un multiple de 3 ». Donner la loi de l'indicatrice \(\mathbf{1}_A\), son espérance et sa variance.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Les multiples de 3 dans \(\llbracket 1,6\rrbracket\) sont 3 et 6, donc \(P(A) = \frac26 = \frac13\). L'indicatrice \(\mathbf{1}_A\) vaut 1 si \(A\) est réalisé, 0 sinon : \(\mathbf{1}_A \hookrightarrow \mathscr{B}\!\left(\frac13\right)\).</p>
+      <p>\[ E(\mathbf{1}_A) = P(A) = \frac13, \qquad V(\mathbf{1}_A) = \frac13\left(1 - \frac13\right) = \frac13\times\frac23 = \frac29. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Contrôle qualité</h3><span class="level level-1">Application directe</span></div>
+    <p>Une machine produit des pièces défectueuses avec probabilité \(0{,}05\), indépendamment les unes des autres. On prélève 20 pièces ; \(X\) est le nombre de défectueuses. Donner la loi de \(X\), \(E(X)\), puis \(P(X = 0)\) et \(P(X \geqslant 1)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>20 épreuves de Bernoulli identiques et indépendantes, succès = « pièce défectueuse » de probabilité \(0{,}05\) : \(X \hookrightarrow \mathscr{B}(20 ;\ 0{,}05)\). \(E(X) = 20 \times 0{,}05 = 1\).</p>
+      <p>\[ P(X = 0) = (0{,}95)^{20} \approx 0{,}358, \qquad P(X \geqslant 1) = 1 - (0{,}95)^{20} \approx 0{,}642. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — De la répartition à la loi</h3><span class="level level-2">Entraînement</span></div>
+    <p>La fonction de répartition de \(X\) est : \(F_X(t) = 0\) pour \(t &lt; 0\), \(0{,}3\) pour \(0 \leqslant t &lt; 1\), \(0{,}7\) pour \(1 \leqslant t &lt; 2\), \(1\) pour \(t \geqslant 2\). Retrouver la loi de \(X\), puis \(E(X)\) et \(V(X)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Les sauts de \(F_X\) donnent les probabilités : \(P(X = 0) = 0{,}3\), \(P(X = 1) = 0{,}7 - 0{,}3 = 0{,}4\), \(P(X = 2) = 1 - 0{,}7 = 0{,}3\). Somme \(= 1\) ✓.</p>
+      <p>\(E(X) = 0 + 0{,}4 + 0{,}6 = 1\). \(E(X^2) = 0 + 0{,}4 + 4\times0{,}3 = 1{,}6\), donc \(V(X) = 1{,}6 - 1 = 0{,}6\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Variable centrée réduite</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X\) de loi \(P(X = 0) = \frac14\), \(P(X = 2) = \frac12\), \(P(X = 4) = \frac14\). Calculer \(E(X)\), \(V(X)\), \(\sigma(X)\), puis vérifier que \(Y = \dfrac{X - E(X)}{\sigma(X)}\) est centrée réduite (\(E(Y) = 0\), \(V(Y) = 1\)).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(E(X) = 0 + 2\times\frac12 + 4\times\frac14 = 1 + 1 = 2\). \(E(X^2) = 0 + 4\times\frac12 + 16\times\frac14 = 2 + 4 = 6\), donc \(V(X) = 6 - 4 = 2\) et \(\sigma(X) = \sqrt2\).</p>
+      <p>Par linéarité, avec \(Y = \frac1{\sqrt2}(X - 2)\) : \(E(Y) = \frac1{\sqrt2}(E(X) - 2) = 0\), et par la transformation affine de la variance :</p>
+      <p>\[ V(Y) = \left(\frac1{\sqrt2}\right)^2 V(X) = \frac12 \times 2 = 1. \]</p>
+      <p>\(Y\) est bien centrée réduite (procédé systématique de standardisation d'une v.a.).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Binomiale conditionnelle</h3><span class="level level-2">Entraînement</span></div>
+    <p>On lance 3 fois une pièce équilibrée ; \(X\) est le nombre de « pile ». Calculer \(P(X = 2 \mid X \geqslant 1)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(X \hookrightarrow \mathscr{B}\!\left(3, \frac12\right)\), donc \(P(X = k) = \binom3k \frac1{8}\). En particulier \(P(X = 2) = \frac38\) et \(P(X = 0) = \frac18\), d'où \(P(X \geqslant 1) = 1 - \frac18 = \frac78\).</p>
+      <p>Comme \(\{X = 2\} \subset \{X \geqslant 1\}\) :</p>
+      <p>\[ P(X = 2 \mid X \geqslant 1) = \frac{P(X = 2)}{P(X \geqslant 1)} = \frac{3/8}{7/8} = \frac37. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Espérance et variance par la loi</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{B}\!\left(2, \frac13\right)\). Écrire la loi de \(X\), puis retrouver \(E(X)\) et \(V(X)\) par le calcul direct et vérifier la cohérence avec les formules \(np\) et \(np(1-p)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(P(X = 0) = \left(\frac23\right)^2 = \frac49\), \(P(X = 1) = 2\times\frac13\times\frac23 = \frac49\), \(P(X = 2) = \left(\frac13\right)^2 = \frac19\). Somme \(= 1\) ✓.</p>
+      <p>\(E(X) = 0 + \frac49 + 2\times\frac19 = \frac69 = \frac23 = 2\times\frac13 = np\) ✓.</p>
+      <p>\(E(X^2) = 0 + \frac49 + 4\times\frac19 = \frac89\), donc \(V(X) = \frac89 - \frac49 = \frac49 = 2\times\frac13\times\frac23 = np(1-p)\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Mode de la loi binomiale (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{B}(n, p)\) avec \(0 &lt; p &lt; 1\).</p>
+    <ol>
+      <li>Pour \(0 \leqslant k \leqslant n - 1\), calculer le rapport \(\dfrac{P(X = k+1)}{P(X = k)}\).</li>
+      <li>En déduire que la suite \(k \mapsto P(X = k)\) croît puis décroît, et que le mode (valeur la plus probable) est \(\lfloor (n+1)p \rfloor\). Application : \(n = 10\), \(p = \frac13\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\dfrac{P(X = k+1)}{P(X = k)} = \dfrac{\binom{n}{k+1}}{\binom nk}\cdot\dfrac{p}{1-p} = \dfrac{n-k}{k+1}\cdot\dfrac{p}{1-p}\).</p>
+      <p><strong>2.</strong> Ce rapport est \(\geqslant 1\) ⟺ \((n-k)p \geqslant (k+1)(1-p)\) ⟺ \(np \geqslant k + 1 - p\) ⟺ \(k \leqslant (n+1)p - 1\). Ainsi \(P(X = k)\) croît tant que \(k \leqslant (n+1)p - 1\) puis décroît : le maximum est atteint en \(k^\star = \lfloor (n+1)p \rfloor\) (si \((n+1)p\) est entier, \(k^\star\) et \(k^\star - 1\) sont ex æquo).</p>
+      <p>Application : \((n+1)p = 11\times\frac13 = \frac{11}{3} \approx 3{,}67\), donc le mode est \(k^\star = 3\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Somme de deux dés (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On lance deux dés équilibrés indépendants ; \(S = D_1 + D_2\).</p>
+    <ol>
+      <li>Déterminer la loi de \(S\) (support et probabilités).</li>
+      <li>Calculer \(E(S)\) par linéarité, et \(V(S)\) par indépendance.</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(S(\Omega) = \llbracket 2, 12\rrbracket\). Sur les 36 couples équiprobables, le nombre de couples de somme \(k\) est \(6 - |k - 7|\), d'où la loi « triangulaire » :</p>
+      <p>\[ P(S = k) = \frac{6 - |k - 7|}{36}, \quad k = 2,\dots,12 : \ \frac1{36}, \frac2{36}, \dots, \frac6{36}, \dots, \frac2{36}, \frac1{36}. \]</p>
+      <p>Somme \(= \frac{1+2+3+4+5+6+5+4+3+2+1}{36} = \frac{36}{36} = 1\) ✓.</p>
+      <p><strong>2.</strong> Par linéarité \(E(S) = E(D_1) + E(D_2) = \frac72 + \frac72 = 7\). Chaque dé suit \(\mathcal{U}(\llbracket 1,6\rrbracket)\) donc \(V(D_i) = \frac{6^2 - 1}{12} = \frac{35}{12}\) ; les dés étant <em>indépendants</em>, la variance de la somme est la somme des variances :</p>
+      <p>\[ V(S) = V(D_1) + V(D_2) = 2\times\frac{35}{12} = \frac{35}{6} \approx 5{,}83. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Transformation non injective</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathcal{U}\big(\{-2, -1, 0, 1, 2\}\big)\) et \(Y = X^2\). Déterminer la loi de \(Y\), puis \(E(Y)\) ; vérifier par le théorème de transfert.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Chaque valeur de \(X\) a probabilité \(\frac15\). \(Y = X^2 \in \{0, 1, 4\}\). Comme \(X^2\) n'est pas injective, on <strong>regroupe</strong> les antécédents :</p>
+      <p>\[ P(Y = 0) = P(X = 0) = \tfrac15, \quad P(Y = 1) = P(X = -1) + P(X = 1) = \tfrac25, \quad P(Y = 4) = P(X = -2) + P(X = 2) = \tfrac25. \]</p>
+      <p>Somme \(= 1\) ✓. \(E(Y) = 0 + 1\times\frac25 + 4\times\frac25 = \frac{2 + 8}{5} = 2\).</p>
+      <p>Contrôle par transfert (sans passer par la loi de \(Y\)) : \(E(X^2) = \frac15(4 + 1 + 0 + 1 + 4) = \frac{10}{5} = 2\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Gain exponentiel et binôme de Newton (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On répète \(n\) fois, de façon indépendante, une épreuve de succès de probabilité \(p\) ; \(X \hookrightarrow \mathscr{B}(n, p)\) compte les succès. Un joueur reçoit \(2^X\) euros. Calculer \(E(2^X)\) à l'aide du théorème de transfert et du binôme de Newton.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par le théorème de transfert appliqué à \(g(x) = 2^x\) :</p>
+      <p>\[ E(2^X) = \sum_{k=0}^{n} 2^k\,\binom nk p^k (1-p)^{n-k} = \sum_{k=0}^{n} \binom nk (2p)^k (1-p)^{n-k}. \]</p>
+      <p>On reconnaît le développement de \((a + b)^n\) avec \(a = 2p\) et \(b = 1 - p\) :</p>
+      <p>\[ E(2^X) = (2p + 1 - p)^n = (1 + p)^n. \]</p>
+      <p>Contrôle : pour \(p = 0\), \(X = 0\) presque sûrement et \(E(2^X) = 1 = (1+0)^n\) ✓ ; pour \(p = 1\), \(X = n\) et \(E(2^X) = 2^n = (1+1)^n\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

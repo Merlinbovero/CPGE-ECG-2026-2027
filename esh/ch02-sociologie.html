@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 1 · semestre 1</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Comprendre les conditions d'émergence de la sociologie comme science de la société.</li>
+      <li>Connaître les auteurs fondateurs (Durkheim, Weber, Marx) et leurs concepts clés.</li>
+      <li>Maîtriser le clivage holisme / individualisme méthodologique et savoir l'appliquer (débat Bourdieu-Boudon).</li>
+      <li>Distinguer méthodes quantitatives et qualitatives et savoir les mobiliser en dissertation.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. Les pères fondateurs</a></li>
       <li><a href="#s3">III. Méthodes et clivages de la sociologie</a></li>
       <li><a href="#chiffres">Repères mobilisables</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices : dissertations, questions de cours, QCM</a></li>
     </ol>
   </nav>
@@ -123,6 +135,21 @@
     </ul>
   </div>
 
+  <figure class="schema">
+    <svg viewBox="0 0 720 150" role="img" aria-label="Frise des auteurs fondateurs de la sociologie">
+      <line x1="20" y1="75" x2="700" y2="75" stroke="var(--accent)" stroke-width="3"/>
+      <g font-size="12" fill="var(--text)" text-anchor="middle">
+        <circle cx="60" cy="75" r="6" fill="var(--accent)"/><text x="60" y="55">1830s</text><text x="60" y="105">Comte</text>
+        <circle cx="180" cy="75" r="6" fill="var(--accent)"/><text x="180" y="55">1848-67</text><text x="180" y="105">Marx</text>
+        <circle cx="320" cy="75" r="6" fill="var(--accent)"/><text x="320" y="55">1893-97</text><text x="320" y="105">Durkheim</text>
+        <circle cx="460" cy="75" r="6" fill="var(--accent)"/><text x="460" y="55">1904-21</text><text x="460" y="105">Weber</text>
+        <circle cx="600" cy="75" r="6" fill="var(--accent)"/><text x="600" y="55">1964-79</text><text x="600" y="105">Bourdieu</text>
+        <circle cx="670" cy="75" r="6" fill="var(--accent)"/><text x="670" y="55">1973</text><text x="670" y="105">Boudon</text>
+      </g>
+    </svg>
+    <figcaption>Frise simplifiée des auteurs fondateurs — à redessiner en introduction de dissertation.</figcaption>
+  </figure>
+
   <h2 id="chiffres">Repères et exemples mobilisables</h2>
   <ul>
     <li><strong>1830-1842</strong> : Comte invente le mot « sociologie ». <strong>1893, 1895, 1897</strong> : trilogie fondatrice de Durkheim. <strong>1904-1905</strong> : <em>L'Éthique protestante</em>.</li>
@@ -130,6 +157,19 @@
     <li>Reproduction scolaire : en France, un enfant de cadre a environ 3 fois plus de chances d'obtenir un bac général qu'un enfant d'ouvrier ; les enfants de cadres sont sur-représentés en CPGE (≈ 50 % des effectifs pour ≈ 20 % de la population active) — données mobilisables avec Bourdieu <em>et</em> Boudon.</li>
     <li><strong>1973</strong> : <em>L'Inégalité des chances</em> (Boudon) vs <strong>1970</strong> : <em>La Reproduction</em> (Bourdieu-Passeron) — le débat structurant de la sociologie française.</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>Durkheim</strong> (1858-1917) : fait social (extérieur, général, coercitif) ; solidarité mécanique/organique (1893) ; suicide égoïste/altruiste/anomique/fataliste (1897) ; intégration/régulation.</li>
+      <li><strong>Weber</strong> (1864-1920) : compréhension du sens de l'action ; 4 types d'action sociale ; 3 types de domination légitime ; idéaltype ; désenchantement du monde.</li>
+      <li><strong>Marx</strong> (1818-1883) : infrastructure/superstructure ; classe en soi / classe pour soi ; lutte des classes.</li>
+      <li><strong>Bourdieu</strong> (1930-2002) : capitaux (économique, culturel, social, symbolique) ; habitus ; reproduction scolaire (1964, 1970) ; distinction (1979).</li>
+      <li><strong>Débat structurant</strong> : holisme (Durkheim, Bourdieu) vs individualisme méthodologique (Weber, Boudon 1973).</li>
+      <li><strong>Piège à éviter</strong> : individualisme méthodologique ≠ individualisme-valeur ; Weber complexifie Marx, il ne le réfute pas.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -230,6 +270,9 @@
       <li>Donner la typologie wébérienne de la domination légitime avec un exemple chacun.</li>
       <li>Définir habitus et capital culturel.</li>
       <li>Opposer Bourdieu et Boudon sur les inégalités scolaires.</li>
+      <li>Qu'est-ce que l'anomie ? Donner un exemple durkheimien.</li>
+      <li>Définir l'idéaltype wébérien et son usage méthodologique.</li>
+      <li>Expliquer la distinction entre classe « en soi » et classe « pour soi » chez Marx.</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -239,6 +282,9 @@
         <li>Traditionnelle (monarchie héréditaire), charismatique (chef prophétique ou révolutionnaire — de Gaulle en 1940), légale-rationnelle (administration moderne, bureaucratie) — <em>Économie et société</em>.</li>
         <li>Habitus : système de dispositions durables et transposables acquises par socialisation, qui engendre pratiques et goûts. Capital culturel : ressources culturelles détenues sous trois formes — incorporée (savoir-faire, langage), objectivée (livres, œuvres), institutionnalisée (diplômes).</li>
         <li>Bourdieu : inégalités de <em>réussite</em> expliquées par l'héritage culturel et la connivence de l'école avec la culture dominante (holisme, reproduction). Boudon : inégalités d'<em>orientation</em> expliquées par des choix rationnels différenciés selon la position sociale (individualisme méthodologique). Les deux mécanismes se cumulent empiriquement.</li>
+        <li>L'anomie est l'affaiblissement ou la dérégulation des normes sociales qui encadrent les désirs individuels. Exemple durkheimien : le suicide anomique augmente aussi bien lors des crises économiques que lors des booms soudains (l'un et l'autre dérèglent les attentes établies).</li>
+        <li>L'idéaltype est une construction intellectuelle épurée, accentuant certains traits d'un phénomène pour servir d'étalon de comparaison avec les cas réels (jamais observé à l'état pur) — outil pour organiser la compréhension, non description fidèle du réel.</li>
+        <li>Classe « en soi » : ensemble d'individus qui partagent objectivement la même place dans les rapports de production, sans en avoir nécessairement conscience. Classe « pour soi » : cette même classe devenue consciente de ses intérêts communs et organisée pour les défendre (syndicats, partis) — le passage de l'une à l'autre est, pour Marx, la condition de l'action historique.</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -287,6 +333,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Pour Durkheim, un fait social se reconnaît à son caractère extérieur, général et coercitif.</p>
+        <label><input type="radio" name="vf1" data-correct> Vrai</label>
+        <label><input type="radio" name="vf1"> Faux</label>
+        <div class="qcm-explication"><em>Les Règles de la méthode sociologique</em>, 1895.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. L'individualisme méthodologique désigne une valeur qui privilégie l'égoïsme.</p>
+        <label><input type="radio" name="vf2"> Vrai</label>
+        <label><input type="radio" name="vf2" data-correct> Faux</label>
+        <div class="qcm-explication">C'est un principe d'explication (expliquer le collectif par l'agrégation d'actions individuelles), pas une valeur morale — piège classique de copie.</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. Bourdieu et Boudon s'accordent sur l'existence d'inégalités scolaires mais divergent sur leur mécanisme explicatif.</p>
+        <label><input type="radio" name="vf3" data-correct> Vrai</label>
+        <label><input type="radio" name="vf3"> Faux</label>
+        <div class="qcm-explication">Reproduction du capital culturel (Bourdieu) vs agrégation de choix rationnels différenciés (Boudon).</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Le mot « sociologie » a été forgé par Durkheim.</p>
+        <label><input type="radio" name="vf4"> Vrai</label>
+        <label><input type="radio" name="vf4" data-correct> Faux</label>
+        <div class="qcm-explication">C'est Auguste Comte qui forge le terme (<em>Cours de philosophie positive</em>, 1830-1842) ; Durkheim institutionnalise ensuite la discipline.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document statistique</h3><span class="level level-2">Entraînement</span></div>
     <p>Part des enfants d'ouvriers et d'employés (≈ 50 % de la population active) et des enfants de cadres et professions intellectuelles supérieures (≈ 20 %) dans quelques filières du supérieur (ordres de grandeur, France, années 2020) :</p>
     <div class="table-scroll"><table>
@@ -305,7 +382,7 @@
       <p><strong>2.</strong> Le tableau révèle une <strong>hiérarchie sociale des filières</strong> : plus la filière est sélective et rentable (CPGE, grandes écoles), plus la composition sociale se déforme au profit des enfants de cadres — démocratisation quantitative mais ségrégative.</p>
       <p><strong>3.</strong> Lecture bourdieusienne : le capital culturel hérité et l'auto-élimination des classes populaires (sentiment de « ce n'est pas pour nous ») produisent la reproduction, que le concours légitime en mérite. Lecture boudonienne : à chaque palier d'orientation, les familles populaires font des choix prudents (coûts, éloignement, risque d'échec perçu), dont l'agrégation produit ces écarts sans qu'aucune exclusion explicite n'existe. Les politiques d'ouverture sociale (cordées de la réussite, quotas de boursiers) tentent d'agir sur les deux mécanismes.</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">TP tout au long de l'année</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche (programme officiel)</span>
+    <ul>
+      <li>Créer des <strong>tableaux numpy</strong> (<code>array</code>, <code>zeros</code>, <code>arange</code>, <code>linspace</code>) et exploiter les <strong>opérations vectorisées</strong> (terme à terme).</li>
+      <li>Manipuler des <strong>matrices</strong> : distinguer produit terme à terme (<code>*</code>) et produit matriciel (<code>@</code>, <code>np.dot</code>), calculer une puissance (<code>matrix_power</code>), résoudre un système (<code>np.linalg.solve</code>).</li>
+      <li>Produire et <strong>interpréter des graphiques matplotlib</strong> (<code>plot</code>, <code>bar</code>, <code>hist</code>, <code>legend</code>).</li>
+      <li>Utiliser le module <strong>random</strong> (<code>random</code>, <code>randint</code>, <code>choice</code>) et simuler une épreuve de Bernoulli.</li>
+      <li><strong>Reconnaître le type</strong> (liste vs tableau) avant de prédire une sortie.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +62,7 @@
       <li><a href="#s3">Matrices avec numpy</a></li>
       <li><a href="#s4">Graphiques avec matplotlib</a></li>
       <li><a href="#s5">Le module random</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -127,6 +140,19 @@ rd.randint(1, 6)     # un entier uniforme entre 1 et 6 INCLUS (lancer de dé)
 rd.choice([2, 3, 5]) # un élément au hasard dans la liste</code></pre>
   <p>Simuler une épreuve de Bernoulli de paramètre \(p\) : <code>rd.random() &lt; p</code> renvoie <code>True</code> avec probabilité \(p\). La fiche <a href="info04-simulation.html">I4</a> développe les simulations complètes.</p>
   <p class="small muted">Remarque : <code>np.random.rand(n)</code> (numpy) produit directement un tableau de \(n\) uniformes — utile pour vectoriser les simulations.</p>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Imports :</strong> <code>import numpy as np</code>, <code>import matplotlib.pyplot as plt</code>, <code>import random as rd</code>.</li>
+      <li><strong>Création :</strong> <code>np.array([...])</code>, <code>np.zeros(n)</code>, <code>np.arange(a,b,p)</code>, <code>np.linspace(a,b,n)</code> (bornes incluses).</li>
+      <li><strong>Vectorisé :</strong> <code>A+1</code>, <code>2*A</code>, <code>A**2</code>, <code>np.sqrt/exp/log(A)</code>, <code>A.sum()/mean()/max()</code>, <code>A[A&gt;2]</code>.</li>
+      <li><strong>Matrices :</strong> <code>M*N</code> terme à terme ≠ <code>M@N</code> (matriciel) ; <code>np.linalg.matrix_power(M,k)</code> ; <code>np.linalg.solve(M,B)</code>.</li>
+      <li><strong>Graphiques :</strong> <code>plt.plot(x,y,label=…)</code>, <code>plt.bar</code>, <code>plt.hist</code>, <code>plt.legend()</code>, <code>plt.show()</code>.</li>
+      <li><strong>Aléatoire :</strong> <code>rd.random()</code> \(\in [0,1[\), <code>rd.randint(a,b)</code> (b inclus), <code>rd.choice(L)</code> ; Bernoulli(p) : <code>rd.random() &lt; p</code>.</li>
+      <li><strong>Piège :</strong> sur une <em>liste</em>, <code>2*L</code> répète et <code>+</code> concatène ; sur un <em>tableau</em>, c'est du calcul.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -239,6 +265,216 @@ print(P4[0, 3])    # sommets 1 et 4 : indices 0 et 3 !</code></pre>
       <p class="small muted">Noter le décalage sommets/indices : le sommet 1 est l'indice 0 — piège récurrent.</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Vectorisation</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">import numpy as np
+A = np.array([1, 2, 3, 4, 5])
+print(A[1:4])
+print(A * 2)
+print(A[A % 2 == 1])</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>[2 3 4]</code> (tranche d'indices 1 à 3) ; <code>[ 2  4  6  8 10]</code> (double terme à terme) ; <code>[1 3 5]</code> (les termes impairs, par sélection).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — arange et linspace</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">import numpy as np
+print(np.arange(0, 10, 3))
+print(np.linspace(0, 1, 5))
+print(len(np.linspace(0, 2, 9)))</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>[0 3 6 9]</code> (pas de 3, 10 exclu) ; <code>[0.   0.25 0.5  0.75 1.  ]</code> (5 points, bornes incluses) ; <code>9</code> (<code>linspace</code> renvoie exactement le nombre de points demandé).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Produit terme à terme vs matriciel</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">import numpy as np
+M = np.array([[1, 2], [3, 4]])
+print(M * M)
+print(M @ M)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>M * M</code> élève chaque coefficient au carré : <code>[[ 1  4] [ 9 16]]</code>. <code>M @ M</code> est le produit <strong>matriciel</strong> \(M^2\) : <code>[[ 7 10] [15 22]]</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Sélection conditionnelle</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">import numpy as np
+A = np.array([3, 8, 1, 6, 9, 2])
+print(A[A &gt;= 5])
+print((A &gt;= 5).sum())</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>[8 6 9]</code> (les termes \(\geqslant 5\)) ; <code>3</code> (leur nombre : la somme d'un tableau de booléens compte les <code>True</code>).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Moyenne et écart-type vectorisés</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire une fonction <code>stats(A)</code> qui renvoie la moyenne et l'écart-type d'un tableau numpy, <em>sans boucle</em> (opérations vectorisées).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+def stats(A):
+    m = A.mean()
+    s2 = ((A - m)**2).mean()   # variance : moyenne des carrés des écarts
+    return m, np.sqrt(s2)</code></pre>
+      <p><code>A - m</code> soustrait la moyenne à chaque terme (diffusion), <code>**2</code> et <code>.mean()</code> achèvent le calcul de la variance.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Résolution d'un système</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire le code numpy résolvant \(\begin{cases} 2x + y = 5 \\ x - y = 1 \end{cases}\), et donner la solution.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+M = np.array([[2, 1], [1, -1]])
+B = np.array([5, 1])
+X = np.linalg.solve(M, B)
+print(X)          # [2. 1.]</code></pre>
+      <p>La solution est \(x = 2\), \(y = 1\) (vérification : \(2\times2 + 1 = 5\) et \(2 - 1 = 1\) ✓).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Tracer une suite géométrique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire le code traçant les 20 premiers termes de \(u_n = 3\times0{,}7^n\) sous forme de points. Quelle allure attend-on ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+n = np.arange(20)
+u = 3 * 0.7**n
+plt.plot(n, u, "o")
+plt.xlabel("n"); plt.ylabel("u_n")
+plt.show()</code></pre>
+      <p>Suite géométrique de raison \(0{,}7 \in \,]0,1[\) : <strong>décroissante</strong>, tendant vers 0 (les points s'écrasent sur l'axe des abscisses).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Fréquence d'un six</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire une fonction <code>freq_six(N)</code> qui simule \(N\) lancers d'un dé et renvoie la fréquence d'apparition du 6. Vers quelle valeur tend-elle ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def freq_six(N):
+    c = 0
+    for i in range(N):
+        if rd.randint(1, 6) == 6:
+            c = c + 1
+    return c / N</code></pre>
+      <p>Par la loi des grands nombres, la fréquence tend vers la probabilité théorique \(\frac16 \approx 0{,}167\) quand \(N\) devient grand.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Tableau de booléens</h3><span class="level level-2">Entraînement</span></div>
+    <pre><code class="language-python">import numpy as np
+A = np.array([2, 5, 8, 11, 14])
+B = (A % 3 == 2)
+print(B)
+print(B.sum())</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Chaque terme vérifie \(A_i \equiv 2 \pmod 3\) (\(2, 5, 8, 11, 14\) sont tous \(\equiv 2\)) : <code>[ True  True  True  True  True]</code>, et <code>B.sum()</code> vaut <code>5</code> (nombre de <code>True</code>).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Loi des grands nombres (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire une fonction <code>moyenne_de(N)</code> qui simule \(N\) lancers d'un dé et renvoie la moyenne des résultats. Vers quelle valeur converge-t-elle et pourquoi ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def moyenne_de(N):
+    s = 0
+    for i in range(N):
+        s = s + rd.randint(1, 6)
+    return s / N</code></pre>
+      <p>La moyenne empirique converge vers l'espérance \(E(X) = \frac{1+2+\dots+6}{6} = 3{,}5\) (loi des grands nombres) : la moyenne d'un grand nombre de tirages indépendants s'approche de l'espérance théorique.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Accessibilité par les puissances (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Pour le graphe orienté \(1\to2\to3\to1\) de matrice \(A\), que vaut \(S = A + A^2 + A^3\) ? Qu'en déduit-on ?</p>
+    <pre><code class="language-python">import numpy as np
+A = np.array([[0,1,0],
+              [0,0,1],
+              [1,0,0]])
+S = A + np.linalg.matrix_power(A, 2) + np.linalg.matrix_power(A, 3)
+print(S)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(A^2 = \begin{pmatrix}0&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0\end{pmatrix}\), \(A^3 = I_3\). Donc \(S\) est la matrice remplie de 1 : <code>[[1 1 1] [1 1 1] [1 1 1]]</code>.</p>
+      <p>Tous les coefficients de \(S\) sont non nuls : depuis n'importe quel sommet, on peut atteindre n'importe quel autre en au plus 3 pas — le graphe est <strong>fortement connexe</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Histogramme d'une somme de dés (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>simule_sommes(N)</code> qui simule \(N\) fois la somme de deux dés et renvoie la liste des effectifs des sommes de 2 à 12. Quelle forme aura l'histogramme ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def simule_sommes(N):
+    E = [0] * 13          # cases 0 à 12 ; les cases 0 et 1 resteront nulles
+    for i in range(N):
+        s = rd.randint(1, 6) + rd.randint(1, 6)
+        E[s] = E[s] + 1
+    return E</code></pre>
+      <p>L'histogramme des sommes est <strong>triangulaire</strong>, culminant en 7 (somme la plus probable, \(\frac6{36}\)) et minimal en 2 et 12 (\(\frac1{36}\)) — cf. chapitre 11, exercice 18.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Intégrale par Monte-Carlo (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Expliquer pourquoi la fonction suivante estime \(\displaystyle\int_0^1 x^2\,\mathrm{d}x\), et donner sa limite théorique.</p>
+    <pre><code class="language-python">import numpy as np
+def integrale(N):
+    x = np.random.rand(N)    # N uniformes dans [0, 1[
+    return (x**2).mean()</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Les \(x_i\) simulent une variable \(X\) uniforme sur \([0,1]\). La moyenne \(\frac1N\sum x_i^2\) est une moyenne empirique de \(X^2\) : par la loi des grands nombres, elle converge vers \(E(X^2) = \int_0^1 x^2\,\mathrm{d}x = \frac13\).</p>
+      <p>La fonction renvoie donc une estimation de \(\frac13 \approx 0{,}333\) (méthode de <strong>Monte-Carlo</strong> pour approcher une intégrale).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Fonction mystère (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>mystere(np.array([2, 5, 9, 14]))</code> ? Que calcule cette fonction ?</p>
+    <pre><code class="language-python">import numpy as np
+def mystere(A):
+    return A[1:] - A[:-1]</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>A[1:]</code> = <code>[5, 9, 14]</code> et <code>A[:-1]</code> = <code>[2, 5, 9]</code> ; la soustraction terme à terme donne <code>[3, 4, 5]</code>.</p>
+      <p>La fonction calcule le tableau des <strong>différences consécutives</strong> \(A_{i+1} - A_i\) — sans boucle, par décalage de tranches (technique vectorisée classique).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

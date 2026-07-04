@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards Italien — ECG1</title>
+<meta name="description" content="Flashcards à répétition espacée pour réviser la grammaire, le vocabulaire et la civilisation italien LVB ECG1. Fonctionne hors ligne, progression sauvegardée dans le navigateur.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="italien-flashcards" data-matiere="italien">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="../maths/index.html">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="index.html" aria-current="true">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Italien</a><span class="sep">›</span><span>Flashcards</span>
+</nav>
+
+<main>
+  <h1>Flashcards Italien — grammaire, vocabulaire, civilisation</h1>
+  <p class="lead">32 cartes couvrant les 4 fiches du programme. Répétition espacée façon Leitner : une carte sue s'éloigne, une carte ratée revient tout de suite. Progression sauvegardée dans ce navigateur.</p>
+  <p id="flashcards-counter" class="small muted"></p>
+
+  <div id="flashcards-app"></div>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="formulaire.html"><span class="pn-label">Réviser le cours</span>← Formulaire / Mémo</a>
+    <a class="next" href="annales.html"><span class="pn-label">S'entraîner</span>Annales →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Italien. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<script>
+var FLASHCARDS = [
+  { q: "Essere ou avere avec les verbes de mouvement (andare, partire) ?", a: "Essere, avec accord du participe : <em>Maria è partita</em>." },
+  { q: "Comment accorder le participe avec un pronom COD (lo/la/li/le) et avere ?", a: "L'accord devient obligatoire : <em>l'ho vista</em>, <em>li ho letti</em>." },
+  { q: "Quand utiliser l'imperfetto plutôt que le passato prossimo ?", a: "Pour l'arrière-plan, la description, l'habitude — <em>pioveva quando…</em>" },
+  { q: "À quoi sert le passato remoto ?", a: "Au récit historique et littéraire, coupé du présent — <em>Garibaldi sbarcò a Marsala nel 1860</em>." },
+  { q: "Comment traduire « il a dit qu'il viendrait » en italien ?", a: "Ha detto che <em>sarebbe venuto</em> — conditionnel passé, jamais le conditionnel présent." },
+  { q: "Quel mode après « credo che », « penso che » ?", a: "Le subjonctif, contrairement au français : <em>Credo che sia vero</em>." },
+  { q: "Quel mode après « se » dans l'irréel du présent ?", a: "Congiuntivo imperfetto, jamais le conditionnel : <em>Se potessi, verrei</em>." },
+  { q: "Quel temps après « quando » à valeur future ?", a: "Le futur : <em>Quando arriverà, ne parleremo</em> (jamais le présent)." },
+  { q: "« La gente » est-il singulier ou pluriel en italien ?", a: "Singulier : <em>la gente è simpatica</em>." },
+  { q: "Que signifie « ci vogliono due ore » ?", a: "« Il faut deux heures » — ci vuole (singulier) / ci vogliono (pluriel)." },
+  { q: "Comment traduire « on mange bien en Italie » ?", a: "In Italia <em>si mangia</em> bene — si impersonnel." },
+  { q: "Comment accorder le participe avec « ne » quantitatif ?", a: "Accord obligatoire : <em>ne ho lette tre</em> (trois livres)." },
+  { q: "Traduire « fermare » — faux ami classique.", a: "Arrêter (« fermer » se dit <em>chiudere</em>)." },
+  { q: "Traduire « salire » — faux ami classique.", a: "Monter (« salir » se dit <em>sporcare</em>)." },
+  { q: "Traduire « sentire » — faux ami classique.", a: "Entendre / ressentir (« sentir bon » se dit <em>profumare</em>)." },
+  { q: "Traduire « la fattoria » — faux ami classique.", a: "La ferme (« l'usine » se dit <em>la fabbrica</em>)." },
+  { q: "Traduire « morbido » — faux ami classique.", a: "Doux, moelleux (« morbide » se dit <em>morboso</em>)." },
+  { q: "Traduire « riuscire a » — faux ami classique.", a: "Réussir à faire quelque chose (« réussir un examen » se dit <em>superare un esame</em>)." },
+  { q: "En quelle année naît la République italienne ?", a: "1946, par référendum (2 juin) ; Constitution en vigueur en 1948." },
+  { q: "Qu'est-ce que le « bicameralismo perfetto » ?", a: "Les deux chambres (Camera et Senato) ont exactement les mêmes pouvoirs, y compris voter la confiance." },
+  { q: "Que désigne « Mani pulite » (1992) ?", a: "Les enquêtes anticorruption de Milan qui ont fait s'effondrer les partis de la Première République." },
+  { q: "Qui sont Falcone et Borsellino, et que leur est-il arrivé ?", a: "Deux juges antimafia assassinés par Cosa Nostra en 1992 (Capaci, via d'Amelio)." },
+  { q: "Quelle est la mafia la plus puissante aujourd'hui, selon les fiches ?", a: "La 'Ndrangheta calabraise, dominante dans le trafic international de cocaïne." },
+  { q: "Quel est le niveau de la dette publique italienne (ordre de grandeur) ?", a: "≈ 135-140 % du PIB — 2<sup>e</sup> ratio de la zone euro après la Grèce." },
+  { q: "Qu'est-ce que la « questione meridionale » ?", a: "L'écart persistant de développement entre le Sud (Mezzogiorno) et le Centre-Nord de l'Italie." },
+  { q: "Quel est le taux de fécondité de l'Italie (ordre de grandeur) ?", a: "≈ 1,2 enfant par femme — « hiver démographique »." },
+  { q: "Qu'est-ce que le PNRR ?", a: "Le plan de relance européen post-Covid ; l'Italie en est la première bénéficiaire (≈190 Md€)." },
+  { q: "Que symbolise Lampedusa dans le débat italien ?", a: "La frontière maritime de l'UE et les drames migratoires (naufrage du 3 octobre 2013)." },
+  { q: "Comment dit-on « finalement » en connecteur d'essai italien ?", a: "Infine / alla fine." },
+  { q: "Comment dit-on « pourtant / cependant » en italien de presse ?", a: "Tuttavia / eppure." },
+  { q: "Comment dit-on « en ce qui concerne » en italien de presse ?", a: "Per quanto riguarda." },
+  { q: "Que signifie « la fuga dei cervelli » ?", a: "La fuite des cerveaux — l'émigration des jeunes diplômés italiens, notamment du Sud." }
+];
+</script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/flashcards.js"></script>
+</body>
+</html>

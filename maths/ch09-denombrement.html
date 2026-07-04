@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 1,5 semaine de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Utiliser les principes additif et multiplicatif du dénombrement.</li>
+      <li>Distinguer \(p\)-listes, arrangements, permutations et combinaisons selon l'ordre et la répétition.</li>
+      <li>Choisir le bon modèle de comptage face à un énoncé concret.</li>
+      <li>Dénombrer par passage au complémentaire (« au moins un ») et par double comptage.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +61,7 @@
       <li><a href="#s3">Arrangements et permutations</a></li>
       <li><a href="#s4">Combinaisons</a></li>
       <li><a href="#s5">Choisir le bon modèle</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -134,6 +146,19 @@
       <li>Ne pas additionner des cas qui se recouvrent : vérifier que la disjonction de cas est bien une <em>partition</em>.</li>
       <li>Comité avec contrainte « exactement \(k\) femmes » : produit de deux combinaisons \(\binom{f}{k}\binom{h}{p-k}\), pas une somme.</li>
       <li>\(\binom np\) compte des <em>parties</em> : si l'énoncé distingue des rôles (président, trésorier…), l'ordre compte, utiliser des arrangements.</li>
+    </ul>
+  </div>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>\(p\)-listes</strong> d'un ensemble à \(n\) éléments (ordre + répétition) : \(n^p\).</li>
+      <li><strong>Arrangements</strong> (ordre, sans répétition) : \(A_n^p = \dfrac{n!}{(n-p)!} = n(n-1)\cdots(n-p+1)\).</li>
+      <li><strong>Permutations</strong> de \(n\) objets : \(n!\).</li>
+      <li><strong>Combinaisons</strong> (sans ordre, sans répétition) : \(\dbinom{n}{p} = \dfrac{n!}{p!(n-p)!}\).</li>
+      <li><strong>Choix du modèle</strong> : l'ordre compte-t-il ? peut-on répéter ? — 4 cas.</li>
+      <li><strong>Techniques</strong> : « au moins un » = total \(-\) « aucun » ; nombre de parties de \(E\) : \(2^n\) ; double comptage.</li>
     </ul>
   </div>
 
@@ -273,6 +298,131 @@
       <p class="small muted">C'est la preuve combinatoire de l'identité de Vandermonde, démontrée par polynômes au chapitre 2 (exercice 9).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Codes à quatre chiffres</h3><span class="level level-1">Application directe</span></div>
+    <p>Un code est formé de 4 chiffres (de 0 à 9). 1. Combien de codes au total ? 2. Combien à quatre chiffres distincts ? 3. Combien commençant par un chiffre pair ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Chaque position a 10 choix (ordre + répétition) : \(10^4 = 10\,000\).</p>
+      <p><strong>2.</strong> Chiffres distincts = arrangement de 4 chiffres parmi 10 : \(A_{10}^4 = 10 \times 9 \times 8 \times 7 = 5040\).</p>
+      <p><strong>3.</strong> Premier chiffre pair (parmi \(\{0,2,4,6,8\}\), 5 choix), les trois autres libres : \(5 \times 10^3 = 5000\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Podium</h3><span class="level level-1">Application directe</span></div>
+    <p>Une course compte 8 concurrents. Combien de podiums (or, argent, bronze) distincts sont possibles ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>L'ordre compte (les trois médailles sont distinctes) et il n'y a pas de répétition : c'est un arrangement de 3 concurrents parmi 8. \(A_8^3 = 8 \times 7 \times 6 = 336\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Formation d'un comité</h3><span class="level level-1">Application directe</span></div>
+    <p>Dans un groupe de 12 personnes, on forme un comité de 4 personnes. 1. Combien de comités possibles ? 2. Combien contiennent une personne donnée (Alice) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> L'ordre ne compte pas, pas de répétition : \(\binom{12}{4} = \dfrac{12 \times 11 \times 10 \times 9}{24} = 495\).</p>
+      <p><strong>2.</strong> Alice étant imposée, on complète avec 3 personnes parmi les 11 restantes : \(\binom{11}{3} = 165\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Anagrammes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Combien d'anagrammes (mots ayant un sens ou non) peut-on former avec les lettres du mot <strong>ANAGRAMME</strong> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Le mot ANAGRAMME a 9 lettres, dont le <strong>A</strong> répété 3 fois et le <strong>M</strong> répété 2 fois (N, G, R, E une fois). Le nombre d'anagrammes est le nombre de permutations avec répétitions :</p>
+      <p>\[ \frac{9!}{3! \times 2!} = \frac{362\,880}{6 \times 2} = 30\,240. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Au moins un six</h3><span class="level level-2">Entraînement</span></div>
+    <p>On lance 4 dés à 6 faces, discernables. Combien de résultats (ordonnés) comportent au moins un 6 ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On passe par le complémentaire. Nombre total de résultats : \(6^4 = 1296\). Nombre de résultats sans aucun 6 (chaque dé a 5 issues possibles) : \(5^4 = 625\). Donc « au moins un 6 » : \(1296 - 625 = 671\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Tirage avec contraintes de couleur</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une urne contient 5 boules rouges et 3 boules noires (toutes discernables). On en tire 3 <em>simultanément</em>. 1. Combien de tirages ? 2. Combien contiennent exactement 2 rouges ? 3. Combien contiennent au moins une noire ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Tirage simultané = combinaison : \(\binom{8}{3} = 56\).</p>
+      <p><strong>2.</strong> 2 rouges parmi 5 <em>et</em> 1 noire parmi 3 : \(\binom{5}{2}\binom{3}{1} = 10 \times 3 = 30\).</p>
+      <p><strong>3.</strong> Complémentaire de « aucune noire » (donc 3 rouges) : \(56 - \binom{5}{3} = 56 - 10 = 46\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Chemins sur une grille</h3><span class="level level-2">Entraînement</span></div>
+    <p>Sur une grille, on va de \((0,0)\) à \((4,3)\) par des pas élémentaires « vers la droite » (\(+1\) en abscisse) ou « vers le haut » (\(+1\) en ordonnée). Combien de chemins possibles ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Un chemin est une suite de \(4 + 3 = 7\) pas, dont exactement 4 « droite » et 3 « haut ». Choisir un chemin revient à choisir les positions des 3 pas « haut » parmi les 7 : \(\binom{7}{3} = 35\) (ou de façon équivalente \(\binom{7}{4} = 35\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Applications et injections (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \(E\) à \(p\) éléments et \(F\) à \(n\) éléments avec \(p \leqslant n\). 1. Combien d'applications de \(E\) dans \(F\) ? 2. Combien d'applications <em>injectives</em> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Une application associe à chacun des \(p\) éléments de \(E\) une image parmi les \(n\) éléments de \(F\), indépendamment : c'est une \(p\)-liste de \(F\), soit \(n^p\) applications.</p>
+      <p><strong>2.</strong> Pour une injection, les images doivent être <strong>distinctes</strong> : on choisit l'image du 1er élément (\(n\) façons), puis du 2e (\(n-1\)), …, du \(p\)-ième (\(n - p + 1\)). Cela fait \(A_n^p = \dfrac{n!}{(n-p)!}\) applications injectives.</p>
+      <p class="small muted">Interprétation : placer \(p\) personnes distinctes sur \(n\) chaises numérotées, une par chaise.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Mains d'un jeu de 32 cartes (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un jeu de 32 cartes comporte 8 valeurs et 4 couleurs. On tire une main de 5 cartes. 1. Combien de mains ? 2. Combien contenant un carré (les 4 cartes d'une même valeur) ? 3. Combien contenant exactement une paire (deux cartes de même valeur, les trois autres de valeurs toutes différentes entre elles et de la paire) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\binom{32}{5} = 201\,376\).</p>
+      <p><strong>2.</strong> On choisit la valeur du carré (8 façons), on prend ses 4 cartes (1 façon), et la 5<sup>e</sup> carte parmi les 28 restantes : \(8 \times 28 = 224\).</p>
+      <p><strong>3.</strong> Valeur de la paire : 8 choix ; ses 2 couleurs : \(\binom{4}{2} = 6\) ; les 3 autres valeurs (distinctes) parmi les 7 restantes : \(\binom{7}{3} = 35\) ; pour chacune, une couleur parmi 4 : \(4^3 = 64\). Total : \(8 \times 6 \times 35 \times 64 = 107\,520\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Preuve combinatoire de \(\sum \binom{n}{k} = 2^n\)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Démontrer, par un raisonnement de dénombrement (sans le binôme de Newton), que \(\displaystyle\sum_{k=0}^{n} \binom{n}{k} = 2^n\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On compte de deux façons le nombre de <strong>parties</strong> d'un ensemble \(E\) à \(n\) éléments.</p>
+      <p><strong>Première façon :</strong> pour construire une partie, chaque élément est « pris » ou « non pris », soit 2 choix indépendants par élément : \(2^n\) parties.</p>
+      <p><strong>Seconde façon :</strong> on classe les parties selon leur cardinal \(k\). Il y a \(\binom{n}{k}\) parties à \(k\) éléments, et \(k\) varie de 0 à \(n\), d'où \(\sum_{k=0}^{n}\binom{n}{k}\) parties au total.</p>
+      <p>Ces deux comptages donnent le même nombre : \(\sum_{k=0}^{n}\binom{n}{k} = 2^n\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Mots avec répétition (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On considère les mots de 5 lettres formés sur l'alphabet de 26 lettres (avec ou sans sens). Combien contiennent au moins deux fois une même lettre ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On passe par le complémentaire « toutes les lettres distinctes ». Nombre total de mots de 5 lettres : \(26^5 = 11\,881\,376\). Nombre de mots à 5 lettres <em>toutes distinctes</em> : \(A_{26}^5 = 26 \times 25 \times 24 \times 23 \times 22 = 7\,893\,600\).</p>
+      <p>Donc le nombre de mots comportant au moins une répétition est :</p>
+      <p>\[ 26^5 - A_{26}^5 = 11\,881\,376 - 7\,893\,600 = 3\,987\,776. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

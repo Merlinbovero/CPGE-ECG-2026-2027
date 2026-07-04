@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 1 · semestre 1</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Connaître les fonctions et formes de la monnaie et le débat théorique sur sa neutralité.</li>
+      <li>Comprendre le mécanisme de la création monétaire par le crédit et les rôles de la banque centrale.</li>
+      <li>Distinguer financement intermédié et financement direct, actions et obligations.</li>
+      <li>Analyser les fonctions et l'instabilité potentielle des marchés financiers.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. La création monétaire et la banque centrale</a></li>
       <li><a href="#s3">III. Le financement de l'économie</a></li>
       <li><a href="#chiffres">Repères et chiffres mobilisables</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices</a></li>
     </ol>
   </nav>
@@ -100,6 +112,11 @@
     <figcaption>« Les crédits font les dépôts » — le remboursement détruit la monnaie créée.</figcaption>
   </figure>
 
+  <div class="box warn">
+    <span class="box-title">Piège de copie</span>
+    <p>Ne jamais écrire que la banque prête « l'argent des déposants » : ce modèle du prêt d'intermédiation pure (vrai pour un fonds d'investissement) est <strong>faux pour une banque commerciale</strong>, qui crée la monnaie qu'elle prête. Autre confusion fréquente : la banque centrale ne crée pas « toute » la monnaie — elle crée la <em>monnaie centrale</em> (billets, réserves) qui sert de base et de contrainte à la création par les banques commerciales.</p>
+  </div>
+
   <h3>II.2. La banque centrale et la politique monétaire</h3>
   <div class="box def">
     <span class="box-title">Rôles de la banque centrale</span>
@@ -138,6 +155,20 @@
     <li><strong>2008</strong> : faillite de Lehman Brothers (15 septembre) — le prêteur en dernier ressort et les plans de sauvetage bancaire deviennent centraux ; <strong>2012</strong> « whatever it takes » ; <strong>2015</strong> QE de la BCE.</li>
     <li>Masse monétaire M3 zone euro ≈ 16 000 Md€ ; plus de 90 % de la monnaie est scripturale.</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>3 fonctions</strong> : intermédiaire des échanges, unité de compte, réserve de valeur (fragilisée par l'inflation).</li>
+      <li><strong>Théorie quantitative</strong> : Bodin (1568), Fisher (1911, \(MV=PT\)), Friedman — monnaie neutre à long terme. <strong>Keynes</strong> : monnaie active (préférence pour la liquidité).</li>
+      <li><strong>« Les crédits font les dépôts »</strong> : création <em>ex nihilo</em>, limites = demande solvable, monnaie centrale, ratios prudentiels, taux directeurs.</li>
+      <li><strong>Banque centrale</strong> : politique monétaire (cible d'inflation 2 %), prêteur en dernier ressort (Bagehot, 1873), non conventionnel depuis 2008 (QE, taux négatifs, Draghi 2012).</li>
+      <li><strong>Financement</strong> : intermédié (banques, Diamond 1984) vs direct (actions/obligations, Gurley-Shaw 1960) ; désintermédiation depuis les 3 D (Bourguinat).</li>
+      <li><strong>Marchés financiers</strong> : efficience (Fama 1970) vs instabilité comportementale (Shiller 2000, Minsky) — Nobel partagé 2013.</li>
+      <li><strong>Piège à éviter</strong> : la banque ne prête pas l'épargne des déposants, elle crée la monnaie du crédit.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -234,6 +265,9 @@
       <li>Qu'est-ce que le prêteur en dernier ressort (auteur, règle) ?</li>
       <li>Distinguer financement intermédié et financement direct ; actions et obligations.</li>
       <li>Citer les « 3 D » de la globalisation financière.</li>
+      <li>Qu'est-ce que la neutralité de la monnaie ? Qui la défend, qui la conteste ?</li>
+      <li>Qu'est-ce que la titrisation et quel rôle a-t-elle joué en 2008 ?</li>
+      <li>Distinguer politique monétaire conventionnelle et non conventionnelle.</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -243,6 +277,9 @@
         <li>Bagehot (<em>Lombard Street</em>, 1873) : en cas de panique, la banque centrale doit prêter sans limite, à taux pénalisant, contre bon collatéral, aux banques illiquides mais solvables — pour casser la ruée sans encourager l'aléa moral.</li>
         <li>Intermédié : la banque s'interpose (crédit) et porte le risque. Direct : émission de titres sur les marchés. Action = titre de propriété (dividende variable, droit de vote) ; obligation = titre de créance (intérêt contractuel, remboursement à échéance).</li>
         <li>Déréglementation, désintermédiation, décloisonnement (Bourguinat, années 1980).</li>
+        <li>Neutralité : à long terme, une variation de la masse monétaire ne modifie que le niveau des prix, pas les grandeurs réelles (production, emploi) — défendue par la théorie quantitative (Fisher, Friedman). Contestée par Keynes (préférence pour la liquidité, effets réels à court terme) et par les nouveaux keynésiens (rigidités nominales).</li>
+        <li>La titrisation transforme des créances (crédits immobiliers) en titres financiers négociables (MBS, CDO), vendus à des investisseurs pour transférer le risque hors du bilan bancaire. En 2008, l'opacité de ces montages (notation excessive, sous-jacents risqués — subprimes) a diffusé le risque immobilier américain à l'ensemble du système financier mondial.</li>
+        <li>Conventionnelle : action sur les taux directeurs (coût du refinancement). Non conventionnelle (depuis 2008, taux déjà proches de zéro) : achats massifs de titres (QE), taux de dépôt négatifs, forward guidance (engagement sur la trajectoire future des taux) — pour continuer à assouplir les conditions monétaires quand l'outil des taux est épuisé.</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -291,6 +328,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Une banque commerciale prête l'argent préalablement déposé par ses clients.</p>
+        <label><input type="radio" name="vf1"> Vrai</label>
+        <label><input type="radio" name="vf1" data-correct> Faux</label>
+        <div class="qcm-explication">Elle crée la monnaie du crédit ex nihilo — « les crédits font les dépôts ».</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. L'objectif principal de la BCE est la stabilité des prix, autour de 2 % d'inflation à moyen terme.</p>
+        <label><input type="radio" name="vf2" data-correct> Vrai</label>
+        <label><input type="radio" name="vf2"> Faux</label>
+        <div class="qcm-explication">Contrairement à la Fed, qui a un double mandat (prix + emploi).</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. Un actionnaire est un créancier de l'entreprise.</p>
+        <label><input type="radio" name="vf3"> Vrai</label>
+        <label><input type="radio" name="vf3" data-correct> Faux</label>
+        <div class="qcm-explication">L'actionnaire est propriétaire (part du capital) ; l'obligataire est créancier.</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Le quantitative easing (QE) consiste pour la banque centrale à acheter massivement des titres pour injecter des liquidités.</p>
+        <label><input type="radio" name="vf4" data-correct> Vrai</label>
+        <label><input type="radio" name="vf4"> Faux</label>
+        <div class="qcm-explication">Politique non conventionnelle utilisée par la BCE à partir de 2015.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document statistique</h3><span class="level level-2">Entraînement</span></div>
     <p>Taux directeur de la BCE (taux de refinancement, valeurs de fin d'année) :</p>
     <div class="table-scroll"><table>
@@ -304,7 +372,7 @@
       <p><strong>2.</strong> 2008-2009 : crise financière → baisse d'urgence pour soutenir crédit et demande. 2010-2015 : crise des dettes souveraines et menace déflationniste → taux zéro, puis QE (2015) et taux de dépôt négatifs. 2021 : sortie du Covid. 2022-2023 : inflation à 10,6 % (choc énergétique post-invasion de l'Ukraine + goulets post-Covid) → normalisation accélérée.</p>
       <p><strong>3.</strong> Canal du crédit et de la demande : hausse des taux directeurs → renchérissement du refinancement bancaire → hausse des taux des crédits (immobilier, investissement) → freinage de la demande → détente des prix ; s'y ajoutent le canal des anticipations (crédibilité de la cible de 2 %) et le canal du change (euro plus fort → importations moins chères). Coût assumé : ralentissement de l'activité et du marché immobilier.</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
