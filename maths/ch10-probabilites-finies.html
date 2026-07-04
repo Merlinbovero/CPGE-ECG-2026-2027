@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 2 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Modéliser une expérience aléatoire (univers, événements) et calculer par équiprobabilité.</li>
+      <li>Utiliser les probabilités conditionnelles et les formules des probabilités composées et totales.</li>
+      <li>Appliquer la formule de Bayes (retour aux causes, tests).</li>
+      <li>Reconnaître et exploiter l'indépendance d'événements.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -52,6 +63,7 @@
       <li><a href="#s5">Probabilités composées et probabilités totales</a></li>
       <li><a href="#s6">La formule de Bayes</a></li>
       <li><a href="#s7">Indépendance</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -169,6 +181,20 @@
     <ul>
       <li>Indépendant ≠ incompatible ! Deux événements incompatibles de probabilités non nulles ne sont <em>jamais</em> indépendants (\(P(A\cap B) = 0 \neq P(A)P(B)\)).</li>
       <li>L'indépendance se <strong>démontre</strong> (par le calcul) ou se <strong>justifie par la modélisation</strong> (« les lancers sont indépendants ») — elle ne se devine pas.</li>
+    </ul>
+  </div>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Règles</strong> : \(P(\overline A) = 1 - P(A)\) ; \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\).</li>
+      <li><strong>Équiprobabilité</strong> : \(P(A) = \dfrac{|A|}{|\Omega|}\) (dénombrement, chapitre 9).</li>
+      <li><strong>Conditionnelle</strong> : \(P_B(A) = \dfrac{P(A \cap B)}{P(B)}\) (\(P(B) &gt; 0\)).</li>
+      <li><strong>Composées</strong> : \(P(A \cap B) = P(A)\,P_A(B)\) ; en chaîne : \(P(A_1 \cap \dots \cap A_n) = P(A_1)P_{A_1}(A_2)\cdots\).</li>
+      <li><strong>Probabilités totales</strong> (système complet \((B_i)\)) : \(P(A) = \sum_i P(B_i)\,P_{B_i}(A)\).</li>
+      <li><strong>Bayes</strong> : \(P_A(B_i) = \dfrac{P(B_i)\,P_{B_i}(A)}{\sum_j P(B_j)\,P_{B_j}(A)}\).</li>
+      <li><strong>Indépendance</strong> : \(A \perp B \iff P(A \cap B) = P(A)P(B)\) (ne pas confondre avec « incompatibles » : \(A \cap B = \varnothing\)).</li>
     </ul>
   </div>
 
@@ -308,6 +334,138 @@
       <p>Savoir que le 2<sup>e</sup> tirage est blanc rend plus probable que le 1<sup>er</sup> l'ait été : le mécanisme de renforcement crée une dépendance positive entre tirages — les événements \(B_1\) et \(B_2\) ne sont pas indépendants.</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Deux dés</h3><span class="level level-1">Application directe</span></div>
+    <p>On lance deux dés équilibrés discernables. Calculer : 1. \(P(\text{somme} = 7)\) ; 2. \(P(\text{somme} \geqslant 10)\) ; 3. \(P(\text{deux résultats identiques})\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>L'univers est équiprobable de cardinal \(6^2 = 36\).</p>
+      <p><strong>1.</strong> Somme 7 : \((1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\), soit 6 cas. \(P = \frac{6}{36} = \frac16\).</p>
+      <p><strong>2.</strong> Somme \(\geqslant 10\) : somme 10 (3 cas), 11 (2 cas), 12 (1 cas), total 6. \(P = \frac{6}{36} = \frac16\).</p>
+      <p><strong>3.</strong> Résultats identiques : les 6 « doubles ». \(P = \frac{6}{36} = \frac16\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Réunion et complémentaire</h3><span class="level level-1">Application directe</span></div>
+    <p>Dans une classe, la probabilité qu'un élève fasse du sport est \(0{,}6\), de la musique \(0{,}5\), des deux \(0{,}3\). 1. Probabilité qu'il fasse du sport ou de la musique ? 2. Ni l'un ni l'autre ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(P(S \cup M) = P(S) + P(M) - P(S \cap M) = 0{,}6 + 0{,}5 - 0{,}3 = 0{,}8\).</p>
+      <p><strong>2.</strong> \(P(\overline{S \cup M}) = 1 - 0{,}8 = 0{,}2\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Conditionnelle et indépendance</h3><span class="level level-1">Application directe</span></div>
+    <p>On tire une carte d'un jeu de 32 cartes. Soit \(A\) = « la carte est un roi » et \(B\) = « la carte est un cœur ». 1. Calculer \(P(A)\), \(P(B)\), \(P(A \cap B)\). 2. Calculer \(P_B(A)\). 3. \(A\) et \(B\) sont-ils indépendants ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(P(A) = \frac{4}{32} = \frac18\), \(P(B) = \frac{8}{32} = \frac14\), \(P(A \cap B) = P(\text{roi de cœur}) = \frac{1}{32}\).</p>
+      <p><strong>2.</strong> \(P_B(A) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{1/32}{1/4} = \dfrac{4}{32} = \dfrac18\).</p>
+      <p><strong>3.</strong> \(P(A)P(B) = \frac18 \times \frac14 = \frac{1}{32} = P(A \cap B)\) : \(A\) et \(B\) sont <strong>indépendants</strong> (on le voit aussi car \(P_B(A) = P(A)\)).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Tirages sans remise</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une urne contient 4 boules blanches et 6 noires. On tire successivement 3 boules <em>sans remise</em>. Quelle est la probabilité d'obtenir 3 blanches ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par la formule des probabilités composées (on suit les tirages) :</p>
+      <p>\[ P(\text{3 blanches}) = \frac{4}{10} \times \frac{3}{9} \times \frac{2}{8} = \frac{24}{720} = \frac{1}{30}. \]</p>
+      <p class="small muted">On retrouve le résultat par dénombrement : \(\dfrac{\binom{4}{3}}{\binom{10}{3}} = \dfrac{4}{120} = \dfrac{1}{30}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Probabilités totales (deux usines)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une entreprise a deux usines : A produit 60 % des pièces (dont 2 % défectueuses), B produit 40 % des pièces (dont 5 % défectueuses). On prélève une pièce au hasard. Quelle est la probabilité qu'elle soit défectueuse ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\((A, B)\) forme un système complet. Par la formule des probabilités totales :</p>
+      <p>\[ P(D) = P(A)P_A(D) + P(B)P_B(D) = 0{,}6 \times 0{,}02 + 0{,}4 \times 0{,}05 = 0{,}012 + 0{,}020 = 0{,}032, \]</p>
+      <p>soit 3,2 % de pièces défectueuses.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Formule de Bayes (retour à la cause)</h3><span class="level level-2">Entraînement</span></div>
+    <p>On reprend l'exercice 14. Sachant que la pièce prélevée est défectueuse, quelle est la probabilité qu'elle provienne de l'usine A ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par la formule de Bayes :</p>
+      <p>\[ P_D(A) = \frac{P(A)P_A(D)}{P(D)} = \frac{0{,}012}{0{,}032} = \frac{12}{32} = \frac38 = 0{,}375. \]</p>
+      <p>Une pièce défectueuse a donc 37,5 % de « chances » de venir de A (bien que A produise plus de pièces, sa qualité est meilleure).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Vérifier une indépendance</h3><span class="level level-2">Entraînement</span></div>
+    <p>On lance un dé équilibré. Soit \(A = \{2, 4, 6\}\) (« pair ») et \(B = \{3, 4, 5, 6\}\) (« au moins 3 »). Les événements \(A\) et \(B\) sont-ils indépendants ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(P(A) = \frac36 = \frac12\), \(P(B) = \frac46 = \frac23\), et \(A \cap B = \{4, 6\}\) donc \(P(A \cap B) = \frac26 = \frac13\).</p>
+      <p>Or \(P(A)P(B) = \frac12 \times \frac23 = \frac13 = P(A \cap B)\) : les événements \(A\) et \(B\) sont <strong>indépendants</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Arbre et Bayes (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Deux urnes : \(U_1\) contient 3 rouges et 2 noires, \(U_2\) contient 1 rouge et 4 noires. On choisit une urne au hasard (chacune avec probabilité \(\frac12\)) puis on y tire une boule. 1. Probabilité de tirer une rouge ? 2. Sachant que la boule est rouge, probabilité qu'elle vienne de \(U_1\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Probabilités totales : \(P(R) = \frac12 \times \frac35 + \frac12 \times \frac15 = \frac12 \times \frac45 = \frac25\).</p>
+      <p><strong>2.</strong> Bayes : \(P_R(U_1) = \dfrac{\frac12 \times \frac35}{\frac25} = \dfrac{3/10}{2/5} = \dfrac{3}{10} \times \dfrac52 = \dfrac{3}{4}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Au moins un succès (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On répète \(n\) fois, de façon indépendante, une épreuve dont la probabilité de succès est \(\frac14\). 1. Exprimer la probabilité d'obtenir au moins un succès. 2. Combien d'épreuves faut-il pour que cette probabilité dépasse \(0{,}9\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Par indépendance, la probabilité de n'obtenir <em>aucun</em> succès est \(\left(\frac34\right)^n\). Donc \(P(\text{au moins un}) = 1 - \left(\frac34\right)^n\).</p>
+      <p><strong>2.</strong> On veut \(1 - \left(\frac34\right)^n &gt; 0{,}9\), soit \(\left(\frac34\right)^n &lt; 0{,}1\). En passant au \(\ln\) (croissant) : \(n\ln\frac34 &lt; \ln 0{,}1\), et comme \(\ln\frac34 &lt; 0\) l'inégalité change de sens : \(n &gt; \dfrac{\ln 0{,}1}{\ln 0{,}75} \approx 8{,}0\). Comme \(\left(\frac34\right)^8 \approx 0{,}100 &gt; 0{,}1\) et \(\left(\frac34\right)^9 \approx 0{,}075 &lt; 0{,}1\), il faut \(n \geqslant 9\) épreuves.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Bayes à trois causes (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Trois urnes équiprobables : \(U_1\) (2R, 3N), \(U_2\) (4R, 1N), \(U_3\) (3R, 2N). On choisit une urne au hasard et on y tire une boule, qui se révèle rouge. Déterminer, pour chaque urne, la probabilité qu'elle ait été choisie.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Probabilité de tirer une rouge (probabilités totales) : \(P(R) = \frac13\left(\frac25 + \frac45 + \frac35\right) = \frac13 \times \frac95 = \frac35\).</p>
+      <p>Par Bayes :</p>
+      <p>\[ P_R(U_1) = \frac{\frac13 \cdot \frac25}{\frac35} = \frac{2}{9}, \quad P_R(U_2) = \frac{\frac13 \cdot \frac45}{\frac35} = \frac{4}{9}, \quad P_R(U_3) = \frac{\frac13 \cdot \frac35}{\frac35} = \frac{3}{9} = \frac13. \]</p>
+      <p>La somme vaut \(\frac{2 + 4 + 3}{9} = 1\) (contrôle), et l'urne \(U_2\), la plus riche en rouges, est la plus probable.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Marche d'une puce (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Une puce se déplace entre deux positions A et B. À chaque étape : si elle est en A, elle passe en B (avec certitude) ; si elle est en B, elle passe en A avec probabilité \(\frac12\) (et reste en B sinon). Elle démarre en A. On note \(p_n\) la probabilité qu'elle soit en A à l'étape \(n\) (\(p_0 = 1\)). 1. Établir une relation entre \(p_{n+1}\) et \(p_n\). 2. En déduire \(p_n\) et sa limite.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Pour être en A à l'étape \(n+1\), la puce doit être en B à l'étape \(n\) (probabilité \(1 - p_n\)) puis sauter en A (probabilité \(\frac12\)). Par probabilités totales :</p>
+      <p>\[ p_{n+1} = (1 - p_n) \times \frac12 = \frac12 - \frac12 p_n. \]</p>
+      <p><strong>2.</strong> C'est une suite arithmético-géométrique. Point fixe : \(\ell = \frac12 - \frac12\ell \Rightarrow \frac32\ell = \frac12 \Rightarrow \ell = \frac13\). Alors \(p_n - \frac13\) est géométrique de raison \(-\frac12\) :</p>
+      <p>\[ p_n = \frac13 + \left(p_0 - \frac13\right)\left(-\frac12\right)^n = \frac13 + \frac23\left(-\frac12\right)^n \xrightarrow[n \to +\infty]{} \frac13. \]</p>
+      <p><em>Vérification :</em> \(p_0 = \frac13 + \frac23 = 1\) et \(p_1 = \frac13 - \frac13 = 0\) (à l'étape 1, la puce est sûrement en B). ✓</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
