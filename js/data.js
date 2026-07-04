@@ -144,6 +144,12 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "La synthèse", "Les khôlles orales"] },
     { id: "anglais-exos", m: "anglais", n: "5", t: "Exercices corrigés d'anglais", u: "anglais/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Versions corrigées", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "anglais-formulaire", m: "anglais", r: true, n: "", t: "Formulaire / Mémo — anglais", u: "anglais/formulaire.html",
+      s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
+    { id: "anglais-flashcards", m: "anglais", r: true, n: "", t: "Flashcards anglais", u: "anglais/flashcards.html",
+      s: ["Répétition espacée", "Grammaire", "Vocabulaire", "Civilisation"] },
+    { id: "anglais-annales", m: "anglais", r: true, n: "", t: "Annales BCE / Ecricome — anglais", u: "anglais/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- LVB Italien ---------- */
     { id: "italien-civi", m: "italien", n: "1", t: "Civilisation : l'Italie contemporaine", u: "italien/civilisation.html",
@@ -156,6 +162,12 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "Les khôlles orales"] },
     { id: "italien-exos", m: "italien", n: "5", t: "Exercices corrigés d'italien", u: "italien/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Version corrigée", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "italien-formulaire", m: "italien", r: true, n: "", t: "Formulaire / Mémo — italien", u: "italien/formulaire.html",
+      s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
+    { id: "italien-flashcards", m: "italien", r: true, n: "", t: "Flashcards italien", u: "italien/flashcards.html",
+      s: ["Répétition espacée", "Grammaire", "Vocabulaire", "Civilisation"] },
+    { id: "italien-annales", m: "italien", r: true, n: "", t: "Annales BCE / Ecricome — italien", u: "italien/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- Méthodologie & concours ---------- */
     { id: "methodo-organisation", m: "methodo", n: "1", t: "Organisation du travail en prépa", u: "methodologie/organisation.html",

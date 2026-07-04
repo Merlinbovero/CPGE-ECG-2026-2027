@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards Anglais — ECG1</title>
+<meta name="description" content="Flashcards à répétition espacée pour réviser la grammaire, le vocabulaire et la civilisation anglais LVA ECG1. Fonctionne hors ligne, progression sauvegardée dans le navigateur.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="anglais-flashcards" data-matiere="anglais">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="../maths/index.html">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="index.html" aria-current="true">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Anglais</a><span class="sep">›</span><span>Flashcards</span>
+</nav>
+
+<main>
+  <h1>Flashcards Anglais — grammaire, vocabulaire, civilisation</h1>
+  <p class="lead">32 cartes couvrant les 4 fiches du programme. Répétition espacée façon Leitner : une carte sue s'éloigne, une carte ratée revient tout de suite. Progression sauvegardée dans ce navigateur.</p>
+  <p id="flashcards-counter" class="small muted"></p>
+
+  <div id="flashcards-app"></div>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="formulaire.html"><span class="pn-label">Réviser le cours</span>← Formulaire / Mémo</a>
+    <a class="next" href="annales.html"><span class="pn-label">S'entraîner</span>Annales →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Anglais. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<script>
+var FLASHCARDS = [
+  { q: "Comment traduit-on « depuis dix ans » avec une action qui dure encore ?", a: "Present perfect + for : <em>She has been working here for ten years</em>." },
+  { q: "Quelle est la règle après « when », « as soon as », « until » pour parler du futur ?", a: "On emploie le présent, jamais « will » : <em>when the economy recovers…</em>" },
+  { q: "Que signifie « must have known » ?", a: "« A certainement su » — modal + have + V-en = quasi-certitude sur le passé." },
+  { q: "Différence entre « don't have to » et « mustn't » ?", a: "Don't have to = pas obligé (absence d'obligation). Mustn't = interdit." },
+  { q: "Comment dit-on « on dit que cette banque est fragile » ?", a: "This bank <em>is said to be</em> fragile — passif personnel." },
+  { q: "Comment traduire « elle a fait réparer sa voiture » ?", a: "She <em>had her car repaired</em> — causatif have + COD + V-en." },
+  { q: "Quel article devant « unemployment is rising » ?", a: "Aucun (Ø) : généralité indénombrable — <em>Ø unemployment is rising</em>." },
+  { q: "Pluriel correct de « information » ?", a: "Indénombrable : « two pieces of information », jamais « two informations »." },
+  { q: "« Fewer » ou « less » devant « jobs » ?", a: "Fewer jobs (dénombrable) ; less money (indénombrable)." },
+  { q: "Traduire « eventually » — piège classique.", a: "Finalement (pas « éventuellement », qui se dit <em>possibly</em>)." },
+  { q: "Traduire « actually » — piège classique.", a: "En fait (pas « actuellement », qui se dit <em>currently</em>)." },
+  { q: "Traduire « to achieve » — piège classique.", a: "Réussir, accomplir (pas « achever », qui se dit <em>to complete</em>)." },
+  { q: "Traduire « sensible » — piège classique.", a: "Raisonnable (« sensible » se dit <em>sensitive</em>)." },
+  { q: "Traduire « to attend » — piège classique.", a: "Assister à (« attendre » se dit <em>to wait</em>)." },
+  { q: "Que signifie « to demand »  ?", a: "Exiger (« demander » se dit <em>to ask</em>)." },
+  { q: "Combien de juges siègent à la Cour suprême américaine ?", a: "Neuf (9 justices), nommés à vie." },
+  { q: "Combien de membres compte la Chambre des représentants (House) ?", a: "435, élus pour 2 ans." },
+  { q: "Combien de grands électeurs faut-il pour remporter la présidentielle américaine ?", a: "270 sur 538 (Electoral College)." },
+  { q: "En quelle année a eu lieu le référendum du Brexit ?", a: "2016 (52 % Leave) ; sortie effective le 31 janvier 2020." },
+  { q: "Quel système électoral utilise-t-on pour les Communes britanniques ?", a: "First-past-the-post (scrutin uninominal à un tour), qui favorise le bipartisme." },
+  { q: "En quelle année est fondé le NHS ?", a: "1948, par le gouvernement travailliste d'après-guerre (Aneurin Bevan)." },
+  { q: "Que protège le 2nd Amendment ?", a: "Le droit de porter des armes (« the right to bear arms »)." },
+  { q: "Le Royaume-Uni a-t-il une constitution écrite unique ?", a: "Non — conventions, statutes et common law." },
+  { q: "Combien de mandats présidentiels maximum aux États-Unis ?", a: "Deux (22nd Amendment)." },
+  { q: "Traduire « faire réécrire » dans « the teacher made us rewrite the essay ».", a: "Nous a fait réécrire — causatif make + COD + base verbale." },
+  { q: "Quelle structure pour « stop smoking » vs « stop to smoke » ?", a: "Stop smoking = arrêter de fumer ; stop to smoke = s'arrêter pour fumer (sens différent)." },
+  { q: "Comment dit-on « je me souviens d'avoir fait » vs « je pense à faire » ?", a: "Remember doing (souvenir) vs remember to do (penser à faire)." },
+  { q: "Quel connecteur signifie « certes » en anglais d'essai ?", a: "Admittedly." },
+  { q: "Comment traduire « gerrymandering » ?", a: "Découpage électoral partisan des circonscriptions." },
+  { q: "Comment traduire « a bailout » ?", a: "Un sauvetage financier (renflouer = to bail out)." },
+  { q: "Comment traduire « greenwashing » ?", a: "Écoblanchiment — se donner une image écologique trompeuse." },
+  { q: "Quelle règle de ponctuation pour une relative appositive avec « which » ?", a: "Toujours des virgules (jamais avec « that », qui est restrictif et sans virgule)." }
+];
+</script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/flashcards.js"></script>
+</body>
+</html>
