@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 1 · ≈ 1,5 semaine de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Manipuler les inégalités sans erreur (sens, multiplication par un signe, inverse).</li>
+      <li>Résoudre équations et inéquations avec valeur absolue (interprétation en distance).</li>
+      <li>Maîtriser le trinôme du second degré : discriminant, racines, signe, somme et produit.</li>
+      <li>Résoudre une inéquation par tableau de signes en gérant le domaine et les valeurs interdites.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -51,6 +62,7 @@
       <li><a href="#s4">Puissances et racines</a></li>
       <li><a href="#s5">Le trinôme du second degré</a></li>
       <li><a href="#s6">Équations, inéquations, tableaux de signes</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -188,6 +200,20 @@
   <p>\[ \frac{x+2}{x-1} - 2 = \frac{x + 2 - 2(x-1)}{x-1} = \frac{4 - x}{x - 1} \leqslant 0. \]</p>
   <p><em>Tableau de signes</em> : \(4 - x\) s'annule en 4 (positif avant, négatif après) ; \(x - 1\) s'annule en 1 (négatif avant, positif après). Le quotient est donc négatif ou nul sur \(]-\infty, 1[\) (positif/négatif : non — vérifions : pour \(x = 0\) : \(\frac{4}{-1} = -4 \leqslant 0\) ✓) et sur \([4, +\infty[\) (pour \(x = 5\) : \(\frac{-1}{4} \leqslant 0\) ✓), positif sur \(]1, 4[\) (pour \(x = 2\) : \(\frac{2}{1} = 2 &gt; 0\)). <em>Conclusion :</em> \(\mathscr{S} = \;]-\infty, 1[\; \cup\; [4, +\infty[\) — borne 1 exclue (valeur interdite), borne 4 incluse (inégalité large).</p>
 
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant un DS ou une colle</span>
+    <ul>
+      <li><strong>Inégalités</strong> : multiplier par \(c &lt; 0\) change le sens ; l'inverse renverse l'ordre sur \(\mathbb{R}_+^*\) ; on n'additionne que des inégalités de même sens.</li>
+      <li><strong>Valeur absolue</strong> : \(|x| \leqslant r \iff -r \leqslant x \leqslant r\) ; \(|A|=|B| \iff A=B\) ou \(A=-B\) ; inégalité triangulaire \(|x+y|\leqslant|x|+|y|\).</li>
+      <li><strong>Racine</strong> : \(\sqrt{f}=g \iff f=g^2\) ET \(g\geqslant 0\) ; \(\sqrt{x^2}=|x|\) ; \(\sqrt{a+b}\neq\sqrt a+\sqrt b\).</li>
+      <li><strong>Trinôme</strong> \(ax^2+bx+c\) : \(\Delta=b^2-4ac\) ; racines \(\frac{-b\pm\sqrt\Delta}{2a}\) ; signe de \(a\) à l'extérieur des racines, de \(-a\) entre.</li>
+      <li><strong>Somme/produit</strong> : \(x_1+x_2=-\frac ba\), \(x_1x_2=\frac ca\). Racine évidente : tester \(x=1\) (si \(a+b+c=0\)) et \(x=-1\).</li>
+      <li><strong>Inéquation</strong> : domaine → tout d'un côté → factoriser → tableau de signes → intervalles (bornes ouvertes/fermées).</li>
+      <li><strong>Piège</strong> : ne jamais multiplier une inéquation par une expression de signe inconnu ; élever au carré exige de contrôler les signes.</li>
+    </ul>
+  </div>
+
   <h2 id="exos">Exercices corrigés</h2>
 
   <article class="exercise">
@@ -314,6 +340,155 @@
       <p class="small muted">Méthode générale (quand les racines ne sont pas explicites) : deux racines \(&gt; 0\) ⟺ \(\Delta \geqslant 0\), somme \(= -\frac ba &gt; 0\) et produit \(= \frac ca &gt; 0\). Ici : somme \(2m &gt; 0\) et produit \(m^2 - 1 &gt; 0\) donnent bien \(m &gt; 1\).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Inéquations produit et quotient</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : 1. \((x-2)(x+3) &gt; 0\) ; &nbsp; 2. \(\dfrac{2x - 1}{x + 4} \leqslant 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> Le produit de deux facteurs est strictement positif à l'extérieur des racines \(-3\) et \(2\) : \(\mathscr{S} = \;]-\infty, -3[\; \cup\; ]2, +\infty[\).</p>
+      <p><strong>2.</strong> <em>Domaine :</em> \(x \neq -4\). Le numérateur s'annule en \(\frac12\), le dénominateur en \(-4\). Tableau de signes : le quotient est \(\leqslant 0\) quand numérateur et dénominateur sont de signes contraires, soit sur \(]-4, \frac12]\) (\(\frac12\) inclus car il annule le numérateur, \(-4\) exclu). \(\mathscr{S} = \;]-4, \tfrac12]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Égalité de valeurs absolues</h3><span class="level level-1">Application directe</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(|2x - 1| = |x + 4|\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(|A| = |B| \iff A = B\) ou \(A = -B\). Ici :</p>
+      <ul>
+        <li>\(2x - 1 = x + 4 \iff x = 5\) ;</li>
+        <li>\(2x - 1 = -(x + 4) \iff 3x = -3 \iff x = -1\).</li>
+      </ul>
+      <p>\(\mathscr{S} = \{-1, 5\}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Puissances et racines</h3><span class="level level-1">Application directe</span></div>
+    <p>Simplifier (avec \(a, b &gt; 0\) et \(n \in \mathbb{N}\)) : 1. \(\dfrac{(a^3 b^{-2})^2}{a^{-1} b}\) ; &nbsp; 2. \(\sqrt{50} - \sqrt{18}\) ; &nbsp; 3. \(\dfrac{2^{n+1} \cdot 4^{n}}{8^{n-1}}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\frac{a^6 b^{-4}}{a^{-1} b} = a^{6 - (-1)} b^{-4 - 1} = a^7 b^{-5} = \dfrac{a^7}{b^5}\).</p>
+      <p><strong>2.</strong> \(\sqrt{50} = 5\sqrt2\) et \(\sqrt{18} = 3\sqrt2\), donc \(\sqrt{50} - \sqrt{18} = 2\sqrt2\).</p>
+      <p><strong>3.</strong> On écrit tout en base 2 : \(4^n = 2^{2n}\), \(8^{n-1} = 2^{3n-3}\). Le numérateur vaut \(2^{n+1+2n} = 2^{3n+1}\), donc le quotient est \(2^{3n+1 - (3n-3)} = 2^4 = 16\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Inéquation avec racine</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(\sqrt{x + 3} \geqslant x - 3\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Domaine :</em> \(x + 3 \geqslant 0\), soit \(x \geqslant -3\). On distingue selon le signe du membre de droite.</p>
+      <p><strong>Cas \(x &lt; 3\)</strong> : le membre de droite \(x - 3\) est strictement négatif, le membre de gauche \(\sqrt{x+3} \geqslant 0\) : l'inégalité est toujours vraie. Tous les \(x \in [-3, 3[\) conviennent.</p>
+      <p><strong>Cas \(x \geqslant 3\)</strong> : les deux membres sont positifs, on peut élever au carré : \(x + 3 \geqslant (x-3)^2 = x^2 - 6x + 9\), soit \(x^2 - 7x + 6 \leqslant 0\), c'est-à-dire \((x-1)(x-6) \leqslant 0\), donc \(1 \leqslant x \leqslant 6\). Avec \(x \geqslant 3\) : \(3 \leqslant x \leqslant 6\).</p>
+      <p><em>Réunion :</em> \(\mathscr{S} = [-3, 3[ \;\cup\; [3, 6] = [-3, 6]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Système d'inéquations</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) le système \(\begin{cases} x^2 - 5x + 6 \leqslant 0 \\ x^2 - 4 &gt; 0. \end{cases}\)</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>Première inéquation :</strong> \((x-2)(x-3) \leqslant 0\), négatif entre les racines : \(2 \leqslant x \leqslant 3\).</p>
+      <p><strong>Deuxième :</strong> \(x^2 &gt; 4 \iff x &lt; -2\) ou \(x &gt; 2\).</p>
+      <p><strong>Intersection :</strong> \([2, 3] \cap \big(]-\infty, -2[\, \cup\, ]2, +\infty[\big) = \;]2, 3]\) (la valeur \(x = 2\) est exclue par la deuxième inégalité, stricte). \(\mathscr{S} = \;]2, 3]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Signe d'une expression factorisée</h3><span class="level level-2">Entraînement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(\dfrac{(x^2 - 1)(2 - x)}{x + 3} \geqslant 0\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><em>Domaine :</em> \(x \neq -3\). On factorise \(x^2 - 1 = (x-1)(x+1)\) ; les valeurs remarquables sont \(-3\) (interdite), \(-1\), \(1\), \(2\).</p>
+      <div class="table-scroll"><table>
+        <thead><tr><th>\(x\)</th><th>\(-\infty\)</th><th>\(-3\)</th><th>\(-1\)</th><th>\(1\)</th><th>\(2\)</th><th>\(+\infty\)</th></tr></thead>
+        <tbody>
+          <tr><th>Expression</th><td colspan="1">\(-\)</td><td>\(\|\)</td><td>\(+\ \;0\)</td><td>\(-\ \;0\)</td><td>\(+\ \;0\)</td><td>\(-\)</td></tr>
+        </tbody>
+      </table></div>
+      <p>Concrètement : sur \(]-3, -1[\) l'expression est \(&gt; 0\) (test \(x = -2\) : \(\frac{(3)(4)}{1} &gt; 0\)) ; sur \(]-1, 1[\) elle est \(&lt; 0\) ; sur \(]1, 2[\) elle est \(&gt; 0\) ; sur \(]2, +\infty[\) elle est \(&lt; 0\) ; et \(&lt; 0\) sur \(]-\infty, -3[\). Les zéros \(-1, 1, 2\) sont inclus (inégalité large). \(\mathscr{S} = \;]-3, -1] \cup [1, 2]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Encadrement d'un quotient</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(x \in [1, 2]\). Encadrer \(f(x) = \dfrac{2x + 1}{x + 3}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On isole la partie variable : \(f(x) = \dfrac{2(x+3) - 5}{x+3} = 2 - \dfrac{5}{x+3}\). Pour \(x \in [1, 2]\), on a \(x + 3 \in [4, 5]\), donc \(\dfrac{5}{x+3} \in \left[1,\ \dfrac54\right]\) (l'inverse renverse l'ordre), d'où :</p>
+      <p>\[ f(x) = 2 - \frac{5}{x+3} \in \left[2 - \frac54,\ 2 - 1\right] = \left[\frac34,\ 1\right]. \]</p>
+      <p>Ainsi \(\dfrac34 \leqslant f(x) \leqslant 1\) sur \([1, 2]\), les bornes étant atteintes en \(x = 1\) et \(x = 2\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Inégalité \(a + \frac1a \geqslant 2\)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>1. Montrer que pour tout \(a &gt; 0\), \(a + \dfrac1a \geqslant 2\), avec égalité si et seulement si \(a = 1\). <br>
+    2. En déduire que pour tous \(a, b, c &gt; 0\) : \((a + b + c)\left(\dfrac1a + \dfrac1b + \dfrac1c\right) \geqslant 9\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(a + \dfrac1a - 2 = \dfrac{a^2 - 2a + 1}{a} = \dfrac{(a-1)^2}{a} \geqslant 0\) car \(a &gt; 0\). Égalité ssi \((a-1)^2 = 0\), soit \(a = 1\). <span class="qed">∎</span></p>
+      <p><strong>2.</strong> En développant :</p>
+      <p>\[ (a+b+c)\left(\frac1a+\frac1b+\frac1c\right) = 3 + \left(\frac ab + \frac ba\right) + \left(\frac ac + \frac ca\right) + \left(\frac bc + \frac cb\right) \geqslant 3 + 2 + 2 + 2 = 9, \]</p>
+      <p>chaque parenthèse étant de la forme \(t + \frac1t \geqslant 2\) (avec \(t = \frac ab &gt; 0\), etc.). Égalité ssi \(a = b = c\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Racines dans un intervalle</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(m \in \mathbb{R}\) et \(f(x) = x^2 - (m+1)x + m\).</p>
+    <ol>
+      <li>Montrer que \(1\) est racine de \(f\) pour toute valeur de \(m\), et déterminer l'autre racine.</li>
+      <li>Pour quelles valeurs de \(m\) les deux racines appartiennent-elles à \([0, 3]\) ?</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(f(1) = 1 - (m+1) + m = 0\) : \(1\) est toujours racine. Le produit des racines vaut \(\frac ca = m\), donc l'autre racine est \(x_2 = m\) (et \(f(x) = (x-1)(x-m)\)).</p>
+      <p><strong>2.</strong> Les racines sont \(1\) et \(m\). Comme \(1 \in [0, 3]\) toujours, la condition « les deux racines sont dans \([0,3]\) » équivaut à \(m \in [0, 3]\). \(\mathscr{S}_m = [0, 3]\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Somme de valeurs absolues</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Résoudre dans \(\mathbb{R}\) : \(|x - 1| + |x + 2| = 5\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Points de rupture : \(-2\) et \(1\). On distingue trois cas.</p>
+      <ul>
+        <li><strong>\(x &lt; -2\)</strong> : \(|x-1| = 1 - x\), \(|x+2| = -x - 2\), somme \(= -2x - 1 = 5 \iff x = -3\). Comme \(-3 &lt; -2\), \(x = -3\) convient.</li>
+        <li><strong>\(-2 \leqslant x \leqslant 1\)</strong> : \(|x-1| = 1 - x\), \(|x+2| = x + 2\), somme \(= 3 \neq 5\) : aucune solution.</li>
+        <li><strong>\(x &gt; 1\)</strong> : \(|x-1| = x - 1\), \(|x+2| = x + 2\), somme \(= 2x + 1 = 5 \iff x = 2\). Comme \(2 &gt; 1\), \(x = 2\) convient.</li>
+      </ul>
+      <p>\(\mathscr{S} = \{-3, 2\}\). <span class="small muted">(Interprétation : la somme des distances de \(x\) à \(1\) et à \(-2\) vaut 5.)</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Inégalité de Cauchy-Schwarz (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Montrer que pour tous réels \(a, b, x, y\) : \((ax + by)^2 \leqslant (a^2 + b^2)(x^2 + y^2)\). Préciser le cas d'égalité.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On calcule la différence :</p>
+      <p>\[ (a^2 + b^2)(x^2 + y^2) - (ax + by)^2 = a^2x^2 + a^2y^2 + b^2x^2 + b^2y^2 - a^2x^2 - 2abxy - b^2y^2 = a^2y^2 - 2abxy + b^2x^2 = (ay - bx)^2. \]</p>
+      <p>Comme un carré est positif, \((ax + by)^2 \leqslant (a^2 + b^2)(x^2 + y^2)\). Il y a égalité si et seulement si \(ay - bx = 0\), c'est-à-dire lorsque \((a, b)\) et \((x, y)\) sont colinéaires. <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
