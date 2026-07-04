@@ -138,6 +138,8 @@ const SITE_DATA = {
       s: ["Épicure et la mort", "L'être-pour-la-mort", "La mort dans la littérature", "Immortalité et finitude", "Sujets corrigés"] },
     { id: "cg-amour", m: "cg", n: "13", t: "L'amour", u: "culture-generale/amour.html",
       s: ["Éros, philia, agapè", "Le Banquet de Platon", "Amour-passion et cristallisation", "L'amour dans la littérature", "Sujets corrigés"] },
+    { id: "cg-bibliotheque", m: "cg", r: true, n: "", t: "Bibliothèque — les livres à lire (résumés & idées)", u: "culture-generale/bibliotheque.html",
+      s: ["Comment lire et ficher un livre", "Philosophie : les fondamentaux", "Littérature : les fondamentaux", "Sciences humaines et essais", "Programme de lecture conseillé"] },
 
     /* ---------- LVA Anglais ---------- */
     { id: "anglais-civi", m: "anglais", n: "1", t: "Civilisation : États-Unis et Royaume-Uni", u: "anglais/civilisation.html",
