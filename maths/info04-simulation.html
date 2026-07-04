@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">TP au semestre 2 surtout</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche (programme officiel)</span>
+    <ul>
+      <li>Simuler une <strong>expérience élémentaire</strong> (dé, pièce, Bernoulli) avec <code>random</code>.</li>
+      <li>Appliquer le <strong>schéma universel</strong> boucle + compteur pour estimer une probabilité par une <strong>fréquence</strong>.</li>
+      <li>Simuler les <strong>lois usuelles</strong> (binomiale, géométrique, uniforme) et valider par comparaison moyenne empirique / espérance.</li>
+      <li>Mettre en œuvre la <strong>méthode de Monte-Carlo</strong> (intégrale, aire, \(\pi\)) et la justifier par la <strong>loi des grands nombres</strong>.</li>
+      <li>Commenter la <strong>fluctuation</strong> des estimations (en \(1/\sqrt N\)).</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +61,7 @@
       <li><a href="#s2">Estimer une probabilité par une fréquence</a></li>
       <li><a href="#s3">Simuler les lois usuelles</a></li>
       <li><a href="#s4">La méthode de Monte-Carlo</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -138,6 +151,31 @@ print(monte_carlo_integrale(100000))   # environ 0.333  (valeur exacte : 1/3)</c
         if x**2 + y**2 &lt;= 1:
             c += 1
     return 4 * c / N          # estime_pi(1000000) donne environ 3.1418</code></pre>
+
+  <div class="box warn">
+    <span class="box-title">⚠️ Pièges classiques</span>
+    <ul>
+      <li><strong>Réinitialiser le compteur/succès à chaque répétition :</strong> remettre <code>succes = False</code> (ou l'accumulateur) <em>au début</em> de la boucle des \(N\) répétitions, pas avant.</li>
+      <li><strong>Bernoulli(p) :</strong> <code>rd.random() &lt; p</code> renvoie <code>True</code> avec probabilité \(p\) (car <code>rd.random()</code> \(\in [0,1[\)) ; ne pas écrire <code>&lt;=</code>.</li>
+      <li><strong>Géométrique :</strong> initialiser <code>X = 1</code> (premier essai) et incrémenter <em>tant qu'échec</em> ; la condition <code>while rd.random() &gt;= p</code> code « échec ».</li>
+      <li><strong>La sortie fluctue :</strong> une simulation ne redonne jamais deux fois le même résultat ; ne pas confondre estimation et valeur exacte. L'écart décroît en \(1/\sqrt N\).</li>
+      <li><strong>Diviser par \(N\)</strong> (le nombre de répétitions) pour obtenir une fréquence, pas par autre chose.</li>
+      <li><strong>Sans remise :</strong> utiliser <code>rd.sample(L, k)</code> (éléments distincts), pas <code>k</code> appels à <code>rd.choice</code>.</li>
+    </ul>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Élémentaire :</strong> <code>rd.randint(1,6)</code> (dé), <code>rd.random() &lt; p</code> (Bernoulli), <code>rd.sample(L,k)</code> (sans remise).</li>
+      <li><strong>Schéma :</strong> <code>c = 0 ; for k in range(N): (simuler ; si événement : c += 1) ; return c/N</code>.</li>
+      <li><strong>Binomiale :</strong> compter les succès de \(n\) Bernoulli. <strong>Géométrique :</strong> <code>X = 1 ; while échec: X += 1</code>.</li>
+      <li><strong>Validation :</strong> comparer la moyenne empirique à \(np\), \(\frac1p\), \(\frac{n+1}{2}\)…</li>
+      <li><strong>Monte-Carlo intégrale :</strong> \(\frac1N\sum f(u_k) \to \int_0^1 f\) (\(u_k\) uniformes).</li>
+      <li><strong>Monte-Carlo \(\pi\) :</strong> proportion de points de \([0,1]^2\) dans le quart de disque \(\to \frac\pi4\).</li>
+      <li><strong>Justification :</strong> loi des grands nombres ; erreur \(\sim 1/\sqrt N\).</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -265,6 +303,260 @@ def freq_coincidence(n, N):
       <p class="small muted"><code>set(jours)</code> supprime les doublons : comparer sa taille à \(n\) détecte une coïncidence. Sans <code>set</code>, on peut trier la liste et comparer les éléments consécutifs.</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Lire une simulation Bernoulli</h3><span class="level level-1">Application directe</span></div>
+    <p>Que calcule cette fonction ? Vers quelle valeur se stabilise sa sortie ?</p>
+    <pre><code class="language-python">import random as rd
+def g(N):
+    c = 0
+    for k in range(N):
+        if rd.random() &lt; 0.3:
+            c = c + 1
+    return c / N</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>rd.random() &lt; 0.3</code> est une épreuve de Bernoulli de paramètre \(0{,}3\). La fonction estime cette probabilité : sa sortie se stabilise autour de <code>0.3</code> quand \(N\) grandit.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Fréquence de « face »</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>freq_face(N)</code> qui simule \(N\) lancers d'une pièce équilibrée et renvoie la fréquence de « face ».</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def freq_face(N):
+    c = 0
+    for k in range(N):
+        if rd.random() &lt; 0.5:
+            c = c + 1
+    return c / N          # tend vers 0.5</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Maximum de deux dés</h3><span class="level level-1">Application directe</span></div>
+    <p>Que estime cette fonction ? Donner la valeur théorique attendue.</p>
+    <pre><code class="language-python">import random as rd
+def h(N):
+    c = 0
+    for k in range(N):
+        a, b = rd.randint(1, 6), rd.randint(1, 6)
+        if max(a, b) == 6:
+            c = c + 1
+    return c / N</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Elle estime la probabilité que le <strong>plus grand de deux dés vaille 6</strong>. Théoriquement \(P(\max = 6) = \frac{2\times6 - 1}{36} = \frac{11}{36} \approx 0{,}306\) (chapitre 11, exercice 1).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Fréquence d'un pair</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>freq_pair(N)</code> qui estime la probabilité qu'un dé donne un résultat pair.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def freq_pair(N):
+    c = 0
+    for k in range(N):
+        if rd.randint(1, 6) % 2 == 0:
+            c = c + 1
+    return c / N          # tend vers 3/6 = 0.5</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Valider une binomiale</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>simule_binomiale(n, p)</code>, puis un programme estimant \(E(X)\) pour \(X \hookrightarrow \mathscr{B}(10 ;\ 0{,}3)\) sur 10 000 simulations. Valeur attendue ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def simule_binomiale(n, p):
+    X = 0
+    for k in range(n):
+        if rd.random() &lt; p:
+            X = X + 1
+    return X
+
+S = 0
+for k in range(10000):
+    S = S + simule_binomiale(10, 0.3)
+print(S / 10000)</code></pre>
+      <p>Espérance théorique \(np = 10\times0{,}3 = 3\) : la sortie fluctue autour de <code>3.0</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Somme de deux dés ≥ 10</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire une fonction estimant \(P(D_1 + D_2 \geqslant 10)\), et donner la valeur exacte.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def freq(N):
+    c = 0
+    for k in range(N):
+        if rd.randint(1, 6) + rd.randint(1, 6) &gt;= 10:
+            c = c + 1
+    return c / N</code></pre>
+      <p>Sommes favorables : 10, 11, 12, soit \(3 + 2 + 1 = 6\) cas sur 36 : \(P = \frac6{36} = \frac16 \approx 0{,}167\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Monte-Carlo pour \(\pi/4\)</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire une fonction Monte-Carlo estimant \(\displaystyle\int_0^1 \sqrt{1 - t^2}\,\mathrm{d}t\). Que vaut cette intégrale ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def mc(N):
+    S = 0
+    for k in range(N):
+        u = rd.random()
+        S = S + (1 - u**2)**0.5
+    return S / N</code></pre>
+      <p>Par transfert, la moyenne estime \(E(\sqrt{1 - U^2}) = \int_0^1 \sqrt{1 - t^2}\,\mathrm{d}t\), qui est l'aire du quart de disque unité, soit \(\frac\pi4 \approx 0{,}785\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Temps d'attente d'un six</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>attente()</code> qui simule le rang du premier 6 en lançant un dé, et expliquer la moyenne attendue sur un grand nombre d'appels.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def attente():
+    X = 1
+    while rd.randint(1, 6) != 6:
+        X = X + 1
+    return X</code></pre>
+      <p>\(X\) suit une loi géométrique \(\mathscr{G}(\frac16)\) ; la moyenne d'un grand nombre d'appels tend vers \(E(X) = \frac1{1/6} = 6\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Espérance d'un gain</h3><span class="level level-2">Entraînement</span></div>
+    <p>Un jeu (chapitre 11, exercice 2) : tirage d'une carte parmi 32, un as rapporte 10 €, une figure 3 €, sinon 0 ; mise 2 €. Écrire <code>simule_gain()</code> et expliquer vers quoi tend la moyenne des gains.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def simule_gain():
+    carte = rd.randint(1, 32)
+    if carte &lt;= 4:        # 4 as
+        gain = 10
+    elif carte &lt;= 16:     # 12 figures
+        gain = 3
+    else:
+        gain = 0
+    return gain - 2       # on retranche la mise</code></pre>
+      <p>La moyenne des gains simulés tend vers \(E(G) = 8\times\frac18 + 1\times\frac38 - 2\times\frac12 = 0{,}375\) € : le jeu est favorable.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Probabilité géométrique (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que estime cette fonction ? Donner la valeur exacte par un argument d'aire.</p>
+    <pre><code class="language-python">import random as rd
+def freq(N):
+    c = 0
+    for k in range(N):
+        if rd.random() + rd.random() &lt;= 1:
+            c = c + 1
+    return c / N</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On tire un point \((X, Y)\) uniforme dans le carré \([0,1]^2\) et on teste \(X + Y \leqslant 1\). La probabilité est l'aire du triangle sous la droite \(x + y = 1\), soit \(\frac12\). La fonction estime donc \(P(X + Y \leqslant 1) = 0{,}5\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Marche aléatoire (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>marche(n)</code> qui simule \(n\) pas \(\pm 1\) équiprobables et renvoie la position finale. Quelles sont l'espérance et la variance théoriques de cette position ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def marche(n):
+    S = 0
+    for k in range(n):
+        if rd.random() &lt; 0.5:
+            S = S + 1
+        else:
+            S = S - 1
+    return S</code></pre>
+      <p>La position \(S_n\) est une somme de \(n\) pas indépendants \(X_i \in \{-1, +1\}\) avec \(E(X_i) = 0\), \(V(X_i) = 1\). Donc \(E(S_n) = 0\) et \(V(S_n) = n\) (chapitre 15, exercice 18) : la moyenne des simulations approche 0, leur variance approche \(n\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Problème du collectionneur (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>collectionneur(n)</code> qui simule le nombre d'achats nécessaires pour obtenir les \(n\) vignettes différentes (chaque achat donne une vignette uniforme). Que vaut approximativement la moyenne pour \(n = 6\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def collectionneur(n):
+    obtenus = [False] * n
+    nb = 0            # nombre de vignettes distinctes obtenues
+    compteur = 0      # nombre d'achats
+    while nb &lt; n:
+        c = rd.randint(0, n - 1)
+        compteur = compteur + 1
+        if not obtenus[c]:
+            obtenus[c] = True
+            nb = nb + 1
+    return compteur</code></pre>
+      <p>L'espérance théorique est \(n\,H_n = n\left(1 + \frac12 + \dots + \frac1n\right)\). Pour \(n = 6\) : \(6\times\frac{49}{20} = 14{,}7\) : la moyenne des simulations avoisine <code>14.7</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Ruine du joueur (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un joueur part avec \(k\) €, mise 1 € par partie (gain/perte équiprobable) et s'arrête à 0 € (ruine) ou \(N\) € (objectif). Écrire <code>ruine(k, N)</code> renvoyant <code>True</code> s'il atteint \(N\). Quelle est la probabilité théorique pour \(k = 3\), \(N = 10\) ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">import random as rd
+def ruine(k, N):
+    while 0 &lt; k &lt; N:
+        if rd.random() &lt; 0.5:
+            k = k + 1
+        else:
+            k = k - 1
+    return k == N</code></pre>
+      <p>Pour un jeu équilibré, la probabilité d'atteindre \(N\) en partant de \(k\) est \(\frac kN\) (résultat classique). Pour \(k = 3\), \(N = 10\) : \(P = 0{,}3\) — la fréquence des <code>True</code> approche 0,3.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Fonction mystère (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que estime <code>mystere(N)</code> pour \(N\) grand ? Justifier par la symétrie.</p>
+    <pre><code class="language-python">import random as rd
+def mystere(N):
+    c = 0
+    for k in range(N):
+        x = rd.random()
+        y = rd.random()
+        if y &lt;= x:
+            c = c + 1
+    return c / N</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On tire deux uniformes indépendantes \(X, Y\) et on compte les cas \(Y \leqslant X\). Par symétrie des rôles de \(X\) et \(Y\) (et comme \(P(X = Y) = 0\)), \(P(Y \leqslant X) = P(X \leqslant Y) = \frac12\). La fonction estime donc \(0{,}5\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
