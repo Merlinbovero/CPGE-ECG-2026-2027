@@ -176,6 +176,8 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "Les khôlles orales"] },
     { id: "italien-exos", m: "italien", n: "5", t: "Exercices corrigés d'italien", u: "italien/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Version corrigée", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "italien-testi", m: "italien", n: "6", t: "Textes littéraires complexes & version italienne", u: "italien/testi-letterari.html",
+      s: ["Méthode de la version littéraire", "Corpus (Dante, Pétrarque, Leopardi, Manzoni, Pirandello)", "Vocabulaire du registre soutenu", "Liste de lecture Wikisource", "Ressources orales C1"] },
     { id: "italien-formulaire", m: "italien", r: true, n: "", t: "Formulaire / Mémo — italien", u: "italien/formulaire.html",
       s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
     { id: "italien-flashcards", m: "italien", r: true, n: "", t: "Flashcards italien", u: "italien/flashcards.html",
