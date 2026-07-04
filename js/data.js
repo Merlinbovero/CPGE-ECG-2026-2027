@@ -144,6 +144,8 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "La synthèse", "Les khôlles orales"] },
     { id: "anglais-exos", m: "anglais", n: "5", t: "Exercices corrigés d'anglais", u: "anglais/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Versions corrigées", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "anglais-verbes", m: "anglais", n: "6", t: "Les verbes irréguliers anglais", u: "anglais/verbes-irreguliers.html",
+      s: ["Verbes à une forme", "Verbes à deux formes", "Verbes à trois formes", "Lie/lay/lain", "Quiz des verbes irréguliers"] },
     { id: "anglais-formulaire", m: "anglais", r: true, n: "", t: "Formulaire / Mémo — anglais", u: "anglais/formulaire.html",
       s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
     { id: "anglais-flashcards", m: "anglais", r: true, n: "", t: "Flashcards anglais", u: "anglais/flashcards.html",
