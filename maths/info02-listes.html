@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">TP tout au long de l'année</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche (programme officiel)</span>
+    <ul>
+      <li>Créer, <strong>indexer</strong> (indices de 0 à \(n-1\), indices négatifs) et modifier une liste.</li>
+      <li><strong>Parcourir</strong> une liste par éléments (<code>for x in L</code>) ou par indices (<code>for i in range(len(L))</code>), construire avec <code>append</code>.</li>
+      <li>Maîtriser le <strong>slicing</strong> <code>L[a:b:p]</code> (borne droite exclue).</li>
+      <li>Utiliser les <strong>fonctions/méthodes</strong> usuelles (<code>sum</code>, <code>max</code>, <code>min</code>, <code>len</code>, <code>sorted</code>, <code>append</code>, <code>in</code>).</li>
+      <li>Écrire des <strong>listes en compréhension</strong> et stocker les termes d'une suite ou d'une simulation.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +62,7 @@
       <li><a href="#s3">Slicing (tranches)</a></li>
       <li><a href="#s4">Méthodes et fonctions utiles</a></li>
       <li><a href="#s5">Listes en compréhension</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -116,6 +129,20 @@ print(L[::-1])   # [15, 14, 13, 12, 11, 10]  (liste renversée)</code></pre>
 pairs  = [x for x in range(20) if x % 2 == 0]  # [0, 2, 4, ..., 18]
 u = [3 * 0.5**n for n in range(4)]             # [3.0, 1.5, 0.75, 0.375]</code></pre>
   <p class="small muted">Syntaxe compacte équivalente à une boucle <code>for</code> + <code>append</code> ; très fréquente dans les corrigés de concours.</p>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Indices :</strong> <code>L[0]</code> premier, <code>L[-1]</code> dernier, <code>L[k]</code> = \((k+1)\)-ème ; <code>len(L)</code> longueur.</li>
+      <li><strong>Création :</strong> <code>[0]*n</code> (n zéros), <code>list(range(n))</code>, <code>L.append(x)</code>.</li>
+      <li><strong>Parcours :</strong> <code>for x in L</code> (éléments) ou <code>for i in range(len(L))</code> (indices).</li>
+      <li><strong>Slicing :</strong> <code>L[a:b]</code> (b exclu), <code>L[::2]</code> (un sur deux), <code>L[::-1]</code> (renversée).</li>
+      <li><strong>Outils :</strong> <code>sum(L)</code>, <code>max(L)</code>, <code>min(L)</code>, <code>sorted(L)</code>, <code>L.count(x)</code>, <code>x in L</code>.</li>
+      <li><strong>Moyenne :</strong> <code>sum(L)/len(L)</code>.</li>
+      <li><strong>Compréhension :</strong> <code>[f(k) for k in range(n) if cond]</code>.</li>
+      <li><strong>Piège :</strong> <code>L[len(L)]</code> lève <code>IndexError</code> ; attention au décalage rang↔indice.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices corrigés</h2>
 
@@ -244,6 +271,214 @@ print(n)</code></pre>
       <p>Estimation : \(\frac{\varphi^n}{\sqrt5} &gt; 10^6\) ⟺ \(n &gt; \frac{\ln(10^6\sqrt5)}{\ln\varphi} \approx \frac{14{,}62}{0{,}481} \approx 30{,}4\). Le programme affiche <code>31</code> (\(F_{31} = 1\,346\,269 &gt; 10^6 &gt; F_{30} = 832\,040\)).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Slicing</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">L = [3, 6, 9, 12, 15, 18]
+print(L[2:5])
+print(L[::2])
+print(L[::-1])
+print(L[-2])</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>[9, 12, 15]</code> (indices 2, 3, 4) ; <code>[3, 9, 15]</code> (un sur deux) ; <code>[18, 15, 12, 9, 6, 3]</code> (renversée) ; <code>15</code> (avant-dernier).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Compter les positifs</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire une fonction <code>nb_positifs(L)</code> qui renvoie le nombre d'éléments strictement positifs.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def nb_positifs(L):
+    c = 0
+    for x in L:
+        if x &gt; 0:
+            c = c + 1
+    return c          # nb_positifs([-2, 3, 0, 5, -1]) renvoie 2</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Liste en compréhension</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire, en une ligne (compréhension), la liste des cubes des entiers de 1 à 5.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">cubes = [k**3 for k in range(1, 6)]   # [1, 8, 27, 64, 125]</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Prédire une compréhension</h3><span class="level level-1">Application directe</span></div>
+    <pre><code class="language-python">L = [x for x in range(10) if x % 3 == 0]
+print(L)
+print(sum(L))</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>L</code> contient les multiples de 3 de 0 à 9 : <code>[0, 3, 6, 9]</code>, et <code>sum(L)</code> vaut <code>18</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Produit scalaire</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>produit_scalaire(U, V)</code> qui renvoie \(\sum_i U_i V_i\) pour deux listes de même longueur.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def produit_scalaire(U, V):
+    s = 0
+    for i in range(len(U)):
+        s = s + U[i] * V[i]
+    return s          # produit_scalaire([1, 2, 3], [4, 5, 6]) renvoie 32</code></pre>
+      <p class="small muted">Ici il faut parcourir par <em>indices</em> (on lit deux listes en parallèle).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Sommes cumulées</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>cumul(L)</code> qui renvoie la liste des sommes partielles : <code>cumul([2, 3, 5, 1])</code> doit donner <code>[2, 5, 10, 11]</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def cumul(L):
+    C = [L[0]]
+    for i in range(1, len(L)):
+        C.append(C[-1] + L[i])
+    return C</code></pre>
+      <p>Chaque terme réutilise le précédent (<code>C[-1]</code>), ce qui évite de tout resommer à chaque étape.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Recherche d'un élément</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>recherche(L, x)</code> qui renvoie l'indice de la première occurrence de <code>x</code>, ou <code>-1</code> si <code>x</code> est absent.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def recherche(L, x):
+    for i in range(len(L)):
+        if L[i] == x:
+            return i          # trouvé : on sort aussitôt
+    return -1                 # parcours terminé sans succès</code></pre>
+      <p><code>recherche([4, 7, 2, 7], 7)</code> renvoie <code>1</code> ; <code>recherche([4, 7, 2, 7], 9)</code> renvoie <code>-1</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Positions d'une valeur</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>positions(L, x)</code> qui renvoie la liste de <em>tous</em> les indices où <code>x</code> apparaît.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def positions(L, x):
+    return [i for i in range(len(L)) if L[i] == x]
+
+# positions([1, 2, 1, 3, 1], 1) renvoie [0, 2, 4]</code></pre>
+      <p class="small muted">Compréhension parcourant les <em>indices</em> avec un filtre.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Prédire (différences)</h3><span class="level level-2">Entraînement</span></div>
+    <pre><code class="language-python">L = [1, 2, 3, 4]
+M = [L[i] + L[i+1] for i in range(len(L) - 1)]
+print(M)</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(i = 0, 1, 2\), on calcule \(L[i] + L[i+1]\) : \(1+2, 2+3, 3+4\), soit <code>[3, 5, 7]</code>. La borne <code>len(L)-1</code> évite le débordement d'indice.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Tri à bulles (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Compléter/écrire <code>tri_bulles(L)</code> qui trie la liste par ordre croissant en échangeant les éléments adjacents mal ordonnés. Dérouler sur <code>[3, 1, 2]</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def tri_bulles(L):
+    n = len(L)
+    for i in range(n):
+        for j in range(n - 1 - i):
+            if L[j] &gt; L[j+1]:
+                L[j], L[j+1] = L[j+1], L[j]
+    return L</code></pre>
+      <p>Sur <code>[3, 1, 2]</code> : \(i=0\) : \(3&gt;1\) ⟹ <code>[1, 3, 2]</code>, puis \(3&gt;2\) ⟹ <code>[1, 2, 3]</code>. \(i=1\) : \(1&gt;2\) faux. Résultat : <code>[1, 2, 3]</code>. Les grandes valeurs « remontent » comme des bulles.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Minimum et son indice (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Sans utiliser <code>min</code>, écrire <code>minimum(L)</code> qui renvoie le couple (valeur minimale, indice de sa première occurrence).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def minimum(L):
+    m, im = L[0], 0
+    for i in range(1, len(L)):
+        if L[i] &lt; m:
+            m, im = L[i], i
+    return m, im
+# minimum([5, 2, 8, 2]) renvoie (2, 1)</code></pre>
+      <p>On garde l'inégalité <strong>stricte</strong> pour renvoyer la <em>première</em> occurrence du minimum.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Comptage par effectifs (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Une liste ne contient que des entiers entre 0 et \(k\). Écrire <code>effectifs(L, k)</code> qui renvoie la liste \(E\) telle que <code>E[v]</code> soit le nombre d'occurrences de la valeur \(v\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def effectifs(L, k):
+    E = [0] * (k + 1)      # cases 0, 1, ..., k
+    for x in L:
+        E[x] = E[x] + 1    # on incrémente la case de la valeur lue
+    return E
+# effectifs([1, 3, 1, 0, 3, 3], 3) renvoie [1, 2, 0, 3]</code></pre>
+      <p class="small muted">Ce « comptage par cases » sert à construire un histogramme de simulation (fiche <a href="info04-simulation.html">I4</a>).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Premier dépassement de seuil (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>premier_depassement(L, seuil)</code> qui renvoie le plus petit indice \(i\) tel que \(L[0] + \dots + L[i] &gt; seuil\), ou <code>-1</code> si la somme totale ne dépasse jamais le seuil.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def premier_depassement(L, seuil):
+    s = 0
+    for i in range(len(L)):
+        s = s + L[i]
+        if s &gt; seuil:
+            return i
+    return -1
+# premier_depassement([2, 3, 5, 4], 8) renvoie 2 (2 + 3 + 5 = 10 &gt; 8)</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Fonction mystère (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Que renvoie <code>mystere([1, 2, 3, 2, 1])</code> ? Et <code>mystere([1, 2, 3])</code> ? Que teste cette fonction ?</p>
+    <pre><code class="language-python">def mystere(L):
+    i, j = 0, len(L) - 1
+    while i &lt; j:
+        if L[i] != L[j]:
+            return False
+        i = i + 1
+        j = j - 1
+    return True</code></pre>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Deux indices partent des extrémités et se rapprochent, comparant les éléments symétriques. Si une paire diffère, on renvoie <code>False</code> ; sinon <code>True</code>.</p>
+      <p><code>mystere([1, 2, 3, 2, 1])</code> renvoie <code>True</code>, <code>mystere([1, 2, 3])</code> renvoie <code>False</code> (\(L[0]=1 \neq L[2]=3\)). La fonction teste si la liste est un <strong>palindrome</strong>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
