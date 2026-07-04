@@ -138,6 +138,8 @@ const SITE_DATA = {
       s: ["Épicure et la mort", "L'être-pour-la-mort", "La mort dans la littérature", "Immortalité et finitude", "Sujets corrigés"] },
     { id: "cg-amour", m: "cg", n: "13", t: "L'amour", u: "culture-generale/amour.html",
       s: ["Éros, philia, agapè", "Le Banquet de Platon", "Amour-passion et cristallisation", "L'amour dans la littérature", "Sujets corrigés"] },
+    { id: "cg-bibliotheque", m: "cg", r: true, n: "", t: "Bibliothèque — les livres à lire (résumés & idées)", u: "culture-generale/bibliotheque.html",
+      s: ["Comment lire et ficher un livre", "Philosophie : les fondamentaux", "Littérature : les fondamentaux", "Sciences humaines et essais", "Programme de lecture conseillé"] },
 
     /* ---------- LVA Anglais ---------- */
     { id: "anglais-civi", m: "anglais", n: "1", t: "Civilisation : États-Unis et Royaume-Uni", u: "anglais/civilisation.html",
@@ -152,6 +154,12 @@ const SITE_DATA = {
       s: ["Thèmes grammaticaux corrigés", "Versions corrigées", "Sujets d'essai avec plans", "QCM de grammaire"] },
     { id: "anglais-verbes", m: "anglais", n: "6", t: "Les verbes irréguliers anglais", u: "anglais/verbes-irreguliers.html",
       s: ["Verbes à une forme", "Verbes à deux formes", "Verbes à trois formes", "Lie/lay/lain", "Quiz des verbes irréguliers"] },
+    { id: "anglais-textes", m: "anglais", n: "7", t: "Textes littéraires complexes & version littéraire", u: "anglais/textes-litteraires.html",
+      s: ["Méthode de la version littéraire", "Corpus gradué (Austen, Dickens, Poe, Conrad)", "Vocabulaire du registre littéraire", "Liste de lecture domaine public"] },
+    { id: "anglais-oral", m: "anglais", n: "8", t: "Compréhension orale anglaise C1-C2", u: "anglais/comprehension-orale.html",
+      s: ["Méthode d'écoute active", "Accents et connected speech", "Ressources vidéo et podcasts", "Prise de notes en écoute"] },
+    { id: "anglais-toeic", m: "anglais", n: "9", t: "Préparation au TOEIC", u: "anglais/toeic.html",
+      s: ["Structure et barème du TOEIC", "Listening parties 1 à 4", "Reading parties 5 à 7", "Gestion du temps", "Pièges classiques"] },
     { id: "anglais-formulaire", m: "anglais", r: true, n: "", t: "Formulaire / Mémo — anglais", u: "anglais/formulaire.html",
       s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
     { id: "anglais-flashcards", m: "anglais", r: true, n: "", t: "Flashcards anglais", u: "anglais/flashcards.html",
@@ -170,6 +178,8 @@ const SITE_DATA = {
       s: ["La version", "Le thème", "L'essai", "Les khôlles orales"] },
     { id: "italien-exos", m: "italien", n: "5", t: "Exercices corrigés d'italien", u: "italien/exercices.html",
       s: ["Thèmes grammaticaux corrigés", "Version corrigée", "Sujets d'essai avec plans", "QCM de grammaire"] },
+    { id: "italien-testi", m: "italien", n: "6", t: "Textes littéraires complexes & version italienne", u: "italien/testi-letterari.html",
+      s: ["Méthode de la version littéraire", "Corpus (Dante, Pétrarque, Leopardi, Manzoni, Pirandello)", "Vocabulaire du registre soutenu", "Liste de lecture Wikisource", "Ressources orales C1"] },
     { id: "italien-formulaire", m: "italien", r: true, n: "", t: "Formulaire / Mémo — italien", u: "italien/formulaire.html",
       s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
     { id: "italien-flashcards", m: "italien", r: true, n: "", t: "Flashcards italien", u: "italien/flashcards.html",
@@ -185,6 +195,8 @@ const SITE_DATA = {
     { id: "methodo-concours", m: "methodo", n: "3", t: "Les concours BCE et Ecricome", u: "methodologie/concours.html",
       s: ["Présentation de la BCE", "Présentation d'Ecricome", "Les épreuves en maths appliquées", "Coefficients par école", "Les oraux"] },
     { id: "methodo-conseils", m: "methodo", n: "4", t: "Conseils pour réussir sa première année", u: "methodologie/conseils.html",
-      s: ["Les erreurs classiques", "Travailler régulièrement", "Matière par matière", "Rebondir après un échec"] }
+      s: ["Les erreurs classiques", "Travailler régulièrement", "Matière par matière", "Rebondir après un échec"] },
+    { id: "methodo-oraux", m: "methodo", n: "5", t: "Méthodologie des oraux d'admission", u: "methodologie/oraux.html",
+      s: ["Entretien de personnalité", "Oraux de langues", "Khôlle et oral de maths", "Posture et gestion du stress", "Règle STAR"] }
   ]
 };
