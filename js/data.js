@@ -201,6 +201,8 @@ const SITE_DATA = {
     { id: "methodo-conseils", m: "methodo", n: "4", t: "Conseils pour réussir sa première année", u: "methodologie/conseils.html",
       s: ["Les erreurs classiques", "Travailler régulièrement", "Matière par matière", "Rebondir après un échec"] },
     { id: "methodo-oraux", m: "methodo", n: "5", t: "Méthodologie des oraux d'admission", u: "methodologie/oraux.html",
-      s: ["Entretien de personnalité", "Oraux de langues", "Khôlle et oral de maths", "Posture et gestion du stress", "Règle STAR"] }
+      s: ["Entretien de personnalité", "Oraux de langues", "Khôlle et oral de maths", "Posture et gestion du stress", "Règle STAR"] },
+    { id: "mon-espace", m: "methodo", r: true, n: "", t: "Mon espace — emploi du temps & notes", u: "mon-espace/index.html",
+      s: ["Emploi du temps glisser-déposer", "Notes et moyennes automatiques", "Semestres ou trimestres", "Accès rapides École Directe", "Tableau de bord personnel"] }
   ]
 };

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon espace — ECG1 2026-2027</title>
+<meta name="description" content="Mon espace ECG1 : emploi du temps à composer par glisser-déposer, tableau de notes avec calcul automatique des moyennes, et accès rapides. 100 % local, aucun mot de passe demandé.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<style>
+  /* ---- Emploi du temps ---- */
+  #edt-palette { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0; }
+  .edt-chip { border: 2px solid var(--c, var(--border)); background: color-mix(in srgb, var(--c, #888) 12%, transparent);
+    color: var(--text); border-radius: .5rem; padding: .35rem .7rem; font-weight: 600; cursor: pointer; font-size: .9rem; }
+  .edt-chip.sel { background: var(--c, #888); color: #fff; box-shadow: var(--shadow); }
+  .edt-gomme { --c: #94a3b8; }
+  #edt-hint { font-size: .85rem; color: var(--text-muted); margin: .3rem 0 .6rem; min-height: 1.1rem; }
+  .edt-scroll { overflow-x: auto; }
+  .edt-grid { display: grid; grid-template-columns: 4.6rem repeat(var(--cols, 6), minmax(5.5rem, 1fr)); gap: 3px; min-width: 640px; }
+  .edt-cell { background: var(--bg-card); border-radius: .35rem; min-height: 2.6rem; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: .82rem; padding: 2px; }
+  .edt-head { font-weight: 700; background: transparent; }
+  .edt-hour { font-size: .72rem; color: var(--text-muted); background: transparent; }
+  .edt-corner { background: transparent; }
+  .edt-slot { border: 1px dashed var(--border); cursor: pointer; }
+  .edt-slot.filled { border-style: solid; }
+  .edt-slot:hover { outline: 2px solid var(--accent); }
+  .edt-item { display: block; width: 100%; color: #fff; border-radius: .3rem; padding: .35rem .2rem; font-weight: 600; font-size: .76rem; line-height: 1.1; }
+  /* ---- Notes ---- */
+  .notes-toolbar { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; margin: .4rem 0 1rem; }
+  .notes-tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .notes-tab { border: 1.5px solid var(--border); background: var(--bg-card); color: var(--text); border-radius: .5rem; padding: .4rem .9rem; font-weight: 600; cursor: pointer; }
+  .notes-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .note-subject { border-left: 4px solid var(--c, var(--accent)); background: var(--bg-card); border-radius: .5rem; padding: .7rem .9rem; margin-bottom: .7rem; }
+  .note-subj-head { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-bottom: .5rem; }
+  .note-subj-name { font-weight: 700; }
+  .note-coef { font-size: .82rem; color: var(--text-muted); }
+  .note-moy { margin-left: auto; font-size: .9rem; }
+  .coef-in { width: 3.4rem; }
+  .note-list { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+  .note-row { display: inline-flex; align-items: center; gap: .15rem; background: color-mix(in srgb, var(--c, #888) 8%, transparent); border-radius: .4rem; padding: .2rem .35rem; }
+  .note-v { width: 3.6rem; } .note-sur { width: 3rem; } .note-c { width: 2.8rem; }
+  .note-sep, .note-x { color: var(--text-muted); font-size: .85rem; }
+  .note-del { border: none; background: transparent; color: #c0264b; cursor: pointer; font-weight: 700; padding: 0 .2rem; }
+  .note-add { border: 1.5px dashed var(--border); background: transparent; color: var(--accent); border-radius: .4rem; padding: .25rem .6rem; cursor: pointer; font-size: .82rem; font-weight: 600; }
+  .notes-general { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1rem;
+    background: var(--box-thm-bg); border: 1px solid var(--box-thm-border); border-radius: .6rem; padding: .8rem 1.1rem; }
+  .notes-general strong { font-size: 1.5rem; color: var(--accent); }
+  .me-inputs input { font-family: var(--font-sans); font-size: .9rem; padding: .2rem .3rem; border: 1px solid var(--border); border-radius: .3rem; background: var(--bg); color: var(--text); }
+  .note-v, .note-sur, .note-c, .coef-in { font-family: var(--font-sans); font-size: .9rem; padding: .2rem .3rem; border: 1px solid var(--border); border-radius: .3rem; background: var(--bg); color: var(--text); }
+</style>
+</head>
+<body data-root=".." data-page-id="mon-espace" data-matiere="">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="../maths/index.html">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><span>Mon espace</span>
+</nav>
+
+<main>
+  <h1>Mon espace</h1>
+  <p class="lead">Ton tableau de bord personnel : compose ton <strong>emploi du temps</strong>, saisis tes <strong>notes</strong> (les moyennes se calculent toutes seules) et retrouve tes <strong>accès rapides</strong>. Simple, à ton image.</p>
+
+  <div class="box warn">
+    <span class="box-title">🔒 100 % privé, aucun mot de passe</span>
+    <p>Tout ce que tu saisis ici (emploi du temps, notes) est enregistré <strong>uniquement dans ce navigateur</strong> (localStorage) et n'est envoyé nulle part. Ce site ne demande <strong>jamais</strong> tes identifiants École Directe : pour tes notes/mails officiels, tu passes par l'application officielle (lien plus bas), en sécurité.</p>
+  </div>
+
+  <!-- ================= EMPLOI DU TEMPS ================= -->
+  <h2 id="edt">🗓️ Mon emploi du temps</h2>
+  <p>Choisis une matière dans la palette (ou fais-la <strong>glisser</strong>), puis clique les cases pour la poser. Pour 4 h de maths, pose « Maths appliquées » sur 4 cases. Un clic sur une case (sans matière sélectionnée) l'efface.</p>
+  <div id="edt-palette"></div>
+  <p id="edt-hint"></p>
+  <div class="edt-scroll">
+    <div id="edt-grid" class="edt-grid"></div>
+  </div>
+  <p style="margin-top:.7rem"><button id="edt-reset" class="btn">🗑️ Vider l'emploi du temps</button></p>
+
+  <!-- ================= NOTES ================= -->
+  <h2 id="notes" style="margin-top:2.2rem">📊 Mes notes &amp; moyennes</h2>
+  <div class="notes-toolbar">
+    <label>Découpage de l'année :
+      <select id="notes-decoupage" class="me-inputs">
+        <option value="sem">Semestres (S1 · S2)</option>
+        <option value="tri">Trimestres (T1 · T2 · T3)</option>
+      </select>
+    </label>
+    <button id="notes-reset" class="btn">🗑️ Réinitialiser les notes</button>
+  </div>
+  <p class="small muted">La CPGE ECG est officiellement organisée en <strong>semestres</strong> (comme le programme), mais certains lycées font des bulletins par trimestres — choisis ce qui correspond au tien. Les coefficients « matière » sont préremplis selon les volumes horaires ; modifie-les librement.</p>
+  <div id="notes-app"></div>
+
+  <!-- ================= ACCÈS RAPIDES ================= -->
+  <h2 id="acces" style="margin-top:2.2rem">🚀 Accès rapides</h2>
+  <div class="cards cards-3">
+    <a class="card" href="https://www.ecoledirecte.com" target="_blank" rel="noopener" style="--card-color:#0a66c2">
+      <h3>École Directe ↗</h3>
+      <p>Notes, emploi du temps officiel, messagerie, absences. Connexion sécurisée sur le site officiel (tes identifiants restent chez École Directe).</p>
+    </a>
+    <a class="card" href="../maths/python-jeu.html" style="--card-color:#16a34a">
+      <h3>🎮 Python — Le jeu</h3>
+      <p>70 niveaux pour apprendre à coder en s'amusant.</p>
+    </a>
+    <a class="card" href="../maths/formulaire.html" style="--card-color:#2563eb">
+      <h3>Formulaires &amp; flashcards</h3>
+      <p>Réviser vite : formulaires condensés et flashcards de chaque matière.</p>
+    </a>
+    <a class="card" href="../methodologie/oraux.html" style="--card-color:#475569">
+      <h3>Méthodologie &amp; oraux</h3>
+      <p>Organisation, colles, concours et préparation des oraux d'admission.</p>
+    </a>
+    <a class="card" href="../culture-generale/bibliotheque.html" style="--card-color:#7c3aed">
+      <h3>📚 Bibliothèque</h3>
+      <p>Les livres à lire, avec leurs idées principales.</p>
+    </a>
+    <a class="card" href="../index.html" style="--card-color:#0f8a6d">
+      <h3>Toutes les matières</h3>
+      <p>Retour au sommaire général du site.</p>
+    </a>
+  </div>
+  <p class="small muted">Astuce : ajoute cette page à l'écran d'accueil de ton téléphone pour la retrouver comme une appli.</p>
+
+  <div class="box met" style="margin-top:1.6rem">
+    <span class="box-title">Ne perds pas tes données</span>
+    <p>Comme ta progression, ton emploi du temps et tes notes vivent dans ce navigateur. Si tu changes d'appareil ou vides ton cache, ils disparaissent. Pense à les recopier, ou utilise l'export de progression depuis l'<a href="../index.html#top">accueil</a> (qui sauvegarde chapitres et exercices).</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mon espace. <a href="../index.html">Retour à l'accueil</a></p>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/mon-espace.js"></script>
+</body>
+</html>
