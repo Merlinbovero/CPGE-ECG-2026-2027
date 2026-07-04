@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informatique I6 — Traduire les mathématiques en Python | Maths ECG1</title>
+<meta name="description" content="Python pour l'ECG : traduire une formule mathématique en code — sommes, produits, factorielle, binôme, suites récurrentes, le module math, évaluation de polynômes, et écrire un petit programme complet. Exercices corrigés.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-info06" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Informatique I6</span>
+</nav>
+
+<main>
+  <h1><span class="chapter-num">Informatique I6.</span> Traduire les mathématiques en Python</h1>
+  <p class="lead">L'objectif de fin de première année : savoir <strong>écrire un petit programme</strong> et surtout <strong>traduire une formule mathématique en code</strong>. Une somme \(\sum\) devient une boucle, un produit \(\prod\) aussi, une suite récurrente devient une mise à jour de variable. Cette fiche fait le pont entre la notation mathématique et Python.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
+    <span class="muted small">TP tout au long de l'année</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs de la fiche</span>
+    <ul>
+      <li>Traduire une <strong>somme</strong> \(\sum\) et un <strong>produit</strong> \(\prod\) en boucle avec accumulateur.</li>
+      <li>Coder <strong>factorielle</strong>, <strong>coefficient binomial</strong>, <strong>suites</strong> (récurrentes d'ordre 1 et 2).</li>
+      <li>Utiliser le <strong>module <code>math</code></strong> (racine, exponentielle, logarithme, \(\pi\)…).</li>
+      <li>Évaluer une <strong>fonction</strong> ou un <strong>polynôme</strong>, gérer les <strong>formules par morceaux</strong>.</li>
+      <li>Structurer un <strong>petit programme complet</strong> (données → traitement → résultat) avec des fonctions.</li>
+    </ul>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire du chapitre">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#s1">Le module math</a></li>
+      <li><a href="#s2">Traduire une somme</a></li>
+      <li><a href="#s3">Produit, factorielle, binôme</a></li>
+      <li><a href="#s4">Traduire une suite</a></li>
+      <li><a href="#s5">Évaluer une fonction ou un polynôme</a></li>
+      <li><a href="#s6">Écrire un petit programme complet</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
+      <li><a href="#exos">Exercices corrigés</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="s1">1. Le module math</h2>
+  <p>Pour les fonctions mathématiques usuelles, on importe le module <code>math</code> :</p>
+  <pre><code class="language-python">import math
+
+math.sqrt(2)     # racine carrée : 1.4142135623730951
+math.exp(1)      # e^1 : 2.718281828459045
+math.log(math.e) # logarithme népérien : 1.0
+math.log(8, 2)   # logarithme en base 2 : 3.0
+math.factorial(5)# 120
+math.comb(5, 2)  # coefficient binomial C(5,2) : 10
+math.floor(3.7)  # partie entière inférieure : 3
+math.pi, math.e  # constantes 3.14159..., 2.71828...</code></pre>
+  <p class="small muted">On peut aussi écrire la racine sans <code>math</code> : <code>x ** 0.5</code>. Mais <code>math.sqrt</code> est plus lisible.</p>
+
+  <h2 id="s2">2. Traduire une somme</h2>
+  <div class="box met">
+    <span class="box-title">Méthode — de \(\sum\) à la boucle</span>
+    <p>La somme \(\displaystyle S = \sum_{k=1}^{n} f(k)\) se code en trois temps : <strong>initialiser</strong> l'accumulateur à 0, <strong>parcourir</strong> les indices, <strong>ajouter</strong> chaque terme.</p>
+    <pre><code class="language-python"># S = somme pour k de 1 à n de k**2
+S = 0
+for k in range(1, n + 1):   # attention : n+1 pour inclure n
+    S += k**2
+</code></pre>
+    <p>Le squelette est <em>toujours</em> le même : seul change le terme <code>f(k)</code> ajouté. Pour une somme de \(0\) à \(n\) : <code>range(n + 1)</code>.</p>
+  </div>
+  <div class="box warn">
+    <span class="box-title">⚠️ Les deux erreurs classiques</span>
+    <ul>
+      <li><strong>La borne :</strong> <code>range(1, n)</code> s'arrête à \(n-1\). Pour aller jusqu'à \(n\), écrire <code>range(1, n + 1)</code>.</li>
+      <li><strong>L'oubli de l'initialisation :</strong> toujours <code>S = 0</code> (somme) ou <code>P = 1</code> (produit) <em>avant</em> la boucle.</li>
+    </ul>
+  </div>
+
+  <h2 id="s3">3. Produit, factorielle, binôme</h2>
+  <pre><code class="language-python"># Produit : P = produit pour k de 1 à n de f(k)  ->  init à 1
+def factorielle(n):
+    P = 1
+    for k in range(1, n + 1):
+        P *= k
+    return P                       # factorielle(5) = 120
+
+# Coefficient binomial C(n,k) = n! / (k!(n-k)!)
+def binomial(n, k):
+    return factorielle(n) // (factorielle(k) * factorielle(n - k))
+</code></pre>
+  <p>On utilise la division <strong>entière</strong> <code>//</code> car un coefficient binomial est un entier.</p>
+
+  <h2 id="s4">4. Traduire une suite</h2>
+  <p><strong>Ordre 1</strong> \(u_{n+1} = f(u_n)\) : une seule variable, mise à jour \(n\) fois.</p>
+  <pre><code class="language-python">def u(n):          # u_0 = 3, u_{k+1} = 2 u_k - 1
+    x = 3
+    for k in range(n):
+        x = 2*x - 1
+    return x</code></pre>
+  <p><strong>Ordre 2</strong> \(u_{n+2} = a\,u_{n+1} + b\,u_n\) : deux variables mises à jour <strong>simultanément</strong>.</p>
+  <pre><code class="language-python">def fibo(n):       # F_0 = 0, F_1 = 1, F_{n+2} = F_{n+1} + F_n
+    a, b = 0, 1
+    for k in range(n):
+        a, b = b, a + b     # affectation simultanée !
+    return a</code></pre>
+
+  <h2 id="s5">5. Évaluer une fonction ou un polynôme</h2>
+  <p>Un polynôme \(P(x) = \sum_{i=0}^{d} a_i x^i\) donné par la liste de ses coefficients <code>[a0, a1, …, ad]</code> :</p>
+  <pre><code class="language-python">def eval_poly(coeffs, x):
+    S = 0
+    for i, a in enumerate(coeffs):   # i = indice, a = coefficient
+        S += a * x**i
+    return S
+# eval_poly([3, -2, 0, 1], 2) = 3 - 4 + 0 + 8 = 7</code></pre>
+  <div class="box met">
+    <span class="box-title">Formules par morceaux</span>
+    <p>Une fonction définie par cas se traduit avec des <code>if</code> :</p>
+    <pre><code class="language-python">def f(x):
+    if x &lt; 0:
+        return -x        # |x| pour x négatif
+    else:
+        return x**2      # x² sinon</code></pre>
+  </div>
+
+  <h2 id="s6">6. Écrire un petit programme complet</h2>
+  <div class="box met">
+    <span class="box-title">La structure : données → traitement → résultat</span>
+    <p>Un petit programme s'organise en <strong>fonctions</strong>, chacune faisant une chose, et un <em>enchaînement</em> qui les appelle. Exemple : calculer la moyenne et la mention d'un élève.</p>
+    <pre><code class="language-python">def moyenne(notes):
+    return sum(notes) / len(notes)
+
+def mention(m):
+    if m &gt;= 16: return "TB"
+    elif m &gt;= 14: return "B"
+    elif m &gt;= 12: return "AB"
+    elif m &gt;= 10: return "passable"
+    else: return "refusé"
+
+def bulletin(notes):
+    m = moyenne(notes)
+    return m, mention(m)
+
+# utilisation
+print(bulletin([12, 8, 15, 11]))   # (11.5, 'passable')</code></pre>
+    <p>Chaque fonction <code>return</code> son résultat ; on les <strong>compose</strong>. C'est le socle de tout programme, du plus petit exercice au sujet de concours.</p>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Somme \(\sum_{k=1}^n f(k)\) :</strong> <code>S = 0 ; for k in range(1, n+1): S += f(k)</code>.</li>
+      <li><strong>Produit / factorielle :</strong> <code>P = 1 ; for k in range(1, n+1): P *= k</code>.</li>
+      <li><strong>Binôme :</strong> <code>math.comb(n, k)</code> ou <code>fact(n)//(fact(k)*fact(n-k))</code>.</li>
+      <li><strong>Suite ordre 1 :</strong> <code>x = u0 ; for k in range(n): x = f(x)</code>.</li>
+      <li><strong>Suite ordre 2 :</strong> <code>a, b = u0, u1 ; for k in range(n): a, b = b, a*... + b*...</code>.</li>
+      <li><strong>Module math :</strong> <code>sqrt, exp, log, factorial, comb, floor, pi, e</code>.</li>
+      <li><strong>Polynôme :</strong> <code>for i, a in enumerate(coeffs): S += a*x**i</code>.</li>
+      <li><strong>Programme :</strong> découper en fonctions qui <code>return</code>, puis les composer.</li>
+      <li><strong>S'entraîner :</strong> le <a href="python-jeu.html">jeu Python (70 niveaux)</a> fait pratiquer tout ceci en exécutant ton code.</li>
+    </ul>
+  </div>
+
+  <h2 id="exos">Exercices corrigés</h2>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 1 — Somme des inverses</h3><span class="level level-1">Application directe</span></div>
+    <p>Traduire en Python la somme \(H_n = \displaystyle\sum_{k=1}^{n} \frac1k\). Écrire <code>harmonique(n)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def harmonique(n):
+    S = 0
+    for k in range(1, n + 1):
+        S += 1 / k          # 1/k pour un flottant
+    return S                # harmonique(3) = 1.8333...</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="1"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 2 — Somme d'une géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>somme_geom(q, n)</code> = \(\displaystyle\sum_{k=0}^{n} q^k\), puis prédire <code>somme_geom(2, 3)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def somme_geom(q, n):
+    S = 0
+    for k in range(n + 1):   # de 0 à n
+        S += q**k
+    return S</code></pre>
+      <p><code>somme_geom(2, 3)</code> \(= 2^0 + 2^1 + 2^2 + 2^3 = 1 + 2 + 4 + 8 = 15\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="2"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 3 — Le module math</h3><span class="level level-1">Application directe</span></div>
+    <p>Que valent <code>math.sqrt(16)</code>, <code>math.factorial(4)</code>, <code>math.comb(6, 2)</code>, <code>math.floor(2.9)</code> ?</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><code>math.sqrt(16)</code> = <code>4.0</code> ; <code>math.factorial(4)</code> = <code>24</code> ; <code>math.comb(6, 2)</code> = <code>15</code> ; <code>math.floor(2.9)</code> = <code>2</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="3"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 4 — Produit</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>produit(n)</code> = \(\displaystyle\prod_{k=1}^{n}(2k)\) (produit des \(n\) premiers pairs). Prédire <code>produit(3)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def produit(n):
+    P = 1
+    for k in range(1, n + 1):
+        P *= 2 * k
+    return P</code></pre>
+      <p><code>produit(3)</code> \(= 2 \times 4 \times 6 = 48\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="4"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 5 — Somme des carrés</h3><span class="level level-1">Application directe</span></div>
+    <p>Écrire <code>somme_carres(n)</code> = \(\displaystyle\sum_{k=1}^{n} k^2\), et vérifier avec la formule \(\frac{n(n+1)(2n+1)}{6}\) pour \(n = 3\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def somme_carres(n):
+    S = 0
+    for k in range(1, n + 1):
+        S += k**2
+    return S                # somme_carres(3) = 14</code></pre>
+      <p>Formule : \(\frac{3 \times 4 \times 7}{6} = \frac{84}{6} = 14\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 6 — Double somme</h3><span class="level level-2">Entraînement</span></div>
+    <p>Traduire \(\displaystyle\sum_{i=1}^{n}\sum_{j=1}^{n} (i \times j)\). Écrire <code>double_somme(n)</code> et prédire <code>double_somme(2)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def double_somme(n):
+    S = 0
+    for i in range(1, n + 1):
+        for j in range(1, n + 1):
+            S += i * j
+    return S</code></pre>
+      <p><code>double_somme(2)</code> : \(1{\cdot}1 + 1{\cdot}2 + 2{\cdot}1 + 2{\cdot}2 = 1+2+2+4 = 9\). (On reconnaît \((\sum i)^2 = 3^2 = 9\).)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="6"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 7 — Factorielle sans math</h3><span class="level level-2">Entraînement</span></div>
+    <p>Recoder <code>factorielle(n)</code> avec une boucle (sans <code>math.factorial</code>). Prédire <code>factorielle(0)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def factorielle(n):
+    P = 1
+    for k in range(1, n + 1):
+        P *= k
+    return P</code></pre>
+      <p><code>factorielle(0)</code> = <code>1</code> : la boucle <code>range(1, 1)</code> est vide, <code>P</code> reste à son initialisation 1 (produit vide).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 8 — Coefficient binomial</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>binomial(n, k)</code> \(= \binom nk\) à l'aide d'une factorielle. Prédire <code>binomial(5, 2)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def fact(m):
+    P = 1
+    for i in range(1, m + 1):
+        P *= i
+    return P
+
+def binomial(n, k):
+    return fact(n) // (fact(k) * fact(n - k))</code></pre>
+      <p><code>binomial(5, 2)</code> \(= \frac{120}{2 \times 6} = 10\). (Ou directement <code>math.comb(5, 2)</code>.)</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Suite récurrente</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(u_0 = 1\), \(u_{k+1} = \frac12 u_k + 3\). Écrire <code>u(n)</code> et prédire <code>u(2)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def u(n):
+    x = 1
+    for k in range(n):
+        x = 0.5 * x + 3
+    return x</code></pre>
+      <p><code>u(0)</code> = 1 ; <code>u(1)</code> = 3.5 ; <code>u(2)</code> = \(0.5 \times 3.5 + 3 = 4.75\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Suite d'ordre 2</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(v_0 = 2\), \(v_1 = 3\), \(v_{n+2} = 2v_{n+1} - v_n\). Écrire <code>v(n)</code> et prédire <code>v(3)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def v(n):
+    a, b = 2, 3
+    for k in range(n):
+        a, b = b, 2*b - a
+    return a</code></pre>
+      <p>Suite : \(v_0=2, v_1=3, v_2=4, v_3=5\) (c'est \(v_n = n+2\)). <code>v(3)</code> = <code>5</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Évaluer un polynôme</h3><span class="level level-2">Entraînement</span></div>
+    <p>Écrire <code>eval_poly(coeffs, x)</code> = \(\sum_i a_i x^i\). Prédire <code>eval_poly([1, 2, 3], 2)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def eval_poly(coeffs, x):
+    S = 0
+    for i, a in enumerate(coeffs):
+        S += a * x**i
+    return S</code></pre>
+      <p><code>eval_poly([1, 2, 3], 2)</code> \(= 1 + 2\times2 + 3\times4 = 1 + 4 + 12 = 17\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Fonction par morceaux</h3><span class="level level-2">Entraînement</span></div>
+    <p>Coder \(f(x) = \begin{cases} x^2 &amp; \text{si } x \geqslant 0 \\ -x &amp; \text{si } x &lt; 0 \end{cases}\). Prédire <code>f(-3)</code> et <code>f(4)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def f(x):
+    if x &gt;= 0:
+        return x**2
+    else:
+        return -x</code></pre>
+      <p><code>f(-3)</code> = 3 (car \(-(-3)\)) ; <code>f(4)</code> = 16.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Série exponentielle</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>exp_approx(x, n)</code> = \(\sum_{k=0}^{n} \frac{x^k}{k!}\), en mettant à jour la factorielle au fil de la boucle (sans la recalculer).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def exp_approx(x, n):
+    S = 1.0        # terme k = 0 : x^0/0! = 1
+    fact = 1
+    for k in range(1, n + 1):
+        fact *= k          # fact vaut k!
+        S += x**k / fact
+    return S               # exp_approx(1, 20) ≈ 2.71828 (≈ e)</code></pre>
+      <p>Astuce d'efficacité : on n'appelle pas une factorielle à chaque tour, on la construit progressivement.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Méthode de Horner</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Évaluer \(P(x) = a_0 + a_1 x + \dots + a_d x^d\) par le <strong>schéma de Horner</strong> \(P(x) = a_0 + x(a_1 + x(a_2 + \dots))\), qui évite de recalculer les puissances. Écrire <code>horner(coeffs, x)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def horner(coeffs, x):
+    S = 0
+    for a in reversed(coeffs):   # du coefficient de plus haut degré au plus bas
+        S = S * x + a
+    return S
+# horner([3, -2, 0, 1], 2) = 7  (même résultat que eval_poly, mais moins de multiplications)</code></pre>
+      <p>Horner ne fait que \(d\) multiplications et \(d\) additions, contre \(\mathcal O(d^2)\) pour le calcul naïf des puissances.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Produit de deux sommes</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Calculer \(\left(\sum_{k=1}^{n} k\right)\left(\sum_{k=1}^{n} \frac1k\right)\). Écrire <code>produit_sommes(n)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def produit_sommes(n):
+    A = 0
+    B = 0
+    for k in range(1, n + 1):
+        A += k
+        B += 1 / k
+    return A * B</code></pre>
+      <p>On calcule les deux sommes dans une <em>seule</em> boucle, puis on multiplie les résultats.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Moyenne et variance</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>moyenne_variance(L)</code> qui renvoie le couple \((\bar x, s^2)\) d'une liste, avec \(s^2 = \frac1n\sum x_i^2 - \bar x^2\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def moyenne_variance(L):
+    n = len(L)
+    m = sum(L) / n
+    m2 = sum(x*x for x in L) / n
+    return m, m2 - m*m
+# moyenne_variance([2, 4, 4, 6, 9]) = (5.0, 5.6)</code></pre>
+      <p>Une fonction peut renvoyer plusieurs valeurs (un couple). On applique Kœnig-Huygens.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Petit programme : le change</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire un programme <code>convertir(euros, taux)</code> qui convertit un montant en euros vers une autre devise (multiplication par le taux), arrondi à 2 décimales. Prédire <code>convertir(100, 1.08)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def convertir(euros, taux):
+    return round(euros * taux, 2)
+# convertir(100, 1.08) = 108.0</code></pre>
+      <p><code>round(x, 2)</code> arrondit à 2 décimales — utile pour un montant.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Petit programme : le maximum et sa position</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>meilleur(notes)</code> qui renvoie le couple (meilleure note, position de l'élève) — la position est l'indice + 1.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def meilleur(notes):
+    m, pos = notes[0], 0
+    for i in range(1, len(notes)):
+        if notes[i] &gt; m:
+            m, pos = notes[i], i
+    return m, pos + 1
+# meilleur([12, 18, 9, 15]) = (18, 2)</code></pre>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Somme conditionnelle</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Écrire <code>somme_multiples(n)</code> = somme des entiers de 1 à \(n\) qui sont multiples de 3 <em>ou</em> de 5. Prédire <code>somme_multiples(10)</code>.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def somme_multiples(n):
+    S = 0
+    for k in range(1, n + 1):
+        if k % 3 == 0 or k % 5 == 0:
+            S += k
+    return S</code></pre>
+      <p><code>somme_multiples(10)</code> : 3 + 5 + 6 + 9 + 10 = <code>33</code>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Synthèse : un mini-programme complet</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Un professeur veut, à partir d'une liste de notes : la moyenne, le nombre d'admis (≥ 10), et la mention de la moyenne. Écrire trois fonctions, puis <code>rapport(notes)</code> qui renvoie le triplet.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <pre><code class="language-python">def moyenne(notes):
+    return sum(notes) / len(notes)
+
+def nb_admis(notes):
+    c = 0
+    for x in notes:
+        if x &gt;= 10:
+            c += 1
+    return c
+
+def mention(m):
+    if m &gt;= 16: return "TB"
+    elif m &gt;= 14: return "B"
+    elif m &gt;= 12: return "AB"
+    elif m &gt;= 10: return "passable"
+    else: return "refusé"
+
+def rapport(notes):
+    m = moyenne(notes)
+    return m, nb_admis(notes), mention(m)
+# rapport([12, 8, 15, 11]) = (11.5, 3, 'passable')</code></pre>
+      <p>C'est la démarche complète : découper le problème en fonctions courtes qui <code>return</code>, puis les composer dans une fonction de synthèse. Prolonge avec le <a href="python-jeu.html">jeu Python</a>.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation entre chapitres">
+    <a href="info05-algorithmes.html"><span class="pn-label">Fiche précédente</span>← Suites, seuil et dichotomie</a>
+    <a class="next" href="python-jeu.html"><span class="pn-label">S'entraîner</span>Python — Le jeu (70 niveaux) →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

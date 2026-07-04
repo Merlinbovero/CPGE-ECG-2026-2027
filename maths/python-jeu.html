@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python — Le jeu (70 niveaux) | Maths ECG1</title>
+<meta name="description" content="Apprendre à coder en Python par le jeu : 70 niveaux progressifs, du plus simple au niveau concours, avec exécution réelle du code dans le navigateur et validation automatique. Progression sauvegardée.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<style>
+  .pj-count { font-weight: 700; color: var(--accent); }
+  .pj-pal-title { margin: 1.4rem 0 .5rem; font-weight: 700; font-size: .95rem; letter-spacing: .02em; }
+  .pj-pal-title.pal-1 { color: #2563eb; }
+  .pj-pal-title.pal-2 { color: #d97706; }
+  .pj-pal-title.pal-3 { color: #c0264b; }
+  .pj-grid { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .pj-chip { position: relative; width: 3rem; height: 2.6rem; border-radius: .5rem; border: 1.5px solid var(--border);
+    background: var(--bg-card); color: var(--text); font-weight: 700; cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; transition: transform .08s, box-shadow .12s; }
+  .pj-chip:hover:not(.lock) { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .pj-chip .pj-chip-n { position: absolute; bottom: 1px; right: 3px; font-size: .58rem; opacity: .55; font-weight: 600; }
+  .pj-chip.done { background: #16a34a; border-color: #16a34a; color: #fff; }
+  .pj-chip.open.pal-1 { border-color: #2563eb; }
+  .pj-chip.open.pal-2 { border-color: #d97706; }
+  .pj-chip.open.pal-3 { border-color: #c0264b; }
+  .pj-chip.lock { opacity: .45; cursor: not-allowed; }
+  .pj-detail { margin-top: 1.6rem; }
+  .pj-badge { display: inline-block; padding: .18rem .6rem; border-radius: 1rem; font-size: .78rem; font-weight: 700; color: #fff; }
+  .pj-badge.pal-1 { background: #2563eb; } .pj-badge.pal-2 { background: #d97706; } .pj-badge.pal-3 { background: #c0264b; }
+  .pj-detail-head h3 { margin: .4rem 0 .6rem; }
+  .pj-enonce { background: var(--box-def-bg); border: 1px solid var(--box-def-border); border-radius: .6rem; padding: .8rem 1rem; margin-bottom: 1rem; }
+  .pj-lab { display: block; font-weight: 600; margin-bottom: .3rem; }
+  #pj-code { width: 100%; min-height: 12rem; font-family: var(--font-mono); font-size: .95rem; line-height: 1.5;
+    padding: .8rem; border-radius: .6rem; border: 1.5px solid var(--border); background: var(--bg-code); color: var(--text);
+    resize: vertical; tab-size: 4; white-space: pre; overflow-wrap: normal; overflow-x: auto; }
+  .pj-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin: .7rem 0; align-items: center; }
+  .pj-status { margin: .5rem 0; font-weight: 600; min-height: 1.4rem; }
+  .pj-status.loading { color: var(--text-muted); }
+  .pj-status.win { color: #16a34a; }
+  .pj-status.fail { color: #c0264b; }
+  .pj-status .btn { margin-left: .6rem; }
+  .pj-results { display: flex; flex-direction: column; gap: .35rem; }
+  .pj-test { padding: .4rem .6rem; border-radius: .45rem; font-family: var(--font-mono); font-size: .86rem; }
+  .pj-test.ok { background: var(--box-thm-bg); border: 1px solid var(--box-thm-border); }
+  .pj-test.ko { background: var(--box-warn-bg); border: 1px solid var(--box-warn-border); }
+  .pj-test code { background: rgba(127,127,127,.15); padding: 0 .25rem; border-radius: .25rem; }
+  #pj-extra pre { overflow-x: auto; }
+</style>
+</head>
+<body data-root=".." data-page-id="maths-python-jeu" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Python — Le jeu</span>
+</nav>
+
+<main>
+  <h1>Python — Le jeu <span class="chapter-num">70 niveaux</span></h1>
+  <p class="lead">Apprends à coder en t'amusant : <strong>70 niveaux progressifs</strong>, du plus simple (après le cours) jusqu'au niveau concours. Tu écris du <strong>vrai code Python</strong>, il est <strong>exécuté dans ton navigateur</strong> et validé automatiquement par des tests. Débloque les niveaux un à un — ta progression est sauvegardée.</p>
+
+  <div class="box met">
+    <span class="box-title">Comment jouer</span>
+    <ul>
+      <li><strong>Palier 1 — Découverte</strong> (1-19) : les bases, juste après avoir lu les fiches <a href="info01-bases-python.html">I1</a> et <a href="info02-listes.html">I2</a>.</li>
+      <li><strong>Palier 2 — Renforcement</strong> (20-49) : traduire des <strong>formules mathématiques</strong> en code (sommes, suites, binôme…).</li>
+      <li><strong>Palier 3 — Concret</strong> (50-70) : de vrais <strong>problèmes</strong>, du code plus long (simulations, matrices, algorithmes).</li>
+    </ul>
+    <p class="small muted">La première exécution charge Python (Pyodide) : quelques secondes et une connexion internet, une seule fois par visite. Écris une fonction du nom demandé, clique sur <strong>« Exécuter les tests »</strong>. ⚠️ Évite les boucles infinies (elles figent la page).</p>
+  </div>
+
+  <p>Progression : <span id="pj-count" class="pj-count">0 / 70 niveaux validés</span></p>
+  <div id="pj-map"></div>
+
+  <div id="pj-detail"></div>
+
+  <noscript><p class="box warn">Ce jeu nécessite JavaScript activé.</p></noscript>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="info05-algorithmes.html"><span class="pn-label">Fiche précédente</span>← Suites, seuil, dichotomie</a>
+    <a class="next" href="index.html"><span class="pn-label">Retour</span>Sommaire maths</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/python-niveaux.js"></script>
+<script src="../js/python-jeu.js"></script>
+</body>
+</html>
