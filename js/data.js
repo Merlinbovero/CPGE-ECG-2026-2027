@@ -70,6 +70,8 @@ const SITE_DATA = {
       s: ["Le module math", "Traduire une somme et un produit", "Factorielle et binôme", "Traduire une suite", "Évaluer un polynôme (Horner)", "Écrire un petit programme"] },
     { id: "maths-python-jeu", m: "maths", r: true, n: "", t: "Python — Le jeu (70 niveaux progressifs)", u: "maths/python-jeu.html",
       s: ["Apprendre à coder par le jeu", "70 niveaux progressifs", "Exécution réelle du code Python", "Formules et problèmes de concours"] },
+    { id: "maths-kholles", m: "maths", r: true, n: "", t: "Khôlles — 20 problèmes difficiles (1 h)", u: "maths/kholles.html",
+      s: ["Problèmes de type oral et concours", "Minuteur d'une heure", "Indices progressifs", "Corrigés rigoureux", "Suites, séries, matrices, probabilités"] },
     { id: "maths-formulaire", m: "maths", r: true, n: "", t: "Formulaire / Mémo — toutes les formules de maths", u: "maths/formulaire.html",
       s: ["Formules d'algèbre et de calcul", "Analyse et intégration", "Probabilités et lois usuelles", "Séries, graphes, statistiques", "Mémo Python"] },
     { id: "maths-flashcards", m: "maths", r: true, n: "", t: "Flashcards Maths", u: "maths/flashcards.html",

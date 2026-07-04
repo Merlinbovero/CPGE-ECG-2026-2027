@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khôlles — 20 problèmes difficiles (1 h) | Maths ECG1</title>
+<meta name="description" content="Entraînement de type khôlle en maths appliquées ECG1 : 20 problèmes exigeants (niveau oral et concours), avec minuteur d'une heure, indices progressifs et corrigés détaillés et rigoureux.">
+<link rel="stylesheet" href="../css/style.css">
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<style>
+  .kh-timer { position: sticky; top: .5rem; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem;
+    background: var(--bg-card); border: 1.5px solid var(--border); border-radius: .7rem; padding: .6rem .9rem; box-shadow: var(--shadow); margin: 1rem 0 1.6rem; }
+  #kh-time { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--accent); min-width: 6.2rem; }
+  .kh-progress { flex: 1 1 8rem; height: .5rem; background: color-mix(in srgb, var(--accent) 18%, transparent); border-radius: 1rem; overflow: hidden; min-width: 6rem; }
+  #kh-bar { height: 100%; width: 100%; background: var(--accent); transition: width 1s linear; }
+  .kh-reveal { margin: .5rem 0; }
+  .kh-time-est { font-size: .8rem; color: var(--text-muted); margin-left: .5rem; }
+  .exercise blockquote.enonce { border-left: 3px solid var(--accent); margin: .4rem 0 .8rem; padding: .2rem 0 .2rem .9rem; }
+</style>
+</head>
+<body data-root=".." data-page-id="maths-kholles" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Khôlles</span>
+</nav>
+
+<main>
+  <h1>Khôlles — 20 problèmes difficiles <span class="chapter-num">1 heure</span></h1>
+  <p class="lead">Des problèmes <strong>exigeants mentalement</strong>, dans l'esprit des khôlles et des oraux : peu de calcul mécanique, beaucoup d'idées. Lance le minuteur, cherche <strong>seul</strong>, ne déplie un indice que si tu bloques vraiment, et ne regarde le corrigé qu'après avoir vraiment lutté. Chaque problème reste dans le programme d'ECG1 — c'est la <em>réflexion</em> qui est difficile, pas les prérequis.</p>
+
+  <div class="box met">
+    <span class="box-title">Comment s'entraîner</span>
+    <ul>
+      <li><strong>Choisis un problème</strong>, lance le minuteur, et cherche au brouillon comme au tableau : <em>écris tes idées, même fausses</em>.</li>
+      <li><strong>Verbalise</strong> ta démarche (comme en khôlle) : poser le problème, tester un cas, conjecturer, démontrer.</li>
+      <li>Les <strong>indices</strong> sont progressifs : n'en ouvre qu'un à la fois. Le <strong>corrigé</strong> est détaillé et rigoureux.</li>
+    </ul>
+  </div>
+
+  <div class="kh-timer" role="timer" aria-label="Minuteur d'une heure">
+    <span id="kh-time">60:00</span>
+    <div class="kh-progress"><div id="kh-bar"></div></div>
+    <button id="kh-start" class="btn">▶ Démarrer 1 h</button>
+    <button id="kh-pause" class="btn">⏸ Pause</button>
+    <button id="kh-reset" class="btn">↺ Réinitialiser</button>
+  </div>
+
+  <!-- ===== 1 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 1 — Une somme factorielle</h3><span class="level level-2">Difficile</span><span class="kh-time-est">≈ 15 min</span></div>
+    <blockquote class="enonce">Calculer, pour \(n \geqslant 1\), la somme \(S_n = \displaystyle\sum_{k=1}^{n} k \cdot k!\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Cherche à écrire \(k\cdot k!\) comme une <strong>différence</strong> de deux termes consécutifs.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>\(k\cdot k! = (k+1)! - k!\). Somme télescopique.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>On écrit \((k+1)! = (k+1)\,k! = k\cdot k! + k!\), d'où \(k\cdot k! = (k+1)! - k!\). La somme télescope :</p>
+      <p>\[ S_n = \sum_{k=1}^{n}\big((k+1)! - k!\big) = (n+1)! - 1! = (n+1)! - 1. \]</p>
+      <p>Contrôle \(n=4\) : \(1 + 4 + 18 + 96 = 119 = 5! - 1\) ✓.</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k1"> Réussi</label>
+  </article>
+
+  <!-- ===== 2 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 2 — Puissance d'une matrice triangulaire</h3><span class="level level-2">Difficile</span><span class="kh-time-est">≈ 20 min</span></div>
+    <blockquote class="enonce">Soit \(A = \begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}\). Calculer \(A^n\) pour \(n \geqslant 1\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Écris \(A = 2I + N\) avec \(N = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0\end{pmatrix}\). Que vaut \(N^2\) ?</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>\(N^2 = 0\), et \(2I\) commute avec \(N\) : applique le binôme de Newton.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>\(A = 2I + N\) avec \(N^2 = 0\). Comme \(2I\) et \(N\) commutent, le binôme de Newton donne (tous les termes avec \(N^2, N^3,\dots\) sont nuls) :</p>
+      <p>\[ A^n = \sum_{k=0}^{n}\binom nk (2I)^{n-k} N^k = (2I)^n + n(2I)^{n-1}N = 2^n I + n\,2^{n-1} N. \]</p>
+      <p>Soit \(A^n = \begin{pmatrix} 2^n &amp; n\,2^{n-1} \\ 0 &amp; 2^n\end{pmatrix}\). (Vérification par récurrence immédiate ; \(n=5\) : \(\begin{pmatrix}32 &amp; 80\\0&amp;32\end{pmatrix}\).)</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k2"> Réussi</label>
+  </article>
+
+  <!-- ===== 3 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 3 — Une suite définie par une racine</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">Soit \(u_0 = 0\) et \(u_{n+1} = \sqrt{2 + u_n}\). Montrer que \((u_n)\) converge et déterminer sa limite.</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Cherche d'abord la limite possible \(\ell\) : elle vérifie \(\ell = \sqrt{2+\ell}\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Montre par récurrence que \(0 \leqslant u_n &lt; 2\) et que \((u_n)\) est croissante.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Limite candidate :</strong> \(\ell = \sqrt{2+\ell}\) et \(\ell \geqslant 0\) donne \(\ell^2 - \ell - 2 = 0\), soit \(\ell = 2\).</p>
+      <p><strong>Bornée :</strong> par récurrence, \(0 \leqslant u_n &lt; 2\). C'est vrai pour \(u_0 = 0\) ; si \(0 \leqslant u_n &lt; 2\), alors \(2 \leqslant 2 + u_n &lt; 4\), donc \(\sqrt2 \leqslant u_{n+1} &lt; 2\) : la propriété se propage.</p>
+      <p><strong>Croissante :</strong> \(u_{n+1}^2 - u_n^2 = 2 + u_n - u_n^2 = -(u_n-2)(u_n+1) &gt; 0\) car \(-1 &lt; u_n &lt; 2\). Comme les termes sont positifs, \(u_{n+1} &gt; u_n\).</p>
+      <p><strong>Conclusion :</strong> \((u_n)\) est croissante et majorée par 2, donc converge ; sa limite \(\ell\) vérifie \(\ell = \sqrt{2+\ell}\) (continuité) avec \(0 \leqslant \ell \leqslant 2\), donc \(\ell = 2\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k3"> Réussi</label>
+  </article>
+
+  <!-- ===== 4 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 4 — Le problème des chapeaux</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 40 min</span></div>
+    <blockquote class="enonce">\(n\) personnes déposent leur chapeau ; on les redistribue au hasard (une permutation uniforme). Soit \(p_n\) la probabilité que <em>personne</em> ne récupère son chapeau. Montrer que \(p_n = \displaystyle\sum_{k=0}^{n} \frac{(-1)^k}{k!}\), puis déterminer \(\lim p_n\). Montrer enfin que le nombre moyen de personnes récupérant leur chapeau vaut \(1\), quel que soit \(n\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Note \(A_i\) l'événement « la personne \(i\) récupère son chapeau » et applique la formule du crible (Poincaré) à \(P(A_1\cup\dots\cup A_n)\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Pour le nombre moyen, écris \(X = \sum_i \mathbf 1_{A_i}\) et utilise la <strong>linéarité de l'espérance</strong> (pas besoin d'indépendance).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Crible.</strong> \(P(A_{i_1}\cap\dots\cap A_{i_j}) = \dfrac{(n-j)!}{n!}\) (les \(j\) positions sont fixées, on permute le reste). Il y a \(\binom nj\) tels \(j\)-uplets, donc par la formule de Poincaré :</p>
+      <p>\[ P\Big(\bigcup_i A_i\Big) = \sum_{j=1}^{n} (-1)^{j+1}\binom nj \frac{(n-j)!}{n!} = \sum_{j=1}^{n} \frac{(-1)^{j+1}}{j!}. \]</p>
+      <p>« Personne » est le complémentaire : \(p_n = 1 - P(\bigcup A_i) = \displaystyle\sum_{j=0}^{n}\frac{(-1)^j}{j!}\). C'est la somme partielle de la série de \(\mathrm e^{-1}\) : \(\boxed{p_n \to \mathrm e^{-1} \approx 0{,}368}\).</p>
+      <p><strong>Nombre moyen.</strong> \(X = \sum_{i=1}^n \mathbf 1_{A_i}\) avec \(E(\mathbf 1_{A_i}) = P(A_i) = \frac1n\). Par linéarité, \(E(X) = n\cdot\frac1n = 1\) — indépendant de \(n\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k4"> Réussi</label>
+  </article>
+
+  <!-- ===== 5 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 5 — Une suite d'intégrales</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">Pour \(n \in \mathbb N\), \(I_n = \displaystyle\int_0^1 x^n \mathrm e^{x}\,\mathrm dx\). Établir une relation entre \(I_n\) et \(I_{n-1}\), puis déterminer \(\lim I_n\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Intègre par parties en dérivant \(x^n\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Encadre \(I_n\) : sur \([0,1]\), \(1 \leqslant \mathrm e^x \leqslant \mathrm e\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Relation.</strong> IPP avec \(u' = \mathrm e^x\), \(v = x^n\) :</p>
+      <p>\[ I_n = \big[x^n\mathrm e^x\big]_0^1 - n\int_0^1 x^{n-1}\mathrm e^x\,\mathrm dx = \mathrm e - n\,I_{n-1}. \]</p>
+      <p><strong>Limite.</strong> Sur \([0,1]\), \(0 \leqslant x^n\mathrm e^x \leqslant \mathrm e\,x^n\), donc \(0 \leqslant I_n \leqslant \mathrm e\displaystyle\int_0^1 x^n\,\mathrm dx = \dfrac{\mathrm e}{n+1} \to 0\). Par encadrement, \(I_n \to 0\).</p>
+      <p class="small muted">De \(I_n = \mathrm e - nI_{n-1}\to 0\) on tire même \(I_{n-1}\sim \mathrm e/n\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k5"> Réussi</label>
+  </article>
+
+  <!-- ===== 6 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 6 — Encadrer une somme</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">Montrer que pour tout \(n \geqslant 1\) : \(\displaystyle 2\big(\sqrt{n+1}-1\big) \leqslant \sum_{k=1}^{n} \frac{1}{\sqrt k} \leqslant 2\sqrt n - 1\). En déduire un équivalent de la somme.</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Encadre \(\frac{1}{\sqrt k}\) par deux différences du type \(2(\sqrt{k+1}-\sqrt k)\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>\(2(\sqrt{k+1}-\sqrt k) = \dfrac{2}{\sqrt{k+1}+\sqrt k} \leqslant \dfrac{1}{\sqrt k} \leqslant \dfrac{2}{\sqrt k + \sqrt{k-1}} = 2(\sqrt k - \sqrt{k-1})\), puis télescope.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Par quantité conjuguée, \(2(\sqrt{k+1}-\sqrt k) = \frac{2}{\sqrt{k+1}+\sqrt k}\). Comme \(\sqrt k \leqslant \sqrt{k+1}+\sqrt k \leqslant 2\sqrt{k+1}\)… plus simplement : \(\sqrt{k+1}+\sqrt k \geqslant 2\sqrt k\) donne \(2(\sqrt{k+1}-\sqrt k) \leqslant \frac{1}{\sqrt k}\) ; et \(\sqrt k + \sqrt{k-1} \leqslant 2\sqrt k\) donne \(\frac{1}{\sqrt k} \leqslant 2(\sqrt k - \sqrt{k-1})\).</p>
+      <p><strong>Somme de gauche</strong> (\(k=1\) à \(n\)) télescope : \(\sum \frac1{\sqrt k} \geqslant 2(\sqrt{n+1}-1)\). <strong>Somme de droite</strong> (\(k=1\) à \(n\)) télescope : \(\sum \frac1{\sqrt k} \leqslant 2(\sqrt n - 0) - 1 = 2\sqrt n - 1\) (le terme \(k=1\) vaut \(1 \leqslant 2(1-0)\), on garde \(1\) exact).</p>
+      <p><strong>Équivalent.</strong> Les deux bornes sont \(\sim 2\sqrt n\), donc \(\displaystyle\sum_{k=1}^n \frac1{\sqrt k} \sim 2\sqrt n\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k6"> Réussi</label>
+  </article>
+
+  <!-- ===== 7 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 7 — Deux identités binomiales</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 25 min</span></div>
+    <blockquote class="enonce">Montrer que \(\displaystyle\sum_{k=0}^{n} k\binom nk = n\,2^{n-1}\) et \(\displaystyle\sum_{k=0}^{n} k^2\binom nk = n(n+1)\,2^{n-2}\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Formule du capitaine : \(k\binom nk = n\binom{n-1}{k-1}\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Pour la seconde, écris \(k^2 = k(k-1) + k\) et \(k(k-1)\binom nk = n(n-1)\binom{n-2}{k-2}\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Première.</strong> \(k\binom nk = n\binom{n-1}{k-1}\), donc \(\sum_{k=1}^n k\binom nk = n\sum_{k=1}^n \binom{n-1}{k-1} = n\sum_{j=0}^{n-1}\binom{n-1}{j} = n\,2^{n-1}\).</p>
+      <p><strong>Seconde.</strong> \(\sum k^2\binom nk = \sum k(k-1)\binom nk + \sum k\binom nk\). Or \(k(k-1)\binom nk = n(n-1)\binom{n-2}{k-2}\), d'où \(\sum k(k-1)\binom nk = n(n-1)2^{n-2}\). En ajoutant \(n2^{n-1} = 2n\,2^{n-2}\) :</p>
+      <p>\[ \sum_{k=0}^n k^2\binom nk = n(n-1)2^{n-2} + 2n\,2^{n-2} = n(n+1)\,2^{n-2}. \]</p>
+      <p class="small muted">Interprétation probabiliste : si \(X\hookrightarrow\mathscr B(n,\tfrac12)\), on retrouve \(E(X) = \tfrac n2\) et \(E(X^2) = \tfrac{n(n+1)}4\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k7"> Réussi</label>
+  </article>
+
+  <!-- ===== 8 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 8 — Espérance par les queues</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 25 min</span></div>
+    <blockquote class="enonce">Soit \(X\) une variable aléatoire à valeurs dans \(\mathbb N^*\). Montrer que \(E(X) = \displaystyle\sum_{n=1}^{+\infty} P(X \geqslant n)\) (sous réserve d'existence). Application : retrouver \(E(X) = \frac1p\) pour \(X \hookrightarrow \mathscr G(p)\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Écris \(P(X\geqslant n) = \sum_{k\geqslant n} P(X=k)\) et interverti les deux sommations.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Dans \(\sum_{n\geqslant1}\sum_{k\geqslant n} P(X=k)\), chaque \(P(X=k)\) apparaît pour \(n = 1,\dots,k\), soit \(k\) fois.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Formule.</strong> Les termes étant positifs, on peut intervertir :</p>
+      <p>\[ \sum_{n=1}^{+\infty} P(X\geqslant n) = \sum_{n=1}^{+\infty}\sum_{k=n}^{+\infty} P(X=k) = \sum_{k=1}^{+\infty}\Big(\sum_{n=1}^{k} 1\Big) P(X=k) = \sum_{k=1}^{+\infty} k\,P(X=k) = E(X). \]</p>
+      <p><strong>Application.</strong> Pour \(X\hookrightarrow\mathscr G(p)\), \(P(X\geqslant n) = (1-p)^{n-1}\), donc \(E(X) = \sum_{n\geqslant1}(1-p)^{n-1} = \dfrac{1}{1-(1-p)} = \dfrac1p\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k8"> Réussi</label>
+  </article>
+
+  <!-- ===== 9 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 9 — Polynôme annulateur</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 35 min</span></div>
+    <blockquote class="enonce">Soit \(A \in \mathcal M_2(\mathbb R)\) telle que \(A^2 = A + 2I\). Montrer que \(A\) est inversible et exprimer \(A^{-1}\). Puis déterminer \(A^n\) sous la forme \(a_n A + b_n I\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>De \(A^2 - A - 2I = 0\), factorise pour faire apparaître \(A\times(\dots) = I\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Pour \(A^n\) : divise \(X^n\) par \(X^2 - X - 2 = (X-2)(X+1)\) ; le reste \(a_nX+b_n\) vérifie \(2^n = 2a_n+b_n\) et \((-1)^n = -a_n+b_n\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Inverse.</strong> \(A^2 - A = 2I\) donne \(A(A-I) = 2I\), soit \(A\cdot\dfrac{A-I}{2} = I\). Donc \(A\) est inversible et \(A^{-1} = \dfrac{A - I}{2}\).</p>
+      <p><strong>Puissances.</strong> \(X^2 - X - 2 = (X-2)(X+1)\) annule \(A\). Écrivons \(X^n = (X^2-X-2)Q(X) + a_nX + b_n\). En évaluant en \(X = 2\) et \(X = -1\) (racines) : \(2^n = 2a_n + b_n\) et \((-1)^n = -a_n + b_n\). On résout :</p>
+      <p>\[ a_n = \frac{2^n - (-1)^n}{3}, \qquad b_n = \frac{2^n + 2(-1)^n}{3}. \]</p>
+      <p>Comme le polynôme annule \(A\), \(A^n = a_n A + b_n I\). (Vérifié pour tout \(n\) sur \(A = \begin{pmatrix}0&amp;2\\1&amp;1\end{pmatrix}\).)</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k9"> Réussi</label>
+  </article>
+
+  <!-- ===== 10 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 10 — Passer à l'inverse</h3><span class="level level-2">Difficile</span><span class="kh-time-est">≈ 15 min</span></div>
+    <blockquote class="enonce">Soit \(u_0 &gt; 0\) et \(u_{n+1} = \dfrac{u_n}{1 + u_n}\). Déterminer une expression de \(u_n\) et sa limite.</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Que devient \(\dfrac{1}{u_{n+1}}\) ?</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Tous les \(u_n &gt; 0\). En passant à l'inverse : \(\dfrac{1}{u_{n+1}} = \dfrac{1+u_n}{u_n} = \dfrac{1}{u_n} + 1\). La suite \(\big(\frac1{u_n}\big)\) est arithmétique de raison 1 :</p>
+      <p>\[ \frac{1}{u_n} = \frac{1}{u_0} + n \quad\Longrightarrow\quad u_n = \frac{u_0}{1 + n\,u_0} \xrightarrow[n\to+\infty]{} 0. \]</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k10"> Réussi</label>
+  </article>
+
+  <!-- ===== 11 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 11 — La ruine du joueur</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 35 min</span></div>
+    <blockquote class="enonce">Un joueur possède \(k\) jetons (\(0 \leqslant k \leqslant N\)) et, à chaque partie, en gagne ou perd un avec probabilité \(\frac12\). Il s'arrête à \(0\) (ruine) ou \(N\) (objectif). Soit \(p_k\) la probabilité d'atteindre \(N\) en partant de \(k\). Montrer que \(p_k = \dfrac kN\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Conditionne sur la première partie : relie \(p_k\) à \(p_{k-1}\) et \(p_{k+1}\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>\(p_k = \frac12 p_{k-1} + \frac12 p_{k+1}\) : la suite \((p_k)\) est <strong>arithmétique</strong>. Utilise \(p_0 = 0\), \(p_N = 1\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>En conditionnant sur l'issue de la première partie (système complet) : \(p_k = \frac12 p_{k+1} + \frac12 p_{k-1}\) pour \(1 \leqslant k \leqslant N-1\), avec \(p_0 = 0\) et \(p_N = 1\).</p>
+      <p>Cette relation s'écrit \(p_{k+1} - p_k = p_k - p_{k-1}\) : les écarts sont constants, donc \((p_k)\) est <strong>arithmétique</strong>. Avec \(p_0 = 0\), \(p_k = k\,r\) ; et \(p_N = 1\) donne \(r = \frac1N\). Ainsi \(p_k = \dfrac kN\).</p>
+      <p class="small muted">Conséquence : partir avec plus de jetons augmente proportionnellement les chances d'atteindre l'objectif.</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k11"> Réussi</label>
+  </article>
+
+  <!-- ===== 12 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 12 — Parité d'une binomiale</h3><span class="level level-2">Difficile</span><span class="kh-time-est">≈ 15 min</span></div>
+    <blockquote class="enonce">Soit \(X \hookrightarrow \mathscr B(n, \frac12)\) avec \(n \geqslant 1\). Montrer que \(P(X \text{ pair}) = \dfrac12\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Considère \((1+1)^n\) et \((1-1)^n\) développés par le binôme.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>\(P(X\text{ pair}) = \dfrac1{2^n}\displaystyle\sum_{k\text{ pair}}\binom nk\). Or par le binôme, \(\sum_k\binom nk = 2^n\) et \(\sum_k (-1)^k\binom nk = (1-1)^n = 0\) (car \(n\geqslant1\)). En additionnant, \(2\sum_{k\text{ pair}}\binom nk = 2^n\), donc \(\sum_{k\text{ pair}}\binom nk = 2^{n-1}\).</p>
+      <p>D'où \(P(X\text{ pair}) = \dfrac{2^{n-1}}{2^n} = \dfrac12\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k12"> Réussi</label>
+  </article>
+
+  <!-- ===== 13 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 13 — Du logarithme à la moyenne géométrique</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 25 min</span></div>
+    <blockquote class="enonce">Montrer que pour tout \(x &gt; 0\), \(\ln x \leqslant x - 1\). En déduire que pour \(a, b &gt; 0\), \(\sqrt{ab} \leqslant \dfrac{a+b}{2}\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Étudie \(g(x) = x - 1 - \ln x\), ou invoque la concavité de \(\ln\) (courbe sous sa tangente en 1).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Applique l'inégalité \(\ln x \leqslant x-1\) à un \(x\) bien choisi, ou passe par \(\ln\frac{a+b}2 \geqslant \dots\)</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Inégalité.</strong> \(g(x) = x - 1 - \ln x\) vérifie \(g'(x) = 1 - \frac1x\), négatif sur \(]0,1[\), positif sur \(]1,+\infty[\) : \(g\) a un minimum en 1, \(g(1) = 0\). Donc \(g \geqslant 0\), soit \(\ln x \leqslant x - 1\).</p>
+      <p><strong>Moyennes.</strong> Posons \(m = \frac{a+b}2 &gt; 0\). Par concavité de \(\ln\) (ou l'inégalité ci-dessus appliquée à \(\frac am\) et \(\frac bm\)) : \(\ln\frac am \leqslant \frac am - 1\) et \(\ln\frac bm \leqslant \frac bm - 1\). En sommant : \(\ln\frac{ab}{m^2} \leqslant \frac{a+b}{m} - 2 = 0\). Donc \(\frac{ab}{m^2} \leqslant 1\), soit \(ab \leqslant m^2\) et \(\sqrt{ab} \leqslant m = \frac{a+b}2\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k13"> Réussi</label>
+  </article>
+
+  <!-- ===== 14 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 14 — Une somme avec \(n^2\)</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">Pour \(|x| &lt; 1\), calculer \(S(x) = \displaystyle\sum_{n=1}^{+\infty} n^2 x^n\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Pars de \(\sum_{n\geqslant0} x^n = \frac1{1-x}\) et utilise les séries dérivées.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Écris \(n^2 = n(n-1) + n\) et exploite \(\sum n(n-1)x^{n-2} = \frac{2}{(1-x)^3}\), \(\sum n x^{n-1} = \frac1{(1-x)^2}\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Pour \(|x|&lt;1\), les séries dérivées convergent : \(\sum_{n\geqslant1} n x^{n-1} = \frac1{(1-x)^2}\) et \(\sum_{n\geqslant2} n(n-1)x^{n-2} = \frac2{(1-x)^3}\). Avec \(n^2 = n(n-1) + n\) :</p>
+      <p>\[ S(x) = x^2\sum n(n-1)x^{n-2} + x\sum n x^{n-1} = \frac{2x^2}{(1-x)^3} + \frac{x}{(1-x)^2} = \frac{2x^2 + x(1-x)}{(1-x)^3} = \frac{x(1+x)}{(1-x)^3}. \]</p>
+      <p>Contrôle \(x = \frac12\) : \(S = \frac{\frac12\cdot\frac32}{(\frac12)^3} = \frac{3/4}{1/8} = 6\) ✓.</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k14"> Réussi</label>
+  </article>
+
+  <!-- ===== 15 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 15 — Somme de deux lois de Poisson</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">Soit \(X \hookrightarrow \mathscr P(\lambda)\) et \(Y \hookrightarrow \mathscr P(\mu)\) indépendantes. Montrer que \(X + Y \hookrightarrow \mathscr P(\lambda + \mu)\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>\(P(X+Y = n) = \sum_{k=0}^n P(X=k)P(Y=n-k)\) (indépendance).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Fais apparaître \(\binom nk\) via \(\frac{1}{k!(n-k)!} = \frac1{n!}\binom nk\), puis le binôme de Newton.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Par indépendance et probabilités totales :</p>
+      <p>\[ P(X+Y=n) = \sum_{k=0}^n \mathrm e^{-\lambda}\frac{\lambda^k}{k!}\,\mathrm e^{-\mu}\frac{\mu^{n-k}}{(n-k)!} = \frac{\mathrm e^{-(\lambda+\mu)}}{n!}\sum_{k=0}^n \binom nk \lambda^k\mu^{n-k} = \mathrm e^{-(\lambda+\mu)}\frac{(\lambda+\mu)^n}{n!}, \]</p>
+      <p>par le binôme de Newton. C'est exactement la loi \(\mathscr P(\lambda+\mu)\). \(\blacksquare\)</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k15"> Réussi</label>
+  </article>
+
+  <!-- ===== 16 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 16 — Le collectionneur de vignettes</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 35 min</span></div>
+    <blockquote class="enonce">On collectionne \(n\) vignettes ; chaque achat donne une vignette uniforme parmi les \(n\). Soit \(T\) le nombre d'achats pour compléter la collection. Montrer que \(E(T) = n\,H_n\) où \(H_n = \sum_{k=1}^n \frac1k\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Décompose \(T = T_1 + T_2 + \dots + T_n\) où \(T_i\) est le nombre d'achats pour obtenir la \(i\)-ième <em>nouvelle</em> vignette.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Quand on possède déjà \(i-1\) vignettes, la probabilité qu'un achat en donne une nouvelle est \(\frac{n-(i-1)}{n}\) : \(T_i\) suit une loi géométrique.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Écrivons \(T = \sum_{i=1}^n T_i\), où \(T_i\) est le nombre d'achats pour passer de \(i-1\) à \(i\) vignettes distinctes. Lorsqu'on en a \(i-1\), chaque achat donne une nouvelle vignette avec probabilité \(p_i = \frac{n-i+1}{n}\), indépendamment : \(T_i \hookrightarrow \mathscr G(p_i)\), donc \(E(T_i) = \frac{1}{p_i} = \frac{n}{n-i+1}\).</p>
+      <p>Par linéarité :</p>
+      <p>\[ E(T) = \sum_{i=1}^n \frac{n}{n-i+1} = n\sum_{i=1}^n \frac{1}{n-i+1} = n\sum_{j=1}^n \frac1j = n\,H_n. \]</p>
+      <p class="small muted">Comme \(H_n \sim \ln n\), il faut environ \(n\ln n\) achats : pour \(n=6\), \(E(T) = 6\cdot\frac{49}{20} = 14{,}7\).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k16"> Réussi</label>
+  </article>
+
+  <!-- ===== 17 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 17 — Chemins dans un quadrillage</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 25 min</span></div>
+    <blockquote class="enonce">Combien y a-t-il de chemins allant de \((0,0)\) à \((m,n)\) en faisant uniquement des pas \(+1\) vers la droite ou \(+1\) vers le haut ? En déduire \(\displaystyle\sum_{k=0}^{n}\binom{m+k}{k} = \binom{m+n+1}{n}\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Un chemin est une suite de \(m+n\) pas ; il suffit de choisir <em>où</em> placer les \(n\) pas « haut ».</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Pour l'identité, classe les chemins vers \((m, n)\) selon la hauteur \(k\) à laquelle ils font leur <em>dernier</em> pas horizontal.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Dénombrement.</strong> Un chemin est une suite de \(m+n\) pas dont \(m\) « droite » et \(n\) « haut ». Il est entièrement déterminé par le choix des positions des \(n\) pas « haut » parmi \(m+n\) : il y a \(\displaystyle\binom{m+n}{n}\) chemins.</p>
+      <p><strong>Identité.</strong> Comptons les chemins de \((0,0)\) à \((m+1, n)\), soit \(\binom{m+n+1}{n}\). Chacun franchit la droite \(x = m \to m+1\) à une hauteur \(k\) unique (\(0 \leqslant k \leqslant n\)) : jusque-là, il va de \((0,0)\) à \((m, k)\) (\(\binom{m+k}{k}\) façons) puis fait le pas horizontal, puis monte tout droit. En sommant sur \(k\) :</p>
+      <p>\[ \sum_{k=0}^{n}\binom{m+k}{k} = \binom{m+n+1}{n}. \]</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k17"> Réussi</label>
+  </article>
+
+  <!-- ===== 18 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 18 — Fibonacci matriciel</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">Soit \(M = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0\end{pmatrix}\) et \((F_n)\) la suite de Fibonacci (\(F_0=0\), \(F_1=1\)). Montrer que \(M^n = \begin{pmatrix} F_{n+1} &amp; F_n \\ F_n &amp; F_{n-1}\end{pmatrix}\), et en déduire \(F_{n+1}F_{n-1} - F_n^2 = (-1)^n\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Récurrence sur \(n\), en utilisant \(F_{n+1} = F_n + F_{n-1}\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Pour l'identité, prends le <strong>déterminant</strong> de \(M^n = (\det M)^n\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p><strong>Récurrence.</strong> Vrai pour \(n=1\) : \(M = \begin{pmatrix}F_2&amp;F_1\\F_1&amp;F_0\end{pmatrix} = \begin{pmatrix}1&amp;1\\1&amp;0\end{pmatrix}\). Si la formule vaut au rang \(n\) :</p>
+      <p>\[ M^{n+1} = M^n M = \begin{pmatrix}F_{n+1}&amp;F_n\\F_n&amp;F_{n-1}\end{pmatrix}\begin{pmatrix}1&amp;1\\1&amp;0\end{pmatrix} = \begin{pmatrix}F_{n+1}+F_n &amp; F_{n+1}\\ F_n+F_{n-1} &amp; F_n\end{pmatrix} = \begin{pmatrix}F_{n+2}&amp;F_{n+1}\\F_{n+1}&amp;F_n\end{pmatrix}. \]</p>
+      <p><strong>Identité.</strong> \(\det(M^n) = (\det M)^n = (-1)^n\). Or \(\det\begin{pmatrix}F_{n+1}&amp;F_n\\F_n&amp;F_{n-1}\end{pmatrix} = F_{n+1}F_{n-1} - F_n^2\). D'où \(F_{n+1}F_{n-1} - F_n^2 = (-1)^n\) (identité de Cassini).</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k18"> Réussi</label>
+  </article>
+
+  <!-- ===== 19 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 19 — Une limite d'intégrales</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 35 min</span></div>
+    <blockquote class="enonce">Soit \(f\) continue sur \([0,1]\). Montrer que \(\displaystyle (n+1)\int_0^1 x^n f(x)\,\mathrm dx \xrightarrow[n\to+\infty]{} f(1)\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Remarque que \((n+1)\int_0^1 x^n\,\mathrm dx = 1\) : étudie donc \((n+1)\int_0^1 x^n\big(f(x) - f(1)\big)\,\mathrm dx\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Coupe l'intégrale en \([0, 1-\delta]\) et \([1-\delta, 1]\) : sur le second, \(f(x)-f(1)\) est petit (continuité) ; sur le premier, \(x^n\) est petit.</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Comme \((n+1)\int_0^1 x^n\,\mathrm dx = 1\), il suffit de montrer \(D_n = (n+1)\int_0^1 x^n\big(f(x)-f(1)\big)\,\mathrm dx \to 0\).</p>
+      <p>Soit \(\varepsilon &gt; 0\). Par continuité en 1, il existe \(\delta \in\,]0,1[\) tel que \(|f(x)-f(1)| \leqslant \varepsilon\) pour \(x \in [1-\delta, 1]\). On note \(K = \sup_{[0,1]}|f - f(1)|\) (fini, \(f\) continue sur un segment).</p>
+      <p>\[ |D_n| \leqslant (n+1)\int_0^{1-\delta} x^n K\,\mathrm dx + (n+1)\int_{1-\delta}^1 x^n \varepsilon\,\mathrm dx \leqslant K(1-\delta)^{n+1} + \varepsilon. \]</p>
+      <p>(On a majoré \(\int_{1-\delta}^1 x^n \leqslant \int_0^1 x^n = \frac1{n+1}\).) Comme \((1-\delta)^{n+1}\to 0\), il existe \(N\) tel que \(K(1-\delta)^{n+1} \leqslant \varepsilon\) pour \(n \geqslant N\), d'où \(|D_n| \leqslant 2\varepsilon\). Donc \(D_n \to 0\) et \((n+1)\int_0^1 x^n f \to f(1)\). \(\blacksquare\)</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k19"> Réussi</label>
+  </article>
+
+  <!-- ===== 20 ===== -->
+  <article class="exercise">
+    <div class="exercise-head"><h3>Khôlle 20 — Les records d'une permutation</h3><span class="level level-3">Très difficile</span><span class="kh-time-est">≈ 30 min</span></div>
+    <blockquote class="enonce">On tire une permutation uniforme \((a_1,\dots,a_n)\) de \(\{1,\dots,n\}\). On dit qu'il y a un <em>record</em> au rang \(k\) si \(a_k &gt; a_j\) pour tout \(j &lt; k\) (le premier terme est toujours un record). Montrer que le nombre moyen de records vaut \(H_n = \sum_{k=1}^n \frac1k\).</blockquote>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 1</button><div class="corrige hidden"><p>Note \(R_k = 1\) s'il y a un record au rang \(k\). Quelle est \(P(R_k = 1)\) ?</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">💡 Indice 2</button><div class="corrige hidden"><p>Il y a un record au rang \(k\) si et seulement si \(a_k\) est le maximum de \(\{a_1,\dots,a_k\}\) : par symétrie, cela arrive avec probabilité \(\frac1k\).</p></div></div>
+    <div class="kh-reveal"><button class="btn-corrige" type="button">Voir le corrigé complet</button><div class="corrige hidden">
+      <p>Soit \(R_k\) l'indicatrice d'un record au rang \(k\), et \(R = \sum_{k=1}^n R_k\) le nombre de records. Il y a un record au rang \(k\) si et seulement si le plus grand des \(k\) premiers termes \(a_1,\dots,a_k\) se trouve en dernière position \(k\). Par symétrie, chacune des \(k\) positions est également probable pour ce maximum, donc \(P(R_k = 1) = \frac1k\).</p>
+      <p>Par linéarité de l'espérance (aucune indépendance requise) :</p>
+      <p>\[ E(R) = \sum_{k=1}^n E(R_k) = \sum_{k=1}^n \frac1k = H_n. \]</p>
+      <p class="small muted">On retrouve le comportement \(\sim \ln n\) : dans une longue liste aléatoire, on bat le record étonnamment peu souvent.</p>
+    </div></div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="k20"> Réussi</label>
+  </article>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="python-jeu.html"><span class="pn-label">Voir aussi</span>← Python — Le jeu</a>
+    <a class="next" href="index.html"><span class="pn-label">Retour</span>Sommaire maths</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/kholle.js"></script>
+</body>
+</html>
