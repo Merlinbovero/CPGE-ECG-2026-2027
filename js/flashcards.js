@@ -49,6 +49,23 @@
   var revealed = false;
   var doneCount = 0;
 
+  /* Rendu KaTeX des formules injectées dynamiquement dans les cartes.
+     Le rendu global de main.js n'a lieu qu'au chargement ; on le rejoue
+     ici sur le conteneur des flashcards après chaque affichage de carte. */
+  function typesetMath() {
+    if (typeof renderMathInElement === "function") {
+      try {
+        renderMathInElement(app, {
+          delimiters: [
+            { left: "\\[", right: "\\]", display: true },
+            { left: "\\(", right: "\\)", display: false }
+          ],
+          throwOnError: false
+        });
+      } catch (e) {}
+    }
+  }
+
   function totalDueToday() { return order.length; }
 
   function render() {
@@ -82,6 +99,8 @@
         ? '<p><button id="fc-again" class="btn" type="button" style="background:var(--box-warn-border)">Je ne savais pas</button>' +
           '<button id="fc-good" class="btn" type="button">Je savais</button></p>'
         : '<p><button id="fc-reveal" class="btn" type="button">Voir la réponse</button></p>');
+
+    typesetMath();
 
     var revealBtn = document.getElementById("fc-reveal");
     if (revealBtn) revealBtn.addEventListener("click", function () { revealed = true; render(); });
