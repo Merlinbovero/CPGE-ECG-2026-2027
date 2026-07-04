@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 2 · ≈ 2 semaines de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Étendre le cadre probabiliste à un <strong>univers dénombrable</strong> : σ-additivité, continuité monotone, systèmes complets dénombrables.</li>
+      <li>Définir l'<strong>espérance d'une v.a. discrète</strong> comme somme d'une série absolument convergente, et savoir qu'elle <em>peut ne pas exister</em>.</li>
+      <li>Connaître la <strong>loi géométrique</strong> \(\mathscr{G}(p)\) : \(P(X=k) = (1-p)^{k-1}p\), \(E = \frac1p\), \(V = \frac{1-p}{p^2}\), et sa propriété d'<strong>absence de mémoire</strong>.</li>
+      <li>Connaître la <strong>loi de Poisson</strong> \(\mathscr{P}(\lambda)\) : \(P(X=k) = \mathrm{e}^{-\lambda}\frac{\lambda^k}{k!}\), \(E = V = \lambda\), et l'<strong>approximation</strong> de la binomiale par Poisson.</li>
+      <li>Refaire les <strong>démonstrations exigibles</strong> (lois, espérances, variances) à l'aide des séries de référence du chapitre 13.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -51,6 +63,7 @@
       <li><a href="#s4">La loi géométrique</a></li>
       <li><a href="#s5">La loi de Poisson</a></li>
       <li><a href="#s6">Approximation de la binomiale par Poisson</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -127,6 +140,30 @@
     <p>Si \(X_n \hookrightarrow \mathscr{B}(n, p_n)\) avec \(n\,p_n \to \lambda &gt; 0\) (typiquement \(p_n = \frac\lambda n\)), alors pour tout \(k \in \mathbb{N}\) :</p>
     <p>\[ P(X_n = k) \xrightarrow[n \to +\infty]{} \mathrm{e}^{-\lambda}\,\frac{\lambda^k}{k!}. \]</p>
     <p class="small">Règle pratique : pour \(n \geqslant 30\), \(p \leqslant 0{,}1\) et \(np \leqslant 15\), on approche \(\mathscr{B}(n,p)\) par \(\mathscr{P}(np)\) — « loi des événements rares ».</p>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">⚠️ Pièges classiques</span>
+    <ul>
+      <li><strong>L'espérance n'est pas automatique :</strong> pour une v.a. discrète infinie, il faut <em>justifier la convergence</em> de la série \(\sum x_n P(X = x_n)\) (absolue). Une loi peut exister sans espérance (exercice 9).</li>
+      <li><strong>Loi géométrique — support \(\mathbb{N}^*\) :</strong> \(X\) est le <em>rang</em> du premier succès, donc \(X \geqslant 1\) ; \(P(X = k) = (1-p)^{k-1}p\) (l'exposant est \(k-1\), pas \(k\)).</li>
+      <li><strong>\(P(X &gt; n) = (1-p)^n\)</strong> pour la géométrique (pas \((1-p)^{n-1}\)) : ce sont les \(n\) premières épreuves qui échouent.</li>
+      <li><strong>Poisson :</strong> \(E(X) = V(X) = \lambda\) (mêmes valeurs). Le paramètre \(\lambda\) est le nombre moyen d'occurrences, pas une probabilité.</li>
+      <li><strong>Approximation binomiale → Poisson :</strong> valable quand \(n\) grand, \(p\) petit, \(np = \lambda\) modéré ; le paramètre de Poisson est \(np\).</li>
+      <li><strong>Changement d'indice :</strong> pour sommer une série exponentielle ou géométrique dérivée, poser explicitement \(j = k-1\) ou \(m = n-k\) et vérifier les bornes.</li>
+    </ul>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>σ-additivité :</strong> \(P(\bigcup_n A_n) = \sum_n P(A_n)\) (incompatibles). <strong>Continuité monotone :</strong> \(A_n \nearrow \Rightarrow P(\bigcup A_n) = \lim P(A_n)\).</li>
+      <li><strong>Espérance discrète :</strong> \(E(X) = \sum_n x_n P(X = x_n)\), <em>sous réserve de convergence absolue</em>.</li>
+      <li><strong>Géométrique \(\mathscr{G}(p)\) :</strong> \(P(X = k) = (1-p)^{k-1}p\) (\(k \geqslant 1\)), \(E = \frac1p\), \(V = \frac{1-p}{p^2}\), \(P(X &gt; n) = (1-p)^n\), sans mémoire.</li>
+      <li><strong>Poisson \(\mathscr{P}(\lambda)\) :</strong> \(P(X = k) = \mathrm{e}^{-\lambda}\frac{\lambda^k}{k!}\) (\(k \geqslant 0\)), \(E = V = \lambda\).</li>
+      <li><strong>Approximation :</strong> \(\mathscr{B}(n, p) \approx \mathscr{P}(np)\) pour \(n\) grand, \(p\) petit.</li>
+      <li><strong>Somme/amincissement :</strong> filtrer une \(\mathscr{P}(\lambda)\) au taux \(p\) donne une \(\mathscr{P}(\lambda p)\).</li>
+    </ul>
   </div>
 
   <h2 id="exos">Exercices corrigés</h2>
@@ -260,6 +297,143 @@
       <p><strong>3.</strong> Par transfert : \(\sum_k \frac1k \cdot \frac{6}{\pi^2k^2} = \frac{6}{\pi^2}\sum_k \frac{1}{k^3}\), série de Riemann \(\alpha = 3 &gt; 1\), convergente (et à termes positifs, donc absolument convergente) : \(Y\) admet une espérance, \(E(Y) = \frac{6\,S_3}{\pi^2}\).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Loi géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>On lance un dé équilibré jusqu'au premier résultat pair ; \(X\) est le rang de ce premier pair. Donner la loi de \(X\), \(E(X)\), \(V(X)\), puis calculer \(P(X = 3)\) et \(P(X \geqslant 3)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Succès = « résultat pair », de probabilité \(p = \frac36 = \frac12\) ; \(X\) = rang du premier succès : \(X \hookrightarrow \mathscr{G}\!\left(\frac12\right)\). \(E(X) = \frac1p = 2\), \(V(X) = \frac{1-p}{p^2} = \frac{1/2}{1/4} = 2\).</p>
+      <p>\(P(X = 3) = \left(\frac12\right)^2\times\frac12 = \frac18\) ; \(P(X \geqslant 3) = P(X &gt; 2) = \left(\frac12\right)^2 = \frac14\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Loi de Poisson</h3><span class="level level-1">Application directe</span></div>
+    <p>Le nombre \(X\) de pannes mensuelles d'une machine suit \(\mathscr{P}(2)\). Calculer \(P(X = 0)\), \(P(X = 1)\) et \(P(X \leqslant 2)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(P(X = 0) = \mathrm{e}^{-2} \approx 0{,}135\) ; \(P(X = 1) = 2\mathrm{e}^{-2} \approx 0{,}271\).</p>
+      <p>\(P(X \leqslant 2) = \mathrm{e}^{-2}\left(1 + 2 + \frac{2^2}{2}\right) = 5\mathrm{e}^{-2} \approx 0{,}677\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Reconnaître une loi géométrique</h3><span class="level level-1">Application directe</span></div>
+    <p>Soit \(X\) à valeurs dans \(\mathbb{N}^*\) avec \(P(X = k) = c\left(\dfrac23\right)^{k-1}\). Déterminer \(c\), reconnaître la loi et donner \(E(X)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\sum_{k\geqslant1} c\left(\frac23\right)^{k-1} = c\,\frac{1}{1 - 2/3} = 3c = 1\), donc \(c = \frac13\). Alors \(P(X = k) = \frac13\left(\frac23\right)^{k-1} = (1-p)^{k-1}p\) avec \(p = \frac13\) : \(X \hookrightarrow \mathscr{G}\!\left(\frac13\right)\), \(E(X) = 3\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Parité pour une géométrique</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{G}(p)\), \(q = 1 - p\). Calculer \(P(X \text{ pair})\) et \(P(X \text{ impair})\) en fonction de \(q\), et vérifier leur somme. Application \(p = \frac13\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(P(X \text{ pair}) = \sum_{j=1}^{+\infty} P(X = 2j) = \sum_{j=1}^{+\infty} q^{2j-1}p = pq\sum_{j=1}^{+\infty}(q^2)^{j-1} = \frac{pq}{1 - q^2} = \frac{pq}{(1-q)(1+q)} = \frac{q}{1+q}\).</p>
+      <p>\(P(X \text{ impair}) = 1 - \frac{q}{1+q} = \frac{1}{1+q}\). Somme \(= 1\) ✓. Application \(p = \frac13\), \(q = \frac23\) : \(P(\text{pair}) = \frac{2/3}{5/3} = \frac25\), \(P(\text{impair}) = \frac35\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Parité pour une loi de Poisson</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{P}(\lambda)\). Montrer que \(P(X \text{ pair}) = \dfrac{1 + \mathrm{e}^{-2\lambda}}{2}\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>On sépare les termes pairs et impairs de la série exponentielle. En additionnant \(\mathrm{e}^{\lambda} = \sum_k \frac{\lambda^k}{k!}\) et \(\mathrm{e}^{-\lambda} = \sum_k \frac{(-\lambda)^k}{k!}\), les termes impairs s'annulent :</p>
+      <p>\[ \sum_{k \text{ pair}} \frac{\lambda^k}{k!} = \frac{\mathrm{e}^{\lambda} + \mathrm{e}^{-\lambda}}{2}. \]</p>
+      <p>Donc \(P(X \text{ pair}) = \mathrm{e}^{-\lambda}\sum_{k \text{ pair}}\frac{\lambda^k}{k!} = \mathrm{e}^{-\lambda}\cdot\frac{\mathrm{e}^{\lambda} + \mathrm{e}^{-\lambda}}{2} = \frac{1 + \mathrm{e}^{-2\lambda}}{2}\). <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Fonction génératrice de Poisson</h3><span class="level level-2">Entraînement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{P}(\lambda)\). Pour \(s \in \mathbb{R}\), montrer que \(G(s) = E(s^X) = \mathrm{e}^{\lambda(s-1)}\), puis en déduire \(E(2^X)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par transfert (la série exponentielle converge pour tout argument) :</p>
+      <p>\[ G(s) = \sum_{k=0}^{+\infty} s^k\,\mathrm{e}^{-\lambda}\frac{\lambda^k}{k!} = \mathrm{e}^{-\lambda}\sum_{k=0}^{+\infty}\frac{(\lambda s)^k}{k!} = \mathrm{e}^{-\lambda}\,\mathrm{e}^{\lambda s} = \mathrm{e}^{\lambda(s-1)}. \]</p>
+      <p>En \(s = 2\) : \(E(2^X) = \mathrm{e}^{\lambda(2-1)} = \mathrm{e}^{\lambda}\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Approximation par Poisson</h3><span class="level level-2">Entraînement</span></div>
+    <p>Une maladie touche en moyenne 1 personne sur 1000. Dans une ville de 2000 habitants (supposés indépendants), \(X\) est le nombre de malades. Justifier l'approximation \(X \approx \mathscr{P}(\lambda)\), donner \(\lambda\), puis estimer \(P(X = 0)\) et \(P(X \geqslant 3)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(X \hookrightarrow \mathscr{B}(2000 ;\ 0{,}001)\) : \(n = 2000\) grand, \(p = 0{,}001\) petit, \(np = 2\) modéré, donc \(X \approx \mathscr{P}(2)\) (loi des événements rares), \(\lambda = 2\).</p>
+      <p>\(P(X = 0) \approx \mathrm{e}^{-2} \approx 0{,}135\).</p>
+      <p>\(P(X \geqslant 3) = 1 - P(X \leqslant 2) \approx 1 - 5\mathrm{e}^{-2} \approx 1 - 0{,}677 = 0{,}323\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Minimum de deux géométriques (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \(X \hookrightarrow \mathscr{G}(p)\) et \(Y \hookrightarrow \mathscr{G}(p')\) <strong>indépendantes</strong>, et \(M = \min(X, Y)\). Déterminer la loi de \(M\) en calculant \(P(M &gt; n)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\{M &gt; n\} = \{X &gt; n\} \cap \{Y &gt; n\}\). Par indépendance et \(P(X &gt; n) = (1-p)^n\) :</p>
+      <p>\[ P(M &gt; n) = P(X &gt; n)\,P(Y &gt; n) = (1-p)^n (1-p')^n = \big[(1-p)(1-p')\big]^n. \]</p>
+      <p>En posant \(1 - \pi = (1-p)(1-p')\), soit \(\pi = 1 - (1-p)(1-p') = p + p' - pp'\), on a \(P(M &gt; n) = (1-\pi)^n\) : c'est la caractérisation d'une loi géométrique. Donc \(M \hookrightarrow \mathscr{G}\big(p + p' - pp'\big)\).</p>
+      <p class="small muted">Interprétation : attendre le premier des deux succès revient à un unique processus de Bernoulli de probabilité \(\pi\) (« au moins l'un des deux réussit »).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Mode de la loi de Poisson (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soit \(X \hookrightarrow \mathscr{P}(\lambda)\). Étudier le rapport \(\dfrac{P(X = k+1)}{P(X = k)}\) et en déduire la valeur la plus probable (mode) de \(X\). Applications \(\lambda = 3{,}5\) et \(\lambda = 4\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\dfrac{P(X = k+1)}{P(X = k)} = \dfrac{\mathrm{e}^{-\lambda}\lambda^{k+1}/(k+1)!}{\mathrm{e}^{-\lambda}\lambda^{k}/k!} = \dfrac{\lambda}{k+1}\).</p>
+      <p>Ce rapport est \(\geqslant 1\) ⟺ \(k \leqslant \lambda - 1\). Donc \(P(X = k)\) croît tant que \(k \leqslant \lambda - 1\) puis décroît : le mode est \(\lfloor \lambda \rfloor\) (et si \(\lambda \in \mathbb{N}\), \(\lambda - 1\) et \(\lambda\) sont ex æquo).</p>
+      <p>\(\lambda = 3{,}5\) : mode \(= 3\). \(\lambda = 4\) : modes \(3\) et \(4\) (probabilités égales).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Rang du deuxième succès (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On répète des épreuves de Bernoulli indépendantes de paramètre \(p\) (\(q = 1-p\)). Soit \(T\) le rang du <em>deuxième</em> succès.</p>
+    <ol>
+      <li>Montrer que \(P(T = k) = (k-1)\,p^2 q^{k-2}\) pour \(k \geqslant 2\).</li>
+      <li>Vérifier que \(\sum_{k \geqslant 2} P(T = k) = 1\) et calculer \(E(T)\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(\{T = k\}\) : exactement un succès parmi les \(k-1\) premières épreuves, puis un succès à la \(k\)-ième. Il y a \(\binom{k-1}{1} = k-1\) positions pour le premier succès, chaque configuration ayant probabilité \(p^2 q^{k-2}\) : \(P(T = k) = (k-1)p^2 q^{k-2}\).</p>
+      <p><strong>2.</strong> Avec \(j = k - 1\) (série géométrique dérivée première) :</p>
+      <p>\[ \sum_{k=2}^{+\infty}(k-1)p^2q^{k-2} = p^2\sum_{j=1}^{+\infty} j\,q^{j-1} = p^2\cdot\frac{1}{(1-q)^2} = \frac{p^2}{p^2} = 1. \ \checkmark \]</p>
+      <p>Pour l'espérance, \(\sum_{k\geqslant 2} k(k-1)q^{k-2} = \frac{2}{(1-q)^3} = \frac{2}{p^3}\), donc :</p>
+      <p>\[ E(T) = \sum_{k=2}^{+\infty} k(k-1)p^2 q^{k-2} = p^2\cdot\frac{2}{p^3} = \frac2p. \]</p>
+      <p class="small muted">Cohérent : attendre 2 succès revient à additionner deux attentes d'espérance \(\frac1p\) chacune.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Somme de deux lois de Poisson (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \(X \hookrightarrow \mathscr{P}(\lambda)\) et \(Y \hookrightarrow \mathscr{P}(\mu)\) <strong>indépendantes</strong>. Montrer que \(X + Y \hookrightarrow \mathscr{P}(\lambda + \mu)\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Pour \(n \in \mathbb{N}\), par la formule des probabilités totales sur le système complet \((\{X = k\})_{0 \leqslant k \leqslant n}\) et l'indépendance :</p>
+      <p>\[ P(X + Y = n) = \sum_{k=0}^{n} P(X = k)\,P(Y = n-k) = \sum_{k=0}^{n} \mathrm{e}^{-\lambda}\frac{\lambda^k}{k!}\,\mathrm{e}^{-\mu}\frac{\mu^{n-k}}{(n-k)!}. \]</p>
+      <p>On factorise \(\mathrm{e}^{-(\lambda+\mu)}\) et l'on fait apparaître un coefficient binomial via \(\frac{1}{k!(n-k)!} = \frac{1}{n!}\binom nk\) :</p>
+      <p>\[ P(X + Y = n) = \frac{\mathrm{e}^{-(\lambda+\mu)}}{n!}\sum_{k=0}^{n} \binom nk \lambda^k \mu^{n-k} = \mathrm{e}^{-(\lambda+\mu)}\,\frac{(\lambda + \mu)^n}{n!}, \]</p>
+      <p>par le binôme de Newton. Donc \(X + Y \hookrightarrow \mathscr{P}(\lambda + \mu)\). <span class="qed">∎</span> <span class="small muted">(La stabilité additive de Poisson est étudiée plus généralement au chapitre 15.)</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
