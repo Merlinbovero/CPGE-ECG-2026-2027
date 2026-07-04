@@ -7,6 +7,13 @@
 <meta name="description" content="La bibliothèque de culture générale ECG : les œuvres philosophiques et littéraires essentielles, avec pour chacune sa thèse et ses idées principales, la méthode de la fiche de lecture et les textes intégraux du domaine public.">
 <link rel="stylesheet" href="../css/style.css">
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<style>
+  .biblio-book { padding: .6rem 0; border-bottom: 1px solid var(--border); }
+  .biblio-book:last-child { border-bottom: none; }
+  .biblio-book > p:first-child { margin: 0 0 .4rem; }
+  .biblio-book .btn-corrige { font-size: .82rem; padding: .2rem .6rem; }
+  .biblio-book .corrige p { margin: .4rem 0; }
+</style>
 </head>
 <body data-root=".." data-page-id="cg-bibliotheque" data-matiere="cg">
 
@@ -72,73 +79,367 @@
 
   <div class="box thm">
     <span class="box-title">Antiquité &amp; classiques</span>
-    <ul>
-      <li><strong>Platon, <em>La République</em></strong> (~375 av. J.-C.) — Qu'est-ce que la justice ? Platon construit la cité idéale gouvernée par les philosophes ; l'<strong>allégorie de la caverne</strong> (livre VII) figure l'ascension de l'ignorance (ombres) vers la connaissance des Idées (le Bien). Idées clés : théorie des Idées, tripartition de l'âme, critique de la démocratie. <a href="https://www.gutenberg.org/ebooks/search/?query=platon+république" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Platon, <em>Le Banquet</em></strong> (~380 av. J.-C.) — Sur l'amour (éros) : le mythe des androgynes (Aristophane), puis Diotime : l'amour comme désir de ce qui manque, qui élève des beaux corps au Beau en soi. <a href="https://www.gutenberg.org/ebooks/search/?query=platon+banquet" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Aristote, <em>Éthique à Nicomaque</em></strong> — Le bonheur (<em>eudaimonia</em>) est la fin de toute action ; la vertu est un « juste milieu » entre deux excès, acquise par l'habitude ; éloge de l'amitié. Fondateur de l'éthique des vertus.</li>
-      <li><strong>Épicure, <em>Lettre à Ménécée</em></strong> — Le bonheur par l'ataraxie (absence de trouble) ; distinguer les désirs (naturels/nécessaires ou non) ; « la mort n'est rien pour nous » (quand elle est là, nous n'y sommes plus).</li>
-    </ul>
+
+    <div class="biblio-book">
+      <p><strong>Platon, <em>La République</em></strong> (~375 av. J.-C.) — Qu'est-ce que la justice ? Platon construit la cité idéale gouvernée par les philosophes ; l'<strong>allégorie de la caverne</strong> (livre VII) figure l'ascension de l'ignorance (ombres) vers la connaissance des Idées (le Bien). Idées clés : théorie des Idées, tripartition de l'âme, critique de la démocratie. <a href="https://www.gutenberg.org/ebooks/search/?query=platon+république" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Texte fondateur de la philosophie politique et de la métaphysique : il noue deux questions décisives — qu'est-ce que la justice (dans l'âme et dans la cité) ? et quel rapport entre le savoir et le pouvoir ? On y puise pour presque toutes les notions (justice, vérité, société, art).</p>
+        <p><strong>Comment le lire.</strong> Ne lis pas tout : cible l'<em>anneau de Gygès</em> (livre II — la justice résiste-t-elle à l'impunité ?), la <em>tripartition de l'âme</em> (IV) et surtout l'<em>allégorie de la caverne</em> (VII). Lis-le comme un dialogue argumenté : repère à chaque étape la thèse, l'objection, la réponse.</p>
+        <p><strong>En dissertation.</strong> La caverne illustre l'accès à la vérité, l'éducation, la sortie de l'illusion (notions vérité, art, liberté) ; Gygès sert « la morale sans témoin » (liberté, autrui) ; la critique de la démocratie (le « bon pilote ») interroge le rapport savoir/pouvoir. À <em>discuter</em> : Popper y voit une utopie autoritaire — parfait pour un mouvement dialectique.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Platon, <em>Le Banquet</em></strong> (~380 av. J.-C.) — Sur l'amour (éros) : le mythe des androgynes (Aristophane), puis Diotime : l'amour comme désir de ce qui manque, qui élève des beaux corps au Beau en soi. <a href="https://www.gutenberg.org/ebooks/search/?query=platon+banquet" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Le grand texte occidental sur l'amour et le désir : il fixe la définition d'éros comme <em>désir de ce qui manque</em>, matrice de toute la tradition ultérieure.</p>
+        <p><strong>Comment le lire.</strong> Court et vivant : suis la succession des discours (Aristophane, les « moitiés » séparées ; Socrate rapportant Diotime, l'« échelle » qui monte des beaux corps au Beau en soi). Ficher ces deux images suffit.</p>
+        <p><strong>En dissertation.</strong> Notions amour et désir. Oppose l'amour-manque (Platon) à l'amour-don (l'agapè chrétienne) et à la démystification (Schopenhauer, Freud) ; l'échelle de Diotime nourrit « aimer, est-ce désirer autre chose que l'autre ? ».</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Aristote, <em>Éthique à Nicomaque</em></strong> — Le bonheur (<em>eudaimonia</em>) est la fin de toute action ; la vertu est un « juste milieu » entre deux excès, acquise par l'habitude ; éloge de l'amitié. Fondateur de l'éthique des vertus.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Fonde l'éthique des vertus et la réflexion sur le bonheur comme fin de l'existence ; pense l'amitié comme lien social et politique.</p>
+        <p><strong>Comment le lire.</strong> Dense : cible le livre I (le bonheur, fin ultime), le livre II (la vertu comme juste milieu, acquise par l'<em>habitude</em>) et les livres VIII-IX (l'amitié). À lire avec un commentaire.</p>
+        <p><strong>En dissertation.</strong> Notions bonheur, désir (le bien comme fin), autrui (l'amitié) ; le « juste milieu » contre les morales de l'excès ; la vertu comme habitude sert « nature ou culture ? » et la liberté (on se façonne par ses actes).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Épicure, <em>Lettre à Ménécée</em></strong> — Le bonheur par l'ataraxie (absence de trouble) ; distinguer les désirs (naturels/nécessaires ou non) ; « la mort n'est rien pour nous » (quand elle est là, nous n'y sommes plus).</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Très court et accessible, c'est le manuel du bonheur épicurien : classification des désirs, thérapie de la peur (des dieux, de la mort).</p>
+        <p><strong>Comment le lire.</strong> Se lit en une demi-heure. Ficher le <em>quadruple remède</em> et la typologie des désirs (naturels et nécessaires / naturels non nécessaires / vains). Ne pas confondre épicurisme et hédonisme débridé (c'est une ascèse du plaisir).</p>
+        <p><strong>En dissertation.</strong> Notions bonheur, désir (contre l'illimité), mort (l'argument « quand elle est là, nous n'y sommes plus ») ; central pour « faut-il limiter ses désirs pour être heureux ? ». Oppose à Rousseau et Schopenhauer.</p>
+      </div>
+    </div>
   </div>
 
   <div class="box thm">
     <span class="box-title">Modernes (XVI<sup>e</sup>-XVIII<sup>e</sup>)</span>
-    <ul>
-      <li><strong>Machiavel, <em>Le Prince</em></strong> (1532) — Rupture avec la morale politique : le prince doit conserver le pouvoir en tenant compte du réel (<em>verità effettuale</em>), jouer de la <em>virtù</em> contre la <em>fortuna</em> ; naissance de la pensée politique moderne. <a href="https://www.gutenberg.org/ebooks/search/?query=machiavel+le+prince" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Montaigne, <em>Essais</em></strong> (1580-1595) — « Que sais-je ? » : un scepticisme modeste, l'étude de soi (« je suis moi-même la matière de mon livre »), la tolérance, apprendre à mourir et à vivre. <a href="https://www.gutenberg.org/ebooks/search/?query=montaigne+essais" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Descartes, <em>Discours de la méthode</em></strong> (1637) — Le doute méthodique conduit à la première certitude : « je pense, donc je suis ». Fonde le rationalisme et le sujet moderne ; quatre règles de la méthode. <a href="https://www.gutenberg.org/ebooks/search/?query=descartes+discours+de+la+méthode" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Pascal, <em>Pensées</em></strong> (posth. 1670) — La condition humaine entre <strong>misère et grandeur</strong> (« roseau pensant ») ; le <strong>divertissement</strong> qui nous détourne de l'essentiel ; le <strong>pari</strong> sur l'existence de Dieu. <a href="https://www.gutenberg.org/ebooks/search/?query=pascal+pensées" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Hobbes, <em>Léviathan</em></strong> (1651) — À l'état de nature, « l'homme est un loup pour l'homme » : guerre de tous contre tous. Pour en sortir, les hommes concluent un contrat qui institue un souverain absolu garant de la paix.</li>
-      <li><strong>Rousseau, <em>Du contrat social</em></strong> (1762) — « L'homme est né libre, et partout il est dans les fers. » Le pacte légitime fonde la souveraineté du peuple et la <strong>volonté générale</strong> ; liberté = obéissance à la loi qu'on s'est prescrite. À lire avec le <em>Discours sur l'origine de l'inégalité</em> (1755) : la propriété à l'origine des inégalités. <a href="https://www.gutenberg.org/ebooks/search/?query=rousseau+contrat+social" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Kant, <em>Qu'est-ce que les Lumières ?</em></strong> (1784) — Les Lumières = la sortie de l'homme de sa « minorité » dont il est responsable : <em>Sapere aude</em>, ose penser par toi-même. À prolonger par la morale kantienne : l'impératif catégorique, traiter l'humanité comme une fin, jamais seulement comme un moyen.</li>
-    </ul>
+
+    <div class="biblio-book">
+      <p><strong>Machiavel, <em>Le Prince</em></strong> (1532) — Rupture avec la morale politique : le prince doit conserver le pouvoir en tenant compte du réel (<em>verità effettuale</em>), jouer de la <em>virtù</em> contre la <em>fortuna</em> ; naissance de la pensée politique moderne. <a href="https://www.gutenberg.org/ebooks/search/?query=machiavel+le+prince" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il sépare pour la première fois la politique de la morale et fonde le réalisme politique (penser le pouvoir « tel qu'il est », non tel qu'il devrait être).</p>
+        <p><strong>Comment le lire.</strong> Court et percutant. Repère <em>virtù</em> / <em>fortuna</em>, « vaut-il mieux être aimé ou craint ? », le rapport fin/moyens. Attention au contresens : Machiavel <em>décrit</em> les mécanismes du pouvoir, il ne fait pas l'éloge du cynisme gratuit.</p>
+        <p><strong>En dissertation.</strong> Notions société/pouvoir, morale, histoire ; parfait pour « la politique doit-elle être morale ? ». Oppose-le à Kant (morale universelle) et aux contractualistes (Hobbes, Rousseau).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Montaigne, <em>Essais</em></strong> (1580-1595) — « Que sais-je ? » : un scepticisme modeste, l'étude de soi (« je suis moi-même la matière de mon livre »), la tolérance, apprendre à mourir et à vivre. <a href="https://www.gutenberg.org/ebooks/search/?query=montaigne+essais" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Invention de l'essai et du sujet moderne qui se prend lui-même pour objet ; modèle de tolérance et de sagesse sceptique.</p>
+        <p><strong>Comment le lire.</strong> Ne lis pas tout : pioche des chapitres — « Des cannibales » (nature/culture, contre l'ethnocentrisme), « Que philosopher c'est apprendre à mourir », « De l'institution des enfants » (l'éducation). Prends une édition en français modernisé.</p>
+        <p><strong>En dissertation.</strong> « Des cannibales » préfigure Lévi-Strauss (nature/culture, autrui) ; « Que sais-je ? » nourrit vérité et doute ; sa réflexion sur la mort et l'éducation est directement réemployable.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Descartes, <em>Discours de la méthode</em></strong> (1637) — Le doute méthodique conduit à la première certitude : « je pense, donc je suis ». Fonde le rationalisme et le sujet moderne ; quatre règles de la méthode. <a href="https://www.gutenberg.org/ebooks/search/?query=descartes+discours+de+la+méthode" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Acte de naissance du rationalisme moderne et du sujet pensant ; le doute méthodique et le <em>cogito</em>.</p>
+        <p><strong>Comment le lire.</strong> Français clair, très lisible. Cible les quatre règles de la méthode (2<sup>e</sup> partie) et le doute menant au cogito (4<sup>e</sup> partie). Distingue bien <em>doute méthodique</em> (provisoire, un outil) et scepticisme (une fin).</p>
+        <p><strong>En dissertation.</strong> Notions vérité, science, raison ; central pour « peut-on douter de tout ? ». Le cogito comme première certitude ; oppose-le à Montaigne (scepticisme) et Pascal (les limites de la raison).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Pascal, <em>Pensées</em></strong> (posth. 1670) — La condition humaine entre <strong>misère et grandeur</strong> (« roseau pensant ») ; le <strong>divertissement</strong> qui nous détourne de l'essentiel ; le <strong>pari</strong> sur l'existence de Dieu. <a href="https://www.gutenberg.org/ebooks/search/?query=pascal+pensées" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Une méditation puissante sur la condition humaine (misère et grandeur), les limites de la raison et l'inquiétude existentielle.</p>
+        <p><strong>Comment le lire.</strong> Ce sont des fragments, non un traité : lis par entrées (édition numérotée Lafuma). Cible « roseau pensant », le divertissement, les deux infinis, le pari.</p>
+        <p><strong>En dissertation.</strong> Le divertissement est décisif pour le bonheur (le bonheur comme fuite de soi) ; « le cœur a ses raisons » pour vérité/raison ; la condition humaine et la religion. Oppose au rationalisme cartésien.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Hobbes, <em>Léviathan</em></strong> (1651) — À l'état de nature, « l'homme est un loup pour l'homme » : guerre de tous contre tous. Pour en sortir, les hommes concluent un contrat qui institue un souverain absolu garant de la paix.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Fondateur du contractualisme moderne : il déduit l'État de la peur et du besoin de sécurité.</p>
+        <p><strong>Comment le lire.</strong> Long : lis des extraits. Cible la description de l'état de nature (la « guerre de tous contre tous », une vie « solitaire, pauvre, brutale et brève ») et le pacte instituant le Léviathan.</p>
+        <p><strong>En dissertation.</strong> Notions société, État, liberté (sécurité contre liberté), violence ; à confronter à Rousseau (état de nature pacifique) : le couple Hobbes/Rousseau est un classique du plan dialectique sur « pourquoi vivre en société ? ».</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Rousseau, <em>Du contrat social</em></strong> (1762) — « L'homme est né libre, et partout il est dans les fers. » Le pacte légitime fonde la souveraineté du peuple et la <strong>volonté générale</strong> ; liberté = obéissance à la loi qu'on s'est prescrite. À lire avec le <em>Discours sur l'origine de l'inégalité</em> (1755) : la propriété à l'origine des inégalités. <a href="https://www.gutenberg.org/ebooks/search/?query=rousseau+contrat+social" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il refonde la légitimité politique sur la souveraineté du peuple et redéfinit la liberté (obéir à la loi qu'on s'est prescrite).</p>
+        <p><strong>Comment le lire.</strong> Cible le livre I (le pacte, « l'homme est né libre… ») et la <em>volonté générale</em> (II). À lire en tandem avec le second <em>Discours</em> pour l'état de nature et l'origine des inégalités.</p>
+        <p><strong>En dissertation.</strong> Notions liberté, société, État, égalité ; imparable pour « la liberté, est-ce faire ce qu'on veut ? » (non : la loi commune libère). Oppose à Hobbes ; le second Discours sert nature/culture et l'ESH (inégalités).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Kant, <em>Qu'est-ce que les Lumières ?</em></strong> (1784) — Les Lumières = la sortie de l'homme de sa « minorité » dont il est responsable : <em>Sapere aude</em>, ose penser par toi-même. À prolonger par la morale kantienne : l'impératif catégorique, traiter l'humanité comme une fin, jamais seulement comme un moyen.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Quelques pages qui définissent la modernité intellectuelle : l'autonomie de la pensée. Court et fondamental.</p>
+        <p><strong>Comment le lire.</strong> Ficher minorité/majorité et la distinction usage <em>public</em> / usage <em>privé</em> de la raison. Prolonge avec la morale kantienne (impératif catégorique) via un manuel.</p>
+        <p><strong>En dissertation.</strong> Notions liberté, vérité, autrui (« traiter l'humanité comme une fin »), raison ; « penser par soi-même », l'autonomie ; socle de la morale du devoir, à opposer aux morales conséquentialistes (l'utilité, le résultat).</p>
+      </div>
+    </div>
   </div>
 
   <div class="box thm">
     <span class="box-title">XIX<sup>e</sup>-XX<sup>e</sup> siècles</span>
-    <ul>
-      <li><strong>Tocqueville, <em>De la démocratie en Amérique</em></strong> (1835-1840) — L'égalité des conditions est le fait irréversible de la modernité ; ses promesses (liberté) et ses périls : <strong>tyrannie de la majorité</strong>, individualisme, despotisme doux. <a href="https://www.gutenberg.org/ebooks/search/?query=tocqueville+démocratie+amérique" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Marx &amp; Engels, <em>Manifeste du parti communiste</em></strong> (1848) — « L'histoire de toute société jusqu'à nos jours est l'histoire de la lutte des classes. » Matérialisme historique, critique du capitalisme, rôle révolutionnaire du prolétariat. <a href="https://www.gutenberg.org/ebooks/search/?query=marx+manifeste+communiste" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Nietzsche, <em>Généalogie de la morale</em></strong> (1887) — Les valeurs morales ont une histoire : opposition morale des « maîtres » / morale des « esclaves » née du <strong>ressentiment</strong> ; à relier à « Dieu est mort » et au projet de transvaluation des valeurs (<em>Ainsi parlait Zarathoustra</em>).</li>
-      <li><strong>Freud, <em>Malaise dans la civilisation</em></strong> (1930) — La civilisation exige le refoulement des pulsions (Éros et Thanatos) : le prix du « vivre-ensemble » est une part de renoncement et de culpabilité.</li>
-      <li><strong>Arendt, <em>Condition de l'homme moderne</em></strong> (1958) &amp; <em>Eichmann à Jérusalem</em> (1963) — La <em>vita activa</em> (travail, œuvre, action) ; et la « <strong>banalité du mal</strong> » : le mal totalitaire perpétré par des hommes ordinaires, incapables de penser.</li>
-      <li><strong>Sartre, <em>L'existentialisme est un humanisme</em></strong> (1946) — « L'existence précède l'essence » : l'homme n'est rien d'autre que ce qu'il se fait ; condamné à être libre, donc responsable, sans excuse. À lire contre le déterminisme.</li>
-      <li><strong>Camus, <em>Le Mythe de Sisyphe</em></strong> (1942) — L'<strong>absurde</strong> naît de la confrontation entre notre exigence de sens et le silence du monde ; refuser le suicide, vivre lucidement la révolte : « il faut imaginer Sisyphe heureux ».</li>
-      <li><strong>Beauvoir, <em>Le Deuxième Sexe</em></strong> (1949) — « On ne naît pas femme, on le devient » : le féminin comme construction sociale, l'analyse de l'oppression et l'appel à la liberté.</li>
-    </ul>
+
+    <div class="biblio-book">
+      <p><strong>Tocqueville, <em>De la démocratie en Amérique</em></strong> (1835-1840) — L'égalité des conditions est le fait irréversible de la modernité ; ses promesses (liberté) et ses périls : <strong>tyrannie de la majorité</strong>, individualisme, despotisme doux. <a href="https://www.gutenberg.org/ebooks/search/?query=tocqueville+démocratie+amérique" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Analyse prophétique de la démocratie comme égalisation des conditions ; il en voit à la fois la force et les dérives (conformisme, repli sur la sphère privée). Pont majeur avec l'ESH.</p>
+        <p><strong>Comment le lire.</strong> Long : extraits ciblés — la tyrannie de la majorité, l'individualisme, le « despotisme doux » (tome II).</p>
+        <p><strong>En dissertation.</strong> Notions société, liberté, égalité, histoire ; imparable pour « égalité et liberté sont-elles compatibles ? ». Le « despotisme doux » se réemploie sur la société de consommation et le conformisme. Lien ESH (démocratie, individualisme).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Marx &amp; Engels, <em>Manifeste du parti communiste</em></strong> (1848) — « L'histoire de toute société jusqu'à nos jours est l'histoire de la lutte des classes. » Matérialisme historique, critique du capitalisme, rôle révolutionnaire du prolétariat. <a href="https://www.gutenberg.org/ebooks/search/?query=marx+manifeste+communiste" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il propose une grille de lecture de l'histoire (la lutte des classes, le rôle moteur de l'économie) d'une influence considérable.</p>
+        <p><strong>Comment le lire.</strong> Court et incisif (c'est un texte de combat). Ficher lutte des classes, bourgeoisie/prolétariat, et l'aliénation (via les <em>Manuscrits de 1844</em>). Distingue Marx penseur et les régimes qui s'en sont réclamés.</p>
+        <p><strong>En dissertation.</strong> Notions société, histoire, travail, technique ; « l'économie explique-t-elle l'histoire ? ». Oppose-le à Weber (les idées ont aussi des effets) et Tocqueville. Lien ESH direct.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Nietzsche, <em>Généalogie de la morale</em></strong> (1887) — Les valeurs morales ont une histoire : opposition morale des « maîtres » / morale des « esclaves » née du <strong>ressentiment</strong> ; à relier à « Dieu est mort » et au projet de transvaluation des valeurs (<em>Ainsi parlait Zarathoustra</em>).</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il historicise la morale : nos valeurs ne tombent pas du ciel, elles ont une généalogie. L'un des trois « maîtres du soupçon » (avec Marx et Freud).</p>
+        <p><strong>Comment le lire.</strong> Exigeant : cible la 1<sup>re</sup> dissertation (bon/mauvais contre bon/méchant, le ressentiment). Édition annotée conseillée. À manier avec précaution (ne pas caricaturer, ne pas confondre avec ses récupérations).</p>
+        <p><strong>En dissertation.</strong> Notions morale, vérité (« il n'y a pas de faits, seulement des interprétations »), la valeur des valeurs ; central pour « d'où viennent nos valeurs ? ». Le soupçon nietzschéen est un excellent moment critique dans un plan.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Freud, <em>Malaise dans la civilisation</em></strong> (1930) — La civilisation exige le refoulement des pulsions (Éros et Thanatos) : le prix du « vivre-ensemble » est une part de renoncement et de culpabilité.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il pense le prix psychique de la vie en société : la culture nous protège mais nous frustre. Troisième maître du soupçon.</p>
+        <p><strong>Comment le lire.</strong> Accessible : ficher le renoncement pulsionnel, le sentiment de culpabilité, le conflit individu/société, Éros et Thanatos.</p>
+        <p><strong>En dissertation.</strong> Notions nature/culture, société, désir, bonheur ; parfait pour « peut-on être heureux en société ? ». Oppose à Rousseau (la société corrompt l'homme bon) et à Aristote (l'homme est un animal politique).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Arendt, <em>Condition de l'homme moderne</em></strong> (1958) &amp; <em>Eichmann à Jérusalem</em> (1963) — La <em>vita activa</em> (travail, œuvre, action) ; et la « <strong>banalité du mal</strong> » : le mal totalitaire perpétré par des hommes ordinaires, incapables de penser.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Deux idées majeures et très « réemployables » : la distinction travail/œuvre/action, et la banalité du mal (le mal ordinaire, produit de l'absence de pensée).</p>
+        <p><strong>Comment le lire.</strong> Exigeant : cible la distinction des trois activités (<em>Condition</em>) et la thèse de la banalité du mal (<em>Eichmann</em>).</p>
+        <p><strong>En dissertation.</strong> Notions travail/technique, société/politique, morale (le mal), autrui ; imparable pour « le mal suppose-t-il des monstres ? » (non : l'irréflexion suffit). Valorise l'action politique et la faculté de juger.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Sartre, <em>L'existentialisme est un humanisme</em></strong> (1946) — « L'existence précède l'essence » : l'homme n'est rien d'autre que ce qu'il se fait ; condamné à être libre, donc responsable, sans excuse. À lire contre le déterminisme.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Court, accessible, il expose la liberté radicale : l'homme se définit par ses actes, sans nature préalable.</p>
+        <p><strong>Comment le lire.</strong> C'est une conférence limpide. Ficher existence/essence, délaissement et angoisse, et la « mauvaise foi » (via <em>L'Être et le Néant</em>).</p>
+        <p><strong>En dissertation.</strong> Notions liberté (contre le déterminisme), la conscience, autrui, morale (« pas d'excuses ») ; central pour « sommes-nous responsables de ce que nous sommes ? ». Oppose au déterminisme (Spinoza, sciences humaines).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Camus, <em>Le Mythe de Sisyphe</em></strong> (1942) — L'<strong>absurde</strong> naît de la confrontation entre notre exigence de sens et le silence du monde ; refuser le suicide, vivre lucidement la révolte : « il faut imaginer Sisyphe heureux ».</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il pose frontalement la question du sens : « la vie vaut-elle la peine d'être vécue ? ». L'absurde et la révolte plutôt que le nihilisme.</p>
+        <p><strong>Comment le lire.</strong> Essai littéraire accessible : ficher l'absurde (le divorce entre l'homme et le monde), la révolte lucide, « imaginer Sisyphe heureux ».</p>
+        <p><strong>En dissertation.</strong> Notions le sens de l'existence, la mort, le bonheur, la liberté ; central pour « la vie a-t-elle un sens ? ». À placer près de Sartre — mais Camus refuse l'étiquette existentialiste, ce qui fait une bonne nuance.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Beauvoir, <em>Le Deuxième Sexe</em></strong> (1949) — « On ne naît pas femme, on le devient » : le féminin comme construction sociale, l'analyse de l'oppression et l'appel à la liberté.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Fondateur de la pensée féministe moderne : le féminin comme construit social et historique, non comme donné naturel.</p>
+        <p><strong>Comment le lire.</strong> Long : cible l'introduction et la thèse du « devenir femme ».</p>
+        <p><strong>En dissertation.</strong> Notions nature/culture (le féminin construit), liberté, autrui (la femme posée comme « l'Autre »), société ; lien ESH (rapports de genre). Sert à contester les explications purement naturalistes des rôles sociaux.</p>
+      </div>
+    </div>
   </div>
 
   <h2 id="s3">3. Littérature — les fondamentaux</h2>
   <div class="box thm">
     <span class="box-title">Le conte, le roman, le théâtre d'idées</span>
-    <ul>
-      <li><strong>Voltaire, <em>Candide</em></strong> (1759) — Conte philosophique : contre l'optimisme leibnizien (« tout est pour le mieux »), la traversée du mal du monde ; conclusion pragmatique : « il faut cultiver notre jardin ». <a href="https://www.gutenberg.org/ebooks/search/?query=voltaire+candide" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Molière, <em>Dom Juan</em></strong> (1665), <em>Le Misanthrope</em> (1666) — La comédie qui pense : l'hypocrisie, le libertinage, l'exigence de vérité sociale (Alceste) — mobilisable en « société », « vérité », « désir ».</li>
-      <li><strong>Flaubert, <em>Madame Bovary</em></strong> (1857) — Le <strong>bovarysme</strong> : aimer et vivre « d'après les livres », l'insatisfaction née de l'imaginaire romanesque ; sommet du réalisme et du style. <a href="https://www.gutenberg.org/ebooks/search/?query=flaubert+madame+bovary" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Hugo, <em>Les Misérables</em></strong> (1862) — Le roman de la misère et de la rédemption (Valjean) ; la justice, la loi et la conscience ; le peuple et l'histoire. <a href="https://www.gutenberg.org/ebooks/search/?query=hugo+misérables" target="_blank" rel="noopener">Texte ↗</a></li>
-      <li><strong>Zola, <em>Germinal</em></strong> (1885) — Le naturalisme et la question sociale : la grève des mineurs, le déterminisme du milieu, l'espérance malgré tout. <a href="https://www.gutenberg.org/ebooks/search/?query=zola+germinal" target="_blank" rel="noopener">Texte ↗</a></li>
-    </ul>
+
+    <div class="biblio-book">
+      <p><strong>Voltaire, <em>Candide</em></strong> (1759) — Conte philosophique : contre l'optimisme leibnizien (« tout est pour le mieux »), la traversée du mal du monde ; conclusion pragmatique : « il faut cultiver notre jardin ». <a href="https://www.gutenberg.org/ebooks/search/?query=voltaire+candide" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Bref, drôle, redoutable : une machine de guerre contre l'optimisme naïf, le fanatisme et la guerre. Le conte philosophique parfait.</p>
+        <p><strong>Comment le lire.</strong> Deux heures suffisent. Repère l'<em>ironie</em>, la structure du voyage initiatique, et surtout la chute : « il faut cultiver notre jardin » (l'action concrète contre la spéculation stérile).</p>
+        <p><strong>En dissertation.</strong> Notions bonheur, le mal (le problème du mal, la théodicée), histoire/progrès ; central pour « tout est-il pour le mieux ? ». La formule finale se réemploie sur « faut-il agir plutôt que théoriser ? ».</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Molière, <em>Dom Juan</em></strong> (1665), <em>Le Misanthrope</em> (1666) — La comédie qui pense : l'hypocrisie, le libertinage, l'exigence de vérité sociale (Alceste) — mobilisable en « société », « vérité », « désir ».</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> La comédie devient un laboratoire d'idées : l'hypocrisie sociale, le libertinage, l'exigence (impossible ?) de sincérité.</p>
+        <p><strong>Comment le lire.</strong> Pièces courtes. <em>Dom Juan</em> : le libertin, le défi, l'hypocrisie érigée en « vice à la mode ». <em>Le Misanthrope</em> : Alceste, la sincérité absolue face aux conventions.</p>
+        <p><strong>En dissertation.</strong> Notions société (les conventions, l'hypocrisie), vérité/sincérité, désir (Dom Juan), autrui ; imparable pour « faut-il toujours dire la vérité ? » (le cas Alceste montre les limites de la sincérité en société).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Flaubert, <em>Madame Bovary</em></strong> (1857) — Le <strong>bovarysme</strong> : aimer et vivre « d'après les livres », l'insatisfaction née de l'imaginaire romanesque ; sommet du réalisme et du style. <a href="https://www.gutenberg.org/ebooks/search/?query=flaubert+madame+bovary" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il forge le « bovarysme » : le désir façonné par l'imaginaire (les lectures) et donc voué à l'insatisfaction. Sommet du style (style indirect libre).</p>
+        <p><strong>Comment le lire.</strong> Cible la formation romanesque d'Emma et le décalage constant rêve/réalité. Observe comment Flaubert fait entendre les pensées des personnages sans les juger.</p>
+        <p><strong>En dissertation.</strong> Notions désir (l'imagination qui creuse le manque — à relier à Stendhal et à Girard, le désir mimétique), le bonheur, l'illusion, l'art ; central pour « le désir peut-il être comblé ? ».</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Hugo, <em>Les Misérables</em></strong> (1862) — Le roman de la misère et de la rédemption (Valjean) ; la justice, la loi et la conscience ; le peuple et l'histoire. <a href="https://www.gutenberg.org/ebooks/search/?query=hugo+misérables" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Une fresque de la misère et de la rédemption qui met en tension la loi et la conscience.</p>
+        <p><strong>Comment le lire.</strong> Très long : connais au moins le couple Valjean/Javert (la conscience contre la loi), Fantine, et les grands morceaux (la barricade) — quitte à passer par un résumé sérieux pour les digressions.</p>
+        <p><strong>En dissertation.</strong> Notions justice, société, liberté, le mal et la rédemption, l'histoire ; central pour « la loi suffit-elle à la justice ? » (Javert, prisonnier de la loi, contre Valjean, guidé par la conscience).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Zola, <em>Germinal</em></strong> (1885) — Le naturalisme et la question sociale : la grève des mineurs, le déterminisme du milieu, l'espérance malgré tout. <a href="https://www.gutenberg.org/ebooks/search/?query=zola+germinal" target="_blank" rel="noopener">Texte ↗</a></p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Le grand roman de la condition ouvrière et de la question sociale au XIX<sup>e</sup> : la misère, la grève, le déterminisme du milieu.</p>
+        <p><strong>Comment le lire.</strong> Cible la mine (comme personnage dévorant), la grève et la fin (« des hommes qui germaient » — l'espérance malgré la défaite).</p>
+        <p><strong>En dissertation.</strong> Notions société, travail, histoire, nature/culture (le déterminisme social), la révolte ; lien ESH direct (la question sociale, le mouvement ouvrier). Sert « sommes-nous déterminés par notre milieu ? ».</p>
+      </div>
+    </div>
   </div>
   <div class="box thm">
     <span class="box-title">Le roman des grandes questions (monde)</span>
-    <ul>
-      <li><strong>Dostoïevski, <em>Crime et Châtiment</em></strong> (1866) &amp; <em>Les Frères Karamazov</em> (1880) — La liberté, le mal, Dieu, la culpabilité et la rédemption ; « si Dieu n'existe pas, tout est permis » — laboratoire des questions morales.</li>
-      <li><strong>Kafka, <em>Le Procès</em></strong> (posth. 1925) — L'individu écrasé par une machine bureaucratique absurde et anonyme : l'aliénation moderne, la culpabilité sans faute.</li>
-      <li><strong>Proust, <em>À la recherche du temps perdu</em></strong> (1913-1927) — Le temps, la mémoire involontaire (la madeleine), la vérité de l'art qui seule « retrouve » le temps perdu.</li>
-      <li><strong>Orwell, <em>1984</em></strong> (1949) — Le totalitarisme : surveillance (Big Brother), novlangue, réécriture du passé ; la liberté comme droit de dire que « deux et deux font quatre » (édition à se procurer).</li>
-    </ul>
+
+    <div class="biblio-book">
+      <p><strong>Dostoïevski, <em>Crime et Châtiment</em></strong> (1866) &amp; <em>Les Frères Karamazov</em> (1880) — La liberté, le mal, Dieu, la culpabilité et la rédemption ; « si Dieu n'existe pas, tout est permis » — laboratoire des questions morales.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Un véritable laboratoire des questions morales et métaphysiques : la liberté, le mal, Dieu, la culpabilité mises à l'épreuve du roman.</p>
+        <p><strong>Comment le lire.</strong> Longs : <em>Crime et Châtiment</em> (Raskolnikov et son « droit » au crime, puis l'écrasement par la culpabilité) ; dans les <em>Karamazov</em>, cible l'épisode du « Grand Inquisiteur » (la liberté échangée contre le pain et la sécurité).</p>
+        <p><strong>En dissertation.</strong> Notions liberté, morale, le mal, religion, autrui ; central pour « si Dieu n'existe pas, tout est-il permis ? ». Le Grand Inquisiteur sert « les hommes veulent-ils vraiment être libres ? ».</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Kafka, <em>Le Procès</em></strong> (posth. 1925) — L'individu écrasé par une machine bureaucratique absurde et anonyme : l'aliénation moderne, la culpabilité sans faute.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> La grande image de l'aliénation moderne : l'individu broyé par une machine anonyme, accusé sans jamais savoir de quoi.</p>
+        <p><strong>Comment le lire.</strong> C'est l'<em>atmosphère</em> qui compte plus que l'intrigue : Joseph K. pris dans un appareil dont la logique lui échappe. Se laisse lire assez vite.</p>
+        <p><strong>En dissertation.</strong> Notions société et bureaucratie, liberté, la justice (son absurdité), autrui, la culpabilité ; le « kafkaïen » se réemploie sur l'État, la technique administrative, la déshumanisation (à relier à Arendt).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Proust, <em>À la recherche du temps perdu</em></strong> (1913-1927) — Le temps, la mémoire involontaire (la madeleine), la vérité de l'art qui seule « retrouve » le temps perdu.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> L'œuvre-monde sur le temps, la mémoire et le pouvoir de l'art de « retrouver » le passé.</p>
+        <p><strong>Comment le lire.</strong> Ne lis pas tout : la <em>madeleine</em> (<em>Du côté de chez Swann</em>) pour la mémoire involontaire, « Un amour de Swann » pour l'amour-jalousie, et <em>Le Temps retrouvé</em> pour la vérité de l'art.</p>
+        <p><strong>En dissertation.</strong> Notions le temps, la mémoire, l'art (l'œuvre qui sauve le temps perdu), l'amour (la jalousie, Swann) ; central pour « à quoi sert l'art ? » et « peut-on retenir le temps ? ».</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Orwell, <em>1984</em></strong> (1949) — Le totalitarisme : surveillance (Big Brother), novlangue, réécriture du passé ; la liberté comme droit de dire que « deux et deux font quatre » (édition à se procurer).</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> La dystopie de référence sur le totalitarisme total : surveillance, fabrication de la vérité, contrôle de la langue et donc de la pensée.</p>
+        <p><strong>Comment le lire.</strong> Roman accessible : Big Brother, la <em>novlangue</em>, « 2 + 2 = 5 », la réécriture du passé, la chambre 101.</p>
+        <p><strong>En dissertation.</strong> Notions vérité (le pouvoir qui fabrique le vrai), liberté, langage (limiter la langue pour limiter la pensée — clé de la notion « langage »), société/État ; central pour « peut-on manipuler la vérité ? ».</p>
+      </div>
+    </div>
   </div>
 
   <h2 id="s4">4. Sciences humaines &amp; essais modernes</h2>
   <div class="box thm">
     <span class="box-title">Pour penser la société contemporaine (liens avec l'ESH)</span>
-    <ul>
-      <li><strong>Durkheim, <em>Le Suicide</em></strong> (1897) — Un fait apparemment individuel s'explique par des causes sociales (intégration, régulation) : naissance de la sociologie comme science ; l'anomie.</li>
-      <li><strong>Weber, <em>L'Éthique protestante et l'esprit du capitalisme</em></strong> (1905) — Une affinité entre l'ascèse protestante et l'esprit d'accumulation capitaliste : les idées ont des effets historiques.</li>
-      <li><strong>Bourdieu, <em>Les Héritiers</em></strong> (1964) / <em>La Distinction</em> (1979) — La reproduction sociale par l'école et la culture ; le capital culturel, l'habitus, les goûts comme marqueurs de classe.</li>
-      <li><strong>Lévi-Strauss, <em>Race et histoire</em></strong> (1952) — Contre l'ethnocentrisme : il n'y a pas de hiérarchie des cultures ; « le barbare, c'est d'abord celui qui croit à la barbarie ». Clé de la notion nature/culture.</li>
-      <li><strong>Jonas, <em>Le Principe responsabilité</em></strong> (1979) — À l'âge de la technique, une éthique nouvelle : agir de façon que les effets soient compatibles avec la permanence d'une vie humaine authentique (écologie, générations futures).</li>
-      <li><strong>Popper, <em>La Logique de la découverte scientifique</em></strong> (1934) — La science se distingue par la <strong>réfutabilité</strong> : une théorie scientifique est celle qui peut être démentie par l'expérience (clé de la notion « science »).</li>
-    </ul>
+
+    <div class="biblio-book">
+      <p><strong>Durkheim, <em>Le Suicide</em></strong> (1897) — Un fait apparemment individuel s'explique par des causes sociales (intégration, régulation) : naissance de la sociologie comme science ; l'anomie.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Acte fondateur de la sociologie comme science : montrer qu'un acte « intime » (le suicide) s'explique par des causes sociales.</p>
+        <p><strong>Comment le lire.</strong> Via des extraits/synthèses : cible la méthode (le fait social, l'usage des taux), les types (égoïste, altruiste, anomique) et le concept d'anomie.</p>
+        <p><strong>En dissertation.</strong> Notions société, l'individu et le collectif, la méthode des sciences humaines ; central pour « l'individu est-il libre ou déterminé par la société ? ». Lien ESH direct (naissance de la sociologie).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Weber, <em>L'Éthique protestante et l'esprit du capitalisme</em></strong> (1905) — Une affinité entre l'ascèse protestante et l'esprit d'accumulation capitaliste : les idées ont des effets historiques.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il montre que les valeurs et les croyances ont des effets économiques et historiques — le contrepoint décisif au matérialisme de Marx.</p>
+        <p><strong>Comment le lire.</strong> Via des extraits : la thèse de l'<em>affinité élective</em> entre ascèse protestante et esprit capitaliste, et l'image finale de la « cage d'acier ».</p>
+        <p><strong>En dissertation.</strong> Notions société, histoire (le rôle des idées vs l'économie), travail, religion ; le tandem Weber/Marx est un ressort dialectique classique. Lien ESH.</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Bourdieu, <em>Les Héritiers</em></strong> (1964) / <em>La Distinction</em> (1979) — La reproduction sociale par l'école et la culture ; le capital culturel, l'habitus, les goûts comme marqueurs de classe.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il dévoile comment l'école et la culture <em>reproduisent</em> les inégalités sociales, sous couvert de mérite.</p>
+        <p><strong>Comment le lire.</strong> Exigeant : passe par des extraits et des synthèses. Concepts clés à maîtriser : <em>habitus</em>, <em>capital culturel</em>, <em>violence symbolique</em>, <em>distinction</em>.</p>
+        <p><strong>En dissertation.</strong> Notions société, culture, l'art et le goût (« le goût est un marqueur de classe »), l'école, la liberté (le déterminisme social) ; lien ESH (reproduction, inégalités).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Lévi-Strauss, <em>Race et histoire</em></strong> (1952) — Contre l'ethnocentrisme : il n'y a pas de hiérarchie des cultures ; « le barbare, c'est d'abord celui qui croit à la barbarie ». Clé de la notion nature/culture.</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Court et décisif : une critique lumineuse de l'ethnocentrisme et de l'idée de « progrès » comme hiérarchie des cultures.</p>
+        <p><strong>Comment le lire.</strong> Se lit d'une traite. Ficher : l'ethnocentrisme, la formule « le barbare, c'est celui qui croit à la barbarie », la distinction cultures cumulatives / stationnaires.</p>
+        <p><strong>En dissertation.</strong> Notions nature/culture (clé), autrui, l'histoire, le progrès ; central pour « toutes les cultures se valent-elles ? » (et les limites du relativisme). Prolonge Montaigne (« Des cannibales »).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Jonas, <em>Le Principe responsabilité</em></strong> (1979) — À l'âge de la technique, une éthique nouvelle : agir de façon que les effets soient compatibles avec la permanence d'une vie humaine authentique (écologie, générations futures).</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il refonde l'éthique à l'âge de la technique : notre pouvoir d'agir engage désormais l'avenir de l'humanité et de la nature. Fondement philosophique de l'écologie.</p>
+        <p><strong>Comment le lire.</strong> Exigeant : cible l'« heuristique de la peur » et le nouvel impératif (agir pour que subsiste une vie humaine authentique sur Terre).</p>
+        <p><strong>En dissertation.</strong> Notions technique, nature (l'environnement), autrui et générations futures, morale ; central pour « la technique nous rend-elle responsables de l'avenir ? ». Lien ESH (développement durable, soutenabilité).</p>
+      </div>
+    </div>
+
+    <div class="biblio-book">
+      <p><strong>Popper, <em>La Logique de la découverte scientifique</em></strong> (1934) — La science se distingue par la <strong>réfutabilité</strong> : une théorie scientifique est celle qui peut être démentie par l'expérience (clé de la notion « science »).</p>
+      <button class="btn-corrige" type="button">📖 Accompagnement de lecture</button>
+      <div class="corrige hidden">
+        <p><strong>Pourquoi le lire.</strong> Il propose un critère net pour distinguer science et pseudo-science : la <em>réfutabilité</em> (falsifiabilité).</p>
+        <p><strong>Comment le lire.</strong> Exigeant : l'essentiel tient dans le critère de réfutabilité et la critique de l'induction (une théorie ne se prouve pas, elle résiste aux tentatives de réfutation). Passe par un manuel/extraits.</p>
+        <p><strong>En dissertation.</strong> Notions la science (clé), la vérité, la méthode ; central pour « qu'est-ce qui distingue une science ? ». À <em>discuter</em> avec Kuhn (les révolutions scientifiques, les paradigmes) pour un mouvement critique.</p>
+      </div>
+    </div>
   </div>
 
   <h2 id="s5">5. Programme de lecture conseillé</h2>
