@@ -40,6 +40,18 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Semestre 2 · ≈ 1,5 semaine de cours</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Calculer les <strong>indicateurs de position</strong> (moyenne, médiane, quartiles, mode) et de <strong>dispersion</strong> (variance, écart-type) d'une série, y compris sur des données groupées.</li>
+      <li>Connaître l'effet d'une <strong>transformation affine</strong> : \(\bar y = a\bar x + b\), \(s_y = |a|\,s_x\), et la formule de Kœnig-Huygens.</li>
+      <li>Calculer <strong>covariance</strong> \(s_{xy}\) et <strong>coefficient de corrélation</strong> \(r \in [-1, 1]\) d'une série double.</li>
+      <li>Déterminer la <strong>droite des moindres carrés</strong> \(a = \frac{s_{xy}}{s_x^2}\), \(b = \bar y - a\bar x\), l'interpréter et l'utiliser pour interpoler/extrapoler.</li>
+      <li>Savoir <strong>linéariser</strong> un modèle (log) et garder l'esprit critique : corrélation \(\neq\) causalité.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -50,6 +62,7 @@
       <li><a href="#s3">Indicateurs de dispersion</a></li>
       <li><a href="#s4">Statistiques bivariées : covariance et corrélation</a></li>
       <li><a href="#s5">Ajustement affine : la droite des moindres carrés</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices corrigés</a></li>
     </ol>
   </nav>
@@ -116,6 +129,20 @@
       <li>En déduire \(a = \frac{s_{xy}}{s_x^2}\) puis \(b = \bar y - a\bar x\).</li>
       <li>Interpréter \(a\) (variation moyenne de \(y\) quand \(x\) augmente d'une unité) et utiliser la droite pour <em>interpoler</em> ou <em>extrapoler</em> — avec prudence hors de la plage observée.</li>
     </ol>
+  </div>
+
+  <div class="box thm" id="memo">
+    <span class="box-title">Fiche de révision condensée</span>
+    <ul>
+      <li><strong>Moyenne :</strong> \(\bar x = \frac1n\sum x_i = \sum f_i x_i\). <strong>Médiane :</strong> partage la série ordonnée en deux moitiés (robuste aux extrêmes).</li>
+      <li><strong>Variance :</strong> \(s^2 = \frac1n\sum(x_i - \bar x)^2 = \frac1n\sum x_i^2 - \bar x^2\) ; écart-type \(s = \sqrt{s^2}\).</li>
+      <li><strong>Affine :</strong> \(y_i = ax_i + b \Rightarrow \bar y = a\bar x + b\), \(s_y = |a|\,s_x\).</li>
+      <li><strong>Covariance :</strong> \(s_{xy} = \frac1n\sum(x_i - \bar x)(y_i - \bar y) = \frac1n\sum x_iy_i - \bar x\,\bar y\).</li>
+      <li><strong>Corrélation :</strong> \(r = \frac{s_{xy}}{s_x s_y} \in [-1, 1]\) ; \(|r| = 1 \iff\) points alignés.</li>
+      <li><strong>Moindres carrés (\(y\) en \(x\)) :</strong> \(a = \frac{s_{xy}}{s_x^2}\), \(b = \bar y - a\bar x\) ; passe par \((\bar x, \bar y)\).</li>
+      <li><strong>Linéarisation :</strong> \(y = C\mathrm{e}^{\alpha t} \Rightarrow \ln y = \ln C + \alpha t\) (affine).</li>
+      <li><strong>Corrélation \(\neq\) causalité.</strong></li>
+    </ul>
   </div>
 
   <h2 id="exos">Exercices corrigés</h2>
@@ -234,6 +261,151 @@
       <p>Modèle : \(y \approx 99{,}7\,\mathrm{e}^{0{,}04\,t}\). Taux annuel : \(\mathrm{e}^{0{,}04} - 1 \approx 4{,}1\) % par an (le PIB double environ tous les \(\frac{\ln 2}{0{,}04} \approx 17\) ans).</p>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 9 — Position d'une petite série</h3><span class="level level-1">Application directe</span></div>
+    <p>Série : \(5, 7, 7, 8, 10, 12, 14\). Calculer la moyenne, la médiane et le mode.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\bar x = \frac{5+7+7+8+10+12+14}{7} = \frac{63}{7} = 9\). La série est déjà ordonnée, \(n = 7\) impair : la médiane est la 4<sup>e</sup> valeur, \(8\). Le mode est \(7\) (deux occurrences).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="9"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 10 — Variance par Kœnig-Huygens</h3><span class="level level-1">Application directe</span></div>
+    <p>Série : \(2, 4, 4, 6, 9\). Calculer la moyenne, la variance et l'écart-type.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\bar x = \frac{2+4+4+6+9}{5} = \frac{25}{5} = 5\). \(\sum x_i^2 = 4 + 16 + 16 + 36 + 81 = 153\).</p>
+      <p>\(s^2 = \frac{153}{5} - 5^2 = 30{,}6 - 25 = 5{,}6\), et \(s = \sqrt{5{,}6} \approx 2{,}37\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="10"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 11 — Transformation affine</h3><span class="level level-1">Application directe</span></div>
+    <p>Une série a pour moyenne \(20\) et écart-type \(3\). On pose \(y_i = 5x_i - 10\). Donner \(\bar y\) et \(s_y\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\bar y = 5\bar x - 10 = 5\times20 - 10 = 90\) ; \(s_y = |5|\,s_x = 5\times3 = 15\) (la constante \(-10\) ne change pas la dispersion).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="11"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 12 — Effectifs cumulés et médiane</h3><span class="level level-1">Application directe</span></div>
+    <p>Nombre d'enfants par foyer sur 20 ménages : valeur 0 (5 foyers), 1 (8), 2 (4), 3 (3). Calculer la moyenne, le mode et la médiane.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\bar x = \frac{0\times5 + 1\times8 + 2\times4 + 3\times3}{20} = \frac{0 + 8 + 8 + 9}{20} = \frac{25}{20} = 1{,}25\). Mode : \(1\) (effectif maximal 8).</p>
+      <p>Effectifs cumulés : \(5, 13, 17, 20\). Les 10<sup>e</sup> et 11<sup>e</sup> valeurs (positions médianes pour \(n = 20\)) tombent dans la valeur \(1\) : médiane \(= 1\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="12"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 13 — Covariance et corrélation</h3><span class="level level-2">Entraînement</span></div>
+    <p>Série double \(x : 1, 2, 3, 4\) et \(y : 3, 5, 4, 8\). Calculer \(\bar x\), \(\bar y\), \(s_x^2\), \(s_y^2\), \(s_{xy}\) et le coefficient de corrélation \(r\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(\bar x = 2{,}5\), \(\bar y = \frac{3+5+4+8}{4} = 5\).</p>
+      <p>\(s_x^2 = \frac{1+4+9+16}{4} - 2{,}5^2 = 7{,}5 - 6{,}25 = 1{,}25\) ; \(s_y^2 = \frac{9+25+16+64}{4} - 25 = 28{,}5 - 25 = 3{,}5\).</p>
+      <p>\(\sum x_iy_i = 3 + 10 + 12 + 32 = 57\), donc \(s_{xy} = \frac{57}{4} - 2{,}5\times5 = 14{,}25 - 12{,}5 = 1{,}75\).</p>
+      <p>\(r = \frac{s_{xy}}{s_x s_y} = \frac{1{,}75}{\sqrt{1{,}25}\times\sqrt{3{,}5}} = \frac{1{,}75}{\sqrt{4{,}375}} \approx \frac{1{,}75}{2{,}092} \approx 0{,}837\) : corrélation positive assez forte.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="13"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 14 — Droite des moindres carrés</h3><span class="level level-2">Entraînement</span></div>
+    <p>Avec les données de l'exercice 13, déterminer la droite de régression de \(y\) en \(x\), et prédire \(y\) pour \(x = 5\).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(a = \frac{s_{xy}}{s_x^2} = \frac{1{,}75}{1{,}25} = 1{,}4\) et \(b = \bar y - a\bar x = 5 - 1{,}4\times2{,}5 = 1{,}5\) : droite \(y = 1{,}4\,x + 1{,}5\).</p>
+      <p>Elle passe bien par le point moyen \((2{,}5 ; 5)\). Prédiction : \(y(5) = 1{,}4\times5 + 1{,}5 = 8{,}5\).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="14"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 15 — Quartiles et écart interquartile</h3><span class="level level-2">Entraînement</span></div>
+    <p>Série ordonnée de 12 valeurs : \(3, 5, 6, 8, 9, 10, 11, 13, 14, 16, 18, 20\). Déterminer la médiane, \(Q_1\), \(Q_3\) et l'écart interquartile (convention : plus petite valeur avec au moins 25 % / 50 % / 75 % des données en dessous).</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(n = 12\). Médiane : demi-somme des 6<sup>e</sup> et 7<sup>e</sup> valeurs, \(\frac{10 + 11}{2} = 10{,}5\).</p>
+      <p>\(Q_1\) : \(25\% \times 12 = 3\) valeurs en dessous, on prend la 3<sup>e</sup> valeur, \(Q_1 = 6\). \(Q_3\) : \(75\% \times 12 = 9\), la 9<sup>e</sup> valeur, \(Q_3 = 14\).</p>
+      <p>Écart interquartile : \(Q_3 - Q_1 = 14 - 6 = 8\) (dispersion des 50 % centraux, insensible aux extrêmes).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="15"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 16 — Variance d'un mélange de deux groupes</h3><span class="level level-2">Entraînement</span></div>
+    <p>Un groupe A (2 individus) a pour moyenne \(4\) et variance \(1\) ; un groupe B (3 individus) a pour moyenne \(9\) et variance \(4\). Calculer la moyenne et la variance de la population réunie.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Moyenne globale (pondérée) : \(m = \frac{2\times4 + 3\times9}{5} = \frac{35}{5} = 7\).</p>
+      <p>La variance totale se décompose en <em>variance intra</em> (moyenne des variances) + <em>variance inter</em> (variance des moyennes) :</p>
+      <p>\[ s^2 = \frac{2(\,1 + (4-7)^2) + 3(\,4 + (9-7)^2)}{5} = \frac{2\times10 + 3\times8}{5} = \frac{44}{5} = 8{,}8. \]</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="16"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 17 — Les deux droites de régression (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On note \(a = \dfrac{s_{xy}}{s_x^2}\) la pente de la régression de \(y\) en \(x\), et \(a' = \dfrac{s_{xy}}{s_y^2}\) celle de \(x\) en \(y\). Montrer que \(a\,a' = r^2\), et vérifier sur les données de l'exercice 13.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>\(a\,a' = \dfrac{s_{xy}}{s_x^2}\cdot\dfrac{s_{xy}}{s_y^2} = \dfrac{s_{xy}^2}{s_x^2 s_y^2} = \left(\dfrac{s_{xy}}{s_x s_y}\right)^2 = r^2\). Comme \(|r| \leqslant 1\), le produit des pentes \(a\,a' = r^2 \leqslant 1\). <span class="qed">∎</span></p>
+      <p><em>Vérification :</em> \(a = 1{,}4\) (exercice 14), \(a' = \frac{1{,}75}{3{,}5} = 0{,}5\), donc \(a\,a' = 0{,}7\) ; et \(r^2 \approx 0{,}837^2 \approx 0{,}70\) ✓.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="17"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 18 — Linéarisation d'un modèle puissance (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>On soupçonne un modèle \(y = C\,x^{\alpha}\) pour les données \(x : 1, 2, 3\) et \(y : 2, 8, 18\). On pose \(X = \ln x\), \(Y = \ln y\), soit \(X \approx 0 ;\ 0{,}693 ;\ 1{,}099\) et \(Y \approx 0{,}693 ;\ 2{,}079 ;\ 2{,}890\).</p>
+    <ol>
+      <li>Pourquoi le modèle devient-il affine en \((X, Y)\) ?</li>
+      <li>Déterminer \(\alpha\) et \(C\) par régression de \(Y\) en \(X\).</li>
+    </ol>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p><strong>1.</strong> \(y = Cx^\alpha \Rightarrow \ln y = \ln C + \alpha\ln x\), soit \(Y = \ln C + \alpha X\) : relation <em>affine</em> de pente \(\alpha\).</p>
+      <p><strong>2.</strong> \(\bar X = \frac{0 + 0{,}693 + 1{,}099}{3} \approx 0{,}597\), \(\bar Y = \frac{0{,}693 + 2{,}079 + 2{,}890}{3} \approx 1{,}887\).</p>
+      <p>\(s_X^2 = \frac{0 + 0{,}480 + 1{,}207}{3} - 0{,}597^2 \approx 0{,}562 - 0{,}357 = 0{,}206\).</p>
+      <p>\(s_{XY} = \frac{0 + 0{,}693\times2{,}079 + 1{,}099\times2{,}890}{3} - 0{,}597\times1{,}887 \approx \frac{4{,}617}{3} - 1{,}127 = 0{,}412\).</p>
+      <p>\(\alpha = \frac{s_{XY}}{s_X^2} \approx \frac{0{,}412}{0{,}206} \approx 2{,}0\) et \(\ln C = \bar Y - \alpha\bar X \approx 1{,}887 - 2\times0{,}597 = 0{,}693\), soit \(C \approx \mathrm{e}^{0{,}693} \approx 2\). Modèle : \(y \approx 2x^2\) (cohérent : \(2\times1, 2\times4, 2\times9 = 2, 8, 18\) ✓).</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="18"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 19 — Invariance de la corrélation (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Soient \(u_i = a x_i + b\) et \(v_i = c y_i + d\) avec \(a, c \neq 0\). Montrer que \(r(u, v) = \mathrm{sgn}(ac)\,r(x, y)\). En particulier \(|r|\) est invariant par changement d'unités.</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Par bilinéarité de la covariance empirique et invariance par translation : \(s_{uv} = ac\,s_{xy}\). De même \(s_u = |a|\,s_x\) et \(s_v = |c|\,s_y\). Donc :</p>
+      <p>\[ r(u, v) = \frac{s_{uv}}{s_u s_v} = \frac{ac\,s_{xy}}{|a||c|\,s_x s_y} = \frac{ac}{|ac|}\,r(x, y) = \mathrm{sgn}(ac)\,r(x, y). \]</p>
+      <p>Le signe de \(r\) peut changer (si l'une des transformations renverse l'orientation, \(a\) ou \(c &lt; 0\)), mais \(|r|\) est conservé : passer des °C aux °F, ou des € aux k€, ne modifie pas la force de la liaison. <span class="qed">∎</span></p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="19"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
+    <div class="exercise-head"><h3>Exercice 20 — Décomposition de la variance (type concours)</h3><span class="level level-3">Approfondissement</span></div>
+    <p>Une population de taille \(n\) est partagée en \(k\) groupes d'effectifs \(n_j\), de moyennes \(m_j\) et de variances \(v_j\). On note \(m\) la moyenne globale. Montrer la <strong>formule de décomposition</strong> :</p>
+    <p>\[ s^2 = \underbrace{\frac1n\sum_{j=1}^{k} n_j v_j}_{\text{variance intra}} + \underbrace{\frac1n\sum_{j=1}^{k} n_j (m_j - m)^2}_{\text{variance inter}}. \]</p>
+    <button class="btn-corrige" type="button">Voir le corrigé</button>
+    <div class="corrige hidden">
+      <p>Notons \(x_{j,\ell}\) les valeurs du groupe \(j\). Par Kœnig-Huygens dans chaque groupe, \(\frac1{n_j}\sum_\ell x_{j,\ell}^2 = v_j + m_j^2\), donc \(\sum_\ell x_{j,\ell}^2 = n_j(v_j + m_j^2)\). Alors la variance globale (Kœnig-Huygens sur toute la population) :</p>
+      <p>\[ s^2 = \frac1n\sum_{j,\ell} x_{j,\ell}^2 - m^2 = \frac1n\sum_{j=1}^k n_j(v_j + m_j^2) - m^2 = \frac1n\sum_j n_j v_j + \left(\frac1n\sum_j n_j m_j^2 - m^2\right). \]</p>
+      <p>Le second terme est la variance de la série des moyennes (pondérée), soit \(\frac1n\sum_j n_j(m_j - m)^2\) (à nouveau Kœnig-Huygens, en utilisant \(m = \frac1n\sum_j n_j m_j\)). D'où la décomposition. <span class="qed">∎</span></p>
+      <p class="small muted">Interprétation : la dispersion totale se répartit entre dispersion <em>au sein</em> des groupes et dispersion <em>entre</em> les groupes — base de l'analyse de la variance.</p>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="20"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
