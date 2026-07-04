@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 2 · semestre 2</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Définir la croissance (Perroux) et la distinguer de l'expansion et du développement.</li>
+      <li>Connaître les trois révolutions industrielles et leurs facteurs explicatifs.</li>
+      <li>Maîtriser le modèle de Solow (résultats et limites) et les mécanismes de croissance endogène.</li>
+      <li>Comprendre le rôle des institutions (North, Acemoglu-Robinson) comme facteur profond de la croissance.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. Les révolutions industrielles</a></li>
       <li><a href="#s3">III. Les théories de la croissance</a></li>
       <li><a href="#chiffres">Chiffres et repères mobilisables</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices</a></li>
     </ol>
   </nav>
@@ -110,6 +122,26 @@
     <li>Autres facteurs profonds : géographie (Diamond, Sachs), culture et confiance (Weber ; Algan-Cahuc), démographie.</li>
   </ul>
 
+  <figure class="schema">
+    <svg viewBox="0 0 720 150" role="img" aria-label="Frise des théories et révolutions de la croissance">
+      <line x1="20" y1="75" x2="700" y2="75" stroke="var(--accent)" stroke-width="3"/>
+      <g font-size="12" fill="var(--text)" text-anchor="middle">
+        <circle cx="60" cy="75" r="6" fill="var(--accent)"/><text x="60" y="55">1760</text><text x="60" y="105">1<sup>re</sup> RI</text>
+        <circle cx="200" cy="75" r="6" fill="var(--accent)"/><text x="200" y="55">1870</text><text x="200" y="105">2<sup>e</sup> RI</text>
+        <circle cx="330" cy="75" r="6" fill="var(--accent)"/><text x="330" y="55">1956</text><text x="330" y="105">Solow</text>
+        <circle cx="460" cy="75" r="6" fill="var(--accent)"/><text x="460" y="55">1970s</text><text x="460" y="105">3<sup>e</sup> RI</text>
+        <circle cx="560" cy="75" r="6" fill="var(--accent)"/><text x="560" y="55">1986-90</text><text x="560" y="105">Romer</text>
+        <circle cx="660" cy="75" r="6" fill="var(--accent)"/><text x="660" y="55">2012</text><text x="660" y="105">Acemoglu-Robinson</text>
+      </g>
+    </svg>
+    <figcaption>Frise simplifiée des révolutions industrielles et théories de la croissance.</figcaption>
+  </figure>
+
+  <div class="box warn">
+    <span class="box-title">Piège de copie</span>
+    <p>Ne pas confondre <strong>croissance</strong> (augmentation quantitative durable du PIB réel), <strong>expansion</strong> (phase haute du cycle conjoncturel, quelques trimestres — chapitre 2.6) et <strong>développement</strong> (transformations structurelles, chapitre 2.3) : ce sont trois notions distinctes, souvent confondues en copie. Autre piège : Solow prédit une convergence <em>conditionnelle</em> (à institutions et taux d'épargne donnés), pas une convergence absolue et automatique de tous les pays.</p>
+  </div>
+
   <h2 id="chiffres">Chiffres et repères mobilisables</h2>
   <ul>
     <li>Maddison : PIB/hab. mondial ×15 depuis 1820 ; croissance mondiale ≈ 3 %/an depuis 1950.</li>
@@ -118,6 +150,20 @@
     <li>1956 Solow ; 1986-1990 Romer ; 1992 Aghion-Howitt ; 2012 Acemoglu-Robinson ; Nobel croissance : Solow 1987, Romer-Nordhaus 2018, Acemoglu-Johnson-Robinson 2024.</li>
     <li>R&amp;D : ≈ 2,2 % du PIB en France, ≈ 3,5 % en Corée du Sud (cible de Lisbonne : 3 %).</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>Perroux</strong> : augmentation soutenue et durable du produit réel — distincte de l'expansion et du développement.</li>
+      <li><strong>3 révolutions industrielles</strong> : vapeur/textile (1760-1840, Angleterre) ; électricité/chimie (1870-1914) ; informatique/internet (depuis 1970, paradoxe de Solow 1987).</li>
+      <li><strong>Solow (1956)</strong> : rendements décroissants du capital → état stationnaire sans progrès technique exogène ; convergence conditionnelle.</li>
+      <li><strong>Croissance endogène</strong> : Romer (1986-90, connaissance non rivale), Lucas (1988, capital humain), Barro (1990, infrastructures), Aghion-Howitt (1992, destruction créatrice).</li>
+      <li><strong>Institutions</strong> : North (règles du jeu) ; Acemoglu-Robinson (2012, inclusives vs extractives — Nobel 2024).</li>
+      <li><strong>Chiffres</strong> : PIB/hab. mondial ×15 depuis 1820 (Maddison) ; Chine ≈ 10 %/an sur 1980-2010.</li>
+      <li><strong>Piège à éviter</strong> : croissance ≠ expansion ≠ développement ; convergence de Solow = conditionnelle, non automatique.</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -215,6 +261,9 @@
       <li>Exposer les résultats du modèle de Solow et sa limite majeure.</li>
       <li>Citer trois mécanismes de croissance endogène avec leurs auteurs.</li>
       <li>Institutions inclusives vs extractives : définir et illustrer.</li>
+      <li>Qu'est-ce que le « paradoxe de Solow » (1987) ?</li>
+      <li>Pourquoi les technologies génériques diffusent-elles lentement (David, 1990) ?</li>
+      <li>Qu'est-ce que la convergence conditionnelle et en quoi diffère-t-elle d'une convergence absolue ?</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -224,6 +273,9 @@
         <li>Rendements décroissants du capital → l'accumulation seule mène à un état stationnaire ; seul le progrès technique (exogène) soutient la croissance du PIB/tête à long terme ; prédiction de convergence conditionnelle. Limite : le moteur essentiel reste inexpliqué.</li>
         <li>Connaissance non rivale et R&amp;D (Romer 1990) ; capital humain (Lucas 1988) ; infrastructures publiques (Barro 1990) ; innovation par destruction créatrice (Aghion-Howitt 1992).</li>
         <li>Inclusives : droits de propriété garantis à tous, État de droit, marchés ouverts, pluralisme — les gains de l'effort et de l'innovation reviennent à leurs auteurs (Corée du Sud). Extractives : institutions capturées par une élite qui confisque les ressources (Corée du Nord, colonies extractives) — Acemoglu-Robinson 2012.</li>
+        <li>Solow (1987) constate que la diffusion massive de l'informatique dans les entreprises ne se traduit pas, à l'époque, par une accélération visible de la productivité mesurée — « on voit les ordinateurs partout sauf dans les statistiques de productivité ». Les gains n'apparaîtront réellement qu'à la fin des années 1990 aux États-Unis.</li>
+        <li>Parce qu'une technologie générique (vapeur, électricité, TIC) exige une réorganisation profonde des méthodes de production et un apprentissage collectif avant de porter ses fruits : David montre que la dynamo n'a transformé l'organisation des usines que 40 ans après son invention.</li>
+        <li>La convergence conditionnelle prédit que les pays convergent seulement vers <em>leur propre</em> état stationnaire, déterminé par leurs institutions et leur taux d'épargne — deux pays aux caractéristiques différentes peuvent donc ne jamais converger l'un vers l'autre, contrairement à une convergence absolue qui prédirait l'égalisation de tous les niveaux de vie.</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -272,6 +324,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Dans le modèle de Solow, le progrès technique est endogène.</p>
+        <label><input type="radio" name="vf1"> Vrai</label>
+        <label><input type="radio" name="vf1" data-correct> Faux</label>
+        <div class="qcm-explication">Il est exogène (« tombé du ciel ») — c'est justement la limite que corrigent les modèles de croissance endogène.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. Pour Acemoglu et Robinson, la géographie est le facteur premier de la richesse des nations.</p>
+        <label><input type="radio" name="vf2"> Vrai</label>
+        <label><input type="radio" name="vf2" data-correct> Faux</label>
+        <div class="qcm-explication">Ils privilégient les institutions (inclusives vs extractives), pas la géographie (thèse défendue par d'autres, comme Sachs).</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. La productivité globale des facteurs (PGF) explique l'essentiel de la croissance de long terme des pays avancés.</p>
+        <label><input type="radio" name="vf3" data-correct> Vrai</label>
+        <label><input type="radio" name="vf3"> Faux</label>
+        <div class="qcm-explication">Elle capte le progrès technique et l'efficacité, moteur essentiel une fois l'accumulation de facteurs freinée par les rendements décroissants.</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. Selon Robert Gordon, les gains de productivité des TIC sont comparables à ceux de la deuxième révolution industrielle.</p>
+        <label><input type="radio" name="vf4"> Vrai</label>
+        <label><input type="radio" name="vf4" data-correct> Faux</label>
+        <div class="qcm-explication">Gordon défend au contraire une thèse pessimiste : les gains des TIC seraient plus faibles et plus étroits que ceux de l'électricité ou du moteur à explosion.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document statistique</h3><span class="level level-2">Entraînement</span></div>
     <p>PIB par habitant (dollars internationaux de 1990, données type Maddison) :</p>
     <div class="table-scroll"><table>
@@ -288,7 +371,7 @@
       <p><strong>2.</strong> Deux mouvements : la <strong>grande divergence</strong> (1820-1973) — l'Europe industrialisée distance une Chine qui stagne puis régresse (guerres, désordres, maoïsme économique) ; puis la <strong>grande convergence</strong> (1978-2018) — après les réformes de Deng Xiaoping (1978), la Chine multiplie son PIB/hab. par ≈ 15 et revient quasiment au rapport de 1820.</p>
       <p><strong>3.</strong> Divergence : révolutions industrielles captées par l'Occident (technologies, institutions inclusives naissantes) tandis que l'empire chinois reste agraire et institutionnellement bloqué. Convergence : mécanique de rattrapage à la Solow-Gerschenkron (importation de technologies, taux d'investissement ≈ 40 %), ouverture commerciale (OMC 2001), et surtout changement institutionnel (décollectivisation, zones économiques spéciales) — illustration d'Acemoglu-Robinson : mêmes hommes, autres règles, autre trajectoire. Limite : PIB/hab. encore à la moitié du niveau européen, et interrogations sur l'essoufflement (démographie, dette, retour du contrôle politique).</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

@@ -224,12 +224,20 @@ html[data-theme="dark"] .level-1 { background: #14532d; color: #bbf7d0; }
 html[data-theme="dark"] .level-2 { background: #78350f; color: #fde68a; }
 html[data-theme="dark"] .level-3 { background: #7f1d1d; color: #fecaca; }
 
-.btn-corrige {
+.btn, .btn-corrige {
   display: inline-block; margin-top: .6rem; cursor: pointer;
   background: var(--accent); color: #fff; border: none; border-radius: 8px;
   padding: .45rem .95rem; font-size: .9rem; font-weight: 600;
 }
-.btn-corrige:hover { filter: brightness(1.12); }
+.btn:hover, .btn-corrige:hover { filter: brightness(1.12); }
+.btn { margin-top: 0; margin-right: .5rem; }
+
+.btn-print {
+  display: inline-flex; align-items: center; gap: .4rem; cursor: pointer;
+  background: none; color: var(--accent); border: 1px solid var(--accent); border-radius: 8px;
+  padding: .35rem .85rem; font-size: .85rem; font-weight: 600; margin-left: .6rem;
+}
+.btn-print:hover { background: var(--accent); color: #fff; }
 .corrige {
   margin-top: .8rem; padding: .8rem 1rem; border-radius: 8px;
   background: var(--bg-code); border: 1px dashed var(--border);
@@ -377,7 +385,8 @@ html[data-theme="dark"] mark { background: #a16207; color: #fff; }
 .citation .auteur { display: block; font-style: normal; font-size: .85rem; color: var(--text-muted); margin-top: .3rem; }
 
 @media print {
-  .site-header, .prevnext, .btn-corrige, .site-footer, .breadcrumb { display: none; }
+  .site-header, .prevnext, .btn-corrige, .btn-print, .site-footer, .breadcrumb,
+  .search-results, .toc, .chapter-done, .ex-done, .progress-io { display: none; }
   .corrige.hidden { display: block; }
   body { background: #fff; color: #000; }
 }

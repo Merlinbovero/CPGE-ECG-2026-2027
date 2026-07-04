@@ -94,6 +94,12 @@ const SITE_DATA = {
       s: ["Histoire de l'entreprise", "Théories de la firme", "Coase et Williamson", "Relation d'agence", "Gouvernance d'entreprise", "Formes d'organisation du travail"] },
     { id: "esh-ch12", m: "esh", n: "2.6", t: "Fluctuations et crises depuis le XIXe siècle", u: "esh/ch12-fluctuations-crises.html",
       s: ["Cycles économiques", "La crise de 1873", "La crise de 1929", "Le choc de 1973", "La crise de 2008", "Théories des crises", "Politiques de sortie de crise"] },
+    { id: "esh-formulaire", m: "esh", r: true, n: "", t: "Formulaire / Mémo — tout le programme d'ESH", u: "esh/formulaire.html",
+      s: ["Fiches de révision condensées", "Auteurs et dates clés", "Chiffres clés", "Mécanismes clés"] },
+    { id: "esh-flashcards", m: "esh", r: true, n: "", t: "Flashcards ESH", u: "esh/flashcards.html",
+      s: ["Répétition espacée", "Auteurs et dates", "Chiffres clés", "Définitions"] },
+    { id: "esh-annales", m: "esh", r: true, n: "", t: "Annales BCE / Ecricome — ESH", u: "esh/annales.html",
+      s: ["Sujets de concours", "Gabarit de corrigé"] },
 
     /* ---------- Culture générale ---------- */
     { id: "cg-methodo-dissert", m: "cg", n: "M1", t: "Méthodologie de la dissertation de culture générale", u: "culture-generale/methodologie-dissertation.html",

@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 2 · semestre 2</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Distinguer croissance et développement (Perroux, Sen) et connaître la composition de l'IDH.</li>
+      <li>Maîtriser le débat Kuznets/Piketty sur croissance et inégalités, et les canaux inégalités-croissance.</li>
+      <li>Connaître le diagnostic écologique (Meadows, GIEC) et le débat soutenabilité faible/forte.</li>
+      <li>Savoir mobiliser des indicateurs multiples (IDH, Gini, empreinte carbone) en analyse de document.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. Croissance et inégalités</a></li>
       <li><a href="#s3">III. Les limites écologiques et le développement durable</a></li>
       <li><a href="#chiffres">Chiffres et repères</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices</a></li>
     </ol>
   </nav>
@@ -80,6 +92,11 @@
     <li>Mesures : coefficient de <strong>Gini</strong> (0 = égalité parfaite ; France ≈ 0,29 après redistribution, États-Unis ≈ 0,39, Afrique du Sud ≈ 0,63) ; rapports interdéciles ; parts du top 1 %/10 % (World Inequality Database).</li>
   </ul>
 
+  <div class="box warn">
+    <span class="box-title">Piège de copie</span>
+    <p>Ne pas présenter la courbe de Kuznets comme une loi historique universellement validée : Kuznets lui-même la formulait avec prudence (données limitées, années 1950) ; Piketty montre que la baisse des inégalités au XX<sup>e</sup> siècle tient surtout à des chocs exogènes (guerres, inflation, fiscalité exceptionnelle), pas à un mécanisme spontané de la croissance. Une bonne copie relativise Kuznets, elle ne l'affirme pas comme une vérité intemporelle.</p>
+  </div>
+
   <h2 id="s3">III. Les limites écologiques et le développement durable</h2>
 
   <h3>III.1. Le diagnostic</h3>
@@ -107,6 +124,20 @@
     <li>Émissions : ≈ 37 Gt CO₂/an ; par tête : États-Unis ≈ 14 t, UE ≈ 6 t, France ≈ 4,5 t territoriales (≈ 9 t empreinte), Inde ≈ 2 t — cible ≈ 2 t/hab.</li>
     <li>Gini France ≈ 0,29 (0,37 avant redistribution) : la redistribution réduit les inégalités d'un quart environ.</li>
   </ul>
+
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>Développement</strong> : Perroux (transformations structurelles) ; Sen (1999, capabilités, Nobel 1998) ; IDH (PNUD, 1990 : espérance de vie + éducation + revenu).</li>
+      <li><strong>Kuznets (1955)</strong> : U inversé (inégalités montent puis baissent). <strong>Piketty (2013)</strong> : \(r>g\) → reconcentration depuis 1980 ; baisse du XXe siècle = accident historique.</li>
+      <li><strong>Inégalités et croissance</strong> : Okun (1975, seau percé) vs FMI-OCDE (2014-15, inégalités nuisent à la croissance) ; Great Gatsby curve (Krueger-Corak).</li>
+      <li><strong>Diagnostic écologique</strong> : Meadows (1972), GIEC (+1,2 °C), limites planétaires (Rockström, 2009), Stern (2006), Ostrom (Nobel 2009, communs).</li>
+      <li><strong>Soutenabilité faible</strong> (Solow-Hartwick, substituabilité) vs <strong>forte</strong> (Georgescu-Roegen, Daly, capital naturel critique).</li>
+      <li><strong>Brundtland (1987)</strong> : développement durable = besoins présents sans compromettre les générations futures.</li>
+      <li><strong>Piège à éviter</strong> : Kuznets n'est pas une loi universelle — la baisse du XXe siècle doit beaucoup aux chocs historiques (Piketty).</li>
+    </ul>
+  </div>
 
   <h2 id="exos">Exercices</h2>
 
@@ -203,6 +234,9 @@
       <li>Exposer la courbe de Kuznets et la critique de Piketty.</li>
       <li>Définir le développement durable (rapport, date) et distinguer soutenabilité faible/forte.</li>
       <li>Citer trois instruments de politique climatique avec un exemple chacun.</li>
+      <li>Qu'est-ce que la « Great Gatsby curve » ?</li>
+      <li>Distinguer soutenabilité faible et soutenabilité forte avec un auteur chacune.</li>
+      <li>Pourquoi la « courbe de l'éléphant » de Milanović (2016) nuance-t-elle le débat sur la mondialisation et les inégalités ?</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -212,6 +246,9 @@
         <li>Kuznets (1955) : inégalités en U inversé le long du développement — hausse puis baisse spontanée. Piketty (2013) : sur deux siècles de données, la baisse du XX<sup>e</sup> fut le produit des chocs (guerres, fiscalité) et non d'une loi ; \(r &gt; g\) tend à reconcentrer patrimoine et revenus depuis 1980.</li>
         <li>Brundtland, 1987 : satisfaire les besoins présents sans compromettre ceux des générations futures. Faible : substituabilité des capitaux (compenser la nature par la technique) ; forte : capital naturel critique non substituable, plafonds physiques.</li>
         <li>Prix du carbone (taxe suédoise ≈ 120 €/t) ; marché de quotas (SEQE européen, 2005) ; réglementation/normes (interdiction des ventes de voitures thermiques UE 2035) ; on peut ajouter subventions à l'innovation verte (crédits IRA américain).</li>
+        <li>Elle relie le niveau d'inégalités d'un pays à la mobilité intergénérationnelle des revenus (Krueger, popularisée avec Corak) : plus un pays est inégalitaire à un instant donné, plus il est difficile d'y changer de position sociale d'une génération à l'autre — les fortes inégalités figent les trajectoires.</li>
+        <li>Soutenabilité faible (Solow, Hartwick) : les différentes formes de capital (naturel, technique, humain) sont substituables, on peut donc compenser la destruction de nature par plus de capital technique. Soutenabilité forte (Georgescu-Roegen, Daly) : certains éléments du capital naturel sont critiques et non substituables (climat stable), ce qui impose des limites physiques absolues.</li>
+        <li>Milanović montre que les grands gagnants de la mondialisation (1988-2008) sont les classes moyennes émergentes des pays en développement et le top 1 % mondial, tandis que les classes moyennes des pays occidentaux ont stagné — nuançant l'idée d'une mondialisation uniformément bénéfique ou uniformément nuisible aux classes moyennes.</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -260,6 +297,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Selon Sen, le développement se réduit à la croissance du revenu par habitant.</p>
+        <label><input type="radio" name="vf1"> Vrai</label>
+        <label><input type="radio" name="vf1" data-correct> Faux</label>
+        <div class="qcm-explication">Sen le définit comme l'expansion des capabilités, dont le revenu n'est qu'un moyen parmi d'autres.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. Un Gini plus élevé signifie une société plus égalitaire.</p>
+        <label><input type="radio" name="vf2"> Vrai</label>
+        <label><input type="radio" name="vf2" data-correct> Faux</label>
+        <div class="qcm-explication">C'est l'inverse : 0 = égalité parfaite, proche de 1 = inégalité maximale.</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. Le rapport Meadows (1972) alerte sur les limites physiques d'une croissance exponentielle dans un monde fini.</p>
+        <label><input type="radio" name="vf3" data-correct> Vrai</label>
+        <label><input type="radio" name="vf3"> Faux</label>
+        <div class="qcm-explication"><em>The Limits to Growth</em>, Club de Rome, 1972.</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. La soutenabilité forte considère que tous les capitaux (naturel, technique, humain) sont parfaitement substituables.</p>
+        <label><input type="radio" name="vf4"> Vrai</label>
+        <label><input type="radio" name="vf4" data-correct> Faux</label>
+        <div class="qcm-explication">C'est la thèse de la soutenabilité <em>faible</em> (Solow-Hartwick) ; la soutenabilité forte affirme au contraire l'existence d'un capital naturel critique non substituable.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document statistique</h3><span class="level level-2">Entraînement</span></div>
     <p>Données comparées (ordres de grandeur, années 2020) :</p>
     <div class="table-scroll"><table>
@@ -278,7 +346,7 @@
       <p><strong>2.</strong> À développement humain équivalent (0,91 vs 0,92), la France est nettement plus égalitaire (Gini 0,29 vs 0,39 — effet de la redistribution) et trois fois moins émettrice par tête (mix nucléaire, ville compacte, prix de l'énergie) : le « modèle » américain paie son surplus de PIB en inégalités et en carbone.</p>
       <p><strong>3.</strong> Le Costa Rica au sens positif : IDH honorable (0,81), émissions très faibles (1,6 t, proche de la cible de 2 t), grâce à des choix précoces (électricité ≈ 99 % renouvelable, pas d'armée, investissement santé-éducation) — mais Gini élevé (0,47) : la soutenabilité sociale reste son défi. Le Qatar au sens négatif : l'exact contretype (32 t/hab.). Conclusion type dissertation : le développement soutenable est un triangle revenu-équité-écologie qu'aucun pays ne réalise encore pleinement.</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">

@@ -40,6 +40,17 @@
   <div class="chapter-meta">
     <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Chapitre terminé</label>
     <span class="muted small">Module 1 · semestre 1</span>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box def">
+    <span class="box-title">Objectifs du chapitre (programme officiel)</span>
+    <ul>
+      <li>Définir l'objet de la science économique et distinguer microéconomie, macroéconomie, analyse positive et normative.</li>
+      <li>Connaître les méthodes de l'économiste (modèle, ceteris paribus, économétrie, expérimentation).</li>
+      <li>Situer les grands courants de la pensée économique (classiques, néoclassiques, keynésiens, monétaristes) et leurs auteurs de référence.</li>
+      <li>Mobiliser ces repères pour construire une dissertation d'ESH argumentée et datée.</li>
+    </ul>
   </div>
 
   <nav class="toc" aria-label="Sommaire du chapitre">
@@ -49,6 +60,7 @@
       <li><a href="#s2">II. Les méthodes de l'économiste</a></li>
       <li><a href="#s3">III. Les grands courants de la pensée économique</a></li>
       <li><a href="#chiffres">Données et repères mobilisables</a></li>
+      <li><a href="#memo">Fiche de révision condensée</a></li>
       <li><a href="#exos">Exercices : dissertations, questions de cours, QCM</a></li>
     </ol>
   </nav>
@@ -157,6 +169,20 @@
     <li><strong>1969</strong> : création du « prix Nobel » d'économie (prix de la Banque de Suède) ; <strong>2019</strong> : Nobel à Duflo-Banerjee-Kremer, consécration du tournant empirique.</li>
   </ul>
 
+  <h2 id="memo">Fiche de révision condensée</h2>
+  <div class="box thm">
+    <span class="box-title">L'essentiel à relire juste avant la colle ou le DS</span>
+    <ul>
+      <li><strong>3 définitions de l'économie</strong> : richesses (Smith, 1776) → échange marchand (marginalistes) → rareté et choix (Robbins, 1932).</li>
+      <li><strong>Méthode</strong> : modèle + hypothèses + <em>ceteris paribus</em> ; validation par la prédiction (Friedman, 1953) ; tournant empirique (RCT : Duflo-Banerjee-Kremer, Nobel 2019 ; expériences naturelles : Card, Nobel 2021).</li>
+      <li><strong>5 auteurs classiques</strong> : Smith (main invisible, division du travail), Ricardo (avantages comparatifs, 1817), Malthus (population, 1798), Say (loi des débouchés, 1803), Marx (plus-value, <em>Le Capital</em>, 1867).</li>
+      <li><strong>Rupture néoclassique</strong> : révolution marginaliste 1870s (Jevons, Menger, Walras) — utilité marginale, équilibre général.</li>
+      <li><strong>Rupture keynésienne</strong> : <em>Théorie générale</em> (1936) — demande effective, équilibre de sous-emploi, multiplicateur.</li>
+      <li><strong>Contre-révolution monétariste</strong> : Friedman (1968, 1976) — chômage naturel, règle monétaire.</li>
+      <li><strong>Piège à éviter</strong> : ne jamais opposer caricaturalement « science exacte » et « idéologie » — l'économie est une science sociale réfutable, mais limitée par la réflexivité de son objet.</li>
+    </ul>
+  </div>
+
   <h2 id="exos">Exercices</h2>
 
   <article class="exercise">
@@ -256,6 +282,9 @@
       <li>Citer trois différences entre classiques et néoclassiques.</li>
       <li>Expliquer le multiplicateur keynésien en trois phrases.</li>
       <li>Qu'apporte le « tournant empirique » des années 2000 ?</li>
+      <li>Distinguer économie positive et économie normative, en citant l'auteur de cette distinction.</li>
+      <li>Qu'est-ce que la « main invisible » de Smith ? Donner la citation qui l'illustre.</li>
+      <li>Pourquoi dit-on que Keynes fonde la macroéconomie moderne ?</li>
     </ol>
     <button class="btn-corrige" type="button">Voir les réponses</button>
     <div class="corrige hidden">
@@ -265,6 +294,9 @@
         <li>Théorie de la valeur (travail vs utilité marginale) ; méthode (macro-dynamique de la répartition vs individualisme méthodologique et calcul à la marge) ; horizon (état stationnaire et conflits de répartition vs équilibre et allocation optimale).</li>
         <li>Une dépense supplémentaire (ex. publique) devient revenu pour ses bénéficiaires ; ceux-ci en consomment une fraction \(c\), qui devient revenu à son tour, etc. Le revenu total augmente de \(\frac{1}{1-c}\) fois la dépense initiale. L'effet est d'autant plus fort que la propension à consommer est élevée et l'économie fermée.</li>
         <li>La priorité donnée à l'identification causale sur données (essais randomisés, expériences naturelles) : l'économie évalue désormais les dispositifs (Duflo-Banerjee-Kremer, Nobel 2019 ; Card, Nobel 2021) au lieu de seulement les déduire de modèles.</li>
+        <li>Positive : décrire/expliquer ce qui est. Normative : prescrire ce qui doit être. Distinction posée par John Neville Keynes (1891), popularisée par Milton Friedman (1953).</li>
+        <li>La poursuite par chacun de son intérêt personnel concourt, via la coordination marchande, à l'intérêt général, sans qu'aucun planificateur ne l'organise. Smith (1776) : « Ce n'est pas de la bienveillance du boucher, du brasseur ou du boulanger que nous attendons notre dîner, mais du soin qu'ils apportent à leur intérêt personnel. »</li>
+        <li>Avant Keynes (1936), l'analyse portait surtout sur les comportements individuels (micro) ; Keynes raisonne sur les agrégats (production, emploi, demande globale) et fonde un cadre d'analyse et d'action publique propre à l'échelle nationale — la macroéconomie comme discipline distincte.</li>
       </ol>
     </div>
     <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="5"> Exercice réussi</label>
@@ -313,6 +345,37 @@
   </article>
 
   <article class="exercise">
+    <div class="exercise-head"><h3>Vrai / Faux express</h3><span class="level level-1">Flash</span></div>
+    <div class="qcm">
+      <div class="qcm-q">
+        <p>1. Selon Say, l'offre crée toujours sa propre demande.</p>
+        <label><input type="radio" name="vf1" data-correct> Vrai</label>
+        <label><input type="radio" name="vf1"> Faux</label>
+        <div class="qcm-explication">C'est exactement la loi des débouchés (1803) — critiquée ensuite par Keynes.</div>
+      </div>
+      <div class="qcm-q">
+        <p>2. Pour Friedman, il existe un arbitrage stable et durable entre inflation et chômage.</p>
+        <label><input type="radio" name="vf2"> Vrai</label>
+        <label><input type="radio" name="vf2" data-correct> Faux</label>
+        <div class="qcm-explication">Au contraire : Friedman (1968) montre que la courbe de Phillips n'est stable qu'à court terme (chômage « naturel » à long terme).</div>
+      </div>
+      <div class="qcm-q">
+        <p>3. Ricardo raisonne en avantages absolus, Smith en avantages comparatifs.</p>
+        <label><input type="radio" name="vf3"> Vrai</label>
+        <label><input type="radio" name="vf3" data-correct> Faux</label>
+        <div class="qcm-explication">C'est l'inverse : Smith (avantages absolus) puis Ricardo (avantages comparatifs, 1817).</div>
+      </div>
+      <div class="qcm-q">
+        <p>4. L'économétrie doit son nom aux travaux de Frisch et Tinbergen, premiers « prix Nobel » d'économie (1969).</p>
+        <label><input type="radio" name="vf4" data-correct> Vrai</label>
+        <label><input type="radio" name="vf4"> Faux</label>
+        <div class="qcm-explication">Exact — le prix de la Banque de Suède en sciences économiques a été créé en 1968 et décerné pour la première fois en 1969.</div>
+      </div>
+    </div>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+  </article>
+
+  <article class="exercise">
     <div class="exercise-head"><h3>Analyse de document statistique</h3><span class="level level-2">Entraînement</span></div>
     <p>Taux de croissance annuel moyen du PIB français (volume, source INSEE, valeurs arrondies) :</p>
     <div class="table-scroll"><table>
@@ -326,7 +389,7 @@
       <p><strong>2. Tendance :</strong> ralentissement séculaire de la croissance française : de plus de 5 % par an pendant les Trente Glorieuses à moins de 1 % après 2008 — division par 5 du rythme en deux générations ; et une volatilité accrue en fin de période (choc Covid : −7,5 % puis rebond +6,4 %).</p>
       <p><strong>3. Interprétation :</strong> 1950-1973 : rattrapage d'après-guerre, fordisme, politiques keynésiennes (contexte de la synthèse néoclassique). Rupture 1974 : chocs pétroliers et stagflation, crise du keynésianisme, tournant monétariste. 1991-2007 : croissance modérée, désinflation, mondialisation. Après 2008 : crise financière et « stagnation séculaire » (débat relancé par Larry Summers, 2013). 2020-2021 : choc exogène (pandémie) suivi d'une relance massive — illustration contemporaine du débat Say/Keynes sur le soutien de la demande.</p>
     </div>
-    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="7"> Exercice réussi</label>
+    <label class="ex-done"><input type="checkbox" data-progress="exercise" data-ex="8"> Exercice réussi</label>
   </article>
 
   <nav class="prevnext" aria-label="Navigation entre chapitres">
