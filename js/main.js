@@ -235,4 +235,12 @@
     });
     toggle();
   })();
+
+  /* ---------- Service worker (installable + hors-ligne) ---------- */
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      var root = (document.body && document.body.dataset.root) || ".";
+      navigator.serviceWorker.register(root + "/sw.js").catch(function () {});
+    });
+  }
 })();
