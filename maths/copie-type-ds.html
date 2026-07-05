@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copie-type — Devoir de maths rédigé | ECG1</title>
+<meta name="description" content="Un devoir de mathématiques appliquées entièrement rédigé en conditions de concours, commenté dans la marge : suite récurrente, équivalent, variable aléatoire. Le modèle de rédaction à imiter.">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .copie { border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; background: var(--bg-card); }
+  .copie h3 { margin-top: .4rem; }
+  .cp-row { display: grid; grid-template-columns: 1fr; gap: .2rem 1.2rem; margin: .55rem 0; }
+  .cp-note { font-size: .82rem; color: var(--text-muted); border-left: 3px solid var(--accent); padding: .1rem 0 .1rem .6rem; }
+  .cp-note strong { color: var(--accent); }
+  @media (min-width: 900px) {
+    .cp-row { grid-template-columns: 1fr 15rem; align-items: start; }
+    .cp-note { margin-top: .1rem; }
+  }
+  .cp-q { font-weight: 600; color: var(--accent); }
+</style>
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="maths-copie-ds" data-matiere="maths">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="index.html" aria-current="true">Maths appliquées</a>
+    <a href="../esh/index.html">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">Maths appliquées</a><span class="sep">›</span><span>Copie-type rédigée</span>
+</nav>
+
+<main>
+  <h1>Copie-type : un devoir de maths <em>entièrement rédigé</em></h1>
+  <p class="lead">On sait <em>ce qu'il faut faire</em> (le cours) ; il faut aussi <em>voir à quoi ressemble une copie qui obtient les points</em>. Voici un problème de niveau concours (type EDHEC / Ecricome), rédigé comme il doit l'être : chaque affirmation justifiée, chaque théorème cité avec ses hypothèses. La colonne de droite (les notes en marge) explique <strong>pourquoi</strong> on rédige ainsi — c'est là qu'est la vraie leçon.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Copie étudiée</label>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Comment utiliser cette page</span>
+    <ol>
+      <li><strong>D'abord seul :</strong> traite le sujet ci-dessous sur une copie, chronométré (≈ 1 h 15), avant de lire quoi que ce soit.</li>
+      <li><strong>Ensuite compare</strong> ta rédaction à la copie-type : non pas « ai-je trouvé le résultat ? » mais « ai-je <em>justifié</em> comme cela ? ».</li>
+      <li><strong>Enfin</strong>, relis uniquement les notes en marge : ce sont les réflexes de rédaction qui font gagner (ou perdre) les points.</li>
+    </ol>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#sujet">L'énoncé</a></li>
+      <li><a href="#pa">Corrigé rédigé — Partie A (analyse)</a></li>
+      <li><a href="#pb">Corrigé rédigé — Partie B (probabilités)</a></li>
+      <li><a href="#bareme">Ce que voit le correcteur (barème type)</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="sujet">1. L'énoncé</h2>
+  <div class="box exo">
+    <span class="box-title">Sujet — durée conseillée 1 h 15</span>
+    <p><strong>Partie A.</strong> On considère la fonction \(g\) définie sur \([0,+\infty[\) par \(g(x) = 1 - e^{-x}\), et la suite \((u_n)_{n\ge 0}\) définie par \(u_0 = 1\) et, pour tout \(n\in\mathbb N\), \(u_{n+1} = g(u_n)\).</p>
+    <ol>
+      <li>Étudier les variations et la convexité de \(g\) sur \([0,+\infty[\).</li>
+      <li>Montrer que pour tout \(x \ge 0\), \(0 \le g(x) \le x\).</li>
+      <li>En déduire que \((u_n)\) est bien définie, à valeurs dans \([0,1]\), décroissante, puis qu'elle converge et déterminer sa limite.</li>
+      <li>Pour \(n\in\mathbb N\), on pose \(v_n = \dfrac{1}{u_n}\). Montrer que \(v_{n+1} - v_n \xrightarrow[n\to+\infty]{} \dfrac12\), puis en déduire un équivalent simple de \(u_n\) quand \(n\to+\infty\).</li>
+    </ol>
+    <p><strong>Partie B.</strong> On lance indéfiniment une pièce équilibrée. On note \(X\) le rang d'apparition du <strong>premier Pile</strong>.</p>
+    <ol>
+      <li>Reconnaître la loi de \(X\). Donner \(P(X = k)\) pour \(k\in\mathbb N^*\), l'espérance et la variance de \(X\).</li>
+      <li>Calculer \(P(X \ge n)\) pour \(n\in\mathbb N^*\).</li>
+      <li>Calculer la probabilité que \(X\) soit <strong>pair</strong>.</li>
+      <li>Écrire une fonction Python <code>simule()</code> qui simule \(X\) et renvoie sa valeur.</li>
+    </ol>
+  </div>
+
+  <h2 id="pa">2. Corrigé rédigé — Partie A</h2>
+  <div class="copie">
+    <h3>Partie A — Étude de la suite \((u_n)\)</h3>
+
+    <div class="cp-row">
+      <div><span class="cp-q">1.</span> La fonction \(g : x \mapsto 1 - e^{-x}\) est de classe \(\mathcal C^\infty\) sur \([0,+\infty[\) comme composée de fonctions usuelles. Pour tout \(x \ge 0\) : \[ g'(x) = e^{-x} > 0, \qquad g''(x) = -e^{-x} < 0. \] Donc \(g\) est <strong>strictement croissante</strong> et <strong>concave</strong> sur \([0,+\infty[\).</div>
+      <div class="cp-note"><strong>Réflexe :</strong> on annonce la régularité (\(\mathcal C^\infty\)) <em>avant</em> de dériver — cela légitime le calcul. Signe de \(g'\) puis de \(g''\) : deux points faciles, ne jamais les sauter.</div>
+    </div>
+
+    <div class="cp-row">
+      <div><span class="cp-q">2.</span> Soit \(x \ge 0\). D'une part \(e^{-x} \le 1\) donc \(g(x) = 1 - e^{-x} \ge 0\). D'autre part, posons \(h(x) = x - g(x) = x - 1 + e^{-x}\). Alors \(h(0) = 0\) et \(h'(x) = 1 - e^{-x} \ge 0\) pour \(x \ge 0\), donc \(h\) est croissante sur \([0,+\infty[\) : pour tout \(x\ge 0\), \(h(x) \ge h(0) = 0\), c'est-à-dire \(g(x) \le x\). Finalement \(\boxed{0 \le g(x) \le x}\) pour tout \(x \ge 0\).</div>
+      <div class="cp-note"><strong>Méthode-clé :</strong> pour comparer deux fonctions, on <em>étudie leur différence</em>. On exhibe une valeur où elle s'annule (ici \(0\)) puis le signe de la dérivée : la monotonie conclut. À réutiliser sans cesse.</div>
+    </div>
+
+    <div class="cp-row">
+      <div><span class="cp-q">3.</span> Montrons par récurrence que pour tout \(n\in\mathbb N\), \(u_n \in [0,1]\).<br>
+      <em>Initialisation :</em> \(u_0 = 1 \in [0,1]\). <em>Hérédité :</em> si \(u_n \in [0,1]\), alors \(u_n \ge 0\) donc, par la question 2, \(0 \le u_{n+1} = g(u_n) \le u_n \le 1\). Donc \(u_{n+1}\in[0,1]\). La suite est donc bien définie et à valeurs dans \([0,1]\).<br>
+      De plus l'inégalité \(u_{n+1} = g(u_n) \le u_n\) (question 2, licite car \(u_n \ge 0\)) montre que \((u_n)\) est <strong>décroissante</strong>. Décroissante et minorée par \(0\), elle <strong>converge</strong> vers une limite \(\ell \in [0,1]\).<br>
+      \(g\) étant continue et \(u_{n+1} = g(u_n)\), la limite vérifie \(\ell = g(\ell)\), soit \(h(\ell) = 0\). Or \(h\) est strictement croissante sur \(]0,+\infty[\) (car \(h'(x) = 1 - e^{-x} > 0\) pour \(x>0\)) et \(h(0)=0\) : \(0\) est donc <strong>l'unique</strong> solution. Ainsi \(\boxed{\displaystyle\lim_{n\to+\infty} u_n = 0}\).</div>
+      <div class="cp-note"><strong>Le trio gagnant</strong> pour une suite récurrente : (i) stabilité de l'intervalle par récurrence ; (ii) monotonie ; (iii) théorème de la limite monotone puis <em>point fixe</em> par continuité. Ne jamais écrire « \(\ell = g(\ell)\) » sans avoir dit que \(g\) est continue.<br><br><strong>Piège évité :</strong> on justifie l'<em>unicité</em> du point fixe (sinon la limite n'est pas déterminée).</div>
+    </div>
+
+    <div class="cp-row">
+      <div><span class="cp-q">4.</span> Comme \(u_n \to 0\) avec \(u_n > 0\) pour tout \(n\) (une récurrence immédiate donne \(u_n>0\), car \(g(x)>0\) dès que \(x>0\)), la suite \(v_n = 1/u_n\) est bien définie. On écrit :
+      \[ v_{n+1} - v_n = \frac{1}{u_{n+1}} - \frac{1}{u_n} = \frac{1}{g(u_n)} - \frac{1}{u_n}. \]
+      Posons \(\varphi(x) = \dfrac{1}{g(x)} - \dfrac1x\) pour \(x>0\). Quand \(x \to 0^+\), le développement limité \(e^{-x} = 1 - x + \dfrac{x^2}{2} + o(x^2)\) donne \(g(x) = x - \dfrac{x^2}{2} + o(x^2) = x\left(1 - \dfrac x2 + o(x)\right)\), d'où
+      \[ \frac{1}{g(x)} = \frac1x\cdot\frac{1}{1 - \frac x2 + o(x)} = \frac1x\left(1 + \frac x2 + o(x)\right) = \frac1x + \frac12 + o(1). \]
+      Donc \(\varphi(x) = \dfrac12 + o(1) \xrightarrow[x\to 0^+]{} \dfrac12\). Comme \(u_n \to 0^+\), on obtient \(v_{n+1} - v_n = \varphi(u_n) \to \dfrac12\).<br>
+      Par le <strong>théorème de Cesàro</strong>, \(\dfrac{v_n}{n} = \dfrac1n\sum_{k=0}^{n-1}(v_{k+1}-v_k) + \dfrac{v_0}{n} \to \dfrac12\), donc \(v_n \sim \dfrac n2\), et enfin \[ \boxed{\,u_n \sim \dfrac{2}{n}\ \text{quand } n\to+\infty.} \]</div>
+      <div class="cp-note"><strong>Technique de concours par excellence :</strong> face à une suite \(u_{n+1}=u_n - a\,u_n^2 + o(u_n^2)\), on passe à \(1/u_n\) pour « linéariser ». Le DL de \(e^{-x}\) doit être su par cœur.<br><br>Le passage <em>« \(v_{n+1}-v_n \to \ell\) donc \(v_n/n \to \ell\) »</em> est exactement le <strong>lemme de Cesàro</strong> — le nommer rapporte des points.</div>
+    </div>
+  </div>
+
+  <h2 id="pb">3. Corrigé rédigé — Partie B</h2>
+  <div class="copie">
+    <h3>Partie B — La variable aléatoire \(X\)</h3>
+
+    <div class="cp-row">
+      <div><span class="cp-q">1.</span> On répète, de façon indépendante, une même épreuve de Bernoulli (« obtenir Pile ») de paramètre \(p = \tfrac12\), et \(X\) compte le rang du <em>premier succès</em> : \(X\) suit donc la <strong>loi géométrique</strong> de paramètre \(p=\tfrac12\), notée \(X \hookrightarrow \mathcal G\!\left(\tfrac12\right)\). Pour \(k\in\mathbb N^*\),
+      \[ P(X = k) = (1-p)^{k-1}p = \left(\tfrac12\right)^{k-1}\cdot\tfrac12 = \left(\tfrac12\right)^{k}. \]
+      D'après le cours, \(E(X) = \dfrac1p = 2\) et \(V(X) = \dfrac{1-p}{p^2} = \dfrac{1/2}{1/4} = 2\).</div>
+      <div class="cp-note"><strong>Identifier la loi</strong> avant tout calcul : « répétitions indépendantes + rang du premier succès » ⇒ loi géométrique. On <em>cite</em> alors \(E\) et \(V\) du cours plutôt que de les recalculer (sauf si l'énoncé l'exige).</div>
+    </div>
+
+    <div class="cp-row">
+      <div><span class="cp-q">2.</span> L'événement \((X \ge n)\) signifie « les \(n-1\) premiers lancers donnent Face », d'où, par indépendance,
+      \[ P(X \ge n) = \left(\tfrac12\right)^{n-1}, \qquad n\in\mathbb N^*. \]
+      <em>(Contrôle :</em> on retrouve bien \(P(X\ge 1) = 1\).\()\)</div>
+      <div class="cp-note">Deux voies possibles : l'interprétation directe (ci-contre) ou la somme \(\sum_{k\ge n}(1/2)^k\). La première est plus sûre et plus rapide. Le petit <em>contrôle de cohérence</em> en fin de calcul rassure le correcteur (et soi-même).</div>
+    </div>
+
+    <div class="cp-row">
+      <div><span class="cp-q">3.</span> Le système \(\big((X=k)\big)_{k\ge 1}\) étant un système complet d'événements de somme \(1\),
+      \[ P(X\ \text{pair}) = \sum_{j=1}^{+\infty} P(X = 2j) = \sum_{j=1}^{+\infty}\left(\tfrac12\right)^{2j} = \sum_{j=1}^{+\infty}\left(\tfrac14\right)^{j}. \]
+      C'est une série géométrique de raison \(\tfrac14 \in\,]{-1},1[\), convergente, de somme \(\dfrac{1/4}{1 - 1/4} = \dfrac13\). Donc \(\boxed{P(X\ \text{pair}) = \dfrac13}\).</div>
+      <div class="cp-note"><strong>Rigueur exigée :</strong> on <em>justifie la convergence</em> (raison dans \(]{-1},1[\)) avant d'appliquer \(\sum_{j\ge1} q^j = \frac{q}{1-q}\). Attention à l'indice de départ (\(j=1\), pas \(0\)) : c'est \(\frac{q}{1-q}\), non \(\frac{1}{1-q}\).</div>
+    </div>
+
+    <div class="cp-row">
+      <div><span class="cp-q">4.</span> On simule les lancers jusqu'au premier Pile en comptant le rang :
+      <pre class="language-python"><code>import random
+
+def simule():
+    n = 1
+    while random.random() &gt;= 0.5:   # tant qu'on tire Face
+        n = n + 1
+    return n                          # rang du premier Pile</code></pre>
+      La boucle s'arrête au premier tirage \(&lt; 0{,}5\) (« Pile »), et <code>n</code> contient alors le rang cherché.</div>
+      <div class="cp-note"><strong>Cohérence maths ↔ code :</strong> la variable <code>n</code> joue exactement le rôle du rang \(X\). Un <code>while</code> non borné convient ici car l'arrêt est presque sûr. On commente le code : le correcteur doit lire l'intention.</div>
+    </div>
+  </div>
+
+  <h2 id="bareme">4. Ce que voit le correcteur</h2>
+  <div class="box thm">
+    <span class="box-title">Barème-type et points de rédaction</span>
+    <ul>
+      <li><strong>Les points « gratuits »</strong> (signe de \(g'\), \(g''\), reconnaissance de la loi, \(E\) et \(V\) cités) représentent souvent 30 à 40 % de la note. Les perdre par précipitation est la première cause de copies moyennes.</li>
+      <li><strong>Une récurrence</strong> se rédige toujours en trois temps nommés (initialisation / hérédité / conclusion). Une hérédité qui utilise une hypothèse non vérifiée (ici \(u_n\ge 0\)) est sanctionnée.</li>
+      <li><strong>Le point fixe :</strong> pas de \(\ell = g(\ell)\) sans « \(g\) continue », pas de limite sans <em>unicité</em> du point fixe.</li>
+      <li><strong>Une somme infinie</strong> n'est jamais calculée sans un mot sur sa <em>convergence</em>.</li>
+      <li><strong>Encadrer les résultats</strong> finaux : le correcteur les trouve d'un coup d'œil.</li>
+    </ul>
+  </div>
+  <div class="box warn">
+    <span class="box-title">⚠️ Les fautes qui coûtent le plus</span>
+    <p>Écrire « la suite converge » sans justifier (monotone + bornée) ; confondre \(\sum_{k\ge 0}\) et \(\sum_{k\ge 1}\) dans une géométrique ; « passer à la limite » dans \(u_{n+1}=g(u_n)\) sans continuité ; donner un équivalent sans passer par \(1/u_n\). Chacune est un réflexe à automatiser.</p>
+  </div>
+
+  <p class="small muted">Pour t'entraîner sur d'autres énoncés, va voir la page <a href="annales.html">Annales</a> (méthode d'exploitation + grille d'auto-évaluation) et le <a href="formulaire.html">Formulaire</a>.</p>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="annales.html"><span class="pn-label">Voir aussi</span>← Annales &amp; méthode</a>
+    <a class="next" href="index.html"><span class="pn-label">Retour</span>Sommaire maths</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — Mathématiques appliquées. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

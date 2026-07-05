@@ -76,8 +76,10 @@ const SITE_DATA = {
       s: ["Formules d'algèbre et de calcul", "Analyse et intégration", "Probabilités et lois usuelles", "Séries, graphes, statistiques", "Mémo Python"] },
     { id: "maths-flashcards", m: "maths", r: true, n: "", t: "Flashcards Maths", u: "maths/flashcards.html",
       s: ["Répétition espacée", "Formules et théorèmes", "Méthodes types", "Lois de probabilité"] },
+    { id: "maths-copie-ds", m: "maths", r: true, n: "", t: "Copie-type : un devoir de maths entièrement rédigé", u: "maths/copie-type-ds.html",
+      s: ["Devoir rédigé commenté", "Suite récurrente et équivalent", "Variable aléatoire géométrique", "Rédaction de concours", "Barème et fautes à éviter"] },
     { id: "maths-annales", m: "maths", r: true, n: "", t: "Annales BCE / Ecricome — maths appliquées", u: "maths/annales.html",
-      s: ["Sujets de concours", "Gabarit de corrigé"] },
+      s: ["Sujets de concours", "Où trouver les vrais sujets", "Méthode d'exploitation d'une annale", "Grille d'auto-évaluation"] },
 
     /* ---------- ESH — Module 1 ---------- */
     { id: "esh-ch01", m: "esh", n: "1.1", t: "Qu'est-ce que l'économie ? Objets, méthodes et grands courants", u: "esh/ch01-science-economique.html",
@@ -110,14 +112,22 @@ const SITE_DATA = {
       s: ["Fiches de révision condensées", "Auteurs et dates clés", "Chiffres clés", "Mécanismes clés"] },
     { id: "esh-flashcards", m: "esh", r: true, n: "", t: "Flashcards ESH", u: "esh/flashcards.html",
       s: ["Répétition espacée", "Auteurs et dates", "Chiffres clés", "Définitions"] },
+    { id: "esh-copie-dissert", m: "esh", r: true, n: "", t: "Copie-type : une dissertation d'ESH entièrement rédigée", u: "esh/copie-type-dissertation.html",
+      s: ["Dissertation rédigée commentée", "Croissance et inégalités", "Kuznets, Piketty, Sen", "Problématique et dépassement", "Mécanismes expliqués"] },
+    { id: "esh-auteurs", m: "esh", r: true, n: "", t: "Répertoire d'auteurs & repères — ESH", u: "esh/auteurs-reperes.html",
+      s: ["Auteurs incontournables", "Classiques et néoclassiques", "Keynes, monétaristes, libéraux", "Croissance et développement", "Sociologie", "Histoire économique", "Œuvres et dates clés"] },
+    { id: "esh-actualite", m: "esh", r: true, n: "", t: "Suivre l'actualité économique — méthode ESH", u: "esh/actualite-economique.html",
+      s: ["Revue de presse", "Sources fiables", "Grands thèmes à suivre", "Réutiliser un exemple d'actualité", "Fiche-actu"] },
     { id: "esh-annales", m: "esh", r: true, n: "", t: "Annales BCE / Ecricome — ESH", u: "esh/annales.html",
-      s: ["Sujets de concours", "Gabarit de corrigé"] },
+      s: ["Sujets de concours", "Où trouver les vrais sujets", "Méthode d'exploitation d'une annale", "Grille d'auto-évaluation dissertation"] },
 
     /* ---------- Culture générale ---------- */
     { id: "cg-methodo-dissert", m: "cg", n: "M1", t: "Méthodologie de la dissertation de culture générale", u: "culture-generale/methodologie-dissertation.html",
       s: ["Analyser le sujet", "Problématiser", "Construire un plan", "Introduction et conclusion", "L'usage des références", "Exemple commenté"] },
     { id: "cg-methodo-contraction", m: "cg", n: "M2", t: "Méthodologie de la contraction et de la synthèse de texte", u: "culture-generale/methodologie-contraction.html",
       s: ["Les épreuves de contraction", "Lire et structurer le texte", "Règles de réécriture", "Gestion du nombre de mots", "Exemple corrigé de contraction", "La synthèse de textes"] },
+    { id: "cg-copie-dissert", m: "cg", r: true, n: "", t: "Copie-type : une dissertation de culture générale rédigée", u: "culture-generale/copie-type-dissertation.html",
+      s: ["Dissertation rédigée commentée", "Faut-il préférer la vérité au bonheur", "Introduction développement conclusion", "Analyse des références", "Modèle à imiter"] },
     { id: "cg-nature", m: "cg", n: "1", t: "La nature et la culture", u: "culture-generale/nature-culture.html",
       s: ["Définitions et problématiques", "L'état de nature", "Nature humaine et culture", "Philosophes essentiels", "Œuvres littéraires", "Sujets de dissertation"] },
     { id: "cg-societe", m: "cg", n: "2", t: "La société", u: "culture-generale/societe.html",
@@ -206,6 +216,8 @@ const SITE_DATA = {
       s: ["Les erreurs classiques", "Travailler régulièrement", "Matière par matière", "Rebondir après un échec"] },
     { id: "methodo-oraux", m: "methodo", n: "5", t: "Méthodologie des oraux d'admission", u: "methodologie/oraux.html",
       s: ["Entretien de personnalité", "Oraux de langues", "Khôlle et oral de maths", "Posture et gestion du stress", "Règle STAR"] },
+    { id: "methodo-entretien", m: "methodo", n: "6", t: "L'entretien de personnalité (oraux d'admission)", u: "methodologie/entretien.html",
+      s: ["Se connaître", "Projet et pourquoi cette école", "Banque de questions types", "Mises en situation", "Actualité et ouverture", "Posture et erreurs à éviter", "Plan de préparation"] },
     { id: "mon-espace", m: "methodo", r: true, n: "", t: "Mon espace — emploi du temps & notes", u: "mon-espace/index.html",
       s: ["Emploi du temps glisser-déposer", "Notes et moyennes automatiques", "Semestres ou trimestres", "Accès rapides École Directe", "Tableau de bord personnel"] }
   ]
