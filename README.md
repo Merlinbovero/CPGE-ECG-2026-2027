@@ -2,6 +2,20 @@
 
 Site web pédagogique statique pour la première année de CPGE **ECG** (parcours **mathématiques appliquées + ESH**), année scolaire 2026/2027. Conforme aux programmes officiels (BO spécial n°1 du 11 février 2021).
 
+## 🔗 Accès au site
+
+**➡️ [merlinbovero.github.io/CPGE-ECG-2026-2027](https://merlinbovero.github.io/CPGE-ECG-2026-2027/)**
+
+Scanne ce QR code pour l'ouvrir sur ton téléphone :
+
+<img src="qr-code.svg" alt="QR code vers le site" width="160">
+
+Le site est une **application installable** (PWA) : sur mobile ou ordinateur, tu peux l'ajouter à l'écran d'accueil pour l'ouvrir en plein écran, comme une vraie app, et la consulter même hors connexion.
+
+- **iPhone / iPad (Safari)** : Partager → « Sur l'écran d'accueil ».
+- **Android (Chrome)** : menu ⋮ → « Installer l'application ».
+- **Ordinateur (Chrome / Edge)** : icône d'installation dans la barre d'adresse.
+
 ## Contenu
 
 - **Mathématiques appliquées & informatique** — 17 chapitres (2 semestres) + 5 fiches Python, avec cours complets et ≥ 8 exercices corrigés par chapitre (3 niveaux de difficulté).
