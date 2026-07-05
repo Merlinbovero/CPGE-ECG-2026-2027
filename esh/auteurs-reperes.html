@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Répertoire d'auteurs &amp; repères — ESH | ECG1</title>
+<meta name="description" content="Le répertoire des auteurs incontournables d'ESH : pour chacun, l'œuvre phare datée, la thèse clé et son usage en dissertation. Économie, sociologie, histoire économique.">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .auteur { border: 1px solid var(--border); border-radius: 10px; padding: .7rem .9rem; margin: .6rem 0; background: var(--bg-card); }
+  .auteur .nom { font-weight: 700; color: var(--accent); }
+  .auteur .oeuvre { font-style: italic; }
+  .auteur .these { margin: .35rem 0; }
+  .auteur .usage { font-size: .87rem; color: var(--text-muted); border-left: 3px solid var(--accent); padding-left: .6rem; }
+  .auteur .usage strong { color: var(--accent); }
+</style>
+<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body data-root=".." data-page-id="esh-auteurs" data-matiere="esh">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
+  </div>
+  <nav class="main-nav" aria-label="Navigation principale">
+    <a href="../maths/index.html">Maths appliquées</a>
+    <a href="index.html" aria-current="true">ESH</a>
+    <a href="../culture-generale/index.html">Culture générale</a>
+    <a href="../anglais/index.html">Anglais</a>
+    <a href="../italien/index.html">Italien</a>
+    <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
+  </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">ESH</a><span class="sep">›</span><span>Auteurs &amp; repères</span>
+</nav>
+
+<main>
+  <h1>Répertoire d'auteurs &amp; repères</h1>
+  <p class="lead">Le jury d'ESH attend des <strong>références précises</strong> : un auteur, une œuvre, une date, une thèse — et surtout leur bon usage. Cette page rassemble les incontournables, dispersés dans les chapitres, en une seule fiche à ficher et à réviser. Pour chacun : l'<strong>œuvre phare datée</strong>, la <strong>thèse clé</strong>, et <strong>comment s'en servir en dissertation</strong>.</p>
+
+  <div class="chapter-meta">
+    <label class="chapter-done"><input type="checkbox" data-progress="chapter"> Répertoire travaillé</label>
+    <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  </div>
+
+  <div class="box warn">
+    <span class="box-title">⚠️ Règle d'or</span>
+    <p>Une référence <strong>exacte</strong> vaut de l'or ; une référence <strong>fausse</strong> (mauvaise date, mauvais ouvrage, contresens sur la thèse) coûte cher. Mieux vaut dix auteurs sus parfaitement que quarante à peu près. Toutes les dates ci-dessous sont celles des œuvres (première publication) et sont vérifiées ; apprends-les telles quelles.</p>
+  </div>
+
+  <nav class="toc" aria-label="Sommaire">
+    <strong>Sommaire</strong>
+    <ol>
+      <li><a href="#classiques">Les classiques (fondateurs)</a></li>
+      <li><a href="#neo">Néoclassiques &amp; marginalistes</a></li>
+      <li><a href="#keynes">Keynes, monétaristes &amp; libéraux</a></li>
+      <li><a href="#croissance">Croissance, innovation, cycles</a></li>
+      <li><a href="#devel">Développement &amp; inégalités</a></li>
+      <li><a href="#institutions">Marché, firme &amp; institutions</a></li>
+      <li><a href="#socio">Sociologie</a></li>
+      <li><a href="#histoire">Histoire économique</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="classiques">1. Les classiques (fondateurs)</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Adam Smith</span> — <span class="oeuvre">Recherches sur la nature et les causes de la richesse des nations</span> (1776)</p>
+    <p class="these"><strong>Thèse :</strong> la division du travail est la source de la productivité et de la richesse ; poursuivant son intérêt, chacun concourt sans le vouloir au bien commun (« main invisible ») ; le marché s'autorégule.</p>
+    <p class="usage"><strong>En dissertation :</strong> sujets sur le marché, la concurrence, le rôle de l'État (« État gendarme »), les vertus et limites du <em>laissez-faire</em>.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">David Ricardo</span> — <span class="oeuvre">Des principes de l'économie politique et de l'impôt</span> (1817)</p>
+    <p class="these"><strong>Thèse :</strong> les nations gagnent à se spécialiser selon leurs <em>avantages comparatifs</em> (et non absolus) ; théorie de la rente différentielle ; l'objet central de l'économie est la <em>répartition</em>.</p>
+    <p class="usage"><strong>En dissertation :</strong> commerce international, libre-échange, spécialisation, répartition des revenus entre classes.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Thomas Malthus</span> — <span class="oeuvre">Essai sur le principe de population</span> (1798)</p>
+    <p class="these"><strong>Thèse :</strong> la population croît géométriquement, les subsistances arithmétiquement : sans « freins », la misère est inévitable (pessimisme démographique).</p>
+    <p class="usage"><strong>En dissertation :</strong> population et ressources, limites de la croissance, débats sur la soutenabilité (néomalthusianisme).</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Jean-Baptiste Say</span> — <span class="oeuvre">Traité d'économie politique</span> (1803)</p>
+    <p class="these"><strong>Thèse :</strong> « loi des débouchés » — l'offre crée sa propre demande ; les crises générales de surproduction seraient donc impossibles (thèse que Keynes réfutera).</p>
+    <p class="usage"><strong>En dissertation :</strong> crises, équilibre de marché, opposition classiques / keynésiens.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Karl Marx</span> — <span class="oeuvre">Le Capital</span> (livre I, 1867)</p>
+    <p class="these"><strong>Thèse :</strong> le profit provient de la plus-value extraite du travail ; le capitalisme concentre le capital, tend à la baisse du taux de profit et porte ses propres contradictions.</p>
+    <p class="usage"><strong>En dissertation :</strong> capitalisme et crises, exploitation, classes sociales, dynamique du système (utile aussi en sociologie).</p>
+  </div>
+
+  <h2 id="neo">2. Néoclassiques &amp; marginalistes</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Léon Walras</span> — <span class="oeuvre">Éléments d'économie politique pure</span> (1874)</p>
+    <p class="these"><strong>Thèse :</strong> modélisation de l'<em>équilibre général</em> : tous les marchés s'équilibrent simultanément par le jeu des prix (le « commissaire-priseur »).</p>
+    <p class="usage"><strong>En dissertation :</strong> fondements de l'analyse néoclassique, marchés interdépendants, portée et limites de la modélisation.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Alfred Marshall</span> — <span class="oeuvre">Principles of Economics</span> (1890)</p>
+    <p class="these"><strong>Thèse :</strong> le prix résulte du croisement de l'offre et de la demande (les « ciseaux ») ; analyse en équilibre <em>partiel</em>, rôle du temps et de l'élasticité.</p>
+    <p class="usage"><strong>En dissertation :</strong> formation des prix, fonctionnement concret du marché.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Vilfredo Pareto</span> — <span class="oeuvre">Manuel d'économie politique</span> (1906)</p>
+    <p class="these"><strong>Thèse :</strong> l'« optimum de Pareto » — situation où l'on ne peut améliorer le sort de l'un sans dégrader celui d'un autre ; l'efficacité ne dit rien de l'équité.</p>
+    <p class="usage"><strong>En dissertation :</strong> efficacité vs justice, limites du critère d'optimalité, débats sur la redistribution.</p>
+  </div>
+
+  <h2 id="keynes">3. Keynes, monétaristes &amp; libéraux</h2>
+
+  <div class="auteur">
+    <p><span class="nom">John Maynard Keynes</span> — <span class="oeuvre">Théorie générale de l'emploi, de l'intérêt et de la monnaie</span> (1936)</p>
+    <p class="these"><strong>Thèse :</strong> le niveau d'activité dépend de la <em>demande effective</em> ; un chômage <em>involontaire</em> durable est possible ; l'État doit soutenir la demande (multiplicateur des dépenses publiques).</p>
+    <p class="usage"><strong>En dissertation :</strong> chômage, rôle de l'État, politiques de relance, crises — le pivot de toute opposition libéral / interventionniste.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Milton Friedman</span> — <span class="oeuvre">Capitalisme et liberté</span> (1962) ; <span class="oeuvre">A Monetary History of the United States</span> (avec A. Schwartz, 1963)</p>
+    <p class="these"><strong>Thèse :</strong> monétarisme — « l'inflation est toujours et partout un phénomène monétaire » ; méfiance envers l'interventionnisme ; courbe de Phillips augmentée des anticipations (taux de chômage « naturel »).</p>
+    <p class="usage"><strong>En dissertation :</strong> inflation, politique monétaire, critique des politiques keynésiennes, libéralisme.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Friedrich Hayek</span> — <span class="oeuvre">La Route de la servitude</span> (1944)</p>
+    <p class="these"><strong>Thèse :</strong> le marché coordonne une information dispersée qu'aucun planificateur ne peut centraliser (« ordre spontané ») ; la planification menace la liberté.</p>
+    <p class="usage"><strong>En dissertation :</strong> marché vs planification, rôle de l'État, libéralisme, information et prix.</p>
+  </div>
+
+  <h2 id="croissance">4. Croissance, innovation, cycles</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Joseph Schumpeter</span> — <span class="oeuvre">Théorie de l'évolution économique</span> (1912) ; <span class="oeuvre">Capitalisme, socialisme et démocratie</span> (1942)</p>
+    <p class="these"><strong>Thèse :</strong> l'entrepreneur innovateur est le moteur de la croissance ; l'innovation procède par grappes et par « destruction créatrice » (le neuf détruit l'ancien).</p>
+    <p class="usage"><strong>En dissertation :</strong> croissance, progrès technique, emploi (destruction créatrice), dynamique du capitalisme.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Robert Solow</span> — <span class="oeuvre">A Contribution to the Theory of Economic Growth</span> (1956)</p>
+    <p class="these"><strong>Thèse :</strong> modèle de croissance exogène : à long terme, la croissance par tête vient du <em>progrès technique</em> (le « résidu de Solow »), non de la seule accumulation ; convergence possible des économies.</p>
+    <p class="usage"><strong>En dissertation :</strong> sources de la croissance, rôle du progrès technique, convergence / rattrapage. (Nobel 1987.)</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Paul Romer</span> — théorie de la <span class="oeuvre">croissance endogène</span> (travaux de 1986-1990)</p>
+    <p class="these"><strong>Thèse :</strong> le progrès technique est <em>produit</em> par l'économie elle-même (R&amp;D, capital humain, externalités du savoir) : la croissance s'auto-entretient.</p>
+    <p class="usage"><strong>En dissertation :</strong> politiques de croissance (éducation, recherche, innovation), rôle de l'État stratège. (Nobel 2018.)</p>
+  </div>
+
+  <h2 id="devel">5. Développement &amp; inégalités</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Simon Kuznets</span> — <span class="oeuvre">Economic Growth and Income Inequality</span> (1955)</p>
+    <p class="these"><strong>Thèse :</strong> la « courbe en cloche » — au cours du développement, les inégalités augmentent d'abord, puis diminuent. (Kuznets est aussi un pionnier de la mesure du PIB.)</p>
+    <p class="usage"><strong>En dissertation :</strong> croissance et inégalités, développement, à confronter aux faits récents (thèse discutée).</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">W. Arthur Lewis</span> — modèle <span class="oeuvre">dualiste</span> (« Economic Development with Unlimited Supplies of Labour », 1954)</p>
+    <p class="these"><strong>Thèse :</strong> le développement transfère la main-d'œuvre excédentaire du secteur traditionnel (agricole) vers le secteur moderne (industriel), moteur de l'accumulation.</p>
+    <p class="usage"><strong>En dissertation :</strong> développement, industrialisation, dualisme économique. (Nobel 1979.)</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Walt W. Rostow</span> — <span class="oeuvre">Les Étapes de la croissance économique</span> (1960)</p>
+    <p class="these"><strong>Thèse :</strong> le développement suit cinq étapes universelles, du « décollage » (take-off) à la consommation de masse (vision linéaire, très discutée).</p>
+    <p class="usage"><strong>En dissertation :</strong> développement, à mobiliser <em>de façon critique</em> (contre-modèles : dépendance, trajectoires diverses).</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Amartya Sen</span> — <span class="oeuvre">Un nouveau modèle économique : développement, justice, liberté</span> (1999)</p>
+    <p class="these"><strong>Thèse :</strong> le développement est l'accroissement des « capabilités » — les libertés réelles des individus (se nourrir, se soigner, s'instruire) — et non le seul PIB.</p>
+    <p class="usage"><strong>En dissertation :</strong> croissance vs développement, mesure du bien-être (IDH), justice sociale. (Nobel 1998.)</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Thomas Piketty</span> — <span class="oeuvre">Le Capital au XXI<sup>e</sup> siècle</span> (2013)</p>
+    <p class="these"><strong>Thèse :</strong> quand le rendement du capital dépasse durablement la croissance (<em>r &gt; g</em>), les patrimoines se concentrent ; la réduction des inégalités du XX<sup>e</sup> siècle tient aux chocs et aux politiques, non à un mécanisme spontané.</p>
+    <p class="usage"><strong>En dissertation :</strong> inégalités de patrimoine, croissance et répartition, fiscalité, rôle des institutions.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Branko Milanovic</span> — <span class="oeuvre">Global Inequality</span> (2016)</p>
+    <p class="these"><strong>Thèse :</strong> la « courbe de l'éléphant » — la mondialisation a enrichi les classes moyennes émergentes et le sommet mondial, tout en freinant les classes moyennes des pays riches.</p>
+    <p class="usage"><strong>En dissertation :</strong> mondialisation et inégalités, échelle mondiale vs nationale, gagnants et perdants.</p>
+  </div>
+
+  <h2 id="institutions">6. Marché, firme &amp; institutions</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Ronald Coase</span> — <span class="oeuvre">The Nature of the Firm</span> (1937)</p>
+    <p class="these"><strong>Thèse :</strong> la firme existe pour économiser les <em>coûts de transaction</em> du marché ; le « théorème de Coase » : en l'absence de coûts de transaction, les agents peuvent internaliser les externalités par la négociation.</p>
+    <p class="usage"><strong>En dissertation :</strong> nature et frontières de l'entreprise, externalités, rôle du droit de propriété. (Nobel 1991.)</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Douglass North</span> — économie institutionnelle (travaux couronnés en 1993)</p>
+    <p class="these"><strong>Thèse :</strong> les <em>institutions</em> (règles formelles et informelles) déterminent les performances économiques de long terme en structurant les incitations.</p>
+    <p class="usage"><strong>En dissertation :</strong> rôle des institutions dans la croissance et le développement, cadre juridique du marché. (Nobel 1993.)</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Elinor Ostrom</span> — <span class="oeuvre">Governing the Commons</span> (1990)</p>
+    <p class="these"><strong>Thèse :</strong> les « communs » (ressources partagées) peuvent être gérés durablement par les communautés elles-mêmes, sans privatisation ni État — contre la fatalité de la « tragédie des communs ».</p>
+    <p class="usage"><strong>En dissertation :</strong> biens communs, environnement, alternatives marché / État. (Nobel 2009, première femme lauréate en économie.)</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Paul Krugman</span> — nouvelle théorie du commerce international (travaux couronnés en 2008)</p>
+    <p class="these"><strong>Thèse :</strong> le commerce s'explique aussi par les <em>rendements croissants</em> et la différenciation des produits (et non seulement les avantages comparatifs) ; économie géographique.</p>
+    <p class="usage"><strong>En dissertation :</strong> commerce international entre pays semblables, localisation des activités, mondialisation. (Nobel 2008.)</p>
+  </div>
+
+  <h2 id="socio">7. Sociologie</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Émile Durkheim</span> — <span class="oeuvre">De la division du travail social</span> (1893) ; <span class="oeuvre">Les Règles de la méthode sociologique</span> (1895) ; <span class="oeuvre">Le Suicide</span> (1897)</p>
+    <p class="these"><strong>Thèse :</strong> le « fait social » se traite « comme une chose », extérieur et contraignant ; passage de la solidarité <em>mécanique</em> à la solidarité <em>organique</em> ; l'« anomie » comme dérèglement du lien social.</p>
+    <p class="usage"><strong>En dissertation :</strong> lien social, intégration, cohésion, méthode holiste — fondateur de la sociologie française.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Max Weber</span> — <span class="oeuvre">L'Éthique protestante et l'esprit du capitalisme</span> (1905) ; <span class="oeuvre">Économie et société</span> (posthume, 1922)</p>
+    <p class="these"><strong>Thèse :</strong> sociologie <em>compréhensive</em> de l'action sociale ; l'éthique protestante a favorisé l'esprit du capitalisme ; typologie de la domination (traditionnelle, charismatique, légale-rationnelle) ; rôle de la bureaucratie.</p>
+    <p class="usage"><strong>En dissertation :</strong> origines culturelles du capitalisme, rationalisation, pouvoir et organisation, méthode individualiste.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Alexis de Tocqueville</span> — <span class="oeuvre">De la démocratie en Amérique</span> (t. I, 1835 ; t. II, 1840)</p>
+    <p class="these"><strong>Thèse :</strong> l'« égalisation des conditions » est le mouvement de fond de la modernité ; elle porte des promesses (liberté) et des risques (individualisme, tyrannie de la majorité, despotisme doux).</p>
+    <p class="usage"><strong>En dissertation :</strong> démocratie, égalité, individualisme, rapport de la société à l'État.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Pierre Bourdieu</span> — <span class="oeuvre">Les Héritiers</span> (avec J.-C. Passeron, 1964) ; <span class="oeuvre">La Distinction</span> (1979)</p>
+    <p class="these"><strong>Thèse :</strong> l'école <em>reproduit</em> les inégalités sociales sous couvert de méritocratie ; les concepts d'<em>habitus</em>, de <em>capital culturel</em> et de <em>violence symbolique</em> expliquent la domination.</p>
+    <p class="usage"><strong>En dissertation :</strong> reproduction sociale, école et inégalités, stratification, goûts et classes.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Raymond Boudon</span> — <span class="oeuvre">L'Inégalité des chances</span> (1973)</p>
+    <p class="these"><strong>Thèse :</strong> les inégalités scolaires s'expliquent par l'agrégation de <em>décisions individuelles</em> rationnelles (individualisme méthodologique) et par des « effets pervers », plus que par la seule reproduction.</p>
+    <p class="usage"><strong>En dissertation :</strong> à opposer à Bourdieu (holisme vs individualisme), mobilité sociale, choix d'orientation.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Robert Castel</span> — <span class="oeuvre">Les Métamorphoses de la question sociale</span> (1995)</p>
+    <p class="these"><strong>Thèse :</strong> la « société salariale » a intégré par le travail et la protection sociale ; sa crise engendre la « désaffiliation » (précarité, exclusion) de ceux que le salariat n'assure plus.</p>
+    <p class="usage"><strong>En dissertation :</strong> travail, protection sociale, exclusion, transformations de l'emploi.</p>
+  </div>
+
+  <h2 id="histoire">8. Histoire économique</h2>
+
+  <div class="auteur">
+    <p><span class="nom">Karl Polanyi</span> — <span class="oeuvre">La Grande Transformation</span> (1944)</p>
+    <p class="these"><strong>Thèse :</strong> le marché autorégulateur est une construction récente et instable ; son « désencastrement » de la société provoque un « double mouvement » de protection sociale en réaction.</p>
+    <p class="usage"><strong>En dissertation :</strong> rapports marché / société, rôle de l'État, régulation, libéralisme et ses limites.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Fernand Braudel</span> — <span class="oeuvre">Civilisation matérielle, économie et capitalisme</span> (1979)</p>
+    <p class="these"><strong>Thèse :</strong> distinguer la vie matérielle, l'économie de marché et le capitalisme ; penser dans la « longue durée » et à l'échelle des « économies-mondes ».</p>
+    <p class="usage"><strong>En dissertation :</strong> genèse historique du capitalisme, mondialisation, temporalités longues.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">Paul Bairoch</span> — <span class="oeuvre">Mythes et paradoxes de l'histoire économique</span> (1993)</p>
+    <p class="these"><strong>Thèse :</strong> une relecture critique et chiffrée de l'histoire économique (ex. : les grandes puissances se sont souvent développées derrière le protectionnisme).</p>
+    <p class="usage"><strong>En dissertation :</strong> libre-échange vs protectionnisme dans l'histoire, nuance des « évidences » libérales.</p>
+  </div>
+
+  <div class="auteur">
+    <p><span class="nom">David Landes</span> — <span class="oeuvre">Richesse et pauvreté des nations</span> (1998)</p>
+    <p class="these"><strong>Thèse :</strong> les écarts de développement s'enracinent dans le temps long — culture, institutions, techniques, géographie — plus que dans les seules dotations.</p>
+    <p class="usage"><strong>En dissertation :</strong> origines de la « grande divergence », rôle de la culture et des institutions dans le développement.</p>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Comment réviser ce répertoire</span>
+    <ul>
+      <li><strong>Par thème, pas par ordre alphabétique :</strong> pour chaque grande question (croissance, inégalités, marché, lien social…), sache mobiliser 3-4 auteurs qui <em>dialoguent</em> ou s'<em>opposent</em> (ex. Bourdieu vs Boudon, Keynes vs Friedman).</li>
+      <li><strong>Fais des couples d'opposition :</strong> Say ↔ Keynes, Hayek ↔ Keynes, Bourdieu ↔ Boudon, Rostow ↔ théories de la dépendance. Une dissertation se nourrit de ces tensions.</li>
+      <li><strong>Vérifie que tu sais la date <em>et</em> la thèse</strong> : réciter un nom seul ne rapporte rien.</li>
+      <li>Retrouve chaque auteur dans son chapitre pour le contexte : <a href="ch01-science-economique.html">ch. 1</a>, <a href="ch07-croissance.html">Croissance</a>, <a href="ch09-developpement-inegalites.html">Développement &amp; inégalités</a>, <a href="ch02-sociologie.html">Sociologie</a>…</li>
+    </ul>
+  </div>
+
+  <nav class="prevnext" aria-label="Navigation">
+    <a href="copie-type-dissertation.html"><span class="pn-label">Voir aussi</span>← Copie-type rédigée</a>
+    <a class="next" href="index.html"><span class="pn-label">Retour</span>Sommaire ESH</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <p>ECG1 2026/2027 — ESH. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
