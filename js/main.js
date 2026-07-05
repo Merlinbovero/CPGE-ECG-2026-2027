@@ -215,4 +215,24 @@
       });
     });
   });
+
+  /* ---------- Bouton « retour en haut » ---------- */
+  (function () {
+    var btn = document.createElement("button");
+    btn.id = "back-to-top";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Retour en haut de la page");
+    btn.textContent = "↑";
+    document.body.appendChild(btn);
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function toggle() {
+      if (window.scrollY > 600) btn.classList.add("show");
+      else btn.classList.remove("show");
+    }
+    window.addEventListener("scroll", toggle, { passive: true });
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+    toggle();
+  })();
 })();
