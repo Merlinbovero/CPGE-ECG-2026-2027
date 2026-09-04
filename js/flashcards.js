@@ -1,9 +1,8 @@
 /* ============================================================
-   ECG1 2026-2027 — Moteur de flashcards à répétition espacée
-   Vanilla JS, sans dépendance. Leitner à 5 boîtes.
-   - Paquets historiques [{q,a}] : fonctionnement classique.
+   ECG1 2026-2027 — Moteur de flashcards
+   - Paquets historiques [{q,a}] : Leitner historique inchangé.
    - Paquet ESH enrichi [{id,q,a,code,type,tier}] : cartes portrait,
-     lancement direct depuis le chapitre et vrai retournement 3D.
+     accès direct depuis les chapitres, flip 3D réversible et bouton Suivant.
    ============================================================ */
 
 (function () {
@@ -141,51 +140,38 @@
     return;
   }
 
-  /* ---------- ESH : session ciblée ou révision générale ---------- */
+  /* ---------- ESH : paquet simple, sans notation ---------- */
   var params = new URLSearchParams(window.location.search);
   var codes = (params.get("codes") || "").split(",").map(function (v) { return v.trim(); }).filter(Boolean);
   var codeSet = {};
   codes.forEach(function (code) { codeSet[code] = true; });
-  var requestedMode = params.get("mode");
-  var mode = requestedMode === "all" ? "all" : requestedMode === "due" ? "due" : (codes.length ? "all" : "due");
   var from = safeLocalReturn(params.get("from"));
   var order = [];
   var pos = 0;
   var revealed = false;
   var doneCount = 0;
-  var wrongCount = 0;
   var transitionLocked = false;
 
   function safeLocalReturn(value) {
     if (!value) return "";
-    try { value = decodeURIComponent(value); } catch (e) {}
     return /^[A-Za-z0-9._-]+\.html(?:#[A-Za-z0-9_-]+)?$/.test(value) ? value : "";
   }
 
-  function matchesTarget(i, dueOnly) {
+  function matchesTarget(i) {
     var card = FLASHCARDS[i];
-    if (codes.length && !codeSet[card.code]) return false;
-    if (dueOnly && stateFor(i).due > Date.now()) return false;
-    return true;
+    return !codes.length || !!codeSet[card.code];
   }
-  function matchingIndices(dueOnly) {
-    return FLASHCARDS.map(function (_, i) { return i; }).filter(function (i) { return matchesTarget(i, dueOnly); });
+  function matchingIndices() {
+    return FLASHCARDS.map(function (_, i) { return i; }).filter(matchesTarget);
   }
   function buildOrder() {
-    order = shuffle(matchingIndices(mode === "due"));
+    order = shuffle(matchingIndices());
     pos = 0;
     revealed = false;
     doneCount = 0;
-    wrongCount = 0;
   }
   function selectionTotal() {
-    return matchingIndices(false).length;
-  }
-  function selectionMastered() {
-    return matchingIndices(false).filter(function (i) { return stateFor(i).box >= 3; }).length;
-  }
-  function selectionDue() {
-    return matchingIndices(false).filter(function (i) { return stateFor(i).due <= Date.now(); }).length;
+    return matchingIndices().length;
   }
 
   function updatePageContext() {
@@ -197,32 +183,28 @@
     if (codes.length === 1) {
       kicker.textContent = "Programme officiel · " + codes[0];
       title.textContent = groupLabel(codes[0]);
-      copy.textContent = selectionTotal() + " cartes du chapitre. Retourne chaque carte, puis indique si tu savais répondre.";
+      copy.textContent = selectionTotal() + " cartes du chapitre. Touchez la carte pour voir la réponse, puis touchez-la encore pour revenir à la question.";
     } else if (codes.length > 1) {
       kicker.textContent = "Flashcards du chapitre";
       title.textContent = "Révision ciblée";
-      copy.textContent = selectionTotal() + " cartes · " + codes.join(" · ") + ". Le paquet a été ouvert directement depuis ton cours.";
-    } else if (mode === "all") {
+      copy.textContent = selectionTotal() + " cartes · " + codes.join(" · ") + ". Chaque carte peut être retournée autant de fois que nécessaire.";
+    } else {
       kicker.textContent = "Programme officiel ECG1";
       title.textContent = "Les 102 flashcards ESH";
-      copy.textContent = "Révision générale de tout le programme, sans filtre intermédiaire.";
-    } else {
-      kicker.textContent = "Répétition espacée";
-      title.textContent = "Révision du jour";
-      copy.textContent = "Les cartes arrivées à échéance aujourd’hui sont sélectionnées automatiquement.";
+      copy.textContent = "Révision générale de l’ESH : retourne librement chaque carte, puis passe à la suivante.";
     }
   }
 
   function updateCounter() {
     var counter = document.getElementById("flashcards-counter");
     if (!counter) return;
-    counter.textContent = selectionDue() + " à revoir aujourd’hui · " + selectionMastered() + " maîtrisées · " + selectionTotal() + " dans ce paquet.";
+    counter.textContent = selectionTotal() + " carte(s) dans ce paquet.";
   }
 
   function progressHtml() {
     if (!order.length || pos >= order.length) return "";
     var pct = Math.round((pos / order.length) * 100);
-    return '<div class="fc-session-bar"><span>' + (pos + 1) + ' / ' + order.length + '</span><span>' + Math.round(pct) + ' %</span></div><div class="fc-progress" aria-label="Progression"><span style="width:' + pct + '%"></span></div>';
+    return '<div class="fc-session-bar"><span>' + (pos + 1) + ' / ' + order.length + '</span><span>' + pct + ' %</span></div><div class="fc-progress" aria-label="Progression"><span style="width:' + pct + '%"></span></div>';
   }
 
   function courseHref(card) {
@@ -232,42 +214,26 @@
 
   function cardHtml(i) {
     var card = FLASHCARDS[i];
-    var st = stateFor(i);
     var chapter = groupLabel(card.code);
     var href = courseHref(card);
     return progressHtml() +
       '<div class="fc-deck-stage">' +
-        '<div id="fc-scene" class="fc-card-scene' + (revealed ? ' is-flipped' : '') + '" tabindex="0" role="button" aria-label="' + (revealed ? 'Réponse affichée' : 'Retourner la carte pour afficher la réponse') + '">' +
+        '<div id="fc-scene" class="fc-card-scene' + (revealed ? ' is-flipped' : '') + '" tabindex="0" role="button" aria-pressed="' + (revealed ? 'true' : 'false') + '" aria-label="Retourner la carte">' +
           '<div class="fc-card-rotator">' +
             '<article class="fc-face fc-face-front" aria-hidden="' + (revealed ? 'true' : 'false') + '">' +
               '<div class="fc-card-head"><span class="fc-card-code">' + esc(card.code || "ESH") + '</span><span class="fc-card-kind"><strong>' + esc(labelType(card.type)) + '</strong>' + esc(labelTier(card.tier)) + '</span></div>' +
               '<div class="fc-card-main"><p class="fc-card-chapter">' + esc(chapter) + '</p><p class="fc-question">' + card.q + '</p></div>' +
-              '<div class="fc-card-foot"><span class="fc-flip-hint"><span class="fc-flip-icon">↻</span> Touchez pour retourner</span><span>Boîte ' + (st.box + 1) + '/5</span></div>' +
+              '<div class="fc-card-foot"><span class="fc-flip-hint"><span class="fc-flip-icon">↻</span> Touchez pour retourner</span><span>Question</span></div>' +
             '</article>' +
             '<article class="fc-face fc-face-back" aria-hidden="' + (revealed ? 'false' : 'true') + '">' +
               '<div class="fc-card-head"><span class="fc-card-code">' + esc(card.code || "ESH") + '</span><span class="fc-card-kind"><strong>Réponse</strong>' + esc(labelType(card.type)) + '</span></div>' +
               '<div class="fc-card-main"><p class="fc-answer-label">Réponse attendue</p><div class="fc-answer">' + card.a + '</div></div>' +
-              '<div class="fc-card-foot"><span>' + esc(labelTier(card.tier)) + '</span><a class="fc-course-link" href="' + esc(href) + '">Retour au cours ↗</a></div>' +
+              '<div class="fc-card-foot"><span class="fc-flip-hint"><span class="fc-flip-icon">↻</span> Touchez pour revenir</span><a class="fc-course-link" href="' + esc(href) + '">Retour au cours ↗</a></div>' +
             '</article>' +
           '</div>' +
         '</div>' +
       '</div>' +
-      '<div id="fc-actions" class="fc-actions">' + actionButtonsHtml() + '</div>';
-  }
-
-  function actionButtonsHtml() {
-    if (revealed) {
-      return '<button id="fc-again" class="btn fc-again" type="button">Je ne savais pas</button><button id="fc-good" class="btn" type="button">Je savais</button>';
-    }
-    return '<button id="fc-reveal" class="btn fc-reveal" type="button">Retourner la carte</button>';
-  }
-
-  function emptyHtml() {
-    var total = selectionTotal();
-    if (mode === "due" && total) {
-      return '<div class="box thm fc-empty"><span class="box-title">Rien à revoir aujourd’hui</span><p>Toutes les cartes de ce paquet sont à jour dans le système de répétition espacée.</p><div class="fc-finish-actions"><a class="btn" href="flashcards.html' + (codes.length ? '?codes=' + encodeURIComponent(codes.join(",")) + '&mode=all' + (from ? '&from=' + encodeURIComponent(from) : '') : '?mode=all') + '">Revoir quand même</a>' + returnLinkHtml() + '</div></div>';
-    }
-    return '<div class="box thm fc-empty"><span class="box-title">Aucune carte</span><p>Ce paquet ne contient aucune carte.</p><div class="fc-finish-actions">' + returnLinkHtml() + '</div></div>';
+      '<div id="fc-actions" class="fc-actions"><button id="fc-next" class="btn" type="button">Suivant</button></div>';
   }
 
   function returnLinkHtml() {
@@ -276,8 +242,12 @@
     return '<a class="btn" href="' + esc(href) + '">' + text + '</a>';
   }
 
+  function emptyHtml() {
+    return '<div class="box thm fc-empty"><span class="box-title">Aucune carte</span><p>Ce paquet ne contient aucune carte.</p><div class="fc-finish-actions">' + returnLinkHtml() + '</div></div>';
+  }
+
   function finishHtml() {
-    return '<div class="box thm fc-finish"><span class="box-title">Session terminée</span><p><strong>' + doneCount + '</strong> carte(s) travaillée(s), dont <strong>' + wrongCount + '</strong> à reprendre.</p><p class="small muted">' + selectionMastered() + ' cartes maîtrisées dans ce paquet.</p><div class="fc-finish-actions"><button id="fc-restart" class="btn" type="button">Recommencer ce paquet</button>' + returnLinkHtml() + '</div></div>';
+    return '<div class="box thm fc-finish"><span class="box-title">Paquet terminé</span><p><strong>' + doneCount + '</strong> carte(s) parcourue(s).</p><div class="fc-finish-actions"><button id="fc-restart" class="btn" type="button">Recommencer ce paquet</button>' + returnLinkHtml() + '</div></div>';
   }
 
   function renderStage() {
@@ -299,62 +269,39 @@
     updateCounter();
   }
 
-  function revealAnswer() {
-    if (transitionLocked || revealed || pos >= order.length) return;
-    revealed = true;
-    var scene = document.getElementById("fc-scene");
-    if (scene) {
-      scene.classList.add("is-flipped");
-      scene.setAttribute("aria-label", "Réponse affichée");
-      var faces = scene.querySelectorAll(".fc-face");
-      if (faces.length === 2) {
-        faces[0].setAttribute("aria-hidden", "true");
-        faces[1].setAttribute("aria-hidden", "false");
-      }
-    }
-    var actions = document.getElementById("fc-actions");
-    if (actions) actions.innerHTML = actionButtonsHtml();
-    bindActionButtons();
-    window.setTimeout(typesetMath, motionEnabled ? 340 : 0);
+  function syncFaceAccessibility(scene) {
+    if (!scene) return;
+    var faces = scene.querySelectorAll(".fc-face");
+    if (faces.length !== 2) return;
+    faces[0].setAttribute("aria-hidden", revealed ? "true" : "false");
+    faces[1].setAttribute("aria-hidden", revealed ? "false" : "true");
+    scene.setAttribute("aria-pressed", revealed ? "true" : "false");
   }
 
-  function animateAnswer(knewIt) {
-    if (transitionLocked || !revealed || pos >= order.length) return;
+  function toggleFlip() {
+    if (transitionLocked || pos >= order.length) return;
+    revealed = !revealed;
+    var scene = document.getElementById("fc-scene");
+    if (!scene) return;
+    scene.classList.toggle("is-flipped", revealed);
+    syncFaceAccessibility(scene);
+    window.setTimeout(typesetMath, motionEnabled ? 360 : 0);
+  }
+
+  function nextCard() {
+    if (transitionLocked || pos >= order.length) return;
     transitionLocked = true;
     var scene = document.getElementById("fc-scene");
-    var buttons = app.querySelectorAll(".fc-actions button");
-    Array.prototype.forEach.call(buttons, function (button) { button.disabled = true; });
-    if (scene && motionEnabled) scene.classList.add(knewIt ? "is-exit-good" : "is-exit-again");
+    var next = document.getElementById("fc-next");
+    if (next) next.disabled = true;
+    if (scene && motionEnabled) scene.classList.add("is-exit-next");
     window.setTimeout(function () {
-      commitAnswer(knewIt);
+      doneCount++;
+      pos++;
+      revealed = false;
       transitionLocked = false;
-    }, motionEnabled ? 310 : 0);
-  }
-
-  function commitAnswer(knewIt) {
-    if (pos >= order.length) return;
-    var i = order[pos];
-    var st = stateFor(i);
-    var newBox = knewIt ? Math.min(st.box + 1, INTERVALS.length - 1) : 0;
-    setState(i, newBox, Date.now() + INTERVALS[newBox] * DAY, knewIt);
-    doneCount++;
-    if (!knewIt) {
-      wrongCount++;
-      var reinsertAt = Math.min(order.length, pos + 4);
-      order.splice(reinsertAt, 0, i);
-    }
-    pos++;
-    revealed = false;
-    renderStage();
-  }
-
-  function bindActionButtons() {
-    var reveal = document.getElementById("fc-reveal");
-    if (reveal) reveal.addEventListener("click", revealAnswer);
-    var good = document.getElementById("fc-good");
-    var again = document.getElementById("fc-again");
-    if (good) good.addEventListener("click", function () { animateAnswer(true); });
-    if (again) again.addEventListener("click", function () { animateAnswer(false); });
+      renderStage();
+    }, motionEnabled ? 280 : 0);
   }
 
   function bindStage() {
@@ -362,16 +309,19 @@
     if (scene) {
       scene.addEventListener("click", function (event) {
         if (event.target.closest && event.target.closest("a")) return;
-        revealAnswer();
+        toggleFlip();
       });
       scene.addEventListener("keydown", function (event) {
-        if ((event.key === "Enter" || event.key === " ") && !revealed) {
+        if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          revealAnswer();
+          toggleFlip();
         }
       });
     }
-    bindActionButtons();
+
+    var next = document.getElementById("fc-next");
+    if (next) next.addEventListener("click", nextCard);
+
     var restart = document.getElementById("fc-restart");
     if (restart) restart.addEventListener("click", function () {
       if (transitionLocked) return;
