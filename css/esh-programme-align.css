@@ -1,0 +1,44 @@
+/* Alignement visuel ESH sur le programme officiel ECG1 2026-2027. */
+.esh-official-note {
+  margin: 1.1rem 0 1.8rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  border-left: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg-card));
+}
+.esh-official-note strong { color: var(--accent); }
+.esh-programme .official-item a { align-items: flex-start; }
+.esh-programme .official-item .num { min-width: 3.7rem; color: var(--accent); }
+.esh-programme .official-item .scope { display:block; margin-top:.2rem; font-size:.76rem; color:var(--text-muted); font-weight:600; letter-spacing:.02em; }
+.esh-module .chapter-list li.ecg2 { opacity:.82; }
+.esh-module .chapter-list li.ecg2 .num { color:var(--esh-gold); }
+
+/* Les anciens numéros étaient une numérotation interne et pouvaient être pris pour le BO. */
+body[data-page-id^="esh-ch"] h1 .chapter-num { font-size: 0; }
+body[data-page-id^="esh-ch"] h1 .chapter-num::after { font-size: .84rem; }
+body[data-page-id="esh-ch01"] h1 .chapter-num::after { content:"Support officiel 1.1.3"; }
+body[data-page-id="esh-ch02"] h1 .chapter-num::after { content:"Support officiel 1.3.1–1.3.2"; }
+body[data-page-id="esh-ch03"] h1 .chapter-num::after { content:"Support officiel 1.2.2–1.2.3"; }
+body[data-page-id="esh-ch04"] h1 .chapter-num::after { content:"Support officiel 1.1.2"; }
+body[data-page-id="esh-ch05"] h1 .chapter-num::after { content:"Support officiel 1.1.1"; }
+body[data-page-id="esh-ch06"] h1 .chapter-num::after { content:"Support officiel 2.2.2"; }
+body[data-page-id="esh-ch07"] h1 .chapter-num::after { content:"Programme officiel 2.1.1"; }
+body[data-page-id="esh-ch08"] h1 .chapter-num::after { content:"Approfondissement transversal"; }
+body[data-page-id="esh-ch09"] h1 .chapter-num::after { content:"Support officiel 2.1.2–2.1.3"; }
+body[data-page-id="esh-ch10"] h1 .chapter-num::after { content:"Support officiel 2.2.1–2.2.3"; }
+body[data-page-id="esh-ch11"] h1 .chapter-num::after { content:"Support officiel 2.3.1–2.3.3"; }
+body[data-page-id="esh-ch12"] h1 .chapter-num::after { content:"Anticipation ECG2"; color:var(--esh-gold); }
+
+body[data-page-id="esh-ch04"] main::before,
+body[data-page-id="esh-ch12"] main::before {
+  display:block;
+  margin:0 0 1.25rem;
+  padding:.8rem 1rem;
+  border-left:4px solid var(--esh-gold);
+  background:color-mix(in srgb, var(--esh-gold) 7%, var(--bg-card));
+  color:var(--text);
+  font-size:.9rem;
+  line-height:1.55;
+}
+body[data-page-id="esh-ch04"] main::before { content:"Repère programme : en ECG1, le cœur exigible ici est la monnaie, sa création et les modes de financement. Les développements détaillés sur QE, taux négatifs et forward guidance sont conservés comme approfondissements en vue de l’ECG2."; }
+body[data-page-id="esh-ch12"] main::before { content:"Repère programme : ce cours sur fluctuations, grandes crises et politiques de sortie de crise est conservé comme anticipation de l’ECG2. Il ne fait plus partie du parcours principal ECG1 affiché sur l’accueil."; }

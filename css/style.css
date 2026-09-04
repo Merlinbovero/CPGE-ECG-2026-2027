@@ -1,8 +1,9 @@
 /* ECG1 2026-2027 — point d'entrée des styles.
    La feuille historique est conservée dans base.css.
    Les surcharges ESH sont isolées dans esh-premium.css,
-   puis raffinées et renforcées pour la lecture pédagogique. */
+   puis raffinées, renforcées et alignées sur le programme officiel. */
 @import url("./base.css");
 @import url("./esh-premium.css");
 @import url("./esh-refine.css");
 @import url("./esh-emphasis.css");
+@import url("./esh-programme-align.css");
