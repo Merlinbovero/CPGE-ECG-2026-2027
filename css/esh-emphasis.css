@@ -1,0 +1,270 @@
+/* ============================================================
+   ESH — Renforcement de la hiérarchie pédagogique
+   Met en évidence chapitres, sous-parties et points importants
+   sans modifier la structure ni la typographie de la DA.
+   ============================================================ */
+
+/* ---------- Page d'accueil : chapitres plus identifiables ---------- */
+body[data-page-id="esh-index"] .esh-module {
+  padding-top: 1.15rem;
+}
+
+body[data-page-id="esh-index"] .esh-module-head h3 {
+  color: var(--esh-sage);
+  font-size: 1.9rem;
+}
+
+body[data-page-id="esh-index"] .esh-module.module-2 .esh-module-head h3 {
+  color: var(--accent);
+}
+
+body[data-page-id="esh-index"] .chapter-list {
+  display: grid;
+  gap: .5rem;
+}
+
+body[data-page-id="esh-index"] .chapter-list li {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--esh-sage);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--esh-sage) 4%, var(--bg-card));
+}
+
+body[data-page-id="esh-index"] .module-2 .chapter-list li {
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 4%, var(--bg-card));
+}
+
+body[data-page-id="esh-index"] .chapter-list li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+body[data-page-id="esh-index"] .chapter-list a {
+  padding: .85rem .9rem;
+  font-weight: 650;
+}
+
+body[data-page-id="esh-index"] .chapter-list .num {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.3rem;
+  height: 2.1rem;
+  padding: 0 .35rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--esh-sage) 14%, transparent);
+  color: var(--esh-sage);
+  font-size: .74rem;
+  font-weight: 800;
+}
+
+body[data-page-id="esh-index"] .module-2 .chapter-list .num {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+}
+
+body[data-page-id="esh-index"] .chapter-list li:hover {
+  border-color: color-mix(in srgb, var(--esh-sage) 55%, var(--border));
+  background: color-mix(in srgb, var(--esh-sage) 8%, var(--bg-card));
+}
+
+body[data-page-id="esh-index"] .module-2 .chapter-list li:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-card));
+}
+
+/* ---------- Pages de cours : chapitres et grandes parties ---------- */
+body[data-matiere="esh"]:not([data-page-id="esh-index"]) h1 {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+body[data-matiere="esh"]:not([data-page-id="esh-index"]) h1 .chapter-num {
+  width: fit-content;
+  padding: .32rem .52rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--accent) 11%, transparent);
+  letter-spacing: .09em;
+}
+
+body[data-matiere="esh"]:not([data-page-id="esh-index"]) h2 {
+  margin-top: 3.5rem;
+  padding: 1rem 1.15rem 1.05rem;
+  border: 0;
+  border-left: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--bg-card));
+  border-radius: 2px;
+}
+
+body[data-matiere="esh"]:not([data-page-id="esh-index"]) h2::before {
+  display: none;
+}
+
+body[data-matiere="esh"]:not([data-page-id="esh-index"]) h3 {
+  position: relative;
+  padding-left: .95rem;
+  font-size: 1.2rem;
+}
+
+body[data-matiere="esh"]:not([data-page-id="esh-index"]) h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .28em;
+  bottom: .22em;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--esh-sage);
+}
+
+/* ---------- Sommaire ---------- */
+body[data-matiere="esh"] .toc {
+  border-color: color-mix(in srgb, var(--esh-sage) 32%, var(--border));
+  background: color-mix(in srgb, var(--esh-sage) 4%, var(--bg-card));
+}
+
+body[data-matiere="esh"] .toc::before {
+  background: var(--esh-sage);
+}
+
+body[data-matiere="esh"] .toc strong {
+  color: var(--esh-sage);
+  font-size: .74rem;
+}
+
+/* ---------- Encadrés pédagogiques : importance immédiatement lisible ---------- */
+body[data-matiere="esh"] .box {
+  padding: 1.05rem 1.2rem 1.1rem 1.35rem;
+  border-width: 1px;
+}
+
+body[data-matiere="esh"] .box::before {
+  width: 4px;
+  opacity: 1;
+}
+
+body[data-matiere="esh"] .box .box-title {
+  width: fit-content;
+  margin-bottom: .7rem;
+  padding: .22rem .48rem;
+  border-radius: 2px;
+  font-size: .72rem;
+  letter-spacing: .08em;
+}
+
+body[data-matiere="esh"] .box.def .box-title {
+  background: color-mix(in srgb, var(--box-def-border) 13%, transparent);
+}
+
+body[data-matiere="esh"] .box.thm .box-title {
+  background: color-mix(in srgb, var(--box-thm-border) 13%, transparent);
+}
+
+body[data-matiere="esh"] .box.met .box-title {
+  background: color-mix(in srgb, var(--box-met-border) 13%, transparent);
+}
+
+body[data-matiere="esh"] .box.warn .box-title {
+  background: color-mix(in srgb, var(--box-warn-border) 13%, transparent);
+}
+
+body[data-matiere="esh"] .box.exo .box-title {
+  background: color-mix(in srgb, var(--box-ex-border) 13%, transparent);
+}
+
+body[data-matiere="esh"] .box strong {
+  color: color-mix(in srgb, currentColor 72%, var(--text));
+}
+
+/* ---------- Exercices et corrections ---------- */
+body[data-matiere="esh"] .exercise,
+body[data-matiere="esh"] .qcm {
+  border-color: color-mix(in srgb, var(--esh-sage) 28%, var(--border));
+}
+
+body[data-matiere="esh"] .exercise {
+  border-top: 4px solid var(--esh-sage);
+}
+
+body[data-matiere="esh"] .exercise-head {
+  margin: -1.35rem -1.45rem 1rem;
+  padding: 1rem 1.45rem .85rem;
+  background: color-mix(in srgb, var(--esh-sage) 7%, var(--bg-card));
+}
+
+body[data-matiere="esh"] .exercise-head h3,
+body[data-matiere="esh"] .exercise-head h4 {
+  color: var(--text);
+}
+
+body[data-matiere="esh"] .corrige {
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg-code));
+}
+
+/* ---------- Citations, données et tableaux ---------- */
+body[data-matiere="esh"] .citation {
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--esh-gold);
+  background: color-mix(in srgb, var(--esh-gold) 5%, var(--bg-card));
+}
+
+body[data-matiere="esh"] table th {
+  background: var(--esh-dark);
+  color: #fff;
+}
+
+body[data-matiere="esh"] mark {
+  background: color-mix(in srgb, var(--esh-gold) 38%, #fff4b8);
+  color: #29241d;
+}
+
+/* ---------- Mode sombre : même hiérarchie, sans halos criards ---------- */
+html[data-theme="dark"] body[data-page-id="esh-index"] .chapter-list li {
+  background: color-mix(in srgb, var(--esh-sage) 8%, var(--bg-card));
+}
+
+html[data-theme="dark"] body[data-page-id="esh-index"] .module-2 .chapter-list li {
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-card));
+}
+
+html[data-theme="dark"] body[data-matiere="esh"]:not([data-page-id="esh-index"]) h2 {
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg-card));
+}
+
+html[data-theme="dark"] body[data-matiere="esh"] .toc {
+  background: color-mix(in srgb, var(--esh-sage) 8%, var(--bg-card));
+}
+
+html[data-theme="dark"] body[data-matiere="esh"] .exercise-head {
+  background: color-mix(in srgb, var(--esh-sage) 10%, var(--bg-card));
+}
+
+html[data-theme="dark"] body[data-matiere="esh"] .corrige {
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-code));
+}
+
+html[data-theme="dark"] body[data-matiere="esh"] .citation {
+  background: color-mix(in srgb, var(--esh-gold) 7%, var(--bg-card));
+}
+
+html[data-theme="dark"] body[data-matiere="esh"] mark {
+  background: #705c34;
+  color: #fff4d7;
+}
+
+@media (max-width: 640px) {
+  body[data-page-id="esh-index"] .chapter-list a {
+    padding: .78rem .72rem;
+  }
+
+  body[data-matiere="esh"]:not([data-page-id="esh-index"]) h2 {
+    padding: .85rem .9rem .9rem;
+  }
+
+  body[data-matiere="esh"] .exercise-head {
+    margin-left: -1.45rem;
+    margin-right: -1.45rem;
+  }
+}
