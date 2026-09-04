@@ -3,18 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flashcards ESH — ECG1</title>
-<meta name="description" content="Flashcards à répétition espacée pour réviser les auteurs, dates, chiffres et définitions clés du programme d'ESH ECG1. Fonctionne hors ligne, progression sauvegardée dans le navigateur.">
+<title>Flashcards ESH — Programme officiel ECG1 2026-2027</title>
+<meta name="description" content="102 flashcards ESH alignées sur les 17 sous-parties du programme officiel ECG1, avec filtres, niveaux et répétition espacée.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-<meta name="theme-color" content="#2b2e35">
+<meta name="theme-color" content="#b56e52">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
+<style>
+  .fc-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(16rem,.42fr);gap:1.2rem;margin:1.4rem 0 1.8rem}
+  .fc-intro-note{border:1px solid var(--border);border-top:4px solid var(--accent);padding:1rem 1.1rem;background:var(--bg-card)}
+  .fc-intro-note strong{display:block;font-family:var(--font-serif);font-size:1.25rem;margin-bottom:.35rem}
+  .fc-legend{display:flex;flex-wrap:wrap;gap:.45rem;margin:.75rem 0 0}
+  .fc-pill,.fc-meta span,.fc-meta a{font-size:.72rem;line-height:1;text-transform:uppercase;letter-spacing:.06em;font-weight:700;border:1px solid var(--border);padding:.42rem .52rem;background:var(--bg-card);color:var(--text-muted);text-decoration:none}
+  .fc-pill.essential{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));color:var(--accent)}
+  .fc-dashboard{border:1px solid var(--border);background:var(--bg-card);margin:1rem 0 1.4rem}
+  .fc-dashboard-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.05rem;border-bottom:1px solid var(--border)}
+  .fc-dashboard-head strong{display:block;margin-top:.22rem;font-family:var(--font-serif);font-size:1.08rem}
+  .fc-eyebrow{display:block;color:var(--accent);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+  .fc-filters{display:grid;grid-template-columns:2fr 1fr 1fr 1.15fr;gap:.75rem;padding:1rem 1.05rem}
+  .fc-filters label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:750;color:var(--text-muted)}
+  .fc-filters select{display:block;width:100%;margin-top:.35rem;padding:.68rem .72rem;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.85rem;text-transform:none;letter-spacing:0;font-weight:500;border-radius:0}
+  .fc-ready{border:1px dashed var(--border);padding:2rem 1rem;text-align:center;color:var(--text-muted);background:color-mix(in srgb,var(--bg-card) 65%,transparent)}
+  .fc-progress{height:4px;background:var(--border);margin:1.2rem 0 .75rem;overflow:hidden}
+  .fc-progress span{display:block;height:100%;background:var(--accent);transition:width .2s ease}
+  .fc-card{border:1px solid var(--border);border-top:4px solid var(--accent);background:var(--bg-card);padding:1.15rem 1.2rem 1.3rem;min-height:18rem;display:flex;flex-direction:column}
+  .fc-card-top{display:flex;justify-content:space-between;gap:1rem;color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  .fc-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.85rem 0 1.15rem}
+  .fc-meta .fc-code{background:var(--accent);border-color:var(--accent);color:#fff}
+  .fc-meta a{margin-left:auto;color:var(--accent)}
+  .fc-question{font-family:var(--font-serif);font-size:clamp(1.35rem,3.2vw,2.1rem);line-height:1.22;max-width:46rem;margin:auto 0;padding:1rem 0 1.35rem}
+  .fc-answer{border-top:1px solid var(--border);padding-top:1rem;font-size:1.02rem;line-height:1.7}
+  .fc-answer>span{display:block;color:var(--accent);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:.4rem}
+  .fc-actions{display:flex;justify-content:flex-end;gap:.55rem;margin:.8rem 0 1.2rem}
+  .fc-actions .btn{margin:0}
+  .fc-actions .fc-again{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .fc-empty,.fc-finish{margin:1rem 0}
+  [data-theme="dark"] .fc-dashboard,[data-theme="dark"] .fc-card,[data-theme="dark"] .fc-intro-note{background:color-mix(in srgb,var(--bg-card) 92%,#000)}
+  [data-theme="dark"] .fc-meta .fc-code{color:#171817}
+  @media(max-width:820px){.fc-intro-grid{grid-template-columns:1fr}.fc-filters{grid-template-columns:1fr 1fr}.fc-dashboard-head{align-items:flex-start;flex-direction:column}.fc-dashboard-head .btn{width:100%}.fc-meta a{margin-left:0}.fc-card{min-height:15rem}}
+  @media(max-width:520px){.fc-filters{grid-template-columns:1fr}.fc-actions{display:grid;grid-template-columns:1fr}.fc-actions .btn{width:100%}}
+</style>
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
 </head>
-<body data-root=".." data-page-id="esh-flashcards" data-matiere="esh">
+<body data-root=".." data-page-id="esh-flashcards-v2" data-matiere="esh">
 
 <header class="site-header">
   <div class="header-inner">
@@ -40,11 +74,34 @@
 </nav>
 
 <main>
-  <h1>Flashcards ESH — auteurs, dates, chiffres, définitions</h1>
-  <p class="lead">48 cartes couvrant les 12 chapitres du programme. Le système retient ce que vous savez déjà (répétition espacée façon Leitner) : une carte sue s'éloigne, une carte ratée revient tout de suite. La progression est sauvegardée dans ce navigateur.</p>
-  <p id="flashcards-counter" class="small muted"></p>
+  <h1>Flashcards ESH <span class="chapter-num">Programme officiel 2026-2027</span></h1>
+  <p class="lead">102 cartes couvrent désormais les <strong>17 sous-parties officielles d’ECG1</strong>. Tu peux réviser tout le programme, une seule sous-partie, uniquement les auteurs ou mécanismes, ou seulement les éléments indispensables. La répétition espacée reste sauvegardée sur cet appareil.</p>
+
+  <div class="fc-intro-grid">
+    <div>
+      <p id="flashcards-counter" class="small muted"></p>
+      <div class="fc-legend" aria-label="Niveaux des cartes">
+        <span class="fc-pill essential">Indispensable</span>
+        <span class="fc-pill">Consolidation</span>
+        <span class="fc-pill">Essentiel</span>
+        <span class="fc-pill">Auteur</span>
+        <span class="fc-pill">Définition</span>
+        <span class="fc-pill">Mécanisme</span>
+        <span class="fc-pill">Repère</span>
+      </div>
+    </div>
+    <aside class="fc-intro-note">
+      <strong>4 + 2 par sous-partie</strong>
+      <p class="small">Chaque point officiel contient 4 cartes à maîtriser sans hésiter et 2 cartes de consolidation. Commence par le filtre <em>Indispensable</em> avant d’élargir.</p>
+    </aside>
+  </div>
 
   <div id="flashcards-app"></div>
+
+  <div class="box met">
+    <span class="box-title">Routine conseillée</span>
+    <p><strong>Avant une colle :</strong> sélectionne la sous-partie concernée → niveau « Indispensable » → mode « Tout le paquet ». <strong>En entretien régulier :</strong> laisse « Tous » et « À revoir aujourd’hui » : le système Leitner choisit ce qui doit revenir.</p>
+  </div>
 
   <nav class="prevnext" aria-label="Navigation">
     <a href="formulaire.html"><span class="pn-label">Réviser le cours</span>← Formulaire / Mémo</a>
@@ -53,61 +110,10 @@
 </main>
 
 <footer class="site-footer">
-  <p>ECG1 2026/2027 — ESH. <a href="index.html">Sommaire de la matière</a> · <a href="../index.html">Accueil</a></p>
+  <p>ECG1 2026/2027 — ESH. <a href="index.html">Programme officiel</a> · <a href="../index.html">Accueil</a></p>
 </footer>
 
-<script>
-var FLASHCARDS = [
-  { q: "Qui définit l'économie comme « science des choix sous contrainte de rareté » ?", a: "Lionel Robbins, <em>Essai sur la nature et la signification de la science économique</em>, 1932." },
-  { q: "Qui formule la théorie des avantages comparatifs, et en quelle année ?", a: "David Ricardo, <em>Des principes de l'économie politique et de l'impôt</em>, 1817." },
-  { q: "Quelle phrase de Friedman résume le monétarisme ?", a: "« L'inflation est toujours et partout un phénomène monétaire »." },
-  { q: "En quelle année paraît la <em>Théorie générale</em> de Keynes ?", a: "1936." },
-  { q: "Qui invente le mot « sociologie » ?", a: "Auguste Comte, <em>Cours de philosophie positive</em>, 1830-1842." },
-  { q: "Quels sont les 4 types de suicide selon Durkheim (1897) ?", a: "Égoïste, altruiste, anomique, fataliste." },
-  { q: "Quels sont les 3 ordres de la stratification sociale selon Weber ?", a: "Classe (économique), statut (prestige), parti (politique)." },
-  { q: "Quelles sont les 3 formes du capital culturel selon Bourdieu ?", a: "Incorporée, objectivée, institutionnalisée." },
-  { q: "Quelles sont les 5 conditions de la concurrence pure et parfaite (Knight, 1921) ?", a: "Atomicité, homogénéité, libre entrée/sortie, transparence, mobilité des facteurs." },
-  { q: "Qui a écrit « The Market for Lemons » (1970) ?", a: "George Akerlof (Nobel 2001) — théorie de l'antisélection." },
-  { q: "Qu'est-ce que le théorème de Coase (1960) ?", a: "Si les droits de propriété sont clairs et les coûts de transaction faibles, la négociation privée peut corriger une externalité sans intervention de l'État." },
-  { q: "Que signifie « les crédits font les dépôts » ?", a: "Le crédit bancaire crée simultanément un dépôt : la monnaie naît d'une écriture comptable, sans épargne préalable." },
-  { q: "Qui a formulé le rôle de prêteur en dernier ressort de la banque centrale, et dans quel ouvrage ?", a: "Walter Bagehot, <em>Lombard Street</em>, 1873." },
-  { q: "Que veut dire « whatever it takes » et qui l'a prononcé ?", a: "Mario Draghi, président de la BCE, le 26 juillet 2012, pour sauver l'euro." },
-  { q: "Quelles sont les théories de la consommation de Friedman et de Modigliani ?", a: "Friedman : revenu permanent (1957). Modigliani : cycle de vie (1954)." },
-  { q: "Qu'est-ce que le principe d'accélérateur, et qui l'a formulé ?", a: "L'investissement varie plus que proportionnellement à la demande — Aftalion (1913), Clark (1917)." },
-  { q: "Qu'est-ce que l'anomie chez Durkheim ?", a: "Un affaiblissement ou dérèglement des normes sociales qui régulent les désirs individuels." },
-  { q: "Quelle est la typologie de la déviance de Merton (1938) ?", a: "Conformisme, innovation, ritualisme, évasion, rébellion (selon l'acceptation des buts et des moyens)." },
-  { q: "Que dit la théorie de l'étiquetage de Becker (1963) ?", a: "La déviance n'est pas une propriété de l'acte mais la conséquence de l'application, par les autres, de normes et de sanctions." },
-  { q: "Qui oppose « moyennisation » et « retour des classes » ?", a: "Henri Mendras (1988, constellation centrale) vs Louis Chauvel et Thomas Piketty (repolarisation depuis 1980)." },
-  { q: "Quelle est la définition de la croissance selon Perroux ?", a: "Augmentation soutenue, sur une ou plusieurs périodes longues, d'un indicateur de dimension — le produit global réel." },
-  { q: "Que prédit le modèle de Solow (1956) sans progrès technique ?", a: "Un état stationnaire : les rendements décroissants du capital font stagner le PIB par tête." },
-  { q: "Citer 3 auteurs de la croissance endogène et leur apport.", a: "Romer (1986-90, connaissance non rivale) ; Lucas (1988, capital humain) ; Aghion-Howitt (1992, destruction créatrice)." },
-  { q: "Institutions inclusives vs extractives : qui, et quel exemple ?", a: "Acemoglu et Robinson (2012) ; exemple canonique : les deux Corées." },
-  { q: "Qu'est-ce que le « paradoxe de Solow » (1987) ?", a: "« On voit les ordinateurs partout sauf dans les statistiques de productivité »." },
-  { q: "Qu'est-ce que la destruction créatrice, et qui l'a théorisée ?", a: "Joseph Schumpeter, <em>Capitalisme, socialisme et démocratie</em>, 1942 — la mutation permanente qui détruit les structures vieillies en créant des structures neuves." },
-  { q: "Qu'est-ce que le déversement de Sauvy (1980) ?", a: "Les gains de productivité libèrent de la main-d'œuvre dans un secteur mais créent une demande et des emplois nouveaux ailleurs." },
-  { q: "Qu'est-ce que la polarisation du marché du travail ?", a: "Croissance simultanée des emplois très qualifiés et peu qualifiés, érosion des emplois intermédiaires routiniers (Autor)." },
-  { q: "Quelle est la définition du développement selon Amartya Sen (1999) ?", a: "L'expansion des capabilités : les libertés réelles d'être et de faire (<em>Development as Freedom</em>)." },
-  { q: "De quoi se compose l'IDH (PNUD, 1990) ?", a: "Espérance de vie, éducation (durée de scolarisation), revenu (RNB/habitant en log)." },
-  { q: "Que dit la courbe de Kuznets (1955) et comment Piketty la nuance-t-il ?", a: "Kuznets : U inversé (inégalités montent puis baissent). Piketty (2013) : la baisse du XXe fut un accident historique (guerres, fiscalité), non une loi." },
-  { q: "Quand paraît le rapport Meadows (Club de Rome) et quel est son message ?", a: "1972, <em>The Limits to Growth</em> : la croissance exponentielle se heurte aux limites physiques d'un monde fini." },
-  { q: "Distinguer soutenabilité faible et soutenabilité forte.", a: "Faible (Solow-Hartwick) : les capitaux sont substituables. Forte (Georgescu-Roegen, Daly) : un capital naturel critique est non substituable." },
-  { q: "Que définit le rapport Brundtland (1987) ?", a: "Le développement durable : répondre aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs." },
-  { q: "Quelles sont les 2 phases de la transition démographique (Landry, 1934) ?", a: "Phase 1 : la mortalité baisse, la natalité reste haute (explosion). Phase 2 : la natalité baisse à son tour (ralentissement)." },
-  { q: "Qu'est-ce que la société salariale selon Robert Castel (1995) ?", a: "Le salariat, statut misérable au XIXe, devient au XXe le support des protections sociales (1930-1975), puis s'effrite depuis 1980." },
-  { q: "Qui a reçu le Nobel 2023 pour ses travaux sur l'emploi féminin ?", a: "Claudia Goldin." },
-  { q: "Qu'est-ce que la loi des trois secteurs (Clark, 1940 ; Fourastié, 1949) ?", a: "L'emploi se déplace du secteur primaire vers le secondaire puis le tertiaire à mesure que les gains de productivité chassent la main-d'œuvre." },
-  { q: "Pourquoi la firme existe-t-elle selon Coase (1937) ?", a: "Parce que recourir au marché a un coût (coûts de transaction) ; la firme économise ces coûts par la coordination hiérarchique." },
-  { q: "Qu'est-ce qu'un actif spécifique chez Williamson, et quel risque crée-t-il ?", a: "Un investissement dont la valeur dépend d'une relation particulière ; il crée un risque de hold-up par le partenaire, incitant à l'intégration verticale." },
-  { q: "Opposer gouvernance shareholder et stakeholder.", a: "Shareholder (Friedman, 1970) : maximiser la valeur actionnariale. Stakeholder : arbitrer entre toutes les parties prenantes (codétermination allemande, loi PACTE 2019)." },
-  { q: "Distinguer taylorisme, fordisme et toyotisme en un mot chacun.", a: "Taylorisme : parcellisation (« one best way »). Fordisme : chaîne + salaire élevé. Toyotisme : juste-à-temps et amélioration continue (kaizen)." },
-  { q: "Quels sont les 3 cycles économiques classiques et leur durée ?", a: "Kitchin (≈ 40 mois, stocks), Juglar (≈ 8-10 ans, investissement, 1862), Kondratiev (≈ 50 ans, innovations, 1926)." },
-  { q: "Que s'est-il passé le 24 octobre 1929 ?", a: "Le « jeudi noir » : krach de la bourse de Wall Street, point de départ de la Grande Dépression." },
-  { q: "Qu'est-ce que la déflation par la dette (Irving Fisher, 1933) ?", a: "La baisse des prix alourdit le poids réel des dettes, provoquant des ventes forcées d'actifs qui aggravent encore la baisse des prix." },
-  { q: "Qu'est-ce que le « paradoxe de la tranquillité » de Minsky ?", a: "Une longue période de stabilité incite les agents à s'endetter davantage (finance hedge → spéculative → Ponzi), préparant silencieusement la crise suivante." },
-  { q: "Quelle banque fait faillite le 15 septembre 2008, déclenchant la panique mondiale ?", a: "Lehman Brothers." },
-  { q: "Que décide le G20 de Londres en avril 2009 ?", a: "Une coordination internationale des relances budgétaires et un soutien au système financier — contraste avec l'absence de coordination des années 1930." }
-];
-</script>
+<script src="../js/esh-flashcards-data.js"></script>
 <script src="../js/data.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/flashcards.js"></script>
