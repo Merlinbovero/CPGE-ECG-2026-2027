@@ -18,6 +18,9 @@
   var INTERVALS = [0, 1, 3, 7, 14];
   var hasMetadata = FLASHCARDS.some(function (c) { return c.code || c.type || c.tier; });
   var GROUPS = (typeof FLASHCARD_GROUPS !== "undefined") ? FLASHCARD_GROUPS : {};
+  var motionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  var motionEnabled = !(motionQuery && motionQuery.matches);
+  var transitionLocked = false;
 
   function loadAll() {
     try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
@@ -52,7 +55,7 @@
   function esc(value) {
     return String(value == null ? "" : value)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+      .replace(/\"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function uniq(values) {
     var seen = {};
@@ -163,7 +166,11 @@
       });
     });
     var start = document.getElementById("fc-start");
-    if (start) start.addEventListener("click", function () { buildOrder(); renderShell(true); });
+    if (start) start.addEventListener("click", function () {
+      if (transitionLocked) return;
+      buildOrder();
+      renderShell(true);
+    });
   }
 
   function progressHtml() {
@@ -181,6 +188,11 @@
       (card.tier ? '<span>' + esc(labelTier(card.tier)) + '</span>' : '') +
       (link ? '<a href="' + esc(link) + '">Ouvrir le cours ↗</a>' : '') +
       '</div>';
+  }
+
+  function cardClass() {
+    if (!hasMetadata || !motionEnabled) return "fc-card";
+    return revealed ? "fc-card fc-card-revealed" : "fc-card fc-card-enter";
   }
 
   function stageHtml() {
@@ -201,12 +213,12 @@
     var i = order[pos];
     var card = FLASHCARDS[i];
     var stc = stateFor(i);
-    return progressHtml() + '<article class="fc-card">' +
+    return progressHtml() + '<div class="fc-card-wrap"><article class="' + cardClass() + '">' +
       '<div class="fc-card-top"><span>Carte ' + (pos + 1) + ' / ' + order.length + '</span><span>Boîte ' + (stc.box + 1) + '/5</span></div>' +
       cardMetaHtml(card) +
       '<div class="fc-question">' + card.q + '</div>' +
       (revealed ? '<div class="fc-answer"><span>Réponse</span>' + card.a + '</div>' : '') +
-      '</article>' +
+      '</article></div>' +
       '<div class="fc-actions">' +
       (revealed
         ? '<button id="fc-again" class="btn fc-again" type="button">Je ne savais pas</button><button id="fc-good" class="btn" type="button">Je savais</button>'
@@ -216,25 +228,73 @@
 
   function renderShell(sessionActive) {
     if (!sessionActive && hasMetadata) order = [];
-    app.innerHTML = controlsHtml() + '<div id="fc-stage">' + (sessionActive ? stageHtml() : '<div class="fc-ready"><p>Choisis ce que tu veux réviser puis lance la session.</p></div>') + '</div>';
+    app.innerHTML = controlsHtml() + '<div id="fc-stage" aria-live="polite">' + (sessionActive ? stageHtml() : '<div class="fc-ready"><p>Choisis ce que tu veux réviser puis lance la session.</p></div>') + '</div>';
     bindControls();
     bindStage();
     typesetMath();
     updateCounter();
   }
 
-  function bindStage() {
-    var reveal = document.getElementById("fc-reveal");
-    if (reveal) reveal.addEventListener("click", function () { revealed = true; renderShell(true); });
-    var good = document.getElementById("fc-good");
-    var again = document.getElementById("fc-again");
-    if (good) good.addEventListener("click", function () { answer(true); });
-    if (again) again.addEventListener("click", function () { answer(false); });
-    var restart = document.getElementById("fc-restart");
-    if (restart) restart.addEventListener("click", function () { order = []; renderShell(false); });
+  function revealAnswer() {
+    if (transitionLocked) return;
+    if (!hasMetadata || !motionEnabled) {
+      revealed = true;
+      renderShell(true);
+      return;
+    }
+    var card = app.querySelector(".fc-card");
+    if (!card) {
+      revealed = true;
+      renderShell(true);
+      return;
+    }
+    transitionLocked = true;
+    card.classList.remove("fc-card-enter");
+    card.classList.add("fc-card-turning");
+    window.setTimeout(function () {
+      revealed = true;
+      transitionLocked = false;
+      renderShell(true);
+    }, 145);
   }
 
-  function answer(knewIt) {
+  function animateAnswer(knewIt) {
+    if (transitionLocked || pos >= order.length) return;
+    if (!hasMetadata || !motionEnabled) {
+      commitAnswer(knewIt);
+      return;
+    }
+    var card = app.querySelector(".fc-card");
+    if (!card) {
+      commitAnswer(knewIt);
+      return;
+    }
+    transitionLocked = true;
+    var buttons = app.querySelectorAll(".fc-actions button");
+    Array.prototype.forEach.call(buttons, function (button) { button.disabled = true; });
+    card.classList.add(knewIt ? "fc-card-exit-good" : "fc-card-exit-again");
+    window.setTimeout(function () {
+      commitAnswer(knewIt);
+      transitionLocked = false;
+    }, 260);
+  }
+
+  function bindStage() {
+    var reveal = document.getElementById("fc-reveal");
+    if (reveal) reveal.addEventListener("click", revealAnswer);
+    var good = document.getElementById("fc-good");
+    var again = document.getElementById("fc-again");
+    if (good) good.addEventListener("click", function () { animateAnswer(true); });
+    if (again) again.addEventListener("click", function () { animateAnswer(false); });
+    var restart = document.getElementById("fc-restart");
+    if (restart) restart.addEventListener("click", function () {
+      if (transitionLocked) return;
+      order = [];
+      renderShell(false);
+    });
+  }
+
+  function commitAnswer(knewIt) {
     if (pos >= order.length) return;
     var i = order[pos];
     var st = stateFor(i);
@@ -259,6 +319,12 @@
     var dueAll = FLASHCARDS.filter(function (_, i) { return stateFor(i).due <= Date.now(); }).length;
     var masteredAll = FLASHCARDS.filter(function (_, i) { return stateFor(i).box >= 3; }).length;
     counter.textContent = dueAll + " carte(s) à revoir aujourd’hui · " + masteredAll + " maîtrisée(s) · " + FLASHCARDS.length + " au total.";
+  }
+
+  if (motionQuery && motionQuery.addEventListener) {
+    motionQuery.addEventListener("change", function (event) {
+      motionEnabled = !event.matches;
+    });
   }
 
   if (hasMetadata) {
