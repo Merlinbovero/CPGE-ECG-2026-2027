@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flashcards ESH — Programme officiel ECG1 2026-2027</title>
-<meta name="description" content="102 flashcards ESH alignées sur les 17 sous-parties du programme officiel ECG1, avec filtres, niveaux et répétition espacée.">
+<title>Flashcards ESH — ECG1 2026-2027</title>
+<meta name="description" content="Flashcards ESH ECG1 : cartes verticales, retournement 3D et répétition espacée, directement reliées aux chapitres du programme officiel.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
@@ -13,94 +13,100 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
 <style>
-  .fc-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(16rem,.42fr);gap:1.2rem;margin:1.4rem 0 1.8rem}
-  .fc-intro-note{border:1px solid var(--border);border-top:4px solid var(--accent);padding:1rem 1.1rem;background:var(--bg-card)}
-  .fc-intro-note strong{display:block;font-family:var(--font-serif);font-size:1.25rem;margin-bottom:.35rem}
-  .fc-legend{display:flex;flex-wrap:wrap;gap:.45rem;margin:.75rem 0 0}
-  .fc-pill,.fc-meta span,.fc-meta a{font-size:.72rem;line-height:1;text-transform:uppercase;letter-spacing:.06em;font-weight:700;border:1px solid var(--border);padding:.42rem .52rem;background:var(--bg-card);color:var(--text-muted);text-decoration:none}
-  .fc-pill.essential{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));color:var(--accent)}
-  .fc-dashboard{border:1px solid var(--border);background:var(--bg-card);margin:1rem 0 1.4rem}
-  .fc-dashboard-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.05rem;border-bottom:1px solid var(--border)}
-  .fc-dashboard-head strong{display:block;margin-top:.22rem;font-family:var(--font-serif);font-size:1.08rem}
-  .fc-eyebrow{display:block;color:var(--accent);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
-  .fc-filters{display:grid;grid-template-columns:2fr 1fr 1fr 1.15fr;gap:.75rem;padding:1rem 1.05rem}
-  .fc-filters label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:750;color:var(--text-muted)}
-  .fc-filters select{display:block;width:100%;margin-top:.35rem;padding:.68rem .72rem;border:1px solid var(--border);background:var(--bg);color:var(--text);font:inherit;font-size:.85rem;text-transform:none;letter-spacing:0;font-weight:500;border-radius:0}
-  .fc-ready{border:1px dashed var(--border);padding:2rem 1rem;text-align:center;color:var(--text-muted);background:color-mix(in srgb,var(--bg-card) 65%,transparent)}
-  .fc-progress{height:4px;background:var(--border);margin:1.2rem 0 .75rem;overflow:hidden}
-  .fc-progress span{display:block;height:100%;background:var(--accent);transition:width .36s cubic-bezier(.22,.61,.36,1)}
-  .fc-card-wrap{perspective:1200px;transform-style:preserve-3d}
-  .fc-card{border:1px solid var(--border);border-top:4px solid var(--accent);background:var(--bg-card);padding:1.15rem 1.2rem 1.3rem;min-height:18rem;display:flex;flex-direction:column;transform-origin:center center;backface-visibility:hidden;will-change:transform,opacity,box-shadow;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-  .fc-card-top{display:flex;justify-content:space-between;gap:1rem;color:var(--text-muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
-  .fc-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.85rem 0 1.15rem}
-  .fc-meta .fc-code{background:var(--accent);border-color:var(--accent);color:#fff}
-  .fc-meta a{margin-left:auto;color:var(--accent)}
-  .fc-question{font-family:var(--font-serif);font-size:clamp(1.35rem,3.2vw,2.1rem);line-height:1.22;max-width:46rem;margin:auto 0;padding:1rem 0 1.35rem}
-  .fc-answer{border-top:1px solid var(--border);padding-top:1rem;font-size:1.02rem;line-height:1.7;animation:fcAnswerIn .24s .03s cubic-bezier(.22,.61,.36,1) both}
-  .fc-answer>span{display:block;color:var(--accent);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:.4rem}
-  .fc-actions{display:flex;justify-content:flex-end;gap:.55rem;margin:.8rem 0 1.2rem}
-  .fc-actions .btn{margin:0;transition:transform .14s ease,filter .14s ease,opacity .14s ease}
+  .fc-page-head{max-width:50rem;margin:0 auto 1.2rem;text-align:center}
+  .fc-page-head .fc-kicker{margin:0 0 .45rem;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  .fc-page-head h1{margin-bottom:.55rem}
+  .fc-page-head .lead{max-width:45rem;margin-left:auto;margin-right:auto}
+  #flashcards-counter{margin:.65rem 0 0}
+
+  .fc-session{max-width:54rem;margin:0 auto}
+  .fc-session-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:31rem;margin:.2rem auto .55rem;color:var(--text-muted);font-size:.75rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase}
+  .fc-progress{height:3px;max-width:31rem;margin:0 auto 1.15rem;background:color-mix(in srgb,var(--border) 82%,transparent);overflow:hidden}
+  .fc-progress span{display:block;height:100%;background:var(--accent);transition:width .38s cubic-bezier(.22,.61,.36,1)}
+
+  .fc-deck-stage{display:grid;place-items:center;min-height:38rem;padding:.3rem 0 1rem;perspective:1600px}
+  .fc-card-scene{position:relative;width:min(84vw,24.5rem);height:min(70vh,36.75rem);min-height:30rem;max-height:36.75rem;cursor:pointer;perspective:1600px;outline:none;animation:fcSceneIn .34s cubic-bezier(.2,.78,.22,1) both;will-change:transform,opacity}
+  .fc-card-scene:focus-visible{outline:2px solid var(--accent);outline-offset:7px}
+  .fc-card-rotator{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .68s cubic-bezier(.2,.72,.2,1);will-change:transform}
+  .fc-card-scene.is-flipped .fc-card-rotator{transform:rotateY(180deg)}
+
+  .fc-face{position:absolute;inset:0;display:flex;flex-direction:column;padding:1.35rem 1.35rem 1.25rem;border:1px solid color-mix(in srgb,var(--border) 88%,var(--accent));border-top:5px solid var(--accent);border-radius:12px;background:var(--bg-card);box-shadow:0 24px 55px color-mix(in srgb,var(--text) 13%,transparent),0 3px 8px color-mix(in srgb,var(--text) 7%,transparent);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .fc-face::before{content:"";position:absolute;inset:10px;border:1px solid color-mix(in srgb,var(--border) 62%,transparent);border-radius:7px;pointer-events:none}
+  .fc-face::after{content:"";position:absolute;left:1.35rem;right:1.35rem;top:4.15rem;height:1px;background:color-mix(in srgb,var(--border) 75%,transparent);pointer-events:none}
+  .fc-face-back{transform:rotateY(180deg);background:color-mix(in srgb,var(--bg-card) 91%,var(--accent) 9%)}
+
+  .fc-card-head{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;min-height:2.5rem}
+  .fc-card-code{display:inline-flex;align-items:center;justify-content:center;min-width:3.55rem;padding:.45rem .58rem;background:var(--accent);color:#fff;font-size:.7rem;font-weight:850;letter-spacing:.07em}
+  .fc-card-kind{text-align:right;color:var(--text-muted);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .fc-card-kind strong{display:block;color:var(--text);font-size:.74rem;margin-bottom:.2rem}
+
+  .fc-card-main{position:relative;z-index:1;display:flex;flex:1;min-height:0;flex-direction:column;justify-content:center;padding:2.1rem .55rem 1.25rem;text-align:center;overflow:auto;scrollbar-width:thin}
+  .fc-card-chapter{margin:0 auto 1.15rem;max-width:18rem;color:var(--text-muted);font-size:.72rem;font-weight:750;line-height:1.45;letter-spacing:.055em;text-transform:uppercase}
+  .fc-question{margin:0;font-family:var(--font-display,var(--font-serif));font-size:clamp(1.6rem,4vw,2.35rem);font-weight:550;line-height:1.17;text-wrap:balance}
+  .fc-answer-label{margin:0 0 1rem;color:var(--accent);font-size:.7rem;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+  .fc-answer{margin:0;font-size:clamp(1.03rem,2.25vw,1.2rem);line-height:1.68;text-align:left}
+  .fc-answer strong{color:var(--text)}
+
+  .fc-card-foot{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:.8rem;min-height:2.6rem;padding-top:.6rem;color:var(--text-muted);font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .fc-flip-hint{display:flex;align-items:center;gap:.4rem}
+  .fc-flip-icon{display:inline-grid;place-items:center;width:1.7rem;height:1.7rem;border:1px solid var(--border);border-radius:50%;font-size:.92rem;transition:transform .2s ease,border-color .2s ease}
+  .fc-card-scene:hover .fc-flip-icon{transform:rotate(12deg);border-color:var(--accent)}
+  .fc-course-link{color:var(--accent);text-decoration:none}
+  .fc-course-link:hover{text-decoration:underline}
+
+  .fc-actions{display:flex;justify-content:center;gap:.65rem;min-height:3rem;margin:.35rem auto 1.35rem}
+  .fc-actions .btn{min-width:10rem;margin:0;transition:transform .14s ease,opacity .14s ease,filter .14s ease}
   .fc-actions .btn:active{transform:translateY(1px) scale(.985)}
   .fc-actions .btn:disabled{opacity:.58;cursor:default}
   .fc-actions .fc-again{background:transparent;color:var(--text);border:1px solid var(--border)}
-  .fc-empty,.fc-finish{margin:1rem 0}
+  .fc-actions .fc-reveal{min-width:12rem}
 
-  .fc-card-enter{animation:fcCardEnter .3s cubic-bezier(.2,.75,.25,1) both}
-  .fc-card-turning{animation:fcTurnOut .145s cubic-bezier(.4,0,.6,1) forwards}
-  .fc-card-revealed{animation:fcTurnIn .22s cubic-bezier(.2,.75,.25,1) both}
-  .fc-card-exit-good{animation:fcExitGood .26s cubic-bezier(.4,0,.6,1) forwards}
-  .fc-card-exit-again{animation:fcExitAgain .26s cubic-bezier(.4,0,.6,1) forwards}
-  .fc-meta>*{animation:fcMetaIn .24s cubic-bezier(.22,.61,.36,1) both}
-  .fc-meta>*:nth-child(2){animation-delay:.035s}
-  .fc-meta>*:nth-child(3){animation-delay:.07s}
-  .fc-meta>*:nth-child(4){animation-delay:.105s}
+  .fc-utility{display:flex;justify-content:center;gap:.9rem;flex-wrap:wrap;margin:.25rem 0 1.75rem;font-size:.8rem}
+  .fc-utility a{color:var(--text-muted);text-underline-offset:3px}
+  .fc-utility a:hover{color:var(--accent)}
 
-  @keyframes fcCardEnter{
-    from{opacity:0;transform:translateY(10px) scale(.992);box-shadow:0 0 0 color-mix(in srgb,var(--accent) 0%,transparent)}
-    to{opacity:1;transform:translateY(0) scale(1);box-shadow:0 10px 26px color-mix(in srgb,var(--text) 8%,transparent)}
-  }
-  @keyframes fcTurnOut{
-    from{opacity:1;transform:rotateX(0) scale(1)}
-    to{opacity:.9;transform:rotateX(8deg) scale(.992)}
-  }
-  @keyframes fcTurnIn{
-    from{opacity:.9;transform:rotateX(-8deg) scale(.992);box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 7%,transparent)}
-    to{opacity:1;transform:rotateX(0) scale(1);box-shadow:0 12px 30px color-mix(in srgb,var(--text) 9%,transparent)}
+  .fc-empty,.fc-finish{max-width:38rem;margin:2rem auto;text-align:center}
+  .fc-finish .fc-finish-actions,.fc-empty .fc-finish-actions{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+
+  .fc-card-scene.is-exit-good{animation:fcExitGood .31s cubic-bezier(.4,0,.6,1) forwards}
+  .fc-card-scene.is-exit-again{animation:fcExitAgain .31s cubic-bezier(.4,0,.6,1) forwards}
+  @keyframes fcSceneIn{
+    from{opacity:0;transform:translateY(16px) scale(.97) rotateX(2deg)}
+    to{opacity:1;transform:translateY(0) scale(1) rotateX(0)}
   }
   @keyframes fcExitGood{
-    0%{opacity:1;transform:translateX(0) rotate(0) scale(1);border-color:var(--border)}
-    35%{transform:translateX(5px) rotate(.12deg) scale(1.006);border-color:color-mix(in srgb,var(--accent) 52%,var(--border))}
-    100%{opacity:0;transform:translateX(48px) rotate(.7deg) scale(.985);box-shadow:18px 4px 30px color-mix(in srgb,var(--accent) 16%,transparent)}
+    0%{opacity:1;transform:translateX(0) rotateZ(0) scale(1)}
+    24%{transform:translateX(7px) rotateZ(.35deg) scale(1.012)}
+    100%{opacity:0;transform:translateX(78px) rotateZ(2.1deg) scale(.96)}
   }
   @keyframes fcExitAgain{
-    0%{opacity:1;transform:translateX(0) rotate(0) scale(1);border-color:var(--border)}
-    35%{transform:translateX(-5px) rotate(-.12deg) scale(1.003);border-color:color-mix(in srgb,var(--box-warn-border) 55%,var(--border))}
-    100%{opacity:0;transform:translateX(-48px) rotate(-.7deg) scale(.985);box-shadow:-18px 4px 30px color-mix(in srgb,var(--box-warn-border) 14%,transparent)}
-  }
-  @keyframes fcAnswerIn{
-    from{opacity:0;transform:translateY(7px)}
-    to{opacity:1;transform:translateY(0)}
-  }
-  @keyframes fcMetaIn{
-    from{opacity:0;transform:translateY(-4px)}
-    to{opacity:1;transform:translateY(0)}
+    0%{opacity:1;transform:translateX(0) rotateZ(0) scale(1)}
+    24%{transform:translateX(-7px) rotateZ(-.35deg) scale(1.006)}
+    100%{opacity:0;transform:translateX(-78px) rotateZ(-2.1deg) scale(.96)}
   }
 
-  @media(hover:hover) and (pointer:fine){
-    .fc-card:not(.fc-card-turning):not(.fc-card-exit-good):not(.fc-card-exit-again):hover{transform:translateY(-2px);box-shadow:0 14px 34px color-mix(in srgb,var(--text) 10%,transparent)}
+  [data-theme="dark"] .fc-face{background:color-mix(in srgb,var(--bg-card) 94%,#000);box-shadow:0 25px 60px rgba(0,0,0,.3)}
+  [data-theme="dark"] .fc-face-back{background:color-mix(in srgb,var(--bg-card) 88%,var(--accent) 12%)}
+  [data-theme="dark"] .fc-card-code{color:#171817}
+
+  @media(max-width:720px){
+    .fc-page-head{text-align:left}.fc-page-head .lead{margin-left:0}
+    .fc-deck-stage{min-height:34rem}
+    .fc-card-scene{width:min(88vw,23rem);height:min(68vh,34.5rem);min-height:28rem}
+    .fc-face{padding:1.15rem 1.1rem 1.05rem}.fc-face::after{left:1.1rem;right:1.1rem}
+    .fc-card-main{padding:1.8rem .3rem 1rem}
+    .fc-actions{display:grid;grid-template-columns:1fr 1fr;max-width:23rem}.fc-actions .btn{min-width:0;width:100%}.fc-actions .fc-reveal{grid-column:1 / -1}
   }
-  [data-theme="dark"] .fc-dashboard,[data-theme="dark"] .fc-card,[data-theme="dark"] .fc-intro-note{background:color-mix(in srgb,var(--bg-card) 92%,#000)}
-  [data-theme="dark"] .fc-meta .fc-code{color:#171817}
-  @media(max-width:820px){.fc-intro-grid{grid-template-columns:1fr}.fc-filters{grid-template-columns:1fr 1fr}.fc-dashboard-head{align-items:flex-start;flex-direction:column}.fc-dashboard-head .btn{width:100%}.fc-meta a{margin-left:0}.fc-card{min-height:15rem}}
-  @media(max-width:520px){.fc-filters{grid-template-columns:1fr}.fc-actions{display:grid;grid-template-columns:1fr}.fc-actions .btn{width:100%}}
+  @media(max-height:700px){
+    .fc-deck-stage{min-height:29rem}.fc-card-scene{height:68vh;min-height:25rem}.fc-card-main{padding-top:1.5rem}.fc-question{font-size:1.55rem}.fc-answer{font-size:1rem}
+  }
   @media(prefers-reduced-motion:reduce){
-    .fc-card,.fc-card-enter,.fc-card-turning,.fc-card-revealed,.fc-card-exit-good,.fc-card-exit-again,.fc-answer,.fc-meta>*,.fc-actions .btn,.fc-progress span{animation:none!important;transition:none!important;transform:none!important}
+    .fc-card-scene,.fc-card-rotator,.fc-progress span,.fc-actions .btn,.fc-flip-icon{animation:none!important;transition:none!important}
   }
 </style>
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
 </head>
 <body data-root=".." data-page-id="esh-flashcards-v2" data-matiere="esh">
-
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
@@ -119,51 +125,28 @@
     <a href="../methodologie/index.html">Méthodologie &amp; concours</a>
   </nav>
 </header>
-
 <nav class="breadcrumb" aria-label="Fil d'Ariane">
   <a href="../index.html">Accueil</a><span class="sep">›</span><a href="index.html">ESH</a><span class="sep">›</span><span>Flashcards</span>
 </nav>
-
 <main>
-  <h1>Flashcards ESH <span class="chapter-num">Programme officiel 2026-2027</span></h1>
-  <p class="lead">102 cartes couvrent désormais les <strong>17 sous-parties officielles d’ECG1</strong>. Tu peux réviser tout le programme, une seule sous-partie, uniquement les auteurs ou mécanismes, ou seulement les éléments indispensables. La répétition espacée reste sauvegardée sur cet appareil.</p>
-
-  <div class="fc-intro-grid">
-    <div>
-      <p id="flashcards-counter" class="small muted"></p>
-      <div class="fc-legend" aria-label="Niveaux des cartes">
-        <span class="fc-pill essential">Indispensable</span>
-        <span class="fc-pill">Consolidation</span>
-        <span class="fc-pill">Essentiel</span>
-        <span class="fc-pill">Auteur</span>
-        <span class="fc-pill">Définition</span>
-        <span class="fc-pill">Mécanisme</span>
-        <span class="fc-pill">Repère</span>
-      </div>
-    </div>
-    <aside class="fc-intro-note">
-      <strong>4 + 2 par sous-partie</strong>
-      <p class="small">Chaque point officiel contient 4 cartes à maîtriser sans hésiter et 2 cartes de consolidation. Commence par le filtre <em>Indispensable</em> avant d’élargir.</p>
-    </aside>
-  </div>
+  <section class="fc-page-head" aria-labelledby="fc-context-title">
+    <p class="fc-kicker" id="fc-context-kicker">Révision active</p>
+    <h1 id="fc-context-title">Flashcards ESH</h1>
+    <p class="lead" id="fc-context-copy">Les cartes dues aujourd’hui apparaissent directement. Pour réviser un chapitre précis, lance ses flashcards depuis la page du cours.</p>
+    <p id="flashcards-counter" class="small muted"></p>
+  </section>
 
   <div id="flashcards-app"></div>
 
-  <div class="box met">
-    <span class="box-title">Routine conseillée</span>
-    <p><strong>Avant une colle :</strong> sélectionne la sous-partie concernée → niveau « Indispensable » → mode « Tout le paquet ». <strong>En entretien régulier :</strong> laisse « Tous » et « À revoir aujourd’hui » : le système Leitner choisit ce qui doit revenir.</p>
+  <div class="fc-utility" aria-label="Options de révision">
+    <a href="flashcards.html?mode=due">Révision du jour</a>
+    <a href="flashcards.html?mode=all">Revoir les 102 cartes</a>
+    <a href="index.html">Retour au programme ESH</a>
   </div>
-
-  <nav class="prevnext" aria-label="Navigation">
-    <a href="formulaire.html"><span class="pn-label">Réviser le cours</span>← Formulaire / Mémo</a>
-    <a class="next" href="annales.html"><span class="pn-label">S'entraîner</span>Annales →</a>
-  </nav>
 </main>
-
 <footer class="site-footer">
   <p>ECG1 2026/2027 — ESH. <a href="index.html">Programme officiel</a> · <a href="../index.html">Accueil</a></p>
 </footer>
-
 <script src="../js/esh-flashcards-data.js"></script>
 <script src="../js/data.js"></script>
 <script src="../js/main.js"></script>
