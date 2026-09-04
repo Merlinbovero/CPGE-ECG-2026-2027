@@ -1,0 +1,279 @@
+/* ============================================================
+   ESH — Raffinement de la DA academic premium
+   Conserve la structure V1, la typographie et les composants.
+   Réduit volontairement l'intensité chromatique et les effets
+   trop démonstratifs pour un rendu plus institutionnel.
+   ============================================================ */
+
+body[data-matiere="esh"] {
+  --esh-orange: #9b6757;
+  --esh-orange-deep: #7f5143;
+  --esh-ink: #222524;
+  --esh-muted: #6c6963;
+  --esh-paper: #f4f2ed;
+  --esh-card: #fffefa;
+  --esh-soft: #ece9e2;
+  --esh-line: #d9d5cc;
+  --esh-dark: #2b2e2d;
+  --esh-green: #526f64;
+
+  --accent: var(--esh-orange);
+  --c-esh: var(--esh-orange);
+  --link: #465e56;
+  --shadow: 0 8px 26px rgba(34, 31, 27, .045);
+
+  --box-def-bg: #f7f2ef;
+  --box-def-border: #9b6757;
+  --box-thm-bg: #eff3f1;
+  --box-thm-border: #60796f;
+  --box-met-bg: #f3f0e9;
+  --box-met-border: #817463;
+  --box-warn-bg: #f7efec;
+  --box-warn-border: #9a5e52;
+  --box-ex-bg: #f1f2f1;
+  --box-ex-border: #65706c;
+}
+
+html[data-theme="dark"] body[data-matiere="esh"] {
+  --esh-orange: #b98472;
+  --esh-orange-deep: #ca9b8b;
+  --esh-ink: #efede8;
+  --esh-muted: #aaa69f;
+  --esh-paper: #191b1a;
+  --esh-card: #212422;
+  --esh-soft: #292c2a;
+  --esh-line: #3a3e3b;
+  --esh-dark: #141615;
+  --esh-green: #789488;
+
+  --accent: var(--esh-orange);
+  --c-esh: var(--esh-orange);
+  --link: #93aa9f;
+  --shadow: none;
+
+  --box-def-bg: #282321;
+  --box-def-border: #b98472;
+  --box-thm-bg: #202a26;
+  --box-thm-border: #789488;
+  --box-met-bg: #292722;
+  --box-met-border: #a79a84;
+  --box-warn-bg: #2e2421;
+  --box-warn-border: #b47769;
+  --box-ex-bg: #262927;
+  --box-ex-border: #87908c;
+}
+
+/* Accent plus discret dans les éléments de navigation et de cours */
+body[data-matiere="esh"] .logo span {
+  color: var(--text-muted);
+}
+body[data-matiere="esh"] .main-nav a[aria-current="true"]::after {
+  height: 1px;
+  opacity: .8;
+}
+body[data-matiere="esh"] h1 .chapter-num {
+  color: var(--text-muted);
+}
+body[data-matiere="esh"] h2::before {
+  width: 46px;
+  height: 2px;
+  opacity: .8;
+}
+body[data-matiere="esh"] .toc::before {
+  width: 3px;
+  opacity: .8;
+}
+
+/* Boutons : plus institutionnels, moins “accent color everywhere” */
+body[data-matiere="esh"] .btn,
+body[data-matiere="esh"] .btn-corrige {
+  background: var(--esh-dark);
+  color: #fff;
+  transition: background-color .14s ease, border-color .14s ease;
+}
+body[data-matiere="esh"] .btn:hover,
+body[data-matiere="esh"] .btn-corrige:hover {
+  background: var(--esh-orange-deep);
+  transform: none;
+}
+html[data-theme="dark"] body[data-matiere="esh"] .btn,
+html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige {
+  background: #ded9d0;
+  color: #1c1e1d;
+}
+html[data-theme="dark"] body[data-matiere="esh"] .btn:hover,
+html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige:hover {
+  background: #c8c2b9;
+}
+
+/* Hero V1 conservé, mais moins spectaculaire */
+.esh-home .esh-hero {
+  min-height: 445px;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.2rem, 5vw, 4.2rem) 0 2.8rem;
+}
+.esh-kicker,
+.esh-section-kicker {
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: .105em;
+}
+.esh-home .esh-hero h1 {
+  max-width: 780px;
+  font-size: clamp(3.2rem, 7.4vw, 6.2rem);
+  line-height: .9;
+  letter-spacing: -.048em;
+}
+.esh-hero-copy {
+  max-width: 700px;
+  font-size: 1.08rem;
+}
+
+.esh-cta {
+  border-color: var(--esh-dark);
+  background: var(--esh-dark);
+  color: #fff;
+  letter-spacing: .05em;
+}
+.esh-cta:hover {
+  background: var(--esh-orange-deep);
+  border-color: var(--esh-orange-deep);
+}
+.esh-cta.secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.esh-cta.secondary:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+html[data-theme="dark"] .esh-cta {
+  background: #ded9d0;
+  border-color: #ded9d0;
+  color: #1b1d1c;
+}
+html[data-theme="dark"] .esh-cta:hover {
+  background: #c9c3ba;
+  border-color: #c9c3ba;
+}
+html[data-theme="dark"] .esh-cta.secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.esh-hero-panel {
+  background: #303331;
+  padding: 1.4rem;
+}
+html[data-theme="dark"] .esh-hero-panel {
+  background: #121413;
+}
+.esh-panel-label,
+.esh-method strong {
+  color: #cdb4aa;
+}
+.esh-method span {
+  color: #d7d5cf;
+}
+
+/* On conserve les grilles, mais sans les codes visuels “template IA” */
+.esh-access {
+  transition: background-color .14s ease, border-color .14s ease;
+}
+.esh-access:hover {
+  background: color-mix(in srgb, var(--text) 2.5%, var(--bg-card));
+  transform: none;
+}
+.esh-access .index {
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: .075em;
+}
+.esh-access h3 {
+  margin-top: 2.35rem;
+}
+
+.esh-module {
+  border-top-width: 2px;
+}
+.esh-module.module-2 {
+  border-top-color: color-mix(in srgb, var(--accent) 65%, var(--border));
+}
+body[data-page-id="esh-index"] .chapter-list .num {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+body[data-page-id="esh-index"] .chapter-list li:hover a {
+  color: var(--text);
+}
+body[data-page-id="esh-index"] .chapter-list li:hover .num {
+  color: var(--accent);
+}
+
+.esh-resource {
+  transition: background-color .14s ease;
+}
+.esh-resource:hover {
+  background: color-mix(in srgb, var(--text) 2.5%, var(--bg-card));
+}
+.esh-resource .tag {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* Le manifeste reste un moment fort, sans contraste publicitaire */
+.esh-manifesto {
+  background: #303331;
+  padding: clamp(2rem, 4vw, 3.2rem);
+}
+html[data-theme="dark"] .esh-manifesto {
+  background: #121413;
+}
+.esh-manifesto .esh-section-kicker {
+  color: #cdb4aa;
+}
+.esh-manifesto blockquote {
+  max-width: 840px;
+  font-size: clamp(1.85rem, 4.2vw, 3.25rem);
+  line-height: 1.04;
+}
+
+/* Composants de cours : conserver la distinction sans surcharger */
+body[data-matiere="esh"] .exercise {
+  border-top-width: 2px;
+  border-top-color: color-mix(in srgb, var(--esh-dark) 78%, var(--border));
+}
+html[data-theme="dark"] body[data-matiere="esh"] .exercise {
+  border-top-color: var(--border);
+}
+body[data-matiere="esh"] .box::before {
+  width: 3px;
+  opacity: .78;
+}
+body[data-matiere="esh"] .corrige {
+  border-left-width: 2px;
+  border-left-color: color-mix(in srgb, var(--accent) 70%, var(--border));
+}
+body[data-matiere="esh"] .citation {
+  border-left-width: 2px;
+  border-left-color: color-mix(in srgb, var(--accent) 72%, var(--border));
+}
+
+/* Footer plus intégré au reste de la page */
+body[data-matiere="esh"] .site-footer {
+  background: #303331;
+}
+html[data-theme="dark"] body[data-matiere="esh"] .site-footer {
+  background: #121413;
+}
+
+@media (max-width: 640px) {
+  .esh-home .esh-hero h1 {
+    font-size: clamp(2.9rem, 14vw, 4.1rem);
+  }
+  .esh-access h3 {
+    margin-top: 1.9rem;
+  }
+}
