@@ -106,6 +106,48 @@
     });
   }
 
+  /* ---------- ESH : lancer les flashcards depuis le chapitre ---------- */
+  (function () {
+    if (body.getAttribute("data-matiere") !== "esh" || !PAGE_ID) return;
+
+    var ESH_FLASHCARDS_BY_PAGE = {
+      "esh-ch01": ["1.1.3"],
+      "esh-ch02": ["1.3.1", "1.3.2"],
+      "esh-ch03": ["1.2.2", "1.2.3"],
+      "esh-ch04": ["1.1.2"],
+      "esh-ch05": ["1.1.1"],
+      "esh-ch06": ["2.2.2"],
+      "esh-ch07": ["2.1.1"],
+      "esh-ch08": ["2.1.1"],
+      "esh-ch09": ["2.1.2", "2.1.3"],
+      "esh-ch10": ["2.2.1", "2.2.2", "2.2.3"],
+      "esh-ch11": ["2.3.1", "2.3.3"],
+      "esh-off-111": ["1.1.3"],
+      "esh-off-121": ["1.2.1"],
+      "esh-off-212": ["2.1.2"],
+      "esh-off-221": ["2.2.1"],
+      "esh-off-222": ["2.2.2"],
+      "esh-off-232": ["2.3.2"],
+      "esh-off-233": ["2.3.3"]
+    };
+
+    var codes = ESH_FLASHCARDS_BY_PAGE[PAGE_ID];
+    if (!codes || !codes.length) return;
+    var meta = document.querySelector(".chapter-meta");
+    if (!meta || meta.querySelector(".esh-chapter-flashcards")) return;
+
+    var currentFile = (window.location.pathname.split("/").pop() || "").replace(/[^A-Za-z0-9._-]/g, "");
+    var href = ROOT + "/esh/flashcards.html?codes=" + encodeURIComponent(codes.join(",")) + "&mode=all";
+    if (currentFile) href += "&from=" + encodeURIComponent(currentFile + window.location.hash);
+
+    var link = document.createElement("a");
+    link.className = "btn esh-chapter-flashcards";
+    link.href = href;
+    link.textContent = "Flashcards du chapitre";
+    link.setAttribute("aria-label", "Lancer les flashcards de ce chapitre");
+    meta.appendChild(link);
+  })();
+
   /* ---------- Recherche globale ---------- */
   var input = document.getElementById("search");
   var results = document.getElementById("search-results");
