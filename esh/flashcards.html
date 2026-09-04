@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flashcards ESH — ECG1 2026-2027</title>
-<meta name="description" content="Flashcards ESH ECG1 : cartes verticales, retournement 3D et répétition espacée, directement reliées aux chapitres du programme officiel.">
+<meta name="description" content="Flashcards ESH ECG1 : cartes verticales, retournement 3D réversible et accès direct depuis les chapitres du programme officiel.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
@@ -13,27 +13,32 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
 <style>
-  .fc-page-head{max-width:50rem;margin:0 auto 1.2rem;text-align:center}
+  .fc-page-head{max-width:50rem;margin:0 auto 1.15rem;text-align:center}
   .fc-page-head .fc-kicker{margin:0 0 .45rem;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
   .fc-page-head h1{margin-bottom:.55rem}
   .fc-page-head .lead{max-width:45rem;margin-left:auto;margin-right:auto}
   #flashcards-counter{margin:.65rem 0 0}
 
   .fc-session{max-width:54rem;margin:0 auto}
-  .fc-session-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:31rem;margin:.2rem auto .55rem;color:var(--text-muted);font-size:.75rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase}
-  .fc-progress{height:3px;max-width:31rem;margin:0 auto 1.15rem;background:color-mix(in srgb,var(--border) 82%,transparent);overflow:hidden}
+  .fc-session-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:31rem;margin:.15rem auto .55rem;color:var(--text-muted);font-size:.75rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase}
+  .fc-progress{height:3px;max-width:31rem;margin:0 auto .95rem;background:color-mix(in srgb,var(--border) 82%,transparent);overflow:hidden}
   .fc-progress span{display:block;height:100%;background:var(--accent);transition:width .38s cubic-bezier(.22,.61,.36,1)}
 
-  .fc-deck-stage{display:grid;place-items:center;min-height:38rem;padding:.3rem 0 1rem;perspective:1600px}
-  .fc-card-scene{position:relative;width:min(84vw,24.5rem);height:min(70vh,36.75rem);min-height:30rem;max-height:36.75rem;cursor:pointer;perspective:1600px;outline:none;animation:fcSceneIn .34s cubic-bezier(.2,.78,.22,1) both;will-change:transform,opacity}
+  .fc-deck-stage{display:grid;place-items:center;min-height:38rem;padding:.2rem 0 .8rem;perspective:1700px;-webkit-perspective:1700px}
+  .fc-card-scene{position:relative;width:min(84vw,24.5rem);height:min(70vh,36.75rem);min-height:30rem;max-height:36.75rem;cursor:pointer;perspective:1700px;-webkit-perspective:1700px;outline:none;animation:fcSceneIn .34s cubic-bezier(.2,.78,.22,1) both;will-change:transform,opacity;isolation:isolate}
   .fc-card-scene:focus-visible{outline:2px solid var(--accent);outline-offset:7px}
-  .fc-card-rotator{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .68s cubic-bezier(.2,.72,.2,1);will-change:transform}
+  .fc-card-rotator{position:absolute;inset:0;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .68s cubic-bezier(.2,.72,.2,1);will-change:transform}
   .fc-card-scene.is-flipped .fc-card-rotator{transform:rotateY(180deg)}
 
-  .fc-face{position:absolute;inset:0;display:flex;flex-direction:column;padding:1.35rem 1.35rem 1.25rem;border:1px solid color-mix(in srgb,var(--border) 88%,var(--accent));border-top:5px solid var(--accent);border-radius:12px;background:var(--bg-card);box-shadow:0 24px 55px color-mix(in srgb,var(--text) 13%,transparent),0 3px 8px color-mix(in srgb,var(--text) 7%,transparent);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  /* Les deux faces changent réellement de visibilité au milieu du flip.
+     Cela évite le ghosting / texte miroir observé sur Safari iPad. */
+  .fc-face{position:absolute;inset:0;display:flex;flex-direction:column;padding:1.35rem 1.35rem 1.25rem;border:1px solid color-mix(in srgb,var(--border) 88%,var(--accent));border-top:5px solid var(--accent);border-radius:12px;background:var(--bg-card);box-shadow:0 24px 55px color-mix(in srgb,var(--text) 13%,transparent),0 3px 8px color-mix(in srgb,var(--text) 7%,transparent);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:visibility 0s linear .34s,opacity 0s linear .34s}
   .fc-face::before{content:"";position:absolute;inset:10px;border:1px solid color-mix(in srgb,var(--border) 62%,transparent);border-radius:7px;pointer-events:none}
   .fc-face::after{content:"";position:absolute;left:1.35rem;right:1.35rem;top:4.15rem;height:1px;background:color-mix(in srgb,var(--border) 75%,transparent);pointer-events:none}
-  .fc-face-back{transform:rotateY(180deg);background:color-mix(in srgb,var(--bg-card) 91%,var(--accent) 9%)}
+  .fc-face-front{transform:rotateY(0deg) translateZ(1px);visibility:visible;opacity:1;pointer-events:auto}
+  .fc-face-back{transform:rotateY(180deg) translateZ(1px);visibility:hidden;opacity:0;pointer-events:none;background:color-mix(in srgb,var(--bg-card) 91%,var(--accent) 9%)}
+  .fc-card-scene.is-flipped .fc-face-front{visibility:hidden;opacity:0;pointer-events:none}
+  .fc-card-scene.is-flipped .fc-face-back{visibility:visible;opacity:1;pointer-events:auto}
 
   .fc-card-head{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;min-height:2.5rem}
   .fc-card-code{display:inline-flex;align-items:center;justify-content:center;min-width:3.55rem;padding:.45rem .58rem;background:var(--accent);color:#fff;font-size:.7rem;font-weight:850;letter-spacing:.07em}
@@ -54,35 +59,27 @@
   .fc-course-link{color:var(--accent);text-decoration:none}
   .fc-course-link:hover{text-decoration:underline}
 
-  .fc-actions{display:flex;justify-content:center;gap:.65rem;min-height:3rem;margin:.35rem auto 1.35rem}
-  .fc-actions .btn{min-width:10rem;margin:0;transition:transform .14s ease,opacity .14s ease,filter .14s ease}
+  .fc-actions{display:flex;justify-content:center;min-height:3rem;margin:.25rem auto 1.25rem}
+  .fc-actions .btn{min-width:13rem;margin:0;transition:transform .14s ease,opacity .14s ease,filter .14s ease}
   .fc-actions .btn:active{transform:translateY(1px) scale(.985)}
   .fc-actions .btn:disabled{opacity:.58;cursor:default}
-  .fc-actions .fc-again{background:transparent;color:var(--text);border:1px solid var(--border)}
-  .fc-actions .fc-reveal{min-width:12rem}
 
-  .fc-utility{display:flex;justify-content:center;gap:.9rem;flex-wrap:wrap;margin:.25rem 0 1.75rem;font-size:.8rem}
+  .fc-utility{display:flex;justify-content:center;gap:.9rem;flex-wrap:wrap;margin:.15rem 0 1.75rem;font-size:.8rem}
   .fc-utility a{color:var(--text-muted);text-underline-offset:3px}
   .fc-utility a:hover{color:var(--accent)}
 
   .fc-empty,.fc-finish{max-width:38rem;margin:2rem auto;text-align:center}
   .fc-finish .fc-finish-actions,.fc-empty .fc-finish-actions{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
 
-  .fc-card-scene.is-exit-good{animation:fcExitGood .31s cubic-bezier(.4,0,.6,1) forwards}
-  .fc-card-scene.is-exit-again{animation:fcExitAgain .31s cubic-bezier(.4,0,.6,1) forwards}
+  .fc-card-scene.is-exit-next{animation:fcExitNext .28s cubic-bezier(.4,0,.6,1) forwards}
   @keyframes fcSceneIn{
     from{opacity:0;transform:translateY(16px) scale(.97) rotateX(2deg)}
     to{opacity:1;transform:translateY(0) scale(1) rotateX(0)}
   }
-  @keyframes fcExitGood{
+  @keyframes fcExitNext{
     0%{opacity:1;transform:translateX(0) rotateZ(0) scale(1)}
-    24%{transform:translateX(7px) rotateZ(.35deg) scale(1.012)}
-    100%{opacity:0;transform:translateX(78px) rotateZ(2.1deg) scale(.96)}
-  }
-  @keyframes fcExitAgain{
-    0%{opacity:1;transform:translateX(0) rotateZ(0) scale(1)}
-    24%{transform:translateX(-7px) rotateZ(-.35deg) scale(1.006)}
-    100%{opacity:0;transform:translateX(-78px) rotateZ(-2.1deg) scale(.96)}
+    24%{transform:translateX(7px) rotateZ(.25deg) scale(1.008)}
+    100%{opacity:0;transform:translateX(70px) rotateZ(1.6deg) scale(.965)}
   }
 
   [data-theme="dark"] .fc-face{background:color-mix(in srgb,var(--bg-card) 94%,#000);box-shadow:0 25px 60px rgba(0,0,0,.3)}
@@ -95,18 +92,19 @@
     .fc-card-scene{width:min(88vw,23rem);height:min(68vh,34.5rem);min-height:28rem}
     .fc-face{padding:1.15rem 1.1rem 1.05rem}.fc-face::after{left:1.1rem;right:1.1rem}
     .fc-card-main{padding:1.8rem .3rem 1rem}
-    .fc-actions{display:grid;grid-template-columns:1fr 1fr;max-width:23rem}.fc-actions .btn{min-width:0;width:100%}.fc-actions .fc-reveal{grid-column:1 / -1}
+    .fc-actions .btn{width:min(88vw,23rem);min-width:0}
   }
   @media(max-height:700px){
     .fc-deck-stage{min-height:29rem}.fc-card-scene{height:68vh;min-height:25rem}.fc-card-main{padding-top:1.5rem}.fc-question{font-size:1.55rem}.fc-answer{font-size:1rem}
   }
   @media(prefers-reduced-motion:reduce){
     .fc-card-scene,.fc-card-rotator,.fc-progress span,.fc-actions .btn,.fc-flip-icon{animation:none!important;transition:none!important}
+    .fc-face{transition:none!important}
   }
 </style>
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
 </head>
-<body data-root=".." data-page-id="esh-flashcards-v2" data-matiere="esh">
+<body data-root=".." data-page-id="esh-flashcards-v3" data-matiere="esh">
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
@@ -132,15 +130,14 @@
   <section class="fc-page-head" aria-labelledby="fc-context-title">
     <p class="fc-kicker" id="fc-context-kicker">Révision active</p>
     <h1 id="fc-context-title">Flashcards ESH</h1>
-    <p class="lead" id="fc-context-copy">Les cartes dues aujourd’hui apparaissent directement. Pour réviser un chapitre précis, lance ses flashcards depuis la page du cours.</p>
+    <p class="lead" id="fc-context-copy">Touchez une carte pour la retourner. Touchez-la à nouveau pour revenir au recto, autant de fois que nécessaire.</p>
     <p id="flashcards-counter" class="small muted"></p>
   </section>
 
   <div id="flashcards-app"></div>
 
   <div class="fc-utility" aria-label="Options de révision">
-    <a href="flashcards.html?mode=due">Révision du jour</a>
-    <a href="flashcards.html?mode=all">Revoir les 102 cartes</a>
+    <a href="flashcards.html">Toutes les flashcards ESH</a>
     <a href="index.html">Retour au programme ESH</a>
   </div>
 </main>
