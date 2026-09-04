@@ -1,0 +1,38 @@
+/* Accueil — photographie hero fournie par l'utilisateur.
+   Surcharge volontairement isolée pour pouvoir remplacer les visuels
+   matière par matière sans modifier la structure de l'accueil. */
+
+body.home-v1 .home-board {
+  background-color: #151816 !important;
+  background-image: linear-gradient(90deg, rgba(11, 14, 12, .08), rgba(11, 14, 12, 0) 58%), url("../assets/home-hero-photo.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+body.home-v1 .home-board > svg {
+  display: none !important;
+}
+
+body.home-v1 .home-board-caption {
+  display: none !important;
+}
+
+body.home-v1 .home-board::after {
+  content: "CPGE ECG · 2026–2027";
+  position: absolute;
+  right: .85rem;
+  bottom: .75rem;
+  padding: .3rem .45rem;
+  background: rgba(14, 17, 15, .58);
+  color: rgba(255,255,255,.76);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+html[data-theme="dark"] body.home-v1 .home-board {
+  box-shadow: 0 24px 60px rgba(0,0,0,.34);
+}
