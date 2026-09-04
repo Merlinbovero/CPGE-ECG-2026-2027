@@ -1,93 +1,96 @@
 /* ============================================================
    ESH — Raffinement de la DA academic premium
    Conserve la structure V1, la typographie et les composants.
-   Réduit volontairement l'intensité chromatique et les effets
-   trop démonstratifs pour un rendu plus institutionnel.
+   Palette plus présente, mais toujours éditoriale et mesurée.
    ============================================================ */
 
 body[data-matiere="esh"] {
-  --esh-orange: #9b6757;
-  --esh-orange-deep: #7f5143;
+  --esh-orange: #b56e52;
+  --esh-orange-deep: #8f503c;
+  --esh-sage: #648075;
+  --esh-gold: #a38352;
   --esh-ink: #222524;
-  --esh-muted: #6c6963;
+  --esh-muted: #696760;
   --esh-paper: #f4f2ed;
   --esh-card: #fffefa;
   --esh-soft: #ece9e2;
   --esh-line: #d9d5cc;
-  --esh-dark: #2b2e2d;
-  --esh-green: #526f64;
+  --esh-dark: #2b302e;
+  --esh-green: #58756a;
 
   --accent: var(--esh-orange);
   --c-esh: var(--esh-orange);
-  --link: #465e56;
+  --link: #48665b;
   --shadow: 0 8px 26px rgba(34, 31, 27, .045);
 
-  --box-def-bg: #f7f2ef;
-  --box-def-border: #9b6757;
-  --box-thm-bg: #eff3f1;
-  --box-thm-border: #60796f;
-  --box-met-bg: #f3f0e9;
-  --box-met-border: #817463;
-  --box-warn-bg: #f7efec;
-  --box-warn-border: #9a5e52;
-  --box-ex-bg: #f1f2f1;
-  --box-ex-border: #65706c;
+  --box-def-bg: #f8f1ed;
+  --box-def-border: #b56e52;
+  --box-thm-bg: #edf3f0;
+  --box-thm-border: #648075;
+  --box-met-bg: #f4efe5;
+  --box-met-border: #9b7e52;
+  --box-warn-bg: #f8eeea;
+  --box-warn-border: #a86255;
+  --box-ex-bg: #eef1ef;
+  --box-ex-border: #667a72;
 }
 
 html[data-theme="dark"] body[data-matiere="esh"] {
-  --esh-orange: #b98472;
-  --esh-orange-deep: #ca9b8b;
+  --esh-orange: #ce8b70;
+  --esh-orange-deep: #dda48f;
+  --esh-sage: #86a297;
+  --esh-gold: #b89a68;
   --esh-ink: #efede8;
   --esh-muted: #aaa69f;
   --esh-paper: #191b1a;
   --esh-card: #212422;
   --esh-soft: #292c2a;
   --esh-line: #3a3e3b;
-  --esh-dark: #141615;
-  --esh-green: #789488;
+  --esh-dark: #151917;
+  --esh-green: #86a297;
 
   --accent: var(--esh-orange);
   --c-esh: var(--esh-orange);
-  --link: #93aa9f;
+  --link: #9cb9ad;
   --shadow: none;
 
-  --box-def-bg: #282321;
-  --box-def-border: #b98472;
-  --box-thm-bg: #202a26;
-  --box-thm-border: #789488;
-  --box-met-bg: #292722;
-  --box-met-border: #a79a84;
-  --box-warn-bg: #2e2421;
-  --box-warn-border: #b47769;
-  --box-ex-bg: #262927;
-  --box-ex-border: #87908c;
+  --box-def-bg: #2b2421;
+  --box-def-border: #ce8b70;
+  --box-thm-bg: #202b27;
+  --box-thm-border: #86a297;
+  --box-met-bg: #2b2821;
+  --box-met-border: #b89a68;
+  --box-warn-bg: #302420;
+  --box-warn-border: #c98273;
+  --box-ex-bg: #262b28;
+  --box-ex-border: #8ba097;
 }
 
-/* Accent plus discret dans les éléments de navigation et de cours */
+/* Accent visible mais mesuré dans la navigation et les cours */
 body[data-matiere="esh"] .logo span {
-  color: var(--text-muted);
+  color: var(--accent);
 }
 body[data-matiere="esh"] .main-nav a[aria-current="true"]::after {
-  height: 1px;
-  opacity: .8;
+  height: 2px;
+  opacity: .82;
 }
 body[data-matiere="esh"] h1 .chapter-num {
-  color: var(--text-muted);
+  color: var(--accent);
 }
 body[data-matiere="esh"] h2::before {
-  width: 46px;
+  width: 50px;
   height: 2px;
-  opacity: .8;
+  opacity: .92;
 }
 body[data-matiere="esh"] .toc::before {
   width: 3px;
-  opacity: .8;
+  opacity: .9;
 }
 
-/* Boutons : plus institutionnels, moins “accent color everywhere” */
+/* Boutons : couleur ESH assumée mais plus sourde que la V1 initiale */
 body[data-matiere="esh"] .btn,
 body[data-matiere="esh"] .btn-corrige {
-  background: var(--esh-dark);
+  background: var(--accent);
   color: #fff;
   transition: background-color .14s ease, border-color .14s ease;
 }
@@ -98,15 +101,15 @@ body[data-matiere="esh"] .btn-corrige:hover {
 }
 html[data-theme="dark"] body[data-matiere="esh"] .btn,
 html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige {
-  background: #ded9d0;
-  color: #1c1e1d;
+  background: var(--accent);
+  color: #171918;
 }
 html[data-theme="dark"] body[data-matiere="esh"] .btn:hover,
 html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige:hover {
-  background: #c8c2b9;
+  background: var(--esh-orange-deep);
 }
 
-/* Hero V1 conservé, mais moins spectaculaire */
+/* Hero V1 conservé, avec un peu plus de présence chromatique */
 .esh-home .esh-hero {
   min-height: 445px;
   gap: clamp(2rem, 5vw, 5rem);
@@ -114,7 +117,7 @@ html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige:hover {
 }
 .esh-kicker,
 .esh-section-kicker {
-  color: var(--text-muted);
+  color: var(--accent);
   font-weight: 700;
   letter-spacing: .105em;
 }
@@ -130,8 +133,8 @@ html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige:hover {
 }
 
 .esh-cta {
-  border-color: var(--esh-dark);
-  background: var(--esh-dark);
+  border-color: var(--accent);
+  background: var(--accent);
   color: #fff;
   letter-spacing: .05em;
 }
@@ -145,17 +148,17 @@ html[data-theme="dark"] body[data-matiere="esh"] .btn-corrige:hover {
   color: var(--text);
 }
 .esh-cta.secondary:hover {
-  color: var(--text);
-  border-color: var(--text-muted);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 html[data-theme="dark"] .esh-cta {
-  background: #ded9d0;
-  border-color: #ded9d0;
-  color: #1b1d1c;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #171918;
 }
 html[data-theme="dark"] .esh-cta:hover {
-  background: #c9c3ba;
-  border-color: #c9c3ba;
+  background: var(--esh-orange-deep);
+  border-color: var(--esh-orange-deep);
 }
 html[data-theme="dark"] .esh-cta.secondary {
   background: transparent;
@@ -164,26 +167,36 @@ html[data-theme="dark"] .esh-cta.secondary {
 }
 
 .esh-hero-panel {
-  background: #303331;
+  background: #2c3431;
   padding: 1.4rem;
 }
 html[data-theme="dark"] .esh-hero-panel {
-  background: #121413;
+  background: #131816;
 }
 .esh-panel-label,
 .esh-method strong {
-  color: #cdb4aa;
+  color: #d6a18d;
 }
 .esh-method span {
-  color: #d7d5cf;
+  color: #d8d6d0;
 }
 
-/* On conserve les grilles, mais sans les codes visuels “template IA” */
+/* Les statistiques apportent quelques touches de couleur sans effet dashboard */
+.esh-stat:nth-child(1) strong { color: var(--accent); }
+.esh-stat:nth-child(2) strong { color: var(--esh-sage); }
+.esh-stat:nth-child(3) strong { color: var(--esh-gold); }
+.esh-stat:nth-child(4) strong { color: var(--text); }
+
+/* Grilles : couleurs discrètes, sans look “template IA” */
 .esh-access {
   transition: background-color .14s ease, border-color .14s ease;
 }
+.esh-access:nth-child(1) { border-top-color: var(--accent); }
+.esh-access:nth-child(2) { border-top-color: var(--esh-sage); }
+.esh-access:nth-child(3) { border-top-color: var(--esh-gold); }
+.esh-access:nth-child(4) { border-top-color: color-mix(in srgb, var(--esh-sage) 55%, var(--accent)); }
 .esh-access:hover {
-  background: color-mix(in srgb, var(--text) 2.5%, var(--bg-card));
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg-card));
   transform: none;
 }
 .esh-access .index {
@@ -191,15 +204,20 @@ html[data-theme="dark"] .esh-hero-panel {
   font-weight: 700;
   letter-spacing: .075em;
 }
+.esh-access:nth-child(1) .index { color: var(--accent); }
+.esh-access:nth-child(2) .index { color: var(--esh-sage); }
+.esh-access:nth-child(3) .index { color: var(--esh-gold); }
+.esh-access:nth-child(4) .index { color: var(--esh-green); }
 .esh-access h3 {
   margin-top: 2.35rem;
 }
 
 .esh-module {
-  border-top-width: 2px;
+  border-top-width: 3px;
+  border-top-color: var(--esh-sage);
 }
 .esh-module.module-2 {
-  border-top-color: color-mix(in srgb, var(--accent) 65%, var(--border));
+  border-top-color: var(--accent);
 }
 body[data-page-id="esh-index"] .chapter-list .num {
   color: var(--text-muted);
@@ -216,23 +234,29 @@ body[data-page-id="esh-index"] .chapter-list li:hover .num {
   transition: background-color .14s ease;
 }
 .esh-resource:hover {
-  background: color-mix(in srgb, var(--text) 2.5%, var(--bg-card));
+  background: color-mix(in srgb, var(--esh-sage) 5%, var(--bg-card));
 }
 .esh-resource .tag {
   color: var(--text-muted);
   font-weight: 700;
 }
+.esh-resource:nth-child(1) .tag,
+.esh-resource:nth-child(4) .tag { color: var(--accent); }
+.esh-resource:nth-child(2) .tag,
+.esh-resource:nth-child(5) .tag { color: var(--esh-sage); }
+.esh-resource:nth-child(3) .tag,
+.esh-resource:nth-child(6) .tag { color: var(--esh-gold); }
 
-/* Le manifeste reste un moment fort, sans contraste publicitaire */
+/* Le manifeste reste un moment fort avec un fond légèrement teinté */
 .esh-manifesto {
-  background: #303331;
+  background: #2c3431;
   padding: clamp(2rem, 4vw, 3.2rem);
 }
 html[data-theme="dark"] .esh-manifesto {
-  background: #121413;
+  background: #131816;
 }
 .esh-manifesto .esh-section-kicker {
-  color: #cdb4aa;
+  color: #d6a18d;
 }
 .esh-manifesto blockquote {
   max-width: 840px;
@@ -240,33 +264,33 @@ html[data-theme="dark"] .esh-manifesto {
   line-height: 1.04;
 }
 
-/* Composants de cours : conserver la distinction sans surcharger */
+/* Composants de cours : distinctions colorées sans surcharge */
 body[data-matiere="esh"] .exercise {
   border-top-width: 2px;
-  border-top-color: color-mix(in srgb, var(--esh-dark) 78%, var(--border));
+  border-top-color: color-mix(in srgb, var(--esh-sage) 72%, var(--border));
 }
 html[data-theme="dark"] body[data-matiere="esh"] .exercise {
-  border-top-color: var(--border);
+  border-top-color: color-mix(in srgb, var(--esh-sage) 68%, var(--border));
 }
 body[data-matiere="esh"] .box::before {
   width: 3px;
-  opacity: .78;
+  opacity: .84;
 }
 body[data-matiere="esh"] .corrige {
   border-left-width: 2px;
-  border-left-color: color-mix(in srgb, var(--accent) 70%, var(--border));
+  border-left-color: color-mix(in srgb, var(--accent) 78%, var(--border));
 }
 body[data-matiere="esh"] .citation {
   border-left-width: 2px;
-  border-left-color: color-mix(in srgb, var(--accent) 72%, var(--border));
+  border-left-color: color-mix(in srgb, var(--esh-gold) 76%, var(--border));
 }
 
-/* Footer plus intégré au reste de la page */
+/* Footer intégré, légèrement vert-noir plutôt que noir neutre */
 body[data-matiere="esh"] .site-footer {
-  background: #303331;
+  background: #2c3431;
 }
 html[data-theme="dark"] body[data-matiere="esh"] .site-footer {
-  background: #121413;
+  background: #131816;
 }
 
 @media (max-width: 640px) {
