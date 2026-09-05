@@ -89,6 +89,35 @@
 
   enableBookMode();
 
+  /* ---------- Navigation : flèches sobres ---------- */
+  function replaceDecorativeArrows(root) {
+    var targets = [];
+    if (root && root.matches && root.matches("a, button")) targets.push(root);
+    if (root && root.querySelectorAll) {
+      root.querySelectorAll("a, button").forEach(function (el) { targets.push(el); });
+    }
+    targets.forEach(function (el) {
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      var node;
+      while ((node = walker.nextNode())) {
+        if (node.nodeValue && node.nodeValue.indexOf("↗") !== -1) {
+          node.nodeValue = node.nodeValue.replace(/↗[\uFE0E\uFE0F]?/g, "→");
+        }
+      }
+    });
+  }
+  replaceDecorativeArrows(document);
+  if (typeof MutationObserver !== "undefined") {
+    new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+          if (node.nodeType === 1) replaceDecorativeArrows(node);
+          else if (node.nodeType === 3 && node.parentElement) replaceDecorativeArrows(node.parentElement);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
   /* ---------- Thème ---------- */
   var toggle = document.getElementById("theme-toggle");
   function applyTheme(t) {
@@ -144,7 +173,7 @@
       "esh-ch07": ["2.1.1"],
       "esh-ch08": ["2.1.1"],
       "esh-ch09": ["2.1.2", "2.1.3"],
-      "esh-ch10": ["2.2.1", "2.2.2", "2.2.3"],
+      "esh-ch10": ["2.2.1", "2.2.2", "2.3.3"],
       "esh-ch11": ["2.3.1", "2.3.3"],
       "esh-off-111": ["1.1.3"],
       "esh-off-121": ["1.2.1"],
