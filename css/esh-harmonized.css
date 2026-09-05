@@ -1,0 +1,532 @@
+/* ============================================================
+   ESH — harmonisation éditoriale du sommaire.
+   Objectif : retirer l'effet landing page / dashboard et remettre
+   le programme officiel au centre, dans le même esprit que les
+   autres matières du site.
+   ============================================================ */
+
+body[data-page-id="esh-index"] {
+  --esh-index-accent: #9b5f4b;
+  --esh-index-ink: #222424;
+  --esh-index-muted: #6a6862;
+  --esh-index-paper: #fbfaf7;
+  --esh-index-soft: #f0ede7;
+  --esh-index-line: #d9d4ca;
+  --esh-index-dark: #292e2c;
+  --esh-index-sage: #667c73;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  background: var(--esh-index-soft);
+}
+
+html[data-theme="dark"] body[data-page-id="esh-index"] {
+  --esh-index-accent: #c88770;
+  --esh-index-ink: #f2efe9;
+  --esh-index-muted: #aaa59e;
+  --esh-index-paper: #181a19;
+  --esh-index-soft: #111312;
+  --esh-index-line: #3a3d3a;
+  --esh-index-dark: #0f1211;
+  --esh-index-sage: #91a79e;
+}
+
+body[data-page-id="esh-index"] main.esh-home {
+  width: min(1180px, calc(100% - 2rem));
+  max-width: none;
+  padding: 1.2rem 0 5rem;
+}
+
+/* ---------- Hero : texte + photographie documentaire ---------- */
+body[data-page-id="esh-index"] .esh-home .esh-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(22rem, .95fr);
+  gap: 0;
+  min-height: 34rem;
+  padding: 0;
+  align-items: stretch;
+  border-top: 5px solid var(--esh-index-accent);
+  border-bottom: 0;
+  background: var(--esh-index-paper);
+}
+
+body[data-page-id="esh-index"] .esh-home .esh-hero > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.2rem, 5vw, 4.6rem);
+}
+
+body[data-page-id="esh-index"] .esh-kicker {
+  margin-bottom: 1rem;
+  color: var(--esh-index-accent);
+  font-family: var(--font-sans);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+/* Le slogan précédent faisait trop page marketing. On garde le h1
+   dans le DOM pour l'accessibilité, mais le rendu visible devient
+   un titre de matière simple et explicite. */
+body[data-page-id="esh-index"] .esh-home .esh-hero h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: 0;
+  line-height: 1;
+  letter-spacing: normal;
+}
+
+body[data-page-id="esh-index"] .esh-home .esh-hero h1::after {
+  content: "Économie, sociologie & histoire";
+  display: block;
+  color: var(--esh-index-ink);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  font-weight: 400;
+  line-height: .94;
+  letter-spacing: -.045em;
+}
+
+body[data-page-id="esh-index"] .esh-hero-copy {
+  max-width: 46rem;
+  margin-top: 1.5rem;
+  color: var(--esh-index-muted);
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+
+body[data-page-id="esh-index"] .esh-hero-actions {
+  margin-top: 1.8rem;
+}
+
+body[data-page-id="esh-index"] .esh-cta {
+  min-height: 0;
+  padding: .78rem 1rem;
+  border-radius: 0;
+  background: var(--esh-index-ink);
+  border-color: var(--esh-index-ink);
+  font-size: .78rem;
+  letter-spacing: .035em;
+  text-transform: none;
+}
+
+body[data-page-id="esh-index"] .esh-cta:hover {
+  background: var(--esh-index-accent);
+  border-color: var(--esh-index-accent);
+}
+
+body[data-page-id="esh-index"] .esh-cta.secondary {
+  background: transparent;
+  color: var(--esh-index-ink);
+  border-color: var(--esh-index-line);
+}
+
+body[data-page-id="esh-index"] .esh-cta.secondary:hover {
+  background: var(--esh-index-soft);
+  color: var(--esh-index-ink);
+  border-color: var(--esh-index-ink);
+}
+
+body[data-page-id="esh-index"] .esh-hero-panel {
+  position: relative;
+  min-height: 34rem;
+  padding: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(20,23,22,.04), rgba(20,23,22,.30)),
+    url("https://images.unsplash.com/photo-1534469650761-fce6cc26ac0d?auto=format&fit=crop&w=1600&q=82") center 44% / cover no-repeat;
+}
+
+body[data-page-id="esh-index"] .esh-hero-panel > * {
+  display: none !important;
+}
+
+body[data-page-id="esh-index"] .esh-hero-panel::after {
+  content: "Économie contemporaine · photographie documentaire";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 21rem;
+  padding: .65rem .8rem;
+  background: rgba(31,35,34,.88);
+  color: rgba(255,255,255,.9);
+  font-size: .67rem;
+  line-height: 1.4;
+}
+
+/* Plus de dashboard de chiffres. */
+body[data-page-id="esh-index"] .esh-stats {
+  display: none !important;
+}
+
+body[data-page-id="esh-index"] .esh-official-note {
+  margin: 1rem 0 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--esh-index-line);
+  border-left: 3px solid var(--esh-index-accent);
+  background: var(--esh-index-paper);
+  color: var(--esh-index-muted);
+  font-size: .86rem;
+  line-height: 1.55;
+}
+
+body[data-page-id="esh-index"] .esh-official-note strong {
+  color: var(--esh-index-ink);
+}
+
+/* ---------- Titres de section ---------- */
+body[data-page-id="esh-index"] .esh-home-section {
+  padding: 4.8rem 0 0;
+}
+
+body[data-page-id="esh-index"] .esh-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(20rem, 1.2fr);
+  gap: 2.5rem;
+  align-items: end;
+  margin-bottom: 1.4rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--esh-index-ink);
+}
+
+body[data-page-id="esh-index"] .esh-section-kicker {
+  margin-bottom: .45rem;
+  color: var(--esh-index-accent);
+  font-size: .69rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+}
+
+body[data-page-id="esh-index"] .esh-section-head h2 {
+  color: var(--esh-index-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.04em;
+}
+
+body[data-page-id="esh-index"] .esh-section-head p {
+  color: var(--esh-index-muted);
+  font-size: .92rem;
+  line-height: 1.6;
+}
+
+/* ---------- Accès rapides : index compact, pas cartes marketing ---------- */
+body[data-page-id="esh-index"] .esh-access-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 0;
+  background: transparent;
+}
+
+body[data-page-id="esh-index"] .esh-access {
+  min-height: 0;
+  padding: 1.15rem 1.1rem 1.2rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--esh-index-line);
+  background: transparent;
+  color: var(--esh-index-ink);
+  transform: none !important;
+}
+
+body[data-page-id="esh-index"] .esh-access:nth-child(odd) {
+  padding-right: 1.5rem;
+  border-right: 1px solid var(--esh-index-line);
+}
+
+body[data-page-id="esh-index"] .esh-access:nth-child(even) {
+  padding-left: 1.5rem;
+}
+
+body[data-page-id="esh-index"] .esh-access:hover {
+  background: transparent;
+}
+
+body[data-page-id="esh-index"] .esh-access .index {
+  color: var(--esh-index-accent) !important;
+  font-size: .64rem;
+  letter-spacing: .08em;
+}
+
+body[data-page-id="esh-index"] .esh-access h3 {
+  margin: .45rem 0 .28rem;
+  color: var(--esh-index-ink);
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+body[data-page-id="esh-index"] .esh-access p {
+  margin: 0;
+  color: var(--esh-index-muted);
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+/* Texte historique de progression des flashcards, incompatible avec le mode livre. */
+body[data-page-id="esh-index"] .esh-access[href="flashcards.html"] p {
+  font-size: 0;
+}
+body[data-page-id="esh-index"] .esh-access[href="flashcards.html"] p::after {
+  content: "Auteurs, concepts, chiffres et dates à revoir librement autant de fois que nécessaire.";
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+/* ---------- Programme : véritable table des matières ---------- */
+body[data-page-id="esh-index"] .esh-programme {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+body[data-page-id="esh-index"] .esh-module {
+  display: grid;
+  grid-template-columns: minmax(13rem, .32fr) minmax(0, 1fr);
+  gap: 2rem;
+  padding: 1.65rem 0;
+  border-top: 1px solid var(--esh-index-line);
+}
+
+body[data-page-id="esh-index"] .esh-module:first-child {
+  border-top: 0;
+}
+
+body[data-page-id="esh-index"] .esh-module.module-2 {
+  border-top-color: var(--esh-index-line);
+}
+
+body[data-page-id="esh-index"] .esh-module-head {
+  display: block;
+  margin: 0;
+  padding: .2rem 1.2rem 0 0;
+}
+
+body[data-page-id="esh-index"] .esh-module-head h3,
+body[data-page-id="esh-index"] .esh-module.module-2 .esh-module-head h3 {
+  margin: 0;
+  color: var(--esh-index-ink);
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+body[data-page-id="esh-index"] .esh-module-head span {
+  display: block;
+  width: fit-content;
+  margin-top: .55rem;
+  color: var(--esh-index-accent);
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+body[data-page-id="esh-index"] .chapter-list {
+  display: block;
+  margin: 0;
+}
+
+body[data-page-id="esh-index"] .chapter-list li,
+body[data-page-id="esh-index"] .module-2 .chapter-list li {
+  margin: 0;
+  overflow: visible;
+  border: 0;
+  border-bottom: 1px solid var(--esh-index-line);
+  border-radius: 0;
+  background: transparent;
+}
+
+body[data-page-id="esh-index"] .chapter-list li:first-child {
+  border-top: 1px solid var(--esh-index-line);
+}
+
+body[data-page-id="esh-index"] .chapter-list a {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr) !important;
+  gap: 1rem;
+  align-items: start;
+  min-height: 0;
+  padding: 1rem .25rem;
+  color: var(--esh-index-ink);
+  font-weight: 600;
+}
+
+body[data-page-id="esh-index"] .chapter-list li:hover,
+body[data-page-id="esh-index"] .module-2 .chapter-list li:hover {
+  border-color: var(--esh-index-line);
+  background: color-mix(in srgb, var(--esh-index-accent) 4%, transparent);
+}
+
+body[data-page-id="esh-index"] .chapter-list .num,
+body[data-page-id="esh-index"] .module-2 .chapter-list .num,
+body[data-page-id="esh-index"] .esh-programme .official-item .num {
+  display: block;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  padding: .08rem 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--esh-index-accent);
+  font-size: .74rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: .035em;
+}
+
+body[data-page-id="esh-index"] .esh-programme .official-item .scope {
+  margin-top: .3rem;
+  color: var(--esh-index-muted);
+  font-size: .75rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+/* ---------- Ressources : lignes éditoriales plutôt que cartes ---------- */
+body[data-page-id="esh-index"] .esh-resource-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 0;
+  border-top: 1px solid var(--esh-index-line);
+  background: transparent;
+}
+
+body[data-page-id="esh-index"] .esh-resource {
+  display: grid;
+  grid-template-columns: minmax(8rem, .24fr) minmax(13rem, .38fr) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: baseline;
+  min-height: 0;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--esh-index-line);
+  background: transparent;
+  color: var(--esh-index-ink);
+}
+
+body[data-page-id="esh-index"] .esh-resource:hover {
+  background: color-mix(in srgb, var(--esh-index-accent) 4%, transparent);
+}
+
+body[data-page-id="esh-index"] .esh-resource .tag {
+  color: var(--esh-index-accent) !important;
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+body[data-page-id="esh-index"] .esh-resource h3 {
+  margin: 0;
+  color: var(--esh-index-ink);
+  font-family: var(--font-display);
+  font-size: 1.28rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+body[data-page-id="esh-index"] .esh-resource p {
+  margin: 0;
+  color: var(--esh-index-muted);
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+/* Le manifeste final était très typique d'une landing page générée. */
+body[data-page-id="esh-index"] .esh-manifesto {
+  display: none !important;
+}
+
+body[data-page-id="esh-index"] .site-footer {
+  background: transparent;
+  color: var(--esh-index-muted);
+  border-top: 1px solid var(--esh-index-line);
+}
+
+body[data-page-id="esh-index"] .site-footer a {
+  color: var(--esh-index-ink);
+}
+
+@media (max-width: 900px) {
+  body[data-page-id="esh-index"] .esh-home .esh-hero {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page-id="esh-index"] .esh-hero-panel {
+    min-height: 24rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-section-head,
+  body[data-page-id="esh-index"] .esh-module {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-module-head {
+    padding-right: 0;
+  }
+
+  body[data-page-id="esh-index"] .esh-resource {
+    grid-template-columns: 7rem minmax(0, 1fr);
+  }
+
+  body[data-page-id="esh-index"] .esh-resource p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 620px) {
+  body[data-page-id="esh-index"] main.esh-home {
+    width: min(100% - 1rem, 1180px);
+  }
+
+  body[data-page-id="esh-index"] .esh-home .esh-hero > div:first-child {
+    padding: 2rem 1.15rem 2.4rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-home .esh-hero h1::after {
+    font-size: clamp(2.8rem, 15vw, 4.4rem);
+  }
+
+  body[data-page-id="esh-index"] .esh-hero-panel {
+    min-height: 20rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-access-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page-id="esh-index"] .esh-access,
+  body[data-page-id="esh-index"] .esh-access:nth-child(odd),
+  body[data-page-id="esh-index"] .esh-access:nth-child(even) {
+    padding: 1rem 0;
+    border-right: 0;
+  }
+
+  body[data-page-id="esh-index"] .esh-home-section {
+    padding-top: 3.6rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-section-head {
+    gap: .8rem;
+  }
+
+  body[data-page-id="esh-index"] .chapter-list a {
+    grid-template-columns: 4rem minmax(0, 1fr) !important;
+    gap: .75rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-resource {
+    grid-template-columns: 1fr;
+    gap: .35rem;
+  }
+
+  body[data-page-id="esh-index"] .esh-resource p {
+    grid-column: 1;
+  }
+}
