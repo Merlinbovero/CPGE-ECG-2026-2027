@@ -1,0 +1,45 @@
+/* ============================================================
+   Mode livre — aucun suivi d'avancement.
+   Le site reste un ouvrage de référence : navigation, cours,
+   exercices et outils, sans chapitres « terminés » ni pourcentages.
+   ============================================================ */
+
+/* Éléments historiques de suivi masqués dès le chargement CSS. */
+.chapter-done,
+.ex-done,
+.done-mark,
+.maths-progress-panel,
+.home-progress-io {
+  display: none !important;
+}
+
+/* Une ancienne progression locale ne doit plus modifier l'apparence. */
+.chapter-list li.is-done,
+body[data-page-id="maths-index"] .chapter-list li.is-done {
+  opacity: 1 !important;
+}
+
+/* Les cartes de l'accueil deviennent de simples portes d'entrée. */
+.home-subject-meta .progress-bar,
+.home-subject-meta .progress-label {
+  display: none !important;
+}
+
+.home-subject-meta {
+  margin-top: auto;
+}
+
+.home-subject-meta-row {
+  padding-top: .75rem;
+  border-top: 1px solid color-mix(in srgb, var(--subject) 24%, var(--border));
+}
+
+/* La colonne réservée au ✓ disparaît sur le sommaire maths. */
+body[data-page-id="maths-index"] .chapter-list a {
+  grid-template-columns: 3.25rem minmax(0, 1fr) !important;
+}
+
+/* Les listes classiques n'ont plus besoin de réserver de place à un statut. */
+body:not([data-page-id="maths-index"]) .chapter-list a {
+  padding-right: 1rem;
+}
