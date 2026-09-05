@@ -1,0 +1,154 @@
+/* ============================================================
+   Documents de prépa — identité transversale
+   Signale les polycopiés, fiches et exercices réellement donnés en classe.
+   ============================================================ */
+
+.prepa-doc-banner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  margin: 1.2rem 0 2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--c-maths, #a31f34);
+  background: color-mix(in srgb, var(--c-maths, #a31f34) 4%, var(--bg-card));
+}
+
+.prepa-doc-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: .42rem .65rem;
+  background: var(--c-maths, #a31f34);
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .095em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.prepa-doc-banner strong {
+  display: block;
+  margin-bottom: .18rem;
+  font-size: .98rem;
+}
+
+.prepa-doc-banner p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .84rem;
+  line-height: 1.5;
+}
+
+.prepa-doc-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 0 2rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.prepa-doc-meta > div {
+  padding: .8rem 1rem .82rem 0;
+}
+
+.prepa-doc-meta > div + div {
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+}
+
+.prepa-doc-meta span {
+  display: block;
+  margin-bottom: .22rem;
+  color: var(--text-muted);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.prepa-doc-meta strong {
+  font-size: .82rem;
+  line-height: 1.35;
+}
+
+.prepa-archive-card {
+  position: relative;
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--c-maths, #a31f34);
+  background: var(--bg-card);
+}
+
+.prepa-archive-card a {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.05rem 1.1rem;
+  color: var(--text);
+}
+
+.prepa-archive-card a:hover { text-decoration: none; }
+.prepa-archive-card:hover { background: color-mix(in srgb, var(--c-maths, #a31f34) 3%, var(--bg-card)); }
+
+.prepa-archive-date {
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.prepa-archive-type {
+  display: inline-block;
+  margin-bottom: .35rem;
+  color: var(--c-maths, #a31f34);
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.prepa-archive-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.prepa-archive-sub {
+  display: block;
+  margin-top: .28rem;
+  color: var(--text-muted);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.prepa-archive-arrow {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.prepa-course-callout {
+  margin: 1.5rem 0 1.8rem;
+  padding: 1rem 1.1rem 1.05rem;
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--c-maths, #a31f34);
+  background: color-mix(in srgb, var(--c-maths, #a31f34) 4%, var(--bg-card));
+}
+
+.prepa-course-callout .prepa-doc-label { margin-bottom: .8rem; }
+.prepa-course-callout h3 { margin: 0 0 .4rem; font-size: 1.12rem; }
+.prepa-course-callout p { margin: .4rem 0; }
+
+html[data-theme="dark"] .prepa-doc-label { color: #fff; }
+
+@media (max-width: 760px) {
+  .prepa-doc-banner { grid-template-columns: 1fr; }
+  .prepa-doc-meta { grid-template-columns: 1fr 1fr; }
+  .prepa-doc-meta > div:nth-child(3) { border-left: 0; border-top: 1px solid var(--border); }
+  .prepa-doc-meta > div:nth-child(4) { border-top: 1px solid var(--border); }
+  .prepa-archive-card a { grid-template-columns: 1fr auto; }
+  .prepa-archive-date { grid-column: 1 / -1; }
+}
