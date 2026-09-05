@@ -1,7 +1,7 @@
 /* ============================================================
    ECG1 2026-2027 — Script commun
    Thème clair/sombre, rendu KaTeX, corrigés dépliables,
-   suivi de progression (localStorage), recherche globale, QCM.
+   mode livre sans suivi d'avancement, recherche globale, QCM.
    ============================================================ */
 
 (function () {
@@ -11,16 +11,83 @@
   var ROOT = body.getAttribute("data-root") || ".";
   var PAGE_ID = body.getAttribute("data-page-id") || "";
 
-  /* ---------- Stockage ---------- */
-  function loadStore(key) {
-    try { return JSON.parse(localStorage.getItem(key)) || {}; }
-    catch (e) { return {}; }
+  /* ---------- Mode livre : supprimer l'ancien suivi ---------- */
+  function removeNode(node) {
+    if (node && node.parentNode) node.parentNode.removeChild(node);
   }
-  function saveStore(key, obj) {
-    try { localStorage.setItem(key, JSON.stringify(obj)); } catch (e) {}
+
+  function enableBookMode() {
+    /* Les anciennes données de progression ne servent plus. On conserve
+       les autres données locales du site (thème, notes, emploi du temps...). */
+    try {
+      localStorage.removeItem("ecg-chapitres");
+      localStorage.removeItem("ecg-exercices");
+    } catch (e) {}
+
+    document.querySelectorAll(".chapter-done, .ex-done, .done-mark, .maths-progress-panel, .home-progress-io").forEach(removeNode);
+
+    document.querySelectorAll('input[data-progress="chapter"], input[data-progress="exercise"]').forEach(function (input) {
+      var label = input.closest ? input.closest("label") : null;
+      if (label) removeNode(label); else removeNode(input);
+    });
+
+    document.querySelectorAll("[data-progress-matiere]").forEach(function (el) {
+      el.removeAttribute("data-progress-matiere");
+      el.querySelectorAll(".progress-bar, .progress-label").forEach(removeNode);
+      if (!el.textContent.trim() && !el.querySelector("img, svg, a, button")) removeNode(el);
+    });
+
+    document.querySelectorAll(".chapter-list li.is-done").forEach(function (li) {
+      li.classList.remove("is-done");
+    });
+
+    /* Accueil : les cartes de matière sont des entrées de sommaire,
+       pas des jauges d'avancement. */
+    if (PAGE_ID === "accueil") {
+      var heroLead = document.querySelector(".home-hero .lead");
+      if (heroLead) {
+        heroLead.textContent = "Cours, exercices, flashcards et méthodes réunis dans un seul espace de travail. La priorité reste simple : retrouver rapidement le bon contenu, revenir sur les notions autant de fois que nécessaire et garder une structure claire toute l’année.";
+      }
+
+      var subjectIntro = document.querySelector("#matieres .home-section-head p");
+      if (subjectIntro) {
+        subjectIntro.textContent = "Chaque matière garde sa propre couleur, ses cours et ses ressources. Les cartes ci-dessous servent simplement de sommaire général pour circuler dans le site.";
+      }
+
+      document.querySelectorAll(".home-subject-meta").forEach(function (meta) {
+        meta.innerHTML = '<div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div>';
+      });
+    }
+
+    /* Maths : supprimer les dernières formulations de suivi. */
+    if (PAGE_ID === "maths-index") {
+      var mathsIntro = document.querySelector("#programme .maths-section-head p");
+      if (mathsIntro) {
+        mathsIntro.textContent = "Les 17 chapitres couvrent les fondements, l’algèbre, l’analyse, les probabilités, les graphes et les statistiques. Chaque chapitre mène du cours aux exercices corrigés et peut être repris librement tout au long de l’année.";
+      }
+    }
+
+    /* Mon espace garde les notes et l'emploi du temps, mais ne parle plus
+       d'export ou de sauvegarde de progression académique. */
+    if (PAGE_ID === "mon-espace") {
+      document.querySelectorAll(".box.met").forEach(function (box) {
+        if (box.textContent.toLowerCase().indexOf("progression") !== -1) {
+          box.innerHTML = '<span class="box-title">Données locales</span><p>Ton emploi du temps et tes notes sont enregistrés uniquement dans ce navigateur. Si tu changes d’appareil ou effaces les données du site, pense à les recopier auparavant.</p>';
+        }
+      });
+    }
+
+    /* Certaines cartes de flashcards historiques présentaient leur intérêt
+       comme une progression sauvegardée. On garde l'outil, sans logique de
+       chapitre « acquis » ou « terminé ». */
+    document.querySelectorAll(".card p").forEach(function (p) {
+      if (p.textContent.toLowerCase().indexOf("progression") !== -1) {
+        p.textContent = "Cartes de révision à utiliser librement pour revenir régulièrement sur le vocabulaire, les notions et les repères importants.";
+      }
+    });
   }
-  var KEY_CH = "ecg-chapitres";   // { pageId: true }
-  var KEY_EX = "ecg-exercices";   // { "pageId:exId": true }
+
+  enableBookMode();
 
   /* ---------- Thème ---------- */
   var toggle = document.getElementById("theme-toggle");
@@ -62,49 +129,6 @@
       btn.textContent = hidden ? "Voir le corrigé" : "Masquer le corrigé";
     });
   });
-
-  /* ---------- Progression : chapitre terminé ---------- */
-  var chStore = loadStore(KEY_CH);
-  var chBox = document.querySelector('input[data-progress="chapter"]');
-  if (chBox && PAGE_ID) {
-    chBox.checked = !!chStore[PAGE_ID];
-    chBox.addEventListener("change", function () {
-      chStore = loadStore(KEY_CH);
-      if (chBox.checked) chStore[PAGE_ID] = true; else delete chStore[PAGE_ID];
-      saveStore(KEY_CH, chStore);
-    });
-  }
-
-  /* ---------- Progression : exercices réussis ---------- */
-  var exStore = loadStore(KEY_EX);
-  document.querySelectorAll('input[data-progress="exercise"]').forEach(function (box) {
-    var exId = PAGE_ID + ":" + (box.getAttribute("data-ex") || "");
-    box.checked = !!exStore[exId];
-    box.addEventListener("change", function () {
-      exStore = loadStore(KEY_EX);
-      if (box.checked) exStore[exId] = true; else delete exStore[exId];
-      saveStore(KEY_EX, exStore);
-    });
-  });
-
-  /* ---------- Barres de progression (accueil) ---------- */
-  if (typeof SITE_DATA !== "undefined") {
-    document.querySelectorAll("[data-progress-matiere]").forEach(function (el) {
-      var m = el.getAttribute("data-progress-matiere");
-      var pages = SITE_DATA.pages.filter(function (p) { return p.m === m && !p.r; });
-      var done = pages.filter(function (p) { return chStore[p.id]; }).length;
-      var pct = pages.length ? Math.round(100 * done / pages.length) : 0;
-      var fill = el.querySelector(".progress-fill");
-      if (fill) fill.style.width = pct + "%";
-      var label = el.querySelector(".progress-label");
-      if (label) label.textContent = done + " / " + pages.length + " chapitres terminés (" + pct + " %)";
-    });
-
-    /* Coche ✓ dans les sommaires de matière */
-    document.querySelectorAll(".chapter-list li[data-page]").forEach(function (li) {
-      if (chStore[li.getAttribute("data-page")]) li.classList.add("is-done");
-    });
-  }
 
   /* ---------- ESH : lancer les flashcards depuis le chapitre ---------- */
   (function () {
@@ -194,54 +218,6 @@
     });
   }
 
-  /* ---------- Export / import de la progression ---------- */
-  var exportBtn = document.getElementById("progress-export");
-  var importBtn = document.getElementById("progress-import-btn");
-  var importFile = document.getElementById("progress-import-file");
-  var ioMsg = document.getElementById("progress-io-msg");
-  if (exportBtn) {
-    exportBtn.addEventListener("click", function () {
-      var data = {
-        type: "ecg-progression",
-        exportedAt: new Date().toISOString(),
-        chapitres: loadStore(KEY_CH),
-        exercices: loadStore(KEY_EX)
-      };
-      var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = "ecg-progression-" + new Date().toISOString().slice(0, 10) + ".json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      if (ioMsg) ioMsg.textContent = "Progression exportée.";
-    });
-  }
-  if (importBtn && importFile) {
-    importBtn.addEventListener("click", function () { importFile.click(); });
-    importFile.addEventListener("change", function () {
-      var file = importFile.files && importFile.files[0];
-      if (!file) return;
-      var reader = new FileReader();
-      reader.onload = function () {
-        try {
-          var data = JSON.parse(reader.result);
-          if (!data || data.type !== "ecg-progression") throw new Error("format");
-          saveStore(KEY_CH, data.chapitres || {});
-          saveStore(KEY_EX, data.exercices || {});
-          if (ioMsg) ioMsg.textContent = "Progression importée — rechargement…";
-          setTimeout(function () { location.reload(); }, 600);
-        } catch (e) {
-          if (ioMsg) ioMsg.textContent = "Fichier invalide : ce n'est pas un export de progression ECG1.";
-        }
-      };
-      reader.readAsText(file);
-      importFile.value = "";
-    });
-  }
-
   /* ---------- QCM auto-corrigés ---------- */
   document.querySelectorAll(".qcm-q").forEach(function (q) {
     q.querySelectorAll("input[type=radio]").forEach(function (radio) {
@@ -267,15 +243,15 @@
     btn.textContent = "↑";
     document.body.appendChild(btn);
     var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    function toggle() {
+    function toggleBackToTop() {
       if (window.scrollY > 600) btn.classList.add("show");
       else btn.classList.remove("show");
     }
-    window.addEventListener("scroll", toggle, { passive: true });
+    window.addEventListener("scroll", toggleBackToTop, { passive: true });
     btn.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
     });
-    toggle();
+    toggleBackToTop();
   })();
 
   /* ---------- Service worker (installable + hors-ligne) ---------- */
