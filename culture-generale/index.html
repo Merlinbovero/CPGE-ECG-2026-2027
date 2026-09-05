@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Culture générale — Lettres et philosophie — ECG1 2026-2027</title>
-<meta name="description" content="Culture générale ECG1 : 13 notions fondamentales, philosophes, œuvres littéraires, citations, méthodologie de la dissertation et de la contraction de texte.">
+<title>Lettres &amp; philosophie — ECG1 2026-2027</title>
+<meta name="description" content="Lettres et philosophie en ECG1 : 13 notions fondamentales, auteurs, œuvres, dissertation, contraction, bibliothèque et copies-types.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-<meta name="theme-color" content="#2b2e35">
+<meta name="theme-color" content="#5b2b46">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
@@ -36,57 +36,114 @@
 </header>
 
 <nav class="breadcrumb" aria-label="Fil d'Ariane">
-  <a href="../index.html">Accueil</a><span class="sep">›</span><span>Culture générale</span>
+  <a href="../index.html">Accueil</a><span class="sep">›</span><span>Lettres &amp; philosophie</span>
 </nav>
 
-<main>
-  <h1>Culture générale — Lettres et philosophie</h1>
-  <p class="lead">En première année, le programme de culture générale ne comporte pas de thème imposé : l'objectif est l'acquisition des <strong>grands repères de la pensée</strong>, de l'Antiquité au XXe siècle, à travers l'étude de notions fondamentales. Le thème unique n'arrive qu'en seconde année. Pour chaque notion : une problématisation, les principaux philosophes et leurs thèses, des œuvres littéraires mobilisables, des citations exploitables, et des sujets de dissertation avec plans détaillés corrigés.</p>
+<main class="cg-shell">
+  <section class="cg-hero" aria-labelledby="cg-title">
+    <div class="cg-hero-copy">
+      <span class="cg-kicker">Culture générale · ECG1</span>
+      <h1 id="cg-title">Lettres <span>&amp; philosophie</span></h1>
+      <p class="cg-lead">Construire une culture solide ne consiste pas à accumuler des références. Il faut apprendre à faire dialoguer des idées, des auteurs et des œuvres, puis à les mobiliser avec précision dans une dissertation.</p>
+      <p class="cg-motto">Lire lentement. Penser précisément. Écrire clairement.</p>
+      <div class="cg-hero-actions">
+        <a class="cg-action primary" href="#notions">Explorer les notions <span>↓</span></a>
+        <a class="cg-action" href="bibliotheque.html">Ouvrir la bibliothèque <span>↗</span></a>
+      </div>
+    </div>
+    <figure class="cg-hero-visual">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Marginalia%20in%20the%20hand%20of%20grammarian%20and%20politician%20James%20Harris%20%281709-1780%29%20in%20a%201556%20edition%20of%20Aristotle%27s%20Physics.jpg?width=1800" alt="Marginalia manuscrites dans une édition de 1556 de la Physique d'Aristote">
+      <figcaption>Marginalia dans une édition de 1556 de la <em>Physique</em> d’Aristote · CC0 · Wikimedia Commons</figcaption>
+    </figure>
+  </section>
 
-  <div class="box met">
-    <span class="box-title">Comment travailler la culture générale</span>
-    <p>La culture générale se construit sur la durée : fichez chaque notion (problèmes, 4 à 6 auteurs avec leurs thèses, 2 à 3 œuvres littéraires, 3 citations sues par cœur), lisez régulièrement des œuvres intégrales, et entraînez-vous à la dissertation en construisant des plans détaillés. Commencez par les deux fiches de méthodologie : elles conditionnent tout le reste.</p>
-  </div>
+  <nav class="cg-doorways" aria-label="Accès principaux">
+    <a href="#methodes"><span class="cg-door-index">01</span><strong>Méthodes</strong><small>Dissertation, contraction et synthèse.</small><span class="cg-door-arrow">↓</span></a>
+    <a href="#notions"><span class="cg-door-index">02</span><strong>Notions</strong><small>Treize grands problèmes pour penser le monde.</small><span class="cg-door-arrow">↓</span></a>
+    <a href="#bibliotheque"><span class="cg-door-index">03</span><strong>Bibliothèque</strong><small>Œuvres, lectures et copies de référence.</small><span class="cg-door-arrow">↓</span></a>
+  </nav>
 
-  <h2 class="semestre-title">Méthodologie</h2>
-  <ol class="chapter-list">
-    <li data-page="cg-methodo-dissert"><a href="methodologie-dissertation.html"><span class="num">M1</span> La dissertation de culture générale <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-methodo-contraction"><a href="methodologie-contraction.html"><span class="num">M2</span> La contraction et la synthèse de texte <span class="done-mark">✓ terminé</span></a></li>
-  </ol>
+  <section class="cg-section" id="methodes" aria-labelledby="methodes-title">
+    <header class="cg-section-head">
+      <div><span class="cg-section-label">Écrire</span><h2 id="methodes-title">La méthode avant tout</h2></div>
+      <p>Les connaissances ne rapportent des points que si elles sont organisées. Commence par maîtriser les deux exercices qui structurent le travail de culture générale.</p>
+    </header>
+    <div class="cg-method-grid">
+      <a class="cg-method" href="methodologie-dissertation.html">
+        <span class="cg-method-number">M1</span>
+        <div><span class="cg-method-type">Dissertation</span><h3>Problématiser, construire, argumenter</h3><p>Analyser un sujet, construire une vraie problématique, organiser un plan et faire travailler les références au service du raisonnement.</p></div>
+        <span class="cg-method-arrow">→</span>
+      </a>
+      <a class="cg-method" href="methodologie-contraction.html">
+        <span class="cg-method-number">M2</span>
+        <div><span class="cg-method-type">Contraction &amp; synthèse</span><h3>Comprendre avant de condenser</h3><p>Identifier la structure d’un texte, hiérarchiser ses idées et restituer fidèlement un raisonnement avec une langue précise.</p></div>
+        <span class="cg-method-arrow">→</span>
+      </a>
+    </div>
+  </section>
 
-  <h2 class="semestre-title">Les notions fondamentales</h2>
-  <ol class="chapter-list">
-    <li data-page="cg-nature"><a href="nature-culture.html"><span class="num">1</span> La nature et la culture <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-societe"><a href="societe.html"><span class="num">2</span> La société <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-technique"><a href="technique.html"><span class="num">3</span> La technique <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-religion"><a href="religion.html"><span class="num">4</span> La religion <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-histoire"><a href="histoire.html"><span class="num">5</span> L'histoire <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-liberte"><a href="liberte.html"><span class="num">6</span> La liberté <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-desir"><a href="desir.html"><span class="num">7</span> Le désir <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-art"><a href="art.html"><span class="num">8</span> L'art <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-verite"><a href="verite.html"><span class="num">9</span> La vérité <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-science"><a href="science.html"><span class="num">10</span> La science <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-langage"><a href="langage.html"><span class="num">11</span> Le langage <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-mort"><a href="mort.html"><span class="num">12</span> La mort <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="cg-amour"><a href="amour.html"><span class="num">13</span> L'amour <span class="done-mark">✓ terminé</span></a></li>
-  </ol>
+  <section class="cg-section" id="notions" aria-labelledby="notions-title">
+    <header class="cg-section-head notions-head">
+      <div><span class="cg-section-label">Penser</span><h2 id="notions-title">13 notions fondamentales</h2></div>
+      <p>Ces trois familles sont uniquement des repères de navigation. Elles permettent de retrouver rapidement une notion sans transformer le programme en longue liste uniforme.</p>
+    </header>
 
-  <h2 class="semestre-title">Ressources</h2>
-  <div class="cards">
-    <a class="card" href="copie-type-dissertation.html" style="--card-color:var(--c-cg)">
-      <h3>📝 Copies-types rédigées (2)</h3>
-      <p>Deux dissertations entièrement rédigées, de l'introduction à la conclusion (« Faut-il préférer la vérité au bonheur ? » et « L'art nous détourne-t-il de la réalité ? »), commentées en marge : le modèle à imiter pour transformer ses connaissances en points.</p>
-    </a>
-    <a class="card" href="bibliotheque.html" style="--card-color:var(--c-cg)">
-      <h3>📚 Bibliothèque — les livres à lire</h3>
-      <p>Les œuvres philosophiques et littéraires essentielles, chacune avec sa thèse et ses idées principales, la méthode de la fiche de lecture et un programme de lecture sur l'année.</p>
-    </a>
-  </div>
-  <p class="small muted">Chaque notion comporte désormais un encadré <strong>🎥 Ressources vidéo</strong> (deux liens de vulgarisation) juste avant les sujets corrigés.</p>
+    <div class="cg-notion-groups">
+      <section class="cg-notion-group">
+        <header><span>I</span><div><h3>Le monde commun</h3><p>Ce qui nous forme, nous relie et transforme notre rapport au réel.</p></div></header>
+        <ol>
+          <li><a href="nature-culture.html"><span>01</span><strong>Nature &amp; culture</strong><small>L’inné, l’acquis, l’humain.</small><b>→</b></a></li>
+          <li><a href="societe.html"><span>02</span><strong>La société</strong><small>Vivre ensemble, normes, institutions.</small><b>→</b></a></li>
+          <li><a href="technique.html"><span>03</span><strong>La technique</strong><small>Outils, puissance, transformation.</small><b>→</b></a></li>
+          <li><a href="religion.html"><span>04</span><strong>La religion</strong><small>Croyance, sacré, raison.</small><b>→</b></a></li>
+          <li><a href="histoire.html"><span>05</span><strong>L’histoire</strong><small>Temps, mémoire, progrès.</small><b>→</b></a></li>
+        </ol>
+      </section>
+
+      <section class="cg-notion-group">
+        <header><span>II</span><div><h3>La condition humaine</h3><p>Le sujet face à ses choix, ses désirs, sa finitude et autrui.</p></div></header>
+        <ol>
+          <li><a href="liberte.html"><span>06</span><strong>La liberté</strong><small>Volonté, déterminisme, responsabilité.</small><b>→</b></a></li>
+          <li><a href="desir.html"><span>07</span><strong>Le désir</strong><small>Manque, plaisir, bonheur.</small><b>→</b></a></li>
+          <li><a href="mort.html"><span>08</span><strong>La mort</strong><small>Finitude, existence, sens.</small><b>→</b></a></li>
+          <li><a href="amour.html"><span>09</span><strong>L’amour</strong><small>Passion, altérité, relation.</small><b>→</b></a></li>
+        </ol>
+      </section>
+
+      <section class="cg-notion-group">
+        <header><span>III</span><div><h3>Connaître &amp; créer</h3><p>Produire du sens, comprendre le réel et interroger ce que nous tenons pour vrai.</p></div></header>
+        <ol>
+          <li><a href="art.html"><span>10</span><strong>L’art</strong><small>Création, beauté, représentation.</small><b>→</b></a></li>
+          <li><a href="verite.html"><span>11</span><strong>La vérité</strong><small>Opinion, preuve, connaissance.</small><b>→</b></a></li>
+          <li><a href="science.html"><span>12</span><strong>La science</strong><small>Méthode, modèle, objectivité.</small><b>→</b></a></li>
+          <li><a href="langage.html"><span>13</span><strong>Le langage</strong><small>Parole, sens, pensée.</small><b>→</b></a></li>
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="cg-library" id="bibliotheque" aria-labelledby="library-title">
+    <div class="cg-library-intro">
+      <span class="cg-section-label">Lire &amp; réutiliser</span>
+      <h2 id="library-title">Bibliothèque de travail</h2>
+      <p>Les œuvres et les bonnes copies servent de laboratoire : on y observe comment une idée devient un argument, comment une référence est introduite et comment une réflexion se construit.</p>
+      <a href="bibliotheque.html">Voir les œuvres essentielles <span>→</span></a>
+    </div>
+    <div class="cg-library-links">
+      <a href="bibliotheque.html"><span class="cg-library-code">B01 · Lectures</span><strong>Bibliothèque</strong><p>Œuvres philosophiques et littéraires, idées principales, méthode de fiche et programme de lecture.</p><b>↗</b></a>
+      <a href="copie-type-dissertation.html"><span class="cg-library-code">B02 · Modèle</span><strong>Vérité &amp; bonheur</strong><p>Une dissertation entièrement rédigée et commentée pour observer la construction d’une copie solide.</p><b>↗</b></a>
+      <a href="copie-type-dissertation-2.html"><span class="cg-library-code">B03 · Modèle</span><strong>Art &amp; réalité</strong><p>Une seconde copie complète pour comparer les choix de problématisation, d’exemples et de rédaction.</p><b>↗</b></a>
+    </div>
+  </section>
+
+  <section class="cg-closing" aria-label="Principe de travail">
+    <span>Principe de travail</span>
+    <p>Pour chaque notion : comprendre un problème, retenir quelques auteurs précisément, lire des œuvres exploitables, puis revenir régulièrement aux sujets et aux copies.</p>
+  </section>
 </main>
 
 <footer class="site-footer">
-  <p>ECG1 2026/2027 — Culture générale. <a href="../index.html">Retour à l'accueil</a></p>
+  <p>ECG1 2026/2027 — Lettres &amp; philosophie. <a href="../index.html">Retour à l'accueil</a></p>
 </footer>
 
 <script src="../js/data.js"></script>
