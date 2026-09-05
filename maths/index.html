@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mathématiques appliquées &amp; informatique — ECG1 2026-2027</title>
-<meta name="description" content="Programme complet de mathématiques appliquées ECG1 : 17 chapitres de cours avec exercices corrigés et 5 fiches d'informatique Python.">
+<meta name="description" content="Programme complet de mathématiques appliquées ECG1 : 17 chapitres, exercices corrigés, khôlles, ressources de révision et 6 modules Python.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-<meta name="theme-color" content="#2b2e35">
+<meta name="theme-color" content="#a31f34">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
@@ -39,81 +39,195 @@
   <a href="../index.html">Accueil</a><span class="sep">›</span><span>Mathématiques appliquées</span>
 </nav>
 
-<main>
-  <h1>Mathématiques appliquées &amp; informatique</h1>
-  <p class="lead">Programme officiel de mathématiques appliquées et informatique d'ECG1 (annexe 1 de l'arrêté du 11 février 2021), organisé en deux semestres. Chaque chapitre contient un cours complet (définitions, théorèmes démontrés quand la démonstration est exigible, méthodes, pièges) et au moins 8 exercices corrigés en trois niveaux de difficulté. L'informatique (Python) fait partie intégrante de la matière et de l'épreuve de concours.</p>
+<main class="maths-shell wide">
+  <section class="maths-hero" aria-labelledby="maths-title">
+    <div class="maths-hero-copy">
+      <div class="maths-kicker">
+        <span><strong>ECG1</strong> · Mathématiques appliquées</span>
+        <span>Programme 2026—2027</span>
+      </div>
+      <h1 id="maths-title">Penser. Calculer. <span>Démontrer.</span></h1>
+      <p class="lead">Un espace de travail quantitatif pour construire les automatismes, comprendre les méthodes et monter progressivement vers le niveau concours. Le cours reste la base ; l'entraînement transforme le cours en points.</p>
+      <div class="maths-hero-actions">
+        <a class="maths-action primary" href="#programme"><span>Voir le programme</span><span aria-hidden="true">↓</span></a>
+        <a class="maths-action" href="formulaire.html"><span>Ouvrir le formulaire</span><span aria-hidden="true">↗</span></a>
+        <a class="maths-action" href="kholles.html"><span>S'entraîner à l'oral</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
 
-  <div class="box met">
-    <span class="box-title">Comment travailler cette matière</span>
-    <p>En maths appliquées, la réussite repose sur la maîtrise parfaite des <strong>techniques de calcul</strong> et des <strong>méthodes types</strong>. Pour chaque chapitre : apprendre le cours par cœur (définitions et théorèmes avec leurs hypothèses), refaire les exemples rédigés, puis faire les exercices de niveau 1 sans le corrigé, avant de passer aux niveaux 2 et 3. Une notion n'est acquise que lorsque vous savez refaire l'exercice seul, rédaction comprise.</p>
-  </div>
+    <div class="maths-hero-panel" aria-label="Repères du programme de mathématiques ECG1">
+      <div class="maths-panel-top"><strong>Applied Mathematics / ECG1</strong><span>Foundations → Competition</span></div>
+      <svg class="maths-formula-visual" viewBox="0 0 640 330" role="img" aria-label="Composition graphique de fonctions, matrices, probabilités et courbe">
+        <g fill="none" stroke="rgba(255,255,255,.72)" stroke-width="2">
+          <path d="M42 270H590M74 292V38" opacity=".38"/>
+          <path d="M84 248C132 232 167 194 208 202C257 211 284 112 335 129C385 146 417 74 466 91C505 105 536 63 579 49" stroke="#d1495b" stroke-width="4"/>
+          <path d="M112 73h104v104H112zM112 108h104M146 73v104M181 73v104" opacity=".42"/>
+          <circle cx="335" cy="129" r="6" fill="#fff" stroke="none"/>
+          <path d="M335 129V270M74 129H335" stroke-dasharray="8 8" opacity=".26"/>
+        </g>
+        <g fill="rgba(255,255,255,.92)" font-family="Arial, sans-serif">
+          <text x="105" y="62" font-size="17">A = (aᵢⱼ)</text>
+          <text x="366" y="190" font-size="24">P(X ≤ x)</text>
+          <text x="365" y="225" font-size="18" opacity=".7">uₙ₊₁ = f(uₙ)</text>
+          <text x="365" y="255" font-size="18" opacity=".7">∫ₐᵇ f(t)dt</text>
+        </g>
+      </svg>
+      <div class="maths-panel-bottom">
+        <div class="maths-stat"><strong>17</strong><span>chapitres</span></div>
+        <div class="maths-stat"><strong>6</strong><span>modules Python</span></div>
+        <div class="maths-stat"><strong>2</strong><span>semestres</span></div>
+      </div>
+    </div>
+  </section>
 
-  <h2 class="semestre-title">Semestre 1</h2>
-  <ol class="chapter-list">
-    <li data-page="maths-ch01"><a href="ch01-logique-ensembles.html"><span class="num">1</span> Raisonnement et vocabulaire ensembliste <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch02"><a href="ch02-calculs-algebriques.html"><span class="num">2</span> Calculs algébriques : sommes, produits, binôme <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch03"><a href="ch03-nombres-reels.html"><span class="num">3</span> Nombres réels, équations et inéquations <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch04"><a href="ch04-systemes-lineaires.html"><span class="num">4</span> Systèmes linéaires et pivot de Gauss <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch05"><a href="ch05-calcul-matriciel.html"><span class="num">5</span> Calcul matriciel <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch06"><a href="ch06-suites.html"><span class="num">6</span> Suites réelles <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch07"><a href="ch07-fonctions.html"><span class="num">7</span> Fonctions réelles : limites, continuité, fonctions usuelles <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch08"><a href="ch08-derivation.html"><span class="num">8</span> Dérivation, étude de fonctions et convexité <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch09"><a href="ch09-denombrement.html"><span class="num">9</span> Dénombrement <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch10"><a href="ch10-probabilites-finies.html"><span class="num">10</span> Espaces probabilisés finis <span class="done-mark">✓ terminé</span></a></li>
-  </ol>
+  <section class="maths-progress-panel" data-progress-matiere="maths" aria-label="Progression en mathématiques">
+    <div class="maths-progress-copy">
+      <strong>Progression personnelle</strong>
+      <span>Basée sur les chapitres cochés sur cet appareil.</span>
+    </div>
+    <div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <span class="progress-label">Chargement de la progression…</span>
+    </div>
+  </section>
 
-  <h2 class="semestre-title">Semestre 2</h2>
-  <ol class="chapter-list">
-    <li data-page="maths-ch11"><a href="ch11-variables-aleatoires.html"><span class="num">11</span> Variables aléatoires finies et lois usuelles <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch12"><a href="ch12-integration.html"><span class="num">12</span> Intégration sur un segment <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch13"><a href="ch13-series.html"><span class="num">13</span> Séries numériques <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch14"><a href="ch14-probabilites-denombrables.html"><span class="num">14</span> Probabilités sur un univers dénombrable, lois géométrique et de Poisson <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch15"><a href="ch15-couples-va.html"><span class="num">15</span> Couples de variables aléatoires finies <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch16"><a href="ch16-graphes.html"><span class="num">16</span> Introduction aux graphes <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-ch17"><a href="ch17-statistiques.html"><span class="num">17</span> Statistiques descriptives <span class="done-mark">✓ terminé</span></a></li>
-  </ol>
+  <section class="maths-method-grid" aria-label="Méthode de travail en mathématiques">
+    <article class="maths-method">
+      <span class="maths-method-index">01 / COURS</span>
+      <h3>Connaître sans approximation.</h3>
+      <p>Définitions, hypothèses et théorèmes doivent être identifiables immédiatement. Une méthode mal apprise devient une erreur de rédaction au DS.</p>
+    </article>
+    <article class="maths-method">
+      <span class="maths-method-index">02 / TECHNIQUE</span>
+      <h3>Automatiser le calcul.</h3>
+      <p>Refaire les exemples et les exercices standards jusqu'à ne plus hésiter sur la procédure, les signes, les cas limites ou les conditions d'application.</p>
+    </article>
+    <article class="maths-method">
+      <span class="maths-method-index">03 / PROBLÈME</span>
+      <h3>Relier les idées.</h3>
+      <p>Passer ensuite aux exercices de niveau supérieur, aux khôlles et aux sujets longs pour apprendre à reconnaître une structure sous une formulation nouvelle.</p>
+    </article>
+  </section>
 
-  <h2 class="semestre-title">Informatique — Python (tout au long de l'année)</h2>
-  <ol class="chapter-list">
-    <li data-page="maths-info01"><a href="info01-bases-python.html"><span class="num">I1</span> Bases du langage Python <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-info02"><a href="info02-listes.html"><span class="num">I2</span> Listes et manipulation de données <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-info03"><a href="info03-numpy-matplotlib.html"><span class="num">I3</span> numpy, matplotlib et random <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-info04"><a href="info04-simulation.html"><span class="num">I4</span> Simulation et méthode de Monte-Carlo <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-info05"><a href="info05-algorithmes.html"><span class="num">I5</span> Suites, algorithmes de seuil et dichotomie <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="maths-info06"><a href="info06-formules.html"><span class="num">I6</span> Traduire les mathématiques en Python <span class="done-mark">✓ terminé</span></a></li>
-  </ol>
+  <section class="maths-section" id="programme" aria-labelledby="programme-title">
+    <div class="maths-section-head">
+      <div>
+        <span class="maths-section-eyebrow">Core curriculum</span>
+        <h2 id="programme-title">Programme annuel</h2>
+      </div>
+      <p>Les 17 chapitres couvrent les fondements, l'algèbre, l'analyse, les probabilités, les graphes et les statistiques. Chaque chapitre mène du cours aux exercices corrigés, avec un suivi de progression local.</p>
+    </div>
 
-  <h2 class="semestre-title">Apprendre en jouant</h2>
-  <div class="cards">
-    <a class="card" href="python-jeu.html" style="--card-color:#2f8f5b">
-      <h3>🎮 Python — Le jeu (70 niveaux)</h3>
-      <p>Apprends à coder par le jeu : 70 niveaux progressifs, du plus simple au niveau concours. Tu écris du vrai code Python, exécuté dans le navigateur et validé automatiquement. Progression sauvegardée.</p>
-    </a>
-    <a class="card" href="kholles.html" style="--card-color:var(--c-anglais)">
-      <h3>🧠 Khôlles — 20 problèmes (1 h)</h3>
-      <p>Des problèmes exigeants (niveau oral et concours) avec minuteur d'une heure, indices progressifs et corrigés rigoureux. Pour muscler la réflexion, pas le calcul.</p>
-    </a>
-  </div>
+    <div class="maths-semesters">
+      <article class="maths-semester">
+        <div class="maths-semester-head"><h3>Semestre 1</h3><span>10 chapitres · fondations</span></div>
+        <ol class="chapter-list">
+          <li data-page="maths-ch01"><a href="ch01-logique-ensembles.html"><span class="num">01</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Raisonnement et vocabulaire ensembliste</span><span class="maths-chapter-domain">Fondements · logique</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch02"><a href="ch02-calculs-algebriques.html"><span class="num">02</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Calculs algébriques : sommes, produits, binôme</span><span class="maths-chapter-domain">Algèbre · calcul</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch03"><a href="ch03-nombres-reels.html"><span class="num">03</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Nombres réels, équations et inéquations</span><span class="maths-chapter-domain">Analyse · réels</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch04"><a href="ch04-systemes-lineaires.html"><span class="num">04</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Systèmes linéaires et pivot de Gauss</span><span class="maths-chapter-domain">Algèbre linéaire</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch05"><a href="ch05-calcul-matriciel.html"><span class="num">05</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Calcul matriciel</span><span class="maths-chapter-domain">Algèbre linéaire</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch06"><a href="ch06-suites.html"><span class="num">06</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Suites réelles</span><span class="maths-chapter-domain">Analyse · suites</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch07"><a href="ch07-fonctions.html"><span class="num">07</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Fonctions réelles : limites, continuité, fonctions usuelles</span><span class="maths-chapter-domain">Analyse · fonctions</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch08"><a href="ch08-derivation.html"><span class="num">08</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Dérivation, étude de fonctions et convexité</span><span class="maths-chapter-domain">Analyse · dérivation</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch09"><a href="ch09-denombrement.html"><span class="num">09</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Dénombrement</span><span class="maths-chapter-domain">Probabilités · combinatoire</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch10"><a href="ch10-probabilites-finies.html"><span class="num">10</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Espaces probabilisés finis</span><span class="maths-chapter-domain">Probabilités</span></span><span class="done-mark">✓ terminé</span></a></li>
+        </ol>
+      </article>
 
-  <h2 class="semestre-title">Ressources transversales</h2>
-  <div class="cards">
-    <a class="card" href="copie-type-ds.html" style="--card-color:var(--c-maths)">
-      <h3>📝 Copies-types rédigées (2)</h3>
-      <p>Deux devoirs de niveau concours entièrement rédigés et commentés en marge — n°1 analyse &amp; probabilités (suite récurrente, équivalent, loi géométrique), n°2 algèbre &amp; couples de VA (diagonalisation, covariance) : le modèle de rédaction qui prend les points, avec barème.</p>
-    </a>
-    <a class="card" href="formulaire.html" style="--card-color:var(--c-maths)">
-      <h3>Formulaire / Mémo</h3>
-      <p>Toutes les formules clés des 17 chapitres et un mémo Python, sur un seul écran imprimable — pour une relecture rapide avant une colle ou un DS.</p>
-    </a>
-    <a class="card" href="flashcards.html" style="--card-color:var(--c-maths)">
-      <h3>Flashcards</h3>
-      <p>48 cartes (formules, théorèmes, méthodes) avec répétition espacée et formules rendues en LaTeX — la progression est sauvegardée dans ce navigateur.</p>
-    </a>
-    <a class="card" href="annales.html" style="--card-color:var(--c-maths)">
-      <h3>Annales BCE / Ecricome</h3>
-      <p>Gabarit prêt à accueillir les vrais sujets de maths appliquées des concours et leurs corrigés, au fur et à mesure des sessions.</p>
-    </a>
-  </div>
+      <article class="maths-semester">
+        <div class="maths-semester-head"><h3>Semestre 2</h3><span>7 chapitres · consolidation</span></div>
+        <ol class="chapter-list">
+          <li data-page="maths-ch11"><a href="ch11-variables-aleatoires.html"><span class="num">11</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Variables aléatoires finies et lois usuelles</span><span class="maths-chapter-domain">Probabilités · lois</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch12"><a href="ch12-integration.html"><span class="num">12</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Intégration sur un segment</span><span class="maths-chapter-domain">Analyse · intégration</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch13"><a href="ch13-series.html"><span class="num">13</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Séries numériques</span><span class="maths-chapter-domain">Analyse · séries</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch14"><a href="ch14-probabilites-denombrables.html"><span class="num">14</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Probabilités sur un univers dénombrable</span><span class="maths-chapter-domain">Probabilités · Poisson · géométrique</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch15"><a href="ch15-couples-va.html"><span class="num">15</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Couples de variables aléatoires finies</span><span class="maths-chapter-domain">Probabilités · covariance</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch16"><a href="ch16-graphes.html"><span class="num">16</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Introduction aux graphes</span><span class="maths-chapter-domain">Mathématiques discrètes</span></span><span class="done-mark">✓ terminé</span></a></li>
+          <li data-page="maths-ch17"><a href="ch17-statistiques.html"><span class="num">17</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Statistiques descriptives</span><span class="maths-chapter-domain">Statistiques</span></span><span class="done-mark">✓ terminé</span></a></li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <section class="maths-section" aria-labelledby="python-title">
+    <div class="maths-section-head">
+      <div>
+        <span class="maths-section-eyebrow">Computational track</span>
+        <h2 id="python-title">Python &amp; algorithmique</h2>
+      </div>
+      <p>L'informatique n'est pas un bloc séparé du programme : elle sert à expérimenter, simuler, visualiser et traduire les raisonnements mathématiques en procédures exécutables.</p>
+    </div>
+
+    <div class="maths-python-block">
+      <div class="maths-python-head">
+        <h3>6 modules progressifs</h3>
+        <p>Des bases du langage à la simulation de Monte-Carlo, puis aux algorithmes de seuil et à la traduction directe d'objets mathématiques.</p>
+      </div>
+      <ol class="chapter-list">
+        <li data-page="maths-info01"><a href="info01-bases-python.html"><span class="num">I1</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Bases du langage Python</span><span class="maths-chapter-domain">Syntaxe · variables · contrôle</span></span><span class="done-mark">✓ terminé</span></a></li>
+        <li data-page="maths-info02"><a href="info02-listes.html"><span class="num">I2</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Listes et manipulation de données</span><span class="maths-chapter-domain">Structures de données</span></span><span class="done-mark">✓ terminé</span></a></li>
+        <li data-page="maths-info03"><a href="info03-numpy-matplotlib.html"><span class="num">I3</span><span class="maths-chapter-copy"><span class="maths-chapter-title">NumPy, Matplotlib et random</span><span class="maths-chapter-domain">Calcul · visualisation</span></span><span class="done-mark">✓ terminé</span></a></li>
+        <li data-page="maths-info04"><a href="info04-simulation.html"><span class="num">I4</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Simulation et méthode de Monte-Carlo</span><span class="maths-chapter-domain">Probabilités numériques</span></span><span class="done-mark">✓ terminé</span></a></li>
+        <li data-page="maths-info05"><a href="info05-algorithmes.html"><span class="num">I5</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Suites, algorithmes de seuil et dichotomie</span><span class="maths-chapter-domain">Algorithmique</span></span><span class="done-mark">✓ terminé</span></a></li>
+        <li data-page="maths-info06"><a href="info06-formules.html"><span class="num">I6</span><span class="maths-chapter-copy"><span class="maths-chapter-title">Traduire les mathématiques en Python</span><span class="maths-chapter-domain">Modélisation · concours</span></span><span class="done-mark">✓ terminé</span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="maths-section" aria-labelledby="training-title">
+    <div class="maths-section-head">
+      <div>
+        <span class="maths-section-eyebrow">Training lab</span>
+        <h2 id="training-title">S'entraîner</h2>
+      </div>
+      <p>Deux formats complémentaires : répétition active pour automatiser Python, et problèmes longs pour travailler la stratégie, la rédaction et l'endurance intellectuelle.</p>
+    </div>
+    <div class="maths-resource-grid">
+      <a class="maths-resource" href="python-jeu.html">
+        <span class="maths-resource-label">Lab 01 · Python</span><span class="maths-resource-arrow">↗</span>
+        <h3>Le jeu — 70 niveaux</h3>
+        <p>Écrire du vrai code dans le navigateur, avec validation automatique et progression sauvegardée, du premier script aux automatismes utiles au concours.</p>
+      </a>
+      <a class="maths-resource" href="kholles.html">
+        <span class="maths-resource-label">Lab 02 · Oral</span><span class="maths-resource-arrow">↗</span>
+        <h3>Khôlles — 20 problèmes</h3>
+        <p>Des problèmes d'une heure avec indices progressifs et corrigés rigoureux pour travailler la réflexion, l'organisation de la solution et l'oral.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="maths-section" aria-labelledby="resources-title">
+    <div class="maths-section-head">
+      <div>
+        <span class="maths-section-eyebrow">Reference system</span>
+        <h2 id="resources-title">Ressources transversales</h2>
+      </div>
+      <p>Des supports conçus pour réduire le temps perdu avant un DS ou une khôlle : modèle de rédaction, formulaire condensé, mémorisation active et annales.</p>
+    </div>
+    <div class="maths-resource-grid">
+      <a class="maths-resource" href="copie-type-ds.html">
+        <span class="maths-resource-label">R01 · Rédaction</span><span class="maths-resource-arrow">↗</span>
+        <h3>Copies-types rédigées</h3>
+        <p>Deux devoirs de niveau concours entièrement rédigés et commentés, avec barème et choix de rédaction explicités.</p>
+      </a>
+      <a class="maths-resource" href="formulaire.html">
+        <span class="maths-resource-label">R02 · Mémo</span><span class="maths-resource-arrow">↗</span>
+        <h3>Formulaire / mémo</h3>
+        <p>Les formules clés des 17 chapitres et un mémo Python sur un support condensé, conçu pour la relecture rapide.</p>
+      </a>
+      <a class="maths-resource" href="flashcards.html">
+        <span class="maths-resource-label">R03 · Mémoire</span><span class="maths-resource-arrow">↗</span>
+        <h3>Flashcards</h3>
+        <p>48 cartes de formules, théorèmes et méthodes avec répétition espacée et progression sauvegardée dans le navigateur.</p>
+      </a>
+      <a class="maths-resource" href="annales.html">
+        <span class="maths-resource-label">R04 · Concours</span><span class="maths-resource-arrow">↗</span>
+        <h3>Annales BCE / Ecricome</h3>
+        <p>Banque destinée aux sujets de mathématiques appliquées et à leurs corrigés, organisée pour exploiter chaque épreuve comme un entraînement.</p>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
