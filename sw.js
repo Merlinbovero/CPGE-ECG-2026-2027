@@ -1,6 +1,6 @@
 /* Service worker — ECG1. Stratégie « réseau d'abord » :
    contenu toujours à jour quand on est en ligne, repli sur le cache hors-ligne. */
-const CACHE = "ecg1-v10";
+const CACHE = "ecg1-v11";
 
 self.addEventListener("install", function () {
   self.skipWaiting();
