@@ -142,7 +142,100 @@
 .prepa-course-callout h3 { margin: 0 0 .4rem; font-size: 1.12rem; }
 .prepa-course-callout p { margin: .4rem 0; }
 
-html[data-theme="dark"] .prepa-doc-label { color: #fff; }
+/* Adaptation immédiate des premières pages déjà archivées. */
+body[data-page-id="maths-cours-suites-a1-20260905"] main::before {
+  content: "DOCUMENT DE PRÉPA  ·  POLYCOPIÉ DONNÉ EN CLASSE";
+  display: block;
+  width: fit-content;
+  margin: .2rem 0 1.15rem;
+  padding: .48rem .72rem;
+  background: var(--c-maths, #a31f34);
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+body[data-page-id="maths-cours-suites-a1-20260905"] h1 {
+  margin-top: .4rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
+}
+
+body[data-page-id="maths-cours-suites-a1-20260905"] h1 .chapter-num {
+  color: var(--c-maths, #a31f34);
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+body[data-page-id="maths-cours-suites-a1-20260905"] .chapter-meta {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: .7rem 1rem;
+  padding: 1rem 0;
+  border-top: 2px solid var(--c-maths, #a31f34);
+  border-bottom: 1px solid var(--border);
+}
+
+body[data-page-id="maths-cours-suites-a1-20260905"] .chapter-meta::before {
+  content: "FICHE D'IDENTITÉ DU DOCUMENT";
+  grid-column: 1 / -1;
+  color: var(--c-maths, #a31f34);
+  font-size: .63rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+body[data-page-id="maths-cours-suites-a1-20260905"] .box.met:first-of-type {
+  border-left: 5px solid var(--c-maths, #a31f34);
+  background: color-mix(in srgb, var(--c-maths, #a31f34) 4%, var(--bg-card));
+}
+
+body[data-page-id="maths-cours-suites-a1-20260905"] .box.met:first-of-type .box-title::before {
+  content: "SOURCE PRÉPA · ";
+  color: var(--c-maths, #a31f34);
+}
+
+/* Dans le cours de référence : rendre l'archive de classe impossible à confondre. */
+body[data-page-id="maths-ch06"] #cours-classe {
+  position: relative;
+  margin: 1.6rem 0 2rem;
+  padding: 1.15rem 1.2rem 1.2rem;
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--c-maths, #a31f34);
+  background: color-mix(in srgb, var(--c-maths, #a31f34) 4%, var(--bg-card));
+}
+
+body[data-page-id="maths-ch06"] #cours-classe::before {
+  content: "POLYCOPIÉ DONNÉ EN PRÉPA";
+  display: inline-block;
+  margin-bottom: .75rem;
+  padding: .4rem .62rem;
+  background: var(--c-maths, #a31f34);
+  color: #fff;
+  font-size: .64rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+body[data-page-id="maths-ch06"] #cours-classe .box-title {
+  display: block;
+  margin-bottom: .55rem;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+html[data-theme="dark"] .prepa-doc-label,
+html[data-theme="dark"] body[data-page-id="maths-cours-suites-a1-20260905"] main::before,
+html[data-theme="dark"] body[data-page-id="maths-ch06"] #cours-classe::before { color: #fff; }
 
 @media (max-width: 760px) {
   .prepa-doc-banner { grid-template-columns: 1fr; }
@@ -151,4 +244,5 @@ html[data-theme="dark"] .prepa-doc-label { color: #fff; }
   .prepa-doc-meta > div:nth-child(4) { border-top: 1px solid var(--border); }
   .prepa-archive-card a { grid-template-columns: 1fr auto; }
   .prepa-archive-date { grid-column: 1 / -1; }
+  body[data-page-id="maths-cours-suites-a1-20260905"] .chapter-meta { grid-template-columns: 1fr; }
 }
