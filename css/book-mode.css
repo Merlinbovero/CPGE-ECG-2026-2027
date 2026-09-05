@@ -9,7 +9,11 @@
 .ex-done,
 .done-mark,
 .maths-progress-panel,
-.home-progress-io {
+.home-progress-io,
+.fc-session-bar,
+.fc-progress,
+[data-progress-matiere] .progress-bar,
+[data-progress-matiere] .progress-label {
   display: none !important;
 }
 
@@ -32,6 +36,28 @@ body[data-page-id="maths-index"] .chapter-list li.is-done {
 .home-subject-meta-row {
   padding-top: .75rem;
   border-top: 1px solid color-mix(in srgb, var(--subject) 24%, var(--border));
+}
+
+/* Même avant l'exécution du JS, le libellé historique « Progression »
+   ne doit jamais apparaître. */
+.home-subject-meta-row > span:first-child {
+  font-size: 0;
+}
+.home-subject-meta-row > span:first-child::after {
+  content: "Ouvrir la matière";
+  font-size: .82rem;
+}
+
+/* Les anciennes introductions des flashcards parlaient de Leitner et de
+   progression sauvegardée. Elles sont remplacées visuellement par un texte
+   cohérent avec le mode livre. */
+body[data-page-id$="-flashcards"] main > .lead {
+  font-size: 0;
+}
+body[data-page-id$="-flashcards"] main > .lead::after {
+  content: "Cartes de révision à parcourir librement. Aucun niveau de maîtrise ni aucune progression n’est enregistré : tu peux recommencer le paquet autant de fois que nécessaire.";
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 /* La colonne réservée au ✓ disparaît sur le sommaire maths. */
