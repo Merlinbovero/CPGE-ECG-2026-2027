@@ -1,0 +1,475 @@
+/* ============================================================
+   Italiano — direzione editoriale accademica.
+   Pagina pensata come biblioteca di riferimento: gerarchia chiara,
+   grandi aree di studio, nessun tracciamento di progresso.
+   ============================================================ */
+
+body[data-page-id="italien-index"] {
+  --it-ink: #25201d;
+  --it-muted: #6c625b;
+  --it-paper: #fffdfa;
+  --it-paper-soft: #f3eee7;
+  --it-line: #d8cfc4;
+  --it-red: #8f2636;
+  --it-red-dark: #641b27;
+  --it-green: #556b57;
+  --it-gold: #b18a4b;
+  --it-serif: Georgia, "Times New Roman", serif;
+  --it-sans: Arial, Helvetica, sans-serif;
+  background: var(--it-paper-soft);
+  color: var(--it-ink);
+}
+
+html[data-theme="dark"] body[data-page-id="italien-index"] {
+  --it-ink: #f6f1eb;
+  --it-muted: #bbb0a7;
+  --it-paper: #191614;
+  --it-paper-soft: #12100f;
+  --it-line: #463e39;
+  --it-red: #d66777;
+  --it-red-dark: #b95666;
+  --it-green: #91a791;
+  --it-gold: #d1b274;
+}
+
+body[data-page-id="italien-index"] .breadcrumb { background: var(--it-paper-soft); }
+
+body[data-page-id="italien-index"] .italian-shell {
+  width: min(1180px, calc(100% - 2rem));
+  max-width: none;
+  margin: 0 auto;
+  padding: 1.2rem 0 4.5rem;
+  font-family: var(--it-sans);
+}
+
+/* ---------- Hero ---------- */
+.italian-hero {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(25rem, 1.08fr);
+  min-height: 35rem;
+  background: var(--it-paper);
+  border-top: 7px solid var(--it-red);
+}
+
+.italian-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4.5rem);
+}
+
+.italian-eyebrow {
+  display: block;
+  margin-bottom: .9rem;
+  color: var(--it-red);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.italian-hero h1 {
+  max-width: 10ch;
+  margin: 0;
+  color: var(--it-ink);
+  font-family: var(--it-serif);
+  font-size: clamp(3.2rem, 7vw, 6.2rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.05em;
+}
+
+.italian-hero h1 span { color: var(--it-red-dark); }
+
+.italian-lead {
+  max-width: 43rem;
+  margin: 1.5rem 0 0;
+  color: var(--it-muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.64;
+}
+
+.italian-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 2rem;
+}
+
+.italian-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  min-width: 11rem;
+  padding: .82rem 1rem;
+  border: 1px solid var(--it-ink);
+  color: var(--it-ink) !important;
+  font-size: .84rem;
+  font-weight: 800;
+  text-decoration: none !important;
+}
+
+.italian-button.primary {
+  border-color: var(--it-red);
+  background: var(--it-red);
+  color: #fff !important;
+}
+
+.italian-button:hover { background: color-mix(in srgb, var(--it-red) 10%, var(--it-paper)); }
+.italian-button.primary:hover { background: var(--it-red-dark); color: #fff !important; }
+
+.italian-hero-photo {
+  position: relative;
+  min-height: 31rem;
+  margin: 0;
+  overflow: hidden;
+  background: #c9bcae;
+}
+
+.italian-hero-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 35rem;
+  display: block;
+  object-fit: cover;
+  object-position: center 52%;
+}
+
+.italian-hero-photo figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 25rem;
+  padding: .7rem .9rem;
+  background: rgba(37, 32, 29, .92);
+  color: #fff;
+  font-size: .69rem;
+  line-height: 1.4;
+}
+
+/* ---------- Intro ---------- */
+.italian-principle {
+  display: grid;
+  grid-template-columns: minmax(12rem, .36fr) 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding: 1.25rem 1.4rem;
+  border-left: 6px solid var(--it-red);
+  background: var(--it-paper);
+}
+
+.italian-principle strong {
+  color: var(--it-ink);
+  font-family: var(--it-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.italian-principle p {
+  margin: 0;
+  color: var(--it-muted);
+  font-size: .94rem;
+  line-height: 1.58;
+}
+
+/* ---------- Sommaire visivo ---------- */
+.italian-map {
+  padding-top: 3.5rem;
+}
+
+.italian-map-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--it-ink);
+}
+
+.italian-map-head h2 {
+  margin: 0;
+  font-family: var(--it-serif);
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: .98;
+}
+
+.italian-map-head p {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--it-muted);
+  line-height: 1.55;
+}
+
+.italian-map-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.italian-map-card {
+  position: relative;
+  min-height: 14rem;
+  padding: 1.35rem;
+  border: 1px solid var(--it-line);
+  background: var(--it-paper);
+  color: var(--it-ink) !important;
+  text-decoration: none !important;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.italian-map-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--it-red);
+  background: color-mix(in srgb, var(--it-red) 5%, var(--it-paper));
+}
+
+.italian-map-card .map-index {
+  display: block;
+  color: var(--it-red);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.italian-map-card h3 {
+  margin: 2.4rem 0 .55rem;
+  font-family: var(--it-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.02;
+}
+
+.italian-map-card p {
+  margin: 0;
+  color: var(--it-muted);
+  font-size: .86rem;
+  line-height: 1.5;
+}
+
+.italian-map-card .map-arrow {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.italian-map-card.language { border-top: 5px solid var(--it-red); }
+.italian-map-card.culture { border-top: 5px solid var(--it-green); }
+.italian-map-card.exams { border-top: 5px solid var(--it-gold); }
+
+/* ---------- Sezioni ---------- */
+.italian-section {
+  padding-top: 4.6rem;
+}
+
+.italian-section + .italian-section { margin-top: .5rem; }
+
+.italian-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, .76fr) minmax(18rem, 1.24fr);
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--it-ink);
+}
+
+.italian-section-head h2 {
+  margin: 0;
+  font-family: var(--it-serif);
+  font-size: clamp(2.45rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.italian-section-head p {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--it-muted);
+  font-size: .95rem;
+  line-height: 1.58;
+}
+
+.italian-topic-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--it-line);
+  background: var(--it-paper);
+}
+
+.italian-topic { border-bottom: 1px solid var(--it-line); }
+.italian-topic:last-child { border-bottom: 0; }
+
+.italian-topic a {
+  display: grid;
+  grid-template-columns: 3.3rem minmax(0, 1fr) auto;
+  gap: 1.15rem;
+  align-items: center;
+  min-height: 6.5rem;
+  padding: 1rem 1.2rem;
+  color: var(--it-ink) !important;
+  text-decoration: none !important;
+  transition: background .15s ease, box-shadow .15s ease;
+}
+
+.italian-topic a:hover {
+  background: color-mix(in srgb, var(--it-red) 6%, var(--it-paper));
+  box-shadow: inset 5px 0 0 var(--it-red);
+}
+
+.italian-topic-number {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  color: var(--it-red);
+  border-right: 2px solid color-mix(in srgb, var(--it-red) 74%, var(--it-line));
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.italian-topic-copy strong {
+  display: block;
+  color: inherit;
+  font-family: var(--it-serif);
+  font-size: 1.34rem;
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.italian-topic-copy span {
+  display: block;
+  margin-top: .36rem;
+  color: var(--it-muted);
+  font-size: .8rem;
+  line-height: 1.42;
+}
+
+.italian-topic-arrow { font-size: 1.22rem; }
+
+/* ---------- Accesso rapido ---------- */
+.italian-reference {
+  margin-top: 4.8rem;
+  padding: 2rem;
+  background: var(--it-ink);
+  color: #fff;
+}
+
+html[data-theme="dark"] body[data-page-id="italien-index"] .italian-reference { background: #29231f; }
+
+.italian-reference-head {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(18rem, 1.25fr);
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+}
+
+.italian-reference-head .italian-eyebrow { color: #e3a7af; }
+
+.italian-reference-head h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--it-serif);
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 400;
+}
+
+.italian-reference-head p {
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  line-height: 1.55;
+}
+
+.italian-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1rem;
+  background: rgba(255,255,255,.22);
+}
+
+.italian-reference-card {
+  position: relative;
+  min-height: 13.5rem;
+  padding: 1.3rem;
+  background: #302925;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.italian-reference-card:hover { background: #3c322e; }
+
+.italian-reference-card .ref-code {
+  color: #e3a7af;
+  font-size: .69rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.italian-reference-card h3 {
+  max-width: 15ch;
+  margin: 3rem 0 .65rem;
+  color: #fff;
+  font-family: var(--it-serif);
+  font-size: 1.65rem;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.italian-reference-card p {
+  margin: 0;
+  color: rgba(255,255,255,.68);
+  font-size: .83rem;
+  line-height: 1.5;
+}
+
+.italian-reference-card .ref-arrow {
+  position: absolute;
+  top: 1.05rem;
+  right: 1.1rem;
+}
+
+body[data-page-id="italien-index"] .site-footer { border-top-color: var(--it-red); }
+
+@media (max-width: 900px) {
+  .italian-hero,
+  .italian-section-head,
+  .italian-reference-head,
+  .italian-principle {
+    grid-template-columns: 1fr;
+  }
+
+  .italian-map-grid,
+  .italian-reference-grid { grid-template-columns: 1fr; }
+
+  .italian-hero-photo,
+  .italian-hero-photo img { min-height: 25rem; }
+}
+
+@media (max-width: 620px) {
+  body[data-page-id="italien-index"] .italian-shell { width: min(100% - 1rem, 1180px); }
+
+  .italian-hero-copy { padding: 2rem 1.2rem 2.4rem; }
+  .italian-hero h1 { font-size: clamp(3rem, 16vw, 4.6rem); }
+  .italian-hero-photo,
+  .italian-hero-photo img { min-height: 20rem; }
+
+  .italian-map-head { align-items: flex-start; flex-direction: column; }
+
+  .italian-topic a {
+    grid-template-columns: 2.6rem minmax(0, 1fr) auto;
+    gap: .8rem;
+    min-height: 5.8rem;
+    padding: .85rem .8rem;
+  }
+
+  .italian-topic-copy strong { font-size: 1.14rem; }
+  .italian-reference { padding: 1.2rem; }
+}
