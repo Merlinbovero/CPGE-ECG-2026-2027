@@ -1,5 +1,5 @@
 /* Accueil — visuels photo par matière.
-   Sources : Unsplash (licence Unsplash) et Wikimedia Commons pour l'Italie.
+   Sources : Unsplash et Wikimedia Commons.
    Les SVG historiques restent dans le HTML comme fallback, mais sont masqués ici. */
 
 body.home-v1 .home-subject {
@@ -61,9 +61,9 @@ body.home-v1 .home-subject-index {
   backdrop-filter: blur(5px);
 }
 
-/* Maths — main au tableau */
+/* Maths — vraie salle de cours à Cornell University, tableau couvert d'équations */
 body.home-v1 .home-subject[data-subject="maths"] {
-  --subject-image: url("https://images.unsplash.com/photo-1758685734303-e85757067f28?auto=format&fit=crop&w=1400&q=78");
+  --subject-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Classroom%20with%20chairs%20and%20blackboard%20at%20Cornell%20University.jpg?width=1400");
   --subject-position: center 48%;
 }
 
