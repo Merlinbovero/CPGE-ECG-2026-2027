@@ -1,6 +1,6 @@
 /* Mathématiques — lisibilité renforcée du programme annuel.
-   Objectif : rendre les chapitres immédiatement repérables sans transformer
-   la page en mosaïque de cartes. */
+   Les chapitres du programme et les modules Python gardent la même hiérarchie,
+   avec une variante sombre dédiée à la programmation. */
 
 body[data-page-id="maths-index"] .maths-semester {
   border-color: color-mix(in srgb, var(--maths-line) 88%, var(--maths-ink));
@@ -17,29 +17,30 @@ body[data-page-id="maths-index"] .maths-semester-head h3 {
   font-weight: 900;
 }
 
-body[data-page-id="maths-index"] .chapter-list li {
+/* ---------- Programme annuel ---------- */
+body[data-page-id="maths-index"] .maths-semesters .chapter-list li {
   position: relative;
   background: var(--maths-card);
   transition: background .16s ease, box-shadow .16s ease;
 }
 
-body[data-page-id="maths-index"] .chapter-list li:nth-child(even) {
+body[data-page-id="maths-index"] .maths-semesters .chapter-list li:nth-child(even) {
   background: color-mix(in srgb, var(--maths-soft) 24%, var(--maths-card));
 }
 
-body[data-page-id="maths-index"] .chapter-list li:hover {
+body[data-page-id="maths-index"] .maths-semesters .chapter-list li:hover {
   background: color-mix(in srgb, var(--maths-red) 7%, var(--maths-card));
   box-shadow: inset 4px 0 0 var(--maths-red);
 }
 
-body[data-page-id="maths-index"] .chapter-list a {
+body[data-page-id="maths-index"] .maths-semesters .chapter-list a {
   grid-template-columns: 3.15rem minmax(0, 1fr) auto;
   gap: 1rem;
   min-height: 5.2rem;
   padding: .85rem 1rem .85rem .75rem;
 }
 
-body[data-page-id="maths-index"] .chapter-list .num {
+body[data-page-id="maths-index"] .maths-semesters .chapter-list .num {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -56,34 +57,97 @@ body[data-page-id="maths-index"] .chapter-list .num {
   letter-spacing: -.04em;
 }
 
-body[data-page-id="maths-index"] .maths-chapter-title {
+body[data-page-id="maths-index"] .maths-semesters .maths-chapter-title {
   font-size: 1.02rem;
   font-weight: 820;
   line-height: 1.28;
   letter-spacing: -.012em;
 }
 
-body[data-page-id="maths-index"] .maths-chapter-domain {
+body[data-page-id="maths-index"] .maths-semesters .maths-chapter-domain {
   margin-top: .32rem;
   font-size: .7rem;
   letter-spacing: .085em;
 }
 
-body[data-page-id="maths-index"] .chapter-list .done-mark::before {
-  display: grid;
-  place-items: center;
-  width: 1.65rem;
-  height: 1.65rem;
-  border: 1px solid color-mix(in srgb, var(--maths-red) 55%, var(--maths-line));
-  font-size: .8rem;
+/* ---------- Python & algorithmique ---------- */
+body[data-page-id="maths-index"] .maths-python-block {
+  overflow: hidden;
+  border-color: #363636;
+  background: #171717;
 }
 
-body[data-page-id="maths-index"] .chapter-list li.is-done {
-  opacity: .76;
+body[data-page-id="maths-index"] .maths-python-head {
+  padding: 1.25rem 1.35rem;
+  background: #202020;
+  border-bottom-color: rgba(255, 255, 255, .16);
 }
 
-body[data-page-id="maths-index"] .chapter-list li.is-done .maths-chapter-title {
-  color: color-mix(in srgb, var(--maths-ink) 72%, var(--maths-muted));
+body[data-page-id="maths-index"] .maths-python-head h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 850;
+}
+
+body[data-page-id="maths-index"] .maths-python-head p {
+  color: rgba(255, 255, 255, .76);
+  line-height: 1.55;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .chapter-list li {
+  position: relative;
+  background: #171717;
+  border-bottom-color: rgba(255, 255, 255, .13) !important;
+  transition: background .16s ease, box-shadow .16s ease;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .chapter-list li:nth-child(even) {
+  background: #1d1d1d;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .chapter-list li:hover {
+  background: #252525 !important;
+  box-shadow: inset 4px 0 0 #d1495b;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .chapter-list a {
+  grid-template-columns: 3.15rem minmax(0, 1fr) !important;
+  gap: 1rem;
+  min-height: 5rem;
+  padding: .8rem 1.1rem .8rem .8rem;
+  color: #f7f7f2;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .chapter-list .num {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  width: auto;
+  height: auto;
+  padding-right: .75rem;
+  color: #ff7b8b !important;
+  border: 0 !important;
+  border-right: 2px solid rgba(209, 73, 91, .78) !important;
+  font-size: 1.08rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .maths-chapter-title {
+  color: #f7f7f2;
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+
+body[data-page-id="maths-index"] .maths-python-block .maths-chapter-domain {
+  margin-top: .3rem;
+  color: rgba(255, 255, 255, .62);
+  font-size: .7rem;
+  letter-spacing: .08em;
 }
 
 @media (max-width: 980px) {
@@ -93,19 +157,22 @@ body[data-page-id="maths-index"] .chapter-list li.is-done .maths-chapter-title {
 }
 
 @media (max-width: 620px) {
-  body[data-page-id="maths-index"] .chapter-list a {
-    grid-template-columns: 2.65rem minmax(0, 1fr) auto;
+  body[data-page-id="maths-index"] .maths-semesters .chapter-list a,
+  body[data-page-id="maths-index"] .maths-python-block .chapter-list a {
+    grid-template-columns: 2.65rem minmax(0, 1fr) !important;
     gap: .75rem;
     min-height: 4.9rem;
     padding: .75rem .8rem .75rem .65rem;
   }
 
-  body[data-page-id="maths-index"] .chapter-list .num {
+  body[data-page-id="maths-index"] .maths-semesters .chapter-list .num,
+  body[data-page-id="maths-index"] .maths-python-block .chapter-list .num {
     padding-right: .55rem;
     font-size: 1rem;
   }
 
-  body[data-page-id="maths-index"] .maths-chapter-title {
+  body[data-page-id="maths-index"] .maths-semesters .maths-chapter-title,
+  body[data-page-id="maths-index"] .maths-python-block .maths-chapter-title {
     font-size: .96rem;
   }
 
@@ -113,5 +180,11 @@ body[data-page-id="maths-index"] .chapter-list li.is-done .maths-chapter-title {
     align-items: flex-start;
     flex-direction: column;
     gap: .25rem;
+  }
+
+  body[data-page-id="maths-index"] .maths-python-head {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+    padding: 1rem;
   }
 }
