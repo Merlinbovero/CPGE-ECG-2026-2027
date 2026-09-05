@@ -1,0 +1,117 @@
+/* Accueil — visuels photo par matière.
+   Sources : Unsplash (licence Unsplash) et Wikimedia Commons pour l'Italie.
+   Les SVG historiques restent dans le HTML comme fallback, mais sont masqués ici. */
+
+body.home-v1 .home-subject {
+  grid-template-rows: 11.5rem auto;
+  min-height: 22rem;
+}
+
+body.home-v1 .home-subject-visual {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  background: #d9d6cf;
+  border-bottom: 3px solid var(--subject);
+}
+
+body.home-v1 .home-subject-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--subject-image);
+  background-size: cover;
+  background-position: var(--subject-position, center);
+  filter: saturate(.88) contrast(1.03);
+  transform: scale(1.001);
+  transition: transform .42s cubic-bezier(.2,.7,.2,1), filter .25s ease;
+}
+
+body.home-v1 .home-subject-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12,14,13,.04) 45%, rgba(12,14,13,.28) 100%);
+  pointer-events: none;
+}
+
+body.home-v1 .home-subject:hover .home-subject-visual::before {
+  transform: scale(1.035);
+  filter: saturate(.96) contrast(1.05);
+}
+
+body.home-v1 .home-subject-visual svg {
+  display: none !important;
+}
+
+body.home-v1 .home-subject-index {
+  z-index: 2;
+  top: .75rem;
+  right: .75rem;
+  min-width: 2rem;
+  padding: .28rem .38rem;
+  background: rgba(15,18,16,.68);
+  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.2);
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  line-height: 1;
+  backdrop-filter: blur(5px);
+}
+
+/* Maths — main au tableau */
+body.home-v1 .home-subject[data-subject="maths"] {
+  --subject-image: url("https://images.unsplash.com/photo-1758685734303-e85757067f28?auto=format&fit=crop&w=1400&q=78");
+  --subject-position: center 48%;
+}
+
+/* ESH — New York Stock Exchange */
+body.home-v1 .home-subject[data-subject="esh"] {
+  --subject-image: url("https://images.unsplash.com/photo-1534469650761-fce6cc26ac0d?auto=format&fit=crop&w=1400&q=78");
+  --subject-position: center 44%;
+}
+
+/* Culture générale — livres anciens */
+body.home-v1 .home-subject[data-subject="cg"] {
+  --subject-image: url("https://images.unsplash.com/photo-1771073386804-e779ee46202d?auto=format&fit=crop&w=1400&q=78");
+  --subject-position: center 52%;
+}
+
+/* Anglais — Westminster */
+body.home-v1 .home-subject[data-subject="anglais"] {
+  --subject-image: url("https://images.unsplash.com/photo-1777378194994-5145c6fb46ba?auto=format&fit=crop&w=1400&q=78");
+  --subject-position: center 41%;
+}
+
+/* Italien — carte physique de l'Italie */
+body.home-v1 .home-subject[data-subject="italien"] {
+  --subject-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Italy%20Physiography.jpg?width=1400");
+  --subject-position: center 47%;
+}
+
+/* Méthodologie — carnet / organisation */
+body.home-v1 .home-subject[data-subject="methodo"] {
+  --subject-image: url("https://images.unsplash.com/photo-1743385779312-73ea241025d8?auto=format&fit=crop&w=1400&q=78");
+  --subject-position: center 54%;
+}
+
+html[data-theme="dark"] body.home-v1 .home-subject-visual::after {
+  background: linear-gradient(180deg, rgba(4,6,5,.08) 40%, rgba(4,6,5,.42) 100%);
+}
+
+@media (max-width: 620px) {
+  body.home-v1 .home-subject {
+    grid-template-rows: 13rem auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home-v1 .home-subject-visual::before {
+    transition: none;
+  }
+  body.home-v1 .home-subject:hover .home-subject-visual::before {
+    transform: none;
+  }
+}
