@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LVB Italien — ECG1 2026-2027</title>
-<meta name="description" content="Italien LVB en ECG1 : civilisation de l'Italie contemporaine, grammaire, vocabulaire, méthodologie et exercices corrigés.">
+<title>Lingua e civiltà italiana — ECG1 2026-2027</title>
+<meta name="description" content="Italiano LVB per ECG1: grammatica, lessico, civiltà italiana, testi letterari, metodologia, esercizi e preparazione ai concorsi.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-<meta name="theme-color" content="#2b2e35">
+<meta name="theme-color" content="#8f2636">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
@@ -35,53 +35,113 @@
   </nav>
 </header>
 
-<nav class="breadcrumb" aria-label="Fil d'Ariane">
-  <a href="../index.html">Accueil</a><span class="sep">›</span><span>LVB Italien</span>
+<nav class="breadcrumb" aria-label="Percorso di navigazione">
+  <a href="../index.html">Home</a><span class="sep">›</span><span>Italiano</span>
 </nav>
 
-<main>
-  <h1>LVB — Italien</h1>
-  <p class="lead">Cette section suit la même architecture que la LVA : <strong>civilisation</strong> (l'Italie contemporaine), <strong>grammaire</strong>, <strong>vocabulaire thématique</strong>, <strong>méthodologie</strong> des épreuves et <strong>exercices corrigés</strong>. Pour ajouter une autre LVB (espagnol, allemand…), il suffit de dupliquer ce dossier avec les cinq mêmes pages et de mettre à jour <code>js/data.js</code>.</p>
+<main class="italian-shell">
+  <section class="italian-hero" aria-labelledby="italian-title">
+    <div class="italian-hero-copy">
+      <span class="italian-eyebrow">LVB · Italiano · ECG1</span>
+      <h1 id="italian-title">Lingua <span>&amp; civiltà italiana</span></h1>
+      <p class="italian-lead">Una biblioteca di riferimento per costruire una lingua precisa, capire l’Italia contemporanea e affrontare con metodo traduzione, saggio, prova scritta e orale.</p>
+      <div class="italian-hero-actions">
+        <a class="italian-button primary" href="#mappa"><span>Esplora le aree</span><span aria-hidden="true">↓</span></a>
+        <a class="italian-button" href="formulaire.html"><span>Apri la scheda di riferimento</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
 
-  <div class="box met">
-    <span class="box-title">Comment travailler la LVB</span>
-    <p>La LVB est souvent négligée alors que ses coefficients sont proches de ceux de la LVA : c'est un gisement de points — d'autant qu'en italien, les candidats sont moins nombreux et les copies solides se distinguent vite. Priorités : la <strong>conjugaison</strong> (passato prossimo avec le bon auxiliaire et l'accord, subjonctif, futur irrégulier — systématiquement testés en thème) et des fiches de civilisation avec dates et chiffres précis, réutilisables en essai et en khôlle. Lire chaque semaine un article du <em>Corriere della Sera</em>, de <em>la Repubblica</em> ou d'<em>Internazionale</em>.</p>
-  </div>
+    <figure class="italian-hero-photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Italian%20legal%20hardback%20books%20open.jpg?width=1800" alt="Due libri in lingua italiana aperti su un tavolo">
+      <figcaption>Libri in lingua italiana · fotografia di Thomaseagle · CC BY-SA via Wikimedia Commons</figcaption>
+    </figure>
+  </section>
 
-  <h2 class="semestre-title">Les fiches</h2>
-  <ol class="chapter-list">
-    <li data-page="italien-civi"><a href="civilisation.html"><span class="num">1</span> Civilisation : l'Italie contemporaine <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="italien-gram"><a href="grammaire.html"><span class="num">2</span> Grammaire : les points essentiels <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="italien-vocab"><a href="vocabulaire.html"><span class="num">3</span> Vocabulaire thématique <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="italien-methodo"><a href="methodologie.html"><span class="num">4</span> Méthodologie des épreuves <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="italien-exos"><a href="exercices.html"><span class="num">5</span> Exercices corrigés <span class="done-mark">✓ terminé</span></a></li>
-    <li data-page="italien-testi"><a href="testi-letterari.html"><span class="num">6</span> Textes littéraires complexes &amp; version <span class="done-mark">✓ terminé</span></a></li>
-  </ol>
+  <section class="italian-principle" aria-label="Come usare questa sezione">
+    <strong>Leggere spesso. Scrivere con precisione. Tornare sui concetti.</strong>
+    <p>Questa sezione funziona come un libro di consultazione, non come un percorso da completare. Puoi passare liberamente dalla grammatica alla civiltà, dal lessico agli esercizi e tornare più volte sullo stesso punto.</p>
+  </section>
 
-  <h2 class="semestre-title">Ressources transversales</h2>
-  <div class="cards">
-    <a class="card" href="formulaire.html" style="--card-color:var(--c-italien)">
-      <h3>Formulaire / Mémo</h3>
-      <p>Les 4 fiches de révision condensées sur un seul écran, pour une relecture rapide avant une khôlle ou un DS.</p>
-    </a>
-    <a class="card" href="flashcards.html" style="--card-color:var(--c-italien)">
-      <h3>Flashcards</h3>
-      <p>32 cartes (grammaire, vocabulaire, civilisation) avec répétition espacée — la progression est sauvegardée dans ce navigateur.</p>
-    </a>
-    <a class="card" href="annales.html" style="--card-color:var(--c-italien)">
-      <h3>Annales BCE / Ecricome</h3>
-      <p>Gabarit prêt à accueillir les vrais sujets de concours (ELVi, IENA, Ecricome) et leurs corrigés.</p>
-    </a>
-  </div>
+  <section class="italian-map" id="mappa" aria-labelledby="mappa-title">
+    <div class="italian-map-head">
+      <div>
+        <span class="italian-eyebrow">Indice della materia</span>
+        <h2 id="mappa-title">Tre aree, una struttura chiara</h2>
+      </div>
+      <p>Scegli prima il tipo di lavoro che ti serve. Ogni area riunisce solo le risorse pertinenti, così la pagina resta leggibile anche quando torni per una consultazione rapida.</p>
+    </div>
 
-  <div class="box warn">
-    <span class="box-title">Ce qu'un site statique ne peut pas remplacer</span>
-    <p>La compréhension orale, les khôlles et l'entraînement à la prononciation exigent de l'audio et une interaction en temps réel — impossibles sur un site statique. Voir la fiche <a href="methodologie.html#s4">méthodologie, section khôlles</a> pour des ressources d'écoute et la marche à suivre.</p>
-  </div>
+    <div class="italian-map-grid">
+      <a class="italian-map-card language" href="#lingua"><span class="map-index">Area 01</span><span class="map-arrow">↓</span><h3>Lingua</h3><p>Grammatica, lessico e automatismi indispensabili per tradurre e scrivere correttamente.</p></a>
+      <a class="italian-map-card culture" href="#civilta"><span class="map-index">Area 02</span><span class="map-arrow">↓</span><h3>Civiltà &amp; letteratura</h3><p>Italia contemporanea, cultura, società e testi letterari da riutilizzare nelle prove.</p></a>
+      <a class="italian-map-card exams" href="#prove"><span class="map-index">Area 03</span><span class="map-arrow">↓</span><h3>Prove &amp; allenamento</h3><p>Metodo, esercizi corretti e preparazione concreta alle richieste dei concorsi.</p></a>
+    </div>
+  </section>
+
+  <section class="italian-section" id="lingua" aria-labelledby="lingua-title">
+    <div class="italian-section-head">
+      <div>
+        <span class="italian-eyebrow">Area 01 · Lingua</span>
+        <h2 id="lingua-title">Costruire una lingua solida</h2>
+      </div>
+      <p>Coniugazioni, accordi, preposizioni e lessico devono diventare affidabili. Questa parte raccoglie ciò che serve per produrre un italiano corretto e naturale.</p>
+    </div>
+
+    <ol class="italian-topic-list">
+      <li class="italian-topic"><a href="grammaire.html"><span class="italian-topic-number">01</span><span class="italian-topic-copy"><strong>Grammatica essenziale</strong><span>Tempi verbali, ausiliari, congiuntivo, pronomi, articoli, preposizioni e principali difficoltà.</span></span><span class="italian-topic-arrow">→</span></a></li>
+      <li class="italian-topic"><a href="vocabulaire.html"><span class="italian-topic-number">02</span><span class="italian-topic-copy"><strong>Lessico tematico</strong><span>Vocabolario di uso frequente, espressioni idiomatiche e parole utili per attualità, società ed economia.</span></span><span class="italian-topic-arrow">→</span></a></li>
+    </ol>
+  </section>
+
+  <section class="italian-section" id="civilta" aria-labelledby="civilta-title">
+    <div class="italian-section-head">
+      <div>
+        <span class="italian-eyebrow">Area 02 · Civiltà &amp; letteratura</span>
+        <h2 id="civilta-title">Capire l’Italia e i suoi testi</h2>
+      </div>
+      <p>Le prove richiedono esempi precisi e una cultura riutilizzabile. Qui trovi i riferimenti storici, politici e sociali, insieme a testi più complessi per la traduzione e l’analisi.</p>
+    </div>
+
+    <ol class="italian-topic-list">
+      <li class="italian-topic"><a href="civilisation.html"><span class="italian-topic-number">03</span><span class="italian-topic-copy"><strong>L’Italia contemporanea</strong><span>Istituzioni, politica, società, economia, storia recente e grandi questioni dell’Italia di oggi.</span></span><span class="italian-topic-arrow">→</span></a></li>
+      <li class="italian-topic"><a href="testi-letterari.html"><span class="italian-topic-number">04</span><span class="italian-topic-copy"><strong>Testi letterari &amp; versione</strong><span>Prosa complessa, comprensione fine, stile e traduzione letteraria.</span></span><span class="italian-topic-arrow">→</span></a></li>
+    </ol>
+  </section>
+
+  <section class="italian-section" id="prove" aria-labelledby="prove-title">
+    <div class="italian-section-head">
+      <div>
+        <span class="italian-eyebrow">Area 03 · Prove &amp; allenamento</span>
+        <h2 id="prove-title">Passare dalla conoscenza alla prova</h2>
+      </div>
+      <p>Il contenuto deve diventare utilizzabile sotto vincolo di tempo. Questa parte serve a trasformare regole, lessico e civiltà in risposte efficaci e ben strutturate.</p>
+    </div>
+
+    <ol class="italian-topic-list">
+      <li class="italian-topic"><a href="methodologie.html"><span class="italian-topic-number">05</span><span class="italian-topic-copy"><strong>Metodo delle prove</strong><span>Traduzione, saggio, sintesi, prova scritta, khôlle e organizzazione del tempo.</span></span><span class="italian-topic-arrow">→</span></a></li>
+      <li class="italian-topic"><a href="exercices.html"><span class="italian-topic-number">06</span><span class="italian-topic-copy"><strong>Esercizi corretti</strong><span>Applicazioni di grammatica, lessico, traduzione e produzione scritta con correzioni dettagliate.</span></span><span class="italian-topic-arrow">→</span></a></li>
+    </ol>
+  </section>
+
+  <section class="italian-reference" aria-labelledby="riferimenti-title">
+    <div class="italian-reference-head">
+      <div>
+        <span class="italian-eyebrow">Consultazione rapida</span>
+        <h2 id="riferimenti-title">Riferimenti &amp; pratica</h2>
+      </div>
+      <p>Tre accessi diretti quando non hai bisogno di seguire un percorso: consultare una regola, ripassare attivamente o lavorare su materiale da concorso.</p>
+    </div>
+
+    <div class="italian-reference-grid">
+      <a class="italian-reference-card" href="formulaire.html"><span class="ref-code">R01 · Riferimento</span><span class="ref-arrow">↗</span><h3>Scheda di lingua</h3><p>Grammatica, lessico e punti chiave condensati in un formato rapido da consultare.</p></a>
+      <a class="italian-reference-card" href="flashcards.html"><span class="ref-code">R02 · Ripasso</span><span class="ref-arrow">↗</span><h3>Flashcard</h3><p>Carte di grammatica, lessico e civiltà da riaprire liberamente ogni volta che serve.</p></a>
+      <a class="italian-reference-card" href="annales.html"><span class="ref-code">R03 · Concorsi</span><span class="ref-arrow">↗</span><h3>Annali BCE &amp; Ecricome</h3><p>Spazio dedicato ai soggetti e alle prove di lingua italiana per allenarsi in condizioni realistiche.</p></a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
-  <p>ECG1 2026/2027 — LVB Italien. <a href="../index.html">Retour à l'accueil</a></p>
+  <p>ECG1 2026/2027 — Lingua &amp; civiltà italiana. <a href="../index.html">Torna alla home</a></p>
 </footer>
 
 <script src="../js/data.js"></script>
