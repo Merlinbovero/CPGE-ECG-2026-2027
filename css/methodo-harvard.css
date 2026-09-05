@@ -1,0 +1,548 @@
+/* ============================================================
+   Méthodologie & concours — direction éditoriale Harvard-inspired.
+   Palette fondée sur Crimson / Ink / Parchment, sans reprendre
+   les logos, blasons, signatures ou polices propriétaires Harvard.
+   ============================================================ */
+
+body[data-page-id="methodo-index"] {
+  --meth-crimson: #a51c30;
+  --meth-crimson-dark: #761425;
+  --meth-ink: #1e1e1e;
+  --meth-slate: #565656;
+  --meth-muted: #6e6a67;
+  --meth-paper: #ffffff;
+  --meth-parchment: #f3f3f1;
+  --meth-warm: #eeeae4;
+  --meth-line: #d5d1cb;
+  --meth-blue: #213153;
+  --meth-serif: Georgia, "Times New Roman", serif;
+  --meth-sans: Arial, Helvetica, sans-serif;
+  background: var(--meth-parchment);
+  color: var(--meth-ink);
+}
+
+html[data-theme="dark"] body[data-page-id="methodo-index"] {
+  --meth-ink: #f5f2ee;
+  --meth-slate: #c7c1bc;
+  --meth-muted: #aaa39d;
+  --meth-paper: #171717;
+  --meth-parchment: #101010;
+  --meth-warm: #202020;
+  --meth-line: #3d3936;
+  --meth-blue: #9eaccf;
+  --meth-crimson: #d84b61;
+  --meth-crimson-dark: #b7374c;
+}
+
+body[data-page-id="methodo-index"] .breadcrumb {
+  background: var(--meth-parchment);
+}
+
+body[data-page-id="methodo-index"] .methodo-shell {
+  width: min(1180px, calc(100% - 2rem));
+  max-width: none;
+  margin: 0 auto;
+  padding: 1.2rem 0 5rem;
+  font-family: var(--meth-sans);
+}
+
+/* ---------- Hero ---------- */
+.methodo-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(23rem, .97fr);
+  min-height: 34rem;
+  background: var(--meth-paper);
+  border-top: 9px solid var(--meth-crimson);
+}
+
+.methodo-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4.8rem);
+}
+
+.methodo-kicker {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--meth-slate);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.methodo-hero h1 {
+  max-width: 10.5ch;
+  margin: 0;
+  color: var(--meth-ink);
+  font-family: var(--meth-serif);
+  font-size: clamp(3.25rem, 6.6vw, 6.3rem);
+  font-weight: 400;
+  line-height: .93;
+  letter-spacing: -.05em;
+}
+
+.methodo-hero h1 span {
+  display: block;
+  margin-top: .1em;
+}
+
+.methodo-lead {
+  max-width: 45rem;
+  margin: 1.6rem 0 0;
+  color: var(--meth-slate);
+  font-size: clamp(1rem, 1.35vw, 1.13rem);
+  line-height: 1.66;
+}
+
+.methodo-hero-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  width: fit-content;
+  margin-top: 2rem;
+  padding: .9rem 1.05rem;
+  background: var(--meth-crimson);
+  color: #fff !important;
+  font-size: .84rem;
+  font-weight: 800;
+  text-decoration: none !important;
+}
+
+.methodo-hero-action:hover {
+  background: var(--meth-crimson-dark);
+}
+
+.methodo-hero-photo {
+  position: relative;
+  min-height: 32rem;
+  margin: 0;
+  overflow: hidden;
+  background: #d0cbc4;
+}
+
+.methodo-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 34rem;
+  object-fit: cover;
+  object-position: center 54%;
+  filter: saturate(.78) contrast(1.04);
+}
+
+.methodo-hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(18, 16, 15, .34) 100%);
+  pointer-events: none;
+}
+
+.methodo-hero-photo figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  max-width: 24rem;
+  padding: .65rem .85rem;
+  background: rgba(30, 30, 30, .88);
+  color: rgba(255,255,255,.88);
+  font-size: .67rem;
+  line-height: 1.4;
+}
+
+/* ---------- Orientation immédiate ---------- */
+.methodo-start {
+  margin-top: 1.2rem;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  background: var(--meth-ink);
+  color: #fff;
+}
+
+html[data-theme="dark"] .methodo-start {
+  background: #24211f;
+}
+
+.methodo-start-head {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(18rem, 1.25fr);
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1.35rem;
+  border-bottom: 1px solid rgba(255,255,255,.24);
+}
+
+.methodo-start-head h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--meth-serif);
+  font-size: clamp(2.2rem, 4vw, 3.9rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.04em;
+}
+
+.methodo-start-head p {
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+.methodo-paths {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.18);
+  border-left: 1px solid rgba(255,255,255,.18);
+}
+
+.methodo-path {
+  position: relative;
+  min-height: 13.5rem;
+  padding: 1.2rem;
+  border-right: 1px solid rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  color: #fff !important;
+  text-decoration: none !important;
+  transition: background .16s ease;
+}
+
+.methodo-path:hover {
+  background: var(--meth-crimson);
+}
+
+.methodo-path-code {
+  display: block;
+  color: rgba(255,255,255,.58);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.methodo-path h3 {
+  max-width: 12ch;
+  margin: 2.6rem 0 .55rem;
+  color: #fff;
+  font-family: var(--meth-serif);
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.methodo-path p {
+  margin: 0;
+  color: rgba(255,255,255,.68);
+  font-size: .8rem;
+  line-height: 1.48;
+}
+
+.methodo-path:hover p,
+.methodo-path:hover .methodo-path-code {
+  color: rgba(255,255,255,.9);
+}
+
+.methodo-path-arrow {
+  position: absolute;
+  top: 1.05rem;
+  right: 1.05rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Sections ---------- */
+.methodo-section {
+  padding-top: 4.8rem;
+  scroll-margin-top: 7rem;
+}
+
+.methodo-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(20rem, 1.25fr);
+  gap: 2.5rem;
+  align-items: end;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--meth-ink);
+}
+
+.methodo-section-number {
+  display: block;
+  margin-bottom: .55rem;
+  color: var(--meth-crimson);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.methodo-section-head h2 {
+  margin: 0;
+  color: var(--meth-ink);
+  font-family: var(--meth-serif);
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.04em;
+}
+
+.methodo-section-head p {
+  max-width: 43rem;
+  margin: 0;
+  color: var(--meth-slate);
+  font-size: .96rem;
+  line-height: 1.6;
+}
+
+.methodo-guide-list {
+  margin-top: 1rem;
+  background: var(--meth-paper);
+  border-top: 1px solid var(--meth-line);
+}
+
+.methodo-guide {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(11rem, .35fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  min-height: 8.2rem;
+  padding: 1.15rem 1.3rem;
+  border-right: 1px solid var(--meth-line);
+  border-bottom: 1px solid var(--meth-line);
+  border-left: 1px solid var(--meth-line);
+  color: var(--meth-ink) !important;
+  text-decoration: none !important;
+  transition: background .15s ease, box-shadow .15s ease;
+}
+
+.methodo-guide:hover {
+  background: color-mix(in srgb, var(--meth-crimson) 5%, var(--meth-paper));
+  box-shadow: inset 5px 0 0 var(--meth-crimson);
+}
+
+.methodo-guide-index {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  color: var(--meth-slate);
+  border-right: 1px solid var(--meth-line);
+  font-family: var(--meth-serif);
+  font-size: 1.35rem;
+}
+
+.methodo-guide-copy strong {
+  display: block;
+  color: var(--meth-ink);
+  font-family: var(--meth-serif);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.methodo-guide-copy span {
+  display: block;
+  max-width: 48rem;
+  margin-top: .4rem;
+  color: var(--meth-muted);
+  font-size: .83rem;
+  line-height: 1.5;
+}
+
+.methodo-guide-meta {
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--meth-line);
+  color: var(--meth-slate);
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.55;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.methodo-guide-arrow {
+  color: var(--meth-crimson);
+  font-size: 1.35rem;
+}
+
+/* ---------- Concours : section particulièrement visible ---------- */
+.methodo-section.concours .methodo-guide-list {
+  border-top: 5px solid var(--meth-crimson);
+}
+
+.methodo-section.concours .methodo-guide {
+  min-height: 10rem;
+}
+
+.methodo-section.concours .methodo-guide-copy strong {
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+}
+
+/* ---------- Repères ---------- */
+.methodo-reference {
+  display: grid;
+  grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr);
+  gap: 0;
+  margin-top: 4.8rem;
+  border-top: 7px solid var(--meth-crimson);
+  background: var(--meth-blue);
+  color: #fff;
+}
+
+.methodo-reference-title {
+  padding: clamp(1.5rem, 3vw, 2.3rem);
+  border-right: 1px solid rgba(255,255,255,.2);
+}
+
+.methodo-reference-title span {
+  display: block;
+  margin-bottom: .65rem;
+  color: rgba(255,255,255,.6);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.methodo-reference-title h2 {
+  max-width: 11ch;
+  margin: 0;
+  color: #fff;
+  font-family: var(--meth-serif);
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.methodo-reference-copy {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.methodo-reference-item {
+  padding: 1.5rem;
+  border-right: 1px solid rgba(255,255,255,.18);
+}
+
+.methodo-reference-item:last-child {
+  border-right: 0;
+}
+
+.methodo-reference-item strong {
+  display: block;
+  color: #fff;
+  font-family: var(--meth-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.methodo-reference-item p {
+  margin: .55rem 0 0;
+  color: rgba(255,255,255,.72);
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+body[data-page-id="methodo-index"] .site-footer {
+  border-top-color: var(--meth-crimson);
+}
+
+@media (max-width: 980px) {
+  .methodo-paths {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .methodo-guide {
+    grid-template-columns: 3.8rem minmax(0, 1fr) auto;
+  }
+
+  .methodo-guide-meta {
+    grid-column: 2 / 3;
+    padding: .45rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--meth-line);
+  }
+
+  .methodo-reference {
+    grid-template-columns: 1fr;
+  }
+
+  .methodo-reference-title {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+  }
+}
+
+@media (max-width: 820px) {
+  .methodo-hero,
+  .methodo-start-head,
+  .methodo-section-head {
+    grid-template-columns: 1fr;
+  }
+
+  .methodo-hero-photo,
+  .methodo-hero-photo img {
+    min-height: 23rem;
+  }
+
+  .methodo-section-head {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 620px) {
+  body[data-page-id="methodo-index"] .methodo-shell {
+    width: min(100% - 1rem, 1180px);
+  }
+
+  .methodo-hero-copy {
+    padding: 2rem 1.15rem 2.4rem;
+  }
+
+  .methodo-hero h1 {
+    font-size: clamp(3rem, 15vw, 4.5rem);
+  }
+
+  .methodo-hero-photo,
+  .methodo-hero-photo img {
+    min-height: 18rem;
+  }
+
+  .methodo-paths,
+  .methodo-reference-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .methodo-path {
+    min-height: 10.5rem;
+  }
+
+  .methodo-section {
+    padding-top: 3.6rem;
+  }
+
+  .methodo-guide {
+    grid-template-columns: 2.7rem minmax(0, 1fr) auto;
+    gap: .75rem;
+    min-height: 7.5rem;
+    padding: .95rem .8rem;
+  }
+
+  .methodo-guide-index {
+    font-size: 1.05rem;
+  }
+
+  .methodo-guide-meta {
+    grid-column: 2 / 4;
+  }
+
+  .methodo-reference-item {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.18);
+  }
+
+  .methodo-reference-item:last-child {
+    border-bottom: 0;
+  }
+}
