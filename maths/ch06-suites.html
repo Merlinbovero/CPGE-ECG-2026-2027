@@ -49,6 +49,12 @@
     <button class="btn-print" type="button" onclick="window.print()">🖨️ Imprimer / PDF</button>
   </div>
 
+  <div class="box met" id="cours-classe">
+    <span class="box-title">Cours de classe — archive chronologique</span>
+    <p><strong>5 septembre 2026 — A1 · Premières définitions et notations.</strong> Le polycopié <em>ANA 01-A1</em> a été retranscrit intégralement : définitions, remarques, modes de génération des suites, exemples et quatre exercices entièrement corrigés.</p>
+    <p><a href="cours-classe-suites-a1-2026-09-05.html"><strong>Ouvrir la fiche de classe complète →</strong></a> · <a href="cours-de-classe.html">Voir toute la bibliothèque de cours →</a></p>
+  </div>
+
   <div class="box def">
     <span class="box-title">Objectifs du chapitre (programme officiel)</span>
     <ul>
@@ -62,7 +68,8 @@
   <nav class="toc" aria-label="Sommaire du chapitre">
     <strong>Sommaire</strong>
     <ol>
-      <li><a href="#s1">Généralités : monotonie, bornes</a></li>
+      <li><a href="#cours-classe">Cours de classe — A1 ajouté le 5 septembre 2026</a></li>
+      <li><a href="#s1">Généralités : définitions, monotonie, bornes</a></li>
       <li><a href="#s2">Suites arithmétiques et géométriques</a></li>
       <li><a href="#s3">Suites arithmético-géométriques</a></li>
       <li><a href="#s4">Récurrences linéaires d'ordre 2</a></li>
@@ -74,15 +81,28 @@
     </ol>
   </nav>
 
-  <h2 id="s1">1. Généralités : monotonie, bornes</h2>
+  <h2 id="s1">1. Généralités : définitions, monotonie, bornes</h2>
 
   <div class="box def">
-    <span class="box-title">Définition 6.1 — Suite, monotonie, bornes</span>
-    <p>Une <strong>suite réelle</strong> est une application \(u : \mathbb{N} \to \mathbb{R}\), notée \((u_n)_{n \in \mathbb{N}}\). Elle est :</p>
+    <span class="box-title">Définition 6.1 — Suite, termes, monotonie, bornes</span>
+    <p>Une <strong>suite réelle</strong> est une application \(u : \mathbb{N} \to \mathbb{R}\), notée \((u_n)_{n \in \mathbb{N}}\). Le nombre \(u_n\) est le <strong>terme de rang (ou d'indice) \(n\)</strong>. Lorsqu'une formule explicite donne \(u_n\) en fonction de \(n\), elle est appelée <strong>terme général</strong>. Le premier terme, souvent \(u_0\) ou \(u_1\), est le <strong>terme initial</strong>.</p>
+    <p class="small muted"><strong>Rigueur :</strong> \(u_n\) est un nombre ; \((u_n)_n\) désigne la suite entière, donc une fonction. Une suite peut aussi n'être définie qu'à partir d'un rang \(n_0\).</p>
+    <p>La suite est :</p>
     <ul>
       <li><strong>croissante</strong> si \(\forall n,\ u_{n+1} \geqslant u_n\) (strictement si inégalité stricte) ; <strong>décroissante</strong> si \(u_{n+1} \leqslant u_n\) ; <strong>monotone</strong> si l'un des deux ;</li>
       <li><strong>majorée</strong> s'il existe \(M\) tel que \(\forall n,\ u_n \leqslant M\) ; <strong>minorée</strong> s'il existe \(m\) tel que \(\forall n,\ u_n \geqslant m\) ; <strong>bornée</strong> si les deux.</li>
     </ul>
+  </div>
+
+  <div class="box met">
+    <span class="box-title">Quatre modes de définition d'une suite</span>
+    <ul>
+      <li><strong>Explicite :</strong> \(u_n=f(n)\), donc on calcule directement le terme de rang \(n\).</li>
+      <li><strong>Par récurrence :</strong> on donne un ou plusieurs termes initiaux puis une relation utilisant un ou plusieurs termes précédents.</li>
+      <li><strong>Implicite :</strong> chaque terme est défini comme solution d'une équation dépendant de \(n\).</li>
+      <li><strong>Par imbrication :</strong> plusieurs suites sont définies conjointement et dépendent les unes des autres.</li>
+    </ul>
+    <p class="small muted">Ces quatre modes sont ceux du polycopié A1 ajouté à la bibliothèque le 5 septembre 2026.</p>
   </div>
 
   <div class="box met">
