@@ -1,0 +1,298 @@
+/* ============================================================
+   Cours prépa V2 — archive éditoriale
+   Surcouche volontairement isolée : elle n'affecte pas les cours.
+   ============================================================ */
+
+body.prepa-page {
+  background-image:
+    radial-gradient(circle at 14% 6%, color-mix(in srgb, var(--prepa-accent) 5%, transparent), transparent 22rem),
+    linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), color-mix(in srgb, var(--prepa-line) 34%, transparent) calc(100% - 1px));
+  background-size: auto, 64px 64px;
+}
+
+body.prepa-page .site-header { position: sticky; top: 0; z-index: 50; }
+body.prepa-page .main-nav { scrollbar-width: none; }
+body.prepa-page .main-nav::-webkit-scrollbar { display: none; }
+
+.prepa-shell { padding-bottom: 5.5rem; }
+
+/* ---------- Landing hero ---------- */
+.prepa-hero {
+  grid-template-columns: minmax(0, .88fr) minmax(30rem, 1.12fr);
+  gap: clamp(2.6rem, 6vw, 6.5rem);
+  min-height: 38rem;
+  padding-top: clamp(3.4rem, 7vw, 6.6rem);
+}
+.prepa-hero-copy { max-width: 40rem; }
+.prepa-hero h1 {
+  max-width: 8.5ch;
+  margin-top: 1rem;
+  font-size: clamp(3.7rem, 8vw, 7.3rem);
+  line-height: .86;
+  letter-spacing: -.065em;
+}
+.prepa-hero h1 .prepa-title-light { display: block; color: var(--prepa-muted); font-weight: 450; }
+.prepa-hero .lead { max-width: 37rem; }
+.prepa-hero-actions { margin-top: 2rem; }
+
+.prepa-hero-visual {
+  min-height: 34rem;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.prepa-hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 1.5rem -1rem -1.2rem 2.2rem;
+  z-index: -2;
+  background: color-mix(in srgb, var(--prepa-card) 86%, var(--prepa-line));
+  border: 1px solid var(--prepa-line);
+  transform: rotate(2.2deg);
+  box-shadow: 0 24px 60px rgba(35, 31, 24, .12);
+}
+.prepa-hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: .65rem .35rem -.3rem 1rem;
+  z-index: -1;
+  background: var(--prepa-card);
+  border: 1px solid var(--prepa-line);
+  transform: rotate(-1.2deg);
+  pointer-events: none;
+}
+.prepa-hero-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 34rem;
+  object-fit: cover;
+  object-position: center;
+  background: #d7d1c6;
+  border: 1px solid color-mix(in srgb, var(--prepa-line) 76%, #000);
+  box-shadow: 0 30px 65px rgba(35, 31, 24, .18);
+  filter: saturate(.72) contrast(.98) brightness(.98);
+}
+.prepa-hero-caption {
+  left: 1.1rem;
+  right: 1.1rem;
+  bottom: 1rem;
+  padding: .65rem .75rem;
+  background: rgba(20, 23, 21, .78);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.14);
+}
+.prepa-hero-label {
+  position: absolute;
+  z-index: 4;
+  top: 1rem;
+  right: -1rem;
+  padding: .7rem .9rem;
+  background: var(--prepa-accent);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 30px rgba(35,31,24,.18);
+}
+
+.prepa-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+.prepa-stat { min-height: 5.7rem; }
+.prepa-stat strong { font-size: 1.8rem; }
+
+/* ---------- Matter cards / editorial mosaic ---------- */
+.prepa-subject-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1px;
+}
+.prepa-subject-card { min-height: 26rem; }
+.prepa-subject-card:nth-child(1) { grid-column: span 7; min-height: 31rem; }
+.prepa-subject-card:nth-child(2) { grid-column: span 5; min-height: 31rem; }
+.prepa-subject-card:nth-child(3) { grid-column: span 5; }
+.prepa-subject-card:nth-child(4) { grid-column: span 7; }
+.prepa-subject-card:nth-child(5) { grid-column: span 12; min-height: 22rem; }
+.prepa-subject-card:nth-child(5) .prepa-subject-content { max-width: 48rem; }
+.prepa-subject-card::after { background: linear-gradient(180deg, rgba(10,12,11,.03) 15%, rgba(10,12,11,.3) 48%, rgba(10,12,11,.9) 100%); }
+.prepa-subject-card h3 { max-width: 18ch; }
+.prepa-subject-card p { max-width: 34rem; }
+.prepa-subject-index { display: flex; gap: .6rem; align-items: center; }
+.prepa-subject-index::before { content: ""; width: 1.8rem; height: 1px; background: currentColor; opacity: .8; }
+
+/* ---------- Latest additions ---------- */
+.prepa-latest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.prepa-course-card.is-compact {
+  grid-template-columns: 9.5rem minmax(0, 1fr) auto;
+  min-height: 11.5rem;
+}
+.prepa-course-card.is-compact .prepa-course-body { padding: 1rem 1.05rem; }
+.prepa-course-card.is-compact h3 { font-size: 1.22rem; }
+.prepa-course-card.is-compact p { font-size: .84rem; }
+.prepa-course-card.is-compact .prepa-tags { margin-top: .7rem; }
+
+/* ---------- Archive protocol ---------- */
+.prepa-protocol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.25rem;
+  background: var(--prepa-line);
+  border: 1px solid var(--prepa-line);
+}
+.prepa-protocol-step {
+  min-height: 12rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+  background: var(--prepa-card);
+}
+.prepa-protocol-step .num {
+  display: block;
+  color: var(--prepa-accent);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+}
+.prepa-protocol-step h3 { margin: 1.1rem 0 .45rem; font-size: 1.05rem; }
+.prepa-protocol-step p { margin: 0; color: var(--prepa-muted); font-size: .86rem; line-height: 1.55; }
+
+.prepa-method-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--prepa-line);
+  background: color-mix(in srgb, var(--prepa-dark) 96%, var(--prepa-card));
+  color: #f2efe7;
+  text-decoration: none !important;
+}
+.prepa-method-link strong { display: block; font-family: var(--font-display); font-size: 1.12rem; }
+.prepa-method-link span { color: #bfc4be; font-size: .84rem; }
+.prepa-method-link .arrow { color: #fff; font-size: 1.45rem; }
+
+/* ---------- Matter archives ---------- */
+.prepa-matter-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, .48fr);
+  min-height: 25rem;
+  padding-top: 4.3rem;
+}
+.prepa-matter-hero h1 { max-width: 11ch; font-size: clamp(3.2rem, 6.8vw, 6rem); }
+.prepa-matter-cover {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border: 1px solid var(--prepa-line);
+  background: #d8d2c6;
+  box-shadow: 0 22px 50px rgba(30,28,22,.15);
+}
+.prepa-matter-cover::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(transparent, rgba(14,16,15,.28));
+  pointer-events: none;
+}
+.prepa-matter-summary {
+  display: inline-flex;
+  margin-top: 1.2rem;
+  padding: .35rem .55rem;
+  border: 1px solid var(--prepa-line);
+  color: var(--prepa-muted);
+  font-size: .73rem;
+  font-weight: 750;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.prepa-empty {
+  padding: 1.2rem 1.25rem;
+  border: 1px solid var(--prepa-line);
+  background: var(--prepa-card);
+}
+.prepa-empty strong { display: block; font-family: var(--font-display); font-size: 1.15rem; }
+.prepa-empty p { margin: .35rem 0 0; color: var(--prepa-muted); }
+.prepa-empty-large {
+  position: relative;
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  overflow: hidden;
+  margin-top: 2.3rem;
+  padding: 1.6rem;
+}
+.prepa-empty-large strong { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.prepa-empty-index {
+  position: absolute;
+  top: .4rem;
+  right: 1.1rem;
+  color: color-mix(in srgb, var(--prepa-line) 62%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 14vw, 11rem);
+  line-height: 1;
+}
+
+/* ---------- Micro polish ---------- */
+.prepa-course-card { overflow: hidden; }
+.prepa-course-thumb img { transition: transform .35s ease, filter .25s ease; }
+.prepa-course-card:hover .prepa-course-thumb img { transform: scale(1.025); filter: saturate(.9); }
+.prepa-tag { background: color-mix(in srgb, var(--prepa-card) 92%, transparent); }
+.prepa-section + .prepa-section { padding-top: 4.5rem; }
+.prepa-section-rule { height: 1px; margin-top: 3.2rem; background: var(--prepa-line); }
+
+@media (max-width: 980px) {
+  .prepa-hero { grid-template-columns: 1fr; min-height: 0; }
+  .prepa-hero-copy { max-width: 46rem; }
+  .prepa-hero-visual { min-height: 30rem; margin: 0 1rem; }
+  .prepa-hero-visual img { min-height: 30rem; }
+  .prepa-subject-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .prepa-subject-card:nth-child(n) { grid-column: span 1; min-height: 24rem; }
+  .prepa-subject-card:nth-child(5) { grid-column: span 2; }
+  .prepa-latest-grid { grid-template-columns: 1fr; }
+  .prepa-protocol { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+@media (max-width: 720px) {
+  .prepa-shell { padding-left: .9rem; padding-right: .9rem; }
+  .prepa-breadcrumb { padding-left: .9rem; padding-right: .9rem; }
+  .prepa-hero { padding-top: 2.4rem; gap: 2.2rem; }
+  .prepa-hero h1 { font-size: clamp(3.25rem, 18vw, 5.2rem); }
+  .prepa-hero-visual { min-height: 23rem; margin: 0 .6rem 0 0; }
+  .prepa-hero-visual img { min-height: 23rem; }
+  .prepa-hero-label { right: -.4rem; }
+  .prepa-stats { grid-template-columns: repeat(2, 1fr); }
+  .prepa-section-head { display: block; }
+  .prepa-section-head p { margin-top: .85rem; }
+  .prepa-subject-grid { grid-template-columns: 1fr; }
+  .prepa-subject-card:nth-child(n) { grid-column: span 1; min-height: 23rem; }
+  .prepa-course-card,
+  .prepa-course-card.is-compact { grid-template-columns: 7rem minmax(0,1fr); }
+  .prepa-course-arrow { display: none; }
+  .prepa-course-body { padding: .9rem; }
+  .prepa-course-card h3,
+  .prepa-course-card.is-compact h3 { font-size: 1.05rem; }
+  .prepa-course-card p,
+  .prepa-course-card.is-compact p { font-size: .8rem; }
+  .prepa-tags { display: none; }
+  .prepa-protocol { grid-template-columns: 1fr; }
+  .prepa-method-link { grid-template-columns: 1fr auto; }
+  .prepa-matter-hero { grid-template-columns: 1fr; padding-top: 2.8rem; }
+  .prepa-month { grid-template-columns: 1fr; gap: .8rem; }
+  .prepa-month-label { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prepa-subject-card img,
+  .prepa-course-thumb img,
+  .prepa-course-card,
+  .prepa-action { transition: none !important; }
+}
