@@ -1,0 +1,196 @@
+/* Cours prépa — vue dossiers, volontairement sobre. */
+
+body.prepa-files-page {
+  --pf-bg: #f5f3ee;
+  --pf-card: #fffdfa;
+  --pf-text: #222521;
+  --pf-muted: #716d65;
+  --pf-line: #ddd8cf;
+  --pf-accent: #8f433f;
+  background: var(--pf-bg);
+  color: var(--pf-text);
+}
+
+html[data-theme="dark"] body.prepa-files-page {
+  --pf-bg: #151714;
+  --pf-card: #1c1f1c;
+  --pf-text: #ece9e2;
+  --pf-muted: #aaa49a;
+  --pf-line: #383c38;
+  --pf-accent: #c77b73;
+}
+
+body.prepa-files-page .site-header {
+  border-bottom: 1px solid var(--pf-line);
+  box-shadow: none;
+}
+
+.prepa-files-shell {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 4rem;
+}
+
+.prepa-files-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: 1.35rem;
+  border-bottom: 1px solid var(--pf-line);
+}
+
+.prepa-files-eyebrow {
+  display: block;
+  margin-bottom: .35rem;
+  color: var(--pf-muted);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.prepa-files-head h1 {
+  margin: 0;
+  font-size: clamp(2.15rem, 5vw, 3.6rem);
+  letter-spacing: -.035em;
+}
+
+.prepa-files-head p {
+  max-width: 34rem;
+  margin: .55rem 0 0;
+  color: var(--pf-muted);
+  line-height: 1.55;
+}
+
+.prepa-files-total {
+  flex: 0 0 auto;
+  color: var(--pf-muted);
+  font-size: .82rem;
+  white-space: nowrap;
+}
+
+.prepa-folder-list {
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--pf-line);
+}
+
+.prepa-folder {
+  border-bottom: 1px solid var(--pf-line);
+  background: transparent;
+}
+
+.prepa-folder > summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .8rem;
+  min-height: 4rem;
+  padding: .8rem .15rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prepa-folder > summary::-webkit-details-marker { display: none; }
+
+.prepa-folder-chevron {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--pf-muted);
+  font-size: .88rem;
+  transition: transform .16s ease;
+}
+
+.prepa-folder[open] .prepa-folder-chevron { transform: rotate(90deg); }
+
+.prepa-folder-title {
+  display: flex;
+  align-items: baseline;
+  gap: .65rem;
+  min-width: 0;
+}
+
+.prepa-folder-title strong {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  color: var(--pf-text);
+}
+
+.prepa-folder-code {
+  color: var(--pf-muted);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.prepa-folder-count {
+  color: var(--pf-muted);
+  font-size: .78rem;
+}
+
+.prepa-folder-content {
+  margin: 0 0 1rem 2.95rem;
+  border: 1px solid var(--pf-line);
+  background: var(--pf-card);
+}
+
+.prepa-file-row {
+  display: grid;
+  grid-template-columns: 8.8rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: .9rem 1rem;
+  color: var(--pf-text);
+  border-bottom: 1px solid var(--pf-line);
+  text-decoration: none !important;
+}
+
+.prepa-file-row:last-child { border-bottom: 0; }
+.prepa-file-row:hover { background: color-mix(in srgb, var(--pf-accent) 5%, var(--pf-card)); }
+
+.prepa-file-date {
+  color: var(--pf-muted);
+  font-size: .75rem;
+}
+
+.prepa-file-main strong {
+  display: block;
+  margin-bottom: .1rem;
+  font-size: .94rem;
+  font-weight: 700;
+}
+
+.prepa-file-main span {
+  color: var(--pf-muted);
+  font-size: .78rem;
+}
+
+.prepa-file-arrow {
+  color: var(--pf-muted);
+  font-size: 1rem;
+}
+
+.prepa-folder-empty {
+  padding: .9rem 1rem;
+  color: var(--pf-muted);
+  font-size: .82rem;
+}
+
+.prepa-files-note {
+  margin-top: 1.5rem;
+  color: var(--pf-muted);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .prepa-files-shell { padding-top: 1.8rem; }
+  .prepa-files-head { align-items: flex-start; flex-direction: column; gap: .6rem; }
+  .prepa-folder > summary { grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: .55rem; }
+  .prepa-folder-content { margin-left: 2rem; }
+  .prepa-file-row { grid-template-columns: 1fr auto; gap: .35rem .8rem; }
+  .prepa-file-date { grid-column: 1 / -1; }
+}
