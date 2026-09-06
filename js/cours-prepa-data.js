@@ -44,11 +44,28 @@ window.PREPA_ARCHIVE = {
       short: "Italien",
       page: "cours-prepa/italien.html",
       description: "Langue, grammaire, civilisation, textes et entraînements réellement donnés en prépa.",
-      image: "https://commons.wikimedia.org/wiki/Special:FilePath/Italian_legal_hardback_books_open.jpg?width=1400"
+      image: "cours-prepa/assets/italien/2026-09-06-geographie-regions/p08.webp"
     }
   },
 
   courses: [
+    {
+      id: "italien-geographie-regions-2026-09-06",
+      subject: "italien",
+      title: "Géographie de l’Italie & régions — niveau A2",
+      reference: "Italia per stranieri · Unità 1 + Unità 5",
+      theme: "Un paese a forma di… · L’Italia delle regioni",
+      archiveDate: "2026-09-06",
+      courseDate: null,
+      dateLabel: "06 septembre 2026 · date d’archivage",
+      pages: 9,
+      corrections: 11,
+      chapterTitle: "Civilisation — Géographie et régions",
+      chapterUrl: "italien/civilisation.html",
+      url: "cours-prepa/italien/geographie-regions-2026-09-06.html",
+      thumb: "cours-prepa/assets/italien/2026-09-06-geographie-regions/p08.webp",
+      tags: ["A2", "Géographie", "Régions", "Vocabulaire", "Civilisation", "11 corrigés"]
+    },
     {
       id: "maths-suites-a1-2026-09-05",
       subject: "maths",
