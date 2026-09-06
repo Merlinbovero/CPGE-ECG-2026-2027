@@ -14,4 +14,12 @@ Photographies et visuels documentaires utilisés sur l’accueil et les pages pr
 - **Italien — page principale** — Thomaseagle, *Italian legal hardback books open* — livres ouverts en langue italienne, Wikimedia Commons, CC BY-SA 4.0 (également proposé sous d’autres licences compatibles sur Commons). https://commons.wikimedia.org/wiki/File:Italian_legal_hardback_books_open.jpg
 - **Méthodologie** — Kelly Sikkema, *An open notebook and pens on a desk*, Unsplash, licence Unsplash. https://unsplash.com/photos/hBdaqrr5Z3k
 
+## Cours prépa
+
+- **Mathématiques** — scans personnels des polycopiés transmis dans le cadre de l’année de CPGE ; les scans originaux restent la source documentaire de la fiche.
+- **ESH** — TomasEE, *New York Stock Exchange - panoramio (2)*, Wikimedia Commons, CC BY 3.0. https://commons.wikimedia.org/wiki/File:New_York_Stock_Exchange_-_panoramio_(2).jpg
+- **Culture générale** — réutilise le visuel Wikimedia Commons d’Aristote crédité ci-dessus.
+- **Anglais** — réutilise le visuel Wikimedia Commons des journaux crédité ci-dessus.
+- **Italien** — réutilise le visuel Wikimedia Commons des livres italiens crédité ci-dessus.
+
 Les photographies sont recadrées visuellement par CSS (`background-size: cover` ou `object-fit: cover`). Les images principales ont volontairement été choisies parmi des photographies documentaires réelles plutôt que des illustrations générées.
