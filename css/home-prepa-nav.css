@@ -1,0 +1,42 @@
+/* Accueil — mise en avant de l'accès Cours prépa dans la navigation. */
+
+body.home-v1 nav.main-nav a[data-prepa-link] {
+  order: 99;
+  margin-left: auto;
+  padding: .28rem .72rem;
+  border: 1px solid #8f433f;
+  border-radius: 999px;
+  background: #8f433f;
+  color: #fffaf5;
+  font-weight: 750;
+  letter-spacing: .015em;
+  box-shadow: 0 3px 10px rgba(83, 38, 35, .12);
+  transition: background .16s ease, border-color .16s ease, color .16s ease, transform .16s ease;
+}
+
+body.home-v1 nav.main-nav a[data-prepa-link]:hover {
+  background: #753632;
+  border-color: #753632;
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+html[data-theme="dark"] body.home-v1 nav.main-nav a[data-prepa-link] {
+  background: #c77b73;
+  border-color: #c77b73;
+  color: #171411;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] body.home-v1 nav.main-nav a[data-prepa-link]:hover {
+  background: #d58a82;
+  border-color: #d58a82;
+  color: #0f0e0c;
+}
+
+@media (max-width: 760px) {
+  body.home-v1 nav.main-nav a[data-prepa-link] {
+    margin-left: 0;
+  }
+}
