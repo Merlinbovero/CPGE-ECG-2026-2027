@@ -1,0 +1,45 @@
+/* Cours prépa · Italien — carte complémentaire pour l'Unità 5.
+   La carte est affichée directement sous « Page 25 — Le 20 regioni ».
+   Source principale : PianetaBambini (regioni + capoluoghi).
+   Fallback : Wikimedia Commons (mappa delle regioni e province italiane). */
+
+body[data-page-id="cours-prepa-italien-geographie"] #unita5 > h3:nth-of-type(2)::after {
+  content: "";
+  display: block;
+  width: min(100%, 760px);
+  aspect-ratio: 4 / 5;
+  margin: 1rem auto 1.1rem;
+  border: 1px solid var(--prepa-line, #d5d0c5);
+  border-radius: 10px;
+  background-color: #f7f5ef;
+  background-image:
+    url("https://pianetabambini.it/wp-content/uploads/2014/05/Cartina-Politica-Italia-Regioni-Capoluoghi.jpg"),
+    url("https://commons.wikimedia.org/wiki/Special:FilePath/Italy%20Labelled%20Map%20Scalable.svg?width=1400");
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: contain, contain;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .08);
+}
+
+body[data-page-id="cours-prepa-italien-geographie"] #unita5 > h3:nth-of-type(2) + .prepa-correction::after {
+  content: "Carte de repérage : régions italiennes et leurs principaux capoluoghi. Source pédagogique en ligne ; carte Wikimedia utilisée en secours si l’image principale ne charge pas.";
+  display: block;
+  margin-top: .9rem;
+  padding-top: .8rem;
+  border-top: 1px solid var(--prepa-line, #d5d0c5);
+  color: var(--prepa-muted, #6e6b64);
+  font-size: .82rem;
+  line-height: 1.45;
+}
+
+html[data-theme="dark"] body[data-page-id="cours-prepa-italien-geographie"] #unita5 > h3:nth-of-type(2)::after {
+  background-color: #f3f0e8;
+  box-shadow: none;
+}
+
+@media (max-width: 720px) {
+  body[data-page-id="cours-prepa-italien-geographie"] #unita5 > h3:nth-of-type(2)::after {
+    width: 100%;
+    border-radius: 8px;
+  }
+}
