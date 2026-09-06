@@ -17,8 +17,6 @@
   }
 
   function enableBookMode() {
-    /* Les anciennes données de progression ne servent plus. On conserve
-       les autres données locales du site (thème, notes, emploi du temps...). */
     try {
       localStorage.removeItem("ecg-chapitres");
       localStorage.removeItem("ecg-exercices");
@@ -41,8 +39,6 @@
       li.classList.remove("is-done");
     });
 
-    /* Accueil : les cartes de matière sont des entrées de sommaire,
-       pas des jauges d'avancement. */
     if (PAGE_ID === "accueil") {
       var heroLead = document.querySelector(".home-hero .lead");
       if (heroLead) {
@@ -59,7 +55,6 @@
       });
     }
 
-    /* Maths : supprimer les dernières formulations de suivi. */
     if (PAGE_ID === "maths-index") {
       var mathsIntro = document.querySelector("#programme .maths-section-head p");
       if (mathsIntro) {
@@ -67,8 +62,6 @@
       }
     }
 
-    /* Mon espace garde les notes et l'emploi du temps, mais ne parle plus
-       d'export ou de sauvegarde de progression académique. */
     if (PAGE_ID === "mon-espace") {
       document.querySelectorAll(".box.met").forEach(function (box) {
         if (box.textContent.toLowerCase().indexOf("progression") !== -1) {
@@ -77,9 +70,6 @@
       });
     }
 
-    /* Certaines cartes de flashcards historiques présentaient leur intérêt
-       comme une progression sauvegardée. On garde l'outil, sans logique de
-       chapitre « acquis » ou « terminé ». */
     document.querySelectorAll(".card p").forEach(function (p) {
       if (p.textContent.toLowerCase().indexOf("progression") !== -1) {
         p.textContent = "Cartes de révision à utiliser librement pour revenir régulièrement sur le vocabulaire, les notions et les repères importants.";
@@ -88,6 +78,37 @@
   }
 
   enableBookMode();
+
+  /* ---------- Navigation : Cours prépa ---------- */
+  (function injectCoursPrepaNav() {
+    document.querySelectorAll(".main-nav").forEach(function (nav) {
+      if (nav.querySelector("[data-prepa-link]")) return;
+      var link = document.createElement("a");
+      link.href = ROOT + "/cours-prepa/index.html";
+      link.textContent = "Cours prépa";
+      link.setAttribute("data-prepa-link", "true");
+      if (PAGE_ID.indexOf("cours-prepa") === 0) link.setAttribute("aria-current", "true");
+
+      var methodo = null;
+      nav.querySelectorAll("a").forEach(function (candidate) {
+        if (!methodo && /methodologie\/index\.html(?:$|[?#])/.test(candidate.getAttribute("href") || "")) methodo = candidate;
+      });
+      if (methodo) nav.insertBefore(link, methodo);
+      else nav.appendChild(link);
+    });
+
+    if (PAGE_ID === "accueil") {
+      var actions = document.querySelector(".home-hero-actions");
+      if (actions && !actions.querySelector("[data-prepa-hero]")) {
+        var heroLink = document.createElement("a");
+        heroLink.className = "home-action";
+        heroLink.href = ROOT + "/cours-prepa/index.html";
+        heroLink.setAttribute("data-prepa-hero", "true");
+        heroLink.innerHTML = '<span>Cours prépa</span><span aria-hidden="true">→</span>';
+        actions.appendChild(heroLink);
+      }
+    }
+  })();
 
   /* ---------- Navigation : flèches sobres ---------- */
   function replaceDecorativeArrows(root) {
