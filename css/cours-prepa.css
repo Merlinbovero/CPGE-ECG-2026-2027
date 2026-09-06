@@ -1,0 +1,261 @@
+/* ============================================================
+   Cours prépa — bibliothèque documentaire de l'année
+   Direction éditoriale : archives papier, photographie, chronologie.
+   ============================================================ */
+
+body.prepa-page {
+  --prepa-paper: #f1eee6;
+  --prepa-card: #faf8f2;
+  --prepa-ink: #202321;
+  --prepa-muted: #6e6b64;
+  --prepa-line: #d5d0c5;
+  --prepa-dark: #1f2723;
+  --prepa-accent: #8f433f;
+  --prepa-maths: #9b3b4d;
+  --prepa-esh: #527263;
+  --prepa-cg: #745d7d;
+  --prepa-en: #4c6688;
+  --prepa-it: #7b7a46;
+  background: var(--prepa-paper);
+  color: var(--prepa-ink);
+}
+
+html[data-theme="dark"] body.prepa-page {
+  --prepa-paper: #141714;
+  --prepa-card: #1d211e;
+  --prepa-ink: #eeebe3;
+  --prepa-muted: #aaa59c;
+  --prepa-line: #383d39;
+  --prepa-dark: #0f1210;
+  --prepa-accent: #c77b73;
+  --prepa-maths: #cf7181;
+  --prepa-esh: #82a997;
+  --prepa-cg: #a995b0;
+  --prepa-en: #8ca8ca;
+  --prepa-it: #acaa72;
+}
+
+body.prepa-page .site-header {
+  background: color-mix(in srgb, var(--prepa-card) 94%, transparent);
+  border-bottom: 1px solid var(--prepa-line);
+  box-shadow: none;
+  backdrop-filter: blur(14px);
+}
+body.prepa-page .header-inner,
+body.prepa-page .main-nav { max-width: 1240px; }
+body.prepa-page .logo span { color: var(--prepa-accent); }
+body.prepa-page .main-nav a[aria-current="true"] { color: var(--prepa-accent); }
+
+.prepa-shell { max-width: 1240px; margin: 0 auto; padding: 1.2rem 1.25rem 4.5rem; }
+.prepa-shell h1,
+.prepa-shell h2,
+.prepa-shell h3 { color: var(--prepa-ink); }
+.prepa-shell h2 { border: 0; padding: 0; }
+
+.prepa-breadcrumb {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: .85rem 1.25rem 0;
+  color: var(--prepa-muted);
+  font-size: .82rem;
+}
+.prepa-breadcrumb a { color: inherit; text-decoration: none; }
+.prepa-breadcrumb a:hover { color: var(--prepa-accent); }
+.prepa-breadcrumb .sep { padding: 0 .5rem; opacity: .55; }
+
+.prepa-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: var(--prepa-accent);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.prepa-kicker::before { content: ""; width: 2.2rem; height: 1px; background: currentColor; }
+
+.prepa-hero {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(28rem, 1.08fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  min-height: 31rem;
+  padding: clamp(2.8rem, 7vw, 5.8rem) 0 3.2rem;
+  border-bottom: 1px solid var(--prepa-line);
+}
+.prepa-hero-copy { max-width: 38rem; }
+.prepa-hero h1 {
+  max-width: 10ch;
+  margin: .8rem 0 1.15rem;
+  font-size: clamp(3.25rem, 7vw, 6rem);
+  line-height: .92;
+  letter-spacing: -.055em;
+  font-weight: 650;
+}
+.prepa-hero .lead {
+  max-width: 36rem;
+  margin: 0;
+  color: var(--prepa-muted);
+  font-size: clamp(1.04rem, 1.7vw, 1.2rem);
+  line-height: 1.7;
+}
+.prepa-hero-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.65rem; }
+.prepa-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.3rem;
+  padding: .75rem .95rem;
+  min-width: 12.5rem;
+  border: 1px solid var(--prepa-dark);
+  color: var(--prepa-dark);
+  font-weight: 750;
+  font-size: .9rem;
+  text-decoration: none !important;
+  transition: transform .17s ease, background .17s ease;
+}
+.prepa-action.primary { background: var(--prepa-dark); color: #faf8f0; }
+.prepa-action:hover { transform: translateY(-2px); }
+html[data-theme="dark"] .prepa-action { border-color: var(--prepa-line); color: var(--prepa-ink); }
+html[data-theme="dark"] .prepa-action.primary { background: #ebe8df; color: #151815; border-color: #ebe8df; }
+
+.prepa-hero-visual {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  background: #2b302d;
+  border: 1px solid color-mix(in srgb, var(--prepa-line) 60%, #000);
+  box-shadow: 0 24px 60px rgba(35, 31, 24, .16);
+}
+.prepa-hero-visual img { width: 100%; height: 100%; min-height: 28rem; object-fit: cover; display: block; filter: saturate(.8) contrast(.98); }
+.prepa-hero-visual::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 48%, rgba(16,19,17,.72)); pointer-events:none; }
+.prepa-hero-caption { position:absolute; left:1rem; right:1rem; bottom:.9rem; z-index:1; display:flex; justify-content:space-between; gap:1rem; color:#f6f2e9; font-size:.74rem; letter-spacing:.04em; }
+
+.prepa-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--prepa-line);
+  border-left: 1px solid var(--prepa-line);
+}
+.prepa-stat { padding: .9rem 1rem; background: var(--prepa-card); border-right:1px solid var(--prepa-line); border-bottom:1px solid var(--prepa-line); }
+.prepa-stat strong { display:block; font-family:var(--font-display); font-size:1.55rem; line-height:1; }
+.prepa-stat span { color:var(--prepa-muted); font-size:.76rem; }
+
+.prepa-section { padding-top: 3.3rem; }
+.prepa-section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem; margin-bottom:1.25rem; }
+.prepa-section-head h2 { margin:.35rem 0 0; font-size:clamp(1.8rem,3vw,2.5rem); letter-spacing:-.025em; }
+.prepa-section-head p { max-width:38rem; margin:0; color:var(--prepa-muted); line-height:1.6; }
+
+.prepa-subject-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--prepa-line); border:1px solid var(--prepa-line); }
+.prepa-subject-card { --subject:var(--prepa-accent); position:relative; min-height:25rem; overflow:hidden; background:#252a27; color:#fff; text-decoration:none !important; }
+.prepa-subject-card[data-subject="maths"] { --subject:var(--prepa-maths); }
+.prepa-subject-card[data-subject="esh"] { --subject:var(--prepa-esh); }
+.prepa-subject-card[data-subject="cg"] { --subject:var(--prepa-cg); }
+.prepa-subject-card[data-subject="anglais"] { --subject:var(--prepa-en); }
+.prepa-subject-card[data-subject="italien"] { --subject:var(--prepa-it); }
+.prepa-subject-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(.72) contrast(.96); transition:transform .45s ease, filter .3s ease; }
+.prepa-subject-card::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(16,19,17,.04) 18%, rgba(16,19,17,.82) 100%); }
+.prepa-subject-card::before { content:""; position:absolute; z-index:2; left:0; right:0; bottom:0; height:5px; background:var(--subject); }
+.prepa-subject-card:hover img { transform:scale(1.025); filter:saturate(.86) contrast(1); }
+.prepa-subject-content { position:absolute; z-index:3; left:1.35rem; right:1.35rem; bottom:1.35rem; }
+.prepa-subject-index { display:block; margin-bottom:.55rem; color:color-mix(in srgb,#fff 78%,var(--subject)); font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.prepa-subject-card h3 { margin:0 0 .45rem; color:#fff; font-size:clamp(1.65rem,3vw,2.35rem); }
+.prepa-subject-card p { max-width:31rem; margin:0; color:rgba(255,255,255,.78); line-height:1.5; }
+.prepa-subject-meta { display:flex; justify-content:space-between; gap:1rem; align-items:end; margin-top:1rem; color:rgba(255,255,255,.72); font-size:.75rem; }
+.prepa-subject-arrow { color:#fff; font-size:1.35rem; }
+.prepa-subject-card.is-empty { cursor:default; }
+.prepa-subject-card.is-empty::after { background:linear-gradient(180deg,rgba(16,19,17,.16),rgba(16,19,17,.88)); }
+
+.prepa-note { display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start; margin-top:2.7rem; padding:1.1rem 1.2rem; border:1px solid var(--prepa-line); border-left:4px solid var(--prepa-accent); background:var(--prepa-card); }
+.prepa-note strong { font-family:var(--font-display); }
+.prepa-note p { margin:.2rem 0 0; color:var(--prepa-muted); line-height:1.55; }
+
+/* ---- archive d'une matière ---- */
+.prepa-matter-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(17rem,.44fr); gap:2.8rem; align-items:end; padding:3.6rem 0 2.6rem; border-bottom:1px solid var(--prepa-line); }
+.prepa-matter-hero h1 { margin:.55rem 0 .9rem; font-size:clamp(2.8rem,6vw,5rem); line-height:.95; letter-spacing:-.045em; }
+.prepa-matter-hero .lead { max-width:46rem; margin:0; color:var(--prepa-muted); font-size:1.08rem; line-height:1.65; }
+.prepa-matter-cover { overflow:hidden; aspect-ratio:4/3; background:#ddd; box-shadow:0 15px 38px rgba(30,28,22,.14); }
+.prepa-matter-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.prepa-month { display:grid; grid-template-columns:10rem minmax(0,1fr); gap:2rem; padding:2.5rem 0 0; }
+.prepa-month-label { position:sticky; top:6.5rem; align-self:start; padding-top:.25rem; color:var(--prepa-muted); font-size:.76rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+.prepa-course-list { display:grid; gap:1rem; }
+.prepa-course-card { display:grid; grid-template-columns:11rem minmax(0,1fr) auto; min-height:13rem; background:var(--prepa-card); border:1px solid var(--prepa-line); color:var(--prepa-ink); text-decoration:none !important; transition:transform .18s ease, box-shadow .18s ease; }
+.prepa-course-card:hover { transform:translateY(-2px); box-shadow:0 14px 32px color-mix(in srgb,var(--prepa-ink) 8%,transparent); }
+.prepa-course-thumb { overflow:hidden; background:#e5e0d6; border-right:1px solid var(--prepa-line); }
+.prepa-course-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.75); }
+.prepa-course-body { padding:1.15rem 1.2rem; }
+.prepa-course-date { color:var(--prepa-accent); font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.prepa-course-card h3 { margin:.45rem 0 .45rem; font-size:1.45rem; }
+.prepa-course-body p { margin:0; color:var(--prepa-muted); line-height:1.55; font-size:.91rem; }
+.prepa-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.9rem; }
+.prepa-tag { padding:.23rem .45rem; border:1px solid var(--prepa-line); color:var(--prepa-muted); font-size:.68rem; }
+.prepa-course-arrow { align-self:center; padding:1rem 1.1rem; font-size:1.4rem; color:var(--prepa-accent); }
+
+/* ---- page document ---- */
+.prepa-document-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(18rem,.45fr); gap:3rem; align-items:start; padding:3.4rem 0 2.5rem; border-bottom:1px solid var(--prepa-line); }
+.prepa-document-head h1 { margin:.6rem 0 .9rem; max-width:13ch; font-size:clamp(2.65rem,5.3vw,4.8rem); line-height:.96; letter-spacing:-.045em; }
+.prepa-document-head .lead { margin:0; max-width:48rem; color:var(--prepa-muted); line-height:1.65; }
+.prepa-document-meta { display:grid; border-top:1px solid var(--prepa-line); }
+.prepa-document-meta div { display:grid; grid-template-columns:8.5rem 1fr; gap:1rem; padding:.72rem 0; border-bottom:1px solid var(--prepa-line); }
+.prepa-document-meta dt { color:var(--prepa-muted); font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.prepa-document-meta dd { margin:0; font-size:.88rem; }
+.prepa-source-warning { margin-top:1.4rem; padding:.9rem 1rem; background:color-mix(in srgb,var(--prepa-accent) 8%,var(--prepa-card)); border-left:3px solid var(--prepa-accent); color:var(--prepa-muted); font-size:.88rem; line-height:1.55; }
+
+.prepa-scan-grid { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:1.25rem; align-items:start; }
+.prepa-scan { margin:0; padding:.75rem; background:#d8d2c6; border:1px solid var(--prepa-line); }
+html[data-theme="dark"] .prepa-scan { background:#252824; }
+.prepa-scan a { display:block; }
+.prepa-scan img { display:block; width:100%; height:auto; background:#fff; box-shadow:0 10px 25px rgba(26,24,20,.13); }
+.prepa-scan figcaption { display:flex; justify-content:space-between; gap:1rem; padding:.7rem .15rem 0; color:var(--prepa-muted); font-size:.72rem; }
+
+.prepa-content-grid { display:grid; grid-template-columns:minmax(0,1fr) 16rem; gap:3rem; align-items:start; }
+.prepa-content-main h2 { margin:3rem 0 1rem; font-size:2rem; }
+.prepa-content-main h3 { margin:1.8rem 0 .65rem; font-size:1.3rem; }
+.prepa-content-main p,
+.prepa-content-main li { line-height:1.7; }
+.prepa-aside { position:sticky; top:6.5rem; margin-top:3rem; padding:1rem; border:1px solid var(--prepa-line); background:var(--prepa-card); }
+.prepa-aside strong { display:block; margin-bottom:.6rem; font-family:var(--font-display); }
+.prepa-aside a { display:block; padding:.38rem 0; color:var(--prepa-muted); font-size:.8rem; text-decoration:none; }
+.prepa-aside a:hover { color:var(--prepa-accent); }
+
+.prepa-original-block { padding:1.1rem 1.2rem; margin:1rem 0; background:var(--prepa-card); border:1px solid var(--prepa-line); }
+.prepa-original-block .label,
+.prepa-correction .label { display:block; margin-bottom:.55rem; color:var(--prepa-accent); font-size:.68rem; font-weight:850; letter-spacing:.11em; text-transform:uppercase; }
+.prepa-definition { border-left:4px solid var(--prepa-maths); }
+.prepa-exercise { margin:1.1rem 0 0; padding:1.15rem 1.2rem; border:1px solid var(--prepa-line); background:var(--prepa-card); }
+.prepa-exercise h3 { margin:0 0 .6rem; }
+.prepa-correction { margin:0; padding:1.1rem 1.2rem 1.2rem; border:1px solid var(--prepa-line); border-top:0; background:color-mix(in srgb,var(--prepa-esh) 7%,var(--prepa-card)); }
+.prepa-correction p:last-child { margin-bottom:0; }
+.prepa-formula { overflow-x:auto; padding:.35rem 0; }
+.prepa-link-chapter { display:flex; align-items:center; justify-content:space-between; gap:1.3rem; margin:2.7rem 0 0; padding:1.15rem 1.2rem; border:1px solid var(--prepa-line); border-left:4px solid var(--prepa-maths); background:var(--prepa-card); color:var(--prepa-ink); text-decoration:none !important; }
+.prepa-link-chapter span { color:var(--prepa-muted); font-size:.85rem; }
+.prepa-link-chapter strong { display:block; margin-top:.2rem; }
+
+@media (max-width: 920px) {
+  .prepa-hero, .prepa-document-head, .prepa-matter-hero { grid-template-columns:1fr; }
+  .prepa-hero-visual { min-height:22rem; }
+  .prepa-hero-visual img { min-height:22rem; }
+  .prepa-subject-grid { grid-template-columns:1fr; }
+  .prepa-month { grid-template-columns:1fr; gap:.7rem; }
+  .prepa-month-label, .prepa-aside { position:static; }
+  .prepa-content-grid { grid-template-columns:1fr; }
+  .prepa-aside { display:none; }
+}
+
+@media (max-width: 650px) {
+  .prepa-shell { padding-left:.9rem; padding-right:.9rem; }
+  .prepa-breadcrumb { padding-left:.9rem; padding-right:.9rem; }
+  .prepa-hero { padding-top:2.5rem; }
+  .prepa-hero h1 { font-size:clamp(3rem,17vw,4.3rem); }
+  .prepa-stats { grid-template-columns:1fr; }
+  .prepa-subject-card { min-height:21rem; }
+  .prepa-section-head { align-items:flex-start; flex-direction:column; }
+  .prepa-course-card { grid-template-columns:7.4rem minmax(0,1fr); }
+  .prepa-course-arrow { display:none; }
+  .prepa-course-card h3 { font-size:1.18rem; }
+  .prepa-scan-grid { grid-template-columns:1fr; }
+  .prepa-document-meta div { grid-template-columns:1fr; gap:.2rem; }
+}
