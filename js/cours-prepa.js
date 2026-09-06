@@ -1,7 +1,7 @@
 /* ============================================================
-   Cours prépa — rendu des archives
-   Les compteurs, derniers ajouts et chronologies sont produits
-   depuis PREPA_ARCHIVE pour éviter de dupliquer les métadonnées.
+   Cours prépa — rendu des archives depuis PREPA_ARCHIVE.
+   La page principale affiche une vue dossiers sobre ; les pages
+   de matière gardent leur chronologie détaillée.
    ============================================================ */
 
 (function () {
@@ -34,6 +34,12 @@
     });
   }
 
+  function subjectKeys() {
+    return Object.keys(archive.subjects).sort(function (a, b) {
+      return (archive.subjects[a].order || 99) - (archive.subjects[b].order || 99);
+    });
+  }
+
   function monthLabel(iso) {
     var d = new Date(iso + "T12:00:00");
     var label = d.toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
@@ -57,54 +63,45 @@
     '</a>';
   }
 
-  function renderLanding() {
+  function folderCourseRow(course) {
+    var meta = course.reference || "Cours";
+    if (course.pages) meta += " · " + course.pages + " page" + (course.pages > 1 ? "s" : "");
+    if (course.corrections) meta += " · " + course.corrections + " corrigé" + (course.corrections > 1 ? "s" : "");
+
+    return '<a class="prepa-file-row" href="' + esc(url(course.url)) + '">' +
+      '<span class="prepa-file-date">' + esc(course.dateLabel || course.archiveDate) + '</span>' +
+      '<span class="prepa-file-main"><strong>' + esc(course.title) + '</strong><span>' + esc(meta) + '</span></span>' +
+      '<span class="prepa-file-arrow" aria-hidden="true">→</span>' +
+    '</a>';
+  }
+
+  function renderFolderLanding() {
     if (body.getAttribute("data-page-id") !== "cours-prepa-index") return;
+    var mount = document.getElementById("prepa-folder-list");
+    if (!mount) return;
 
     var courses = coursesSorted();
-    var totalPages = courses.reduce(function (sum, c) { return sum + (Number(c.pages) || 0); }, 0);
-    var totalCorrections = courses.reduce(function (sum, c) { return sum + (Number(c.corrections) || 0); }, 0);
-    var activeSubjects = {};
-    courses.forEach(function (c) { activeSubjects[c.subject] = true; });
+    var keys = subjectKeys();
 
-    var statValues = {
-      courses: courses.length,
-      pages: totalPages,
-      corrections: totalCorrections,
-      subjects: Object.keys(activeSubjects).length
-    };
-    Object.keys(statValues).forEach(function (key) {
-      var el = document.querySelector('[data-prepa-stat="' + key + '"]');
-      if (el) el.textContent = statValues[key];
-    });
+    mount.innerHTML = keys.map(function (key, index) {
+      var subject = archive.subjects[key];
+      var subjectCourses = courses.filter(function (course) { return course.subject === key; });
+      var count = subjectCourses.length;
+      var content = count ? subjectCourses.map(folderCourseRow).join("") : '<div class="prepa-folder-empty">Aucun cours pour le moment.</div>';
 
-    Object.keys(archive.subjects).forEach(function (key) {
-      var subjectCourses = courses.filter(function (c) { return c.subject === key; });
-      var card = document.querySelector('.prepa-subject-card[data-subject="' + key + '"]');
-      if (!card) return;
-      var count = card.querySelector("[data-prepa-count]");
-      var latest = card.querySelector("[data-prepa-latest]");
-      if (count) count.textContent = subjectCourses.length + " cours";
-      if (latest) latest.textContent = subjectCourses.length ? "Dernier ajout · " + subjectCourses[0].title : "Archive prête à recevoir les cours";
-    });
+      return '<details class="prepa-folder"' + (count ? ' open' : '') + '>' +
+        '<summary>' +
+          '<span class="prepa-folder-chevron" aria-hidden="true">›</span>' +
+          '<span class="prepa-folder-title"><strong>' + esc(subject.name) + '</strong><span class="prepa-folder-code">Dossier ' + String(index + 1).padStart(2, "0") + '</span></span>' +
+          '<span class="prepa-folder-count">' + count + ' cours</span>' +
+        '</summary>' +
+        '<div class="prepa-folder-content">' + content + '</div>' +
+      '</details>';
+    }).join("");
 
-    var latestList = document.getElementById("prepa-latest-list");
-    if (latestList) {
-      latestList.innerHTML = courses.length ? courses.slice(0, 4).map(function (c) { return courseCard(c, true); }).join("") : '<div class="prepa-empty"><strong>Aucun cours archivé pour le moment.</strong><p>Les prochains documents apparaîtront ici automatiquement.</p></div>';
-    }
-
-    if (courses.length) {
-      var latestCourse = courses[0];
-      var latestLink = document.querySelector("[data-prepa-latest-link]");
-      if (latestLink) latestLink.setAttribute("href", url(latestCourse.url));
-      var heroImage = document.querySelector("[data-prepa-hero-image]");
-      if (heroImage) {
-        heroImage.src = url(latestCourse.thumb);
-        heroImage.alt = "Dernier cours archivé : " + latestCourse.title;
-      }
-      var heroSubject = document.querySelector("[data-prepa-hero-subject]");
-      var heroDate = document.querySelector("[data-prepa-hero-date]");
-      if (heroSubject) heroSubject.textContent = (archive.subjects[latestCourse.subject] || {}).short + " · " + latestCourse.reference;
-      if (heroDate) heroDate.textContent = latestCourse.dateLabel.replace(" · date d’archivage", "");
+    var total = document.getElementById("prepa-files-total");
+    if (total) {
+      total.textContent = keys.length + " matières · " + courses.length + " cours";
     }
   }
 
@@ -139,6 +136,6 @@
     }).join("");
   }
 
-  renderLanding();
+  renderFolderLanding();
   renderSubjectArchive();
 })();
