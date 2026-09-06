@@ -28,7 +28,7 @@ window.PREPA_ARCHIVE = {
       short: "Culture générale",
       page: "cours-prepa/culture-generale.html",
       description: "Philosophie, littérature, textes, notions, dissertations et documents de méthode.",
-      image: "https://commons.wikimedia.org/wiki/Special:FilePath/Marginalia_in_the_hand_of_grammarian_and_politician_James_Harris_%281709-1780%29_in_a_1556_edition_of_Aristotle%27s_Physics.jpg?width=1400"
+      image: "https://commons.wikimedia.org/wiki/Special:FilePath/Shield%20of%20Achilles.jpg?width=1400"
     },
     anglais: {
       order: 4,
@@ -49,6 +49,40 @@ window.PREPA_ARCHIVE = {
   },
 
   courses: [
+    {
+      id: "cg-heritage-antique-seance-2-2026-09-06",
+      subject: "cg",
+      title: "Séance 2 — Le bouclier d’Achille",
+      reference: "Fiche élève · Séance 2",
+      theme: "L’héritage de la pensée grecque et romaine · L’art comme représentation du monde",
+      archiveDate: "2026-09-06",
+      courseDate: null,
+      dateLabel: "06 septembre 2026 · date d’archivage",
+      pages: 4,
+      corrections: 5,
+      chapterTitle: "Notion — L’art",
+      chapterUrl: "culture-generale/art.html",
+      url: "cours-prepa/culture-generale/heritage-antique-seance-2-2026-09-06.html",
+      thumb: "https://commons.wikimedia.org/wiki/Special:FilePath/Shield%20of%20Achilles.jpg?width=900",
+      tags: ["Antiquité", "Homère", "Iliade", "Art", "Microcosme", "Résumé Écricome", "5 corrigés"]
+    },
+    {
+      id: "cg-heritage-antique-seance-1-2026-09-06",
+      subject: "cg",
+      title: "Séance 1 — Le Serment d’Hippocrate",
+      reference: "Fiche élève · Séance 1",
+      theme: "L’héritage de la pensée grecque et romaine · Permanence des valeurs antiques",
+      archiveDate: "2026-09-06",
+      courseDate: null,
+      dateLabel: "06 septembre 2026 · date d’archivage",
+      pages: 3,
+      corrections: 5,
+      chapterTitle: "Notion — L’histoire · Méthode du résumé",
+      chapterUrl: "culture-generale/histoire.html",
+      url: "cours-prepa/culture-generale/heritage-antique-seance-1-2026-09-06.html",
+      thumb: "https://commons.wikimedia.org/wiki/Special:FilePath/Bust%20of%20Hippocrates.jpg?width=900",
+      tags: ["Antiquité", "Hippocrate", "Médecine", "Éthique", "Héritage", "Résumé Écricome", "5 corrigés"]
+    },
     {
       id: "italien-geographie-regions-2026-09-06",
       subject: "italien",
