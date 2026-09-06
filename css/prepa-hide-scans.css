@@ -1,0 +1,5 @@
+/* Cours prépa — les scans restent archivés dans le dépôt mais ne sont plus affichés dans les fiches. */
+body.prepa-page #scans,
+body.prepa-page .prepa-scan-grid {
+  display: none !important;
+}
