@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cours prépa — Archives de classe | ECG1 2026-2027</title>
-<meta name="description" content="Bibliothèque des cours, polycopiés et fiches réellement distribués en CPGE ECG1, conservés en scans, datés, corrigés et reliés aux chapitres du site.">
+<title>Cours prépa | ECG1 2026-2027</title>
+<meta name="description" content="Archive simple des cours réellement distribués en CPGE ECG1, classés par matière et par date.">
 <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/cours-prepa.css">
-<link rel="stylesheet" href="../css/cours-prepa-v2.css">
+<link rel="stylesheet" href="../css/cours-prepa-simple.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-<meta name="theme-color" content="#1f2723">
+<meta name="theme-color" content="#202723">
 <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
 </head>
-<body class="prepa-page" data-root=".." data-page-id="cours-prepa-index">
+<body class="prepa-files-page" data-root=".." data-page-id="cours-prepa-index">
 <header class="site-header">
   <div class="header-inner">
     <a class="logo" href="../index.html">ECG1 <span>2026·2027</span></a>
-    <div class="search-wrap"><input id="search" type="search" placeholder="Rechercher un chapitre, une notion, un auteur…" autocomplete="off" aria-label="Recherche dans le site"><div id="search-results" class="search-results" hidden></div></div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher un chapitre, une notion, un auteur…" autocomplete="off" aria-label="Recherche dans le site">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
     <button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button>
   </div>
   <nav class="main-nav" aria-label="Navigation principale">
@@ -32,122 +34,22 @@
   </nav>
 </header>
 
-<div class="prepa-breadcrumb"><a href="../index.html">Accueil</a><span class="sep">›</span><span>Cours prépa</span></div>
-
-<main class="prepa-shell">
-  <section class="prepa-hero" aria-labelledby="prepa-title">
-    <div class="prepa-hero-copy">
-      <span class="prepa-kicker">Archives de classe · 2026—2027</span>
-      <h1 id="prepa-title">Les cours <span class="prepa-title-light">de la prépa.</span></h1>
-      <p class="lead">Une archive fidèle de ce qui est réellement distribué en classe. Chaque document reste consultable dans sa forme originale, puis reçoit une transcription propre, les corrections manquantes et un lien vers le chapitre correspondant du site.</p>
-      <div class="prepa-hero-actions">
-        <a class="prepa-action primary" href="#matieres"><span>Parcourir les matières</span><span>↓</span></a>
-        <a class="prepa-action" data-prepa-latest-link href="maths/suites-a1-2026-09-05.html"><span>Dernier cours ajouté</span><span>→</span></a>
-      </div>
-      <div class="prepa-stats" aria-label="État de la bibliothèque">
-        <div class="prepa-stat"><strong data-prepa-stat="courses">1</strong><span>cours archivé</span></div>
-        <div class="prepa-stat"><strong data-prepa-stat="pages">2</strong><span>pages conservées</span></div>
-        <div class="prepa-stat"><strong data-prepa-stat="corrections">4</strong><span>corrections ajoutées</span></div>
-        <div class="prepa-stat"><strong data-prepa-stat="subjects">1</strong><span>matière active</span></div>
-      </div>
+<main class="prepa-files-shell">
+  <header class="prepa-files-head">
+    <div>
+      <span class="prepa-files-eyebrow">Année 2026—2027</span>
+      <h1>Cours prépa</h1>
+      <p>Les documents de classe sont simplement rangés par matière, puis par date. Clique sur un dossier pour afficher les cours qu’il contient.</p>
     </div>
+    <div class="prepa-files-total" id="prepa-files-total">5 matières</div>
+  </header>
 
-    <figure class="prepa-hero-visual">
-      <span class="prepa-hero-label">Dernier document</span>
-      <img data-prepa-hero-image src="assets/maths/2026-09-05-suites-a1/a1-p1.webp" alt="Page du cours de mathématiques sur les premières définitions et notations des suites">
-      <figcaption class="prepa-hero-caption"><span data-prepa-hero-subject>Mathématiques · ANA 01-A1</span><span data-prepa-hero-date>05 septembre 2026</span></figcaption>
-    </figure>
-  </section>
+  <section class="prepa-folder-list" id="prepa-folder-list" aria-label="Cours classés par matière"></section>
 
-  <section class="prepa-section" id="matieres" aria-labelledby="matieres-prepa-title">
-    <div class="prepa-section-head">
-      <div><span class="prepa-kicker">Bibliothèque</span><h2 id="matieres-prepa-title">Choisir une matière</h2></div>
-      <p>Chaque matière possède sa propre chronologie. À mesure que l’année avance, les cours sont ajoutés par date et chaque miniature reste liée au contenu réel du document.</p>
-    </div>
-
-    <div class="prepa-subject-grid">
-      <a class="prepa-subject-card" data-subject="maths" href="maths.html">
-        <img src="assets/maths/2026-09-05-suites-a1/cover.webp" alt="Page de garde du thème Suites en mathématiques">
-        <div class="prepa-subject-content">
-          <span class="prepa-subject-index">01 · <span data-prepa-count>1 cours</span></span>
-          <h3>Mathématiques appliquées</h3>
-          <p>Polycopiés, définitions, méthodes, feuilles d’exercices et corrections.</p>
-          <div class="prepa-subject-meta"><span data-prepa-latest>Dernier ajout · Suites — A1</span><span class="prepa-subject-arrow">→</span></div>
-        </div>
-      </a>
-
-      <a class="prepa-subject-card" data-subject="esh" href="esh.html">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/New%20York%20Stock%20Exchange%20-%20panoramio%20%282%29.jpg?width=1400" alt="Façade de la New York Stock Exchange">
-        <div class="prepa-subject-content">
-          <span class="prepa-subject-index">02 · <span data-prepa-count>0 cours</span></span>
-          <h3>ESH</h3>
-          <p>Économie, sociologie, histoire économique, documents et dossiers distribués en classe.</p>
-          <div class="prepa-subject-meta"><span data-prepa-latest>Archive prête à recevoir les cours</span><span class="prepa-subject-arrow">→</span></div>
-        </div>
-      </a>
-
-      <a class="prepa-subject-card" data-subject="cg" href="culture-generale.html">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Marginalia_in_the_hand_of_grammarian_and_politician_James_Harris_%281709-1780%29_in_a_1556_edition_of_Aristotle%27s_Physics.jpg?width=1400" alt="Marginalia manuscrites dans une ancienne édition d'Aristote">
-        <div class="prepa-subject-content">
-          <span class="prepa-subject-index">03 · <span data-prepa-count>0 cours</span></span>
-          <h3>Culture générale</h3>
-          <p>Philosophie, littérature, textes, notions, dissertations et documents de méthode.</p>
-          <div class="prepa-subject-meta"><span data-prepa-latest>Archive prête à recevoir les cours</span><span class="prepa-subject-arrow">→</span></div>
-        </div>
-      </a>
-
-      <a class="prepa-subject-card" data-subject="anglais" href="anglais.html">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Newspapers_on_a_desk_%2839997398193%29.jpg?width=1400" alt="Anciens journaux disposés sur une table">
-        <div class="prepa-subject-content">
-          <span class="prepa-subject-index">04 · <span data-prepa-count>0 cours</span></span>
-          <h3>Anglais</h3>
-          <p>Articles, civilisation, vocabulaire, grammaire, essais et préparation aux épreuves.</p>
-          <div class="prepa-subject-meta"><span data-prepa-latest>Archive prête à recevoir les cours</span><span class="prepa-subject-arrow">→</span></div>
-        </div>
-      </a>
-
-      <a class="prepa-subject-card" data-subject="italien" href="italien.html">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Italian_legal_hardback_books_open.jpg?width=1400" alt="Livres italiens ouverts">
-        <div class="prepa-subject-content">
-          <span class="prepa-subject-index">05 · <span data-prepa-count>0 cours</span></span>
-          <h3>Italien</h3>
-          <p>Langue, grammaire, civilisation, textes et entraînements réellement donnés en prépa.</p>
-          <div class="prepa-subject-meta"><span data-prepa-latest>Archive prête à recevoir les cours</span><span class="prepa-subject-arrow">→</span></div>
-        </div>
-      </a>
-    </div>
-
-    <a class="prepa-method-link" href="../methodologie/index.html">
-      <span><strong>DS, khôlles &amp; méthodologie</strong><span>Les documents transversaux restent reliés aux outils de méthode et aux concours.</span></span>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-  </section>
-
-  <section class="prepa-section" aria-labelledby="latest-title">
-    <div class="prepa-section-head">
-      <div><span class="prepa-kicker">Chronologie</span><h2 id="latest-title">Derniers ajouts</h2></div>
-      <p>Les entrées les plus récentes apparaissent ici quelle que soit la matière. La bibliothèque complète reste accessible depuis chaque matière.</p>
-    </div>
-    <div class="prepa-latest-grid" id="prepa-latest-list" aria-live="polite"></div>
-  </section>
-
-  <section class="prepa-section" aria-labelledby="protocol-title">
-    <div class="prepa-section-head">
-      <div><span class="prepa-kicker">Méthode d’archivage</span><h2 id="protocol-title">Un cours n’est jamais écrasé.</h2></div>
-      <p>Le document d’origine et les ajouts du site restent distingués. Cela permet de garder une trace fidèle de l’année tout en obtenant une version beaucoup plus exploitable pour réviser.</p>
-    </div>
-    <div class="prepa-protocol">
-      <article class="prepa-protocol-step"><span class="num">01</span><h3>Scan intégral</h3><p>Chaque page est conservée dans l’ordre, avec sa mise en page, ses encadrés, ses références et ses exercices.</p></article>
-      <article class="prepa-protocol-step"><span class="num">02</span><h3>Classement précis</h3><p>Matière, date, référence du professeur, thème et chapitre du site sont enregistrés avec le document.</p></article>
-      <article class="prepa-protocol-step"><span class="num">03</span><h3>Corrections ajoutées</h3><p>Les exercices sans corrigé reçoivent une résolution détaillée, clairement séparée du texte original.</p></article>
-      <article class="prepa-protocol-step"><span class="num">04</span><h3>Cours enrichi</h3><p>Les éléments utiles du document servent ensuite à peaufiner le cours de référence déjà présent sur le site.</p></article>
-    </div>
-  </section>
-
-  <div class="prepa-note"><strong>Règle de date</strong><div><p>Quand la date réelle de la séance figure sur le document, elle est prioritaire. Si elle n’apparaît pas, le site affiche explicitement une <strong>date d’archivage</strong> afin de ne jamais inventer une information.</p></div></div>
+  <p class="prepa-files-note">Chaque cours conserve son document original. Les corrections ajoutées et le lien vers le chapitre correspondant restent accessibles depuis la fiche du cours.</p>
 </main>
 
-<footer class="site-footer"><p>ECG1 2026/2027 — <a href="index.html">Cours prépa</a> · <a href="../index.html">Accueil</a></p></footer>
+<footer class="site-footer"><p>ECG1 2026/2027 — <a href="../index.html">Accueil</a></p></footer>
 <script src="../js/data.js"></script>
 <script src="../js/cours-prepa-data.js"></script>
 <script src="../js/main.js"></script>
