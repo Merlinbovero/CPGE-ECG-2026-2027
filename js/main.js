@@ -156,19 +156,77 @@
   }
 
   /* ---------- Rendu KaTeX ---------- */
-  function renderMath() {
-    if (typeof renderMathInElement === "function") {
-      renderMathInElement(document.body, {
-        delimiters: [
-          { left: "\\[", right: "\\]", display: true },
-          { left: "\\(", right: "\\)", display: false }
-        ],
-        throwOnError: false
-      });
-    }
+  var KATEX_BASE = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/";
+
+  function pageContainsMath() {
+    var html = document.body ? document.body.innerHTML : "";
+    return html.indexOf("\\(") !== -1 || html.indexOf("\\[") !== -1;
   }
-  if (document.readyState === "complete") { renderMath(); }
-  else { window.addEventListener("load", renderMath); }
+
+  function ensureStylesheet(href, id) {
+    if (document.getElementById(id)) return;
+    var link = document.createElement("link");
+    link.id = id;
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  function loadScript(src, id, done) {
+    var existing = document.getElementById(id);
+    if (existing) {
+      if (existing.getAttribute("data-loaded") === "true") done();
+      else existing.addEventListener("load", done, { once: true });
+      return;
+    }
+
+    var script = document.createElement("script");
+    script.id = id;
+    script.src = src;
+    script.addEventListener("load", function () {
+      script.setAttribute("data-loaded", "true");
+      done();
+    }, { once: true });
+    script.addEventListener("error", function () {
+      console.warn("Impossible de charger KaTeX :", src);
+    }, { once: true });
+    document.head.appendChild(script);
+  }
+
+  function renderMath() {
+    if (typeof renderMathInElement !== "function") return;
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false }
+      ],
+      throwOnError: false
+    });
+  }
+
+  function ensureKatexAndRender() {
+    if (!pageContainsMath()) return;
+
+    ensureStylesheet(KATEX_BASE + "katex.min.css", "katex-css");
+
+    if (typeof renderMathInElement === "function") {
+      renderMath();
+      return;
+    }
+
+    function loadAutoRender() {
+      loadScript(KATEX_BASE + "contrib/auto-render.min.js", "katex-auto-render", renderMath);
+    }
+
+    if (typeof katex !== "undefined") loadAutoRender();
+    else loadScript(KATEX_BASE + "katex.min.js", "katex-core", loadAutoRender);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ensureKatexAndRender, { once: true });
+  } else {
+    ensureKatexAndRender();
+  }
 
   /* ---------- Boutons « Voir le corrigé » ---------- */
   document.querySelectorAll(".btn-corrige").forEach(function (btn) {
