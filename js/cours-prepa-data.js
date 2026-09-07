@@ -50,6 +50,23 @@ window.PREPA_ARCHIVE = {
 
   courses: [
     {
+      id: "italien-republique-italienne-2026-09-07",
+      subject: "italien",
+      title: "La Repubblica italiana — niveau A2",
+      reference: "Italia per stranieri · Unità 6",
+      theme: "Institutions · Parlement · Gouvernement · palais de Rome · naissance de la République",
+      archiveDate: "2026-09-07",
+      courseDate: null,
+      dateLabel: "07 septembre 2026 · date d’archivage",
+      pages: 4,
+      corrections: 8,
+      chapterTitle: "Civilisation — Les institutions de la République",
+      chapterUrl: "italien/civilisation.html#s1",
+      url: "cours-prepa/italien/republique-italienne-2026-09-07.html",
+      thumb: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Italy.svg?width=900",
+      tags: ["A2", "République", "Institutions", "Parlement", "Gouvernement", "Vocabulaire", "8 corrigés"]
+    },
+    {
       id: "cg-heritage-antique-seance-2-2026-09-06",
       subject: "cg",
       title: "Séance 2 — Le bouclier d’Achille",
