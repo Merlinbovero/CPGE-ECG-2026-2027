@@ -11,17 +11,12 @@
   var ROOT = body.getAttribute("data-root") || ".";
   var PAGE_ID = body.getAttribute("data-page-id") || "";
 
-  /* ---------- Mode livre : supprimer l'ancien suivi ---------- */
+  /* ---------- Mode livre : masquer le suivi sans effacer les données ---------- */
   function removeNode(node) {
     if (node && node.parentNode) node.parentNode.removeChild(node);
   }
 
   function enableBookMode() {
-    try {
-      localStorage.removeItem("ecg-chapitres");
-      localStorage.removeItem("ecg-exercices");
-    } catch (e) {}
-
     document.querySelectorAll(".chapter-done, .ex-done, .done-mark, .maths-progress-panel, .home-progress-io").forEach(removeNode);
 
     document.querySelectorAll('input[data-progress="chapter"], input[data-progress="exercise"]').forEach(function (input) {
@@ -141,16 +136,19 @@
 
   /* ---------- Thème ---------- */
   var toggle = document.getElementById("theme-toggle");
+  function savedTheme() {
+    try { return localStorage.getItem("ecg-theme"); } catch (e) { return null; }
+  }
   function applyTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
     if (toggle) toggle.textContent = t === "dark" ? "☀️" : "🌙";
   }
-  applyTheme(localStorage.getItem("ecg-theme") ||
+  applyTheme(savedTheme() ||
     (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
   if (toggle) {
     toggle.addEventListener("click", function () {
       var t = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      localStorage.setItem("ecg-theme", t);
+      try { localStorage.setItem("ecg-theme", t); } catch (e) {}
       applyTheme(t);
     });
   }
@@ -229,11 +227,17 @@
   }
 
   /* ---------- Boutons « Voir le corrigé » ---------- */
-  document.querySelectorAll(".btn-corrige").forEach(function (btn) {
+  document.querySelectorAll(".btn-corrige").forEach(function (btn, index) {
+    var target = btn.parentElement.querySelector(".corrige");
+    if (!target) return;
+    if (!target.id) target.id = "corrige-" + index;
+    btn.setAttribute("aria-controls", target.id);
+    btn.setAttribute("aria-expanded", String(!target.classList.contains("hidden")));
+    target.hidden = target.classList.contains("hidden");
     btn.addEventListener("click", function () {
-      var target = btn.parentElement.querySelector(".corrige");
-      if (!target) return;
       var hidden = target.classList.toggle("hidden");
+      target.hidden = hidden;
+      btn.setAttribute("aria-expanded", String(!hidden));
       btn.textContent = hidden ? "Voir le corrigé" : "Masquer le corrigé";
     });
   });
@@ -280,49 +284,86 @@
     meta.appendChild(link);
   })();
 
-  /* ---------- Recherche globale ---------- */
+  /* ---------- Recherche globale, identique sur toutes les pages ---------- */
   var input = document.getElementById("search");
   var results = document.getElementById("search-results");
   if (input && results && typeof SITE_DATA !== "undefined") {
     function normalize(s) {
-      return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+      return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[’']/g, " ");
+    }
+    function escapeText(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+    input.setAttribute("aria-controls", results.id);
+    input.setAttribute("aria-expanded", "false");
+    results.setAttribute("role", "region");
+    results.setAttribute("aria-label", "Résultats de recherche");
+    function closeSearch() {
+      results.hidden = true;
+      input.setAttribute("aria-expanded", "false");
+    }
+    function showSearch() {
+      results.hidden = false;
+      input.setAttribute("aria-expanded", "true");
     }
     function doSearch() {
       var q = normalize(input.value.trim());
-      if (q.length < 2) { results.hidden = true; results.innerHTML = ""; return; }
+      if (q.length < 2) { closeSearch(); results.innerHTML = ""; return; }
+      var words = q.split(/\s+/).filter(Boolean);
       var out = [];
       SITE_DATA.pages.forEach(function (p) {
-        var matSec = null;
-        var inTitle = normalize(p.t).indexOf(q) !== -1;
-        if (!inTitle) {
-          for (var i = 0; i < p.s.length; i++) {
-            if (normalize(p.s[i]).indexOf(q) !== -1) { matSec = p.s[i]; break; }
-          }
-        }
-        if (inTitle || matSec) out.push({ p: p, sec: matSec });
+        var title = normalize(p.t);
+        var sections = p.s || [];
+        var haystack = normalize(p.t + " " + sections.join(" "));
+        if (!words.every(function (word) { return haystack.indexOf(word) !== -1; })) return;
+        var inTitle = title.indexOf(q) !== -1;
+        var section = inTitle ? null : sections.find(function (s) {
+          return words.some(function (word) { return normalize(s).indexOf(word) !== -1; });
+        });
+        out.push({ p: p, sec: section, score: title === q ? 3 : inTitle ? 2 : 1 });
       });
+      out.sort(function (a, b) { return b.score - a.score; });
       if (!out.length) {
-        results.innerHTML = '<div class="sr-empty">Aucun résultat.</div>';
-        results.hidden = false;
+        results.innerHTML = '<div class="sr-empty" role="status">Aucun résultat.</div>';
+        showSearch();
         return;
       }
       results.innerHTML = out.slice(0, 12).map(function (r) {
-        var mat = SITE_DATA.matieres[r.p.m];
-        return '<a href="' + ROOT + "/" + r.p.u + '">' +
-          '<span class="sr-matiere" style="color:' + mat.color + '">' + mat.name + "</span><br>" +
-          r.p.t +
-          (r.sec ? '<span class="sr-section">→ ' + r.sec + "</span>" : "") +
-          "</a>";
+        var mat = SITE_DATA.matieres[r.p.m] || SITE_DATA.matieres.site;
+        return '<a href="' + escapeText(ROOT + "/" + r.p.u) + '">' +
+          '<span class="sr-matiere" style="color:' + escapeText(mat.color) + '">' + escapeText(mat.name) + "</span><br>" +
+          escapeText(r.p.t) + (r.sec ? '<span class="sr-section">→ ' + escapeText(r.sec) + "</span>" : "") + "</a>";
       }).join("");
-      results.hidden = false;
+      showSearch();
     }
     input.addEventListener("input", doSearch);
     input.addEventListener("focus", doSearch);
     document.addEventListener("click", function (e) {
-      if (!input.contains(e.target) && !results.contains(e.target)) results.hidden = true;
+      if (!input.contains(e.target) && !results.contains(e.target)) closeSearch();
+    });
+    document.addEventListener("focusin", function (e) {
+      if (e.target !== input && !results.contains(e.target)) closeSearch();
     });
     input.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") { results.hidden = true; input.blur(); }
+      if (e.key === "Escape") { closeSearch(); return; }
+      var links = results.querySelectorAll("a");
+      if (results.hidden || !links.length) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        links[e.key === "ArrowDown" ? 0 : links.length - 1].focus();
+      } else if (e.key === "Enter") {
+        e.preventDefault(); links[0].click();
+      }
+    });
+    results.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { input.focus(); closeSearch(); return; }
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      var links = Array.from(results.querySelectorAll("a"));
+      var index = links.indexOf(document.activeElement);
+      if (index < 0) return;
+      e.preventDefault();
+      var next = index + (e.key === "ArrowDown" ? 1 : -1);
+      if (next < 0 || next >= links.length) input.focus(); else links[next].focus();
     });
   }
 

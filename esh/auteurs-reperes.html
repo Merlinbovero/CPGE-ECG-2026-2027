@@ -20,7 +20,7 @@
   .auteur .usage { font-size: .87rem; color: var(--text-muted); border-left: 3px solid var(--accent); padding-left: .6rem; }
   .auteur .usage strong { color: var(--accent); }
 </style>
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 </head>
 <body data-root=".." data-page-id="esh-auteurs" data-matiere="esh">
 

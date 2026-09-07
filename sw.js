@@ -1,48 +1,54 @@
-/* Service worker — ECG1. Stratégie « réseau d'abord » :
-   contenu toujours à jour quand on est en ligne, repli sur le cache hors-ligne. */
-const CACHE = "ecg1-v15";
+/* Réseau d'abord, avec repli sur les pages déjà consultées.
+   Chaque projet GitHub Pages possède son propre cache. */
+const SCOPE = new URL(self.registration.scope);
+const PREFIX = "ecg1:" + SCOPE.pathname + ":";
+const CACHE = PREFIX + "v16";
 
-self.addEventListener("install", function () {
-  self.skipWaiting();
-});
+self.addEventListener("install", function () { self.skipWaiting(); });
 
 self.addEventListener("activate", function (event) {
   event.waitUntil((async function () {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(function (k) { return k !== CACHE; })
-                          .map(function (k) { return caches.delete(k); }));
+    await Promise.all(keys.filter(function (key) {
+      return key.startsWith(PREFIX) && key !== CACHE;
+    }).map(function (key) { return caches.delete(key); }));
+    /* Ne pas recharger les fenêtres : elles peuvent contenir du code non exécuté. */
     await self.clients.claim();
-
-    /* Sur iOS/PWA, une ancienne fenêtre peut rester sur l'ancien shell.
-       Lorsqu'une nouvelle version du worker s'active, on recharge une fois
-       les fenêtres déjà ouvertes pour qu'elles récupèrent les nouveaux assets. */
-    const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    await Promise.all(clients.map(function (client) {
-      return client.navigate(client.url).catch(function () { return null; });
-    }));
   })());
 });
 
+function offlinePage() {
+  const home = new URL("index.html", SCOPE).href;
+  return new Response('<!doctype html><html lang="fr"><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<title>Page indisponible hors connexion — ECG1</title>' +
+    '<body style="font:1rem/1.6 system-ui;max-width:40rem;margin:4rem auto;padding:1rem">' +
+    '<h1>Cette page n’est pas disponible hors connexion.</h1>' +
+    '<p>Reconnecte-toi pour la consulter une première fois. Les pages déjà ouvertes peuvent être lues depuis cet appareil.</p>' +
+    '<p><a href="' + home + '">Revenir à l’accueil</a></p></body></html>',
+    { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } });
+}
+
 self.addEventListener("fetch", function (event) {
   const req = event.request;
-  if (req.method !== "GET") return;
-  if (new URL(req.url).origin !== self.location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== "GET" || url.origin !== SCOPE.origin || !url.pathname.startsWith(SCOPE.pathname)) return;
   event.respondWith((async function () {
+    const cache = await caches.open(CACHE);
     try {
-      /* no-store évite que Safari nous rende une ancienne réponse HTTP
-         alors que la stratégie du service worker est censée être réseau d'abord. */
       const fresh = await fetch(req, { cache: "no-store" });
-      const cache = await caches.open(CACHE);
-      cache.put(req, fresh.clone());
+      if (fresh.ok && fresh.status !== 206) {
+        event.waitUntil(cache.put(req, fresh.clone()).catch(function () {}));
+      } else if (fresh.status >= 500) {
+        const cached = await cache.match(req);
+        if (cached) return cached;
+      }
       return fresh;
     } catch (err) {
-      const cached = await caches.match(req);
+      const cached = await cache.match(req);
       if (cached) return cached;
-      if (req.mode === "navigate") {
-        const home = await caches.match("index.html");
-        if (home) return home;
-      }
-      throw err;
+      if (req.mode === "navigate") return offlinePage();
+      return Response.error();
     }
   })());
 });

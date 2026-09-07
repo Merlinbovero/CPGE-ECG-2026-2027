@@ -5,11 +5,16 @@
 
   var STORE = "ecg-python-jeu";
   var CODESTORE = "ecg-python-jeu-code";
-  var PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js";
 
-  var pyodide = null;       // instance chargée
-  var pyLoading = null;     // promesse de chargement en cours
-  var current = null;       // numéro de niveau affiché
+  var pyWorker = null;
+  var pyLoading = null;
+  var rejectLoading = null;
+  var pendingRun = null;
+  var loadingTimer = null;
+  var current = null;
+  var runInProgress = false;
+  var runToken = 0;
+  var WORKER_URL = new URL((document.body.dataset.root || ".") + "/js/python-worker.js", document.baseURI).href;
 
   // ---- progression ----
   function loadProg() {
@@ -37,62 +42,67 @@
 
   function niveau(n) { for (var i = 0; i < NIVEAUX.length; i++) if (NIVEAUX[i].n === n) return NIVEAUX[i]; return null; }
 
-  // ---- Pyodide ----
+  // ---- Python dans un worker interrompable ----
+  function stopPython(message) {
+    if (pyWorker) pyWorker.terminate();
+    pyWorker = null;
+    clearTimeout(loadingTimer);
+    var error = new Error(message || "Exécution arrêtée. Tu peux corriger le code et réessayer.");
+    if (rejectLoading) rejectLoading(error);
+    rejectLoading = null;
+    pyLoading = null;
+    if (pendingRun) {
+      clearTimeout(pendingRun.timer);
+      pendingRun.reject(error);
+      pendingRun = null;
+    }
+  }
+
   function ensurePyodide(onStatus) {
-    if (pyodide) return Promise.resolve(pyodide);
     if (pyLoading) return pyLoading;
-    onStatus && onStatus("Chargement de Python (première fois, quelques secondes)…");
+    if (typeof Worker === "undefined") return Promise.reject(new Error("Ce navigateur ne prend pas en charge l’exécution Python."));
+    onStatus("Chargement de Python (connexion internet requise)…");
     pyLoading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = PYODIDE_URL;
-      s.onload = function () {
-        window.loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/" })
-          .then(function (py) {
-            pyodide = py;
-            // helper de test installé une fois
-            pyodide.runPython(HELPER);
-            resolve(pyodide);
-          })["catch"](reject);
+      rejectLoading = reject;
+      try { pyWorker = new Worker(WORKER_URL); }
+      catch (error) { rejectLoading = null; reject(error); return; }
+      var worker = pyWorker;
+      loadingTimer = setTimeout(function () {
+        stopPython("Le chargement de Python a pris trop de temps. Vérifie la connexion puis réessaie.");
+      }, 90000);
+      worker.onmessage = function (event) {
+        if (worker !== pyWorker) return;
+        if (event.data.type === "ready") {
+          clearTimeout(loadingTimer);
+          rejectLoading = null;
+          resolve(worker);
+        } else if (event.data.type === "error") {
+          stopPython(event.data.message);
+        } else if (event.data.type === "results" && pendingRun) {
+          var pending = pendingRun;
+          pendingRun = null;
+          clearTimeout(pending.timer);
+          pending.resolve(event.data.results);
+        }
       };
-      s.onerror = function () { reject(new Error("Impossible de charger Pyodide (connexion internet requise).")); };
-      document.head.appendChild(s);
+      worker.onerror = function () {
+        if (worker === pyWorker) stopPython("Python a rencontré une erreur. Tu peux relancer les tests.");
+      };
     });
+    pyLoading = pyLoading.catch(function (error) { pyLoading = null; throw error; });
     return pyLoading;
   }
 
-  var HELPER =
-    "import json\n" +
-    "def _run_test(src, call, expected_src, approx):\n" +
-    "    ns = {}\n" +
-    "    try:\n" +
-    "        exec(src, ns)\n" +
-    "    except Exception as e:\n" +
-    "        return json.dumps([False, 'ERREUR à l\\'exécution du code : ' + type(e).__name__ + ' : ' + str(e)])\n" +
-    "    try:\n" +
-    "        got = eval(call, ns)\n" +
-    "    except Exception as e:\n" +
-    "        return json.dumps([False, 'ERREUR : ' + type(e).__name__ + ' : ' + str(e)])\n" +
-    "    try:\n" +
-    "        exp = eval(expected_src, {})\n" +
-    "    except Exception:\n" +
-    "        exp = None\n" +
-    "    try:\n" +
-    "        if approx:\n" +
-    "            ok = abs(got - exp) < 1e-6\n" +
-    "        else:\n" +
-    "            ok = (got == exp)\n" +
-    "    except Exception:\n" +
-    "        ok = (repr(got) == repr(exp))\n" +
-    "    return json.dumps([bool(ok), repr(got)])\n";
-
-  function runOneTest(src, test) {
-    pyodide.globals.set("_SRC", src);
-    pyodide.globals.set("_CALL", test.call);
-    pyodide.globals.set("_EXP", test.expect);
-    pyodide.globals.set("_APX", !!test.approx);
-    var raw = pyodide.runPython("_run_test(_SRC, _CALL, _EXP, _APX)");
-    var arr = JSON.parse(raw);
-    return { ok: arr[0], got: arr[1] };
+  function runTests(code, tests, onStatus) {
+    return ensurePyodide(onStatus).then(function (worker) {
+      onStatus("Exécution des tests…");
+      return new Promise(function (resolve, reject) {
+        pendingRun = { resolve: resolve, reject: reject, timer: setTimeout(function () {
+          stopPython("Exécution interrompue après 8 secondes. Vérifie notamment la condition d’arrêt de tes boucles.");
+        }, 8000) };
+        worker.postMessage({ type: "run", code: code, tests: tests });
+      });
+    });
   }
 
   // ---- UI ----
@@ -111,9 +121,9 @@
     for (var i = 0; i < NIVEAUX.length; i++) {
       var lv = NIVEAUX[i], pal = palierInfo(lv.n);
       if (pal.nom !== lastPal) {
+        if (lastPal !== "") html += "</div>";
         html += '<div class="pj-pal-title ' + pal.cls + '">Palier ' + (lv.n <= 19 ? "1" : lv.n <= 49 ? "2" : "3") +
           " — " + pal.nom + (lv.n <= 19 ? " (bases)" : lv.n <= 49 ? " (formules)" : " (problèmes)") + '</div><div class="pj-grid">';
-        if (lastPal !== "") html = html.replace('<div class="pj-grid">', '</div><div class="pj-grid">');
         lastPal = pal.nom;
       }
       var st = completed(lv.n) ? "done" : (lv.n <= umax ? "open" : "lock");
@@ -137,6 +147,9 @@
   }
 
   function selectLevel(n) {
+    if (runInProgress) stopPython();
+    runToken++;
+    runInProgress = false;
     current = n;
     var lv = niveau(n), pal = palierInfo(n);
     var el = document.getElementById("pj-detail");
@@ -150,16 +163,18 @@
       '<textarea id="pj-code" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>' +
       '<div class="pj-actions">' +
       '<button id="pj-run" class="btn">▶ Exécuter les tests</button>' +
+      '<button id="pj-stop" class="btn" type="button" hidden>Arrêter</button>' +
       '<button id="pj-hint" class="btn-corrige" type="button">💡 Indice</button>' +
       '<button id="pj-sol" class="btn-corrige" type="button">Voir le corrigé</button>' +
       "</div>" +
-      '<div id="pj-status" class="pj-status"></div>' +
+      '<div id="pj-status" class="pj-status" role="status" aria-live="polite"></div>' +
       '<div id="pj-results" class="pj-results"></div>' +
       '<div id="pj-extra"></div>';
     var ta = document.getElementById("pj-code");
     ta.value = starter;
     ta.addEventListener("keydown", tabHandler);
     ta.addEventListener("input", function () { saveCode(n, ta.value); });
+    document.getElementById("pj-stop").addEventListener("click", function () { stopPython(); });
     document.getElementById("pj-run").addEventListener("click", function () { runLevel(n); });
     document.getElementById("pj-hint").addEventListener("click", function () {
       document.getElementById("pj-extra").innerHTML = '<div class="box met"><span class="box-title">Indice</span><p>' + (lv.indice || "Réfléchis à la définition du cours.") + "</p></div>";
@@ -172,11 +187,12 @@
   }
 
   function tabHandler(e) {
-    if (e.key === "Tab") {
+    if (e.key === "Tab" && !e.shiftKey) {
       e.preventDefault();
       var s = this.selectionStart, en = this.selectionEnd;
       this.value = this.value.substring(0, s) + "    " + this.value.substring(en);
       this.selectionStart = this.selectionEnd = s + 4;
+      saveCode(current, this.value);
     }
   }
 
@@ -185,6 +201,13 @@
   }
 
   function runLevel(n) {
+    if (runInProgress) return;
+    runInProgress = true;
+    var token = ++runToken;
+    var runButton = document.getElementById("pj-run");
+    var stopButton = document.getElementById("pj-stop");
+    runButton.disabled = true;
+    stopButton.hidden = false;
     var lv = niveau(n);
     var code = document.getElementById("pj-code").value;
     var status = document.getElementById("pj-status");
@@ -192,11 +215,11 @@
     results.innerHTML = "";
     status.className = "pj-status loading";
     status.textContent = "Exécution…";
-    ensurePyodide(function (msg) { status.textContent = msg; }).then(function () {
+    runTests(code, lv.tests, function (msg) { status.textContent = msg; }).then(function (testResults) {
+      if (token !== runToken) return;
       var all = true, out = "";
       for (var i = 0; i < lv.tests.length; i++) {
-        var t = lv.tests[i], r;
-        try { r = runOneTest(code, t); } catch (e) { r = { ok: false, got: "ERREUR : " + e.message }; }
+        var t = lv.tests[i], r = testResults[i];
         if (!r.ok) all = false;
         out += '<div class="pj-test ' + (r.ok ? "ok" : "ko") + '">' +
           (r.ok ? "✅" : "❌") + " <code>" + escapeHtml(t.call) + "</code> → attendu <code>" +
@@ -204,7 +227,6 @@
       }
       results.innerHTML = out;
       if (all) {
-        var newlyDone = !completed(n);
         markDone(n);
         status.className = "pj-status win";
         status.innerHTML = "🎉 Niveau " + n + " validé !" + (n < NIVEAUX.length ? ' <button id="pj-next" class="btn">Niveau suivant →</button>' : " Tu as terminé tous les niveaux, bravo !");
@@ -216,8 +238,14 @@
         status.textContent = "Certains tests échouent — corrige et relance.";
       }
     })["catch"](function (err) {
+      if (token !== runToken) return;
       status.className = "pj-status fail";
       status.textContent = err.message || "Erreur de chargement de Python.";
+    }).finally(function () {
+      if (token !== runToken) return;
+      runInProgress = false;
+      runButton.disabled = false;
+      stopButton.hidden = true;
     });
   }
 

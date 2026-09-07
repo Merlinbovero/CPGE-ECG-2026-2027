@@ -1,5 +1,14 @@
-/* Cours prépa — les scans restent archivés dans le dépôt mais ne sont plus affichés dans les fiches. */
-body.prepa-page #scans,
-body.prepa-page .prepa-scan-grid {
-  display: none !important;
+/* Sources conservées et consultables à la demande, sans alourdir la lecture. */
+.prepa-sources {
+  padding: 1rem;
+  border: 1px solid var(--prepa-line, var(--border));
+  background: var(--prepa-card, var(--bg-card));
 }
+.prepa-sources > summary {
+  display: list-item;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.prepa-sources[open] > summary { margin-bottom: 1rem; }
+.prepa-sources summary:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }

@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#2b2e35">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 </head>
 <body data-root=".." data-page-id="italien-exos" data-matiere="italien">
 
@@ -232,7 +232,7 @@
   <div class="box thm">
     <span class="box-title">Avant de composer : la check-list de dernière minute</span>
     <ul>
-      <li>Thème : credo che + subjonctif ; jamais de conditionnel après se ; futur après quando/appena ; conditionnel passé pour le futur dans le passé ; ne + accord du participe.</li>
+      <li>Thème : credo che + subjonctif ; pas de conditionnel dans la proposition de condition ; futur possible après quando/appena ; conditionnel passé pour le futur dans le passé ; ne + accord du participe.</li>
       <li>Version : repérer les temps italiens et choisir le bon équivalent français ; jamais de blanc ; relire le français seul.</li>
       <li>Essai : un fait daté par paragraphe (civilisation) ; connecteurs (tuttavia/dunque/insomma) ; répondre à la question posée.</li>
       <li>Dans le doute entre deux tournures : choisir celle qu'on maîtrise à 100 %.</li>

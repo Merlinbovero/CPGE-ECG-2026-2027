@@ -279,6 +279,7 @@ html[data-theme="dark"] .level-3 { background: #7f1d1d; color: #fecaca; }
 }
 .btn:hover, .btn-corrige:hover { filter: brightness(1.12); }
 .btn { margin-top: 0; margin-right: .5rem; }
+.btn[hidden] { display: none; }
 
 .btn-print {
   display: inline-flex; align-items: center; gap: .4rem; cursor: pointer;

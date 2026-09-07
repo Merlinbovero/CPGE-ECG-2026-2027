@@ -82,6 +82,7 @@
       if (reveal) reveal.addEventListener("click", function () {
         revealed = true;
         render();
+        document.getElementById("fc-next").focus();
       });
 
       var next = document.getElementById("fc-next");
@@ -89,6 +90,7 @@
         pos++;
         revealed = false;
         render();
+        (document.getElementById("fc-reveal") || document.getElementById("fc-restart")).focus();
       });
     }
 
@@ -199,7 +201,7 @@
             '<article class="fc-face fc-face-back" aria-hidden="' + (revealed ? 'false' : 'true') + '">' +
               '<div class="fc-card-head"><span class="fc-card-code">' + esc(card.code || "ESH") + '</span><span class="fc-card-kind"><strong>Réponse</strong>' + esc(labelType(card.type)) + '</span></div>' +
               '<div class="fc-card-main"><p class="fc-answer-label">Réponse</p><div class="fc-answer">' + card.a + '</div></div>' +
-              '<div class="fc-card-foot"><span class="fc-flip-hint"><span class="fc-flip-icon">↻</span> Touchez pour revenir</span><a class="fc-course-link" href="' + esc(href) + '">Retour au cours ↗</a></div>' +
+              '<div class="fc-card-foot"><span class="fc-flip-hint"><span class="fc-flip-icon">↻</span> Touchez pour revenir</span><a class="fc-course-link" tabindex="' + (revealed ? '0' : '-1') + '" href="' + esc(href) + '">Retour au cours ↗</a></div>' +
             '</article>' +
           '</div>' +
         '</div>' +
@@ -228,6 +230,8 @@
     faces[0].setAttribute("aria-hidden", revealed ? "true" : "false");
     faces[1].setAttribute("aria-hidden", revealed ? "false" : "true");
     scene.setAttribute("aria-pressed", revealed ? "true" : "false");
+    var courseLink = scene.querySelector(".fc-course-link");
+    if (courseLink) courseLink.tabIndex = revealed ? 0 : -1;
   }
 
   function toggleFlip() {
@@ -264,6 +268,7 @@
         toggleFlip();
       });
       scene.addEventListener("keydown", function (event) {
+        if (event.target !== scene) return;
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           toggleFlip();
@@ -302,8 +307,7 @@
     updateCounter();
   }
 
-  /* Une éventuelle ancienne mémoire Leitner est supprimée une fois pour toutes. */
-  try { localStorage.removeItem("ecg-flashcards"); } catch (e) {}
+  /* Les anciennes données Leitner sont conservées, sans être utilisées. */
 
   buildOrder();
   updatePageContext();

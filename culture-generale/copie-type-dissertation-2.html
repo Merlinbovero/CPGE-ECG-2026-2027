@@ -23,7 +23,7 @@
     .cp-row { grid-template-columns: 1fr 15rem; align-items: start; }
   }
 </style>
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 </head>
 <body data-root=".." data-page-id="cg-copie-dissert-2" data-matiere="cg">
 

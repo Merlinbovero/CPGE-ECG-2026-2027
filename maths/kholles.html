@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#2b2e35">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 <style>
   .kh-timer { position: sticky; top: .5rem; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem;
     background: var(--bg-card); border: 1.5px solid var(--border); border-radius: .7rem; padding: .6rem .9rem; box-shadow: var(--shadow); margin: 1rem 0 1.6rem; }

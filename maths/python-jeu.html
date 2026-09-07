@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#2b2e35">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 <style>
   .pj-count { font-weight: 700; color: var(--accent); }
   .pj-pal-title { margin: 1.4rem 0 .5rem; font-weight: 700; font-size: .95rem; letter-spacing: .02em; }

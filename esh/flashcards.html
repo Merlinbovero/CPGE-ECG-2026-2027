@@ -102,7 +102,7 @@
     .fc-face{transition:none!important}
   }
 </style>
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 </head>
 <body data-root=".." data-page-id="esh-flashcards-v3" data-matiere="esh">
 <header class="site-header">

@@ -13,9 +13,9 @@
 <meta name="theme-color" content="#202723">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 </head>
-<body class="home-v1" data-root="." data-page-id="accueil">
+<body id="top" class="home-v1" data-root="." data-page-id="accueil">
 
 <header class="site-header">
   <div class="header-inner">
@@ -41,14 +41,14 @@
     <div class="home-hero-copy">
       <span class="home-eyebrow">CPGE ECG · Première année</span>
       <h1 id="home-title">Une année de prépa, structurée matière par matière.</h1>
-      <p class="lead">Cours, exercices, flashcards et méthodes réunis dans un seul espace de travail. La priorité reste simple : savoir quoi travailler, retrouver rapidement le bon contenu et mesurer ce qui est déjà acquis.</p>
+      <p class="lead">Cours, exercices, flashcards et méthodes réunis dans un seul espace de travail. La priorité reste simple : savoir quoi travailler, retrouver rapidement le bon contenu et revenir sur les notions toute l’année.</p>
       <div class="home-hero-actions">
         <a class="home-action primary" href="#matieres"><span>Voir les matières</span><span aria-hidden="true">→</span></a>
         <a class="home-action" href="mon-espace/index.html"><span>Ouvrir mon espace</span><span aria-hidden="true">↗</span></a>
       </div>
     </div>
 
-    <figure class="home-board" aria-label="Tableau de cours d'économie avec équilibres macroéconomiques">
+    <figure class="home-board" aria-label="Photographie d’un espace de travail académique">
       <svg viewBox="0 0 760 510" role="img" aria-labelledby="board-title board-desc" xmlns="http://www.w3.org/2000/svg">
         <title id="board-title">Tableau d'économie</title>
         <desc id="board-desc">Courbes d'offre et de demande, identité monétaire et notes de cours sur un tableau sombre.</desc>
@@ -117,38 +117,38 @@
         <span class="home-eyebrow">Programme</span>
         <h2 id="matieres-title">Les matières</h2>
       </div>
-      <p>Chaque matière garde sa propre couleur, ses cours et sa progression. Les pourcentages ci-dessous viennent des chapitres réellement cochés sur cet appareil.</p>
+      <p>Chaque matière rassemble ses cours, ses exercices corrigés et ses ressources de révision.</p>
     </div>
 
     <div class="home-subjects">
       <a class="home-subject" data-subject="maths" data-progress-matiere="maths" href="maths/index.html">
         <div class="home-subject-visual"><span class="home-subject-index">01</span><svg viewBox="0 0 320 120" aria-hidden="true"><g fill="none" stroke="var(--subject)" stroke-width="2"><path d="M20 96H300M45 110V14" opacity=".4"/><path d="M48 92C85 82 110 56 139 61C172 67 196 30 225 36C252 42 270 21 296 18"/><path d="M68 23h25v25H68zM101 23h25v25h-25zM68 56h25v25H68zM101 56h25v25h-25z" opacity=".55"/></g><text x="162" y="87" fill="var(--subject)" font-family="Georgia, serif" font-size="24">P(X ≤ x)</text></svg></div>
-        <div class="home-subject-body"><h3>Maths appliquées</h3><p>Analyse, algèbre, probabilités, statistiques et Python.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Progression</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
+        <div class="home-subject-body"><h3>Maths appliquées</h3><p>Analyse, algèbre, probabilités, statistiques et Python.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
       </a>
 
       <a class="home-subject" data-subject="esh" data-progress-matiere="esh" href="esh/index.html">
         <div class="home-subject-visual"><span class="home-subject-index">02</span><svg viewBox="0 0 320 120" aria-hidden="true"><g fill="none" stroke="var(--subject)" stroke-width="2.4" stroke-linecap="round"><path d="M24 102V18M24 102H297" opacity=".35"/><path d="M56 94C105 76 149 55 202 26"/><path d="M55 28C105 47 154 67 207 95" opacity=".72"/><path d="M165 58H268" stroke-dasharray="5 5" opacity=".4"/></g><text x="219" y="36" fill="var(--subject)" font-family="Georgia, serif" font-size="19">Y = A·F(K,L)</text><text x="218" y="84" fill="var(--subject)" font-family="Georgia, serif" font-size="15">Smith · Keynes · Solow</text></svg></div>
-        <div class="home-subject-body"><h3>ESH</h3><p>Économie, sociologie et histoire des faits contemporains.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Progression</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
+        <div class="home-subject-body"><h3>ESH</h3><p>Économie, sociologie et histoire des faits contemporains.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
       </a>
 
       <a class="home-subject" data-subject="cg" data-progress-matiere="cg" href="culture-generale/index.html">
         <div class="home-subject-visual"><span class="home-subject-index">03</span><svg viewBox="0 0 320 120" aria-hidden="true"><path d="M48 24h92c20 0 30 11 30 25v54c-11-11-24-16-42-16H48z" fill="none" stroke="var(--subject)" stroke-width="2.2"/><path d="M272 24h-92c-20 0-30 11-30 25v54c11-11 24-16 42-16h80z" fill="none" stroke="var(--subject)" stroke-width="2.2"/><path d="M68 45h54M68 59h64M198 45h50M188 59h60" stroke="var(--subject)" opacity=".5"/><text x="112" y="111" fill="var(--subject)" font-family="Georgia, serif" font-size="17">nature · culture · liberté</text></svg></div>
-        <div class="home-subject-body"><h3>Culture générale</h3><p>Lettres, philosophie, œuvres, notions et dissertation.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Progression</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
+        <div class="home-subject-body"><h3>Culture générale</h3><p>Lettres, philosophie, œuvres, notions et dissertation.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
       </a>
 
       <a class="home-subject" data-subject="anglais" data-progress-matiere="anglais" href="anglais/index.html">
         <div class="home-subject-visual"><span class="home-subject-index">04</span><svg viewBox="0 0 320 120" aria-hidden="true"><text x="30" y="66" fill="var(--subject)" font-family="Georgia, serif" font-size="50" font-weight="700">EN</text><path d="M130 28h150M130 45h128M130 62h142M130 79h104" stroke="var(--subject)" stroke-width="3" opacity=".55"/><text x="130" y="105" fill="var(--subject)" font-family="Georgia, serif" font-size="14">press · civilisation · essay</text></svg></div>
-        <div class="home-subject-body"><h3>Anglais</h3><p>Civilisation, presse, expression écrite et préparation orale.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Progression</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
+        <div class="home-subject-body"><h3>Anglais</h3><p>Civilisation, presse, expression écrite et préparation orale.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
       </a>
 
       <a class="home-subject" data-subject="italien" data-progress-matiere="italien" href="italien/index.html">
         <div class="home-subject-visual"><span class="home-subject-index">05</span><svg viewBox="0 0 320 120" aria-hidden="true"><path d="M38 91h244M76 91V48h38v43M128 91V30h52v61M194 91V55h47v36" fill="none" stroke="var(--subject)" stroke-width="2.2"/><path d="M141 30c0-18 27-18 27 0" fill="none" stroke="var(--subject)" stroke-width="2.2"/><text x="48" y="114" fill="var(--subject)" font-family="Georgia, serif" font-size="16">lingua · società · Italia contemporanea</text></svg></div>
-        <div class="home-subject-body"><h3>Italien</h3><p>Langue, grammaire, civilisation et entraînement concours.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Progression</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
+        <div class="home-subject-body"><h3>Italien</h3><p>Langue, grammaire, civilisation et entraînement concours.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
       </a>
 
       <a class="home-subject" data-subject="methodo" data-progress-matiere="methodo" href="methodologie/index.html">
         <div class="home-subject-visual"><span class="home-subject-index">06</span><svg viewBox="0 0 320 120" aria-hidden="true"><rect x="45" y="16" width="135" height="92" fill="none" stroke="var(--subject)" stroke-width="2"/><path d="M67 42l8 8 14-18M67 69l8 8 14-18M106 41h50M106 69h50M205 29h70M205 50h55M205 71h64M205 92h47" fill="none" stroke="var(--subject)" stroke-width="2.4"/></svg></div>
-        <div class="home-subject-body"><h3>Méthodologie &amp; concours</h3><p>Organisation, colles, méthodes d’épreuve, BCE et Ecricome.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Progression</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
+        <div class="home-subject-body"><h3>Méthodologie &amp; concours</h3><p>Organisation, colles, méthodes d’épreuve, BCE et Ecricome.</p><div class="home-subject-meta"><div class="home-subject-meta-row"><span>Ouvrir la matière</span><span class="home-subject-arrow">→</span></div><div class="progress-bar"><div class="progress-fill"></div></div><span class="progress-label"></span></div></div>
       </a>
     </div>
   </section>

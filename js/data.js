@@ -1,13 +1,13 @@
 /* ============================================================
    ECG1 2026-2027 — Manifeste du site
-   Utilisé pour : recherche globale, barres de progression,
-   marquage "terminé" dans les sommaires.
+   Utilisé pour la recherche globale.
    Chaque page : id (clé localStorage), m (matière), t (titre),
    u (URL relative à la racine), s (sections pour la recherche).
    ============================================================ */
 
 const SITE_DATA = {
   matieres: {
+    site: { name: "Navigation du site", color: "#475569", index: "index.html" },
     maths:    { name: "Mathématiques appliquées & informatique", color: "#2563eb", index: "maths/index.html" },
     esh:      { name: "ESH — Économie, sociologie, histoire",    color: "#0f8a6d", index: "esh/index.html" },
     cg:       { name: "Culture générale",                        color: "#7c3aed", index: "culture-generale/index.html" },
@@ -75,7 +75,7 @@ const SITE_DATA = {
     { id: "maths-formulaire", m: "maths", r: true, n: "", t: "Formulaire / Mémo — toutes les formules de maths", u: "maths/formulaire.html",
       s: ["Formules d'algèbre et de calcul", "Analyse et intégration", "Probabilités et lois usuelles", "Séries, graphes, statistiques", "Mémo Python"] },
     { id: "maths-flashcards", m: "maths", r: true, n: "", t: "Flashcards Maths", u: "maths/flashcards.html",
-      s: ["Répétition espacée", "Formules et théorèmes", "Méthodes types", "Lois de probabilité"] },
+      s: ["Révision libre", "Formules et théorèmes", "Méthodes types", "Lois de probabilité"] },
     { id: "maths-copie-ds", m: "maths", r: true, n: "", t: "Copie-type n°1 : un devoir de maths entièrement rédigé", u: "maths/copie-type-ds.html",
       s: ["Devoir rédigé commenté", "Suite récurrente et équivalent", "Variable aléatoire géométrique", "Rédaction de concours", "Barème et fautes à éviter"] },
     { id: "maths-copie-ds-2", m: "maths", r: true, n: "", t: "Copie-type n°2 : algèbre linéaire & couple de variables aléatoires", u: "maths/copie-type-ds-2.html",
@@ -113,7 +113,7 @@ const SITE_DATA = {
     { id: "esh-formulaire", m: "esh", r: true, n: "", t: "Formulaire / Mémo — tout le programme d'ESH", u: "esh/formulaire.html",
       s: ["Fiches de révision condensées", "Auteurs et dates clés", "Chiffres clés", "Mécanismes clés"] },
     { id: "esh-flashcards", m: "esh", r: true, n: "", t: "Flashcards ESH", u: "esh/flashcards.html",
-      s: ["Répétition espacée", "Auteurs et dates", "Chiffres clés", "Définitions"] },
+      s: ["Révision libre", "Auteurs et dates", "Chiffres clés", "Définitions"] },
     { id: "esh-copie-dissert", m: "esh", r: true, n: "", t: "Copie-type n°1 : une dissertation d'ESH entièrement rédigée", u: "esh/copie-type-dissertation.html",
       s: ["Dissertation rédigée commentée", "Croissance et inégalités", "Kuznets, Piketty, Sen", "Problématique et dépassement", "Mécanismes expliqués"] },
     { id: "esh-copie-dissert-2", m: "esh", r: true, n: "", t: "Copie-type n°2 : dissertation d'ESH (progrès technique & emploi)", u: "esh/copie-type-dissertation-2.html",
@@ -187,7 +187,7 @@ const SITE_DATA = {
     { id: "anglais-formulaire", m: "anglais", r: true, n: "", t: "Formulaire / Mémo — anglais", u: "anglais/formulaire.html",
       s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
     { id: "anglais-flashcards", m: "anglais", r: true, n: "", t: "Flashcards anglais", u: "anglais/flashcards.html",
-      s: ["Répétition espacée", "Grammaire", "Vocabulaire", "Civilisation"] },
+      s: ["Révision libre", "Grammaire", "Vocabulaire", "Civilisation"] },
     { id: "anglais-annales", m: "anglais", r: true, n: "", t: "Annales BCE / Ecricome — anglais", u: "anglais/annales.html",
       s: ["Sujets de concours", "Gabarit de corrigé"] },
 
@@ -207,7 +207,7 @@ const SITE_DATA = {
     { id: "italien-formulaire", m: "italien", r: true, n: "", t: "Formulaire / Mémo — italien", u: "italien/formulaire.html",
       s: ["Fiches de révision condensées", "Grammaire", "Civilisation", "Vocabulaire"] },
     { id: "italien-flashcards", m: "italien", r: true, n: "", t: "Flashcards italien", u: "italien/flashcards.html",
-      s: ["Répétition espacée", "Grammaire", "Vocabulaire", "Civilisation"] },
+      s: ["Révision libre", "Grammaire", "Vocabulaire", "Civilisation"] },
     { id: "italien-annales", m: "italien", r: true, n: "", t: "Annales BCE / Ecricome — italien", u: "italien/annales.html",
       s: ["Sujets de concours", "Gabarit de corrigé"] },
 
@@ -225,6 +225,44 @@ const SITE_DATA = {
     { id: "methodo-entretien", m: "methodo", n: "6", t: "L'entretien de personnalité (oraux d'admission)", u: "methodologie/entretien.html",
       s: ["Se connaître", "Projet et pourquoi cette école", "Banque de questions types", "Mises en situation", "Actualité et ouverture", "Posture et erreurs à éviter", "Plan de préparation"] },
     { id: "mon-espace", m: "methodo", r: true, n: "", t: "Mon espace — emploi du temps & notes", u: "mon-espace/index.html",
-      s: ["Emploi du temps glisser-déposer", "Notes et moyennes automatiques", "Semestres ou trimestres", "Accès rapides École Directe", "Tableau de bord personnel"] }
+      s: ["Emploi du temps glisser-déposer", "Notes et moyennes automatiques", "Semestres ou trimestres", "Accès rapides École Directe", "Tableau de bord personnel"] },
+
+    /* Compléments ESH disponibles depuis toutes les pages. */
+    { id: "esh-off-111", m: "esh", n: "1.1", t: "Compléments officiels — fondements de l'économie", u: "esh/complements-fondements-economie.html",
+      s: ["Tableau entrées-sorties", "Coefficients techniques", "Mercantilistes", "Physiocrates", "Quesnay", "Histoire de la pensée économique depuis le XVIe siècle"] },
+    { id: "esh-off-121", m: "esh", n: "1.2.1", t: "Équilibre microéconomique du consommateur et du producteur", u: "esh/micro-consommateur-producteur.html",
+      s: ["Préférences et utilité", "Courbes d'indifférence", "Contrainte budgétaire", "TMS", "Effets revenu et substitution", "Fonction de production", "Coûts", "Choix du producteur"] },
+    { id: "esh-off-212", m: "esh", n: "2.1.2", t: "Inégalités et stratégies de développement", u: "esh/strategies-developpement.html",
+      s: ["Développement", "Stratégies de développement", "Substitution aux importations", "Promotion des exportations", "État développeur", "Consensus de Washington", "Industrialisation"] },
+    { id: "esh-off-221", m: "esh", n: "2.2.1", t: "Transformations des structures économiques et financières", u: "esh/transformations-economiques-financieres.html",
+      s: ["Industrialisation", "Tertiarisation", "Désindustrialisation", "Financiarisation", "Globalisation financière", "Économie d'endettement", "Économie de marchés financiers"] },
+    { id: "esh-off-222", m: "esh", n: "2.2.2", t: "Mobilité sociale et transformations de la structure sociale", u: "esh/mobilite-sociale.html",
+      s: ["Mobilité sociale", "Tables de mobilité", "Mobilité observée", "Mobilité structurelle", "Fluidité sociale", "Odds ratio", "Déclassement"] },
+    { id: "esh-off-232", m: "esh", n: "2.3.2", t: "Concurrence imparfaite et stratégies des firmes", u: "esh/strategies-firmes.html",
+      s: ["Monopole", "Oligopole", "Concurrence monopolistique", "Barrières à l'entrée", "Différenciation", "Discrimination par les prix", "Théorie des jeux", "Stratégies des firmes"] },
+    { id: "esh-off-233", m: "esh", n: "2.3.3", t: "Sociologie du travail et des organisations", u: "esh/sociologie-travail-organisations.html",
+      s: ["Travail", "Organisation", "Taylorisme", "Fordisme", "Toyotisme", "Crozier et Friedberg", "Relations professionnelles", "Qualification", "Autonomie et contrôle"] },
+
+    /* BEGIN AUTO SEARCH — scripts/sync_search.py */
+    {"id": "anglais-index", "m": "anglais", "r": true, "n": "", "t": "English Language & Civilisation — ECG1 2026-2027", "u": "anglais/index.html", "s": ["English Language & Civilisation", "Where do you want to work?", "Build accurate English.", "Understand the English-speaking world.", "Turn knowledge into performance.", "Quick access", "Grammar & Language Reference", "Flashcards", "BCE & Ecricome Papers", "A reference library, not a substitute for class."]},
+    {"id": "cours-prepa-anglais", "m": "anglais", "r": true, "n": "", "t": "Cours prépa · Anglais | ECG1", "u": "cours-prepa/anglais.html", "s": ["Les cours d’anglais.", "Année 2026—2027"]},
+    {"id": "cours-prepa-cg-heritage-s1", "m": "cg", "r": true, "n": "", "t": "Cours prépa — Culture générale — Séance 1 · Serment d’Hippocrate | Cours prépa ECG1", "u": "cours-prepa/culture-generale/heritage-antique-seance-1-2026-09-06.html", "s": ["Le Serment d’Hippocrate — l’héritage antique encore vivant.", "L’Antiquité comme héritage vivant", "Le Serment d’Hippocrate", "Correction", "Résumer le texte en 3 phrases maximum", "Le résumé Écricome — aperçu", "À retenir"]},
+    {"id": "cours-prepa-cg-heritage-s2", "m": "cg", "r": true, "n": "", "t": "Cours prépa — Culture générale — Séance 2 · Bouclier d’Achille | Cours prépa ECG1", "u": "cours-prepa/culture-generale/heritage-antique-seance-2-2026-09-06.html", "s": ["Le bouclier d’Achille — l’art organise et symbolise le monde.", "Homère et l’Iliade", "La description du bouclier d’Achille", "Correction", "Résumé en 5 phrases maximum", "À retenir"]},
+    {"id": "cours-prepa-cg", "m": "cg", "r": true, "n": "", "t": "Cours prépa · Culture générale | ECG1", "u": "cours-prepa/culture-generale.html", "s": ["Les cours de culture générale.", "Année 2026—2027"]},
+    {"id": "cours-prepa-esh", "m": "esh", "r": true, "n": "", "t": "Cours prépa · ESH | ECG1", "u": "cours-prepa/esh.html", "s": ["Les cours d’ESH.", "Année 2026—2027"]},
+    {"id": "cours-prepa-index", "m": "site", "r": true, "n": "", "t": "Cours prépa | ECG1 2026-2027", "u": "cours-prepa/index.html", "s": ["Cours prépa"]},
+    {"id": "cours-prepa-italien-geographie", "m": "italien", "r": true, "n": "", "t": "Cours prépa — Italien A2 — Géographie de l’Italie et régions | Cours prépa ECG1", "u": "cours-prepa/italien/geographie-regions-2026-09-06.html", "s": ["Géographie de l’Italie & régions.", "Les pages", "Un paese a forma di…", "Page 8 — Lessico geografico", "Page 9 — Monti, mari, fiumi, laghi, vulcani e isole", "Page 10 — Vita sull’acqua", "Page 10 — Pianure", "Page 10 — Quiz", "Page 11 — Terremoti", "L’Italia delle regioni", "Page 24 — Lessico delle regioni", "Page 25 — Le 20 regioni", "Page 26 — Riguarda la cartina", "Page 27 — Comprensione", "Page 27 — Stereotipi nord/sud", "Scheda B — 8 città"]},
+    {"id": "cours-prepa-italien-republique", "m": "italien", "r": true, "n": "", "t": "Cours prépa — Italien A2 — La Repubblica italiana | Cours prépa ECG1", "u": "cours-prepa/italien/republique-italienne-2026-09-07.html", "s": ["La Repubblica italiana.", "Les quatre pages", "Lessico — La Repubblica italiana", "Come funziona lo Stato?", "1a — Guarda le foto", "1b — Che cosa sai delle istituzioni?", "2a — Completa i testi", "Cariche e palazzi della Repubblica", "2b — Chi ricopre attualmente queste cariche?", "2c — Italia e Francia: analogie e differenze", "3a — Chi risiede in questi palazzi?", "La nascita della Repubblica italiana", "3b — A quale abitudine linguistica sono legati questi palazzi?", "La nascita della Repubblica italiana — cronologia", "Fiche express"]},
+    {"id": "cours-prepa-italien", "m": "italien", "r": true, "n": "", "t": "Cours prépa · Italien | ECG1", "u": "cours-prepa/italien.html", "s": ["Les cours d’italien.", "Année 2026—2027"]},
+    {"id": "cours-prepa-maths-coefficients-binomiaux", "m": "maths", "r": true, "n": "", "t": "Cours prépa — Coefficients binomiaux — cours et exercices corrigés | Cours prépa ECG1", "u": "cours-prepa/maths/coefficients-binomiaux-2026-09-07.html", "s": ["Coefficients binomiaux.", "Scans originaux", "Transcription structurée du cours", "1 — En pratique", "2 — Formules", "Exercices du polycopié — corrections", "Exercice 1 — Interprétation et calculs directs", "Exercice 2 — Vrai ou faux ?", "Exercice 3 — Valeurs immédiates", "Exercice 4 — Calcul sans calculatrice", "Exercice 5 — Identité avec le triangle de Pascal", "Exercice 6 — Lecture du triangle de Pascal"]},
+    {"id": "cours-prepa-maths-suites-a1", "m": "maths", "r": true, "n": "", "t": "Cours prépa — Suites — A1 · Premières définitions et notations | Cours prépa ECG1", "u": "cours-prepa/maths/suites-a1-2026-09-05.html", "s": ["Premières définitions et notations.", "Scan original", "Transcription structurée", "A1 — Définition 1 : Suite · Terme · Rang · Indice", "Exemple 1", "Modes de génération d’une suite", "Exercices du polycopié", "1. Suites définies explicitement", "2. Suites définies par une relation de récurrence", "3. Suite définie implicitement", "4. Suites imbriquées", "À retenir de A1"]},
+    {"id": "cours-prepa-maths", "m": "maths", "r": true, "n": "", "t": "Cours prépa · Mathématiques | ECG1 2026-2027", "u": "cours-prepa/maths.html", "s": ["Les cours de maths.", "Année 2026—2027"]},
+    {"id": "cg-index", "m": "cg", "r": true, "n": "", "t": "Lettres & philosophie — ECG1 2026-2027", "u": "culture-generale/index.html", "s": ["Lettres & philosophie", "La méthode avant tout", "Problématiser, construire, argumenter", "Comprendre avant de condenser", "13 notions fondamentales", "Le monde commun", "La condition humaine", "Connaître & créer", "Bibliothèque de travail"]},
+    {"id": "esh-index", "m": "esh", "r": true, "n": "", "t": "ESH — Économie, sociologie, histoire — ECG1 2026-2027", "u": "esh/index.html", "s": ["Comprendre.Structurer.Convaincre.", "Du cours à la copie.", "Travailler selon ton besoin.", "17 sous-parties", "Auteurs & repères", "Flashcards", "Annales", "Deux modules. Six blocs. Dix-sept sous-parties.", "1.1 · Les fondements de l’économie", "1.2 · Comportement des agents et marché", "1.3 · Les fondements de la sociologie", "2.1 · Croissance et développement", "2.2 · Transformations économiques et sociales", "2.3 · Entreprise et organisations", "Conserver sans confondre avec l’exigible ECG1.", "Progrès technique & emploi", "Fluctuations & crises", "Passer de la connaissance à la copie.", "Copies-types", "Mémo condensé", "Revue économique", "Auteurs & repères", "102 flashcards", "Annales BCE / Ecricome"]},
+    {"id": "accueil", "m": "site", "r": true, "n": "", "t": "Tableau d'économie", "u": "index.html", "s": ["Une année de prépa, structurée matière par matière.", "Les matières", "Maths appliquées", "ESH", "Culture générale", "Anglais", "Italien", "Méthodologie & concours", "Accès immédiats", "Passer du cours à l’entraînement.", "Mon espace", "La première année en un coup d’œil", "Maths appliquées + ESH", "Rythme de l’année"]},
+    {"id": "italien-index", "m": "italien", "r": true, "n": "", "t": "Lingua e civiltà italiana — ECG1 2026-2027", "u": "italien/index.html", "s": ["Lingua & civiltà italiana", "Tre aree, una struttura chiara", "Lingua", "Civiltà & letteratura", "Prove & allenamento", "Costruire una lingua solida", "Capire l’Italia e i suoi testi", "Passare dalla conoscenza alla prova", "Riferimenti & pratica", "Scheda di lingua", "Flashcard", "Annali BCE & Ecricome"]},
+    {"id": "italien-vocab-prepa", "m": "italien", "r": true, "n": "", "t": "Vocabulaire des cours de prépa — Italien ECG1", "u": "italien/vocabulaire-prepa.html", "s": ["Italien. Vocabulaire des cours de prépa", "1. Géographie physique", "2. Relief, eaux et lieux cités", "3. Les 20 régions italiennes", "4. Régions & institutions de la République", "5. Nord / Sud & société", "6. Villes & culture", "7. Expressions utiles du cours"]},
+    {"id": "maths-index", "m": "maths", "r": true, "n": "", "t": "Mathématiques appliquées & informatique — ECG1 2026-2027", "u": "maths/index.html", "s": ["Penser. Calculer. Démontrer.", "Connaître sans approximation.", "Automatiser le calcul.", "Relier les idées.", "Programme annuel", "Semestre 1", "Semestre 2", "Python & algorithmique", "6 modules progressifs", "S'entraîner", "Le jeu — 70 niveaux", "Khôlles — 20 problèmes", "Ressources transversales", "Copies-types rédigées", "Formulaire / mémo", "Flashcards", "Annales BCE / Ecricome"]},
+    {"id": "methodo-index", "m": "methodo", "r": true, "n": "", "t": "Méthodologie & concours — ECG1 2026-2027", "u": "methodologie/index.html", "s": ["Méthodologie & concours", "Par où commencer ?", "Je veux mieux travailler", "J'ai une colle ou un DS", "Je veux comprendre les concours", "Je prépare les oraux", "Travailler efficacement", "Colles & devoirs surveillés", "Comprendre les concours", "Oraux & entretien", "Une méthode au service du cours."]}
   ]
 };

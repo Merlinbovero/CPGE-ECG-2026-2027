@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flashcards Anglais — ECG1</title>
-<meta name="description" content="Flashcards à répétition espacée pour réviser la grammaire, le vocabulaire et la civilisation anglais LVA ECG1. Fonctionne hors ligne, progression sauvegardée dans le navigateur.">
+<meta name="description" content="Flashcards de anglais pour la CPGE ECG1 : questions et réponses à parcourir librement, dans un ordre mélangé, sans enregistrement de maîtrise.">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#2b2e35">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ECG1">
-<script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+<script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
 </head>
 <body data-root=".." data-page-id="anglais-flashcards" data-matiere="anglais">
 
@@ -41,7 +41,7 @@
 
 <main>
   <h1>Flashcards Anglais — grammaire, vocabulaire, civilisation</h1>
-  <p class="lead">32 cartes couvrant les 4 fiches du programme. Répétition espacée façon Leitner : une carte sue s'éloigne, une carte ratée revient tout de suite. Progression sauvegardée dans ce navigateur.</p>
+  <p class="lead">Cartes de révision à parcourir librement, dans un ordre mélangé. Aucun niveau de maîtrise n’est enregistré : tu peux recommencer le paquet autant de fois que nécessaire.</p>
   <p id="flashcards-counter" class="small muted"></p>
 
   <div id="flashcards-app"></div>
