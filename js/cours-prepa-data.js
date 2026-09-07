@@ -12,7 +12,7 @@ window.PREPA_ARCHIVE = {
       short: "Maths",
       page: "cours-prepa/maths.html",
       description: "Polycopiés, définitions, méthodes, feuilles d’exercices et corrections.",
-      image: "cours-prepa/assets/maths/2026-09-05-suites-a1/cover.webp"
+      image: "cours-prepa/assets/maths/2026-09-07-coefficients-binomiaux/p1.webp"
     },
     esh: {
       order: 2,
@@ -49,6 +49,23 @@ window.PREPA_ARCHIVE = {
   },
 
   courses: [
+    {
+      id: "maths-coefficients-binomiaux-2026-09-07",
+      subject: "maths",
+      title: "Coefficients binomiaux — définition, Pascal et exercices",
+      reference: "ML. Bouchard · Maths Prépa ECG 1",
+      theme: "Combinatoire · symétrie · formule de Pascal · triangle de Pascal",
+      archiveDate: "2026-09-07",
+      courseDate: null,
+      dateLabel: "07 septembre 2026 · date d’archivage",
+      pages: 2,
+      corrections: 6,
+      chapterTitle: "Chapitre 2 — Coefficients binomiaux",
+      chapterUrl: "maths/ch02-calculs-algebriques.html#s5",
+      url: "cours-prepa/maths/coefficients-binomiaux-2026-09-07.html",
+      thumb: "cours-prepa/assets/maths/2026-09-07-coefficients-binomiaux/p1.webp",
+      tags: ["Algèbre", "Combinatoire", "Coefficients binomiaux", "Pascal", "Symétrie", "6 corrigés"]
+    },
     {
       id: "italien-republique-italienne-2026-09-07",
       subject: "italien",
