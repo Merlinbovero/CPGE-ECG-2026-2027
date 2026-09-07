@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coefficients binomiaux — cours et exercices corrigés | Cours prépa ECG1</title>
+<meta name="description" content="Archive complète du polycopié de mathématiques ECG1 sur les coefficients binomiaux : scans originaux, définition, symétrie, formule de Pascal, triangle de Pascal et six exercices corrigés.">
+<link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../../css/cours-prepa.css"><link rel="manifest" href="../../manifest.webmanifest"><link rel="icon" href="../../icons/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1f2723"><script>document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));</script>
+</head>
+<body class="prepa-page" data-root="../.." data-page-id="cours-prepa-maths-coefficients-binomiaux" data-matiere="maths">
+<header class="site-header"><div class="header-inner"><a class="logo" href="../../index.html">ECG1 <span>2026·2027</span></a><div class="search-wrap"><input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site"><div id="search-results" class="search-results" hidden></div></div><button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button></div><nav class="main-nav" aria-label="Navigation principale"><a href="../../maths/index.html">Maths appliquées</a><a href="../../esh/index.html">ESH</a><a href="../../culture-generale/index.html">Culture générale</a><a href="../../anglais/index.html">Anglais</a><a href="../../italien/index.html">Italien</a><a href="../index.html" data-prepa-link="true" aria-current="true">Cours prépa</a><a href="../../methodologie/index.html">Méthodologie &amp; concours</a></nav></header>
+<div class="prepa-breadcrumb"><a href="../../index.html">Accueil</a><span class="sep">›</span><a href="../index.html">Cours prépa</a><span class="sep">›</span><a href="../maths.html">Mathématiques</a><span class="sep">›</span><span>Coefficients binomiaux</span></div>
+
+<main class="prepa-shell">
+  <section class="prepa-document-head">
+    <div>
+      <span class="prepa-kicker">Mathématiques appliquées · ECG1</span>
+      <h1>Coefficients binomiaux.</h1>
+      <p class="lead">Polycopié de deux pages consacré à la lecture de \(\binom{n}{k}\), son interprétation combinatoire, sa formule factorielle, la symétrie, la formule de Pascal et le triangle de Pascal. Le document est conservé intégralement sous forme de scan ; les corrections détaillées sont ajoutées à la suite sans remplacer la source.</p>
+      <div class="prepa-source-warning"><strong>Date :</strong> aucune date de séance n’est imprimée sur les feuilles. Le <strong>7 septembre 2026</strong> est utilisé uniquement comme date d’archivage.</div>
+    </div>
+    <dl class="prepa-document-meta">
+      <div><dt>Matière</dt><dd>Mathématiques appliquées</dd></div>
+      <div><dt>Professeur</dt><dd>ML. Bouchard · Maths Prépa ECG 1</dd></div>
+      <div><dt>Document</dt><dd>Coefficients binomiaux</dd></div>
+      <div><dt>Pages</dt><dd>2 pages</dd></div>
+      <div><dt>Exercices</dt><dd>6 ensembles · correction complète ajoutée</dd></div>
+      <div><dt>Chapitre site</dt><dd><a href="../../maths/ch02-calculs-algebriques.html#s5">Chapitre 2 — Coefficients binomiaux</a></dd></div>
+    </dl>
+  </section>
+
+  <section class="prepa-section" id="scans" aria-labelledby="scans-title">
+    <div class="prepa-section-head"><div><span class="prepa-kicker">Source primaire</span><h2 id="scans-title">Scans originaux</h2></div><p>Les deux photographies ont été redressées, recadrées et compressées pour l’écran. Le contenu du polycopié est conservé tel qu’il a été transmis.</p></div>
+    <div class="prepa-scan-grid">
+      <figure class="prepa-scan"><a href="../assets/maths/2026-09-07-coefficients-binomiaux/p1.webp" target="_blank" rel="noopener"><img src="../assets/maths/2026-09-07-coefficients-binomiaux/p1.webp" alt="Page 1 du polycopié Coefficients binomiaux : définition, valeurs à connaître, symétrie et triangle de Pascal"></a><figcaption><span>Page 1 · cours</span><span>Définition · formules · triangle de Pascal</span></figcaption></figure>
+      <figure class="prepa-scan"><a href="../assets/maths/2026-09-07-coefficients-binomiaux/p2.webp" target="_blank" rel="noopener"><img src="../assets/maths/2026-09-07-coefficients-binomiaux/p2.webp" alt="Page 2 du polycopié Coefficients binomiaux : six exercices"></a><figcaption><span>Page 2 · exercices</span><span>6 exercices corrigés ci-dessous</span></figcaption></figure>
+    </div>
+  </section>
+
+  <div class="prepa-content-grid">
+    <div class="prepa-content-main">
+      <section id="transcription">
+        <h2>Transcription structurée du cours</h2>
+
+        <h3>1 — En pratique</h3>
+        <div class="prepa-original-block prepa-definition"><span class="label">Document original · définition</span>
+          <p>Le coefficient binomial \(\binom{n}{k}\) se lit <strong>« k parmi n »</strong>.</p>
+          <p>C’est un entier qui correspond au <strong>nombre de façons possibles de choisir \(k\) éléments parmi \(n\) éléments</strong>, sans hiérarchie et sans ordre : choix simultané, par poignée, par lot ou en groupe.</p>
+          <div class="prepa-formula">\[\binom{n}{k}=\begin{cases}\dfrac{n!}{k!(n-k)!},&0\le k\le n,\\[4pt]0,&k&gt;n.\end{cases}\]</div>
+        </div>
+
+        <div class="prepa-original-block"><span class="label">Valeurs à connaître</span>
+          <div class="prepa-formula">\[\binom{n}{0}=1,\qquad \binom{n}{n}=1,\qquad \binom{n}{1}=n.\]</div>
+          <ul><li>Il n’existe qu’une seule façon de ne choisir aucun élément.</li><li>Il n’existe qu’une seule façon de choisir tous les \(n\) éléments.</li><li>Il existe \(n\) façons de choisir un seul élément parmi \(n\).</li></ul>
+        </div>
+
+        <h3>2 — Formules</h3>
+        <div class="prepa-original-block"><span class="label">Document original · symétrie</span>
+          <div class="prepa-formula">\[\boxed{\binom{n}{k}=\binom{n}{n-k}}\]</div>
+          <p>Choisir \(k\) éléments parmi \(n\) revient à choisir les \(n-k\) éléments que l’on ne garde pas. Exemple du polycopié : choisir 3 cartes parmi 10 revient à choisir les 7 cartes restantes.</p>
+        </div>
+
+        <div class="prepa-original-block"><span class="label">Document original · formule de Pascal</span>
+          <p>La formule de Pascal permet de manipuler les coefficients binomiaux :</p>
+          <div class="prepa-formula">\[\boxed{\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}}\]</div>
+          <p>Le triangle de Pascal permet de la visualiser : chaque coefficient intérieur s’obtient en additionnant les deux coefficients situés juste au-dessus.</p>
+        </div>
+
+        <div class="table-scroll"><table><thead><tr><th>\(n\backslash k\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>
+          <tr><th>0</th><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><th>1</th><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><th>2</th><td>1</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><th>3</th><td>1</td><td>3</td><td>3</td><td>1</td><td>0</td><td>0</td></tr>
+          <tr><th>4</th><td>1</td><td>4</td><td><strong>6</strong></td><td>4</td><td>1</td><td>0</td></tr>
+          <tr><th>5</th><td>1</td><td>5</td><td>10</td><td>10</td><td>5</td><td>1</td></tr>
+        </tbody></table></div>
+        <div class="prepa-note"><strong>Lecture du tableau</strong><div><p>Dans le polycopié, la case \(n=4, k=2\) donne \(\binom{4}{2}=6\), car \(\binom{3}{1}+\binom{3}{2}=3+3=6\).</p></div></div>
+      </section>
+
+      <section id="exercices">
+        <h2>Exercices du polycopié — corrections</h2>
+
+        <article class="prepa-exercise"><h3>Exercice 1 — Interprétation et calculs directs</h3><ol><li>Interpréter \(\binom{n}{1}\) et en donner la valeur.</li><li>Calculer \(\binom{6}{2}\). En déduire \(\binom{7}{2}\).</li><li>Comment obtenir facilement \(\binom{7}{5}\) ?</li></ol></article>
+        <div class="prepa-correction"><span class="label">Correction</span>
+          <p><strong>1.</strong> \(\binom{n}{1}\) est le nombre de façons de choisir un élément parmi \(n\). Il y en a donc exactement \(n\) :</p><div class="prepa-formula">\[\boxed{\binom{n}{1}=n}.\]</div>
+          <p><strong>2.</strong> \(\binom{6}{2}=\frac{6\times5}{2}=15\). Par Pascal, \(\binom{7}{2}=\binom{6}{1}+\binom{6}{2}=6+15=21\).</p>
+          <p><strong>3.</strong> Par symétrie, \(\binom{7}{5}=\binom{7}{2}=\boxed{21}\).</p>
+        </div>
+
+        <article class="prepa-exercise"><h3>Exercice 2 — Vrai ou faux ?</h3><ol><li>\(\binom{12}{9}=\binom{12}{3}\).</li><li>\(\binom{8}{4}=2\binom{7}{3}\).</li><li>\(\binom{9}{5}=3\binom{8}{5}\).</li></ol></article>
+        <div class="prepa-correction"><span class="label">Correction</span>
+          <p><strong>1. Vrai.</strong> Par symétrie : \(12-9=3\), donc \(\binom{12}{9}=\binom{12}{3}\).</p>
+          <p><strong>2. Vrai.</strong> Par Pascal puis symétrie : \(\binom{8}{4}=\binom{7}{3}+\binom{7}{4}=\binom{7}{3}+\binom{7}{3}=2\binom{7}{3}\). Numériquement : \(70=2\times35\).</p>
+          <p><strong>3. Faux.</strong> \(\binom{9}{5}=126\), tandis que \(3\binom{8}{5}=3\times56=168\). La relation de Pascal correcte est \(\binom{9}{5}=\binom{8}{4}+\binom{8}{5}=70+56=126\).</p>
+        </div>
+
+        <article class="prepa-exercise"><h3>Exercice 3 — Valeurs immédiates</h3><p>Donner les valeurs de \(\binom{25}{0}\), \(\binom{23}{22}\), \(\binom{15}{15}\) et \(\binom{2013}{1}\).</p></article>
+        <div class="prepa-correction"><span class="label">Correction</span><div class="prepa-formula">\[\boxed{\binom{25}{0}=1},\qquad \boxed{\binom{23}{22}=\binom{23}{1}=23},\qquad \boxed{\binom{15}{15}=1},\qquad \boxed{\binom{2013}{1}=2013}.\]</div></div>
+
+        <article class="prepa-exercise"><h3>Exercice 4 — Calcul sans calculatrice</h3><p>Calculer, ou laisser sous forme de produit : \(\binom{52}{4}\), \(\binom{24}{20}\), \(\binom{13}{7}\).</p></article>
+        <div class="prepa-correction"><span class="label">Correction</span>
+          <p><strong>1.</strong> \(\displaystyle\binom{52}{4}=\frac{52\times51\times50\times49}{4\times3\times2\times1}=\boxed{270725}\).</p>
+          <p><strong>2.</strong> On utilise d’abord la symétrie : \(\binom{24}{20}=\binom{24}{4}\). Ainsi \(\displaystyle\binom{24}{4}=\frac{24\times23\times22\times21}{24}=23\times22\times21=\boxed{10626}\).</p>
+          <p><strong>3.</strong> \(\binom{13}{7}=\binom{13}{6}=\displaystyle\frac{13\times12\times11\times10\times9\times8}{6!}=\boxed{1716}\).</p>
+        </div>
+
+        <article class="prepa-exercise"><h3>Exercice 5 — Identité avec le triangle de Pascal</h3><div class="prepa-formula">\[\binom{2}{2}+\binom{3}{2}+\binom{4}{2}+\binom{5}{2}+\binom{6}{2}=\binom{7}{3}.\]</div></article>
+        <div class="prepa-correction"><span class="label">Correction · démonstration</span>
+          <p>On réécrit la formule de Pascal sous la forme \(\binom{k}{2}=\binom{k+1}{3}-\binom{k}{3}\). En sommant de \(k=2\) à \(6\), tout se télescope :</p>
+          <div class="prepa-formula">\[\sum_{k=2}^{6}\binom{k}{2}=\sum_{k=2}^{6}\left(\binom{k+1}{3}-\binom{k}{3}\right)=\binom{7}{3}-\binom{2}{3}=\boxed{\binom{7}{3}}.\]</div>
+          <p>Comme \(\binom{2}{3}=0\), l’identité est démontrée. Vérification numérique : \(1+3+6+10+15=35=\binom{7}{3}\).</p>
+        </div>
+
+        <article class="prepa-exercise"><h3>Exercice 6 — Lecture du triangle de Pascal</h3><p>Calculer \(\binom{6}{2}\), \(\binom{6}{3}\), \(\binom{6}{4}\) et \(\binom{6}{5}\).</p></article>
+        <div class="prepa-correction"><span class="label">Correction</span><div class="prepa-formula">\[\boxed{\binom{6}{2}=15},\qquad \boxed{\binom{6}{3}=20},\qquad \boxed{\binom{6}{4}=15},\qquad \boxed{\binom{6}{5}=6}.\]</div><p>La symétrie explique immédiatement \(\binom{6}{2}=\binom{6}{4}\) et \(\binom{6}{1}=\binom{6}{5}\).</p></div>
+      </section>
+    </div>
+
+    <aside class="prepa-content-side">
+      <div class="prepa-note"><strong>À savoir par cœur</strong><div><p>\(\binom{n}{0}=\binom{n}{n}=1\), \(\binom{n}{1}=n\), symétrie \(\binom{n}{k}=\binom{n}{n-k}\), formule de Pascal.</p></div></div>
+      <div class="prepa-note"><strong>Réflexe de calcul</strong><div><p>Avant d’utiliser les factorielles, chercher une valeur immédiate, la symétrie ou Pascal. Cela réduit souvent fortement le calcul.</p></div></div>
+      <div class="prepa-note"><strong>Chapitre de référence</strong><div><p><a href="../../maths/ch02-calculs-algebriques.html#s5">Ouvrir le chapitre 2 — Coefficients binomiaux</a>.</p></div></div>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer"><p>ECG1 2026/2027 — <a href="../index.html">Cours prépa</a> · <a href="../../maths/index.html">Mathématiques</a></p></footer>
+<script src="../../js/data.js"></script><script src="../../js/main.js"></script>
+</body></html>
