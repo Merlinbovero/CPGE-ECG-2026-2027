@@ -11,6 +11,55 @@
   var ROOT = body.getAttribute("data-root") || ".";
   var PAGE_ID = body.getAttribute("data-page-id") || "";
 
+  /* Dernière lecture locale : une page du manifeste, jamais une URL libre. */
+  (function () {
+    if (typeof SITE_DATA === "undefined") return;
+    var siteRoot = new URL(ROOT + "/", document.baseURI);
+    var key = "ecg-last-reading:" + siteRoot.pathname;
+    function readable(page) {
+      return page && page.m !== "site" && !/(^|\/)index\.html$/.test(page.u) &&
+        !/^cours-prepa\/[^/]+\.html$/.test(page.u);
+    }
+    function updateReading() {
+      if (PAGE_ID !== "accueil") {
+        var current = SITE_DATA.pages.find(function (page) {
+          return readable(page) && new URL(page.u, siteRoot).pathname === location.pathname;
+        });
+        if (!current) return;
+        var anchor = "";
+        try {
+          var id = decodeURIComponent(location.hash.slice(1));
+          if (id && document.getElementById(id)) anchor = "#" + encodeURIComponent(id);
+        } catch (e) {}
+        try { localStorage.setItem(key, JSON.stringify({ id: current.id, anchor: anchor })); } catch (e) {}
+        return;
+      }
+      var link = document.getElementById("resume-link");
+      var empty = document.getElementById("resume-empty");
+      if (!link || !empty) return;
+      link.hidden = true;
+      empty.hidden = false;
+      try {
+        var saved = JSON.parse(localStorage.getItem(key));
+        if (!saved) return;
+        var page = SITE_DATA.pages.find(function (entry) { return entry.id === saved.id && readable(entry); });
+        if (!page) return;
+        var url = new URL(page.u, siteRoot);
+        if (typeof saved.anchor === "string" && /^#[^#\s]*$/.test(saved.anchor)) url.hash = saved.anchor;
+        link.href = url.href;
+        document.getElementById("resume-name").textContent = page.t;
+        link.hidden = false;
+        empty.hidden = true;
+      } catch (e) {}
+    }
+    updateReading();
+    window.addEventListener("pageshow", updateReading);
+    window.addEventListener("hashchange", updateReading);
+    if (PAGE_ID === "accueil") {
+      window.addEventListener("storage", function (event) { if (event.key === key) updateReading(); });
+    }
+  })();
+
   /* ---------- Mode livre : masquer le suivi sans effacer les données ---------- */
   function removeNode(node) {
     if (node && node.parentNode) node.parentNode.removeChild(node);
