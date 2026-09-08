@@ -186,6 +186,19 @@ body {
 .main-nav a:hover, .main-nav a[aria-current="true"], .main-nav a[aria-current="page"] {
   background: var(--ui-soft); color: var(--accent);
 }
+/* L'accès mis en avant conserve une paire fond/texte contrastée. */
+body.home-v1 .main-nav a[data-prepa-link] {
+  background: #8f433f; border-color: #8f433f; color: #fffaf5;
+}
+body.home-v1 .main-nav a[data-prepa-link]:is(:hover, :focus-visible) {
+  background: #753632; border-color: #753632; color: #ffffff;
+}
+html[data-theme="dark"] body.home-v1 .main-nav a[data-prepa-link] {
+  background: #c77b73; border-color: #c77b73; color: #171411;
+}
+html[data-theme="dark"] body.home-v1 .main-nav a[data-prepa-link]:is(:hover, :focus-visible) {
+  background: #d58a82; border-color: #d58a82; color: #0f0e0c;
+}
 #search, #theme-toggle {
   min-height: 2.75rem; border: 1px solid var(--ui-line); border-radius: var(--radius-sm);
   background: var(--ui-paper); color: var(--ui-ink); font: 1rem/1.4 var(--ui-sans);
