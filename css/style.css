@@ -2,23 +2,26 @@
    La feuille historique est conservée dans base.css.
    Les surcharges ESH sont isolées dans esh-premium.css,
    puis raffinées, renforcées et alignées sur le programme officiel. */
-@import url("./base.css");
-@import url("./esh-premium.css");
-@import url("./esh-refine.css");
-@import url("./esh-emphasis.css");
-@import url("./esh-programme-align.css");
-@import url("./esh-harmonized.css?v=20260905-1");
-@import url("./home-photo-hero.css?v=20260905-1");
-@import url("./home-subject-photos.css?v=20260905-2");
-@import url("./maths-mit.css?v=20260905-1");
-@import url("./maths-real-photos.css?v=20260905-1");
-@import url("./maths-chapters-visibility.css?v=20260905-2");
-@import url("./anglais-cambridge.css?v=20260905-2");
-@import url("./italien-editorial.css?v=20260905-1");
-@import url("./italien-prepa-map.css?v=20260906-1");
-@import url("./methodo-harvard.css?v=20260905-1");
-@import url("./cg-editorial.css?v=20260905-1");
-@import url("./prepa-documents.css?v=20260905-1");
-@import url("./prepa-hide-scans.css?v=20260906-1");
-@import url("./book-mode.css?v=20260905-2");
-@import url("./home-prepa-nav.css?v=20260906-1");
+@import url("./base.css") layer(legacy);
+@import url("./esh-premium.css") layer(legacy);
+@import url("./esh-refine.css") layer(legacy);
+@import url("./esh-emphasis.css") layer(legacy);
+@import url("./esh-programme-align.css") layer(legacy);
+@import url("./esh-harmonized.css?v=20260905-1") layer(legacy);
+@import url("./home-photo-hero.css?v=20260905-1") layer(legacy);
+@import url("./home-subject-photos.css?v=20260905-2") layer(legacy);
+@import url("./maths-mit.css?v=20260905-1") layer(legacy);
+@import url("./maths-real-photos.css?v=20260905-1") layer(legacy);
+@import url("./maths-chapters-visibility.css?v=20260905-2") layer(legacy);
+@import url("./anglais-cambridge.css?v=20260905-2") layer(legacy);
+@import url("./italien-editorial.css?v=20260905-1") layer(legacy);
+@import url("./italien-prepa-map.css?v=20260906-1") layer(legacy);
+@import url("./methodo-harvard.css?v=20260905-1") layer(legacy);
+@import url("./cg-editorial.css?v=20260905-1") layer(legacy);
+@import url("./prepa-documents.css?v=20260905-1") layer(legacy);
+@import url("./prepa-hide-scans.css?v=20260906-1") layer(legacy);
+@import url("./book-mode.css?v=20260905-2") layer(legacy);
+@import url("./home-prepa-nav.css?v=20260906-1") layer(legacy);
+
+/* Les composants communs priment sur les compositions historiques. */
+@import url("./design-system.css?v=20260908");

@@ -1,3 +1,4 @@
+@layer legacy {
 /* ============================================================
    Cours prépa — bibliothèque documentaire de l'année
    Direction éditoriale : archives papier, photographie, chronologie.
@@ -258,4 +259,6 @@ html[data-theme="dark"] .prepa-scan { background:#252824; }
   .prepa-course-card h3 { font-size:1.18rem; }
   .prepa-scan-grid { grid-template-columns:1fr; }
   .prepa-document-meta div { grid-template-columns:1fr; gap:.2rem; }
+}
+
 }

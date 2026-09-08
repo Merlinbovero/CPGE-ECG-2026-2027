@@ -1,3 +1,4 @@
+@layer legacy {
 /* ============================================================
    Accueil V1 — direction éditoriale / académique
    Isolé de la feuille commune pour ne pas affecter les matières.
@@ -283,4 +284,6 @@ html[data-theme="dark"] .home-action.primary { background: #ece8df; color: #1518
   .home-section-head { align-items: flex-start; flex-direction: column; }
   .home-workspace-links { grid-template-columns: 1fr; }
   .home-action { width: 100%; }
+}
+
 }

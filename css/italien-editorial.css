@@ -113,11 +113,11 @@ body[data-page-id="italien-index"] .italian-shell {
 .italian-button.primary {
   border-color: var(--it-red);
   background: var(--it-red);
-  color: #fff !important;
+  color: #fff;
 }
 
 .italian-button:hover { background: color-mix(in srgb, var(--it-red) 10%, var(--it-paper)); }
-.italian-button.primary:hover { background: var(--it-red-dark); color: #fff !important; }
+.italian-button.primary:hover { background: var(--it-red-dark); color: #fff; }
 
 .italian-hero-photo {
   position: relative;
@@ -399,7 +399,7 @@ html[data-theme="dark"] body[data-page-id="italien-index"] .italian-reference { 
   min-height: 13.5rem;
   padding: 1.3rem;
   background: #302925;
-  color: #fff !important;
+  color: #fff;
   text-decoration: none !important;
 }
 

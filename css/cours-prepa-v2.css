@@ -1,3 +1,4 @@
+@layer legacy {
 /* ============================================================
    Cours prépa V2 — archive éditoriale
    Surcouche volontairement isolée : elle n'affecte pas les cours.
@@ -295,4 +296,6 @@ body.prepa-page .main-nav::-webkit-scrollbar { display: none; }
   .prepa-course-thumb img,
   .prepa-course-card,
   .prepa-action { transition: none !important; }
+}
+
 }

@@ -1,3 +1,4 @@
+@layer legacy {
 /* Cours prépa — vue dossiers, volontairement sobre. */
 
 body.prepa-files-page {
@@ -193,4 +194,6 @@ body.prepa-files-page .site-header {
   .prepa-folder-content { margin-left: 2rem; }
   .prepa-file-row { grid-template-columns: 1fr auto; gap: .35rem .8rem; }
   .prepa-file-date { grid-column: 1 / -1; }
+}
+
 }

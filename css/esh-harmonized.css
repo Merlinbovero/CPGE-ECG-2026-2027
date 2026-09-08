@@ -72,21 +72,12 @@ body[data-page-id="esh-index"] .esh-kicker {
 body[data-page-id="esh-index"] .esh-home .esh-hero h1 {
   max-width: 12ch;
   margin: 0;
-  font-size: 0;
+  font-size: inherit;
   line-height: 1;
   letter-spacing: normal;
 }
 
-body[data-page-id="esh-index"] .esh-home .esh-hero h1::after {
-  content: "Économie, sociologie & histoire";
-  display: block;
-  color: var(--esh-index-ink);
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5.8rem);
-  font-weight: 400;
-  line-height: .94;
-  letter-spacing: -.045em;
-}
+
 
 body[data-page-id="esh-index"] .esh-hero-copy {
   max-width: 46rem;
@@ -267,14 +258,8 @@ body[data-page-id="esh-index"] .esh-access p {
 }
 
 /* Texte historique de progression des flashcards, incompatible avec le mode livre. */
-body[data-page-id="esh-index"] .esh-access[href="flashcards.html"] p {
-  font-size: 0;
-}
-body[data-page-id="esh-index"] .esh-access[href="flashcards.html"] p::after {
-  content: "Auteurs, concepts, chiffres et dates à revoir librement autant de fois que nécessaire.";
-  font-size: .8rem;
-  line-height: 1.5;
-}
+
+
 
 /* ---------- Programme : véritable table des matières ---------- */
 body[data-page-id="esh-index"] .esh-programme {
@@ -489,9 +474,7 @@ body[data-page-id="esh-index"] .site-footer a {
     padding: 2rem 1.15rem 2.4rem;
   }
 
-  body[data-page-id="esh-index"] .esh-home .esh-hero h1::after {
-    font-size: clamp(2.8rem, 15vw, 4.4rem);
-  }
+
 
   body[data-page-id="esh-index"] .esh-hero-panel {
     min-height: 20rem;

@@ -1,0 +1,312 @@
+/* ECG1 — système éditorial commun.
+ * Les compositions historiques vivent dans @layer legacy.
+ * Ici : palette, typographie, rythme et composants partagés.
+ * Conserver les états fonctionnels (hidden, correct, incorrect) et les scans.
+ */
+:root {
+  --ui-paper: #f5f3ee;
+  --ui-surface: #ffffff;
+  --ui-soft: #eeece6;
+  --ui-ink: #25272c;
+  --ui-muted: #62656b;
+  --ui-line: #d9d9d4;
+  --ui-maths: #a31f34;
+  --ui-esh: #326b55;
+  --ui-cg: #65446e;
+  --ui-anglais: #354784;
+  --ui-italien: #826323;
+  --ui-methodo: #495970;
+  --ui-on-accent: #fff;
+  --ui-sans: "Source Sans 3", system-ui, sans-serif;
+  --ui-serif: "Source Serif 4", Georgia, serif;
+  --ui-width: 74rem;
+  --ui-reading: 56rem;
+  --ui-gutter: clamp(1rem, 3vw, 2rem);
+  --ui-space: clamp(1rem, 2vw, 1.5rem);
+  --ui-section: clamp(2rem, 4vw, 3.5rem);
+}
+html[data-theme="dark"] {
+  --ui-paper: #15181c;
+  --ui-surface: #1e2228;
+  --ui-soft: #282d34;
+  --ui-ink: #eeeef0;
+  --ui-muted: #b4bac3;
+  --ui-line: #3b424c;
+  --ui-maths: #f08b9a;
+  --ui-esh: #84c5a8;
+  --ui-cg: #c3a4d0;
+  --ui-anglais: #a4b5f0;
+  --ui-italien: #ddbd77;
+  --ui-methodo: #b0bfd5;
+  --ui-on-accent: #15181c;
+}
+body {
+  --font-sans: var(--ui-sans);
+  --font-display: var(--ui-serif);
+  --font-serif: var(--ui-serif);
+  --bg: var(--ui-paper);
+  --bg-card: var(--ui-surface);
+  --bg-code: var(--ui-soft);
+  --text: var(--ui-ink);
+  --text-muted: var(--ui-muted);
+  --border: var(--ui-line);
+  --c-maths: var(--ui-maths);
+  --c-esh: var(--ui-esh);
+  --c-cg: var(--ui-cg);
+  --c-anglais: var(--ui-anglais);
+  --c-italien: var(--ui-italien);
+  --c-methodo: var(--ui-methodo);
+  --accent: var(--ui-methodo);
+  --link: var(--accent);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --shadow: 0 2px 8px rgb(0 0 0 / .035);
+  font: 1.0625rem/1.7 var(--ui-sans);
+  letter-spacing: normal;
+  background: var(--ui-paper);
+  color: var(--ui-ink);
+}
+body[data-matiere="maths"] { --accent: var(--ui-maths); }
+body[data-matiere="esh"] { --accent: var(--ui-esh); }
+body[data-matiere="cg"] { --accent: var(--ui-cg); }
+body[data-matiere="anglais"] { --accent: var(--ui-anglais); }
+body[data-matiere="italien"] { --accent: var(--ui-italien); }
+body[data-matiere="methodo"] { --accent: var(--ui-methodo); }
+
+
+/* Adaptateurs des compositions existantes : aucune palette parallèle. */
+body {
+  --maths-ink: var(--ui-ink);
+  --esh-ink: var(--ui-ink);
+  --esh-index-ink: var(--ui-ink);
+  --eng-slate: var(--ui-ink);
+  --it-ink: var(--ui-ink);
+  --cg-ink: var(--ui-ink);
+  --meth-ink: var(--ui-ink);
+  --home-ink: var(--ui-ink);
+  --prepa-ink: var(--ui-ink);
+  --pf-text: var(--ui-ink);
+  --maths-muted: var(--ui-muted);
+  --esh-muted: var(--ui-muted);
+  --esh-index-muted: var(--ui-muted);
+  --eng-muted: var(--ui-muted);
+  --it-muted: var(--ui-muted);
+  --cg-muted: var(--ui-muted);
+  --meth-muted: var(--ui-muted);
+  --meth-slate: var(--ui-muted);
+  --home-muted: var(--ui-muted);
+  --prepa-muted: var(--ui-muted);
+  --pf-muted: var(--ui-muted);
+  --maths-paper: var(--ui-paper);
+  --esh-paper: var(--ui-paper);
+  --esh-index-soft: var(--ui-paper);
+  --eng-paper-warm: var(--ui-paper);
+  --it-paper-soft: var(--ui-paper);
+  --cg-paper-soft: var(--ui-paper);
+  --meth-parchment: var(--ui-paper);
+  --home-paper: var(--ui-paper);
+  --prepa-paper: var(--ui-paper);
+  --pf-bg: var(--ui-paper);
+  --maths-card: var(--ui-surface);
+  --esh-card: var(--ui-surface);
+  --esh-index-paper: var(--ui-surface);
+  --eng-paper: var(--ui-surface);
+  --it-paper: var(--ui-surface);
+  --cg-paper: var(--ui-surface);
+  --meth-paper: var(--ui-surface);
+  --home-card: var(--ui-surface);
+  --prepa-card: var(--ui-surface);
+  --pf-card: var(--ui-surface);
+  --maths-line: var(--ui-line);
+  --esh-line: var(--ui-line);
+  --esh-index-line: var(--ui-line);
+  --eng-line: var(--ui-line);
+  --it-line: var(--ui-line);
+  --cg-line: var(--ui-line);
+  --meth-line: var(--ui-line);
+  --home-line: var(--ui-line);
+  --prepa-line: var(--ui-line);
+  --pf-line: var(--ui-line);
+  --maths-soft: var(--ui-soft);
+  --maths-code: var(--ui-soft);
+  --esh-soft: var(--ui-soft);
+  --eng-panel: var(--ui-soft);
+  --meth-warm: var(--ui-soft);
+  --eng-serif: var(--ui-serif);
+  --it-serif: var(--ui-serif);
+  --cg-serif: var(--ui-serif);
+  --meth-serif: var(--ui-serif);
+  --eng-sans: var(--ui-sans);
+  --it-sans: var(--ui-sans);
+  --cg-sans: var(--ui-sans);
+  --meth-sans: var(--ui-sans);
+  --maths-red: var(--ui-maths);
+  --maths-red-deep: var(--ui-maths);
+  --prepa-maths: var(--ui-maths);
+  --home-blue: var(--ui-maths);
+  --esh-orange: var(--ui-esh);
+  --esh-orange-deep: var(--ui-esh);
+  --esh-index-accent: var(--ui-esh);
+  --prepa-esh: var(--ui-esh);
+  --home-sage: var(--ui-esh);
+  --eng-indigo: var(--ui-anglais);
+  --eng-indigo-deep: var(--ui-anglais);
+  --prepa-en: var(--ui-anglais);
+  --home-wine: var(--ui-anglais);
+  --it-red: var(--ui-italien);
+  --it-red-dark: var(--ui-italien);
+  --prepa-it: var(--ui-italien);
+  --home-olive: var(--ui-italien);
+  --cg-plum: var(--ui-cg);
+  --cg-plum-deep: var(--ui-cg);
+  --prepa-cg: var(--ui-cg);
+  --home-plum: var(--ui-cg);
+  --meth-crimson: var(--ui-methodo);
+  --meth-crimson-dark: var(--ui-methodo);
+  --home-slate: var(--ui-methodo);
+  --home-copper: var(--ui-methodo);
+  --pf-accent: var(--ui-methodo);
+  --prepa-accent: var(--accent);
+}
+
+/* Une même navigation et une même largeur de lecture dans chaque matière. */
+.site-header {
+  background: var(--ui-surface); border-bottom: 2px solid var(--accent);
+  box-shadow: none; backdrop-filter: none;
+}
+.header-inner, .main-nav { max-width: var(--ui-width); padding-inline: var(--ui-gutter); }
+.header-inner { padding-block: .75rem; gap: 1rem; }
+.logo { font: 700 1.25rem/1.3 var(--ui-serif); letter-spacing: -.02em; color: var(--ui-ink); }
+.logo span { color: var(--accent); font-weight: 600; letter-spacing: normal; }
+.main-nav { gap: .25rem .5rem; padding-bottom: .5rem; }
+.main-nav a {
+  padding: .45rem .6rem; border-radius: var(--radius-sm);
+  font: 600 .875rem/1.4 var(--ui-sans); color: var(--ui-muted);
+}
+.main-nav a:hover, .main-nav a[aria-current="true"], .main-nav a[aria-current="page"] {
+  background: var(--ui-soft); color: var(--accent);
+}
+#search, #theme-toggle {
+  min-height: 2.75rem; border: 1px solid var(--ui-line); border-radius: var(--radius-sm);
+  background: var(--ui-paper); color: var(--ui-ink); font: 1rem/1.4 var(--ui-sans);
+}
+#theme-toggle { min-width: 2.75rem; }
+.search-results { background: var(--ui-surface); border-color: var(--ui-line); border-radius: var(--radius); }
+.search-results a { padding: .75rem 1rem; font-size: 1rem; }
+.search-results .sr-section, .search-results .sr-matiere { font-size: .8125rem; }
+main { width: 100%; max-width: var(--ui-reading); padding: 1.5rem var(--ui-gutter) 4rem; }
+main:is(.wide, .home-shell, .maths-shell, .esh-home, .english-shell, .italian-shell, .cg-shell, .methodo-shell, .prepa-shell, .prepa-files-shell) {
+  width: 100%; max-width: var(--ui-width); margin-inline: auto;
+  padding: 1.5rem var(--ui-gutter) 4rem; font-family: var(--ui-sans);
+}
+.breadcrumb, .prepa-breadcrumb {
+  max-width: var(--ui-width); padding: 1rem var(--ui-gutter) 0;
+  margin: 0 auto; font-size: .875rem; color: var(--ui-muted); background: transparent;
+}
+
+/* Titres : une échelle, avec une taille dédiée aux ouvertures de matière. */
+h1, h2, h3, h4 { letter-spacing: -.02em; text-wrap: pretty; }
+h1 { font: 600 clamp(2rem, 3.7vw, 3rem)/1.15 var(--ui-serif); margin: .5rem 0 1rem; }
+h2 { font: 600 clamp(1.5rem, 2.5vw, 2rem)/1.25 var(--ui-serif); margin: var(--ui-section) 0 1rem; padding-bottom: .65rem; border-bottom: 1px solid var(--ui-line); }
+h3 { font: 600 1.25rem/1.35 var(--ui-serif); margin: 1.75rem 0 .65rem; }
+h4 { font: 700 1.0625rem/1.4 var(--ui-sans); }
+:is(h2,h3,h4,[id]) { scroll-margin-top: 10rem; }
+.lead { font: 1.125rem/1.7 var(--ui-sans); color: var(--ui-muted); }
+:is(.home-hero,.maths-hero,.esh-hero,.english-hero,.italian-hero,.cg-hero,.methodo-hero,.prepa-matter-hero,.prepa-document-head,.prepa-files-head) h1 {
+  font: 600 clamp(2.25rem, 4.5vw, 3.75rem)/1.12 var(--ui-serif);
+  letter-spacing: -.035em; max-width: 19ch; margin: .5rem 0 1.25rem;
+}
+:is(.home-section-head,.maths-section-head,.esh-section-head,.italian-section-head,.cg-section-head,.methodo-section-head,.prepa-section-head) {
+  gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--ui-line);
+}
+:is(.home-section-head,.maths-section-head,.esh-section-head,.italian-section-head,.cg-section-head,.methodo-section-head,.prepa-section-head) h2 {
+  font: 600 clamp(1.5rem, 2.5vw, 2rem)/1.25 var(--ui-serif);
+  letter-spacing: -.02em; margin: .35rem 0 0; padding: 0; border: 0;
+}
+:is(.home-eyebrow,.maths-kicker,.maths-section-eyebrow,.esh-kicker,.esh-section-kicker,.english-eyebrow,.italian-eyebrow,.cg-kicker,.cg-section-label,.methodo-kicker,.prepa-kicker,.prepa-files-eyebrow) {
+  font: 700 .8125rem/1.5 var(--ui-sans); letter-spacing: .08em; color: var(--accent);
+}
+
+/* Actions : même géométrie et mêmes états, y compris les corrigés. */
+:is(.btn,.btn-corrige,.btn-print,.home-action,.maths-action,.esh-cta,.english-link-button,.italian-button,.cg-action,.methodo-hero-action,.prepa-action) {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 2.75rem; padding: .65rem 1rem; border: 1px solid var(--ui-line);
+  border-radius: var(--radius-sm); background: var(--ui-surface); color: var(--accent);
+  font: 600 .9375rem/1.4 var(--ui-sans); letter-spacing: normal; text-transform: none;
+  text-align: center; text-decoration: none; cursor: pointer;
+  transition: background-color .15s, border-color .15s; transform: none;
+}
+:is(.btn,.btn-corrige,.esh-cta:not(.secondary),.home-action.primary,.maths-action.primary,.english-link-button.primary,.italian-button.primary,.cg-action.primary,.methodo-hero-action,.prepa-action.primary) {
+  background: var(--accent); border-color: var(--accent); color: var(--ui-on-accent);
+}
+:is(.btn,.btn-corrige,.btn-print,.home-action,.maths-action,.esh-cta,.english-link-button,.italian-button,.cg-action,.methodo-hero-action,.prepa-action):hover {
+  background: var(--ui-ink); border-color: var(--ui-ink); color: var(--ui-paper); transform: none; filter: none;
+}
+button:disabled { opacity: .55; cursor: not-allowed; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.btn[hidden], .btn-corrige[hidden] { display: none; }
+
+/* Encadrés : couleur sémantique stable d'une matière à l'autre. */
+.box {
+  --box-tone: var(--accent);
+  padding: var(--ui-space); margin: 1.5rem 0;
+  border: 1px solid var(--ui-line); border-left: 3px solid var(--box-tone);
+  border-radius: var(--radius-sm); box-shadow: none;
+}
+.box.def { --box-tone: var(--ui-anglais); }
+.box.thm { --box-tone: var(--ui-esh); }
+.box.met { --box-tone: var(--ui-italien); }
+.box.warn { --box-tone: var(--ui-maths); }
+.box.exo { --box-tone: var(--ui-cg); }
+.box:is(.def,.thm,.met,.warn,.exo) { background: color-mix(in srgb, var(--box-tone) 6%, var(--ui-surface)); border-color: var(--ui-line); border-left-color: var(--box-tone); }
+.box .box-title { font: 700 1rem/1.5 var(--ui-sans); color: var(--box-tone); letter-spacing: normal; margin-bottom: .65rem; }
+.exercise, .prepa-exercise, .qcm, .toc {
+  background: var(--ui-surface); color: var(--ui-ink); border: 1px solid var(--ui-line);
+  border-radius: var(--radius); box-shadow: none; padding: var(--ui-space); margin: 1.5rem 0;
+}
+.toc { border-left: 3px solid var(--accent); font-size: 1rem; }
+.toc li { margin-block: .4rem; }
+.corrige { background: var(--ui-soft); color: var(--ui-ink); padding: var(--ui-space); border: 1px solid var(--ui-line); border-radius: var(--radius-sm); margin-top: 1rem; }
+.demo { border-left: 2px solid var(--ui-line); padding-left: 1.25rem; }
+.level { font-size: .8125rem; letter-spacing: .03em; }
+.qcm-q label { padding: .65rem .75rem; }
+.card { border-radius: var(--radius); box-shadow: none; padding: var(--ui-space); }
+.card:hover { transform: none; border-color: var(--accent); box-shadow: var(--shadow); }
+.card :is(h2,h3) { font: 600 1.25rem/1.35 var(--ui-serif); }
+.card p { font-size: 1rem; line-height: 1.6; }
+:is(.esh-access,.esh-resource,.english-map-card,.italian-map-card,.italian-reference-card,.cg-method,.prepa-course-card) h3 {
+  font: 600 1.25rem/1.35 var(--ui-serif); letter-spacing: -.02em;
+}
+:is(.esh-access,.esh-resource,.english-map-card,.italian-map-card,.italian-reference-card,.cg-method,.prepa-course-card) p {
+  font-size: 1rem; line-height: 1.6;
+}
+:is(.esh-home-section,.maths-section,.english-section,.italian-section,.cg-section,.methodo-section,.prepa-section) { padding-top: var(--ui-section); }
+:is(.maths-hero,.esh-hero,.english-hero,.italian-hero,.methodo-hero) { border-top: 3px solid var(--accent); }
+:is(.prepa-doc-label,.prepa-doc-meta span,.prepa-document-meta dt,.prepa-files-total,.prepa-matter-summary) { font-size: .8125rem; line-height: 1.5; }
+.prepa-doc-label { background: var(--accent); color: var(--ui-on-accent); border-radius: var(--radius-sm); }
+.prepa-doc-banner { border-left-color: var(--accent); border-radius: var(--radius); }
+.prepa-doc-banner p, .prepa-doc-meta strong { font-size: .9375rem; }
+.prepa-course-card { border-radius: var(--radius); box-shadow: none; }
+.prevnext a { border-radius: var(--radius); padding: 1rem; font-size: 1rem; }
+.prevnext .pn-label { font-size: .8125rem; }
+pre { border-radius: var(--radius-sm); padding: var(--ui-space); line-height: 1.6; }
+th, td { padding: .75rem; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding-block: .25rem; }
+.site-footer { color: var(--ui-muted); background: var(--ui-paper); border-top: 1px solid var(--ui-line); font-size: .875rem; }
+
+@media (max-width: 700px) {
+  .header-inner { gap: .65rem; }
+  .main-nav { flex-wrap: nowrap; overflow-x: auto; }
+  .main-nav a { flex: 0 0 auto; }
+  :is(.home-section-head,.maths-section-head,.esh-section-head,.italian-section-head,.cg-section-head,.methodo-section-head,.prepa-section-head) { grid-template-columns: minmax(0,1fr); gap: .75rem; }
+  .prepa-document-head { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+  :is(.home-hero,.maths-hero,.esh-hero,.english-hero,.italian-hero,.cg-hero,.methodo-hero,.prepa-matter-hero) { grid-template-columns: minmax(0,1fr); }
+  .prevnext { flex-wrap: wrap; }
+  .prevnext a { max-width: 100%; min-width: 12rem; }
+}
+@media print {
+  body { background: white; color: black; font-size: 11pt; }
+  main, main:is(.wide,.prepa-shell) { max-width: none; padding: 0; }
+  .site-header, .site-footer, .btn, .btn-corrige, .btn-print, .prevnext { display: none; }
+  .box, .exercise, .qcm, .corrige { background: white; color: black; box-shadow: none; }
+}
