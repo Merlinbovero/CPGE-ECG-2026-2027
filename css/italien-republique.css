@@ -1,0 +1,11 @@
+/* Unità 6 — photos originales conservées ; rotation uniquement à l’affichage. */
+.repubblica-toc { display: flex; flex-wrap: wrap; gap: .65rem 1.2rem; padding: 1rem 0; border-block: 1px solid var(--border); margin: 1.5rem 0; font-size: 1rem; }
+.repubblica-originals { display: grid; gap: 1rem; }
+.repubblica-originals > details { min-width: 0; }
+.repubblica-photo { margin: 0; }
+.repubblica-photo-frame { position: relative; width: 100%; max-width: 54rem; margin-inline: auto; aspect-ratio: 3 / 4; overflow: hidden; }
+.repubblica-photo-frame img { display: block; width: 100%; height: auto; }
+.repubblica-photo-landscape img { position: absolute; width: 133.333333%; max-width: none; height: auto; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(90deg); }
+.repubblica-photo figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 1.5rem; padding-block: 1rem .25rem; font-size: 1rem; }
+.repubblica-toc a:focus-visible, .repubblica-photo a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+@media print { .repubblica-originals details:not([open]) { display: none; } .repubblica-photo-frame { break-inside: avoid; } }

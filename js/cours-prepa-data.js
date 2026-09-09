@@ -74,13 +74,13 @@ window.PREPA_ARCHIVE = {
       theme: "Institutions · Parlement · Gouvernement · palais de Rome · naissance de la République",
       archiveDate: "2026-09-07",
       courseDate: null,
-      dateLabel: "07 septembre 2026 · date d’archivage",
+      dateLabel: "07 septembre 2026 · complété le 09 septembre",
       pages: 4,
       corrections: 8,
       chapterTitle: "Civilisation — Les institutions de la République",
       chapterUrl: "italien/civilisation.html#s1",
       url: "cours-prepa/italien/republique-italienne-2026-09-07.html",
-      thumb: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Italy.svg?width=900",
+      thumb: "cours-prepa/assets/italien/2026-09-07-republique-italienne/p31.jpeg",
       tags: ["A2", "République", "Institutions", "Parlement", "Gouvernement", "Vocabulaire", "8 corrigés"]
     },
     {
