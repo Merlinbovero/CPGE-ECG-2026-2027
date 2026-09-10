@@ -51,6 +51,7 @@
 
   <div class="box met" id="cours-classe">
     <span class="box-title">Cours de classe — archive chronologique</span>
+    <p><strong>9 septembre 2026 — A3 · Variations d’une suite.</strong> Définitions de la monotonie, quatre méthodes et cinq cas corrigés, avec les deux pages originales. <a href="../cours-prepa/maths/suites-a3-variations-2026-09-09.html"><strong>Ouvrir la fiche A3 complète</strong></a>.</p>
     <p><strong>5 septembre 2026 — A1 · Premières définitions et notations.</strong> Le polycopié <em>ANA 01-A1</em> a été retranscrit intégralement : définitions, remarques, modes de génération des suites, exemples et quatre exercices entièrement corrigés.</p>
     <p><a href="cours-classe-suites-a1-2026-09-05.html"><strong>Ouvrir la fiche de classe complète →</strong></a> · <a href="cours-de-classe.html">Voir toute la bibliothèque de cours →</a></p>
   </div>
@@ -68,8 +69,9 @@
   <nav class="toc" aria-label="Sommaire du chapitre">
     <strong>Sommaire</strong>
     <ol>
-      <li><a href="#cours-classe">Cours de classe — A1 ajouté le 5 septembre 2026</a></li>
+      <li><a href="#cours-classe">Cours de classe — A1 et A3 : notations et variations</a></li>
       <li><a href="#s1">Généralités : définitions, monotonie, bornes</a></li>
+      <li><a href="#variations-a3">Méthodes de variation — fiche A3</a></li>
       <li><a href="#s2">Suites arithmétiques et géométriques</a></li>
       <li><a href="#s3">Suites arithmético-géométriques</a></li>
       <li><a href="#s4">Récurrences linéaires d'ordre 2</a></li>
@@ -105,14 +107,18 @@
     <p class="small muted">Ces quatre modes sont ceux du polycopié A1 ajouté à la bibliothèque le 5 septembre 2026.</p>
   </div>
 
+  <h3 id="variations-a3">Fiche A3 — Quatre méthodes pour étudier la monotonie</h3>
   <div class="box met">
-    <span class="box-title">Méthode — Étudier la monotonie</span>
+    <span class="box-title">Méthodes du polycopié ANA 01-A3</span>
     <ul>
-      <li><strong>Signe de \(u_{n+1} - u_n\)</strong> : méthode universelle.</li>
-      <li><strong>Quotient \(\frac{u_{n+1}}{u_n}\) comparé à 1</strong> : seulement si tous les \(u_n\) sont <em>strictement positifs</em>.</li>
-      <li>Si \(u_n = f(n)\) avec \(f\) monotone sur \([0, +\infty[\) : la suite hérite de la monotonie de \(f\).</li>
+      <li><strong>M1 — Différence :</strong> étudier le signe de \(u_{n+1}-u_n\) à tous les rangs. Un signe positif ou nul donne la croissance ; un signe négatif ou nul, la décroissance.</li>
+      <li><strong>M2 — Quotient :</strong> si \(u_n&gt;0\), comparer \(u_{n+1}/u_n\) à 1. Un quotient supérieur ou égal à 1 donne la croissance ; inférieur ou égal à 1, la décroissance. Pour des termes tous négatifs, les conclusions s’inversent ; si un terme est nul, ce quotient n’est pas défini.</li>
+      <li><strong>M3 — Récurrence :</strong> initialiser puis démontrer l’hérédité de \(u_n\le u_{n+1}\), ou de \(u_n\ge u_{n+1}\). Si l’on utilise la monotonie d’une fonction, vérifier que les termes restent dans son intervalle de monotonie.</li>
+      <li><strong>M4 — Fonction associée :</strong> si \(u_n=f(n)\), la monotonie de \(f\) sur \([n_0,+\infty[\) entraîne celle de la suite à partir du rang \(n_0\). Cette conclusion directe ne s’applique pas à \(u_{n+1}=f(u_n)\).</li>
     </ul>
+    <p><a href="../cours-prepa/maths/suites-a3-variations-2026-09-09.html#exercices"><strong>Travailler les cinq exemples corrigés de A3</strong></a> : \(n+1/n\), \(3(1/2)^n\), \((-1)^n\), puis deux suites récurrentes.</p>
   </div>
+  <div class="box ex"><span class="box-title">Deux pièges du cours</span><p>Une différence \((u_n-1)^2\ge0\) prouve une croissance <strong>au sens large</strong> : elle peut être nulle. Pour \(u_n=(-1)^n\), le quotient vaut \(-1\), mais les termes changent de signe et la suite <strong>n’est pas monotone</strong>.</p></div>
 
   <h2 id="s2">2. Suites arithmétiques et géométriques</h2>
 

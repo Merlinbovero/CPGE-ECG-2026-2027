@@ -1,0 +1,9 @@
+/* A3 — lecture des photos originales, sans modification de leurs pixels. */
+.a3-toc { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; padding-block: 1rem; margin-block: 1.5rem; border-block: 1px solid var(--border); font-size: 1rem; }
+#originaux > details + details { margin-top: 1rem; }
+.a3-photo { margin: 0; }
+.a3-photo-frame { position: relative; width: 100%; max-width: 54rem; margin-inline: auto; aspect-ratio: 3 / 4; overflow: hidden; }
+.a3-photo-frame img { position: absolute; display: block; width: 133.333333%; max-width: none; height: auto; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(90deg); }
+.a3-photo figcaption { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; justify-content: space-between; padding-top: 1rem; font-size: 1rem; }
+.a3-toc a:focus-visible, .a3-photo a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+@media print { .a3-photo-frame { break-inside: avoid; } }

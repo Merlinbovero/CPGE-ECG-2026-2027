@@ -50,6 +50,23 @@ window.PREPA_ARCHIVE = {
 
   courses: [
     {
+      id: "maths-suites-a3-variations-2026-09-09",
+      subject: "maths",
+      title: "Suites — A3 · Variations d’une suite",
+      reference: "ANA 01-A3 · 1/1",
+      theme: "Monotonie · différence · quotient · récurrence · fonction associée",
+      archiveDate: "2026-09-09",
+      courseDate: null,
+      dateLabel: "09 septembre 2026 · date d’archivage",
+      pages: 2,
+      corrections: 5,
+      chapterTitle: "Chapitre 6 — Variations des suites",
+      chapterUrl: "maths/ch06-suites.html#variations-a3",
+      url: "cours-prepa/maths/suites-a3-variations-2026-09-09.html",
+      thumb: "cours-prepa/assets/maths/2026-09-09-suites-a3/a3-p1.jpeg",
+      tags: ["Analyse", "Suites", "Monotonie", "A3", "5 corrigés"]
+    },
+    {
       id: "maths-coefficients-binomiaux-2026-09-07",
       subject: "maths",
       title: "Coefficients binomiaux — définition, Pascal et exercices",
