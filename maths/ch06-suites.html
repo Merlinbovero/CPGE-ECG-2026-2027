@@ -51,6 +51,7 @@
 
   <div class="box met" id="cours-classe">
     <span class="box-title">Cours de classe — archive chronologique</span>
+    <p><strong>10 septembre 2026 — A4 · Suite majorée, minorée, bornée.</strong> Définitions, quatre méthodes et quatre cas corrigés sans calculatrice, avec la page originale. <a href="../cours-prepa/maths/suites-a4-bornes-2026-09-10.html"><strong>Ouvrir la fiche A4 complète</strong></a>.</p>
     <p id="representations-a2"><strong>10 septembre 2026 — A2 · Représentations graphiques.</strong> Nuage de points et construction des récurrences : verticale vers la courbe, horizontale vers la droite \(y=x\). Les suites racine carrée et exponentielle sont corrigées avec leurs tracés en escalier et en spirale. <a href="../cours-prepa/maths/suites-a2-representations-2026-09-10.html"><strong>Ouvrir la fiche A2 complète</strong></a>.</p>
     <p><strong>9 septembre 2026 — A3 · Variations d’une suite.</strong> Définitions de la monotonie, quatre méthodes et cinq cas corrigés, avec les deux pages originales. <a href="../cours-prepa/maths/suites-a3-variations-2026-09-09.html"><strong>Ouvrir la fiche A3 complète</strong></a>.</p>
     <p><strong>5 septembre 2026 — A1 · Premières définitions et notations.</strong> Le polycopié <em>ANA 01-A1</em> a été retranscrit intégralement : définitions, remarques, modes de génération des suites, exemples et quatre exercices entièrement corrigés.</p>
@@ -70,9 +71,10 @@
   <nav class="toc" aria-label="Sommaire du chapitre">
     <strong>Sommaire</strong>
     <ol>
-      <li><a href="#cours-classe">Cours de classe — A1, A2 et A3 : notations, graphiques et variations</a></li>
+      <li><a href="#cours-classe">Cours de classe — A1 à A4 : notations, graphiques, variations et bornes</a></li>
       <li><a href="#s1">Généralités : définitions, monotonie, bornes</a></li>
       <li><a href="#variations-a3">Méthodes de variation — fiche A3</a></li>
+      <li><a href="#bornes-a4">Encadrer une suite — fiche A4</a></li>
       <li><a href="#s2">Suites arithmétiques et géométriques</a></li>
       <li><a href="#s3">Suites arithmético-géométriques</a></li>
       <li><a href="#s4">Récurrences linéaires d'ordre 2</a></li>
@@ -120,6 +122,10 @@
     <p><a href="../cours-prepa/maths/suites-a3-variations-2026-09-09.html#exercices"><strong>Travailler les cinq exemples corrigés de A3</strong></a> : \(n+1/n\), \(3(1/2)^n\), \((-1)^n\), puis deux suites récurrentes.</p>
   </div>
   <div class="box ex"><span class="box-title">Deux pièges du cours</span><p>Une différence \((u_n-1)^2\ge0\) prouve une croissance <strong>au sens large</strong> : elle peut être nulle. Pour \(u_n=(-1)^n\), le quotient vaut \(-1\), mais les termes changent de signe et la suite <strong>n’est pas monotone</strong>.</p></div>
+
+
+  <h3 id="bornes-a4">Fiche A4 — Encadrer une suite sans calculatrice</h3>
+  <div class="box met"><span class="box-title">Méthodes du polycopié ANA 01-A4</span><p>Un minorant \(m\) et un majorant \(M\) sont des nombres réels <strong>fixes, indépendants du rang</strong> : \(m\le u_n\le M\) pour tout \(n\). Une comparaison entre deux suites ne suffit pas à fournir une borne constante.</p><ul><li><strong>Fonction associée :</strong> si \(u_n=f(n)\), utiliser les variations complètes de \(f\) pour encadrer ses valeurs.</li><li><strong>Inégalités simples :</strong> partir de \(n\ge0\), \(n^2\ge0\) ou du signe de \(u_n\), puis transformer l’inégalité en justifiant chaque opération.</li><li><strong>Borne donnée :</strong> étudier \(M-u_n\). Pour \(u_n=(2n+3)/(n+1)\), on a \(3-u_n=n/(n+1)\ge0\), donc \(u_n\le3\).</li><li><strong>Récurrence :</strong> vérifier l’encadrement initial puis sa transmission de \(n\) à \(n+1\). Pour \(u_{n+1}=\sqrt{u_n+2}\), \(0\le u_n\le2\) donne \(2\le u_n+2\le4\), puis \(0\le u_{n+1}\le2\).</li></ul><p>Sur les nombres strictement positifs, le passage aux inverses <strong>inverse</strong> le sens : \(n^2+3\ge3&gt;0\) donne \(0&lt;1/(n^2+3)\le1/3\). La racine carrée, croissante sur \([0,+\infty[\), <strong>conserve</strong> le sens.</p><p><a href="../cours-prepa/maths/suites-a4-bornes-2026-09-10.html#exercices"><strong>Lire les quatre corrections détaillées de A4</strong></a>.</p></div>
 
   <h2 id="s2">2. Suites arithmétiques et géométriques</h2>
 

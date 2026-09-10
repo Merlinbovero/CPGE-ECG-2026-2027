@@ -50,6 +50,17 @@ window.PREPA_ARCHIVE = {
 
   courses: [
     {
+      id: "maths-suites-a4-bornes-2026-09-10", subject: "maths",
+      title: "Suites — A4 · Suite majorée, minorée, bornée", reference: "ANA 01-A4 · 1/1",
+      theme: "Majorants · minorants · encadrements · récurrence · sans calculatrice",
+      archiveDate: "2026-09-10", courseDate: null, dateLabel: "10 septembre 2026 · date d’archivage",
+      pages: 1, corrections: 4, chapterTitle: "Chapitre 6 — Bornes des suites",
+      chapterUrl: "maths/ch06-suites.html#bornes-a4",
+      url: "cours-prepa/maths/suites-a4-bornes-2026-09-10.html",
+      thumb: "cours-prepa/assets/maths/2026-09-10-suites-a4/a4-p1.jpeg",
+      tags: ["Analyse", "Suites", "A4", "Bornes", "Sans calculatrice", "4 corrigés"]
+    },
+    {
       id: "maths-suites-a2-representations-2026-09-10", subject: "maths",
       title: "Suites — A2 · Représentations graphiques", reference: "ANA 01-A2 · 1/1",
       theme: "Nuage de points · récurrence · escalier · spirale",
