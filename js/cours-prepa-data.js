@@ -50,6 +50,17 @@ window.PREPA_ARCHIVE = {
 
   courses: [
     {
+      id: "maths-suites-a2-representations-2026-09-10", subject: "maths",
+      title: "Suites — A2 · Représentations graphiques", reference: "ANA 01-A2 · 1/1",
+      theme: "Nuage de points · récurrence · escalier · spirale",
+      archiveDate: "2026-09-10", courseDate: null, dateLabel: "10 septembre 2026 · date d’archivage",
+      pages: 1, corrections: 2, chapterTitle: "Chapitre 6 — Représentations des suites",
+      chapterUrl: "maths/ch06-suites.html#representations-a2",
+      url: "cours-prepa/maths/suites-a2-representations-2026-09-10.html",
+      thumb: "cours-prepa/assets/maths/2026-09-10-suites-a2/a2-p1.jpeg",
+      tags: ["Analyse", "Suites", "A2", "Graphiques", "2 corrigés"]
+    },
+    {
       id: "maths-suites-a3-variations-2026-09-09",
       subject: "maths",
       title: "Suites — A3 · Variations d’une suite",

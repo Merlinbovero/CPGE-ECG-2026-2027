@@ -1,0 +1,5 @@
+@import url("maths-suites-a3.css");
+.a2-photo-frame img { transform: translate(-50%, -50%) rotate(-90deg); }
+.a2-plot { margin: 1.5rem 0; }
+.a2-plot img { display: block; width: 100%; max-width: 42rem; height: auto; background: white; margin-inline: auto; }
+.a2-plot figcaption { margin-top: .75rem; }

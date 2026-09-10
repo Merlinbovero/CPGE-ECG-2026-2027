@@ -265,3 +265,5 @@ html[data-theme="dark"] .prepa-scan { background:#252824; }
 
 /* La fiche A3 a été photographiée en paysage ; lecture du texte à l’endroit. */
 .prepa-course-thumb img[src$="/2026-09-09-suites-a3/a3-p1.jpeg"] { transform: rotate(90deg) scale(1.34); }
+
+.prepa-course-thumb img[src$="/2026-09-10-suites-a2/a2-p1.jpeg"] { transform: rotate(-90deg) scale(1.34); }
