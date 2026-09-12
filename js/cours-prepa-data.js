@@ -20,7 +20,7 @@ window.PREPA_ARCHIVE = {
       short: "ESH",
       page: "cours-prepa/esh.html",
       description: "Économie, sociologie, histoire économique, documents et dossiers distribués en classe.",
-      image: "https://commons.wikimedia.org/wiki/Special:FilePath/New%20York%20Stock%20Exchange%20-%20panoramio%20%282%29.jpg?width=1400"
+      image: "cours-prepa/assets/esh/2026-09-12-chapitre-1-partie-1/couverture.webp"
     },
     cg: {
       order: 3,
@@ -49,6 +49,7 @@ window.PREPA_ARCHIVE = {
   },
 
   courses: [
+    {"id": "esh-acteurs-fonctions-partie-1-2026-09-12", "subject": "esh", "title": "Chapitre 1 · Les acteurs et les grandes fonctions de l’économie — Partie 1", "reference": "Audrey Demolliens · ESH ECG1", "theme": "Entreprises · ménages · État · comptes nationaux · production et rendements", "archiveDate": "2026-09-12", "courseDate": null, "dateLabel": "12 septembre 2026 · date d’archivage", "pages": 70, "corrections": 8, "chapterTitle": "Les acteurs et les grandes fonctions de l’économie", "chapterUrl": "esh/ch05-acteurs-comptabilite.html#cours-prepa-ch1", "url": "cours-prepa/esh/acteurs-fonctions-partie-1-2026-09-12.html", "thumb": "cours-prepa/assets/esh/2026-09-12-chapitre-1-partie-1/couverture.webp", "tags": ["Chapitre 1", "Partie 1", "70 diapositives", "PDF original", "30 questions", "8 exercices corrigés"]},
     {
       id: "maths-suites-a4-bornes-2026-09-10", subject: "maths",
       title: "Suites — A4 · Suite majorée, minorée, bornée", reference: "ANA 01-A4 · 1/1",

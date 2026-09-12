@@ -1,0 +1,82 @@
+/* Chapitre 1 du cours reçu : lecture, documents et entraînements. */
+.esh-prepa { --accent: var(--ui-esh); }
+.esh-prepa .esh-course-head { border-top: 3px solid var(--accent); padding-top: 1.3rem; }
+.esh-prepa .esh-course-head h1 { max-width: 29ch; }
+.esh-course-meta { color: var(--text-muted); font-size: .9375rem; }
+.esh-course-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin: 1.25rem 0; }
+.esh-course-layout { display: grid; grid-template-columns: 14rem minmax(0,1fr); gap: 2.5rem; align-items: start; margin-top: 2rem; }
+.esh-course-toc { position: sticky; top: 9rem; border: 1px solid var(--border); background: var(--bg-card); padding: 1rem; max-height: calc(100vh - 10rem); overflow: auto; }
+.esh-course-toc summary { cursor: pointer; font-weight: 700; }
+.esh-course-toc nav { display: grid; margin-top: .7rem; }
+.esh-course-toc a { padding: .5rem 0; text-decoration: none; border-bottom: 1px solid var(--border); font-size: .9375rem; line-height: 1.4; }
+.esh-course-toc a:last-child { border-bottom: 0; }
+.esh-course-body { min-width: 0; font-size: 1.0625rem; line-height: 1.75; }
+.esh-course-body section:first-child h2 { margin-top: 0; }
+.esh-course-body h2 { margin-top: 3rem; }
+.esh-course-ref { margin-top: -.35rem; color: var(--text-muted); font-size: .875rem; }
+.esh-course-ref a { color: inherit; }
+.esh-prepa .esh-definition, .esh-prepa .esh-example, .esh-prepa .esh-precision { border: 1px solid var(--border); padding: 1.2rem; margin: 1.3rem 0; background: var(--bg-card); border-radius: 4px; }
+.esh-prepa .esh-definition { border-left: 3px solid var(--accent); }
+.esh-prepa .esh-example { background: var(--bg-code); }
+.esh-prepa .esh-precision { border-left: 3px solid var(--ui-italien); }
+.esh-box-label { display: block; color: var(--accent); font-size: .875rem; font-weight: 700; margin-bottom: .5rem; }
+.esh-prepa :is(.esh-definition,.esh-example,.esh-precision) p:last-child { margin-bottom: 0; }
+.esh-equation { font: 600 1.125rem/1.7 var(--ui-sans); padding: .8rem 0; overflow-x: auto; }
+.esh-prepa .table-scroll { overflow-x: auto; margin: 1.2rem 0; }
+.esh-prepa table { font-size: .9375rem; width: 100%; line-height: 1.55; }
+.esh-prepa th { text-align: left; }
+.esh-prepa th, .esh-prepa td { vertical-align: top; min-width: 6rem; }
+.esh-prepa .esh-source-figure { margin: 1.5rem 0; border: 1px solid var(--border); background: var(--bg-card); padding: .75rem; }
+.esh-source-figure img { display: block; width: 100%; height: auto; background: white; }
+.esh-source-figure figcaption { font-size: .875rem; margin-top: .65rem; color: var(--text-muted); line-height: 1.6; }
+.esh-prepa .esh-question { padding: 1rem 1.2rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-card); margin: .7rem 0; }
+.esh-question summary { cursor: pointer; font-weight: 600; font-size: 1rem; }
+.esh-question[open] summary { margin-bottom: .85rem; }
+.esh-question p { margin-bottom: .25rem; }
+.esh-prepa .esh-question-answer { border-top: 1px solid var(--border); padding-top: .75rem; }
+.esh-prepa .esh-question-answer :first-child { margin-top: 0; }
+.esh-prepa .esh-exercise { border: 1px solid var(--border); padding: 1.25rem; margin: 1.5rem 0; background: var(--bg-card); border-radius: 4px; }
+.esh-exercise h3 { margin-top: 0; }
+.esh-prepa .esh-exercise .esh-question { background: var(--bg-code); }
+.esh-prepa .esh-graph-list { padding-left: 1.3rem; }
+.esh-graph-list li { margin-bottom: .9rem; }
+.esh-prepa .esh-source-list { font-size: .9375rem; line-height: 1.65; }
+.esh-prepa .esh-next-part { border-top: 2px solid var(--accent); margin-top: 2rem; padding-top: 1rem; }
+.esh-prepa .esh-original-reader { max-width: 65rem; margin: 1rem auto; }
+.esh-reader-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin: 1rem 0; }
+.esh-reader-controls label { display: grid; gap: .3rem; font-size: .875rem; font-weight: 600; flex: 1 1 15rem; }
+.esh-reader-controls select, .esh-reader-search input { font: inherit; padding: .7rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg-card); color: var(--text); width: 100%; min-height: 2.75rem; }
+.esh-reader-search { margin-bottom: 1rem; }
+.esh-reader-search label { display: block; font-size: .9375rem; margin-bottom: .4rem; }
+.esh-reader-search ul { max-height: 17rem; overflow: auto; background: var(--bg-card); padding: .5rem 1.6rem; }
+.esh-reader-search a { display: inline-block; padding: .35rem 0; }
+.esh-prepa .esh-slide { margin: 0; }
+.esh-slide img { width: 100%; height: auto; display: block; background: #fff; border: 1px solid var(--border); }
+.esh-slide figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; font-size: .9375rem; margin: .7rem 0 1rem; }
+.esh-slide-text { white-space: pre-wrap; font: 1rem/1.65 var(--ui-sans); overflow-wrap: anywhere; }
+.esh-reader-jumps { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; font-size: .9375rem; margin: 1rem 0; }
+.esh-reader-status { font-size: .875rem; color: var(--text-muted); }
+.esh-reader-noscript { margin-block: 1rem; }
+.esh-prepa .esh-stats-note { font-size: .9375rem; color: var(--text-muted); }
+.esh-prepa [hidden] { display: none !important; }
+@media (max-width: 900px) {
+  .esh-course-layout { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+  .esh-course-toc { position: static; max-height: none; }
+  .esh-course-toc nav { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 1rem; }
+}
+@media (max-width: 540px) {
+  .esh-course-toc nav { grid-template-columns: 1fr; }
+  .esh-reader-controls { gap: .5rem; }
+  .esh-reader-controls label { flex-basis: 100%; order: -1; }
+  .esh-reader-controls button { flex: 1; }
+  .esh-prepa :is(.esh-definition,.esh-example,.esh-precision,.esh-exercise) { padding: 1rem; }
+  .esh-course-body { font-size: 1rem; }
+}
+@media print {
+  .esh-course-toc,.esh-course-actions,.esh-reader-controls,.esh-reader-search,.esh-reader-jumps { display: none; }
+  .esh-course-layout { display: block; }
+  .esh-prepa .esh-course-body { font-size: 11pt; }
+  .esh-prepa section { break-inside: auto; }
+  .esh-prepa :is(h2,h3) { break-after: avoid; }
+  .esh-prepa :is(.esh-definition,.esh-example,.esh-precision) { background: white; color: black; }
+}

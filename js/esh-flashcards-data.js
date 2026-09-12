@@ -20,12 +20,12 @@ var FLASHCARD_GROUPS = {
 };
 
 var FLASHCARDS = [
-  {id:"1.1.1-01",code:"1.1.1",type:"definition",tier:"indispensable",q:"Quels sont les six grands secteurs institutionnels de la comptabilité nationale ?",a:"Ménages, sociétés non financières, sociétés financières, administrations publiques, ISBLSM et reste du monde."},
+  {id:"1.1.1-01",code:"1.1.1",type:"definition",tier:"indispensable",q:"Quels sont les cinq secteurs résidents et quel ensemble complète leurs comptes ?",a:"Les cinq secteurs résidents sont les ménages, SNF, SF, APU et ISBLSM. Le reste du monde regroupe les unités non résidentes pour leurs opérations avec les résidents."},
   {id:"1.1.1-02",code:"1.1.1",type:"essentiel",tier:"indispensable",q:"Donne les trois approches du PIB.",a:"Approche par la production (somme des valeurs ajoutées), par la demande (C + I + G + X − M) et par les revenus."},
   {id:"1.1.1-03",code:"1.1.1",type:"mecanisme",tier:"indispensable",q:"Quelle identité relie ressources et emplois dans une économie ouverte ?",a:"PIB + M = C + I + G + X."},
   {id:"1.1.1-04",code:"1.1.1",type:"application",tier:"indispensable",q:"À quoi sert un tableau entrées-sorties (TES) ?",a:"À représenter les échanges intermédiaires entre branches et à montrer comment la production d’une branche devient consommation intermédiaire d’une autre."},
   {id:"1.1.1-05",code:"1.1.1",type:"definition",tier:"consolidation",q:"Qu’est-ce qu’un coefficient technique dans un TES ?",a:"La quantité de consommation intermédiaire nécessaire pour produire une unité de production d’une branche."},
-  {id:"1.1.1-06",code:"1.1.1",type:"definition",tier:"consolidation",q:"Que désigne la FBCF ?",a:"La formation brute de capital fixe : l’acquisition d’actifs fixes utilisés durablement dans la production, notamment machines, bâtiments et logiciels."},
+  {id:"1.1.1-06",code:"1.1.1",type:"definition",tier:"consolidation",q:"Que désigne la FBCF ?",a:"La formation brute de capital fixe : les acquisitions moins cessions d’actifs fixes par les producteurs résidents. Ces actifs sont utilisés pendant au moins un an, par exemple machines, bâtiments et logiciels."},
 
   {id:"1.1.2-01",code:"1.1.2",type:"essentiel",tier:"indispensable",q:"Quelles sont les trois fonctions classiques de la monnaie ?",a:"Intermédiaire des échanges, unité de compte et réserve de valeur."},
   {id:"1.1.2-02",code:"1.1.2",type:"mecanisme",tier:"indispensable",q:"Que signifie l’expression « les crédits font les dépôts » ?",a:"Lorsqu’une banque accorde un crédit, elle crée simultanément un dépôt : le crédit bancaire crée de la monnaie scripturale."},
