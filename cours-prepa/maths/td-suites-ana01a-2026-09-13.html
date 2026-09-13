@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TD ANA 01-A · Généralités et étude globale des suites | Cours prépa ECG1</title>
+<meta name="description" content="TD ANA 01-A : les deux pages originales et sept exercices corrigés en détail sans calculatrice. Premiers termes, variations, bornes, récurrences et construction graphique.">
+<link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../../css/cours-prepa.css"><link rel="stylesheet" href="../../css/maths-suites-a3.css"><link rel="stylesheet" href="../../css/maths-td-suites.css"><link rel="manifest" href="../../manifest.webmanifest"><link rel="icon" href="../../icons/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1f2723"><script>try {document.documentElement.setAttribute("data-theme", localStorage.getItem("ecg-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));} catch (e) {}</script>
+</head>
+<body class="prepa-page td-page" data-root="../.." data-page-id="cours-prepa-maths-td-suites-ana01a" data-matiere="maths">
+<header class="site-header"><div class="header-inner"><a class="logo" href="../../index.html">ECG1 <span>2026·2027</span></a><div class="search-wrap"><input id="search" type="search" placeholder="Rechercher un chapitre, une notion…" autocomplete="off" aria-label="Recherche dans le site"><div id="search-results" class="search-results" hidden></div></div><button id="theme-toggle" aria-label="Basculer entre thème clair et sombre">🌙</button></div><nav class="main-nav" aria-label="Navigation principale"><a href="../../maths/index.html">Maths appliquées</a><a href="../../esh/index.html">ESH</a><a href="../../culture-generale/index.html">Culture générale</a><a href="../../anglais/index.html">Anglais</a><a href="../../italien/index.html">Italien</a><a href="../index.html" data-prepa-link="true" aria-current="true">Cours prépa</a><a href="../../methodologie/index.html">Méthodologie &amp; concours</a></nav></header>
+<div class="prepa-breadcrumb"><a href="../../index.html">Accueil</a><span class="sep">›</span><a href="../index.html">Cours prépa</a><span class="sep">›</span><a href="../maths.html">Mathématiques</a><span class="sep">›</span><span>TD ANA 01-A</span></div>
+
+<main class="prepa-shell">
+<section class="prepa-document-head">
+<div><span class="prepa-kicker">Mathématiques appliquées · ANA 01 · Suites</span><h1>TD · Généralités et étude globale</h1><p class="lead">Sept exercices pour travailler les premiers termes, les variations, les bornes et la récurrence. Toutes les corrections utilisent des valeurs exactes, sans calculatrice.</p><div class="prepa-source-warning"><strong>Archivé le 13 septembre 2026.</strong> Deux pages : <strong>TD ANA 01-A · 1/2 et 2/2</strong>. La date de distribution n’est pas indiquée sur les documents.</div></div>
+<dl class="prepa-document-meta"><div><dt>Source</dt><dd>2 photographies intégrales</dd></div><div><dt>Travail</dt><dd>7 exercices corrigés en détail</dd></div><div><dt>Calculs</dt><dd>Fractions, puissances et racines exactes</dd></div><div><dt>Fiches associées</dt><dd>A1 · A2 · A3 · A4</dd></div><div><dt>Chapitre du site</dt><dd><a href="../../maths/ch06-suites.html#td-ana01a">Chapitre 6 — Suites réelles</a></dd></div></dl>
+</section>
+<nav class="a3-toc" aria-label="Sommaire du TD"><a href="#originaux">Les deux pages</a><a href="#reperes">Méthodes</a><a href="#ex1">Ex. 1 · Premiers termes</a><a href="#ex2">Ex. 2 · Fonction et suite</a><a href="#ex3">Ex. 3 · Variations</a><a href="#ex4">Ex. 4 · Vrai ou faux</a><a href="#ex5">Ex. 5 · Encadrement</a><a href="#ex6">Ex. 6 · Racine carrée</a><a href="#ex7">Ex. 7 · Formule générale</a><a href="#bilan">Résultats</a></nav>
+<div class="td-tools"><button type="button" data-corrections="open">Ouvrir toutes les corrections</button><button type="button" data-corrections="close">Fermer toutes les corrections</button></div>
+
+<section class="prepa-section" id="originaux"><h2>Les deux pages originales</h2><p>Les photos sont conservées intégralement, avec leur mise en page et leurs annotations. Elles sont affichées dans le sens de lecture.</p>
+<details class="prepa-sources"><summary>Page 1/2 — Exercices 1 à 5</summary><figure class="a3-photo"><div class="a3-photo-frame"><img src="../assets/maths/2026-09-13-td-suites-ana01a/td-page-1.jpeg" width="1536" height="1152" loading="lazy" alt="Page originale 1 sur 2 du TD ANA 01-A : exercices 1 à 5, modes de génération, variations, bornes et récurrence."></div><figcaption><a href="../assets/maths/2026-09-13-td-suites-ana01a/td-page-1.jpeg" download>Télécharger la photo originale — page 1</a></figcaption></figure></details>
+<details class="prepa-sources"><summary>Page 2/2 — Exercices 6 et 7</summary><figure class="a3-photo"><div class="a3-photo-frame"><img src="../assets/maths/2026-09-13-td-suites-ana01a/td-page-2.jpeg" width="1536" height="1152" loading="lazy" alt="Page originale 2 sur 2 du TD ANA 01-A : exercice 6 avec la courbe racine de 3x moins 2 et exercice 7."></div><figcaption><a href="../assets/maths/2026-09-13-td-suites-ana01a/td-page-2.jpeg" download>Télécharger la photo originale — page 2</a></figcaption></figure></details>
+</section>
+
+<section class="prepa-section" id="reperes"><h2>Choisir sa méthode sans calculatrice</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Ce que l’on cherche</th><th scope="col">Le bon départ</th></tr></thead><tbody>
+<tr><td>Les premiers termes</td><td>Repérer le premier rang. Pour une formule explicite, remplacer \(n\) ; pour une récurrence, utiliser les termes déjà calculés.</td></tr>
+<tr><td>Les variations</td><td>Essayer \(u_{n+1}-u_n\) : positif signifie croissance, négatif signifie décroissance. C’est <strong>M1 de A3</strong>.</td></tr>
+<tr><td>Une borne donnée \(M\)</td><td>Étudier \(M-u_n\), ou encadrer directement la formule. Une borne doit être une constante.</td></tr>
+<tr><td>Une propriété d’une suite récurrente</td><td>Écrire la propriété \(P(n)\), l’initialisation, l’hérédité puis la conclusion. C’est <strong>M4 de A4</strong> pour les bornes.</td></tr>
+<tr><td>Une construction \(u_{n+1}=f(u_n)\)</td><td>Verticale jusqu’à la courbe, puis horizontale jusqu’à la droite \(y=x\). Recommencer.</td></tr>
+</tbody></table></div>
+<div class="prepa-note"><strong>Rangs et domaines</strong><div><p>On prend \(\mathbb N=\{0,1,2,\ldots\}\), comme dans les fiches. Une division par \(n\) impose \(n\ge1\). Le cas \(1/(n-1)\) demande une précision supplémentaire, traitée dans l’exercice 4. Les mentions du polycopié sont conservées et ces restrictions sont signalées.</p><p><strong>Logarithme de l’exercice 3.8 :</strong> seule sa croissance est utilisée ; aucune valeur approchée n’est nécessaire.</p></div></div>
+</section>
+
+<section class="prepa-section" id="ex1"><h2>Exercice 1 — Modes de génération d’une suite</h2>
+<div class="prepa-exercise"><p>Pour chacune des suites suivantes, préciser son mode de génération puis calculer ses <strong>quatre premiers termes</strong>.</p><ol class="td-equations">
+<li>\(\forall n\in\mathbb N,\quad u_n=\dfrac{n-5}{n+1}\).</li>
+<li>\(u_0=1\) et \(\forall n\in\mathbb N,\quad u_{n+1}=-u_n^2+u_n-1\).</li>
+<li>\(u_0=2\) et \(\forall n\in\mathbb N,\quad u_{n+1}=f(u_n)\), où \(f:x\in\mathbb R\mapsto\dfrac{x-2}{x^2+1}\).</li>
+<li>\(u_0=1,\ u_1=-1\) et \(\forall n\in\mathbb N,\quad u_{n+2}=-u_{n+1}+u_n\).</li>
+<li>\(u_1=5\) et \(u_{n+1}=u_n+\dfrac2n\). <em>Le polycopié indique \(n\in\mathbb N\) ; la relation doit ici être utilisée pour \(n\ge1\).</em></li>
+</ol></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — les cinq suites</summary>
+<h3>1. Une formule explicite</h3><p>Le terme \(u_n\) se calcule directement à partir du rang \(n\). Le dénominateur \(n+1\ge1\) n’est jamais nul. Les quatre premiers termes sont \(u_0,u_1,u_2,u_3\) :</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_0&=\frac{0-5}{0+1}=-5,\\
+u_1&=\frac{1-5}{1+1}=\frac{-4}{2}=-2,\\
+u_2&=\frac{2-5}{2+1}=\frac{-3}{3}=-1,\\
+u_3&=\frac{3-5}{3+1}=\frac{-2}{4}=-\frac12.
+\end{aligned}\]</div>
+<h3>2. Une récurrence d’ordre 1</h3><p>Chaque nouveau terme dépend du terme précédent. On commence avec la valeur donnée \(u_0=1\), puis on remplace <strong>tous les \(u_n\)</strong> par la même valeur.</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_1&=-1^2+1-1=-1,\\
+u_2&=-(-1)^2+(-1)-1=-1-1-1=-3,\\
+u_3&=-(-3)^2+(-3)-1=-9-3-1=-13.
+\end{aligned}\]</div>
+<p class="td-result">Les quatre premiers termes sont \(\boxed{1,\ -1,\ -3,\ -13}\).</p><p><strong>Attention :</strong> \(-(-3)^2=-9\), car on calcule le carré avant d’appliquer le signe moins placé devant.</p>
+<h3>3. Une récurrence d’ordre 1 avec une fonction</h3><p>La formule est \(u_{n+1}=(u_n-2)/(u_n^2+1)\). Elle est toujours définie, car \(u_n^2+1\ge1&gt;0\).</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_0&=2,\\
+u_1&=f(2)=\frac{2-2}{2^2+1}=0,\\
+u_2&=f(0)=\frac{0-2}{0^2+1}=-2,\\
+u_3&=f(-2)=\frac{-2-2}{(-2)^2+1}=-\frac45.
+\end{aligned}\]</div><p>On applique \(f\) au <strong>terme précédent</strong>, pas au rang : ici, \(u_2=f(u_1)\), et non \(f(2)\).</p>
+<h3>4. Une récurrence d’ordre 2</h3><p>Il faut connaître deux termes consécutifs pour calculer le suivant. Les deux premières valeurs sont déjà données : \(u_0=1\) et \(u_1=-1\).</p>
+<div class="prepa-formula">\[\begin{aligned}
+n=0:\quad u_2&=-u_1+u_0=-(-1)+1=2,\\
+n=1:\quad u_3&=-u_2+u_1=-2+(-1)=-3.
+\end{aligned}\]</div><p class="td-result">Les quatre premiers termes sont \(\boxed{1,\ -1,\ 2,\ -3}\). Il suffit donc de calculer deux nouveaux termes.</p>
+<h3>5. Une récurrence d’ordre 1 dépendant aussi du rang</h3><p>La suite commence à \(u_1\). La division \(2/n\) exclut \(n=0\). Il faut calculer \(u_1,u_2,u_3,u_4\), en changeant aussi le rang dans \(2/n\).</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_1&=5,\\
+u_2&=u_1+\frac21=5+2=7,\\
+u_3&=u_2+\frac22=7+1=8,\\
+u_4&=u_3+\frac23=8+\frac23=\frac{24}{3}+\frac23=\frac{26}{3}.
+\end{aligned}\]</div><p class="td-result">Les quatre premiers termes sont \(\boxed{5,\ 7,\ 8,\ \frac{26}{3}}\). La fraction est le résultat exact attendu.</p>
+</details></section>
+
+<section class="prepa-section" id="ex2"><h2>Exercice 2 — Variation d’une suite et de la fonction associée</h2>
+<div class="prepa-exercise"><ol><li>Établir le tableau de variation de \(f:x\mapsto\dfrac12x+2\).</li><li>On définit \(u_n=f(n)\) pour \(n\in\mathbb N\), et \(v_0=8,\ v_{n+1}=f(v_n)\).<p><strong>a)</strong> Que peut-on déduire de la question 1 sur les sens de variation de \((u_n)\) et \((v_n)\) ?</p><p><strong>b)</strong> Calculer les quatre premiers termes des deux suites. Que peut-on conclure ?</p></li></ol></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — pourquoi une fonction croissante peut donner une suite décroissante</summary>
+<h3>1. Variations de la fonction</h3><p>\(f\) est affine, définie sur \(\mathbb R\), de coefficient directeur \(1/2&gt;0\). Elle est donc <strong>strictement croissante sur \(\mathbb R\)</strong>. On peut aussi écrire \(f'(x)=1/2&gt;0\).</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">\(x\)</th><th scope="col">\(-\infty\)</th><th scope="col"></th><th scope="col">\(+\infty\)</th></tr></thead><tbody><tr><th scope="row">\(f'(x)\)</th><td></td><td>\(+\)</td><td></td></tr><tr><th scope="row">\(f(x)\)</th><td>\(-\infty\)</td><td>↗</td><td>\(+\infty\)</td></tr></tbody></table></div>
+<h3>2.a. Ce que cette croissance permet de déduire</h3><p>Pour \(u_n=f(n)\), on compare \(n\) et \(n+1\). Puisque \(n+1&gt;n\) et \(f\) est strictement croissante,</p><div class="prepa-formula">\[f(n+1)&gt;f(n),\quad\text{donc }u_{n+1}&gt;u_n.\]</div><p>La suite \((u_n)\) est donc strictement croissante.</p><p>Pour \(v_{n+1}=f(v_n)\), la croissance de \(f\) <strong>ne suffit pas à décider du sens</strong>. Il faut connaître le signe de \(v_1-v_0\). Elle permet ensuite de transmettre ce sens de variation par récurrence.</p>
+<h3>2.b. Calcul des quatre premiers termes</h3><div class="prepa-formula">\[\begin{aligned}
+u_0&=\tfrac12\times0+2=2,\\
+u_1&=\tfrac12+2=\tfrac52,\\
+u_2&=\tfrac12\times2+2=3,\\
+u_3&=\tfrac32+2=\tfrac72.
+\end{aligned}\qquad
+\begin{aligned}
+v_0&=8,\\
+v_1&=\tfrac12\times8+2=6,\\
+v_2&=\tfrac12\times6+2=5,\\
+v_3&=\tfrac12\times5+2=\tfrac92.
+\end{aligned}\]</div>
+<p>Les premiers termes de \((v_n)\) diminuent. Pour le démontrer à tous les rangs, on raisonne par récurrence sur \(P(n):v_{n+1}&lt;v_n\).</p><p><strong>Initialisation :</strong> \(v_1=6&lt;8=v_0\).</p><p><strong>Hérédité :</strong> si \(v_{n+1}&lt;v_n\), la stricte croissance de \(f\) donne</p><div class="prepa-formula">\[v_{n+2}=f(v_{n+1})&lt;f(v_n)=v_{n+1}.\]</div><p><strong>Conclusion :</strong> par récurrence, \((v_n)\) est strictement décroissante.</p>
+<p class="td-result">\((u_n)\) est <strong>strictement croissante</strong> ; \((v_n)\) est <strong>strictement décroissante</strong>. Pour une formule explicite, on applique \(f\) au rang ; pour une récurrence, on l’applique au terme précédent.</p><p>Quatre valeurs seules permettent une conjecture. La preuve par récurrence permet de conclure pour la suite entière.</p>
+</details></section>
+
+<section class="prepa-section" id="ex3"><h2>Exercice 3 — Variations de suites</h2>
+<div class="prepa-exercise"><p>Dans chacun des cas suivants, étudier le sens de variation de la suite dont on donne le terme général.</p><ol class="td-equations">
+<li>\(u_n=n^2\).</li><li>\(u_n=5\times0{,}2^n+3\).</li><li>\(u_n=\dfrac{3n}{n+1}\).</li><li>\(u_n=\dfrac{2n+1}{3n+4}\).</li><li>\(u_n=\dfrac3{7^n}+1\).</li><li>\(u_n=\dfrac n{2^n}\).</li><li>\(u_n=n+\dfrac1n\).</li><li>\(u_n=\ln\left(\dfrac{n+1}{n}\right)\).</li>
+</ol><p>Les cas 1 à 6 sont définis pour \(n\ge0\). Les cas 7 et 8 commencent à \(n=1\).</p></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — les huit études de variations</summary>
+<p><strong>Rappel :</strong> on cherche le signe de \(u_{n+1}-u_n\). On remplace chaque occurrence de \(n\) par \(n+1\) et on garde des parenthèses autour du terme soustrait.</p>
+<h3>1. \(u_n=n^2\)</h3>
+<div class="prepa-formula">\[u_{n+1}-u_n=(n+1)^2-n^2=n^2+2n+1-n^2=2n+1.\]</div><p>Pour tout \(n\ge0\), \(2n+1\ge1&gt;0\). Donc \((u_n)\) est <strong>strictement croissante sur \(\mathbb N\)</strong>.</p>
+<h3>2. \(u_n=5\times0{,}2^n+3\)</h3><p>On remplace le décimal exact \(0{,}2\) par \(1/5\). Les deux constantes \(+3\) s’annulent dans la différence :</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}-u_n
+&=5\left(\frac15\right)^{n+1}+3-\left[5\left(\frac15\right)^n+3\right]\\
+&=5\left(\frac15\right)^n\left(\frac15-1\right)\\
+&=5\left(\frac15\right)^n\left(-\frac45\right)
+=-\frac4{5^n}&lt;0.
+\end{aligned}\]</div><p>Le dénominateur \(5^n\) est strictement positif. Donc \((u_n)\) est <strong>strictement décroissante</strong>.</p>
+<h3>3. \(u_n=\dfrac{3n}{n+1}\)</h3><p>On commence par écrire \(u_{n+1}=3(n+1)/(n+2)\), puis on met au même dénominateur :</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}-u_n
+&=\frac{3(n+1)}{n+2}-\frac{3n}{n+1}\\
+&=\frac{3(n+1)^2-3n(n+2)}{(n+2)(n+1)}\\
+&=\frac{3n^2+6n+3-3n^2-6n}{(n+2)(n+1)}\\
+&=\frac3{(n+2)(n+1)}&gt;0.
+\end{aligned}\]</div><p>Pour \(n\ge0\), les deux facteurs du dénominateur sont positifs. Donc \((u_n)\) est <strong>strictement croissante</strong>.</p>
+<h3>4. \(u_n=\dfrac{2n+1}{3n+4}\)</h3>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}&=\frac{2(n+1)+1}{3(n+1)+4}=\frac{2n+3}{3n+7},\\
+u_{n+1}-u_n
+&=\frac{(2n+3)(3n+4)-(2n+1)(3n+7)}{(3n+7)(3n+4)}.
+\end{aligned}\]</div><p>On développe séparément pour ne pas perdre le signe moins :</p>
+<div class="prepa-formula">\[\begin{aligned}
+(2n+3)(3n+4)&=6n^2+17n+12,\\
+(2n+1)(3n+7)&=6n^2+17n+7.
+\end{aligned}\]</div><p>Le numérateur vaut donc \(5\). Comme \(3n+7&gt;0\) et \(3n+4&gt;0\),</p>
+<div class="prepa-formula">\[u_{n+1}-u_n=\frac5{(3n+7)(3n+4)}&gt;0.\]</div><p>Ainsi \((u_n)\) est <strong>strictement croissante</strong>.</p>
+<h3>5. \(u_n=\dfrac3{7^n}+1\)</h3><p>On utilise \(7^{n+1}=7\times7^n\), donc \(3/7^n=21/7^{n+1}\).</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}-u_n
+&=\frac3{7^{n+1}}+1-\left(\frac3{7^n}+1\right)\\
+&=\frac3{7^{n+1}}-\frac{21}{7^{n+1}}
+=-\frac{18}{7^{n+1}}&lt;0.
+\end{aligned}\]</div><p>Donc \((u_n)\) est <strong>strictement décroissante</strong>.</p>
+<h3>6. \(u_n=\dfrac n{2^n}\) — attention aux premiers rangs</h3><p>La différence est utilisable dès \(n=0\), alors que le quotient \(u_{n+1}/u_n\) ne l’est pas puisque \(u_0=0\).</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}-u_n
+&=\frac{n+1}{2^{n+1}}-\frac n{2^n}
+=\frac{n+1-2n}{2^{n+1}}
+=\frac{1-n}{2^{n+1}}.
+\end{aligned}\]</div><p>Le dénominateur est positif. Le signe est donc celui de \(1-n\) :</p><ul><li>pour \(n=0\), la différence est positive ;</li><li>pour \(n=1\), elle est nulle ;</li><li>pour \(n\ge2\), elle est strictement négative.</li></ul>
+<div class="prepa-formula">\[u_0=0,\qquad u_1=\frac12,\qquad u_2=\frac24=\frac12,\qquad u_3=\frac38.\]</div>
+<p class="td-result">Sur \(\mathbb N\), la suite <strong>n’est pas monotone</strong>. Elle est décroissante au sens large à partir du rang 1, et <strong>strictement décroissante à partir du rang 2</strong>.</p><p>L’égalité \(u_1=u_2\) empêche de dire « strictement décroissante dès le rang 1 ».</p>
+<h3>7. \(u_n=n+\dfrac1n\), pour \(n\ge1\)</h3>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}-u_n
+&=n+1+\frac1{n+1}-n-\frac1n\\
+&=1+\frac{n-(n+1)}{n(n+1)}
+=1-\frac1{n(n+1)}.
+\end{aligned}\]</div><p>Comme \(n\ge1\), on a \(n(n+1)\ge2\), puis \(1/[n(n+1)]\le1/2\). Par conséquent,</p><div class="prepa-formula">\[u_{n+1}-u_n\ge1-\frac12=\frac12&gt;0.\]</div><p>Donc \((u_n)\) est <strong>strictement croissante pour \(n\ge1\)</strong>. Aucun logarithme ni tableau de dérivée n’est nécessaire.</p>
+<h3>8. \(u_n=\ln\left(\dfrac{n+1}{n}\right)\), pour \(n\ge1\)</h3><p>L’argument du logarithme est \(1+1/n&gt;0\), donc tous les termes sont bien définis. Pour \(n\ge1\),</p>
+<div class="prepa-formula">\[n+1&gt;n&gt;0
+\quad\Longrightarrow\quad
+\frac1{n+1}&lt;\frac1n
+\quad\Longrightarrow\quad
+1+\frac1{n+1}&lt;1+\frac1n.\]</div><p>La fonction \(\ln\) est strictement croissante sur \(]0,+\infty[\). Elle conserve donc cette inégalité :</p>
+<div class="prepa-formula">\[\ln\left(1+\frac1{n+1}\right)&lt;\ln\left(1+\frac1n\right),\quad\text{soit }u_{n+1}&lt;u_n.\]</div><p>Ainsi \((u_n)\) est <strong>strictement décroissante pour \(n\ge1\)</strong>. Il suffit de comparer les arguments : on n’évalue aucun logarithme.</p>
+</details></section>
+
+<section class="prepa-section" id="ex4"><h2>Exercice 4 — Vrai ou faux : minorations et majorations</h2>
+<div class="prepa-exercise"><p>Dire si chacune des affirmations suivantes est vraie ou fausse.</p><ol class="td-equations">
+<li>Toute suite est nécessairement majorée ou minorée.</li>
+<li>La suite définie par \(u_n=\dfrac{2n-3}{n-1}\) est majorée par 2.</li>
+<li>La suite définie par \(u_n=2^n+n+1\) est minorée.</li>
+<li>La suite définie par \(u_n=\dfrac1{3n}\) est bornée.</li>
+<li>La suite définie par \(u_n=2^n+1\) est majorée.</li>
+<li>La suite définie par \(u_n=\dfrac{e^n}{n}\) est majorée.</li>
+</ol><p>Le polycopié ne précise pas les rangs de départ. Pour les cas 4 et 6, on prend \(n\ge1\). Le cas 2 nécessite de distinguer les domaines.</p></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — justifications et restrictions de domaine</summary>
+<h3>1. « Toute suite est majorée ou minorée » : faux</h3><p>Un contre-exemple suffit : prenons \(u_n=(-1)^n n\). Pour un rang pair \(n=2k\), \(u_{2k}=2k\), qui peut dépasser n’importe quel majorant proposé. Pour un rang impair \(n=2k+1\), \(u_{2k+1}=-(2k+1)\), qui peut être inférieur à n’importe quel minorant proposé.</p><p class="td-result">Cette suite n’est <strong>ni majorée ni minorée</strong>. Elle contredit donc l’affirmation.</p>
+<h3>2. \(\dfrac{2n-3}{n-1}\) majorée par 2 : vrai pour \(n\ge2\)</h3><p>On ne peut pas utiliser la formule au rang 1 : son dénominateur est nul. Si l’on considère la suite à partir du rang 2, on écrit :</p>
+<div class="prepa-formula">\[2n-3=2(n-1)-1,\qquad
+u_n=2-\frac1{n-1}.\]</div><p>Pour \(n\ge2\), \(n-1&gt;0\), donc \(1/(n-1)&gt;0\). Ainsi \(u_n&lt;2\) : <strong>2 est un majorant</strong>.</p>
+<p class="td-result"><strong>Précision sur l’énoncé :</strong> sur \(\mathbb N\), cette suite n’est pas définie au rang 1. Si l’on conserve aussi le rang 0 parmi les rangs admissibles, \(u_0=(-3)/(-1)=3&gt;2\), et l’affirmation devient fausse. La réponse « vrai » suppose donc explicitement un départ au rang 2.</p>
+<h3>3. \(2^n+n+1\) minorée : vrai</h3><p>Pour \(n\ge0\), \(2^n\ge1\) et \(n\ge0\). En additionnant,</p><div class="prepa-formula">\[u_n=2^n+n+1\ge1+0+1=2.\]</div><p>Donc <strong>2 est un minorant</strong>. Il est atteint au rang 0 : \(u_0=2\).</p>
+<h3>4. \(\dfrac1{3n}\) bornée : vrai, pour \(n\ge1\)</h3><p>Le dénominateur est bien \(3n\), et non \(3^n\). Pour \(n\ge1\), \(3n\ge3&gt;0\). En passant aux inverses,</p><div class="prepa-formula">\[0&lt;\frac1{3n}\le\frac13.\]</div><p>La suite est <strong>minorée par 0 et majorée par \(1/3\)</strong>, donc bornée. Le minorant 0 n’a pas besoin d’être atteint.</p>
+<h3>5. \(2^n+1\) majorée : faux</h3><p>On peut utiliser l’inégalité \(2^n\ge n+1\), valable pour tout \(n\ge0\). Voici sa preuve exacte :</p><p><strong>Initialisation :</strong> \(2^0=1\ge0+1\).</p><p><strong>Hérédité :</strong> si \(2^n\ge n+1\), alors \(2^{n+1}\ge2(n+1)=2n+2\ge n+2\), car \(n\ge0\). L’inégalité est donc démontrée par récurrence.</p>
+<div class="prepa-formula">\[u_n=2^n+1\ge n+2.\]</div><p>Quel que soit le nombre réel \(M\) proposé comme majorant, on peut choisir un entier \(n\) assez grand pour que \(n+2&gt;M\). Alors \(u_n&gt;M\). La suite <strong>n’est pas majorée</strong>.</p>
+<h3>6. \(\dfrac{e^n}{n}\) majorée : faux, pour \(n\ge1\)</h3><p><strong>Réponse courte si les croissances comparées ont déjà été vues :</strong> \(\lim_{n\to+\infty}e^n/n=+\infty\), donc la suite n’est pas majorée. Aucune valeur approchée de \(e\) n’est nécessaire.</p>
+<h4>Une justification sans utiliser les croissances comparées</h4><p>On utilise seulement \(e&gt;2\). Cette inégalité exacte se justifie par \(g(x)=e^x-1-x\) : \(g(0)=0\) et \(g'(x)=e^x-1&gt;0\) pour \(x&gt;0\), donc \(g(1)=e-2&gt;0\).</p><p>Posons \(q=e/2&gt;1\). Les termes étant strictement positifs, pour \(n\ge1\),</p>
+<div class="prepa-formula">\[\frac{u_{n+1}}{u_n}
+=\frac{e^{n+1}}{n+1}\frac n{e^n}
+=e\frac n{n+1}\ge\frac e2=q,\]</div><p>car \(n/(n+1)\ge1/2\) équivaut à \(2n\ge n+1\), c’est-à-dire \(n\ge1\). Ainsi \(u_{n+1}\ge q\,u_n\). En répétant depuis \(u_1=e\), on obtient</p><div class="prepa-formula">\[u_n\ge e\,q^{n-1}.\]</div>
+<p>Pour voir directement que cette borne inférieure dépasse tout nombre, posons \(a=q-1&gt;0\). L’inégalité \((1+a)^k\ge1+ka\) se démontre par récurrence : elle est vraie pour \(k=0\), et la multiplication par \(1+a&gt;0\) donne</p><div class="prepa-formula">\[(1+a)^{k+1}\ge(1+ka)(1+a)
+=1+(k+1)a+ka^2\ge1+(k+1)a.\]</div><p>On a donc \(u_n\ge e[1+(n-1)a]\), dont le membre de droite dépasse tout réel pour \(n\) assez grand. <strong>La suite n’est pas majorée.</strong></p>
+<p><strong>À éviter :</strong> « Le numérateur tend vers l’infini, donc le quotient aussi » n’est pas une preuve : \(n/n=1\) montre pourquoi il faut comparer les deux croissances.</p>
+</details></section>
+
+<section class="prepa-section" id="ex5"><h2>Exercice 5 — Une suite définie par récurrence</h2>
+<div class="prepa-exercise"><p>Soit \((u_n)_{n\ge0}\) définie par</p><div class="prepa-formula">\[u_0=\frac12,\qquad \forall n\ge0,\quad u_{n+1}=u_n-u_n^2.\]</div><p>À l’aide d’un raisonnement par récurrence, montrer que, pour tout \(n\ge0\), \(0\le u_n\le1\). <em>On pensera à factoriser l’expression de \(u_{n+1}\).</em></p></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — factoriser puis encadrer le produit</summary>
+<h3>1. La propriété à démontrer</h3><div class="prepa-formula">\[P(n):\qquad 0\le u_n\le1.\]</div><p>La suite est bien définie à tous les rangs : la formule ne comporte que des opérations sur des réels, sans division ni racine.</p>
+<h3>2. Initialisation</h3><p>\(u_0=1/2\), donc \(0\le u_0\le1\). Ainsi \(P(0)\) est vraie.</p>
+<h3>3. Hérédité</h3><p>Soit \(n\ge0\). On suppose \(P(n)\) vraie : \(0\le u_n\le1\). On doit prouver \(0\le u_{n+1}\le1\).</p><p>On factorise en mettant \(u_n\) en facteur :</p><div class="prepa-formula">\[u_{n+1}=u_n-u_n^2=u_n(1-u_n).\]</div><p>De \(0\le u_n\le1\), on déduit \(0\le1-u_n\le1\). Comme \(u_n\ge0\), on peut multiplier cette dernière inégalité par \(u_n\), sans en changer le sens :</p><div class="prepa-formula">\[0\le u_n(1-u_n)\le u_n.\]</div><p>Or \(u_n\le1\) par hypothèse. Ainsi</p><div class="prepa-formula">\[0\le u_{n+1}=u_n(1-u_n)\le u_n\le1.\]</div><p>On a bien \(0\le u_{n+1}\le1\) : \(P(n+1)\) est vraie.</p>
+<h3>4. Conclusion</h3><p class="td-result">Par récurrence, \(\boxed{\forall n\ge0,\quad0\le u_n\le1}\). La suite est donc bornée.</p><p><strong>Pourquoi la factorisation aide :</strong> le produit de deux nombres positifs est positif. Avec l’écriture \(u_n-u_n^2\), le signe de la différence était moins immédiat.</p><p><strong>Erreur à éviter :</strong> encadrer séparément \(u_n\) et \(-u_n^2\) par \(0\le u_n\le1\) et \(-1\le-u_n^2\le0\) ne donnerait que \(-1\le u_{n+1}\le1\). Cela ne suffit pas pour obtenir le minorant 0 demandé.</p>
+</details></section>
+
+<section class="prepa-section" id="ex6"><h2>Exercice 6 — Récurrence avec une racine carrée</h2>
+<div class="prepa-exercise"><p>La suite \((u_n)_{n\ge0}\) est définie par</p><div class="prepa-formula">\[u_0=4,\qquad \forall n\in\mathbb N,\quad u_{n+1}=\sqrt{3u_n-2}.\]</div><ol><li>On dispose de la courbe de \(f:x\mapsto\sqrt{3x-2}\) sur la <a href="#originaux">page 2 du document</a>.<p><strong>a)</strong> Déterminer l’ensemble de définition de \(f\).</p><p><strong>b)</strong> Représenter les cinq premiers termes de \((u_n)\).</p><p><strong>c)</strong> Conjecturer le caractère éventuellement minoré, majoré ou borné de \((u_n)\), ainsi que sa monotonie.</p></li><li>Montrer que la suite est bien définie et que, pour tout \(n\ge0\), \(u_n\ge1\).</li><li>Montrer que la suite est décroissante.</li></ol></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — domaine, escalier, bornes et décroissance</summary>
+<h3>1.a. Ensemble de définition de la fonction</h3><p>Une racine carrée réelle existe si et seulement si son contenu est positif ou nul :</p><div class="prepa-formula">\[3x-2\ge0\quad\Longleftrightarrow\quad3x\ge2
+\quad\Longleftrightarrow\quad x\ge\frac23.\]</div><p class="td-result">Donc \(\boxed{D_f=\left[\frac23,+\infty\right[}\). Le nombre \(2/3\) est inclus, car \(\sqrt0\) existe.</p>
+<h3>1.b. Les cinq premiers termes</h3><p>La suite commence au rang 0 : les cinq premiers termes sont <strong>\(u_0,u_1,u_2,u_3,u_4\)</strong>. On applique la formule quatre fois :</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_0&=4,\\
+u_1&=\sqrt{3\times4-2}=\sqrt{10},\\
+u_2&=\sqrt{3\sqrt{10}-2},\\
+u_3&=\sqrt{3\sqrt{3\sqrt{10}-2}-2},\\
+u_4&=\sqrt{3\sqrt{3\sqrt{3\sqrt{10}-2}-2}-2}.
+\end{aligned}\]</div>
+<p>Ces racines sont des <strong>valeurs exactes</strong>. Il n’est pas nécessaire de les transformer en décimaux pour réaliser la construction demandée.</p>
+<h4>Construire les termes sur le graphique du polycopié</h4><ol><li>Tracer la première bissectrice, la droite <strong>\(y=x\)</strong>, qui passe par \((0,0)\), \((1,1)\), \((2,2)\), etc.</li><li>Placer \(u_0=4\) sur l’axe horizontal. Tracer la verticale jusqu’à la courbe : on arrive au point \((u_0,u_1)\).</li><li>Tracer l’horizontale jusqu’à la droite \(y=x\) : on arrive au point \((u_1,u_1)\). Cela reporte \(u_1\) en abscisse.</li><li>À partir de ce point, tracer la verticale jusqu’à la courbe : on arrive en \((u_1,u_2)\). Ici, on descend.</li><li>Recommencer avec une horizontale vers la bissectrice puis une verticale vers la courbe, jusqu’à obtenir \(u_4\). Une projection verticale sur l’axe horizontal permet de reporter chaque valeur \(u_k\).</li></ol>
+<figure class="td-graph"><img src="../assets/maths/2026-09-13-td-suites-ana01a/escalier.svg" width="960" height="840" loading="lazy" alt="Courbe de f(x) égale à racine de 3x moins 2, droite y égale x et construction des termes u0 à u4 à partir de u0 égale 4. L’escalier se déplace vers la gauche et vers le bas, en restant au-dessus de 2."><figcaption>Construction de \(u_0\) à \(u_4\). Les graduations du tracé servent à la lecture graphique ; les expressions exactes sont données ci-dessus.</figcaption></figure>
+<h3>1.c. Conjectures graphiques</h3><p>L’escalier semble descendre vers 2. On conjecture que la suite est <strong>décroissante, minorée par 2 et majorée par 4</strong>, donc bornée. À ce stade, il s’agit d’une lecture graphique, pas encore d’une preuve.</p>
+<h3>2. Bien-définition et minoration par 1</h3><p>On démontre par récurrence la propriété</p><div class="prepa-formula">\[P(n):\quad u_n\text{ est bien défini et }u_n\ge1.\]</div><p><strong>Initialisation :</strong> \(u_0=4\) est bien défini et \(4\ge1\).</p><p><strong>Hérédité :</strong> supposons \(u_n\) bien défini et \(u_n\ge1\). On suit les opérations de la formule :</p><div class="prepa-formula">\[u_n\ge1\quad\Longrightarrow\quad
+3u_n\ge3\quad\Longrightarrow\quad3u_n-2\ge1&gt;0.\]</div><p>La racine carrée existe, donc \(u_{n+1}\) est bien défini. La fonction racine carrée est croissante sur les réels positifs :</p><div class="prepa-formula">\[u_{n+1}=\sqrt{3u_n-2}\ge\sqrt1=1.\]</div><p>On obtient exactement \(P(n+1)\).</p><p><strong>Conclusion :</strong> pour tout \(n\ge0\), \(u_n\) est bien défini et \(u_n\ge1\).</p><p>On multiplie par 3 puis on soustrait 2 <strong>parce que la formule contient \(3u_n-2\)</strong>. Les opérations viennent de la relation de récurrence, pas du nombre choisi comme borne.</p>
+<h3>3. Démontrer que la suite est décroissante</h3><p>On utilise la croissance de \(f\) pour transmettre une première comparaison. Pour \(x&lt;y\) dans \(D_f\), on a \(3x-2&lt;3y-2\), puis \(\sqrt{3x-2}&lt;\sqrt{3y-2}\). Ainsi <strong>\(f\) est strictement croissante sur \(D_f\)</strong>.</p><p>On démontre par récurrence \(Q(n):u_{n+1}&lt;u_n\).</p><p><strong>Initialisation :</strong> \(u_1=\sqrt{10}\) et \(u_0=4=\sqrt{16}\). Comme \(10&lt;16\), on a \(\sqrt{10}&lt;\sqrt{16}=4\). Donc \(u_1&lt;u_0\), sans calculatrice.</p><p><strong>Hérédité :</strong> supposons \(u_{n+1}&lt;u_n\). Les deux termes appartiennent à \(D_f\), d’après la question 2. La stricte croissance de \(f\) donne :</p><div class="prepa-formula">\[u_{n+2}=f(u_{n+1})&lt;f(u_n)=u_{n+1}.\]</div><p>C’est \(Q(n+1)\).</p><p class="td-result">Par récurrence, la suite est <strong>strictement décroissante</strong>, donc décroissante comme demandé. En particulier, \(1\le u_n\le u_0=4\) pour tout \(n\ge0\) : elle est bornée.</p>
+<h4>Complément — justifier aussi la borne 2 observée</h4><p>On peut améliorer la minoration par une courte récurrence : \(u_0=4&gt;2\), et si \(u_n&gt;2\), alors \(3u_n-2&gt;4\), donc \(u_{n+1}&gt;\sqrt4=2\). Ainsi</p><div class="prepa-formula">\[\boxed{\forall n\ge0,\qquad2&lt;u_n\le4.}\]</div><p>On a maintenant prouvé les bornes conjecturées. La recherche d’une limite n’est pas demandée dans ce TD.</p>
+</details></section>
+
+<section class="prepa-section" id="ex7"><h2>Exercice 7 — Conjecturer puis démontrer une formule</h2>
+<div class="prepa-exercise"><p>On considère la suite définie par</p><div class="prepa-formula">\[u_0=1,\qquad \forall n\in\mathbb N,\quad u_{n+1}=u_n+2n+3.\]</div><ol><li>Étudier la monotonie de la suite.</li><li>Démontrer que, pour tout entier naturel \(n\), \(u_n&gt;n^2\).</li><li>Conjecturer une expression générale de \(u_n\), puis la démontrer par récurrence.</li></ol></div>
+<details class="prepa-correction td-correction"><summary>Correction détaillée — monotonie, inégalité et terme général</summary>
+<h3>1. Monotonie</h3><p>La formule donne immédiatement la différence :</p><div class="prepa-formula">\[u_{n+1}-u_n=2n+3.\]</div><p>Pour \(n\ge0\), \(2n+3\ge3&gt;0\). Donc \((u_n)\) est <strong>strictement croissante</strong>.</p>
+<h3>2. Prouver \(u_n&gt;n^2\) sans utiliser la question suivante</h3><p>On démontre par récurrence \(P(n):u_n&gt;n^2\).</p><p><strong>Initialisation :</strong> \(u_0=1&gt;0=0^2\).</p><p><strong>Hérédité :</strong> soit \(n\ge0\). On suppose \(u_n&gt;n^2\). On ajoute \(2n+3\) aux deux membres :</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}=u_n+2n+3
+&gt;n^2+2n+3\\
+&=(n+1)^2+2\\
+&gt;(n+1)^2.
+\end{aligned}\]</div><p>On a donc \(P(n+1)\). Le développement \((n+1)^2=n^2+2n+1\) explique le \(+2\) restant.</p><p><strong>Conclusion :</strong> par récurrence, \(\boxed{\forall n\ge0,\ u_n&gt;n^2}\).</p>
+<h3>3. Conjecturer une expression générale</h3><p>Calculons quelques termes, en remplaçant aussi \(n\) dans \(2n+3\) :</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_0&=1,\\
+u_1&=u_0+2\times0+3=1+3=4,\\
+u_2&=u_1+2\times1+3=4+5=9,\\
+u_3&=u_2+2\times2+3=9+7=16,\\
+u_4&=u_3+2\times3+3=16+9=25.
+\end{aligned}\]</div><p>On reconnaît \(1^2,2^2,3^2,4^2,5^2\). Au rang \(n\), le carré semble être celui de \(n+1\). On conjecture donc</p><div class="prepa-formula">\[u_n=(n+1)^2.\]</div>
+<h4>Démonstration de cette formule par récurrence</h4><p>Posons \(R(n):u_n=(n+1)^2\).</p><p><strong>Initialisation :</strong> \(u_0=1=(0+1)^2\).</p><p><strong>Hérédité :</strong> supposons \(u_n=(n+1)^2\). Alors</p>
+<div class="prepa-formula">\[\begin{aligned}
+u_{n+1}&=u_n+2n+3\\
+&=(n+1)^2+2n+3\\
+&=n^2+2n+1+2n+3\\
+&=n^2+4n+4\\
+&=(n+2)^2.
+\end{aligned}\]</div><p>Or au rang \(n+1\), la formule à obtenir est précisément \(u_{n+1}=((n+1)+1)^2=(n+2)^2\). L’hérédité est établie.</p><p class="td-result"><strong>Conclusion :</strong> par récurrence, \(\boxed{\forall n\ge0,\quad u_n=(n+1)^2}\).</p><p>La formule confirme la question 2 : \(u_n-n^2=(n+1)^2-n^2=2n+1&gt;0\). Cette vérification vient après la démonstration du terme général.</p>
+</details></section>
+
+<section class="prepa-section" id="bilan"><h2>Résultats à vérifier après ta recherche</h2>
+<details class="prepa-sources td-correction"><summary>Afficher le tableau des réponses</summary>
+<div class="table-scroll"><table><thead><tr><th scope="col">Exercice</th><th scope="col">Résultat</th></tr></thead><tbody>
+<tr><th scope="row">1.1</th><td>Explicite : \(u_0=-5,\ u_1=-2,\ u_2=-1,\ u_3=-1/2\).</td></tr>
+<tr><th scope="row">1.2</th><td>Récurrence d’ordre 1 : \(1,-1,-3,-13\).</td></tr>
+<tr><th scope="row">1.3</th><td>Récurrence d’ordre 1 : \(2,0,-2,-4/5\).</td></tr>
+<tr><th scope="row">1.4</th><td>Récurrence d’ordre 2 : \(1,-1,2,-3\).</td></tr>
+<tr><th scope="row">1.5</th><td>Récurrence d’ordre 1 : \(u_1=5,\ u_2=7,\ u_3=8,\ u_4=26/3\).</td></tr>
+<tr><th scope="row">2</th><td>\(f\) strictement croissante ; \((u_n)\) strictement croissante ; \((v_n)\) strictement décroissante.</td></tr>
+<tr><th scope="row">3.1 à 3.5</th><td>Strictement : croissante, décroissante, croissante, croissante, décroissante.</td></tr>
+<tr><th scope="row">3.6</th><td>Non monotone sur \(\mathbb N\) ; décroissante dès le rang 1, strictement dès le rang 2.</td></tr>
+<tr><th scope="row">3.7 et 3.8</th><td>Sur \(n\ge1\) : strictement croissante ; strictement décroissante.</td></tr>
+<tr><th scope="row">4</th><td>1 : faux. 2 : vrai pour \(n\ge2\), domaine à préciser. 3 : vrai. 4 : vrai pour \(n\ge1\). 5 : faux. 6 : faux pour \(n\ge1\).</td></tr>
+<tr><th scope="row">5</th><td>\(0\le u_n\le1\), par récurrence avec \(u_{n+1}=u_n(1-u_n)\).</td></tr>
+<tr><th scope="row">6</th><td>\(D_f=[2/3,+\infty[\). Suite bien définie, strictement décroissante, \(2&lt;u_n\le4\).</td></tr>
+<tr><th scope="row">7</th><td>Strictement croissante ; \(u_n&gt;n^2\) ; \(u_n=(n+1)^2\).</td></tr>
+</tbody></table></div></details>
+<p><a href="suites-a1-2026-09-05.html">A1 — Notations</a> · <a href="suites-a2-representations-2026-09-10.html">A2 — Graphiques</a> · <a href="suites-a3-variations-2026-09-09.html">A3 — Variations</a> · <a href="suites-a4-bornes-2026-09-10.html">A4 — Bornes</a> · <a href="../maths.html">Tous les cours prépa de maths</a></p>
+</section>
+</main>
+<footer class="site-footer"><p>ECG1 2026/2027 — <a href="../maths.html">Cours prépa · Maths</a> · <a href="../../maths/ch06-suites.html">Chapitre 6 — Suites réelles</a></p></footer>
+<script src="../../js/data.js"></script><script src="../../js/main.js"></script><script src="../../js/maths-td-suites.js"></script>
+</body></html>

@@ -1,0 +1,27 @@
+/* TD ANA 01-A — mêmes repères que les fiches de classe. */
+.td-page .prepa-shell { max-width: 1120px; }
+.td-page .prepa-document-head { padding-bottom: 1.5rem; }
+.td-page .prepa-section { scroll-margin-top: 9rem; }
+.td-page .prepa-correction { border-top: 1px solid var(--prepa-line); margin-top: 1rem; }
+.td-page .prepa-correction > summary { cursor: pointer; font-size: 1rem; font-weight: 750; padding-block: .3rem; }
+.td-page .prepa-correction[open] > summary { margin-bottom: 1.4rem; }
+.td-page summary:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+.td-page .prepa-correction h4 { margin: 1.8rem 0 .8rem; font-size: 1.15rem; color: var(--prepa-ink); }
+.td-page .prepa-correction .label { font-size: .875rem; letter-spacing: .04em; }
+.td-page .td-result { border-left: 3px solid var(--prepa-maths); padding: .8rem 1rem; background: var(--prepa-card); }
+.td-page .td-tools { display: flex; flex-wrap: wrap; gap: .7rem; margin-block: 1rem; }
+.td-page .td-tools button { padding: .6rem .9rem; font: inherit; color: var(--prepa-ink); background: var(--prepa-card); border: 1px solid var(--prepa-line); border-radius: .3rem; cursor: pointer; }
+.td-page .td-tools button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.td-page .td-equations li { margin-bottom: .65rem; }
+.td-page .td-graph { margin: 1.5rem auto; max-width: 48rem; }
+.td-page .td-graph img { display: block; width: 100%; height: auto; background: #fff; border-radius: .4rem; }
+.td-page .td-graph figcaption { margin-top: .7rem; font-size: .95rem; }
+.td-page .prepa-formula { max-width: 100%; }
+.td-page .table-scroll { max-width: 100%; overflow-x: auto; }
+.td-page .prepa-document-head > * { min-width: 0; }
+@media print {
+  .td-page .td-tools, .td-page .a3-toc, .td-page #originaux { display: none; }
+  .td-page .prepa-correction { background: white; color: black; border-color: #999; }
+  .td-page .prepa-formula { overflow: visible; }
+  .td-page h2, .td-page h3, .td-page h4 { break-after: avoid; }
+}

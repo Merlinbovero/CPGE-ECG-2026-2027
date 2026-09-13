@@ -49,6 +49,20 @@ window.PREPA_ARCHIVE = {
   },
 
   courses: [
+    {
+      id: "maths-td-suites-ana01a-2026-09-13", subject: "maths",
+      title: "TD ANA 01-A · Généralités et étude globale des suites",
+      reference: "TD ANA 01-A · 1/2 et 2/2",
+      theme: "Premiers termes · variations · bornes · récurrence · construction graphique",
+      archiveDate: "2026-09-13", courseDate: null,
+      dateLabel: "13 septembre 2026 · date d’archivage",
+      pages: 2, corrections: 7,
+      chapterTitle: "Chapitre 6 — Suites réelles",
+      chapterUrl: "maths/ch06-suites.html#td-ana01a",
+      url: "cours-prepa/maths/td-suites-ana01a-2026-09-13.html",
+      thumb: "cours-prepa/assets/maths/2026-09-13-td-suites-ana01a/escalier.png",
+      tags: ["TD", "Suites", "A1 à A4", "Récurrence", "Sans calculatrice", "7 corrigés"]
+    },
     {"id": "esh-acteurs-fonctions-partie-1-2026-09-12", "subject": "esh", "title": "Chapitre 1 · Les acteurs et les grandes fonctions de l’économie — Partie 1", "reference": "Audrey Demolliens · ESH ECG1", "theme": "Entreprises · ménages · État · comptes nationaux · production et rendements", "archiveDate": "2026-09-12", "courseDate": null, "dateLabel": "12 septembre 2026 · date d’archivage", "pages": 70, "corrections": 8, "chapterTitle": "Les acteurs et les grandes fonctions de l’économie", "chapterUrl": "esh/ch05-acteurs-comptabilite.html#cours-prepa-ch1", "url": "cours-prepa/esh/acteurs-fonctions-partie-1-2026-09-12.html", "thumb": "cours-prepa/assets/esh/2026-09-12-chapitre-1-partie-1/couverture.webp", "tags": ["Chapitre 1", "Partie 1", "70 diapositives", "PDF original", "30 questions", "8 exercices corrigés"]},
     {
       id: "maths-suites-a4-bornes-2026-09-10", subject: "maths",
