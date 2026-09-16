@@ -50,6 +50,20 @@ window.PREPA_ARCHIVE = {
 
   courses: [
     {
+      id: "maths-raisonnement-recurrence-2026-09-16", subject: "maths",
+      title: "Raisonnement par récurrence — simple et double",
+      reference: "Polycopié 1/4 à 4/4 + correction manuscrite",
+      theme: "Initialisation · hérédité · rédaction · suites · inégalité de Bernoulli",
+      archiveDate: "2026-09-16", courseDate: null,
+      dateLabel: "16 septembre 2026 · date d’archivage",
+      pages: 5, corrections: 7,
+      chapterTitle: "Chapitre 1 — Raisonnement par récurrence",
+      chapterUrl: "maths/ch01-logique-ensembles.html#recurrence-classe",
+      url: "cours-prepa/maths/raisonnement-recurrence-2026-09-16.html",
+      thumb: "cours-prepa/assets/maths/2026-09-16-raisonnement-recurrence/cours-page-1.jpeg",
+      tags: ["Récurrence simple", "Récurrence double", "Méthode", "Suites", "Sans calculatrice", "7 corrigés"]
+    },
+    {
       id: "maths-td-suites-ana01a-2026-09-13", subject: "maths",
       title: "TD ANA 01-A · Généralités et étude globale des suites",
       reference: "TD ANA 01-A · 1/2 et 2/2",
