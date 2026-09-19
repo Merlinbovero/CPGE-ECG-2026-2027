@@ -8,6 +8,7 @@
   try { slides = JSON.parse(data.textContent); } catch (_) { return; }
   if (!Array.isArray(slides) || !slides.length) return;
   const base = reader.dataset.assets;
+  const pageLabel = reader.dataset.pageLabel || 'Diapositive';
   const picture = document.getElementById('esh-slide-image');
   const select = document.getElementById('esh-slide-select');
   const previous = document.getElementById('esh-slide-prev');
@@ -30,10 +31,10 @@
     current = Math.max(1, Math.min(slides.length, page));
     const slide = slides[current - 1];
     picture.src = base + '/page-' + String(current).padStart(2, '0') + '.webp';
-    picture.alt = 'Diapositive ' + current + ' : ' + slide.title + '. ' + (slide.note || '');
+    picture.alt = pageLabel + ' ' + current + ' : ' + slide.title + '. ' + (slide.note || '');
     original.href = picture.src;
     select.value = String(current);
-    counter.textContent = 'Diapositive ' + current + ' / ' + slides.length + ' · ' + slide.title;
+    counter.textContent = pageLabel + ' ' + current + ' / ' + slides.length + ' · ' + slide.title;
     text.textContent = slide.text;
     note.textContent = slide.note || '';
     note.hidden = !slide.note;
@@ -75,7 +76,7 @@
       const haystack = normalize(slide.title + ' ' + slide.text + ' ' + (slide.note || ''));
       return terms.every(function (term) { return haystack.includes(term); });
     });
-    status.textContent = matches.length + ' diapositive' + (matches.length > 1 ? 's' : '') + ' trouvée' + (matches.length > 1 ? 's' : '') + '.';
+    status.textContent = matches.length + ' ' + pageLabel.toLowerCase() + (matches.length > 1 ? 's' : '') + ' trouvée' + (matches.length > 1 ? 's' : '') + '.';
     results.hidden = !matches.length;
     matches.forEach(function (slide) {
       const item = document.createElement('li');

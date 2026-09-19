@@ -49,6 +49,7 @@ window.PREPA_ARCHIVE = {
   },
 
   courses: [
+    {"id": "esh-chapitre-1-integral-2026-09-19", "subject": "esh", "title": "Chapitre 1 · Les acteurs et les grandes fonctions de l’économie — Cours intégral", "reference": "Cours rédigé · ESH ECG1 · 35 pages", "theme": "Acteurs · PIB et RNB · TES · revenus · consommation · épargne · investissement", "archiveDate": "2026-09-19", "courseDate": null, "dateLabel": "19 septembre 2026 · date d’archivage", "pages": 35, "corrections": 14, "chapterTitle": "Les acteurs et les grandes fonctions de l’économie", "chapterUrl": "esh/ch05-acteurs-comptabilite.html#cours-prepa-ch1-integral", "url": "cours-prepa/esh/acteurs-fonctions-cours-integral-2026-09-19.html", "thumb": "cours-prepa/assets/esh/2026-09-19-chapitre-1-cours/couverture.webp", "tags": ["Cours intégral", "35 pages", "Tous les documents", "60 questions", "14 exercices corrigés"]},
     {
       id: "maths-suites-b1-2026-09-19", subject: "maths",
       title: "Suites — B1 · Suites arithmétiques et géométriques",

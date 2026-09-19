@@ -59,6 +59,14 @@
 .esh-reader-noscript { margin-block: 1rem; }
 .esh-prepa .esh-stats-note { font-size: .9375rem; color: var(--text-muted); }
 .esh-prepa [hidden] { display: none !important; }
+.esh-prepa .esh-transcript-page { scroll-margin-top: 9rem; }
+.esh-prepa .esh-anchor { display: block; scroll-margin-top: 9rem; }
+.esh-prepa .esh-source-transcript { overflow-wrap: anywhere; }
+.esh-prepa .esh-page-return { font-size: .875rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+.esh-prepa .esh-formula-inline { font-weight: 600; }
+.esh-prepa .esh-source-label { font-size: .8125rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+.esh-prepa .esh-skip-link { position: absolute; left: 1rem; top: -8rem; z-index: 100; padding: .8rem 1rem; background: var(--bg-card); color: var(--text); }
+.esh-prepa .esh-skip-link:focus { top: .5rem; }
 @media (max-width: 900px) {
   .esh-course-layout { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
   .esh-course-toc { position: static; max-height: none; }
