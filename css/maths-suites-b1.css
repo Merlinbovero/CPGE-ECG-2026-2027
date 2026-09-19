@@ -1,0 +1,8 @@
+/* B1 — comparaison graphique des deux suites du polycopié. */
+.b1-graphs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+.b1-graphs figure { margin: 0; min-width: 0; }
+.b1-graphs img { display: block; width: 100%; height: auto; border-radius: .4rem; background: #fff; }
+.b1-graphs figcaption { margin-top: .8rem; font-size: 1rem; line-height: 1.6; }
+.b1-page .prepa-note { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+.b1-page .prepa-document-head h1 { max-width: 19ch; }
+@media (max-width: 720px) { .b1-graphs { grid-template-columns: minmax(0, 1fr); } }

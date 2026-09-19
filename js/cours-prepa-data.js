@@ -50,6 +50,20 @@ window.PREPA_ARCHIVE = {
 
   courses: [
     {
+      id: "maths-suites-b1-2026-09-19", subject: "maths",
+      title: "Suites — B1 · Suites arithmétiques et géométriques",
+      reference: "ANA 01-B1 · 1/2 et 2/2 + couverture et notes",
+      theme: "Raison · terme général · sommes · méthodes M1 et M2 · suite auxiliaire",
+      archiveDate: "2026-09-19", courseDate: null,
+      dateLabel: "19 septembre 2026 · date d’archivage",
+      pages: 4, corrections: 10,
+      chapterTitle: "Chapitre 6 — Suites arithmétiques et géométriques",
+      chapterUrl: "maths/ch06-suites.html#suites-b1",
+      url: "cours-prepa/maths/suites-b1-arithmetiques-geometriques-2026-09-19.html",
+      thumb: "cours-prepa/assets/maths/2026-09-19-suites-b1/arithmetique.svg",
+      tags: ["Analyse", "Suites", "B1", "Sommes", "Sans calculatrice", "10 corrigés"]
+    },
+    {
       id: "maths-raisonnement-recurrence-2026-09-16", subject: "maths",
       title: "Raisonnement par récurrence — simple et double",
       reference: "Polycopié 1/4 à 4/4 + correction manuscrite",

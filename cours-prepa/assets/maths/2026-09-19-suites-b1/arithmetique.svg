@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="400" viewBox="0 0 560 400" role="img" aria-labelledby="title desc"><title id="title">uₙ = −3 + 2n</title><desc id="desc">Suite arithmétique de premier terme −3 et de raison 2. Les points sont alignés.</desc>
+<rect width="560" height="400" fill="#fcfbf7" rx="8"/>
+<text x="24" y="32" fill="#273d35" font-family="sans-serif" font-size="21" font-weight="600">uₙ = −3 + 2n</text>
+<path d="M64.000 62V346" stroke="#dfdfd6"/>
+<text x="64.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">0</text>
+<path d="M140.000 62V346" stroke="#dfdfd6"/>
+<text x="140.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">1</text>
+<path d="M216.000 62V346" stroke="#dfdfd6"/>
+<text x="216.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">2</text>
+<path d="M292.000 62V346" stroke="#dfdfd6"/>
+<text x="292.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">3</text>
+<path d="M368.000 62V346" stroke="#dfdfd6"/>
+<text x="368.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">4</text>
+<path d="M444.000 62V346" stroke="#dfdfd6"/>
+<text x="444.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">5</text>
+<path d="M520.000 62V346" stroke="#dfdfd6"/>
+<text x="520.000" y="274.333" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#34433b">6</text>
+<path d="M64 346.000H520" stroke="#dfdfd6"/>
+<text x="51" y="351.000" text-anchor="end" font-family="sans-serif" font-size="16" fill="#34433b">-4</text>
+<path d="M64 298.667H520" stroke="#dfdfd6"/>
+<text x="51" y="303.667" text-anchor="end" font-family="sans-serif" font-size="16" fill="#34433b">-2</text>
+<path d="M64 251.333H520" stroke="#dfdfd6"/>
+<path d="M64 204.000H520" stroke="#dfdfd6"/>
+<text x="51" y="209.000" text-anchor="end" font-family="sans-serif" font-size="16" fill="#34433b">2</text>
+<path d="M64 156.667H520" stroke="#dfdfd6"/>
+<text x="51" y="161.667" text-anchor="end" font-family="sans-serif" font-size="16" fill="#34433b">4</text>
+<path d="M64 109.333H520" stroke="#dfdfd6"/>
+<text x="51" y="114.333" text-anchor="end" font-family="sans-serif" font-size="16" fill="#34433b">6</text>
+<path d="M64 62.000H520" stroke="#dfdfd6"/>
+<text x="51" y="67.000" text-anchor="end" font-family="sans-serif" font-size="16" fill="#34433b">8</text>
+<path d="M64 55V349 M60 251.333H528" stroke="#34433b" stroke-width="1.7" fill="none"/>
+<text x="533" y="256.333" font-family="sans-serif" font-size="17" fill="#34433b">n</text>
+<text x="41" y="49" font-family="sans-serif" font-size="17" fill="#34433b">uₙ</text>
+<path d="M64.000 322.333L482.000 62.000" stroke="#769a86" stroke-width="2" stroke-dasharray="6 5"/>
+<path d="M59.000 322.333H69.000 M64.000 317.333V327.333" stroke="#245a48" stroke-width="3" stroke-linecap="round"><title>n = 0 ; u = -3</title></path>
+<path d="M135.000 275.000H145.000 M140.000 270.000V280.000" stroke="#245a48" stroke-width="3" stroke-linecap="round"><title>n = 1 ; u = -1</title></path>
+<path d="M211.000 227.667H221.000 M216.000 222.667V232.667" stroke="#245a48" stroke-width="3" stroke-linecap="round"><title>n = 2 ; u = 1</title></path>
+<path d="M287.000 180.333H297.000 M292.000 175.333V185.333" stroke="#245a48" stroke-width="3" stroke-linecap="round"><title>n = 3 ; u = 3</title></path>
+<path d="M363.000 133.000H373.000 M368.000 128.000V138.000" stroke="#245a48" stroke-width="3" stroke-linecap="round"><title>n = 4 ; u = 5</title></path>
+<path d="M439.000 85.667H449.000 M444.000 80.667V90.667" stroke="#245a48" stroke-width="3" stroke-linecap="round"><title>n = 5 ; u = 7</title></path>
+</svg>
