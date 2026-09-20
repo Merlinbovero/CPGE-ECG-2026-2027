@@ -1,0 +1,30 @@
+/* Proba — prolongement des fiches de classe, avec sources portrait et paysage. */
+.prob-page .prepa-document-head h1 { max-width: 17ch; font-size: clamp(2.25rem, 4.7vw, 4rem); line-height: 1.08; overflow-wrap: anywhere; }
+.prob-page .prepa-document-head { gap: 2rem; }
+.prob-page .prepa-document-meta dt { font-size: .875rem; letter-spacing: .02em; }
+.prob-page .prepa-document-meta dd,
+.prob-page .prepa-source-warning,
+.prob-page .prepa-original-block .label { font-size: 1rem; }
+.prob-page .prepa-document-meta div { grid-template-columns: minmax(0, 8rem) minmax(0, 1fr); }
+.prob-page .prepa-section p,
+.prob-page .prepa-section li,
+.prob-page .prepa-section td,
+.prob-page .prepa-section th { font-size: 1rem; line-height: 1.7; }
+.prob-page .prepa-section li + li { margin-top: .55rem; }
+.prob-page .prepa-section h3 { margin-top: 1.8rem; }
+.prob-page .prepa-section > *,
+.prob-page .prepa-note > * { min-width: 0; }
+.prob-page .prepa-formula { overflow-x: auto; }
+.prob-page .table-scroll { width: 100%; }
+.prob-page .prob-photo-frame { max-width: 54rem; margin-inline: auto; }
+.prob-page .prob-photo-frame img { display: block; width: 100%; height: auto; }
+.prob-page .prepa-correction > summary { line-height: 1.5; }
+.prob-page .prepa-correction p:last-child { margin-bottom: 0; }
+@media (max-width: 700px) {
+  .prob-page .prepa-document-head { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+  .prob-page .prepa-note { display: block; }
+  .prob-page .prepa-note > strong { display: block; margin-bottom: .8rem; }
+  .prob-page .prepa-original-block,
+  .prob-page .prepa-exercise,
+  .prob-page .prepa-correction { padding-inline: .85rem; }
+}

@@ -2,7 +2,7 @@
    Chaque projet GitHub Pages possède son propre cache. */
 const SCOPE = new URL(self.registration.scope);
 const PREFIX = "ecg1:" + SCOPE.pathname + ":";
-const CACHE = PREFIX + "v18";
+const CACHE = PREFIX + "v19";
 
 self.addEventListener("install", function () { self.skipWaiting(); });
 
